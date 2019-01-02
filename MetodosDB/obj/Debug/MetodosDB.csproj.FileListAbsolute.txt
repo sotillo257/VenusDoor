@@ -1,0 +1,6 @@
+C:\Desarrollo\BioKontrol\_Dev\BioKontrol\MetodosDB\bin\Debug\MetodosDB.dll.config
+C:\Desarrollo\BioKontrol\_Dev\BioKontrol\MetodosDB\bin\Debug\MetodosDB.dll
+C:\Desarrollo\BioKontrol\_Dev\BioKontrol\MetodosDB\bin\Debug\MetodosDB.pdb
+C:\Desarrollo\BioKontrol\_Dev\BioKontrol\MetodosDB\obj\Debug\MetodosDB.csprojResolveAssemblyReference.cache
+C:\Desarrollo\BioKontrol\_Dev\BioKontrol\MetodosDB\obj\Debug\MetodosDB.dll
+C:\Desarrollo\BioKontrol\_Dev\BioKontrol\MetodosDB\obj\Debug\MetodosDB.pdb
