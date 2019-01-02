@@ -1350,7 +1350,7 @@ pre code {
   width: 100%;
   max-width: 100%;
   margin-bottom: 1rem;
-  background-color: transparent;
+  background-color: #dee2e6;
 }
 .table th,
 .table td {
@@ -1375,11 +1375,12 @@ pre code {
 }
 
 .table-bordered {
-  border: 1px solid #dee2e6;
+  border: 1px solid #adb5bd;
+  border-radius: 10px;
 }
 .table-bordered th,
 .table-bordered td {
-  border: 1px solid #dee2e6;
+  border: 1px solid #bfc3c7;
 }
 .table-bordered thead th,
 .table-bordered thead td {
@@ -10235,9 +10236,7 @@ textarea.parsley-error:active {
   font-weight: 500;
 }
 
-.table-bordered {
-  border: 0;
-}
+
 .table-bordered > thead > tr > th,
 .table-bordered > thead > tr > td {
   border-bottom: 1px solid #e9ecef;
@@ -10252,6 +10251,7 @@ textarea.parsley-error:active {
 .table-bordered > tbody > tr > td {
   border-right-width: 0;
   border-top-width: 0;
+  text-align: center;
 }
 .table-bordered > tbody > tr > th:first-child,
 .table-bordered > tbody > tr > td:first-child {
@@ -10260,6 +10260,14 @@ textarea.parsley-error:active {
 .table-bordered > tbody > tr:last-child > th,
 .table-bordered > tbody > tr:last-child > td {
   border-bottom-width: 0;
+}
+
+.table > thead {
+    background-color: #15806f;
+} 
+
+.table > thead > tr > th {
+    color: #ccc;
 }
 
 .table-colored {
@@ -13913,7 +13921,6 @@ textarea.parsley-success:focus {
   display: flex;
   align-items: center;
   background-color: #dee2e6;
-  /*margin-left: 20px;*/
   padding-right: 20px;
   margin-bottom: 20px;
 }
