@@ -13,7 +13,7 @@ namespace VenusDoors.Controllers
         {
             ViewBag.Dashboard = "active";
             BusinessLogic.lnDoorStyle _LN = new BusinessLogic.lnDoorStyle();
-            List<DoorStyle> list = _LN.GetAllDoorStyle();
+          //  List<DoorStyle> list = _LN.GetAllDoorStyle();
 
             return View();
         }
