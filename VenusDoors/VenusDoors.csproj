@@ -1704,6 +1704,7 @@
     <Content Include="Views\Masters\Index.cshtml" />
     <Content Include="Views\ConfiDoor\Index.cshtml" />
     <Content Include="Views\OrderSummary\Index.cshtml" />
+    <Content Include="Scripts\js\ConfigDoor.Index.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1711,7 +1712,6 @@
     <Folder Include="obj\Release\ProfileTransformWebConfig\transformed\Views\" />
     <Folder Include="obj\Release\TempPE\" />
     <Folder Include="obj\Release\TransformWebConfig\transformed\Views\" />
-    <Folder Include="Scripts\js\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

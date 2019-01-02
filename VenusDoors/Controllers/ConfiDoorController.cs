@@ -14,5 +14,33 @@ namespace VenusDoors.Controllers
             ViewBag.ConfiDoor = "active";
             return View();
         }
+
+        [HttpPost]
+        public ActionResult ObtenerMaterial()
+        {
+            try
+            {
+                BusinessLogic.lnDoorStyle _LN = new BusinessLogic.lnDoorStyle();
+                return Json(_LN.GetAllDoorStyle());
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpPost]
+        public ActionResult GetAllDoorStyle()
+        {
+            try
+            {
+                BusinessLogic.lnDoorStyle _LN = new BusinessLogic.lnDoorStyle();
+                return Json(_LN.GetAllDoorStyle());
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
     }
 }

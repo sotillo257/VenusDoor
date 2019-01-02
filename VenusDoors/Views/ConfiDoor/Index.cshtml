@@ -70,8 +70,8 @@
             <tbody>
                 <tr>
                     <td>
-                        <label for="Profile" style="font-size:16px;margin-top: 25px;">Outside Edge Profile: </label>
-                        <select class="form-control" style="width: 206px; margin-right: 35px;" type="text" id="Profile">
+                        <label for="DoorStyle" style="font-size:16px;margin-top: 25px;">Door Style </label>
+                        <select class="form-control" style="width: 206px; margin-right: 35px;" type="text" id="cbDoorStyle">
                             <option> </option>
                             <option>A</option>
                             <option>B</option>
@@ -239,3 +239,16 @@
 
 
 </div>
+
+@section scripts{
+
+    <script type="text/javascript">
+        var urlObtenerMaterial = '@Url.Action("ObtenerMaterial", "ConfiDoor")';
+        var urlGetAllDoorStyle = '@Url.Action("GetAllDoorStyle", "ConfiDoor")';
+        $(document).ready(function () {
+            GetAllDoorStyle();
+
+        });
+    </script>
+    @Scripts.Render("~/Scripts/js/ConfigDoor.Index.js")
+}

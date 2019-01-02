@@ -44,6 +44,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InBottomRail.cs" />
+    <Compile Include="InDoors.cs" />
+    <Compile Include="InDoorsPrices.cs" />
+    <Compile Include="InDoorStylexInsideEdgeProfile.cs" />
+    <Compile Include="InDoorStylexOutsideEdgeProfile.cs" />
+    <Compile Include="InDoorsxUser.cs" />
+    <Compile Include="InGroup.cs" />
+    <Compile Include="InHingeDirection.cs" />
+    <Compile Include="InHingePositions.cs" />
+    <Compile Include="InHorizontalDivisions.cs" />
+    <Compile Include="InInsideEdgeProfile.cs" />
+    <Compile Include="InJoin.cs" />
+    <Compile Include="InMaterial.cs" />
+    <Compile Include="InMaterialxBottomRail.cs" />
+    <Compile Include="InOrder.cs" />
+    <Compile Include="InOutsideEdgeProfile.cs" />
+    <Compile Include="InPerson.cs" />
+    <Compile Include="InPreparation.cs" />
+    <Compile Include="InRailWidth.cs" />
+    <Compile Include="InStatus.cs" />
+    <Compile Include="InStileWidth.cs" />
+    <Compile Include="InTopRail.cs" />
+    <Compile Include="InTopRailxHorizontalDivisions.cs" />
+    <Compile Include="InTopRailxJoin.cs" />
+    <Compile Include="InTopRailxVerticalDivisions.cs" />
+    <Compile Include="InType.cs" />
+    <Compile Include="InUser.cs" />
+    <Compile Include="InVerticalDivisions.cs" />
     <Compile Include="lnDoorStyle.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
