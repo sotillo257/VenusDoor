@@ -1,0 +1,9 @@
+C:\Desarrollo\VenusDoors\DataAccess\obj\Debug\DataAccess.csprojResolveAssemblyReference.cache
+C:\Desarrollo\VenusDoors\DataAccess\bin\Debug\DataAccess.dll
+C:\Desarrollo\VenusDoors\DataAccess\bin\Debug\DataAccess.pdb
+C:\Desarrollo\VenusDoors\DataAccess\bin\Debug\MetodosDB.dll
+C:\Desarrollo\VenusDoors\DataAccess\bin\Debug\Model.dll
+C:\Desarrollo\VenusDoors\DataAccess\bin\Debug\Model.pdb
+C:\Desarrollo\VenusDoors\DataAccess\bin\Debug\MetodosDB.pdb
+C:\Desarrollo\VenusDoors\DataAccess\obj\Debug\DataAccess.dll
+C:\Desarrollo\VenusDoors\DataAccess\obj\Debug\DataAccess.pdb
