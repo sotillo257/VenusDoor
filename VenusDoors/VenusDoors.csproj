@@ -1420,6 +1420,7 @@
     <Content Include="obj\Release\Package\PackageTmp\Scripts\modernizr-2.6.2.js" />
     <Content Include="obj\Release\Package\PackageTmp\Scripts\respond.js" />
     <Content Include="obj\Release\Package\PackageTmp\Scripts\respond.min.js" />
+    <Content Include="obj\Debug\build.force" />
     <None Include="obj\Release\Package\PackageTmp\Scripts\_references.js" />
     <Content Include="obj\Release\VenusDoors.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Release\VenusDoors.dll" />
