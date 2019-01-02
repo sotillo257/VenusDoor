@@ -52,7 +52,7 @@
                 </div><!-- menu-item -->
             </a><!-- br-menu-link -->
             @* @Html.ActionLink("Build a Door", "Index", "ConfiDoor", new { area = "" }, new { @class = "br-menu-link " + ViewBag.DoorStyle }) *@
-            <a href="~/Views/ConfiDoor/Index.cshtml" class="br-menu-link" @ViewBag.ConfiDoor ">
+            <a href="/ConfiDoor/" class="br-menu-link" @ViewBag.ConfiDoor ">
                 <div class="br-menu-item">
                     <i class="menu-item-icon icon ion-ios-email-outline tx-24"></i>
                     <span class="menu-item-label">Build a Door</span>
@@ -791,7 +791,7 @@
     <!-- ########## END: RIGHT PANEL ########## --->
     <!-- ########## START: MAIN PANEL ########## -->
     <div class="br-mainpanel">
-        <div class="container body-content">
+        <div class="body-content">
             @RenderBody()
             <hr />
             <footer>
