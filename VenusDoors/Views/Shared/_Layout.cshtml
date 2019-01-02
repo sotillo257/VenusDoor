@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -16,52 +16,52 @@
     <link rel="stylesheet" href="~/Content/css/bracket.css">
     <title>@ViewBag.Title - Venus Doors</title>
     @*@Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")*@
+        @Scripts.Render("~/bundles/modernizr")*@
 </head>
 <body>
     @*<div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Nombre de aplicación", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Nombre de aplicación", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
-        </div>
-    </div>*@
-
-    <div class="br-logo"><a href=""><span>[</span>Venus Doors<span>]</span></a></div>
+        </div>*@
+    <div class="br-logo"><a href=""><img src="~/Content/img/Venus_Doors11.png" style="width: 150px;" alt=""></a></div>
     <div class="br-sideleft overflow-y-auto">
         <label class="sidebar-label pd-x-15 mg-t-20">Navigation</label>
         <div class="br-sideleft-menu">
-           @* @Html.ActionLink("Dashboard", "Index", "Home", new { area = "" }, new { @class = "br-menu-link active" })*@
-           
+            @* @Html.ActionLink("Dashboard", "Index", "Home", new { area = "" }, new { @class = "br-menu-link active" })*@
+
             <a href="/" class="br-menu-link  @ViewBag.Dashboard">
                 <div class="br-menu-item">
                     <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
                     <span class="menu-item-label">Dashboard</span>
                 </div><!-- menu-item -->
             </a><!-- br-menu-link -->
-            <a href="mailbox.html" class="br-menu-link">
+            @* @Html.ActionLink("Build a Door", "Index", "ConfiDoor", new { area = "" }, new { @class = "br-menu-link " + ViewBag.DoorStyle }) *@
+            <a href="~/Views/ConfiDoor/Index.cshtml" class="br-menu-link" @ViewBag.ConfiDoor ">
                 <div class="br-menu-item">
                     <i class="menu-item-icon icon ion-ios-email-outline tx-24"></i>
-                    <span class="menu-item-label">Mailbox</span>
+                    <span class="menu-item-label">Build a Door</span>
                 </div><!-- menu-item -->
             </a><!-- br-menu-link -->
             <a href="card-dashboard.html" class="br-menu-link">
                 <div class="br-menu-item">
                     <i class="menu-item-icon icon ion-ios-photos-outline tx-20"></i>
-                    <span class="menu-item-label">Cards &amp; Widgets</span>
+                    <span class="menu-item-label">Order summary</span>
                 </div><!-- menu-item -->
             </a><!-- br-menu-link -->
             <a href="#" class="br-menu-link  @ViewBag.Masters">
@@ -72,7 +72,7 @@
                 </div><!-- menu-item -->
             </a><!-- br-menu-link -->
             <ul class="br-menu-sub nav flex-column">
-                <li class="nav-item">@Html.ActionLink("Doors Style", "Index", "Masters", new { area = "" }, new { @class = "nav-link "+ViewBag.DoorStyle })</li>
+                <li class="nav-item">@Html.ActionLink("Doors Style", "Index", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.DoorStyle })</li>
                 <li class="nav-item"><a href="alerts.html" class="nav-link">Alerts</a></li>
                 <li class="nav-item"><a href="buttons.html" class="nav-link">Buttons</a></li>
                 <li class="nav-item"><a href="cards.html" class="nav-link">Cards</a></li>
@@ -84,7 +84,7 @@
                 <li class="nav-item"><a href="spinners.html" class="nav-link">Spinners</a></li>
                 <li class="nav-item"><a href="typography.html" class="nav-link">Typography</a></li>
             </ul>
-            <a href="#" class="br-menu-link">
+            <a href="#" class="br-menu-link" style="display: none;">
                 <div class="br-menu-item">
                     <i class="menu-item-icon ion-ios-redo-outline tx-24"></i>
                     <span class="menu-item-label">Navigation</span>
@@ -95,7 +95,7 @@
                 <li class="nav-item"><a href="navigation.html" class="nav-link">Basic Nav</a></li>
                 <li class="nav-item"><a href="navigation-layouts.html" class="nav-link">Nav Layouts</a></li>
             </ul>
-            <a href="#" class="br-menu-link">
+            <a href="#" class="br-menu-link" style="display: none;">
                 <div class="br-menu-item">
                     <i class="menu-item-icon ion-ios-pie-outline tx-20"></i>
                     <span class="menu-item-label">Charts</span>
@@ -111,7 +111,7 @@
                 <li class="nav-item"><a href="chart-sparkline.html" class="nav-link">Sparkline</a></li>
                 <li class="nav-item"><a href="chart-peity.html" class="nav-link">Peity</a></li>
             </ul>
-            <a href="#" class="br-menu-link">
+            <a href="#" class="br-menu-link" style="display: none;">
                 <div class="br-menu-item">
                     <i class="menu-item-icon icon ion-ios-gear-outline tx-24"></i>
                     <span class="menu-item-label">Forms</span>
@@ -126,7 +126,7 @@
                 <li class="nav-item"><a href="form-editor-code.html" class="nav-link">Code Editor</a></li>
                 <li class="nav-item"><a href="form-editor-text.html" class="nav-link">Text Editor</a></li>
             </ul>
-            <a href="#" class="br-menu-link">
+            <a href="#" class="br-menu-link" style="display: none;">
                 <div class="br-menu-item">
                     <i class="menu-item-icon icon ion-ios-bookmarks-outline tx-20"></i>
                     <span class="menu-item-label">Tables</span>
@@ -137,20 +137,20 @@
                 <li class="nav-item"><a href="table-basic.html" class="nav-link">Basic Table</a></li>
                 <li class="nav-item"><a href="table-datatable.html" class="nav-link">Data Table</a></li>
             </ul>
-            <a href="#" class="br-menu-link">
+            <a href="#" class="br-menu-link" style="display: none;">
                 <div class="br-menu-item">
                     <i class="menu-item-icon icon ion-ios-navigate-outline tx-24"></i>
                     <span class="menu-item-label">Maps</span>
                     <i class="menu-item-arrow fa fa-angle-down"></i>
                 </div><!-- menu-item -->
             </a><!-- br-menu-link -->
-            <ul class="br-menu-sub nav flex-column">
+            <ul class="br-menu-sub nav flex-column" style="display: none;">
                 <li class="nav-item"><a href="map-google.html" class="nav-link">Google Maps</a></li>
                 <li class="nav-item"><a href="map-leaflet.html" class="nav-link">Leaflet Maps</a></li>
                 <li class="nav-item"><a href="map-vector.html" class="nav-link">Vector Maps</a></li>
             </ul>
             <a href="#" class="br-menu-link">
-                <div class="br-menu-item">
+                <div class="br-menu-item" style="display: none;">
                     <i class="menu-item-icon icon ion-ios-briefcase-outline tx-22"></i>
                     <span class="menu-item-label">Utilities</span>
                     <i class="menu-item-arrow fa fa-angle-down"></i>
@@ -166,19 +166,19 @@
                 <li class="nav-item"><a href="typography-util.html" class="nav-link">Typography</a></li>
                 <li class="nav-item"><a href="width.html" class="nav-link">Width</a></li>
             </ul>
-            <a href="pages.html" class="br-menu-link">
+            <a href="pages.html" class="br-menu-link" style="display: none;">
                 <div class="br-menu-item">
                     <i class="menu-item-icon icon ion-ios-paper-outline tx-22"></i>
                     <span class="menu-item-label">Apps &amp; Pages</span>
                 </div><!-- menu-item -->
             </a><!-- br-menu-link -->
-            <a href="layouts.html" class="br-menu-link">
+            <a href="layouts.html" class="br-menu-link" style="display: none;">
                 <div class="br-menu-item">
                     <i class="menu-item-icon icon ion-ios-book-outline tx-22"></i>
                     <span class="menu-item-label">Layouts</span>
                 </div><!-- menu-item -->
             </a><!-- br-menu-link -->
-            <a href="sitemap.html" class="br-menu-link">
+            <a href="sitemap.html" class="br-menu-link" style="display: none;">
                 <div class="br-menu-item">
                     <i class="menu-item-icon icon ion-ios-list-outline tx-22"></i>
                     <span class="menu-item-label">Sitemap</span>
@@ -186,9 +186,9 @@
             </a><!-- br-menu-link -->
         </div><!-- br-sideleft-menu -->
 
-        <label class="sidebar-label pd-x-15 mg-t-25 mg-b-20 tx-info op-9">Information Summary</label>
+        <label class="sidebar-label pd-x-15 mg-t-25 mg-b-20 tx-info op-9" style="display: none;">Information Summary</label>
 
-        <div class="info-list">
+        <div class="info-list" style="display: none;">
             <div class="d-flex align-items-center justify-content-between pd-x-15">
                 <div>
                     <p class="tx-10 tx-roboto tx-uppercase tx-spacing-1 tx-white op-3 mg-b-2 space-nowrap">Memory Usage</p>
@@ -223,21 +223,21 @@
         </div><!-- info-lst -->
 
         <br>
-        </div>
+    </div>
 
     <!-- ########## START: HEAD PANEL ########## -->
     <div class="br-header">
         <div class="br-header-left">
             <div class="navicon-left hidden-md-down"><a id="btnLeftMenu" href=""><i class="icon ion-navicon-round"></i></a></div>
             <div class="navicon-left hidden-lg-up"><a id="btnLeftMenuMobile" href=""><i class="icon ion-navicon-round"></i></a></div>
-            <div class="input-group hidden-xs-down wd-170 transition">
+            <div class="input-group hidden-xs-down wd-170 transition" style="visibility: hidden;">
                 <input id="searchbox" type="text" class="form-control" placeholder="Search">
                 <span class="input-group-btn">
                     <button class="btn btn-secondary" type="button"><i class="fa fa-search"></i></button>
                 </span>
             </div><!-- input-group -->
         </div><!-- br-header-left -->
-        <div class="br-header-right">
+        <div class="br-header-right" style="display: none;">
             <nav class="nav">
                 <div class="dropdown">
                     <a href="" class="nav-link pd-x-7 pos-relative" data-toggle="dropdown">
@@ -396,7 +396,6 @@
         </div><!-- br-header-right -->
     </div><!-- br-header -->
     <!-- ########## END: HEAD PANEL ########## -->
-
     <!-- ########## START: RIGHT PANEL ########## -->
     <div class="br-sideright">
         <ul class="nav nav-tabs sidebar-tabs" role="tablist">
@@ -812,28 +811,26 @@
         </footer>
     </div><!-- br-mainpanel -->
     <!-- ########## END: MAIN PANEL ########## -->
-        
-
-        @*@Scripts.Render("~/bundles/jquery")
-            @Scripts.Render("~/bundles/bootstrap")*@
-        <script src="~/Content/lib/jquery/jquery.js"></script>
-        <script src="~/Content/lib/popper.js/popper.js"></script>
-        <script src="~/Content/lib/bootstrap/bootstrap.js"></script>
-        <script src="~/Content/lib/perfect-scrollbar/js/perfect-scrollbar.jquery.js"></script>
-        <script src="~/Content/lib/moment/moment.js"></script>
-        <script src="~/Content/lib/jquery-ui/jquery-ui.js"></script>
-        <script src="~/Content/lib/jquery-switchbutton/jquery.switchButton.js"></script>
-        <script src="~/Content/lib/peity/jquery.peity.js"></script>
-        <script src="~/Content/lib/chartist/chartist.js"></script>
-        <script src="~/Content/lib/jquery.sparkline.bower/jquery.sparkline.min.js"></script>
-        <script src="~/Content/lib/d3/d3.js"></script>
-        <script src="~/Content/lib/rickshaw/rickshaw.min.js"></script>
+    @*@Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")*@
+    <script src="~/Content/lib/jquery/jquery.js"></script>
+    <script src="~/Content/lib/popper.js/popper.js"></script>
+    <script src="~/Content/lib/bootstrap/bootstrap.js"></script>
+    <script src="~/Content/lib/perfect-scrollbar/js/perfect-scrollbar.jquery.js"></script>
+    <script src="~/Content/lib/moment/moment.js"></script>
+    <script src="~/Content/lib/jquery-ui/jquery-ui.js"></script>
+    <script src="~/Content/lib/jquery-switchbutton/jquery.switchButton.js"></script>
+    <script src="~/Content/lib/peity/jquery.peity.js"></script>
+    <script src="~/Content/lib/chartist/chartist.js"></script>
+    <script src="~/Content/lib/jquery.sparkline.bower/jquery.sparkline.min.js"></script>
+    <script src="~/Content/lib/d3/d3.js"></script>
+    <script src="~/Content/lib/rickshaw/rickshaw.min.js"></script>
 
 
-        <script src="~/Content/js/bracket.js"></script>
-        <script src="~/Content/js/ResizeSensor.js"></script>
-        <script src="~/Content/js/dashboard.js"></script>
-        <script>
+    <script src="~/Content/js/bracket.js"></script>
+    <script src="~/Content/js/ResizeSensor.js"></script>
+    <script src="~/Content/js/dashboard.js"></script>
+    <script>
 
 
 
@@ -865,7 +862,7 @@
                     }
                 }
             });
-        </script>
-        @RenderSection("scripts", required: false)
+    </script>
+    @RenderSection("scripts", required: false)
 </body>
 </html>
