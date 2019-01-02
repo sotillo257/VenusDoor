@@ -94,8 +94,17 @@
   <ItemGroup>
     <Content Include="bin\Debug\DataAccess.dll" />
     <Content Include="bin\Debug\DataAccess.pdb" />
+    <Content Include="bin\Debug\MetodosDB.dll" />
+    <Content Include="bin\Debug\MetodosDB.pdb" />
+    <Content Include="bin\Debug\Model.dll" />
+    <Content Include="bin\Debug\Model.pdb" />
     <Content Include="bin\Release\DataAccess.dll" />
     <Content Include="bin\Release\DataAccess.pdb" />
+    <Content Include="bin\Release\MetodosDB.dll" />
+    <Content Include="bin\Release\MetodosDB.pdb" />
+    <Content Include="bin\Release\Model.dll" />
+    <Content Include="bin\Release\Model.pdb" />
+    <Content Include="DataAccess.csproj.vspscc" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
