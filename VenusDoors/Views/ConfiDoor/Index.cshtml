@@ -4,240 +4,238 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div>
-    <h1 class="page-title">Door Configuration <small>Do big things with Bracket, the responsive bootstrap 4 admin template.</small></h1>
-</div><!-- d-flex -->
-
 <div class="br-pageheader pd-y-15 pd-l-20">
     <nav class="breadcrumb pd-0 mg-0 tx-12">
         <a class="breadcrumb-item" href="/">Venus Doors</a>
         <span class="breadcrumb-item active">Door Configuration</span>
     </nav>
 </div><!-- br-pageheader -->
+<div class="container ">
+    <td class="br-pagebody mg-t-5 pd-x-30" style="margin-top: 35px;">
+        <table style="margin-left: 25px;">
+            <tbody>
+                <tr>
+                    <td>
+                        <label for="Template" style="font-size:16px;margin-top: 25px;">Template / Item Name: </label>
+                        <div>
+                            <input class="form-control" style="width: 206px; margin-right: 35px;" type="text" id="Template" />
+                            <!--<button id="btn_carrito" style="margin-top: 10px; padding: 5px; font-size: 12px;" type="button" href="#" class="btn btn-primary" title="">Save settings</button>-->
+                        </div>
+                    </td>
 
-<td class="br-pagebody mg-t-5 pd-x-30" style="margin-top: 35px;">
-    <table style="margin-left: 25px;">
-        <tbody>
-            <tr>
-                <td>
-                    <label for="Template" style="font-size:16px;margin-top: 25px;">Template / Item Name: </label>
-                    <div>
-                        <input class="form-control" style="width: 206px; margin-right: 35px;" type="text" id="Template" />
-                        <!--<button id="btn_carrito" style="margin-top: 10px; padding: 5px; font-size: 12px;" type="button" href="#" class="btn btn-primary" title="">Save settings</button>-->
-                    </div>
-                </td>
+                    <td>
+                        <label for="Wood" style="font-size:16px;margin-top: 25px;">Wood Species: </label>
+                        <select class="form-control" style="width: 206px; margin-right: 35px;" type="text" id="Wood">
+                            <option> </option>
+                            <option>Poplar</option>
+                            <option>Alder</option>
+                            <option>Red Oak</option>
+                            <option>Maple</option>
+                            <option>Beech</option>
+                            <option>Red Oak - Eyebrow</option>
+                            <option>Poplar – Special Eyebrow</option>
+                        </select>
+                    </td>
 
-                <td>
-                    <label for="Wood" style="font-size:16px;margin-top: 25px;">Wood Species: </label>
-                    <select class="form-control" style="width: 206px; margin-right: 35px;" type="text" id="Wood">
-                        <option> </option>
-                        <option>Poplar</option>
-                        <option>Alder</option>
-                        <option>Red Oak</option>
-                        <option>Maple</option>
-                        <option>Beech</option>
-                        <option>Red Oak - Eyebrow</option>
-                        <option>Poplar – Special Eyebrow</option>
-                    </select>
-                </td>
+                    <td>
+                        <label for="Width" style="font-size:16px;margin-top: 25px;">Width: </label>
+                        <input class="form-control" style="width: 206px; margin-right: 35px;" type="number" id="Width" />
+                    </td>
 
-                <td>
-                    <label for="Width" style="font-size:16px;margin-top: 25px;">Width: </label>
-                    <input class="form-control" style="width: 206px; margin-right: 35px;" type="number" id="Width" />
-                </td>
+                    <td>
+                        <label for="Height" style="font-size:16px;margin-top: 25px;">Height: </label>
+                        <input class="form-control" style="width: 206px; margin-right: 35px;" type="number" id="Height" />
+                    </td>
 
-                <td>
-                    <label for="Height" style="font-size:16px;margin-top: 25px;">Height: </label>
-                    <input class="form-control" style="width: 206px; margin-right: 35px;" type="number" id="Height" />
-                </td>
+                </tr>
 
-            </tr>
+                <tr>
+                    <td colspan="4">
+                        <img style="height: 100px;width: 400px;margin-top: 20px;" src="~/Content/img/Cabinet_Vector-18.jpg" />
+                    </td>
+                </tr>
 
-            <tr>
-                <td colspan="4">
-                    <img style="height: 100px;width: 400px;margin-top: 20px;" src="~/Content/img/Cabinet_Vector-18.jpg" />
-                </td>
-            </tr>
+                <tr>
+                    <td>
+                        <label for="Template" style="font-size:16px;margin-top: 25px;">Front View:</label>
+                        <button id="btn_carrito" style="padding-bottom: 7px;padding-top: 7px;" type="button" href="#" class="btn btn-primary" title="">Click for photo preview</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 
-            <tr>
-                <td>
-                    <label for="Template" style="font-size:16px;margin-top: 25px;">Front View:</label>
-                    <button id="btn_carrito" style="padding-bottom: 7px;padding-top: 7px;" type="button" href="#" class="btn btn-primary" title="">Click for photo preview</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+        <hr>
 
-    <hr>
+        <table style="margin-left: 25px;">
+            <tbody>
+                <tr>
+                    <td>
+                        <label for="Profile" style="font-size:16px;margin-top: 25px;">Outside Edge Profile: </label>
+                        <select class="form-control" style="width: 206px; margin-right: 35px;" type="text" id="Profile">
+                            <option> </option>
+                            <option>A</option>
+                            <option>B</option>
+                            <option>C</option>
+                            <option>D</option>
+                            <option>E</option>
+                            <option>F</option>
+                            <option>H</option>
+                        </select>
+                    </td>
 
-    <table style="margin-left: 25px;">
-        <tbody>
-            <tr>
-                <td>
-                    <label for="Profile" style="font-size:16px;margin-top: 25px;">Outside Edge Profile: </label>
-                    <select class="form-control" style="width: 206px; margin-right: 35px;" type="text" id="Profile">
-                        <option> </option>
-                        <option>A</option>
-                        <option>B</option>
-                        <option>C</option>
-                        <option>D</option>
-                        <option>E</option>
-                        <option>F</option>
-                        <option>H</option>
-                    </select>
-                </td>
+                    <td>
+                        <label for="Wood" style="font-size:16px;margin-top: 25px;">Inside Edge Profile: </label>
+                        <select class="form-control" style="width: 206px; margin-right: 35px;" type="text" id="Wood">
+                            <option> </option>
+                            <option>Shaker</option>
+                            <option>Beaded</option>
+                            <option>Shaker V Groove</option>
+                        </select>
+                    </td>
 
-                <td>
-                    <label for="Wood" style="font-size:16px;margin-top: 25px;">Inside Edge Profile: </label>
-                    <select class="form-control" style="width: 206px; margin-right: 35px;" type="text" id="Wood">
-                        <option> </option>
-                        <option>Shaker</option>
-                        <option>Beaded</option>
-                        <option>Shaker V Groove</option>
-                    </select>
-                </td>
+                    <td>
+                        <label for="Wood" style="font-size:16px;margin-top: 25px;">Outside Edge Profile: </label>
+                        <select class="form-control" style="width: 206px; margin-right: 35px;" type="text" id="Wood">
+                            <option> </option>
+                            <option>Poplar</option>
+                            <option>Alder</option>
+                            <option>Red Oak</option>
+                            <option>Maple</option>
+                            <option>Beech</option>
+                            <option>Red Oak - Eyebrow</option>
+                            <option>Poplar – Special Eyebrow</option>
+                        </select>
+                    </td>
 
-                <td>
-                    <label for="Wood" style="font-size:16px;margin-top: 25px;">Outside Edge Profile: </label>
-                    <select class="form-control" style="width: 206px; margin-right: 35px;" type="text" id="Wood">
-                        <option> </option>
-                        <option>Poplar</option>
-                        <option>Alder</option>
-                        <option>Red Oak</option>
-                        <option>Maple</option>
-                        <option>Beech</option>
-                        <option>Red Oak - Eyebrow</option>
-                        <option>Poplar – Special Eyebrow</option>
-                    </select>
-                </td>
+                    <td rowspan="5" style="width: 300px;">
+                        <div><img style="width: 300px;display: flex;" src="~/Content/img/Cabinet_Vector-01.jpg" /></div>
+                    </td>
 
-                <td rowspan="5" style="width: 300px;">
-                    <div><img style="width: 300px;display: flex;" src="~/Content/img/Cabinet_Vector-01.jpg" /></div>
-                </td>
+                </tr>
 
-            </tr>
+                <tr>
+                    <td>
+                        <label for="Profile" style="font-size:16px;margin-top: 25px;">Stile Width: </label>
+                        <select class="form-control" style="width: 206px; margin-right: 35px;" type="text" id="Profile">
+                            <option> </option>
+                            <option>2.25</option>
+                            <option>3</option>
+                            <option>4</option>
+                        </select>
+                    </td>
 
-            <tr>
-                <td>
-                    <label for="Profile" style="font-size:16px;margin-top: 25px;">Stile Width: </label>
-                    <select class="form-control" style="width: 206px; margin-right: 35px;" type="text" id="Profile">
-                        <option> </option>
-                        <option>2.25</option>
-                        <option>3</option>
-                        <option>4</option>
-                    </select>
-                </td>
+                    <td>
+                        <label for="Wood" style="font-size:16px;margin-top: 25px;">Rail Width: </label>
+                        <select class="form-control" style="width: 206px; margin-right: 35px;" type="text" id="Wood">
+                            <option> </option>
+                            <option>2.25</option>
+                            <option>3</option>
+                            <option>4</option>
+                        </select>
+                    </td>
 
-                <td>
-                    <label for="Wood" style="font-size:16px;margin-top: 25px;">Rail Width: </label>
-                    <select class="form-control" style="width: 206px; margin-right: 35px;" type="text" id="Wood">
-                        <option> </option>
-                        <option>2.25</option>
-                        <option>3</option>
-                        <option>4</option>
-                    </select>
-                </td>
+                    <td>
+                        <label for="Wood" style="font-size:16px;margin-top: 25px;">Upper / Lower Style: </label>
+                        <select class="form-control" style="width: 206px; margin-right: 35px;" type="text" id="Wood">
+                            <option> </option>
+                            <option>Standard-Standard</option>
+                            <option>Brow-Standard</option>
+                            <option>Cathedral-Standard</option>
+                            <option>Brow-Brow</option>
+                            <option>Cathedral-Cathedral</option>
+                        </select>
+                    </td>
 
-                <td>
-                    <label for="Wood" style="font-size:16px;margin-top: 25px;">Upper / Lower Style: </label>
-                    <select class="form-control" style="width: 206px; margin-right: 35px;" type="text" id="Wood">
-                        <option> </option>
-                        <option>Standard-Standard</option>
-                        <option>Brow-Standard</option>
-                        <option>Cathedral-Standard</option>
-                        <option>Brow-Brow</option>
-                        <option>Cathedral-Cathedral</option>
-                    </select>
-                </td>
+                </tr>
 
-            </tr>
+                <tr>
+                    <td>
+                        <label for="Profile" style="font-size:16px;margin-top: 25px;">Panel Type: </label>
+                        <select class="form-control" style="width: 206px; margin-right: 35px;" type="text" id="Profile">
+                            <option> </option>
+                            <option>Raised Panel</option>
+                            <option>Shaker Panel</option>
+                            <option>Beaded Shaker Panel</option>
+                            <option>Recessed Paneloption>
+                            <option>Beaded Recessed Panel</option>
+                            <option>Open For Glass</option>
+                            <option>Wood Slab</option>
+                        </select>
+                    </td>
 
-            <tr>
-                <td>
-                    <label for="Profile" style="font-size:16px;margin-top: 25px;">Panel Type: </label>
-                    <select class="form-control" style="width: 206px; margin-right: 35px;" type="text" id="Profile">
-                        <option> </option>
-                        <option>Raised Panel</option>
-                        <option>Shaker Panel</option>
-                        <option>Beaded Shaker Panel</option>
-                        <option>Recessed Paneloption>
-                        <option>Beaded Recessed Panel</option>
-                        <option>Open For Glass</option>
-                        <option>Wood Slab</option>
-                    </select>
-                </td>
+                    <td>
+                        <label for="Wood" style="font-size:16px;margin-top: 25px;">Panel Profile: </label>
+                        <select class="form-control" style="width: 206px; margin-right: 35px;" type="text" id="Wood">
+                            <option> </option>
+                            <option>2 - Angled</option>
+                            <option>3 - Inverted Radius</option>
+                            <option>4 - Radius</option>
+                            <option>6 - Stepped</option>
+                        </select>
+                    </td>
 
-                <td>
-                    <label for="Wood" style="font-size:16px;margin-top: 25px;">Panel Profile: </label>
-                    <select class="form-control" style="width: 206px; margin-right: 35px;" type="text" id="Wood">
-                        <option> </option>
-                        <option>2 - Angled</option>
-                        <option>3 - Inverted Radius</option>
-                        <option>4 - Radius</option>
-                        <option>6 - Stepped</option>
-                    </select>
-                </td>
+                    <td>
+                        <label for="Wood" style="font-size:16px;margin-top: 25px;">Vertical Divisions: </label>
+                        <select class="form-control" style="width: 206px; margin-right: 35px;" type="text" id="Wood">
+                            <option> </option>
+                            <option>0</option>
+                            <option>1</option>
+                        </select>
+                    </td>
 
-                <td>
-                    <label for="Wood" style="font-size:16px;margin-top: 25px;">Vertical Divisions: </label>
-                    <select class="form-control" style="width: 206px; margin-right: 35px;" type="text" id="Wood">
-                        <option> </option>
-                        <option>0</option>
-                        <option>1</option>
-                    </select>
-                </td>
+                </tr>
 
-            </tr>
+                <tr>
 
-            <tr>
+                    <td>
+                        <label for="Profile" style="font-size:16px;margin-top: 25px;">Horizontal Divisions: </label>
+                        <select class="form-control" style="width: 206px; margin-right: 35px;" type="text" id="Profile">
+                            <option> </option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                        </select>
+                    </td>
 
-                <td>
-                    <label for="Profile" style="font-size:16px;margin-top: 25px;">Horizontal Divisions: </label>
-                    <select class="form-control" style="width: 206px; margin-right: 35px;" type="text" id="Profile">
-                        <option> </option>
-                        <option>0</option>
-                        <option>1</option>
-                        <option>2</option>
-                    </select>
-                </td>
+                    <td>
+                        <label for="Profile" style="font-size:16px;margin-top: 25px;">Hinge Drilling: </label>
+                        <select class="form-control" style="width: 206px; margin-right: 35px;" type="text" id="Profile">
+                            <option> </option>
+                            <option>Raised Panel</option>
+                            <option>Shaker Panel</option>
+                            <option>Beaded Shaker Panel</option>
+                            <option>Recessed Paneloption>
+                            <option>Beaded Recessed Panel</option>
+                            <option>Open For Glass</option>
+                            <option>Wood Slab</option>
+                        </select>
+                    </td>
 
-                <td>
-                    <label for="Profile" style="font-size:16px;margin-top: 25px;">Hinge Drilling: </label>
-                    <select class="form-control" style="width: 206px; margin-right: 35px;" type="text" id="Profile">
-                        <option> </option>
-                        <option>Raised Panel</option>
-                        <option>Shaker Panel</option>
-                        <option>Beaded Shaker Panel</option>
-                        <option>Recessed Paneloption>
-                        <option>Beaded Recessed Panel</option>
-                        <option>Open For Glass</option>
-                        <option>Wood Slab</option>
-                    </select>
-                </td>
+                    <td>
+                        <label for="Wood" style="font-size:16px;margin-top: 25px;">Hinge Direction: </label>
+                        <select class="form-control" style="width: 206px; margin-right: 35px;" type="text" id="Wood">
+                            <option> </option>
+                            <option>2 - Angled</option>
+                            <option>3 - Inverted Radius</option>
+                            <option>4 - Radius</option>
+                            <option>6 - Stepped</option>
+                        </select>
+                    </td>
 
-                <td>
-                    <label for="Wood" style="font-size:16px;margin-top: 25px;">Hinge Direction: </label>
-                    <select class="form-control" style="width: 206px; margin-right: 35px;" type="text" id="Wood">
-                        <option> </option>
-                        <option>2 - Angled</option>
-                        <option>3 - Inverted Radius</option>
-                        <option>4 - Radius</option>
-                        <option>6 - Stepped</option>
-                    </select>
-                </td>
+                </tr>
 
-            </tr>
+                <tr>
+                    <td>
+                        <label for="Wood" style="font-size:16px;margin-top: 25px;">Hinge Positions: </label>
+                        <select class="form-control" style="width: 206px; margin-right: 35px;" type="text" id="Wood">
+                            <option> </option>
+                            <option>0</option>
+                            <option>1</option>
+                        </select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 
-            <tr>
-                <td>
-                    <label for="Wood" style="font-size:16px;margin-top: 25px;">Hinge Positions: </label>
-                    <select class="form-control" style="width: 206px; margin-right: 35px;" type="text" id="Wood">
-                        <option> </option>
-                        <option>0</option>
-                        <option>1</option>
-                    </select>
-                </td>
-            </tr>
-        </tbody>
-    </table>
 
+</div>
