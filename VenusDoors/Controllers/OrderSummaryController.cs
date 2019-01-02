@@ -11,6 +11,7 @@ namespace VenusDoors.Controllers
         // GET: OrderSummary
         public ActionResult Index()
         {
+            ViewBag.OrderSummary = "active";
             return View();
         }
     }

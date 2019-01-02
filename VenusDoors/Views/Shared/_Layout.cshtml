@@ -52,13 +52,13 @@
                 </div><!-- menu-item -->
             </a><!-- br-menu-link -->
             @* @Html.ActionLink("Build a Door", "Index", "ConfiDoor", new { area = "" }, new { @class = "br-menu-link " + ViewBag.DoorStyle }) *@
-            <a href="/ConfiDoor/" class="br-menu-link" @ViewBag.ConfiDoor ">
+            <a href="/ConfiDoor/" class="br-menu-link @ViewBag.ConfiDoor ">
                 <div class="br-menu-item">
                     <i class="menu-item-icon icon ion-ios-email-outline tx-24"></i>
                     <span class="menu-item-label">Build a Door</span>
                 </div><!-- menu-item -->
             </a><!-- br-menu-link -->
-            <a href="card-dashboard.html" class="br-menu-link">
+            <a href="/OrderSummary/" class="br-menu-link @ViewBag.OrderSummary ">
                 <div class="br-menu-item">
                     <i class="menu-item-icon icon ion-ios-photos-outline tx-20"></i>
                     <span class="menu-item-label">Order summary</span>
@@ -72,17 +72,7 @@
                 </div><!-- menu-item -->
             </a><!-- br-menu-link -->
             <ul class="br-menu-sub nav flex-column">
-                <li class="nav-item">@Html.ActionLink("Doors Style", "Index", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.DoorStyle })</li>
-                <li class="nav-item"><a href="alerts.html" class="nav-link">Alerts</a></li>
-                <li class="nav-item"><a href="buttons.html" class="nav-link">Buttons</a></li>
-                <li class="nav-item"><a href="cards.html" class="nav-link">Cards</a></li>
-                <li class="nav-item"><a href="icons.html" class="nav-link">Icons</a></li>
-                <li class="nav-item"><a href="modal.html" class="nav-link">Modal</a></li>
-                <li class="nav-item"><a href="pagination.html" class="nav-link">Pagination</a></li>
-                <li class="nav-item"><a href="popups.html" class="nav-link">Tooltip &amp; Popover</a></li>
-                <li class="nav-item"><a href="progress.html" class="nav-link">Progress</a></li>
-                <li class="nav-item"><a href="spinners.html" class="nav-link">Spinners</a></li>
-                <li class="nav-item"><a href="typography.html" class="nav-link">Typography</a></li>
+                <li class="nav-item">@Html.ActionLink("Doors Style", "Index", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.DoorStyle })</li>               
             </ul>
             <a href="#" class="br-menu-link" style="display: none;">
                 <div class="br-menu-item">
