@@ -1667,6 +1667,7 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="VenusDoors.csproj.vspscc" />
+    <Content Include="Views\OrderSummary\Index.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1703,7 +1704,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Masters\Index.cshtml" />
     <Content Include="Views\ConfiDoor\Index.cshtml" />
-    <Content Include="Views\OrderSummary\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
