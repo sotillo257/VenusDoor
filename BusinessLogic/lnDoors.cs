@@ -7,22 +7,22 @@ using Model;
 
 namespace BusinessLogic
 {
-    public class InRailWidth
+    public class lnDoors
     {
-        DataAccess.adRailWidth _AD = new DataAccess.adRailWidth();
+        DataAccess.adDoors _AD = new DataAccess.adDoors();
 
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna toda la Lista de RailWidth.
+        /// @Descripción: Retorna toda la Lista de Doors.
         /// </summary>
         /// <param></param>
         /// <returns></returns>
-        public List<RailWidth> GetAllRailWidth()
+        public List<Doors> GetAllDoors()
         {
             try
             {
-                return _AD.GetAllRailWidth();
+                return _AD.GetAllDoors();
             }
             catch (Exception ex)
             {
@@ -34,15 +34,15 @@ namespace BusinessLogic
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna RailWidth por Id.
+        /// @Descripción: Retorna Doors por Id.
         /// </summary>
         /// <param name="pId"></param>
         /// <returns></returns>
-        public RailWidth GetRailWidthById(int pId)
+        public Doors GetDoorsById(int pId)
         {
             try
             {
-                return _AD.GetRailWidthById(pId);
+                return _AD.GetDoorsById(pId);
             }
             catch (Exception ex)
             {
@@ -51,11 +51,11 @@ namespace BusinessLogic
 
         }
 
-        public int InsertRailWidth(RailWidth pRailWidth)
+        public int InsertDoors(Doors pDoors)
         {
             try
             {
-                return _AD.InsertRailWidth(pRailWidth);
+                return _AD.InsertDoors(pDoors);
             }
             catch (Exception ex)
             {
@@ -64,11 +64,11 @@ namespace BusinessLogic
 
         }
 
-        public bool UpdateRailWidth(RailWidth pRailWidth)
+        public bool UpdateDoors(Doors pDoors)
         {
             try
             {
-                _AD.UpdateRailWidth(pRailWidth);
+                _AD.UpdateDoors(pDoors);
                 return true;
             }
             catch (Exception ex)
@@ -78,11 +78,11 @@ namespace BusinessLogic
 
         }
 
-        public bool DeleteRailWidth(int pId)
+        public bool DeleteDoors(int pId)
         {
             try
             {
-                _AD.DeleteRailWidth(pId);
+                _AD.DeleteDoors(pId);
                 return true;
             }
             catch (Exception ex)

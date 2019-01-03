@@ -8,7 +8,7 @@ using Model;
 
 namespace BusinessLogic
 {
-    public class InInsideEdgeProfile
+    public class lnInsideEdgeProfile
     {
         DataAccess.adInsideEdgeProfile _AD = new DataAccess.adInsideEdgeProfile();
 

@@ -7,22 +7,22 @@ using Model;
 
 namespace BusinessLogic
 {
-    public class InJoin
+    public class lnBottomRail
     {
-        DataAccess.adJoin _AD = new DataAccess.adJoin();
+        DataAccess.adBottomRail _AD = new DataAccess.adBottomRail();
 
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna toda la Lista de Join.
+        /// @Descripción: Retorna toda la Lista de BottomRail.
         /// </summary>
         /// <param></param>
         /// <returns></returns>
-        public List<Join> GetAllJoin()
+        public List<BottomRail> GetAllBottomRail()
         {
             try
             {
-                return _AD.GetAllJoin();
+                return _AD.GetAllBottomRail();
             }
             catch (Exception ex)
             {
@@ -34,15 +34,15 @@ namespace BusinessLogic
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna Join por Id.
+        /// @Descripción: Retorna BottomRail por Id.
         /// </summary>
         /// <param name="pId"></param>
         /// <returns></returns>
-        public Join GetJoinById(int pId)
+        public BottomRail GetBottomRailById(int pId)
         {
             try
             {
-                return _AD.GetJoinById(pId);
+                return _AD.GetBottomRailById(pId);
             }
             catch (Exception ex)
             {
@@ -51,11 +51,11 @@ namespace BusinessLogic
 
         }
 
-        public int InsertJoin(Join pjoin)
+        public int InsertBottomRail(BottomRail pBottomRail)
         {
             try
             {
-                return _AD.InsertJoin(pjoin);
+                return _AD.InsertBottomRail(pBottomRail);
             }
             catch (Exception ex)
             {
@@ -64,11 +64,11 @@ namespace BusinessLogic
 
         }
 
-        public bool UpdateJoin(Join pjoin)
+        public bool UpdateBottomRail(BottomRail pBottomRail)
         {
             try
             {
-                _AD.UpdateJoin(pjoin);
+                _AD.UpdateBottomRail(pBottomRail);
                 return true;
             }
             catch (Exception ex)
@@ -78,11 +78,11 @@ namespace BusinessLogic
 
         }
 
-        public bool DeleteJoin(int pId)
+        public bool DeleteBottomRail(int pId)
         {
             try
             {
-                _AD.DeleteJoin(pId);
+                _AD.DeleteBottomRail(pId);
                 return true;
             }
             catch (Exception ex)

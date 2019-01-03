@@ -7,22 +7,22 @@ using Model;
 
 namespace BusinessLogic
 {
-    public class InMaterialxBottomRail
+    public class lnTopRail
     {
-        DataAccess.adMaterialxBottomRail _AD = new DataAccess.adMaterialxBottomRail();
+        DataAccess.adTopRail _AD = new DataAccess.adTopRail();
 
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna toda la Lista de MaterialxBottomRail.
+        /// @Descripción: Retorna toda la Lista de TopRail.
         /// </summary>
         /// <param></param>
         /// <returns></returns>
-        public List<MaterialxBottomRail> GetAllMaterialxBottomRail()
+        public List<TopRail> GetAllTopRail()
         {
             try
             {
-                return _AD.GetAllMaterialxBottomRail();
+                return _AD.GetAllTopRail();
             }
             catch (Exception ex)
             {
@@ -34,15 +34,15 @@ namespace BusinessLogic
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna MaterialxBottomRail por Id.
+        /// @Descripción: Retorna TopRail por Id.
         /// </summary>
         /// <param name="pId"></param>
         /// <returns></returns>
-        public MaterialxBottomRail GetMaterialxBottomRailById(int pId)
+        public TopRail GetTopRailById(int pId)
         {
             try
             {
-                return _AD.GetMaterialxBottomRailById(pId);
+                return _AD.GetTopRailById(pId);
             }
             catch (Exception ex)
             {
@@ -51,11 +51,11 @@ namespace BusinessLogic
 
         }
 
-        public int InsertMaterialxBottomRail(MaterialxBottomRail pMaterialxBottomRail)
+        public int InsertTopRail(TopRail pTopRail)
         {
             try
             {
-                return _AD.InsertMaterialxBottomRail(pMaterialxBottomRail);
+                return _AD.InsertTopRail(pTopRail);
             }
             catch (Exception ex)
             {
@@ -64,11 +64,11 @@ namespace BusinessLogic
 
         }
 
-        public bool UpdateMaterialxBottomRail(MaterialxBottomRail pMaterialxBottomRail)
+        public bool UpdateTopRail(TopRail pTopRail)
         {
             try
             {
-                _AD.UpdateMaterialxBottomRail(pMaterialxBottomRail);
+                _AD.UpdateTopRail(pTopRail);
                 return true;
             }
             catch (Exception ex)
@@ -78,11 +78,11 @@ namespace BusinessLogic
 
         }
 
-        public bool DeleteMaterialxBottomRail(int pId)
+        public bool DeleteTopRail(int pId)
         {
             try
             {
-                _AD.DeleteMaterialxBottomRail(pId);
+                _AD.DeleteTopRail(pId);
                 return true;
             }
             catch (Exception ex)

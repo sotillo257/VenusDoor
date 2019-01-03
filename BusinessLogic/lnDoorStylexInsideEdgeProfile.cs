@@ -7,22 +7,22 @@ using Model;
 
 namespace BusinessLogic
 {
-    public class InTopRail
+    public class lnDoorStylexInsideEdgeProfile
     {
-        DataAccess.adTopRail _AD = new DataAccess.adTopRail();
+        DataAccess.adDoorStylexInsideEdgeProfile _AD = new DataAccess.adDoorStylexInsideEdgeProfile();
 
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna toda la Lista de TopRail.
+        /// @Descripción: Retorna toda la Lista de DoorStylexInsideEdgeProfile.
         /// </summary>
         /// <param></param>
         /// <returns></returns>
-        public List<TopRail> GetAllTopRail()
+        public List<DoorStylexInsideEdgeProfile> GetAllDoorStylexInsideEdgeProfile()
         {
             try
             {
-                return _AD.GetAllTopRail();
+                return _AD.GetAllDoorStylexInsideEdgeProfile();
             }
             catch (Exception ex)
             {
@@ -34,15 +34,15 @@ namespace BusinessLogic
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna TopRail por Id.
+        /// @Descripción: Retorna DoorStylexInsideEdgeProfile por Id.
         /// </summary>
         /// <param name="pId"></param>
         /// <returns></returns>
-        public TopRail GetTopRailById(int pId)
+        public DoorStylexInsideEdgeProfile GetDoorStylexInsideEdgeProfileById(int pId)
         {
             try
             {
-                return _AD.GetTopRailById(pId);
+                return _AD.GetDoorStylexInsideEdgeProfileById(pId);
             }
             catch (Exception ex)
             {
@@ -51,11 +51,11 @@ namespace BusinessLogic
 
         }
 
-        public int InsertTopRail(TopRail pTopRail)
+        public int InsertDoorStylexInsideEdgeProfile(DoorStylexInsideEdgeProfile pDoorStylexInsideEdgeProfile)
         {
             try
             {
-                return _AD.InsertTopRail(pTopRail);
+                return _AD.InsertDoorStylexInsideEdgeProfile(pDoorStylexInsideEdgeProfile);
             }
             catch (Exception ex)
             {
@@ -64,11 +64,11 @@ namespace BusinessLogic
 
         }
 
-        public bool UpdateTopRail(TopRail pTopRail)
+        public bool UpdateDoorStylexInsideEdgeProfile(DoorStylexInsideEdgeProfile pDoorStylexInsideEdgeProfile)
         {
             try
             {
-                _AD.UpdateTopRail(pTopRail);
+                _AD.UpdateDoorStylexInsideEdgeProfile(pDoorStylexInsideEdgeProfile);
                 return true;
             }
             catch (Exception ex)
@@ -78,11 +78,11 @@ namespace BusinessLogic
 
         }
 
-        public bool DeleteTopRail(int pId)
+        public bool DeleteDoorStylexInsideEdgeProfile(int pId)
         {
             try
             {
-                _AD.DeleteTopRail(pId);
+                _AD.DeleteDoorStylexInsideEdgeProfile(pId);
                 return true;
             }
             catch (Exception ex)

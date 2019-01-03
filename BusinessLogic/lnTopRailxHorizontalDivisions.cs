@@ -7,23 +7,22 @@ using Model;
 
 namespace BusinessLogic
 {
-    public class InMaterial
+    public class lnTopRailxHorizontalDivisions
     {
-
-        DataAccess.adMaterial _AD = new DataAccess.adMaterial();
+        DataAccess.adTopRailxHorizontalDivisions _AD = new DataAccess.adTopRailxHorizontalDivisions();
 
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna toda la Lista de Material.
+        /// @Descripción: Retorna toda la Lista de TopRailxHorizontalDivisions.
         /// </summary>
         /// <param></param>
         /// <returns></returns>
-        public List<Material> GetAllMaterial()
+        public List<TopRailxHorizontalDivisions> GetAllTopRailxHorizontalDivisions()
         {
             try
             {
-                return _AD.GetAllMaterial();
+                return _AD.GetAllTopRailxHorizontalDivisions();
             }
             catch (Exception ex)
             {
@@ -35,15 +34,15 @@ namespace BusinessLogic
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna Material por Id.
+        /// @Descripción: Retorna TopRailxHorizontalDivisions por Id.
         /// </summary>
         /// <param name="pId"></param>
         /// <returns></returns>
-        public Material GetMaterialById(int pId)
+        public TopRailxHorizontalDivisions GetTopRailxHorizontalDivisionsById(int pId)
         {
             try
             {
-                return _AD.GetMaterialById(pId);
+                return _AD.GetTopRailxHorizontalDivisionsById(pId);
             }
             catch (Exception ex)
             {
@@ -52,11 +51,11 @@ namespace BusinessLogic
 
         }
 
-        public int InsertMaterial(Material pMaterial)
+        public int InsertTopRailxHorizontalDivisions(TopRailxHorizontalDivisions pTopRailxHorizontalDivisions)
         {
             try
             {
-                return _AD.InsertMaterial(pMaterial);
+                return _AD.InsertTopRailxHorizontalDivisions(pTopRailxHorizontalDivisions);
             }
             catch (Exception ex)
             {
@@ -65,11 +64,11 @@ namespace BusinessLogic
 
         }
 
-        public bool UpdateMaterial(Material pMaterial)
+        public bool UpdateTopRailxHorizontalDivisions(TopRailxHorizontalDivisions pTopRailxHorizontalDivisions)
         {
             try
             {
-                _AD.UpdateMaterial(pMaterial);
+                _AD.UpdateTopRailxHorizontalDivisions(pTopRailxHorizontalDivisions);
                 return true;
             }
             catch (Exception ex)
@@ -79,11 +78,11 @@ namespace BusinessLogic
 
         }
 
-        public bool DeleteMaterial(int pId)
+        public bool DeleteTopRailxHorizontalDivisions(int pId)
         {
             try
             {
-                _AD.DeleteMaterial(pId);
+                _AD.DeleteTopRailxHorizontalDivisions(pId);
                 return true;
             }
             catch (Exception ex)

@@ -7,22 +7,22 @@ using Model;
 
 namespace BusinessLogic
 {
-    public class InOrder
+    public class lnVerticalDivisions
     {
-        DataAccess.adOrder _AD = new DataAccess.adOrder();
+        DataAccess.adVerticalDivisions _AD = new DataAccess.adVerticalDivisions();
 
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna toda la Lista de Order.
+        /// @Descripción: Retorna toda la Lista de VerticalDivisions.
         /// </summary>
         /// <param></param>
         /// <returns></returns>
-        public List<Order> GetAllOrder()
+        public List<VerticalDivisions> GetAllVerticalDivisions()
         {
             try
             {
-                return _AD.GetAllOrder();
+                return _AD.GetAllVerticalDivisions();
             }
             catch (Exception ex)
             {
@@ -34,15 +34,15 @@ namespace BusinessLogic
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna Order por Id.
+        /// @Descripción: Retorna VerticalDivisions por Id.
         /// </summary>
         /// <param name="pId"></param>
         /// <returns></returns>
-        public Order GetOrderById(int pId)
+        public VerticalDivisions GetVerticalDivisionsById(int pId)
         {
             try
             {
-                return _AD.GetOrderById(pId);
+                return _AD.GetVerticalDivisionsById(pId);
             }
             catch (Exception ex)
             {
@@ -51,11 +51,11 @@ namespace BusinessLogic
 
         }
 
-        public int InsertOrder(Order pOrder)
+        public int InsertVerticalDivisions(VerticalDivisions pVerticalDivisions)
         {
             try
             {
-                return _AD.InsertOrder(pOrder);
+                return _AD.InsertVerticalDivisions(pVerticalDivisions);
             }
             catch (Exception ex)
             {
@@ -64,11 +64,11 @@ namespace BusinessLogic
 
         }
 
-        public bool UpdateOrder(Order pOrder)
+        public bool UpdateVerticalDivisions(VerticalDivisions pVerticalDivisions)
         {
             try
             {
-                _AD.UpdateOrder(pOrder);
+                _AD.UpdateVerticalDivisions(pVerticalDivisions);
                 return true;
             }
             catch (Exception ex)
@@ -78,11 +78,11 @@ namespace BusinessLogic
 
         }
 
-        public bool DeleteOrder(int pId)
+        public bool DeleteVerticalDivisions(int pId)
         {
             try
             {
-                _AD.DeleteOrder(pId);
+                _AD.DeleteVerticalDivisions(pId);
                 return true;
             }
             catch (Exception ex)

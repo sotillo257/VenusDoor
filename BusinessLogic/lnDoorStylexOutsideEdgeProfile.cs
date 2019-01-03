@@ -7,22 +7,22 @@ using Model;
 
 namespace BusinessLogic
 {
-    public class InDoorsPrices
+    public class lnDoorStylexOutsideEdgeProfile
     {
-        DataAccess.adDoorsPrices _AD = new DataAccess.adDoorsPrices();
+        DataAccess.adDoorStylexOutsideEdgeProfile _AD = new DataAccess.adDoorStylexOutsideEdgeProfile();
 
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna toda la Lista de DoorsPrices.
+        /// @Descripción: Retorna toda la Lista de DoorStylexOutsideEdgeProfile.
         /// </summary>
         /// <param></param>
         /// <returns></returns>
-        public List<DoorsPrices> GetAllDoorsPrices()
+        public List<DoorStylexOutsideEdgeProfile> GetAllDoorStylexOutsideEdgeProfile()
         {
             try
             {
-                return _AD.GetAllDoorsPrices();
+                return _AD.GetAllDoorStylexOutsideEdgeProfile();
             }
             catch (Exception ex)
             {
@@ -34,15 +34,15 @@ namespace BusinessLogic
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna DoorsPrices por Id.
+        /// @Descripción: Retorna DoorStylexOutsideEdgeProfile por Id.
         /// </summary>
         /// <param name="pId"></param>
         /// <returns></returns>
-        public DoorsPrices GetDoorsPricesById(int pId)
+        public DoorStylexOutsideEdgeProfile GetDoorStylexOutsideEdgeProfileById(int pId)
         {
             try
             {
-                return _AD.GetDoorsPricesById(pId);
+                return _AD.GetDoorStylexOutsideEdgeProfileById(pId);
             }
             catch (Exception ex)
             {
@@ -51,11 +51,11 @@ namespace BusinessLogic
 
         }
 
-        public int InsertDoorsPrices(DoorsPrices pDoorsPrices)
+        public int InsertDoorStylexOutsideEdgeProfile(DoorStylexOutsideEdgeProfile pDoorStylexOutsideEdgeProfile)
         {
             try
             {
-                return _AD.InsertDoorsPrices(pDoorsPrices);
+                return _AD.InsertDoorStylexOutsideEdgeProfile(pDoorStylexOutsideEdgeProfile);
             }
             catch (Exception ex)
             {
@@ -64,11 +64,11 @@ namespace BusinessLogic
 
         }
 
-        public bool UpdateDoorsPrices(DoorsPrices pDoorsPrices)
+        public bool UpdateDoorStylexOutsideEdgeProfile(DoorStylexOutsideEdgeProfile pDoorStylexOutsideEdgeProfile)
         {
             try
             {
-                _AD.UpdateDoorsPrices(pDoorsPrices);
+                _AD.UpdateDoorStylexOutsideEdgeProfile(pDoorStylexOutsideEdgeProfile);
                 return true;
             }
             catch (Exception ex)
@@ -78,11 +78,11 @@ namespace BusinessLogic
 
         }
 
-        public bool DeleteDoorsPrices(int pId)
+        public bool DeleteDoorStylexOutsideEdgeProfile(int pId)
         {
             try
             {
-                _AD.DeleteDoorPrices(pId);
+                _AD.DeleteDoorStylexOutsideEdgeProfile(pId);
                 return true;
             }
             catch (Exception ex)

@@ -7,22 +7,22 @@ using Model;
 
 namespace BusinessLogic
 {
-    public class InOutsideEdgeProfile
+    public class lnPanelMaterial
     {
-        DataAccess.adOutsideEdgeProfile _AD = new DataAccess.adOutsideEdgeProfile();
+        DataAccess.adPanelMaterial _AD = new DataAccess.adPanelMaterial();
 
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna toda la Lista de OutsideEdgeProfile.
+        /// @Descripción: Retorna toda la Lista de PanelMaterial.
         /// </summary>
         /// <param></param>
         /// <returns></returns>
-        public List<OutsideEdgeProfile> GetAllOutsideEdgeProfile()
+        public List<PanelMaterial> GetAllPanelMaterial()
         {
             try
             {
-                return _AD.GetAllOutsideEdgeProfile();
+                return _AD.GetAllPanelMaterial();
             }
             catch (Exception ex)
             {
@@ -34,15 +34,15 @@ namespace BusinessLogic
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna OutsideEdgeProfile por Id.
+        /// @Descripción: Retorna PanelMaterial por Id.
         /// </summary>
         /// <param name="pId"></param>
         /// <returns></returns>
-        public OutsideEdgeProfile GetOutsideEdgeProfileById(int pId)
+        public PanelMaterial GetPanelMaterialById(int pId)
         {
             try
             {
-                return _AD.GetOutsideEdgeProfileById(pId);
+                return _AD.GetPanelMaterialById(pId);
             }
             catch (Exception ex)
             {
@@ -51,11 +51,11 @@ namespace BusinessLogic
 
         }
 
-        public int InsertOutsideEdgeProfile(OutsideEdgeProfile pOutsideEdgeProfile)
+        public int InsertPanelMaterial(PanelMaterial pPanelMaterial)
         {
             try
             {
-                return _AD.InsertOutsideEdgeProfile(pOutsideEdgeProfile);
+                return _AD.InsertPanelMaterial(pPanelMaterial);
             }
             catch (Exception ex)
             {
@@ -64,11 +64,11 @@ namespace BusinessLogic
 
         }
 
-        public bool UpdateOutsideEdgeProfile(OutsideEdgeProfile pOutsideEdgeProfile)
+        public bool UpdatePanelMaterial(PanelMaterial pPanelMaterial)
         {
             try
             {
-                _AD.UpdateOutsideEdgeProfile(pOutsideEdgeProfile);
+                _AD.UpdatePanelMaterial(pPanelMaterial);
                 return true;
             }
             catch (Exception ex)
@@ -78,11 +78,11 @@ namespace BusinessLogic
 
         }
 
-        public bool DeleteOutsideEdgeProfile(int pId)
+        public bool DeletePanelMaterial(int pId)
         {
             try
             {
-                _AD.DeleteOutsideEdgeProfile(pId);
+                _AD.DeletePanelMaterial(pId);
                 return true;
             }
             catch (Exception ex)

@@ -7,22 +7,22 @@ using Model;
 
 namespace BusinessLogic
 {
-    public class InHorizontalDivisions
+    public class lnPerson
     {
-        DataAccess.adHorizontalDivisions _AD = new DataAccess.adHorizontalDivisions();
+        DataAccess.adPerson _AD = new DataAccess.adPerson();
 
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna toda la Lista de HorizontalDivisions.
+        /// @Descripción: Retorna toda la Lista de Person.
         /// </summary>
         /// <param></param>
         /// <returns></returns>
-        public List<HorizontalDivisions> GetAllHorizontalDivisions()
+        public List<Person> GetAllPerson()
         {
             try
             {
-                return _AD.GetAllHorizontalDivisions();
+                return _AD.GetAllPerson();
             }
             catch (Exception ex)
             {
@@ -34,15 +34,15 @@ namespace BusinessLogic
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna HorizontalDivisions por Id.
+        /// @Descripción: Retorna Person por Id.
         /// </summary>
         /// <param name="pId"></param>
         /// <returns></returns>
-        public HorizontalDivisions GetHorizontalDivisionsById(int pId)
+        public Person GetPersonById(int pId)
         {
             try
             {
-                return _AD.GetHorizontalDivisionsById(pId);
+                return _AD.GetPersonById(pId);
             }
             catch (Exception ex)
             {
@@ -51,11 +51,11 @@ namespace BusinessLogic
 
         }
 
-        public int InsertHorizontalDivisions(HorizontalDivisions pHorizontalDivisions)
+        public int InsertPerson(Person pPerson)
         {
             try
             {
-                return _AD.InsertHorizontalDivisions(pHorizontalDivisions);
+                return _AD.InsertPerson(pPerson);
             }
             catch (Exception ex)
             {
@@ -64,11 +64,11 @@ namespace BusinessLogic
 
         }
 
-        public bool UpdateHorizontalDivisions(HorizontalDivisions pHorizontalDivisions)
+        public bool UpdatePerson(Person pPerson)
         {
             try
             {
-                _AD.UpdateHorizontalDivisions(pHorizontalDivisions);
+                _AD.UpdatePerson(pPerson);
                 return true;
             }
             catch (Exception ex)
@@ -78,11 +78,11 @@ namespace BusinessLogic
 
         }
 
-        public bool DeleteHorizontalDivisions(int pId)
+        public bool DeletePerson(int pId)
         {
             try
             {
-                _AD.DeleteHorizontalDivisions(pId);
+                _AD.DeletePerson(pId);
                 return true;
             }
             catch (Exception ex)
