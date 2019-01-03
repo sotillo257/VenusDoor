@@ -83,49 +83,49 @@ $(function(){
     barColor: '#17A2B8'
   });
 
-  var line1 = new Rickshaw.Graph({
-    element: document.querySelector('#chartLine1'),
-    renderer: 'area',
-    max: 80,
-    series: [{
-      data: [
-        { x: 0, y: 30 },
-        { x: 1, y: 35 },
-        { x: 2, y: 30 },
-        { x: 3, y: 20 },
-        { x: 4, y: 32 },
-        { x: 5, y: 40 },
-        { x: 6, y: 25 },
-        { x: 7, y: 20 },
-        { x: 8, y: 25 },
-        { x: 9, y: 35 },
-        { x: 10, y: 20 },
-        { x: 11, y: 30 },
-        { x: 12, y: 35 },
-        { x: 13, y: 40 }
-      ],
-      color: '#1061b4' //'rgba(255,255,255,0.2)'
-    },{
-      data: [
-        { x: 0, y: 20 },
-        { x: 1, y: 29 },
-        { x: 2, y: 28 },
-        { x: 3, y: 20 },
-        { x: 4, y: 22 },
-        { x: 5, y: 5 },
-        { x: 6, y: 10 },
-        { x: 7, y: 15 },
-        { x: 8, y: 20 },
-        { x: 9, y: 15 },
-        { x: 10, y: 25 },
-        { x: 11, y: 10 },
-        { x: 12, y: 20 },
-        { x: 13, y: 15 }
-      ],
-      color: 'rgba(255,255,255,0.4)'
-    }]
-  });
-  line1.render();
+  //var line1 = new Rickshaw.Graph({
+  //  element: document.querySelector('#chartLine1'),
+  //  renderer: 'area',
+  //  max: 80,
+  //  series: [{
+  //    data: [
+  //      { x: 0, y: 30 },
+  //      { x: 1, y: 35 },
+  //      { x: 2, y: 30 },
+  //      { x: 3, y: 20 },
+  //      { x: 4, y: 32 },
+  //      { x: 5, y: 40 },
+  //      { x: 6, y: 25 },
+  //      { x: 7, y: 20 },
+  //      { x: 8, y: 25 },
+  //      { x: 9, y: 35 },
+  //      { x: 10, y: 20 },
+  //      { x: 11, y: 30 },
+  //      { x: 12, y: 35 },
+  //      { x: 13, y: 40 }
+  //    ],
+  //    color: '#1061b4' //'rgba(255,255,255,0.2)'
+  //  },{
+  //    data: [
+  //      { x: 0, y: 20 },
+  //      { x: 1, y: 29 },
+  //      { x: 2, y: 28 },
+  //      { x: 3, y: 20 },
+  //      { x: 4, y: 22 },
+  //      { x: 5, y: 5 },
+  //      { x: 6, y: 10 },
+  //      { x: 7, y: 15 },
+  //      { x: 8, y: 20 },
+  //      { x: 9, y: 15 },
+  //      { x: 10, y: 25 },
+  //      { x: 11, y: 10 },
+  //      { x: 12, y: 20 },
+  //      { x: 13, y: 15 }
+  //    ],
+  //    color: 'rgba(255,255,255,0.4)'
+  //  }]
+  //});
+  //line1.render();
 
   // Responsive Mode
   new ResizeSensor($('.br-mainpanel'), function(){

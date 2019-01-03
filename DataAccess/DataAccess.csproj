@@ -63,6 +63,8 @@
     <Compile Include="adMaterialxBottomRail.cs" />
     <Compile Include="adOrder.cs" />
     <Compile Include="adOutsideEdgeProfile.cs" />
+    <Compile Include="adPanel.cs" />
+    <Compile Include="adPanelMaterial.cs" />
     <Compile Include="adPerson.cs" />
     <Compile Include="adPreparation.cs" />
     <Compile Include="adRailWidth.cs" />

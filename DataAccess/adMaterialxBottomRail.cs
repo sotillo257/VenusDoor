@@ -112,5 +112,26 @@ namespace DataAccess
                 throw err;
             }
         }
+
+        /// <summary>
+        /// @Autor: Jesus Sotillo
+        /// @Fecha Creacion: 29/12/2018
+        /// @Descripción: Elimina MaterialxBottomRail por Id
+        /// </summary>
+        /// <param name="pId"></param>
+        /// <returns></returns>
+        public void DeleteMaterialxBottomRail(int pId)
+        {
+            string sql = @"[spDeleteMaterialxBottomRail] '{0}'";
+            sql = string.Format(sql, pId);
+            try
+            {
+                _MB.EjecutarSQL(_CN, sql);
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
     }
 }

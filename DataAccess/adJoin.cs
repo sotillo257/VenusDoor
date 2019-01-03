@@ -81,11 +81,11 @@ namespace DataAccess
 
         }
 
-        public int InsertJoin(Preparation pJoin)
+        public int InsertJoin(Join pjo)
         {
             string sql = @"[spInsertJoin] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}'";
-            sql = string.Format(sql, pJoin.Description, pJoin.IdStatus, pJoin.CreationDate.ToString("yyyyMMdd"),
-                pJoin.CreatorUser, pJoin.ModificationDate.ToString("yyyyMMdd"), pJoin.ModificationUser);
+            sql = string.Format(sql, pjo.Description, pjo.IdStatus, pjo.CreationDate.ToString("yyyyMMdd"),
+                pjo.CreatorUser, pjo.ModificationDate.ToString("yyyyMMdd"), pjo.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -96,11 +96,32 @@ namespace DataAccess
             }
         }
 
-        public void UpdateJoin(Join pJoin)
+        public void UpdateJoin(Join pjo)
         {
             string sql = @"[spUpdateJoin] '{0}', '{1}', '{2}', '{3}'";
-            sql = string.Format(sql, pJoin.Description, pJoin.IdStatus, pJoin.ModificationDate.ToString("yyyyMMdd"),
-                pJoin.ModificationUser);
+            sql = string.Format(sql, pjo.Description, pjo.IdStatus, pjo.ModificationDate.ToString("yyyyMMdd"),
+                pjo.ModificationUser);
+            try
+            {
+                _MB.EjecutarSQL(_CN, sql);
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
+        /// <summary>
+        /// @Autor: Jesus Sotillo
+        /// @Fecha Creacion: 29/12/2018
+        /// @Descripción: Elimina Join por Id
+        /// </summary>
+        /// <param name="pId"></param>
+        /// <returns></returns>
+        public void DeleteJoin(int pId)
+        {
+            string sql = @"[spDeleteJoin] '{0}'";
+            sql = string.Format(sql, pId);
             try
             {
                 _MB.EjecutarSQL(_CN, sql);

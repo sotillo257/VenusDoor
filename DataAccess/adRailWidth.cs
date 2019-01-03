@@ -9,7 +9,7 @@ using System.Data;
 
 namespace DataAccess
 {
-    class adRailWidth : Connection
+    public class adRailWidth : Connection
     {
         public RailWidth GetRailWidthById(int Id)
         {
@@ -101,6 +101,27 @@ namespace DataAccess
             string sql = @"[spUpdateRailWidth] '{0}', '{1}', '{2}', '{3}'";
             sql = string.Format(sql, pRailWidth.Width, pRailWidth.IdStatus, pRailWidth.ModificationDate.ToString("yyyyMMdd"),
                 pRailWidth.ModificationUser);
+            try
+            {
+                _MB.EjecutarSQL(_CN, sql);
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
+        /// <summary>
+        /// @Autor: Jesus Sotillo
+        /// @Fecha Creacion: 29/12/2018
+        /// @Descripción: Elimina RailWidth por Id
+        /// </summary>
+        /// <param name="pId"></param>
+        /// <returns></returns>
+        public void DeleteRailWidth(int pId)
+        {
+            string sql = @"[spDeleteRailWidth] '{0}'";
+            sql = string.Format(sql, pId);
             try
             {
                 _MB.EjecutarSQL(_CN, sql);

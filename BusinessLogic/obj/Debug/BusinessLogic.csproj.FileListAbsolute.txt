@@ -5,17 +5,16 @@ C:\Desarrollo\VenusDoors\BusinessLogic\bin\Debug\Model.dll
 C:\Desarrollo\VenusDoors\BusinessLogic\bin\Debug\MetodosDB.dll
 C:\Desarrollo\VenusDoors\BusinessLogic\bin\Debug\DataAccess.pdb
 C:\Desarrollo\VenusDoors\BusinessLogic\bin\Debug\Model.pdb
-C:\Desarrollo\VenusDoors\BusinessLogic\bin\Debug\MetodosDB.pdb
 C:\Desarrollo\VenusDoors\BusinessLogic\obj\Debug\BusinessLogic.csprojResolveAssemblyReference.cache
 C:\Desarrollo\VenusDoors\BusinessLogic\obj\Debug\BusinessLogic.dll
 C:\Desarrollo\VenusDoors\BusinessLogic\obj\Debug\BusinessLogic.pdb
-C:\Users\Javier Sotillo\Source\Repos\VenusDoor\BusinessLogic\bin\Debug\BusinessLogic.dll
-C:\Users\Javier Sotillo\Source\Repos\VenusDoor\BusinessLogic\bin\Debug\BusinessLogic.pdb
-C:\Users\Javier Sotillo\Source\Repos\VenusDoor\BusinessLogic\bin\Debug\DataAccess.dll
-C:\Users\Javier Sotillo\Source\Repos\VenusDoor\BusinessLogic\bin\Debug\Model.dll
-C:\Users\Javier Sotillo\Source\Repos\VenusDoor\BusinessLogic\bin\Debug\MetodosDB.dll
-C:\Users\Javier Sotillo\Source\Repos\VenusDoor\BusinessLogic\bin\Debug\DataAccess.pdb
-C:\Users\Javier Sotillo\Source\Repos\VenusDoor\BusinessLogic\bin\Debug\Model.pdb
-C:\Users\Javier Sotillo\Source\Repos\VenusDoor\BusinessLogic\obj\Debug\BusinessLogic.csprojResolveAssemblyReference.cache
-C:\Users\Javier Sotillo\Source\Repos\VenusDoor\BusinessLogic\obj\Debug\BusinessLogic.dll
-C:\Users\Javier Sotillo\Source\Repos\VenusDoor\BusinessLogic\obj\Debug\BusinessLogic.pdb
+C:\Users\jesus\Source\Repos\VenusDoor\BusinessLogic\obj\Debug\BusinessLogic.csprojResolveAssemblyReference.cache
+C:\Users\jesus\Source\Repos\VenusDoor\BusinessLogic\obj\Debug\BusinessLogic.dll
+C:\Users\jesus\Source\Repos\VenusDoor\BusinessLogic\obj\Debug\BusinessLogic.pdb
+C:\Users\jesus\Source\Repos\VenusDoor\BusinessLogic\bin\Debug\BusinessLogic.dll
+C:\Users\jesus\Source\Repos\VenusDoor\BusinessLogic\bin\Debug\BusinessLogic.pdb
+C:\Users\jesus\Source\Repos\VenusDoor\BusinessLogic\bin\Debug\DataAccess.dll
+C:\Users\jesus\Source\Repos\VenusDoor\BusinessLogic\bin\Debug\Model.dll
+C:\Users\jesus\Source\Repos\VenusDoor\BusinessLogic\bin\Debug\MetodosDB.dll
+C:\Users\jesus\Source\Repos\VenusDoor\BusinessLogic\bin\Debug\DataAccess.pdb
+C:\Users\jesus\Source\Repos\VenusDoor\BusinessLogic\bin\Debug\Model.pdb
