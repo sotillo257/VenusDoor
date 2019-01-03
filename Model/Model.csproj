@@ -67,6 +67,8 @@
     <Compile Include="obj\Release\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="OutsideEdgeProfile.cs" />
+    <Compile Include="Panel.cs" />
+    <Compile Include="PanelMaterial.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Preparation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

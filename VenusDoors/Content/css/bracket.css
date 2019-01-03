@@ -21042,7 +21042,7 @@ a.hover-white-8:hover, a.hover-white-8:focus {
 }
 
 .mg-l-20 {
-  margin-left: 20px;
+  margin-left: 5px;
 }
 
 .mg-t-20-force {
@@ -32777,6 +32777,7 @@ a.hover-white-8:hover, a.hover-white-8:focus {
 .pd-x-20 {
   padding-left: 20px;
   padding-right: 20px;
+  padding-bottom: 20px;
 }
 
 .pd-x-20-force {
@@ -47606,7 +47607,7 @@ a.hover-white-8:hover, a.hover-white-8:focus {
 }
 
 .tx-gray-600 {
-  color: #868e96;
+  color: #495057;
 }
 
 .tx-gray-700 {
@@ -47774,7 +47775,7 @@ a.hover-white-8:hover, a.hover-white-8:focus {
 }
 
 .lh-1 {
-  line-height: 1.1;
+  line-height: 1.6;
 }
 
 .lh-2 {
@@ -47986,7 +47987,7 @@ a.hover-white-8:hover, a.hover-white-8:focus {
 }
 
 .tx-32 {
-  font-size: 32px;
+  font-size: 26px;
 }
 
 .tx-32-force {

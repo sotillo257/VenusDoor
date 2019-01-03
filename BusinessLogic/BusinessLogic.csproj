@@ -60,6 +60,8 @@
     <Compile Include="InMaterialxBottomRail.cs" />
     <Compile Include="InOrder.cs" />
     <Compile Include="InOutsideEdgeProfile.cs" />
+    <Compile Include="InPanel.cs" />
+    <Compile Include="InPanelMaterial.cs" />
     <Compile Include="InPerson.cs" />
     <Compile Include="InPreparation.cs" />
     <Compile Include="InRailWidth.cs" />
