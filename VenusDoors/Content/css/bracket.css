@@ -182,7 +182,7 @@ body {
   font-size: 0.875rem;
   font-weight: normal;
   line-height: 1.5;
-  color: #868ba1;
+  color: #868ba1 !important;
   background-color: #E9ECEF;
 }
 
@@ -738,8 +738,7 @@ pre code {
   position: relative;
   width: 100%;
   min-height: 1px;
-  padding-right: 15px;
-  padding-left: 15px;
+  padding-right: 20px;
 }
 
 .col {
@@ -12603,26 +12602,26 @@ textarea.parsley-success:focus {
 }
 
 .select2-container--default .select2-selection--single {
-  background-color: #fff;
-  border-color: rgba(0, 0, 0, 0.15);
-  border-radius: 3px;
-  height: calc(2.39375rem + 2px);
+  background-color: #fff !important;
+  border-color: rgba(0, 0, 0, 0.15) !important;
+  border-radius: 3px !important;
+  height: calc(2.39375rem + 2px) !important;
   outline: none;
 }
 .select2-container--default .select2-selection--single .select2-selection__rendered {
   color: #495057;
   line-height: calc(2.39375rem + 2px)-0.1rem;
-  padding-left: 0.75rem;
+  padding-left: 0.75rem !important;
   height: 100%;
-  display: flex;
+  display: flex !important;
   align-items: center;
 }
 .select2-container--default .select2-selection--single .select2-selection__placeholder {
   color: #868e96;
 }
 .select2-container--default .select2-selection--single .select2-selection__arrow {
-  width: 30px;
-  height: calc(2.39375rem + 2px);
+  width: 30px !important;
+  height: calc(2.39375rem + 2px) !important;
   line-height: calc(2.39375rem + 2px);
 }
 .select2-container--default .select2-selection--single .select2-selection__arrow b {
@@ -13922,7 +13921,6 @@ textarea.parsley-success:focus {
   align-items: center;
   background-color: #dee2e6;
   padding-right: 20px;
-  margin-bottom: 20px;
 }
 .br-pageheader .breadcrumb {
   background-color: transparent;
@@ -32777,7 +32775,6 @@ a.hover-white-8:hover, a.hover-white-8:focus {
 .pd-x-20 {
   padding-left: 20px;
   padding-right: 20px;
-  padding-bottom: 20px;
 }
 
 .pd-x-20-force {
