@@ -7,22 +7,22 @@ using Model;
 
 namespace BusinessLogic
 {
-    public class InTopRailxJoin
+    public class lnOrder
     {
-        DataAccess.adTopRailxJoin _AD = new DataAccess.adTopRailxJoin();
+        DataAccess.adOrder _AD = new DataAccess.adOrder();
 
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna toda la Lista de TopRailxJoin.
+        /// @Descripción: Retorna toda la Lista de Order.
         /// </summary>
         /// <param></param>
         /// <returns></returns>
-        public List<TopRailxJoin> GetAllTopRailxJoin()
+        public List<Order> GetAllOrder()
         {
             try
             {
-                return _AD.GetAllTopRailxJoin();
+                return _AD.GetAllOrder();
             }
             catch (Exception ex)
             {
@@ -34,15 +34,15 @@ namespace BusinessLogic
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna TopRailxJoin por Id.
+        /// @Descripción: Retorna Order por Id.
         /// </summary>
         /// <param name="pId"></param>
         /// <returns></returns>
-        public TopRailxJoin GetTopRailxJoinById(int pId)
+        public Order GetOrderById(int pId)
         {
             try
             {
-                return _AD.GetTopRailxJoinById(pId);
+                return _AD.GetOrderById(pId);
             }
             catch (Exception ex)
             {
@@ -51,11 +51,11 @@ namespace BusinessLogic
 
         }
 
-        public int InsertTopRailxJoin(TopRailxJoin pTopRailxJoin)
+        public int InsertOrder(Order pOrder)
         {
             try
             {
-                return _AD.InsertTopRailxJoin(pTopRailxJoin);
+                return _AD.InsertOrder(pOrder);
             }
             catch (Exception ex)
             {
@@ -64,11 +64,11 @@ namespace BusinessLogic
 
         }
 
-        public bool UpdateTopRailxJoin(TopRailxJoin pTopRailxJoin)
+        public bool UpdateOrder(Order pOrder)
         {
             try
             {
-                _AD.UpdateTopRailxJoin(pTopRailxJoin);
+                _AD.UpdateOrder(pOrder);
                 return true;
             }
             catch (Exception ex)
@@ -78,11 +78,11 @@ namespace BusinessLogic
 
         }
 
-        public bool DeleteTopRailxJoin(int pId)
+        public bool DeleteOrder(int pId)
         {
             try
             {
-                _AD.DeleteTopRailxJoin(pId);
+                _AD.DeleteOrder(pId);
                 return true;
             }
             catch (Exception ex)

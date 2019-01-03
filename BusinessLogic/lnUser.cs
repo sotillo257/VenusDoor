@@ -7,22 +7,22 @@ using Model;
 
 namespace BusinessLogic
 {
-    public class InStileWidth
+    public class lnUser
     {
-        DataAccess.adStileWidth _AD = new DataAccess.adStileWidth();
+        DataAccess.adUser _AD = new DataAccess.adUser();
 
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna toda la Lista de StileWidth.
+        /// @Descripción: Retorna toda la Lista de User.
         /// </summary>
         /// <param></param>
         /// <returns></returns>
-        public List<StileWidth> GetAllStileWidth()
+        public List<User> GetAllUser()
         {
             try
             {
-                return _AD.GetAllStileWidth();
+                return _AD.GetAllUser();
             }
             catch (Exception ex)
             {
@@ -34,15 +34,15 @@ namespace BusinessLogic
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna StileWidth por Id.
+        /// @Descripción: Retorna User por Id.
         /// </summary>
         /// <param name="pId"></param>
         /// <returns></returns>
-        public StileWidth GetStileWidthById(int pId)
+        public User GetUserById(int pId)
         {
             try
             {
-                return _AD.GetStileWidthById(pId);
+                return _AD.GetUserById(pId);
             }
             catch (Exception ex)
             {
@@ -51,11 +51,11 @@ namespace BusinessLogic
 
         }
 
-        public int InsertStileWidth(StileWidth pStileWidth)
+        public int InsertUser(User pUser)
         {
             try
             {
-                return _AD.InsertStileWidth(pStileWidth);
+                return _AD.InsertUser(pUser);
             }
             catch (Exception ex)
             {
@@ -64,11 +64,11 @@ namespace BusinessLogic
 
         }
 
-        public bool UpdateStileWidth(StileWidth pStileWidth)
+        public bool UpdateUser(User pUser)
         {
             try
             {
-                _AD.UpdateStileWidth(pStileWidth);
+                _AD.UpdateUser(pUser);
                 return true;
             }
             catch (Exception ex)
@@ -78,11 +78,11 @@ namespace BusinessLogic
 
         }
 
-        public bool DeleteStileWidth(int pId)
+        public bool DeleteUser(int pId)
         {
             try
             {
-                _AD.DeleteStileWidth(pId);
+                _AD.DeleteUser(pId);
                 return true;
             }
             catch (Exception ex)

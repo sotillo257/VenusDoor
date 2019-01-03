@@ -7,22 +7,22 @@ using Model;
 
 namespace BusinessLogic
 {
-    public class InPreparation
+    public class lnStatus
     {
-        DataAccess.adPreparation _AD = new DataAccess.adPreparation();
+        DataAccess.adStatus _AD = new DataAccess.adStatus();
 
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna toda la Lista de Preparation.
+        /// @Descripción: Retorna toda la Lista de Status.
         /// </summary>
         /// <param></param>
         /// <returns></returns>
-        public List<Preparation> GetAllPreparation()
+        public List<Status> GetAllStatus()
         {
             try
             {
-                return _AD.GetAllPreparation();
+                return _AD.GetAllStatus();
             }
             catch (Exception ex)
             {
@@ -34,15 +34,15 @@ namespace BusinessLogic
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna Preparation por Id.
+        /// @Descripción: Retorna Status por Id.
         /// </summary>
         /// <param name="pId"></param>
         /// <returns></returns>
-        public Preparation GetPreparationById(int pId)
+        public Status GetStatusById(int pId)
         {
             try
             {
-                return _AD.GetPreparationById(pId);
+                return _AD.GetStatusById(pId);
             }
             catch (Exception ex)
             {
@@ -51,11 +51,11 @@ namespace BusinessLogic
 
         }
 
-        public int InsertPreparation(Preparation pPreparation)
+        public int InsertStatus(Status pStatus)
         {
             try
             {
-                return _AD.InsertPreparation(pPreparation);
+                return _AD.InsertStatus(pStatus);
             }
             catch (Exception ex)
             {
@@ -64,11 +64,11 @@ namespace BusinessLogic
 
         }
 
-        public bool UpdatePreparation(Preparation pPreparation)
+        public bool UpdateStatus(Status pStatus)
         {
             try
             {
-                _AD.UpdatePreparation(pPreparation);
+                _AD.UpdateStatus(pStatus);
                 return true;
             }
             catch (Exception ex)
@@ -78,11 +78,11 @@ namespace BusinessLogic
 
         }
 
-        public bool DeletePreparation(int pId)
+        public bool DeleteStatus(int pId)
         {
             try
             {
-                _AD.DeletePreparation(pId);
+                _AD.DeleteStatus(pId);
                 return true;
             }
             catch (Exception ex)

@@ -7,22 +7,22 @@ using Model;
 
 namespace BusinessLogic
 {
-    public class InPerson
+    public class lnOutsideEdgeProfile
     {
-        DataAccess.adPerson _AD = new DataAccess.adPerson();
+        DataAccess.adOutsideEdgeProfile _AD = new DataAccess.adOutsideEdgeProfile();
 
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna toda la Lista de Person.
+        /// @Descripción: Retorna toda la Lista de OutsideEdgeProfile.
         /// </summary>
         /// <param></param>
         /// <returns></returns>
-        public List<Person> GetAllPerson()
+        public List<OutsideEdgeProfile> GetAllOutsideEdgeProfile()
         {
             try
             {
-                return _AD.GetAllPerson();
+                return _AD.GetAllOutsideEdgeProfile();
             }
             catch (Exception ex)
             {
@@ -34,15 +34,15 @@ namespace BusinessLogic
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna Person por Id.
+        /// @Descripción: Retorna OutsideEdgeProfile por Id.
         /// </summary>
         /// <param name="pId"></param>
         /// <returns></returns>
-        public Person GetPersonById(int pId)
+        public OutsideEdgeProfile GetOutsideEdgeProfileById(int pId)
         {
             try
             {
-                return _AD.GetPersonById(pId);
+                return _AD.GetOutsideEdgeProfileById(pId);
             }
             catch (Exception ex)
             {
@@ -51,11 +51,11 @@ namespace BusinessLogic
 
         }
 
-        public int InsertPerson(Person pPerson)
+        public int InsertOutsideEdgeProfile(OutsideEdgeProfile pOutsideEdgeProfile)
         {
             try
             {
-                return _AD.InsertPerson(pPerson);
+                return _AD.InsertOutsideEdgeProfile(pOutsideEdgeProfile);
             }
             catch (Exception ex)
             {
@@ -64,11 +64,11 @@ namespace BusinessLogic
 
         }
 
-        public bool UpdatePerson(Person pPerson)
+        public bool UpdateOutsideEdgeProfile(OutsideEdgeProfile pOutsideEdgeProfile)
         {
             try
             {
-                _AD.UpdatePerson(pPerson);
+                _AD.UpdateOutsideEdgeProfile(pOutsideEdgeProfile);
                 return true;
             }
             catch (Exception ex)
@@ -78,11 +78,11 @@ namespace BusinessLogic
 
         }
 
-        public bool DeletePerson(int pId)
+        public bool DeleteOutsideEdgeProfile(int pId)
         {
             try
             {
-                _AD.DeletePerson(pId);
+                _AD.DeleteOutsideEdgeProfile(pId);
                 return true;
             }
             catch (Exception ex)

@@ -7,22 +7,23 @@ using Model;
 
 namespace BusinessLogic
 {
-    public class InType
+    public class lnMaterial
     {
-        DataAccess.adType _AD = new DataAccess.adType();
+
+        DataAccess.adMaterial _AD = new DataAccess.adMaterial();
 
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna toda la Lista de Type.
+        /// @Descripción: Retorna toda la Lista de Material.
         /// </summary>
         /// <param></param>
         /// <returns></returns>
-        public List<Model.Type> GetAllType()
+        public List<Material> GetAllMaterial()
         {
             try
             {
-                return _AD.GetAllType();
+                return _AD.GetAllMaterial();
             }
             catch (Exception ex)
             {
@@ -34,15 +35,15 @@ namespace BusinessLogic
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna Type por Id.
+        /// @Descripción: Retorna Material por Id.
         /// </summary>
         /// <param name="pId"></param>
         /// <returns></returns>
-        public Model.Type GetTypeById(int pId)
+        public Material GetMaterialById(int pId)
         {
             try
             {
-                return _AD.GetTypeById(pId);
+                return _AD.GetMaterialById(pId);
             }
             catch (Exception ex)
             {
@@ -51,11 +52,11 @@ namespace BusinessLogic
 
         }
 
-        public int InsertType(Model.Type pType)
+        public int InsertMaterial(Material pMaterial)
         {
             try
             {
-                return _AD.InsertType(pType);
+                return _AD.InsertMaterial(pMaterial);
             }
             catch (Exception ex)
             {
@@ -64,11 +65,11 @@ namespace BusinessLogic
 
         }
 
-        public bool UpdateType(Model.Type pType)
+        public bool UpdateMaterial(Material pMaterial)
         {
             try
             {
-                _AD.UpdateType(pType);
+                _AD.UpdateMaterial(pMaterial);
                 return true;
             }
             catch (Exception ex)
@@ -78,11 +79,11 @@ namespace BusinessLogic
 
         }
 
-        public bool DeleteType(int pId)
+        public bool DeleteMaterial(int pId)
         {
             try
             {
-                _AD.DeleteType(pId);
+                _AD.DeleteMaterial(pId);
                 return true;
             }
             catch (Exception ex)

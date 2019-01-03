@@ -7,22 +7,22 @@ using Model;
 
 namespace BusinessLogic
 {
-    public class InPanelMaterial
+    public class lnMaterialxBottomRail
     {
-        DataAccess.adPanelMaterial _AD = new DataAccess.adPanelMaterial();
+        DataAccess.adMaterialxBottomRail _AD = new DataAccess.adMaterialxBottomRail();
 
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna toda la Lista de PanelMaterial.
+        /// @Descripción: Retorna toda la Lista de MaterialxBottomRail.
         /// </summary>
         /// <param></param>
         /// <returns></returns>
-        public List<PanelMaterial> GetAllPanelMaterial()
+        public List<MaterialxBottomRail> GetAllMaterialxBottomRail()
         {
             try
             {
-                return _AD.GetAllPanelMaterial();
+                return _AD.GetAllMaterialxBottomRail();
             }
             catch (Exception ex)
             {
@@ -34,15 +34,15 @@ namespace BusinessLogic
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna PanelMaterial por Id.
+        /// @Descripción: Retorna MaterialxBottomRail por Id.
         /// </summary>
         /// <param name="pId"></param>
         /// <returns></returns>
-        public PanelMaterial GetPanelMaterialById(int pId)
+        public MaterialxBottomRail GetMaterialxBottomRailById(int pId)
         {
             try
             {
-                return _AD.GetPanelMaterialById(pId);
+                return _AD.GetMaterialxBottomRailById(pId);
             }
             catch (Exception ex)
             {
@@ -51,11 +51,11 @@ namespace BusinessLogic
 
         }
 
-        public int InsertPanelMaterial(PanelMaterial pPanelMaterial)
+        public int InsertMaterialxBottomRail(MaterialxBottomRail pMaterialxBottomRail)
         {
             try
             {
-                return _AD.InsertPanelMaterial(pPanelMaterial);
+                return _AD.InsertMaterialxBottomRail(pMaterialxBottomRail);
             }
             catch (Exception ex)
             {
@@ -64,11 +64,11 @@ namespace BusinessLogic
 
         }
 
-        public bool UpdatePanelMaterial(PanelMaterial pPanelMaterial)
+        public bool UpdateMaterialxBottomRail(MaterialxBottomRail pMaterialxBottomRail)
         {
             try
             {
-                _AD.UpdatePanelMaterial(pPanelMaterial);
+                _AD.UpdateMaterialxBottomRail(pMaterialxBottomRail);
                 return true;
             }
             catch (Exception ex)
@@ -78,11 +78,11 @@ namespace BusinessLogic
 
         }
 
-        public bool DeletePanelMaterial(int pId)
+        public bool DeleteMaterialxBottomRail(int pId)
         {
             try
             {
-                _AD.DeletePanelMaterial(pId);
+                _AD.DeleteMaterialxBottomRail(pId);
                 return true;
             }
             catch (Exception ex)

@@ -5,281 +5,210 @@
 }
 
 <div class="br-pageheader pd-y-15 pd-l-20">
-    <nav class="breadcrumb pd-0 mg-0 tx-12">
-        <a class="breadcrumb-item" href="/">Venus Doors</a>
-        <span class="breadcrumb-item active">Door Configuration</span>
-    </nav>
-</div><!-- br-pageheader -->
+        <nav class="breadcrumb pd-0 mg-0 tx-12">
+            <a class="breadcrumb-item" href="/">Venus Doors</a>
+            <span class="breadcrumb-item active">Door Configuration</span>
+        </nav>
+    </div><!-- br-pageheader -->
+     <div class="row ">
+        <div class="br-pagebody mg-t-5 pd-x-30" style="margin-top: 35px;">
+             <table style="margin-left: 25px;">
+                  <tbody>
+                      <tr>
+                          <td>
+                              <label for="Template" style="font-size:16px;margin-top: 25px;">Template / Item Name: </label>
+                              <div>
+                                  <input class="form-control" style="width: 206px; margin-right: 35px;" type="text" id="Template" />
+                                  <button id="btn_carrito" style="margin-top: 10px; padding: 5px; font-size: 12px;" type="button" href="#" class="btn btn-primary" title="">Save settings</button>
+                              </div>
+                          </td>
 
-<div class="pd-x-20 pd-sm-x-30 pd-t-20 pd-sm-t-30">
-    <h4 class="tx-gray-800 mg-b-5">Door Configuration</h4>
-    <p class="mg-b-0">Modals are streamlined, but flexible, dialog prompts with the minimum required functionality and smart defaults.</p>
-</div>
+                          <td>
+                              <label for="Wood" style="font-size:16px;margin-top: 25px;">Wood Species: </label>
+                              <select class="form-control" style="width: 206px; margin-right: 35px;" type="text" id="Wood">
+                                  <option> </option>
+                                  <option>Poplar</option>
+                                  <option>Alder</option>
+                                  <option>Red Oak</option>
+                                  <option>Maple</option>
+                                  <option>Beech</option>
+                                  <option>Red Oak - Eyebrow</option>
+                                  <option>Poplar – Special Eyebrow</option>
+                              </select>
+                          </td>
 
-<div class="br-pagebody">
-    <div class="br-section-wrapper">
+                          <td>
+                              <label for="Width" style="font-size:16px;margin-top: 25px;">Width: </label>
+                              <input class="form-control" style="width: 206px; margin-right: 35px;" type="number" id="Width" />
+                          </td>
 
-        <div class="row">
-            <div class="col-md-9">
-               
-            </div>
-            <div class="col-md-3">
-                <div class="row">
-                    <label for="Template" style="margin-top: 25px;">Quantity: </label>
-                    <div class="col-sm-8 mg-t-10 mg-sm-t-0" style="margin-right: 0px;top: 15px;left: 10px;">
-                        <input style="width: 91px;" class="form-control" placeholder="" id="Template" type="number">
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-12">
-                <div class="row">
-                    <div class="col-xs-4 col-md-3">
-                        <label for="Template" style="margin-top: 25px;">Template / Item Name: </label>
-                        <input class="form-control" placeholder="" id="Template" type="text">
-                    </div><!-- col -->
+                          <td>
+                              <label for="Height" style="font-size:16px;margin-top: 25px;">Height: </label>
+                              <input class="form-control" style="width: 206px; margin-right: 35px;" type="number" id="Height" />
+                          </td>
 
-                    <div class="col-xs-4 col-md-3">
-                        <label for="Template" style="margin-top: 25px;">Template / Item Name: </label>
-                        <select class="form-control select2" data-placeholder="">
-                            <option>Firefox</option>
-                            <option>Chrome</option>
-                            <option>Safari</option>
-                            <option>Opera</option>
-                            <option>Internet Explorer</option>
-                        </select>
-                    </div><!-- col -->
+                      </tr>
 
-                    <div class="col-xs-4 col-md-3">
-                        <label for="Width" style="margin-top: 25px;">Width: </label>
-                        <input class="form-control" placeholder="" id="Width" type="number">
-                    </div><!-- col -->
-                    <div class="col-xs-4 col-md-3">
-                        <label for="Height" style="margin-top: 25px;">Height: </label>
-                        <input class="form-control" placeholder="" id="Height" type="number">
-                    </div><!-- col -->
-                    <div class="col-xs-4 col-md-3">
-                        <label for="Template" style="margin-top: 25px;">Front View:</label>
-                        <button id="btn_carrito" style="padding-bottom: 7px;padding-top: 7px;" type="button" href="#" class="btn btn-primary" title="">Click for photo preview</button>
-                    </div><!-- col -->
-                </div>
-           </div>
-        </div>
+                      <tr>
+                          <td colspan="4">
+                              <img style="height: 100px;width: 400px;margin-top: 20px;" src="~/Content/img/Cabinet_Vector-18.jpg" />
+                          </td>
+                      </tr>
 
-        @*<table style="margin-left: 25px;">
-                <tbody>
-                <tr>
-                        <td colspan="4">
-                            <img style="height: 100px;width: 400px;margin-top: 20px;" src="~/Content/img/Cabinet_Vector-18.jpg" />
-                        </td>
-                    </tr>
+                      <tr>
+                          <td>
+                              <label for="Template" style="font-size:16px;margin-top: 25px;">Front View:</label>
+                              <button id="btn_carrito" style="padding-bottom: 7px;padding-top: 7px;" type="button" href="#" class="btn btn-primary" title="">Click for photo preview</button>
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
 
-                    <tr>
-                        <td>
+                 <hr>
+                 <table style="margin-left: 25px;">
+                     <tbody>
+                         <tr>
+                             <td>
+                                 <label for="DoorStyle" style="font-size:16px;margin-top: 25px;">Door Style </label>
+                                 <select class="form-control" style="width: 206px; margin-right: 35px;" type="text" id="cbDoorStyle">
+                                     
+                                 </select>
+                             </td>
 
-                        </td>
-                    </tr>
-                </tbody>
-            </table>*@
+                             <td>
+                                 <label for="InsideEdgeProfile" style="font-size:16px;margin-top: 25px;">Inside Edge Profile: </label>
+                                 <select class="form-control" style="width: 206px; margin-right: 35px;" type="text" id="cbInsideEdgeProfile">
+                                     
+                                 </select>
+                             </td>
 
-        <hr>
-        <div class="row">
-            <div class="col-md-10">
-                <div class="row">
-                    <div class="col-xs-4 col-md-3">
-                        <label for="DoorStyle" style="margin-top: 25px;">Door Style </label>
-                        <select class="form-control select2" data-placeholder="Choose Browser">
-                            <option>Firefox</option>
-                            <option>Chrome</option>
-                            <option>Safari</option>
-                            <option>Opera</option>
-                            <option>Internet Explorer</option>
-                        </select>
-                    </div><!-- col -->
+                             <td>
+                                 <label for="OutsideEdgeProfile" style="font-size:16px;margin-top: 25px;">Outside Edge Profile: </label>
+                                 <select class="form-control" style="width: 206px; margin-right: 35px;" type="text" id="cbOutsideEdgeProfile">
+                                     
+                                 </select>
+                             </td>
 
-                    <div class="col-xs-4 col-md-3">
-                        <label for="Wood" style="margin-top: 25px;">Inside Edge Profile: </label>
-                        <select class="form-control select2" data-placeholder="Choose Browser">
-                            <option>Firefox</option>
-                            <option>Chrome</option>
-                            <option>Safari</option>
-                            <option>Opera</option>
-                            <option>Internet Explorer</option>
-                        </select>
-                    </div><!-- col -->
+                             <td rowspan="5" style="width: 300px;">
+                                 <div><img style="width: 300px;display: flex;" src="~/Content/img/Cabinet_Vector-01.jpg" /></div>
+                             </td>
 
-                    <div class="col-xs-4 col-md-3">
-                        <label for="Wood" style="margin-top: 25px;">Outside Edge Profile: </label>
-                        <select class="form-control select2" data-placeholder="Choose Browser">
-                            <option>Firefox</option>
-                            <option>Chrome</option>
-                            <option>Safari</option>
-                            <option>Opera</option>
-                            <option>Internet Explorer</option>
-                        </select>
-                    </div><!-- col -->
+                         </tr>
 
-                    <div class="col-xs-4 col-md-3">
-                        <label for="Profile" style="margin-top: 25px;">Stile Width: </label>
-                        <select class="form-control select2" id="cbDoorStyle" data-placeholder="Choose Browser">
-                            <option>Firefox</option>
-                            <option>Chrome</option>
-                            <option>Safari</option>
-                            <option>Opera</option>
-                            <option>Internet Explorer</option>
-                        </select>
-                    </div><!-- col -->
+                         <tr>
+                             <td>
+                                 <label for="BottomRail" style="font-size:16px;margin-top: 25px;">Bottom Rail: </label>
+                                 <select class="form-control" style="width: 206px; margin-right: 35px;" type="text" id="cbBottomRail">
+                                     
+                                 </select>
+                             </td>
 
-                    <div class="col-xs-4 col-md-3">
-                        <label for="Wood" style="margin-top: 25px;">Rail Width: </label>
-                        <select class="form-control select2" data-placeholder="Choose Browser">
-                            <option>Firefox</option>
-                            <option>Chrome</option>
-                            <option>Safari</option>
-                            <option>Opera</option>
-                            <option>Internet Explorer</option>
-                        </select>
-                    </div><!-- col -->
+                             <td>
+                                 <label for="TopRail" style="font-size:16px;margin-top: 25px;">Top Rail: </label>
+                                 <select class="form-control" style="width: 206px; margin-right: 35px;" type="text" id="cbTopRail">
+                                     
+                                 </select>
+                             </td>
 
-                    <div class="col-xs-4 col-md-3">
-                        <label for="Wood" style="margin-top: 25px;">Upper / Lower Style: </label>
-                        <select class="form-control select2" data-placeholder="Choose Browser">
-                            <option>Firefox</option>
-                            <option>Chrome</option>
-                            <option>Safari</option>
-                            <option>Opera</option>
-                            <option>Internet Explorer</option>
-                        </select>
-                    </div><!-- col -->
+                             <td>
+                                 <label for="Wood" style="font-size:16px;margin-top: 25px;">Upper / Lower Style: </label>
+                                 <select class="form-control" style="width: 206px; margin-right: 35px;" type="text" id="Wood">
+                                     <option> </option>
+                                     <option>Standard-Standard</option>
+                                     <option>Brow-Standard</option>
+                                     <option>Cathedral-Standard</option>
+                                     <option>Brow-Brow</option>
+                                     <option>Cathedral-Cathedral</option>
+                                 </select>
+                             </td>
 
-                    <div class="col-xs-4 col-md-3">
-                        <label for="Profile" style="margin-top: 25px;">Panel Type: </label>
-                        <select class="form-control select2" data-placeholder="Choose Browser">
-                            <option>Firefox</option>
-                            <option>Chrome</option>
-                            <option>Safari</option>
-                            <option>Opera</option>
-                            <option>Internet Explorer</option>
-                        </select>
-                    </div><!-- col -->
+                         </tr>
 
-                    <div class="col-xs-4 col-md-3">
-                        <label for="Wood" style="margin-top: 25px;">Panel Profile: </label>
-                        <select class="form-control select2" data-placeholder="Choose Browser">
-                            <option>Firefox</option>
-                            <option>Chrome</option>
-                            <option>Safari</option>
-                            <option>Opera</option>
-                            <option>Internet Explorer</option>
-                        </select>
-                    </div><!-- col -->
+                         <tr>
+                             <td>
+                                 <label for="Panel" style="font-size:16px;margin-top: 25px;">Panel Type: </label>
+                                 <select class="form-control" style="width: 206px; margin-right: 35px;" type="text" id="cbPanel">
+                                     
+                                 </select>
+                             </td>
 
-                    <div class="col-xs-4 col-md-3">
-                        <label for="Wood" style="margin-top: 25px;">Vertical Divisions: </label>
-                        <select class="form-control select2" data-placeholder="Choose Browser">
-                            <option>Firefox</option>
-                            <option>Chrome</option>
-                            <option>Safari</option>
-                            <option>Opera</option>
-                            <option>Internet Explorer</option>
-                        </select>
-                    </div><!-- col -->
+                             <td>
+                                 <label for="PanelMaterial" style="font-size:16px;margin-top: 25px;">Panel Profile: </label>
+                                 <select class="form-control" style="width: 206px; margin-right: 35px;" type="text" id="cbPanelMaterial">
+                                     
+                                 </select>
+                             </td>
 
-                    <div class="col-xs-4 col-md-3">
-                        <label for="Profile" style="margin-top: 25px;">Horizontal Divisions: </label>
-                        <select class="form-control select2" data-placeholder="Choose Browser">
-                            <option>Firefox</option>
-                            <option>Chrome</option>
-                            <option>Safari</option>
-                            <option>Opera</option>
-                            <option>Internet Explorer</option>
-                        </select>
-                    </div><!-- col -->
+                             <td>
+                                 <label for="VerticalDivisions" style="font-size:16px;margin-top: 25px;">Vertical Divisions: </label>
+                                 <select class="form-control" style="width: 206px; margin-right: 35px;" type="text" id="cbVerticalDivisions">
+                                     
+                                 </select>
+                             </td>
 
-                    <div class="col-xs-4 col-md-3">
-                        <label for="Profile" style="margin-top: 25px;">Hinge Drilling: </label>
-                        <select class="form-control select2" data-placeholder="Choose Browser">
-                            <option>Firefox</option>
-                            <option>Chrome</option>
-                            <option>Safari</option>
-                            <option>Opera</option>
-                            <option>Internet Explorer</option>
-                        </select>
-                    </div><!-- col -->
+                         </tr>
 
-                    <div class="col-xs-4 col-md-3">
-                        <label for="Wood" style="margin-top: 25px;">Hinge Direction: </label>
-                        <select class="form-control select2" data-placeholder="Choose Browser">
-                            <option>Firefox</option>
-                            <option>Chrome</option>
-                            <option>Safari</option>
-                            <option>Opera</option>
-                            <option>Internet Explorer</option>
-                        </select>
-                    </div><!-- col -->
+                         <tr>
 
-                    <div class="col-xs-4 col-md-3">
-                        <label for="Wood" style="margin-top: 25px;">Hinge Positions: </label>
-                        <select class="form-control select2" data-placeholder="Choose Browser">
-                            <option>Firefox</option>
-                            <option>Chrome</option>
-                            <option>Safari</option>
-                            <option>Opera</option>
-                            <option>Internet Explorer</option>
-                        </select>
-                    </div><!-- col -->
+                             <td>
+                                 <label for="HorizontalDivisions" style="font-size:16px;margin-top: 25px;">Horizontal Divisions: </label>
+                                 <select class="form-control" style="width: 206px; margin-right: 35px;" type="text" id="cbHorizontalDivisions">
+                                     
+                                 </select>
+                             </td>
 
-                </div>
-            </div>
+                             <td>
+                                 <label for="Profile" style="font-size:16px;margin-top: 25px;">Hinge Drilling: </label>
+                                 <select class="form-control" style="width: 206px; margin-right: 35px;" type="text" id="Profile">
+                                     <option> </option>
+                                     <option>Raised Panel</option>
+                                     <option>Shaker Panel</option>
+                                     <option>Beaded Shaker Panel</option>
+                                     <option>Recessed Paneloption>
+                                     <option>Beaded Recessed Panel</option>
+                                     <option>Open For Glass</option>
+                                     <option>Wood Slab</option>
+                                 </select>
+                             </td>
 
-            <div class="col-md-2">
-                <div class="row" style="margin-right: 0px;">
-                    <img style="height: 100px;width: 260px;margin-top: 20px;" src="~/Content/img/Cabinet Vector-01.png" />
-                    <img style="width: 230px;height: 230px;" src="~/Content/img/Cabinet Vector-01.png" />
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+                             <td>
+                                 <label for="HingeDirection" style="font-size:16px;margin-top: 25px;">Hinge Direction: </label>
+                                 <select class="form-control" style="width: 206px; margin-right: 35px;" type="text" id="cbHingeDirection">
+                                     
+                                 </select>
+                             </td>
 
-<div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div>
+                         </tr>
+
+                         <tr>
+                             <td>
+                                 <label for="HingePositions" style="font-size:16px;margin-top: 25px;">Hinge Positions: </label>
+                                 <select class="form-control" style="width: 206px; margin-right: 35px;" type="text" id="cbHingePositions">
+                                     
+                                 </select>
+                             </td>
+                         </tr>
+                     </tbody>
+                 </table>
+             </div>
+         </div>
 
 @section scripts{
 
     <script type="text/javascript">
         var urlObtenerMaterial = '@Url.Action("ObtenerMaterial", "ConfiDoor")';
         var urlGetAllDoorStyle = '@Url.Action("GetAllDoorStyle", "ConfiDoor")';
+        var urlGetAllInsideEdgeProfile = '@Url.Action("GetAllInsideEdgeProfile", "ConfiDoor")';
+        var urlGetAllOutsideEdgeProfile = '@Url.Action("GetAllOutsideEdgeProfile", "ConfiDoor")';
+        var urlGetAllBottomRail = '@Url.Action("GetAllBottomRail", "ConfiDoor")';
+        var urlGetAllTopRail = '@Url.Action("GetAllTopRail", "ConfiDoor")';
+        var urlGetAllPanel = '@Url.Action("GetAllPanel", "ConfiDoor")';
+        var urlGetAllPanelMaterial = '@Url.Action("GetAllPanelMaterial", "ConfiDoor")';
+        var urlGetAllVerticalDivisions = '@Url.Action("GetAllVerticalDivisions", "ConfiDoor")';
+        var urlGetAllHorizontalDivisions = '@Url.Action("GetAllHorizontalDivisions", "ConfiDoor")';
+        var urlGetAllHingeDirection = '@Url.Action("GetAllHingeDirection", "ConfiDoor")';
+        var urlGetAllHingePositions = '@Url.Action("GetAllHingePositions", "ConfiDoor")';
     </script>
-    @Scripts.Render("~/Scripts/js/ConfigDoor.Index.js")
-<script src="~/Content/lib/select2/js/select2.min.js"></script>
-<script src="~/Content/lib/select2/js/select2.full.min.js"></script>
-<script>
-      $(function(){
-        'use strict'
+  @Scripts.Render("~/Scripts/js/ConfigDoor.Index.js")
 
-        $('.form-layout .form-control').on('focusin', function(){
-          $(this).closest('.form-group').addClass('form-group-active');
-        });
-
-        $('.form-layout .form-control').on('focusout', function(){
-          $(this).closest('.form-group').removeClass('form-group-active');
-        });
-
-        // Select2
-        $('#select2-a, #select2-b').select2({
-          minimumResultsForSearch: Infinity
-        });
-
-        $('#select2-a').on('select2:opening', function (e) {
-          $(this).closest('.form-group').addClass('form-group-active');
-        });
-
-        $('#select2-a').on('select2:closing', function (e) {
-          $(this).closest('.form-group').removeClass('form-group-active');
-        });
-
-      });
-</script>
 }
