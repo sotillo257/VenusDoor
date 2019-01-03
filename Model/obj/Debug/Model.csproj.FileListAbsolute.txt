@@ -1,5 +1,4 @@
 C:\Desarrollo\VenusDoors\Model\bin\Debug\Model.dll
 C:\Desarrollo\VenusDoors\Model\bin\Debug\Model.pdb
-C:\Desarrollo\VenusDoors\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
 C:\Desarrollo\VenusDoors\Model\obj\Debug\Model.dll
 C:\Desarrollo\VenusDoors\Model\obj\Debug\Model.pdb

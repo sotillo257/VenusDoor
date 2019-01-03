@@ -9,7 +9,7 @@ using System.Data;
 
 namespace DataAccess
 {
-    class adStileWidth : Connection
+    public class adStileWidth : Connection
     {
         public StileWidth GetStileWidthById(int Id)
         {
@@ -101,6 +101,27 @@ namespace DataAccess
             string sql = @"[spUpdateStileWidth] '{0}', '{1}', '{2}', '{3}'";
             sql = string.Format(sql, pStileWidth.Width, pStileWidth.IdStatus, pStileWidth.ModificationDate.ToString("yyyyMMdd"),
                 pStileWidth.ModificationUser);
+            try
+            {
+                _MB.EjecutarSQL(_CN, sql);
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
+        /// <summary>
+        /// @Autor: Jesus Sotillo
+        /// @Fecha Creacion: 29/12/2018
+        /// @Descripción: Elimina StileWidth por Id
+        /// </summary>
+        /// <param name="pId"></param>
+        /// <returns></returns>
+        public void DeleteStileWidth(int pId)
+        {
+            string sql = @"[spDeleteStileWidth] '{0}'";
+            sql = string.Format(sql, pId);
             try
             {
                 _MB.EjecutarSQL(_CN, sql);

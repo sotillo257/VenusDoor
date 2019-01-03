@@ -110,5 +110,26 @@ namespace DataAccess
                 throw err;
             }
         }
+
+        /// <summary>
+        /// @Autor: Jesus Sotillo
+        /// @Fecha Creacion: 29/12/2018
+        /// @Descripción: Elimina HingeDirection por Id
+        /// </summary>
+        /// <param name="pId"></param>
+        /// <returns></returns>
+        public void DeleteHingeDirection(int pId)
+        {
+            string sql = @"[spDeleteHingeDirection] '{0}'";
+            sql = string.Format(sql, pId);
+            try
+            {
+                _MB.EjecutarSQL(_CN, sql);
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
     }
 }

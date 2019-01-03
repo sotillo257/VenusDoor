@@ -110,5 +110,26 @@ namespace DataAccess
                 throw err;
             }
         }
+
+        /// <summary>
+        /// @Autor: Jesus Sotillo
+        /// @Fecha Creacion: 29/12/2018
+        /// @Descripción: Elimina InsideEdgeProfile por Id
+        /// </summary>
+        /// <param name="pId"></param>
+        /// <returns></returns>
+        public void DeleteInsideEdgeProfile(int pId)
+        {
+            string sql = @"[spDeleteInsideEdgeProfile] '{0}'";
+            sql = string.Format(sql, pId);
+            try
+            {
+                _MB.EjecutarSQL(_CN, sql);
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
     }
 }
