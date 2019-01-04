@@ -9,21 +9,23 @@ namespace Model
     public class Doors
     {
         public int Id { get; set; }
-        public int IdOrder { get; set; }
-        public int IdDoorStyle { get; set; }
-        public int IdMaterial { get; set; }
-        public int IdTopRail { get; set; }
-        public int IdBottomRail { get; set; }
-        public int IdPreparation { get; set; }
-        public int IdJoin { get; set; }
-        public int IdStileWidth { get; set; }
-        public int IdRailWidth { get; set; }
-        public int IdOutsideEdgeProfile { get; set; }
-        public int IdInsideEdgeProfile { get; set; }
-        public int IdVerticalDivisions { get; set; }
-        public int IdHorizontalDivisions { get; set; }
-        public int IdHingeDirection { get; set; }
-        public int IdHingePositions { get; set; }
+        public Order Order { get; set; }
+        public  DoorStyle DoorStyle { get; set; }
+        public  Material Material { get; set; }
+        public  TopRail TopRail { get; set; }
+        public  BottomRail BottomRail { get; set; }
+        public  Preparation Preparation { get; set; }
+        public  Join Join { get; set; }
+        public  StileWidth StileWidth { get; set; }
+        public  RailWidth RailWidth { get; set; }
+        public  OutsideEdgeProfile OutsideEdgeProfile { get; set; }
+        public  InsideEdgeProfile InsideEdgeProfile { get; set; }
+        public  VerticalDivisions VerticalDivisions { get; set; }
+        public  HorizontalDivisions HorizontalDivisions { get; set; }
+        public  HingeDirection HingeDirection { get; set; }
+        public  HingePositions HingePositions { get; set; }
+        public Panel Panel { get; set; }
+        public PanelMaterial PanelMaterial { get; set; }
         public bool isDrill { get; set; }
         public decimal Width { get; set; }
         public decimal Height { get; set; }
