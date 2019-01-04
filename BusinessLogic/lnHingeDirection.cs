@@ -7,22 +7,22 @@ using Model;
 
 namespace BusinessLogic
 {
-    public class InDoorStylexOutsideEdgeProfile
+    public class lnHingeDirection
     {
-        DataAccess.adDoorStylexOutsideEdgeProfile _AD = new DataAccess.adDoorStylexOutsideEdgeProfile();
+        DataAccess.adHingeDirection _AD = new DataAccess.adHingeDirection();
 
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna toda la Lista de DoorStylexOutsideEdgeProfile.
+        /// @Descripción: Retorna toda la Lista de HingeDirection.
         /// </summary>
         /// <param></param>
         /// <returns></returns>
-        public List<DoorStylexOutsideEdgeProfile> GetAllDoorStylexOutsideEdgeProfile()
+        public List<HingeDirection> GetAllHingeDirection()
         {
             try
             {
-                return _AD.GetAllDoorStylexOutsideEdgeProfile();
+                return _AD.GetAllHingeDirection();
             }
             catch (Exception ex)
             {
@@ -34,15 +34,15 @@ namespace BusinessLogic
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna DoorStylexOutsideEdgeProfile por Id.
+        /// @Descripción: Retorna HingeDirection por Id.
         /// </summary>
         /// <param name="pId"></param>
         /// <returns></returns>
-        public DoorStylexOutsideEdgeProfile GetDoorStylexOutsideEdgeProfileById(int pId)
+        public HingeDirection GetHingeDirectionById(int pId)
         {
             try
             {
-                return _AD.GetDoorStylexOutsideEdgeProfileById(pId);
+                return _AD.GetHingeDirectionById(pId);
             }
             catch (Exception ex)
             {
@@ -51,11 +51,11 @@ namespace BusinessLogic
 
         }
 
-        public int InsertDoorStylexOutsideEdgeProfile(DoorStylexOutsideEdgeProfile pDoorStylexOutsideEdgeProfile)
+        public int InsertHingeDirection(HingeDirection pHingeDirection)
         {
             try
             {
-                return _AD.InsertDoorStylexOutsideEdgeProfile(pDoorStylexOutsideEdgeProfile);
+                return _AD.InsertHingeDirection(pHingeDirection);
             }
             catch (Exception ex)
             {
@@ -64,11 +64,11 @@ namespace BusinessLogic
 
         }
 
-        public bool UpdateDoorStylexOutsideEdgeProfile(DoorStylexOutsideEdgeProfile pDoorStylexOutsideEdgeProfile)
+        public bool UpdateHingeDirection(HingeDirection pHingeDirection)
         {
             try
             {
-                _AD.UpdateDoorStylexOutsideEdgeProfile(pDoorStylexOutsideEdgeProfile);
+                _AD.UpdateHingeDirection(pHingeDirection);
                 return true;
             }
             catch (Exception ex)
@@ -78,11 +78,11 @@ namespace BusinessLogic
 
         }
 
-        public bool DeleteDoorStylexOutsideEdgeProfile(int pId)
+        public bool DeleteHingeDirection(int pId)
         {
             try
             {
-                _AD.DeleteDoorStylexOutsideEdgeProfile(pId);
+                _AD.DeleteHingeDirection(pId);
                 return true;
             }
             catch (Exception ex)

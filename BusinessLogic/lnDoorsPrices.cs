@@ -7,22 +7,22 @@ using Model;
 
 namespace BusinessLogic
 {
-    public class InTopRailxHorizontalDivisions
+    public class lnDoorsPrices
     {
-        DataAccess.adTopRailxHorizontalDivisions _AD = new DataAccess.adTopRailxHorizontalDivisions();
+        DataAccess.adDoorsPrices _AD = new DataAccess.adDoorsPrices();
 
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna toda la Lista de TopRailxHorizontalDivisions.
+        /// @Descripción: Retorna toda la Lista de DoorsPrices.
         /// </summary>
         /// <param></param>
         /// <returns></returns>
-        public List<TopRailxHorizontalDivisions> GetAllTopRailxHorizontalDivisions()
+        public List<DoorsPrices> GetAllDoorsPrices()
         {
             try
             {
-                return _AD.GetAllTopRailxHorizontalDivisions();
+                return _AD.GetAllDoorsPrices();
             }
             catch (Exception ex)
             {
@@ -34,15 +34,15 @@ namespace BusinessLogic
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna TopRailxHorizontalDivisions por Id.
+        /// @Descripción: Retorna DoorsPrices por Id.
         /// </summary>
         /// <param name="pId"></param>
         /// <returns></returns>
-        public TopRailxHorizontalDivisions GetTopRailxHorizontalDivisionsById(int pId)
+        public DoorsPrices GetDoorsPricesById(int pId)
         {
             try
             {
-                return _AD.GetTopRailxHorizontalDivisionsById(pId);
+                return _AD.GetDoorsPricesById(pId);
             }
             catch (Exception ex)
             {
@@ -51,11 +51,11 @@ namespace BusinessLogic
 
         }
 
-        public int InsertTopRailxHorizontalDivisions(TopRailxHorizontalDivisions pTopRailxHorizontalDivisions)
+        public int InsertDoorsPrices(DoorsPrices pDoorsPrices)
         {
             try
             {
-                return _AD.InsertTopRailxHorizontalDivisions(pTopRailxHorizontalDivisions);
+                return _AD.InsertDoorsPrices(pDoorsPrices);
             }
             catch (Exception ex)
             {
@@ -64,11 +64,11 @@ namespace BusinessLogic
 
         }
 
-        public bool UpdateTopRailxHorizontalDivisions(TopRailxHorizontalDivisions pTopRailxHorizontalDivisions)
+        public bool UpdateDoorsPrices(DoorsPrices pDoorsPrices)
         {
             try
             {
-                _AD.UpdateTopRailxHorizontalDivisions(pTopRailxHorizontalDivisions);
+                _AD.UpdateDoorsPrices(pDoorsPrices);
                 return true;
             }
             catch (Exception ex)
@@ -78,11 +78,11 @@ namespace BusinessLogic
 
         }
 
-        public bool DeleteTopRailxHorizontalDivisions(int pId)
+        public bool DeleteDoorsPrices(int pId)
         {
             try
             {
-                _AD.DeleteTopRailxHorizontalDivisions(pId);
+                _AD.DeleteDoorPrices(pId);
                 return true;
             }
             catch (Exception ex)

@@ -7,22 +7,22 @@ using Model;
 
 namespace BusinessLogic
 {
-    public class InHingeDirection
+    public class lnTopRailxJoin
     {
-        DataAccess.adHingeDirection _AD = new DataAccess.adHingeDirection();
+        DataAccess.adTopRailxJoin _AD = new DataAccess.adTopRailxJoin();
 
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna toda la Lista de HingeDirection.
+        /// @Descripción: Retorna toda la Lista de TopRailxJoin.
         /// </summary>
         /// <param></param>
         /// <returns></returns>
-        public List<HingeDirection> GetAllHingeDirection()
+        public List<TopRailxJoin> GetAllTopRailxJoin()
         {
             try
             {
-                return _AD.GetAllHingeDirection();
+                return _AD.GetAllTopRailxJoin();
             }
             catch (Exception ex)
             {
@@ -34,15 +34,15 @@ namespace BusinessLogic
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna HingeDirection por Id.
+        /// @Descripción: Retorna TopRailxJoin por Id.
         /// </summary>
         /// <param name="pId"></param>
         /// <returns></returns>
-        public HingeDirection GetHingeDirectionById(int pId)
+        public TopRailxJoin GetTopRailxJoinById(int pId)
         {
             try
             {
-                return _AD.GetHingeDirectionById(pId);
+                return _AD.GetTopRailxJoinById(pId);
             }
             catch (Exception ex)
             {
@@ -51,11 +51,11 @@ namespace BusinessLogic
 
         }
 
-        public int InsertHingeDirection(HingeDirection pHingeDirection)
+        public int InsertTopRailxJoin(TopRailxJoin pTopRailxJoin)
         {
             try
             {
-                return _AD.InsertHingeDirection(pHingeDirection);
+                return _AD.InsertTopRailxJoin(pTopRailxJoin);
             }
             catch (Exception ex)
             {
@@ -64,11 +64,11 @@ namespace BusinessLogic
 
         }
 
-        public bool UpdateHingeDirection(HingeDirection pHingeDirection)
+        public bool UpdateTopRailxJoin(TopRailxJoin pTopRailxJoin)
         {
             try
             {
-                _AD.UpdateHingeDirection(pHingeDirection);
+                _AD.UpdateTopRailxJoin(pTopRailxJoin);
                 return true;
             }
             catch (Exception ex)
@@ -78,11 +78,11 @@ namespace BusinessLogic
 
         }
 
-        public bool DeleteHingeDirection(int pId)
+        public bool DeleteTopRailxJoin(int pId)
         {
             try
             {
-                _AD.DeleteHingeDirection(pId);
+                _AD.DeleteTopRailxJoin(pId);
                 return true;
             }
             catch (Exception ex)

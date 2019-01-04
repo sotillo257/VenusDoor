@@ -7,22 +7,22 @@ using Model;
 
 namespace BusinessLogic
 {
-    public class InUser
+    public class lnHingePositions
     {
-        DataAccess.adUser _AD = new DataAccess.adUser();
+        DataAccess.adHingePositions _AD = new DataAccess.adHingePositions();
 
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna toda la Lista de User.
+        /// @Descripción: Retorna toda la Lista de HingePositions.
         /// </summary>
         /// <param></param>
         /// <returns></returns>
-        public List<User> GetAllUser()
+        public List<HingePositions> GetAllHingePositions()
         {
             try
             {
-                return _AD.GetAllUser();
+                return _AD.GetAllHingePositions();
             }
             catch (Exception ex)
             {
@@ -34,15 +34,15 @@ namespace BusinessLogic
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna User por Id.
+        /// @Descripción: Retorna HingePositions por Id.
         /// </summary>
         /// <param name="pId"></param>
         /// <returns></returns>
-        public User GetUserById(int pId)
+        public HingePositions GetHingePositionsById(int pId)
         {
             try
             {
-                return _AD.GetUserById(pId);
+                return _AD.GetHingePositionsById(pId);
             }
             catch (Exception ex)
             {
@@ -51,11 +51,11 @@ namespace BusinessLogic
 
         }
 
-        public int InsertUser(User pUser)
+        public int InsertHingePositions(HingePositions pHingePositions)
         {
             try
             {
-                return _AD.InsertUser(pUser);
+                return _AD.InsertHingePositions(pHingePositions);
             }
             catch (Exception ex)
             {
@@ -64,11 +64,11 @@ namespace BusinessLogic
 
         }
 
-        public bool UpdateUser(User pUser)
+        public bool UpdateHingePositions(HingePositions pHingePositions)
         {
             try
             {
-                _AD.UpdateUser(pUser);
+                _AD.UpdateHingePositions(pHingePositions);
                 return true;
             }
             catch (Exception ex)
@@ -78,11 +78,11 @@ namespace BusinessLogic
 
         }
 
-        public bool DeleteUser(int pId)
+        public bool DeleteHingePositions(int pId)
         {
             try
             {
-                _AD.DeleteUser(pId);
+                _AD.DeleteHingePositions(pId);
                 return true;
             }
             catch (Exception ex)

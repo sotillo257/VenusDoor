@@ -7,22 +7,22 @@ using Model;
 
 namespace BusinessLogic
 {
-    public class InDoorsxUser
+    public class lnTopRailxVerticalDivisions
     {
-        DataAccess.adDoorsxUser _AD = new DataAccess.adDoorsxUser();
+        DataAccess.adTopRailxVerticalDivisions _AD = new DataAccess.adTopRailxVerticalDivisions();
 
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna toda la Lista de DoorsxUser.
+        /// @Descripción: Retorna toda la Lista de TopRailxVerticalDivisions.
         /// </summary>
         /// <param></param>
         /// <returns></returns>
-        public List<DoorsxUser> GetAllDoorsxUser()
+        public List<TopRailxVerticalDivisions> GetAllTopRailxVerticalDivisions()
         {
             try
             {
-                return _AD.GetAllDoorsxUser();
+                return _AD.GetAllTopRailxVerticalDivisions();
             }
             catch (Exception ex)
             {
@@ -34,15 +34,15 @@ namespace BusinessLogic
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna DoorsxUser por Id.
+        /// @Descripción: Retorna TopRailxVerticalDivisions por Id.
         /// </summary>
         /// <param name="pId"></param>
         /// <returns></returns>
-        public DoorsxUser GetDoorsxUserById(int pId)
+        public TopRailxVerticalDivisions GetTopRailxVerticalDivisionsById(int pId)
         {
             try
             {
-                return _AD.GetDoorsxUserById(pId);
+                return _AD.GetTopRailxVerticalDivisionsById(pId);
             }
             catch (Exception ex)
             {
@@ -51,11 +51,11 @@ namespace BusinessLogic
 
         }
 
-        public int InsertDoorsxUser(DoorsxUser pDoorsxUser)
+        public int InsertTopRailxVerticalDivisions(TopRailxVerticalDivisions pTopRailxVerticalDivisions)
         {
             try
             {
-                return _AD.InsertDoorsxUser(pDoorsxUser);
+                return _AD.InsertTopRailxVerticalDivisions(pTopRailxVerticalDivisions);
             }
             catch (Exception ex)
             {
@@ -64,11 +64,11 @@ namespace BusinessLogic
 
         }
 
-        public bool UpdateDoorsxUser(DoorsxUser pDoorsxUser)
+        public bool UpdateTopRailxVerticalDivisions(TopRailxVerticalDivisions pTopRailxVerticalDivisions)
         {
             try
             {
-                _AD.UpdateDoorsxUser(pDoorsxUser);
+                _AD.UpdateTopRailxVerticalDivisions(pTopRailxVerticalDivisions);
                 return true;
             }
             catch (Exception ex)
@@ -78,11 +78,11 @@ namespace BusinessLogic
 
         }
 
-        public bool DeleteDoorsxUser(int pId)
+        public bool DeleteTopRailxVerticalDivisions(int pId)
         {
             try
             {
-                _AD.DeleteDoorsxUser(pId);
+                _AD.DeleteTopRailxVerticalDivisions(pId);
                 return true;
             }
             catch (Exception ex)

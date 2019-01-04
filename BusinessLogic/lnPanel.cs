@@ -7,22 +7,22 @@ using Model;
 
 namespace BusinessLogic
 {
-    public class InVerticalDivisions
+    public class lnPanel
     {
-        DataAccess.adVerticalDivisions _AD = new DataAccess.adVerticalDivisions();
+        DataAccess.adPanel _AD = new DataAccess.adPanel();
 
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna toda la Lista de VerticalDivisions.
+        /// @Descripción: Retorna toda la Lista de Panel.
         /// </summary>
         /// <param></param>
         /// <returns></returns>
-        public List<VerticalDivisions> GetAllVerticalDivisions()
+        public List<Panel> GetAllPanel()
         {
             try
             {
-                return _AD.GetAllVerticalDivisions();
+                return _AD.GetAllPanel();
             }
             catch (Exception ex)
             {
@@ -34,15 +34,15 @@ namespace BusinessLogic
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna VerticalDivisions por Id.
+        /// @Descripción: Retorna Panel por Id.
         /// </summary>
         /// <param name="pId"></param>
         /// <returns></returns>
-        public VerticalDivisions GetVerticalDivisionsById(int pId)
+        public Panel GetPanelById(int pId)
         {
             try
             {
-                return _AD.GetVerticalDivisionsById(pId);
+                return _AD.GetPanelById(pId);
             }
             catch (Exception ex)
             {
@@ -51,11 +51,11 @@ namespace BusinessLogic
 
         }
 
-        public int InsertVerticalDivisions(VerticalDivisions pVerticalDivisions)
+        public int InsertPanel(Panel pPanel)
         {
             try
             {
-                return _AD.InsertVerticalDivisions(pVerticalDivisions);
+                return _AD.InsertPanel(pPanel);
             }
             catch (Exception ex)
             {
@@ -64,11 +64,11 @@ namespace BusinessLogic
 
         }
 
-        public bool UpdateVerticalDivisions(VerticalDivisions pVerticalDivisions)
+        public bool UpdatePanel(Panel pPanel)
         {
             try
             {
-                _AD.UpdateVerticalDivisions(pVerticalDivisions);
+                _AD.UpdatePanel(pPanel);
                 return true;
             }
             catch (Exception ex)
@@ -78,11 +78,11 @@ namespace BusinessLogic
 
         }
 
-        public bool DeleteVerticalDivisions(int pId)
+        public bool DeletePanel(int pId)
         {
             try
             {
-                _AD.DeleteVerticalDivisions(pId);
+                _AD.DeletePanel(pId);
                 return true;
             }
             catch (Exception ex)

@@ -7,22 +7,22 @@ using Model;
 
 namespace BusinessLogic
 {
-    public class InTopRailxVerticalDivisions
+    public class lnPreparation
     {
-        DataAccess.adTopRailxVerticalDivisions _AD = new DataAccess.adTopRailxVerticalDivisions();
+        DataAccess.adPreparation _AD = new DataAccess.adPreparation();
 
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna toda la Lista de TopRailxVerticalDivisions.
+        /// @Descripción: Retorna toda la Lista de Preparation.
         /// </summary>
         /// <param></param>
         /// <returns></returns>
-        public List<TopRailxVerticalDivisions> GetAllTopRailxVerticalDivisions()
+        public List<Preparation> GetAllPreparation()
         {
             try
             {
-                return _AD.GetAllTopRailxVerticalDivisions();
+                return _AD.GetAllPreparation();
             }
             catch (Exception ex)
             {
@@ -34,15 +34,15 @@ namespace BusinessLogic
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna TopRailxVerticalDivisions por Id.
+        /// @Descripción: Retorna Preparation por Id.
         /// </summary>
         /// <param name="pId"></param>
         /// <returns></returns>
-        public TopRailxVerticalDivisions GetTopRailxVerticalDivisionsById(int pId)
+        public Preparation GetPreparationById(int pId)
         {
             try
             {
-                return _AD.GetTopRailxVerticalDivisionsById(pId);
+                return _AD.GetPreparationById(pId);
             }
             catch (Exception ex)
             {
@@ -51,11 +51,11 @@ namespace BusinessLogic
 
         }
 
-        public int InsertTopRailxVerticalDivisions(TopRailxVerticalDivisions pTopRailxVerticalDivisions)
+        public int InsertPreparation(Preparation pPreparation)
         {
             try
             {
-                return _AD.InsertTopRailxVerticalDivisions(pTopRailxVerticalDivisions);
+                return _AD.InsertPreparation(pPreparation);
             }
             catch (Exception ex)
             {
@@ -64,11 +64,11 @@ namespace BusinessLogic
 
         }
 
-        public bool UpdateTopRailxVerticalDivisions(TopRailxVerticalDivisions pTopRailxVerticalDivisions)
+        public bool UpdatePreparation(Preparation pPreparation)
         {
             try
             {
-                _AD.UpdateTopRailxVerticalDivisions(pTopRailxVerticalDivisions);
+                _AD.UpdatePreparation(pPreparation);
                 return true;
             }
             catch (Exception ex)
@@ -78,11 +78,11 @@ namespace BusinessLogic
 
         }
 
-        public bool DeleteTopRailxVerticalDivisions(int pId)
+        public bool DeletePreparation(int pId)
         {
             try
             {
-                _AD.DeleteTopRailxVerticalDivisions(pId);
+                _AD.DeletePreparation(pId);
                 return true;
             }
             catch (Exception ex)

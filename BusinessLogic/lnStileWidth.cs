@@ -7,22 +7,22 @@ using Model;
 
 namespace BusinessLogic
 {
-    public class InDoorStylexInsideEdgeProfile
+    public class lnStileWidth
     {
-        DataAccess.adDoorStylexInsideEdgeProfile _AD = new DataAccess.adDoorStylexInsideEdgeProfile();
+        DataAccess.adStileWidth _AD = new DataAccess.adStileWidth();
 
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna toda la Lista de DoorStylexInsideEdgeProfile.
+        /// @Descripción: Retorna toda la Lista de StileWidth.
         /// </summary>
         /// <param></param>
         /// <returns></returns>
-        public List<DoorStylexInsideEdgeProfile> GetAllDoorStylexInsideEdgeProfile()
+        public List<StileWidth> GetAllStileWidth()
         {
             try
             {
-                return _AD.GetAllDoorStylexInsideEdgeProfile();
+                return _AD.GetAllStileWidth();
             }
             catch (Exception ex)
             {
@@ -34,15 +34,15 @@ namespace BusinessLogic
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna DoorStylexInsideEdgeProfile por Id.
+        /// @Descripción: Retorna StileWidth por Id.
         /// </summary>
         /// <param name="pId"></param>
         /// <returns></returns>
-        public DoorStylexInsideEdgeProfile GetDoorStylexInsideEdgeProfileById(int pId)
+        public StileWidth GetStileWidthById(int pId)
         {
             try
             {
-                return _AD.GetDoorStylexInsideEdgeProfileById(pId);
+                return _AD.GetStileWidthById(pId);
             }
             catch (Exception ex)
             {
@@ -51,11 +51,11 @@ namespace BusinessLogic
 
         }
 
-        public int InsertDoorStylexInsideEdgeProfile(DoorStylexInsideEdgeProfile pDoorStylexInsideEdgeProfile)
+        public int InsertStileWidth(StileWidth pStileWidth)
         {
             try
             {
-                return _AD.InsertDoorStylexInsideEdgeProfile(pDoorStylexInsideEdgeProfile);
+                return _AD.InsertStileWidth(pStileWidth);
             }
             catch (Exception ex)
             {
@@ -64,11 +64,11 @@ namespace BusinessLogic
 
         }
 
-        public bool UpdateDoorStylexInsideEdgeProfile(DoorStylexInsideEdgeProfile pDoorStylexInsideEdgeProfile)
+        public bool UpdateStileWidth(StileWidth pStileWidth)
         {
             try
             {
-                _AD.UpdateDoorStylexInsideEdgeProfile(pDoorStylexInsideEdgeProfile);
+                _AD.UpdateStileWidth(pStileWidth);
                 return true;
             }
             catch (Exception ex)
@@ -78,11 +78,11 @@ namespace BusinessLogic
 
         }
 
-        public bool DeleteDoorStylexInsideEdgeProfile(int pId)
+        public bool DeleteStileWidth(int pId)
         {
             try
             {
-                _AD.DeleteDoorStylexInsideEdgeProfile(pId);
+                _AD.DeleteStileWidth(pId);
                 return true;
             }
             catch (Exception ex)

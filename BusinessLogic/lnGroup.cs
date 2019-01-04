@@ -7,22 +7,22 @@ using Model;
 
 namespace BusinessLogic
 {
-    public class InStatus
+    public class lnGroup
     {
-        DataAccess.adStatus _AD = new DataAccess.adStatus();
+        DataAccess.adGroup _AD = new DataAccess.adGroup();
 
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna toda la Lista de Status.
+        /// @Descripción: Retorna toda la Lista de Group.
         /// </summary>
         /// <param></param>
         /// <returns></returns>
-        public List<Status> GetAllStatus()
+        public List<Group> GetAllGroup()
         {
             try
             {
-                return _AD.GetAllStatus();
+                return _AD.GetAllGroup();
             }
             catch (Exception ex)
             {
@@ -34,15 +34,15 @@ namespace BusinessLogic
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna Status por Id.
+        /// @Descripción: Retorna Group por Id.
         /// </summary>
         /// <param name="pId"></param>
         /// <returns></returns>
-        public Status GetStatusById(int pId)
+        public Group GetGroupById(int pId)
         {
             try
             {
-                return _AD.GetStatusById(pId);
+                return _AD.GetGroupById(pId);
             }
             catch (Exception ex)
             {
@@ -51,11 +51,11 @@ namespace BusinessLogic
 
         }
 
-        public int InsertStatus(Status pStatus)
+        public int InsertGroup(Group pGroup)
         {
             try
             {
-                return _AD.InsertStatus(pStatus);
+                return _AD.InsertGroup(pGroup);
             }
             catch (Exception ex)
             {
@@ -64,11 +64,11 @@ namespace BusinessLogic
 
         }
 
-        public bool UpdateStatus(Status pStatus)
+        public bool UpdateGroup(Group pGroup)
         {
             try
             {
-                _AD.UpdateStatus(pStatus);
+                _AD.UpdateGroup(pGroup);
                 return true;
             }
             catch (Exception ex)
@@ -78,11 +78,11 @@ namespace BusinessLogic
 
         }
 
-        public bool DeleteStatus(int pId)
+        public bool DeleteGroup(int pId)
         {
             try
             {
-                _AD.DeleteStatus(pId);
+                _AD.DeleteGroup(pId);
                 return true;
             }
             catch (Exception ex)

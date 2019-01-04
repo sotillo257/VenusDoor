@@ -904,6 +904,8 @@
     <Content Include="Views\ConfiDoor\Index.cshtml" />
     <Content Include="Views\OrderSummary\Index.cshtml" />
     <Content Include="Scripts\js\ConfigDoor.Index.js" />
+    <Content Include="Views\OrderStatus\Index.cshtml" />
+    <Content Include="Views\ConfiDoor\Index - Copia.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

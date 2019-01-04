@@ -7,22 +7,22 @@ using Model;
 
 namespace BusinessLogic
 {
-    public class InPanel
+    public class lnHorizontalDivisions
     {
-        DataAccess.adPanel _AD = new DataAccess.adPanel();
+        DataAccess.adHorizontalDivisions _AD = new DataAccess.adHorizontalDivisions();
 
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna toda la Lista de Panel.
+        /// @Descripción: Retorna toda la Lista de HorizontalDivisions.
         /// </summary>
         /// <param></param>
         /// <returns></returns>
-        public List<Panel> GetAllPanel()
+        public List<HorizontalDivisions> GetAllHorizontalDivisions()
         {
             try
             {
-                return _AD.GetAllPanel();
+                return _AD.GetAllHorizontalDivisions();
             }
             catch (Exception ex)
             {
@@ -34,15 +34,15 @@ namespace BusinessLogic
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna Panel por Id.
+        /// @Descripción: Retorna HorizontalDivisions por Id.
         /// </summary>
         /// <param name="pId"></param>
         /// <returns></returns>
-        public Panel GetPanelById(int pId)
+        public HorizontalDivisions GetHorizontalDivisionsById(int pId)
         {
             try
             {
-                return _AD.GetPanelById(pId);
+                return _AD.GetHorizontalDivisionsById(pId);
             }
             catch (Exception ex)
             {
@@ -51,11 +51,11 @@ namespace BusinessLogic
 
         }
 
-        public int InsertPanel(Panel pPanel)
+        public int InsertHorizontalDivisions(HorizontalDivisions pHorizontalDivisions)
         {
             try
             {
-                return _AD.InsertPanel(pPanel);
+                return _AD.InsertHorizontalDivisions(pHorizontalDivisions);
             }
             catch (Exception ex)
             {
@@ -64,11 +64,11 @@ namespace BusinessLogic
 
         }
 
-        public bool UpdatePanel(Panel pPanel)
+        public bool UpdateHorizontalDivisions(HorizontalDivisions pHorizontalDivisions)
         {
             try
             {
-                _AD.UpdatePanel(pPanel);
+                _AD.UpdateHorizontalDivisions(pHorizontalDivisions);
                 return true;
             }
             catch (Exception ex)
@@ -78,11 +78,11 @@ namespace BusinessLogic
 
         }
 
-        public bool DeletePanel(int pId)
+        public bool DeleteHorizontalDivisions(int pId)
         {
             try
             {
-                _AD.DeletePanel(pId);
+                _AD.DeleteHorizontalDivisions(pId);
                 return true;
             }
             catch (Exception ex)

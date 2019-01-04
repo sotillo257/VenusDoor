@@ -7,22 +7,22 @@ using Model;
 
 namespace BusinessLogic
 {
-    public class InHingePositions
+    public class lnDoorsxUser
     {
-        DataAccess.adHingePositions _AD = new DataAccess.adHingePositions();
+        DataAccess.adDoorsxUser _AD = new DataAccess.adDoorsxUser();
 
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna toda la Lista de HingePositions.
+        /// @Descripción: Retorna toda la Lista de DoorsxUser.
         /// </summary>
         /// <param></param>
         /// <returns></returns>
-        public List<HingePositions> GetAllHingePositions()
+        public List<DoorsxUser> GetAllDoorsxUser()
         {
             try
             {
-                return _AD.GetAllHingePositions();
+                return _AD.GetAllDoorsxUser();
             }
             catch (Exception ex)
             {
@@ -34,15 +34,15 @@ namespace BusinessLogic
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna HingePositions por Id.
+        /// @Descripción: Retorna DoorsxUser por Id.
         /// </summary>
         /// <param name="pId"></param>
         /// <returns></returns>
-        public HingePositions GetHingePositionsById(int pId)
+        public DoorsxUser GetDoorsxUserById(int pId)
         {
             try
             {
-                return _AD.GetHingePositionsById(pId);
+                return _AD.GetDoorsxUserById(pId);
             }
             catch (Exception ex)
             {
@@ -51,11 +51,11 @@ namespace BusinessLogic
 
         }
 
-        public int InsertHingePositions(HingePositions pHingePositions)
+        public int InsertDoorsxUser(DoorsxUser pDoorsxUser)
         {
             try
             {
-                return _AD.InsertHingePositions(pHingePositions);
+                return _AD.InsertDoorsxUser(pDoorsxUser);
             }
             catch (Exception ex)
             {
@@ -64,11 +64,11 @@ namespace BusinessLogic
 
         }
 
-        public bool UpdateHingePositions(HingePositions pHingePositions)
+        public bool UpdateDoorsxUser(DoorsxUser pDoorsxUser)
         {
             try
             {
-                _AD.UpdateHingePositions(pHingePositions);
+                _AD.UpdateDoorsxUser(pDoorsxUser);
                 return true;
             }
             catch (Exception ex)
@@ -78,11 +78,11 @@ namespace BusinessLogic
 
         }
 
-        public bool DeleteHingePositions(int pId)
+        public bool DeleteDoorsxUser(int pId)
         {
             try
             {
-                _AD.DeleteHingePositions(pId);
+                _AD.DeleteDoorsxUser(pId);
                 return true;
             }
             catch (Exception ex)
