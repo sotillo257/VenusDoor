@@ -297,25 +297,15 @@
         <div class="modal-content bd-0">
             <div class="modal-body pd-0">
                 <div class="row flex-row-reverse no-gutters">
-                    <div class="col-lg-6">
+                    <div class="col-lg-6" id="ModalImage">
                         <button type="button" class="close mg-t-15 mg-r-20" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
-                        <img class="img-fluid rounded-right" alt="" src="~/Content/img/Cabinet Vector-01.png" id="ImagenModal" />
+                        <img class="img-fluid rounded-right" alt="" src="" id="ImagenModal" />
                     </div><!-- col-6 -->
                     <div class="col-lg-6 rounded-left">
                         <div class="pd-40" id="CuerpoModal">
-                            <h2 class="tx-sm-56 tx-semibold tx-uppercase tx-inverse mg-b-15">Poplar</h2>
-                            <p class="mg-b-20">
-                                Outside profile: Finger pull<br>
-                                Inside profile: Ogee<br>
-                                Flat Panel - MDF <br>
-                            </p>
-                            <p class="mg-b-20">@Html.ActionLink("Build a Door", "Index", "ConfiDoor", new { area = "" }, new { @class = "btn btn-outline-info bd-2 pd-y-12 pd-x-25 tx-uppercase tx-12 tx-semibold tx-spacing-1" })</p>
-                            <p class="tx-12 mg-b-0">
-                                <span class="tx-uppercase tx-12 tx-bold d-block mg-b-5">Our Address:</span>
-                                <span>Ayala Center, Cebu Business Park, Cebu City, Cebu, Philippines 6000</span>
-                            </p>
+                            
                         </div>
                     </div><!-- col-6 -->
                 </div><!-- row -->
@@ -329,31 +319,41 @@
 @section scripts{
 <script type="text/javascript">
 
-   
+
     $(document).ready(function () {
         var listDoors = JSON.parse('@Html.Raw(ViewBag.ListDoor)');
         $(document).on('click', '.Door', function (event) {
-            SearchDoor(listDoors, $(this).attr('value'));           
+          SearchDoor(listDoors, $(this).attr('value'));
+        });
+
+        $(document).on('click', '.EnviarDoor', function (event) {
+            console.log('@Url.Action("Index","ConfiDoor")');
+            window.location.href = '@Url.Action("Index","ConfiDoor")'+'/Index/'+$(this).attr('value');
+
         });
     });
     function SearchDoor(data, idDoor) {
         if (data != null) {
             for (var i = 0; i < data.length; i++) {
                 if (data[i].Id == idDoor) {
+                    console.log(data[i]);
                     var HTML = " <h2 class='tx-sm-56 tx-semibold tx-uppercase tx-inverse mg-b-15'>"+data[i].Material.Description+"</h2>"+
                     "<p class='mg-b-20 d-block'>Outside profile: "+data[i].OutsideEdgeProfile.Description+"</p>"+
                       "<p class='mg-b-20 d-block'>Inside profile: " + data[i].InsideEdgeProfile.Description + "</p>" +
                       "<p class='mg-b-20 d-block'>Flat Panel: " + data[i].PanelMaterial.Description + "</p>" +
                        "<p class='mg-b-20 d-block'>Top Rail: "+data[i].TopRail.Description+"</p>"+
-                      "<p class='mg-b-20 d-block'>Bottom Rail: "+data[i].BottomRail.Description+"</p>"+                     
+                      "<p class='mg-b-20 d-block'>Bottom Rail: "+data[i].BottomRail.Description+"</p>"+
                     "  <p class='mg-b-20'><a class='EnviarDoor btn btn-outline-info bd-2 pd-y-12 pd-x-25 tx-uppercase tx-12 tx-semibold tx-spacing-1 ' value='" + data[i].Id+ "'>Build a Door</a></p>";
                     $("#CuerpoModal").html(HTML);
-                    $('#ImageModal').attr('src', data[i].Picture);
-                }    
+                    var HTMLImage = '<button type="button" class="close mg-t-15 mg-r-20" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>'+
+                        '<img class="img-fluid rounded-right" alt="' + data[i].Material.Description + '" src="' + data[i].Picture + '"/>';
+                    console.log(data[i].Picture);
+                    $('#ModalImage').html(HTMLImage);
+                }
             }
         }else{
             alert("lista vacia");}
-       
+
     }
     </script>
 }
