@@ -10,7 +10,7 @@ namespace VenusDoors.Controllers
     public class ConfiDoorController : Controller
     {
         // GET: ConfiDoor
-        public ActionResult Index()
+        public ActionResult Index(int? Id)
         {
             ViewBag.ConfiDoor = "active";
             return View();

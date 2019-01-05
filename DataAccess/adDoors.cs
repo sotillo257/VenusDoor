@@ -106,6 +106,8 @@ namespace DataAccess
                             ModificationUser = int.Parse(item["ModificationUser"].ToString()),
                             Picture = item["Picture"].ToString(),
                             ProfilePicture = item["ProfilePicture"].ToString(),
+                            PanelMaterial = new PanelMaterial() { Id = int.Parse(item["IdPanelMaterial"].ToString()), Description = item["DescripPanelMaterial"].ToString(), },
+                            Panel = new Panel() { Id = int.Parse(item["IdPanel"].ToString()), Description = item["DescripPanel"].ToString(), },
 
                         });
                     }

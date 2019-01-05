@@ -3,7 +3,6 @@ C:\Desarrollo\VenusDoors\DataAccess\bin\Release\DataAccess.pdb
 C:\Desarrollo\VenusDoors\DataAccess\bin\Release\MetodosDB.dll
 C:\Desarrollo\VenusDoors\DataAccess\bin\Release\Model.dll
 C:\Desarrollo\VenusDoors\DataAccess\bin\Release\Model.pdb
-C:\Desarrollo\VenusDoors\DataAccess\bin\Release\MetodosDB.pdb
 C:\Desarrollo\VenusDoors\DataAccess\obj\Release\DataAccess.csprojResolveAssemblyReference.cache
 C:\Desarrollo\VenusDoors\DataAccess\obj\Release\DataAccess.dll
 C:\Desarrollo\VenusDoors\DataAccess\obj\Release\DataAccess.pdb

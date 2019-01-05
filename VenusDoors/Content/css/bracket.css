@@ -182,7 +182,7 @@ body {
   font-size: 0.875rem;
   font-weight: normal;
   line-height: 1.5;
-  color: #868ba1 !important;
+  color: #868ba1;
   background-color: #E9ECEF;
 }
 
@@ -1349,7 +1349,7 @@ pre code {
   width: 100%;
   max-width: 100%;
   margin-bottom: 1rem;
-  background-color: #dee2e6;
+  background-color: #00000000;
 }
 .table th,
 .table td {
@@ -1375,7 +1375,7 @@ pre code {
 
 .table-bordered {
   border: 1px solid #adb5bd;
-  border-radius: 10px;
+  border-radius: 3px;
 }
 .table-bordered th,
 .table-bordered td {
@@ -2039,13 +2039,13 @@ fieldset[disabled] a.btn {
 
 .btn-success {
   color: #fff;
-  background-color: #15806f;
-  border-color: #15806f;
+  background-color: #23BF08;
+  border-color: #23BF08;
 }
 .btn-success:hover {
   color: #fff;
-  background-color: #014d41;
-  border-color: #014d41;
+  background-color: #1c9a06;
+  border-color: #1a8e06;
 }
 .btn-success:focus, .btn-success.focus {
   box-shadow: 0 0 0 3px rgba(35, 191, 8, 0.5);
@@ -10259,14 +10259,6 @@ textarea.parsley-error:active {
 .table-bordered > tbody > tr:last-child > th,
 .table-bordered > tbody > tr:last-child > td {
   border-bottom-width: 0;
-}
-
-.table > thead {
-    background-color: #15806f;
-} 
-
-.table > thead > tr > th {
-    color: #ccc;
 }
 
 .table-colored {
@@ -32784,6 +32776,7 @@ a.hover-white-8:hover, a.hover-white-8:focus {
 
 .pd-t-20 {
   padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .pd-r-20 {
@@ -37586,6 +37579,7 @@ a.hover-white-8:hover, a.hover-white-8:focus {
 
   .pd-sm-t-30 {
     padding-top: 30px;
+    padding-bottom: 0px;
   }
 
   .pd-sm-r-30 {
@@ -52172,7 +52166,8 @@ a.hover-white-8:hover, a.hover-white-8:focus {
 }
 
 .wd-55 {
-  width: 55px;
+  height: 40px;
+  width: 40px;
 }
 
 .wd-55p {
