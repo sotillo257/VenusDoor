@@ -9,7 +9,6 @@ namespace Model
     public class Doors
     {
         public int Id { get; set; }
-        public Order Order { get; set; }
         public  DoorStyle DoorStyle { get; set; }
         public  Material Material { get; set; }
         public  TopRail TopRail { get; set; }

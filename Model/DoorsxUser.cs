@@ -9,28 +9,28 @@ namespace Model
     public class DoorsxUser
     {
         public int Id { get; set; }
-        public int IdOrder { get; set; }
-        public int IdDoorStyle { get; set; }
-        public int IdMaterial { get; set; }
-        public int IdTopRail { get; set; }
-        public int IdBottomRail { get; set; }
-        public int IdPreparation { get; set; }
-        public int IdJoin { get; set; }
-        public int IdStileWidth { get; set; }
-        public int IdRailWidth { get; set; }
-        public int IdOutsideEdgeProfile { get; set; }
-        public int IdInsideEdgeProfile { get; set; }
-        public int IdVerticalDivisions { get; set; }
-        public int IdHorizontalDivisions { get; set; }
-        public int IdHingeDirection { get; set; }
-        public int IdHingePositions { get; set; }
+        public Order Order { get; set; }
+        public DoorStyle DoorStyle { get; set; }
+        public Material Material { get; set; }
+        public TopRail TopRail { get; set; }
+        public BottomRail BottomRail { get; set; }
+        public Preparation Preparation { get; set; }
+        public Join Join { get; set; }        
+        public OutsideEdgeProfile OutsideEdgeProfile { get; set; }
+        public InsideEdgeProfile InsideEdgeProfile { get; set; }
+        public VerticalDivisions VerticalDivisions { get; set; }
+        public HorizontalDivisions HorizontalDivisions { get; set; }
+        public HingeDirection HingeDirection { get; set; }
+        public HingePositions HingePositions { get; set; }
+        public Panel Panel { get; set; }
+        public PanelMaterial PanelMaterial { get; set; }
         public bool isDrill { get; set; }
         public decimal Width { get; set; }
         public decimal Height { get; set; }
         public bool IsOpeningMeasurement { get; set; }
         public int Quantity { get; set; }
-        public int IdUser { get; set; }
-        public int IdStatus { get; set; }
+        public User User { get; set; }
+        public Status Status { get; set; }
         public DateTime CreationDate { get; set; }
         public int CreatorUser { get; set; }
         public DateTime ModificationDate { get; set; }

@@ -2,9 +2,9 @@ C:\Desarrollo\VenusDoors\Model\bin\Debug\Model.dll
 C:\Desarrollo\VenusDoors\Model\bin\Debug\Model.pdb
 C:\Desarrollo\VenusDoors\Model\obj\Debug\Model.dll
 C:\Desarrollo\VenusDoors\Model\obj\Debug\Model.pdb
-C:\Users\jesus\Source\Repos\VenusDoor\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
-C:\Users\jesus\Source\Repos\VenusDoor\Model\obj\Debug\Model.dll
-C:\Users\jesus\Source\Repos\VenusDoor\Model\obj\Debug\Model.pdb
+C:\Desarrollo\VenusDoors\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
 C:\Users\jesus\Source\Repos\VenusDoor\Model\bin\Debug\Model.dll
 C:\Users\jesus\Source\Repos\VenusDoor\Model\bin\Debug\Model.pdb
-C:\Desarrollo\VenusDoors\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
+C:\Users\jesus\Source\Repos\VenusDoor\Model\obj\Debug\Model.dll
+C:\Users\jesus\Source\Repos\VenusDoor\Model\obj\Debug\Model.pdb
+C:\Users\jesus\Source\Repos\VenusDoor\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
