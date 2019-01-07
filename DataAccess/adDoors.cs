@@ -39,9 +39,7 @@ namespace DataAccess
                             VerticalDivisions = new VerticalDivisions() { Id = int.Parse(item["IdVerticalDivisions"].ToString()), Quantity = int.Parse(item["VerticalDivision"].ToString()), },
                             HorizontalDivisions = new HorizontalDivisions() { Id = int.Parse(item["IdTopRail"].ToString()), Quantity = int.Parse(item["HorizontalDivision"].ToString()), },
                             HingeDirection = new HingeDirection() { Id = int.Parse(item["IdTopRail"].ToString()), Direction = item["HingerDirection"].ToString(), },
-                            HingePositions = new HingePositions() { Id = int.Parse(item["IdTopRail"].ToString()), Position = item["HingerPosition"].ToString(), },
-                            StileWidth = new StileWidth() { Id = int.Parse(item["IdStileWidth"].ToString()) },
-                            RailWidth = new RailWidth() { Id = int.Parse(item["IdRailWidth"].ToString()) },
+                            HingePositions = new HingePositions() { Id = int.Parse(item["IdTopRail"].ToString()), Position = item["HingerPosition"].ToString(), },                            
                             isDrill = bool.Parse(item["isDrill"].ToString()),
                             Width = decimal.Parse(item["Width"].ToString()),
                             Height = decimal.Parse(item["Height"].ToString()),
@@ -108,6 +106,8 @@ namespace DataAccess
                             ModificationUser = int.Parse(item["ModificationUser"].ToString()),
                             Picture = item["Picture"].ToString(),
                             ProfilePicture = item["ProfilePicture"].ToString(),
+                            PanelMaterial = new PanelMaterial() { Id = int.Parse(item["IdPanelMaterial"].ToString()), Description = item["DescripPanelMaterial"].ToString(), },
+                            Panel = new Panel() { Id = int.Parse(item["IdPanel"].ToString()), Description = item["DescripPanel"].ToString(), },
 
                         });
                     }

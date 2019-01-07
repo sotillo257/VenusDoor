@@ -25,9 +25,9 @@
             </div>
             <div class="col-md-3">
                 <div class="row">
-                    <label for="Template" style="margin-top: 25px;">Quantity: </label>
+                    <label for="Quantity" style="margin-top: 25px;">Quantity: </label>
                     <div class="col-sm-8 mg-t-10 mg-sm-t-0" style="margin-right: 0px;top: 15px;left: 10px;">
-                        <input style="width: 91px;" class="form-control" placeholder="" id="Template" type="number">
+                        <input style="width: 91px;" class="form-control" placeholder="" id="iptQuantity" type="number">
                     </div>
                 </div>
             </div>
@@ -37,22 +37,22 @@
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-xs-4 col-md-3">
-                        <label for="Template" style="margin-top: 25px;">Template / Item Name: </label>
-                        <input class="form-control" placeholder="" id="Template" type="text">
+                        <label for="Name" style="margin-top: 25px;">Template / Item Name: </label>
+                        <input class="form-control" placeholder="" id="iptName" type="text">
                     </div><!-- col -->
 
                     <div class="col-xs-4 col-md-3">
-                        <label for="Wood" style="margin-top: 25px;">Wood Species: </label>
-                        <select class="form-control select2" id="Wood" data-placeholder=""></select>
+                        <label for="Material" style="margin-top: 25px;">Wood Species: </label>
+                        <select class="form-control select2" id="cbMaterial" data-placeholder=""></select>
                     </div><!-- col -->
 
                     <div class="col-xs-4 col-md-3">
                         <label for="Width" style="margin-top: 25px;">Width: </label>
-                        <input class="form-control" placeholder="" id="Width" type="number">
+                        <input class="form-control" placeholder="" id="iptWidth" type="number">
                     </div><!-- col -->
                     <div class="col-xs-4 col-md-3">
                         <label for="Height" style="margin-top: 25px;">Height: </label>
-                        <input class="form-control" placeholder="" id="Height" type="number">
+                        <input class="form-control" placeholder="" id="iptHeight" type="number">
                     </div><!-- col -->
                     <div class="col-xs-4 col-md-3">
                         <label for="Template" style="margin-top: 25px;">Front View:</label>
@@ -149,7 +149,6 @@
                         <label for="HingePositions" style="margin-top: 25px;">Hinge Positions: </label>
                         <select class="form-control select2" id="cbHingePositions" data-placeholder=""></select>
                     </div><!-- col -->
-
                 </div>
             </div>
 
@@ -161,6 +160,7 @@
                     </center>
                 </div>
             </div>
+            <button class="btn btn-success" style="margin-top:15px" id="btConfirm">Confirm</button>
         </div>
     </div>
 </div>
@@ -170,7 +170,7 @@
 @section scripts{
 
     <script type="text/javascript">
-        var urlObtenerMaterial = '@Url.Action("ObtenerMaterial", "ConfiDoor")';
+        var urlGetAllMaterial = '@Url.Action("GetAllMaterial", "ConfiDoor")';
         var urlGetAllDoorStyle = '@Url.Action("GetAllDoorStyle", "ConfiDoor")';
         var urlGetAllInsideEdgeProfile = '@Url.Action("GetAllInsideEdgeProfile", "ConfiDoor")';
         var urlGetAllOutsideEdgeProfile = '@Url.Action("GetAllOutsideEdgeProfile", "ConfiDoor")';
@@ -182,6 +182,7 @@
         var urlGetAllHorizontalDivisions = '@Url.Action("GetAllHorizontalDivisions", "ConfiDoor")';
         var urlGetAllHingeDirection = '@Url.Action("GetAllHingeDirection", "ConfiDoor")';
         var urlGetAllHingePositions = '@Url.Action("GetAllHingePositions", "ConfiDoor")';
+        var urlInsertDoorsxUser = '@Url.Action("InsertDoorsxUser", "ConfiDoor")';
     </script>
     @Scripts.Render("~/Scripts/js/ConfigDoor.Index.js")
     <script src="~/Content/lib/select2/js/select2.min.js"></script>
