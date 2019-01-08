@@ -9,8 +9,8 @@ namespace DataAccess
 {
     public class Connection
     {
-       public string _CN = @"Data Source=DESKTOP-SBHC8RP;Initial Catalog=sage; Integrated Security = True ";
-        //public string _CN = @"Data Source=SQL7001.site4now.net;Initial Catalog=DB_A42BD8_shuzone;User Id=DB_A42BD8_shuzone_admin;Password=sage12345;";
+       //public string _CN = @"Data Source=DESKTOP-SBHC8RP;Initial Catalog=sage; Integrated Security = True ";
+        public string _CN = @"Data Source=SQL7001.site4now.net;Initial Catalog=DB_A42BD8_shuzone;User Id=DB_A42BD8_shuzone_admin;Password=sage12345;";
         //public string _CN = @"Data Source=DESKTOP-H9K1VSL\MSSQLSERVER2014;Initial Catalog=BioKontrol;Persist Security Info=True;User ID=sa;Password=123456;";
         //public string _CN = @"Data Source=BioKontrol.mssql.somee.com;Initial Catalog=BioKontrol;Persist Security Info=True;User ID=gihvogom_SQLLogin_1;Password=8jexmsu4e8;";
         public MetodosDB.MetodosDB _MB = new MetodosDB.MetodosDB();

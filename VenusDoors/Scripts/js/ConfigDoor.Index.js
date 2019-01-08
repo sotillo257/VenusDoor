@@ -261,7 +261,7 @@ function GetAllVerticalDivisions() {
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
 
-                    option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
+                    option += '<option value="' + data[i].Id + '">' + data[i].Quantity + '</option>';
 
 
                 }
@@ -290,7 +290,7 @@ function GetAllHorizontalDivisions() {
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
 
-                    option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
+                    option += '<option value="' + data[i].Id + '">' + data[i].Quantity + '</option>';
 
 
                 }
@@ -319,7 +319,7 @@ function GetAllHingeDirection() {
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
 
-                    option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
+                    option += '<option value="' + data[i].Id + '">' + data[i].Direction + '</option>';
 
 
                 }
@@ -348,7 +348,7 @@ function GetAllHingePositions() {
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
 
-                    option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
+                    option += '<option value="' + data[i].Id + '">' + data[i].Position + '</option>';
 
 
                 }
@@ -383,7 +383,7 @@ function InsertDoorsxUser() {
                             HingePositions: { Id: $("#cbHingePositions").val() },                            
                             Width: $("#iptWidth").val(),
                             Height: $("#iptHeight").val(),
-                            Quantity: $("#iptQuantity").val()
+                            Quantity: $("#iptQuantity").val(),
                            
                         }
                     };
