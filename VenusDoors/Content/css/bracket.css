@@ -153,6 +153,25 @@
     border: 1px solid #ddd !important;
   }
 }
+
+.hack1 {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+}
+
+.hack2 {
+  display: table-cell;
+  overflow-x: auto;
+  width: 100%;
+}
+
+.table_wrapper{
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
 html {
   box-sizing: border-box;
   font-family: sans-serif;
@@ -2058,6 +2077,11 @@ fieldset[disabled] a.btn {
   background-color: #1c9a06;
   background-image: none;
   border-color: #1a8e06;
+}
+
+#datatable1 {
+    width: 400px;
+	overflow: auto;
 }
 
 .btn-info {
