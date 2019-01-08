@@ -1,24 +1,62 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Order Summary";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="br-pageheader pd-y-15 pd-l-20">
     <nav class="breadcrumb pd-0 mg-0 tx-12">
         <a class="breadcrumb-item" href="/">Venus Doors</a>
-        <span class="breadcrumb-item active">Order Summary</span>
+        <span class="breadcrumb-item active">@ViewBag.Title</span>
     </nav>
-</div>
-
-<div class="pd-x-20 pd-sm-x-30 pd-t-20 pd-sm-t-30">
-    <h4 class="tx-gray-800 mg-b-5">Order Summary</h4>
-    <p class="mg-b-0">Modals are streamlined, but flexible, dialog prompts with the minimum required functionality and smart defaults.</p>
 </div>
 
 <div class="br-pagebody">
     <div class="br-section-wrapper">
-        <table class="table table-bordered table-colored table-primary">
+        <div class="card-header pd-sm-bottom-30" style="background-color: #ffffff00;">
+            <h4 class="tx-gray-800 mg-b-5">Order Summary</h4>
+            <p class="mg-b-0">Modals are streamlined, but flexible, dialog prompts with the minimum required functionality and smart defaults.</p>
+        </div>
+        
+            <table class="table table-responsive mg-b-0 tx-12">
+                <thead>
+                    <tr class="tx-10">
+                        <th>Preview</th>
+                        <th>Name a Door</th>
+                        <th>Outside profile</th>
+                        <th>Inside profile</th>
+                        <th>Flat Panel</th>
+                        <th>Quantity</th>
+                        <th>Sub-Total</th>
+                        <th>Total Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><img src="~/Content/img/Cabinet Vector-01.png" style="width: 120px;" /></td>
+                        <td>Poplar</td>
+                        <td>Finger pull</td>
+                        <td>Ogee</td>
+                        <td>MDF</td>
+                        <td>5</td>
+                        <td>100 $</td>
+                        <td>500 $</td>
+                    </tr>
+                    <tr>
+                        <td><img src="~/Content/img/Cabinet Vector-01.png" style="width: 120px;" /></td>
+                        <td>Poplar</td>
+                        <td>Finger pull</td>
+                        <td>Ogee</td>
+                        <td>MDF</td>
+                        <td>5</td>
+                        <td>100 $</td>
+                        <td>500 $</td>
+                    </tr>
+                </tbody>
+            </table>
+        
+        
+        @*<table class="table table-bordered">
             <thead>
                 <tr>
                     <th>Preview</th>
@@ -44,17 +82,18 @@
                 </tr>
 
             </tbody>
-        </table>
+        </table>*@
 
         <div class="row">
-            <div class="col-md-9">
+            <div class="col-md-7">
 
             </div>
-            <div class="col-md-3">
-                <div class="row">
-                    <button id="btn_carrito" type="button" src="#" class="btn btn-success" title="">To return</button>
-                    <button id="btn_carrito" style="margin-left: 10px;" type="button" src="#" class="btn btn-primary" title="">Continue</button> 
-                </div>
+            <div class="col-md-5">
+                <center>
+                        <button id="btn_carrito" type="button" src="#" class="btn btn-warning" title="">To return</button>
+                        <button id="btn_carrito" style="margin-left: 10px;" type="button" src="#" class="btn btn-success" title="">Build a Door</button>
+                        <button id="btn_carrito" style="margin-left: 10px;" type="button" src="#" class="btn btn-primary" title="">Continue</button>
+                </center>
             </div>
         </div>
     </div>
