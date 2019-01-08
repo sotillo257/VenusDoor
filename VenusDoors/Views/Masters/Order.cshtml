@@ -1,0 +1,224 @@
+﻿
+@{
+    ViewBag.Title = "Order";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="br-pageheader pd-y-15 pd-l-20">
+    <nav class="breadcrumb pd-0 mg-0 tx-12">
+        <a class="breadcrumb-item" href="/">Venus Doors</a>
+        <a class="breadcrumb-item" href="#">Masters</a>
+        <span class="breadcrumb-item active">@ViewBag.Title</span>
+    </nav>
+</div><!-- br-pageheader -->
+
+<div class="br-pagebody">
+    <div class="br-section-wrapper">
+        <div class="table-wrapper">
+            <div id="datatable1_wrapper" class="dataTables_wrapper no-footer">
+                <table id="datatable1" style="width: 100%;" class="table display responsive nowrap dataTable no-footer dtr-inline" role="grid" aria-describedby="datatable1_info">
+                    <thead>
+                        <tr>
+                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="First name: activate to sort column ascending">Id</th>
+                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">User</th>
+                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Quantity</th>
+                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Total</th>
+                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Type</th>
+                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Status</th>
+                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" style="text-align: center" aria-label="Last name: activate to sort column ascending"><i class="fa fa-flash"></i></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr role="row" class="odd">
+                            <td tabindex="0" class="">1</td>
+                            <td class="">Active</td>
+                            <td class="">Active</td>
+                            <td class="">Active</td>
+                            <td class="">Active</td>
+                            <td class="">Active</td>
+                            <td class="">
+                                <center>
+                                    <a href="#" data-toggle="modal" data-target="#modaldemo2" class="btn btn-danger btn-icon">
+                                        <div><i class="fa fa-trash"></i></div>
+                                    </a>
+                                    <a href="#" data-toggle="modal" data-target="#modaldemo" class="btn btn-success btn-icon">
+                                        <div><i class="fa fa-plus"></i></div>
+                                    </a>
+                                    <a href="#" data-toggle="modal" data-target="#modaldemo1" class="btn btn-primary btn-icon">
+                                        <div><i class="fa fa-gear"></i></div>
+                                    </a>
+                                </center>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div><!-- table-wrapper -->
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $(function () {
+            'use strict';
+
+            $('#datatable1').DataTable({
+                responsive: true,
+                language: {
+                    searchPlaceholder: 'Search...',
+                    sSearch: '',
+                    lengthMenu: '_MENU_ items/page',
+                }
+            });
+
+            $('#datatable2').DataTable({
+                bLengthChange: false,
+                searching: false,
+                responsive: true
+            });
+
+            // Select2
+            $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
+
+        });
+    </script>
+    <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
+    <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>
+    <script src="~/Content/lib/select2/js/select2.min.js"></script>
+}
+<div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div>
+
+<div id="modaldemo" class="modal fade effect-scale" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content bd-0 rounded-0">
+            <div class="modal-body pd-0">
+                <div class="row flex-row-reverse no-gutters">
+                    <div class="col-lg-12">
+                        <div class="pd-30">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            <div class="pd-xs-x-15 pd-y-10">
+                                <h3 class="tx-inverse  mg-b-5">Insert new</h3>
+                                <p>You can create a new article below</p>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-xs-3 col-md-4">
+                                                <label for="Template" style="margin-top: 25px;">Id: </label>
+                                                <input type="text" name="id" class="form-control pd-y-12" placeholder="">
+                                            </div><!-- form-group -->
+                                            <div class="col-xs-3 col-md-4">
+                                                <label for="Template" style="margin-top: 25px;">User: </label>
+                                                <select style="height: 43px;" class="form-control pd-y-12" id="IdUser" data-placeholder=""></select>
+                                            </div><!-- form-group -->
+                                            <div class="col-xs-3 col-md-4">
+                                                <label for="Template" style="margin-top: 25px;">Quantity: </label>
+                                                <input type="text" name="id" class="form-control pd-y-12" placeholder="">
+                                            </div><!-- form-group -->
+                                            <div class="col-xs-3 col-md-4">
+                                                <label for="Template" style="margin-top: 25px;">Total: </label>
+                                                <input type="text" name="id" class="form-control pd-y-12" placeholder="">
+                                            </div><!-- form-group -->
+                                            <div class="col-xs-3 col-md-4">
+                                                <label for="Template" style="margin-top: 25px;">Type: </label>
+                                                <select style="height: 43px;" class="form-control pd-y-12" id="IdType" data-placeholder=""></select>
+                                            </div><!-- form-group -->
+                                            <div class="col-xs-3 col-md-4">
+                                                <label for="Template" style="margin-top: 25px;">Status: </label>
+                                                <select style="height: 43px;" class="form-control pd-y-12" id="IdStatus" data-placeholder=""></select>
+                                            </div><!-- form-group -->
+                                        </div>
+                                    </div><!-- pd-20 -->
+                                </div><!-- col-6 -->
+                            </div><!-- row -->
+                            <div class="modal-footer justify-content-lg-end">
+                                <button type="button" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Insert</button>
+                                <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>
+                            </div>
+                        </div><!-- modal-body -->
+                    </div><!-- modal-content -->
+                </div><!-- modal-dialog -->
+            </div>
+        </div><!-- modal-content -->
+    </div><!-- modal-dialog -->
+</div>
+
+<div id="modaldemo1" class="modal fade effect-scale" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content bd-0 rounded-0">
+            <div class="modal-body pd-0">
+                <div class="row flex-row-reverse no-gutters">
+                    <div class="col-lg-12">
+                        <div class="pd-30">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            <div class="pd-xs-x-15 pd-y-10">
+                                <h3 class="tx-inverse  mg-b-5">Modify</h3>
+                                <p>You can modify a new article below</p>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-xs-3 col-md-4">
+                                                <label for="Template" style="margin-top: 25px;">Id: </label>
+                                                <input type="text" name="id" class="form-control pd-y-12" placeholder="">
+                                            </div><!-- form-group -->
+                                            <div class="col-xs-3 col-md-4">
+                                                <label for="Template" style="margin-top: 25px;">User: </label>
+                                                <select style="height: 43px;" class="form-control pd-y-12" id="IdUser" data-placeholder=""></select>
+                                            </div><!-- form-group -->
+                                            <div class="col-xs-3 col-md-4">
+                                                <label for="Template" style="margin-top: 25px;">Quantity: </label>
+                                                <input type="text" name="id" class="form-control pd-y-12" placeholder="">
+                                            </div><!-- form-group -->
+                                            <div class="col-xs-3 col-md-4">
+                                                <label for="Template" style="margin-top: 25px;">Total: </label>
+                                                <input type="text" name="id" class="form-control pd-y-12" placeholder="">
+                                            </div><!-- form-group -->
+                                            <div class="col-xs-3 col-md-4">
+                                                <label for="Template" style="margin-top: 25px;">Type: </label>
+                                                <select style="height: 43px;" class="form-control pd-y-12" id="IdType" data-placeholder=""></select>
+                                            </div><!-- form-group -->
+                                            <div class="col-xs-3 col-md-4">
+                                                <label for="Template" style="margin-top: 25px;">Status: </label>
+                                                <select style="height: 43px;" class="form-control pd-y-12" id="IdStatus" data-placeholder=""></select>
+                                            </div><!-- form-group -->
+                                        </div>
+                                    </div><!-- pd-20 -->
+                                </div><!-- col-6 -->
+                            </div><!-- row -->
+                            <div class="modal-footer justify-content-lg-end">
+                                <button type="button" class="btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Modify</button>
+                                <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>
+                            </div>
+                        </div><!-- modal-body -->
+                    </div><!-- modal-content -->
+                </div><!-- modal-dialog -->
+            </div>
+        </div><!-- modal-content -->
+    </div><!-- modal-dialog -->
+</div>
+
+<div id="modaldemo2" class="modal fade" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content bd-0 tx-14">
+            <div class="modal-header pd-x-20">
+                <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Warning!</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body pd-20">
+                <p class="mg-b-5">You are about to delete an article. What would you like to do?</p>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Remove</button>
+                <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div><!-- modal-dialog -->
+</div>
+
+

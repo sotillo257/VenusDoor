@@ -13,6 +13,11 @@ namespace VenusDoors.Controllers
         public ActionResult Index(int? Id)
         {
             ViewBag.ConfiDoor = "active";
+            BusinessLogic.lnDoors _LN = new BusinessLogic.lnDoors();
+            if (Id > 0 )
+            {
+                ViewBag.Door = _LN.GetDoorsById(Id.Value);
+            }           
             return View();
         }
 
