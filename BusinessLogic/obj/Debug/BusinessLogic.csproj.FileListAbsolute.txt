@@ -28,4 +28,4 @@ C:\Users\jesus\Source\Repos\VenusDoor\BusinessLogic\bin\Debug\Model.pdb
 C:\Users\jesus\Source\Repos\VenusDoor\BusinessLogic\obj\Debug\BusinessLogic.csprojResolveAssemblyReference.cache
 C:\Users\jesus\Source\Repos\VenusDoor\BusinessLogic\obj\Debug\BusinessLogic.dll
 C:\Users\jesus\Source\Repos\VenusDoor\BusinessLogic\obj\Debug\BusinessLogic.pdb
-C:\Users\Javier Sotillo\Source\Repos\VenusDoor\BusinessLogic\bin\Debug\MetodosDB.pdb
+C:\Desarrollo\VenusDoors\BusinessLogic\bin\Debug\MetodosDB.pdb
