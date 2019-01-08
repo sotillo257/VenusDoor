@@ -200,7 +200,7 @@ namespace VenusDoors.Controllers
                     IdStatus = 1,
                     IdType = 1,
                     Total = 100,
-                    Quantity = 2,
+                    Quantity = pDoorsxUser.Quantity,
                     CreationDate = DateTime.Now,
                     CreatorUser = 6,
                     ModificationDate = DateTime.Now,
@@ -210,7 +210,12 @@ namespace VenusDoors.Controllers
 
                 BusinessLogic.lnOrder _LNOrder = new BusinessLogic.lnOrder();
                 int IdOrder = _LNOrder.InsertOrder(order);
-                pDoorsxUser.Order.Id = IdOrder;
+                order.Id = IdOrder;
+                pDoorsxUser.Order.IdStatus = order.IdStatus;
+                pDoorsxUser.User.Id = order.IdStatus;
+                pDoorsxUser.CreatorUser = order.CreatorUser;
+                pDoorsxUser.ModificationUser = order.ModificationUser;
+                pDoorsxUser.Order = order;
                 BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
                 return Json(_LN.InsertDoorsxUser(pDoorsxUser));
                 

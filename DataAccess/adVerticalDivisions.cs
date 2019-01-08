@@ -62,8 +62,8 @@ namespace DataAccess
                         vertdiv.Add(new VerticalDivisions()
                         {
                             Id = int.Parse(item["Id"].ToString()),
-                            IdStatus = int.Parse(item["IdStatus"].ToString()),
                             Quantity = int.Parse(item["Quantity"].ToString()),
+                            IdStatus = int.Parse(item["IdStatus"].ToString()),
                             CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             ModificationDate = (item["ModificationDate"].ToString() != "") ? DateTime.Parse(item["ModificationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             CreatorUser = int.Parse(item["CreatorUser"].ToString()),
