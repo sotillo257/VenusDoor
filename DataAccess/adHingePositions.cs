@@ -28,7 +28,7 @@ namespace DataAccess
                         hingep = new HingePositions()
                         {
                             Id = int.Parse(item["Id"].ToString()),
-                            IdStatus = int.Parse(item["IdStatus"].ToString()),
+                            Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["Description"].ToString() },
                             Position = item["Position"].ToString(),
                             CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             ModificationDate = (item["ModificationDate"].ToString() != "") ? DateTime.Parse(item["ModificationDate"].ToString()) : DateTime.Parse("01/01/1900"),
@@ -62,7 +62,7 @@ namespace DataAccess
                         hingep.Add(new HingePositions()
                         {
                             Id = int.Parse(item["Id"].ToString()),
-                            IdStatus = int.Parse(item["IdStatus"].ToString()),
+                            Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["Description"].ToString() },
                             Position = item["Position"].ToString(),
                             CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             ModificationDate = (item["ModificationDate"].ToString() != "") ? DateTime.Parse(item["ModificationDate"].ToString()) : DateTime.Parse("01/01/1900"),
@@ -84,8 +84,8 @@ namespace DataAccess
         public int InsertHingePositions(HingePositions pHingePositions)
         {
             string sql = @"[spInsertHingePositions] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}'";
-            sql = string.Format(sql, pHingePositions.Position, pHingePositions.IdStatus, pHingePositions.CreationDate.ToString("yyyyMMdd"),
-                pHingePositions.CreatorUser, pHingePositions.ModificationDate.ToString("yyyyMMdd"), pHingePositions.ModificationUser);
+            sql = string.Format(sql, pHingePositions.Position, pHingePositions.Status.Id, pHingePositions.CreationDate.ToString("yyyy-MM-dd"),
+                pHingePositions.CreatorUser, pHingePositions.ModificationDate.ToString("yyyy-MM-dd"), pHingePositions.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -99,7 +99,7 @@ namespace DataAccess
         public void UpdateHingePositions(HingePositions pHingePositions)
         {
             string sql = @"[spUpdateHingePositions] '{0}', '{1}', '{2}', '{3}'";
-            sql = string.Format(sql, pHingePositions.Position, pHingePositions.IdStatus, pHingePositions.ModificationDate.ToString("yyyyMMdd"),
+            sql = string.Format(sql, pHingePositions.Position, pHingePositions.Status.Id, pHingePositions.ModificationDate.ToString("yyyy-MM-dd"),
                 pHingePositions.ModificationUser);
             try
             {

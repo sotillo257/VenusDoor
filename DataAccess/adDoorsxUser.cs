@@ -28,7 +28,7 @@ namespace DataAccess
                         doorxu = new DoorsxUser()
                         {
                             Id = int.Parse(item["Id"].ToString()),
-                            Order =  new Order() { Id = int.Parse(item["Id"].ToString()) },
+                            Order =  new Order() { Id = int.Parse(item["Id"].ToString())},
                             DoorStyle = new DoorStyle() {Id = int.Parse(item["IdDoorStyle"].ToString()), Description = item["Description"].ToString() },
                             Material = new Material() { Id = int.Parse(item["IdMaterial"].ToString()), Description = item["Description"].ToString() },
                             TopRail  = new TopRail() { Id = int.Parse(item["IdTopRail"].ToString()), Description = item["Description"].ToString()},
@@ -47,7 +47,7 @@ namespace DataAccess
                             IsOpeningMeasurement = bool.Parse(item["IsOpeningMeasurement"].ToString()),
                             Quantity = int.Parse(item["Quantity"].ToString()),
                             User = new User() {Id = int.Parse(item["IdUser"].ToString()) },
-                            Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()) },
+                            Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["Description"].ToString() },
                             CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             ModificationDate = (item["ModificationDate"].ToString() != "") ? DateTime.Parse(item["ModificationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             CreatorUser = int.Parse(item["CreatorUser"].ToString()),
@@ -108,6 +108,8 @@ namespace DataAccess
                             ModificationUser = int.Parse(item["ModificationUser"].ToString()),
                             Picture = item["Picture"].ToString(),
                             ProfilePicture = item["ProfilePicture"].ToString(),
+                            Panel = new Panel() {Id = int.Parse(item["IdPanel"].ToString()), Description = item["Description"].ToString() },
+                            PanelMaterial = new PanelMaterial() { Id = int.Parse(item["IdPanelMaterial"].ToString()), Description = item["Description"].ToString() },
 
                         });
                     }
@@ -123,13 +125,13 @@ namespace DataAccess
 
         public int InsertDoorsxUser(DoorsxUser pDoorsxUser)
         {
-            string sql = @"[spInsertDoorsxUser] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}', '{20}', '{21}', '{22}', '{23}', '{24}', '{25}'";
+            string sql = @"[spInsertDoorsxUser] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}', '{20}', '{21}', '{22}', '{23}', '{24}', '{25}', '{26}', '{27}'";
             sql = string.Format(sql, pDoorsxUser.Order.Id, pDoorsxUser.DoorStyle.Id, pDoorsxUser.Material.Id, pDoorsxUser.TopRail.Id, pDoorsxUser.BottomRail.Id, 
                 pDoorsxUser.Preparation.Id, pDoorsxUser.Join.Id, pDoorsxUser.OutsideEdgeProfile.Id, 
                 pDoorsxUser.InsideEdgeProfile.Id, pDoorsxUser.VerticalDivisions.Id, pDoorsxUser.HorizontalDivisions.Id, pDoorsxUser.HingeDirection.Id, 
-                pDoorsxUser.HingePositions.Id, pDoorsxUser.isDrill, pDoorsxUser.Width, pDoorsxUser.Height, pDoorsxUser.IsOpeningMeasurement, pDoorsxUser.Quantity, pDoorsxUser.User.Id, 
-                pDoorsxUser.Status.Id, pDoorsxUser.CreationDate.ToString("yyyyMMdd"), pDoorsxUser.CreatorUser, pDoorsxUser.ModificationDate.ToString("yyyyMMdd"),
-                pDoorsxUser.ModificationUser, pDoorsxUser.Picture, pDoorsxUser.ProfilePicture);
+                pDoorsxUser.HingePositions.Id, (pDoorsxUser.isDrill == true) ? 1 : 0, pDoorsxUser.Width, pDoorsxUser.Height, (pDoorsxUser.IsOpeningMeasurement == true) ? 1 : 0, pDoorsxUser.Quantity, pDoorsxUser.User.Id, 
+                pDoorsxUser.Status.Id, pDoorsxUser.CreationDate.ToString("yyyy-MM-dd"), pDoorsxUser.CreatorUser, pDoorsxUser.ModificationDate.ToString("yyyy-MM-dd"),
+                pDoorsxUser.ModificationUser, pDoorsxUser.Picture, pDoorsxUser.ProfilePicture, pDoorsxUser.Panel.Id, pDoorsxUser.PanelMaterial.Id);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -142,12 +144,12 @@ namespace DataAccess
 
         public void UpdateDoorsxUser(DoorsxUser pDoorsxUser)
         {
-            string sql = @"[spUpdateDoorsxUser] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}', '{20}', '{21}', '{22}', '{23}'";
+            string sql = @"[spUpdateDoorsxUser] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}', '{20}', '{21}', '{22}', '{23}', '{24}', '{25}'";
             sql = string.Format(sql, pDoorsxUser.Order.Id, pDoorsxUser.DoorStyle.Id, pDoorsxUser.Material.Id, pDoorsxUser.TopRail.Id, pDoorsxUser.BottomRail.Id,
                 pDoorsxUser.Preparation.Id, pDoorsxUser.Join.Id, pDoorsxUser.OutsideEdgeProfile.Id,
                 pDoorsxUser.InsideEdgeProfile.Id, pDoorsxUser.VerticalDivisions.Id, pDoorsxUser.HorizontalDivisions.Id, pDoorsxUser.HingeDirection.Id,
-                pDoorsxUser.HingePositions.Id, pDoorsxUser.isDrill, pDoorsxUser.Width, pDoorsxUser.Height, pDoorsxUser.IsOpeningMeasurement, pDoorsxUser.Quantity, pDoorsxUser.User.Id,
-                pDoorsxUser.Status.Id, pDoorsxUser.ModificationDate.ToString("yyyyMMdd"), pDoorsxUser.ModificationUser, pDoorsxUser.Picture, pDoorsxUser.ProfilePicture);
+                pDoorsxUser.HingePositions.Id, (pDoorsxUser.isDrill == true) ? 1 : 0, pDoorsxUser.Width, pDoorsxUser.Height, (pDoorsxUser.IsOpeningMeasurement == true) ? 1 : 0, pDoorsxUser.Quantity, pDoorsxUser.User.Id,
+                pDoorsxUser.Status.Id, pDoorsxUser.ModificationDate.ToString("yyyy-MM-dd"), pDoorsxUser.ModificationUser, pDoorsxUser.Picture, pDoorsxUser.ProfilePicture, pDoorsxUser.Panel.Id, pDoorsxUser.PanelMaterial.Id);
             try
             {
                 _MB.EjecutarSQL(_CN, sql);

@@ -28,7 +28,7 @@ namespace DataAccess
                         insideedge = new InsideEdgeProfile()
                         {
                             Id = int.Parse(item["Id"].ToString()),
-                            IdStatus = int.Parse(item["IdStatus"].ToString()),
+                            Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["Description"].ToString() },
                             Description = item["Description"].ToString(),
                             CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             ModificationDate = (item["ModificationDate"].ToString() != "") ? DateTime.Parse(item["ModificationDate"].ToString()) : DateTime.Parse("01/01/1900"),
@@ -62,7 +62,7 @@ namespace DataAccess
                         insideedge.Add(new InsideEdgeProfile()
                         {
                             Id = int.Parse(item["Id"].ToString()),
-                            IdStatus = int.Parse(item["IdStatus"].ToString()),
+                            Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["Description"].ToString() },
                             Description = item["Description"].ToString(),
                             CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             ModificationDate = (item["ModificationDate"].ToString() != "") ? DateTime.Parse(item["ModificationDate"].ToString()) : DateTime.Parse("01/01/1900"),
@@ -84,8 +84,8 @@ namespace DataAccess
         public int InsertInsideEdgeProfile(InsideEdgeProfile pInsideEdgeProfile)
         {
             string sql = @"[spInsertOutsideEdgeProfile] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}'";
-            sql = string.Format(sql, pInsideEdgeProfile.Description, pInsideEdgeProfile.IdStatus, pInsideEdgeProfile.CreationDate.ToString("yyyyMMdd"),
-                pInsideEdgeProfile.CreatorUser, pInsideEdgeProfile.ModificationDate.ToString("yyyyMMdd"), pInsideEdgeProfile.ModificationUser);
+            sql = string.Format(sql, pInsideEdgeProfile.Description, pInsideEdgeProfile.Status.Id, pInsideEdgeProfile.CreationDate.ToString("yyyy-MM-dd"),
+                pInsideEdgeProfile.CreatorUser, pInsideEdgeProfile.ModificationDate.ToString("yyyy-MM-dd"), pInsideEdgeProfile.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -99,7 +99,7 @@ namespace DataAccess
         public void UpdateInsideEdgeProfile(InsideEdgeProfile pInsideEdgeProfile)
         {
             string sql = @"[spUpdateInsideEdgeProfile] '{0}', '{1}', '{2}', '{3}'";
-            sql = string.Format(sql, pInsideEdgeProfile.Description, pInsideEdgeProfile.IdStatus, pInsideEdgeProfile.ModificationDate.ToString("yyyyMMdd"),
+            sql = string.Format(sql, pInsideEdgeProfile.Description, pInsideEdgeProfile.Status.Id, pInsideEdgeProfile.ModificationDate.ToString("yyyy-MM-dd"),
                 pInsideEdgeProfile.ModificationUser);
             try
             {

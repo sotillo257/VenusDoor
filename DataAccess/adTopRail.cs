@@ -28,7 +28,7 @@ namespace DataAccess
                         toprail = new TopRail()
                         {
                             Id = int.Parse(item["Id"].ToString()),
-                            IdStatus = int.Parse(item["IdStatus"].ToString()),
+                            Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["Description"].ToString() },
                             Description = item["Description"].ToString(),
                             CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             ModificationDate = (item["ModificationDate"].ToString() != "") ? DateTime.Parse(item["ModificationDate"].ToString()) : DateTime.Parse("01/01/1900"),
@@ -62,7 +62,7 @@ namespace DataAccess
                         toprail.Add(new TopRail()
                         {
                             Id = int.Parse(item["Id"].ToString()),
-                            IdStatus = int.Parse(item["IdStatus"].ToString()),
+                            Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["Description"].ToString() },
                             Description = item["Description"].ToString(),
                             CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             ModificationDate = (item["ModificationDate"].ToString() != "") ? DateTime.Parse(item["ModificationDate"].ToString()) : DateTime.Parse("01/01/1900"),
@@ -84,8 +84,8 @@ namespace DataAccess
         public int InsertTopRail(TopRail pTopRail)
         {
             string sql = @"[spInsertTopRail] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}'";
-            sql = string.Format(sql, pTopRail.Description, pTopRail.IdStatus, pTopRail.CreationDate.ToString("yyyyMMdd"),
-                pTopRail.CreatorUser, pTopRail.ModificationDate.ToString("yyyyMMdd"), pTopRail.ModificationUser);
+            sql = string.Format(sql, pTopRail.Description, pTopRail.Status.Id, pTopRail.CreationDate.ToString("yyyy-MM-dd"),
+                pTopRail.CreatorUser, pTopRail.ModificationDate.ToString("yyyy-MM-dd"), pTopRail.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -99,7 +99,7 @@ namespace DataAccess
         public void UpdateTopRail(TopRail pTopRail)
         {
             string sql = @"[spUpdateTopRail] '{0}', '{1}', '{2}', '{3}'";
-            sql = string.Format(sql, pTopRail.Description, pTopRail.IdStatus, pTopRail.ModificationDate.ToString("yyyyMMdd"),
+            sql = string.Format(sql, pTopRail.Description, pTopRail.Status.Id, pTopRail.ModificationDate.ToString("yyyy-MM-dd"),
                 pTopRail.ModificationUser);
             try
             {

@@ -106,6 +106,34 @@ namespace VenusDoors.Controllers
         }
 
         [HttpPost]
+        public ActionResult GetAllJoin()
+        {
+            try
+            {
+                BusinessLogic.lnJoin _LN = new BusinessLogic.lnJoin();
+                return Json(_LN.GetAllJoin());
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult GetAllPreparation()
+        {
+            try
+            {
+                BusinessLogic.lnPreparation _LN = new BusinessLogic.lnPreparation();
+                return Json(_LN.GetAllPreparation());
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
         public ActionResult GetAllPanel()
         {
             try
@@ -200,7 +228,7 @@ namespace VenusDoors.Controllers
                     IdStatus = 1,
                     IdType = 1,
                     Total = 100,
-                    Quantity = pDoorsxUser.Quantity,
+                    Quantity =  100,
                     CreationDate = DateTime.Now,
                     CreatorUser = 6,
                     ModificationDate = DateTime.Now,
@@ -211,10 +239,8 @@ namespace VenusDoors.Controllers
                 BusinessLogic.lnOrder _LNOrder = new BusinessLogic.lnOrder();
                 int IdOrder = _LNOrder.InsertOrder(order);
                 order.Id = IdOrder;
-                pDoorsxUser.Order.IdStatus = order.IdStatus;
-                pDoorsxUser.User.Id = order.IdStatus;
-                pDoorsxUser.CreatorUser = order.CreatorUser;
-                pDoorsxUser.ModificationUser = order.ModificationUser;
+                pDoorsxUser.CreationDate = DateTime.Now;
+                pDoorsxUser.ModificationDate = DateTime.Now;
                 pDoorsxUser.Order = order;
                 BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
                 return Json(_LN.InsertDoorsxUser(pDoorsxUser));

@@ -29,7 +29,7 @@ namespace DataAccess
                         {
                             Id = int.Parse(item["Id"].ToString()),
                             Description = item["Description"].ToString(),
-                            IdGroup = int.Parse(item["IdGroup"].ToString()),
+                            Group = new Group() { Id = int.Parse(item["IdGroup"].ToString()), Description = item["Description"].ToString() },
 
                         };
                     }
@@ -59,7 +59,7 @@ namespace DataAccess
                         {
                             Id = int.Parse(item["Id"].ToString()),
                             Description = item["Description"].ToString(),
-                            IdGroup = int.Parse(item["IdGroup"].ToString()),
+                            Group = new Group() { Id = int.Parse(item["IdGroup"].ToString()), Description = item["Description"].ToString() },
 
                         });
                     }
@@ -76,7 +76,7 @@ namespace DataAccess
         public int InsertType(Model.Type pType)
         {
             string sql = @"[spInsertType] '{0}', {1}";
-            sql = string.Format(sql, pType.Description, pType.IdGroup);
+            sql = string.Format(sql, pType.Description, pType.Group.Id);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -90,7 +90,7 @@ namespace DataAccess
         public void UpdateType(Model.Type pType)
         {
             string sql = @"[spUpdateType] '{0}', {1}";
-            sql = string.Format(sql, pType.Description, pType.IdGroup);
+            sql = string.Format(sql, pType.Description, pType.Group.Id);
             try
             {
                 _MB.EjecutarSQL(_CN, sql);

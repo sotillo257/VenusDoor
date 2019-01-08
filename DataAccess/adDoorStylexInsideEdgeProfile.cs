@@ -28,9 +28,9 @@ namespace DataAccess
                         doorxinside = new DoorStylexInsideEdgeProfile()
                         {
                             Id = int.Parse(item["Id"].ToString()),
-                            IdDoorStyle = int.Parse(item["IdDoorStyle"].ToString()),
-                            IdInsideEdgeProfile = int.Parse(item["IdInsideEdgeProfile"].ToString()),
-                            IdStatus = int.Parse(item["IdStatus"].ToString()),
+                            DoorStyle = new DoorStyle() { Id = int.Parse(item["IdDoorStyle"].ToString()), Description = item["Description"].ToString() },
+                            InsideEdgeProfile = new InsideEdgeProfile() { Id = int.Parse(item["IdInsideEdgeProfile"].ToString()), Description = item["Description"].ToString(), },
+                            Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["Description"].ToString() },
                             CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             ModificationDate = (item["ModificationDate"].ToString() != "") ? DateTime.Parse(item["ModificationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             CreatorUser = int.Parse(item["CreatorUser"].ToString()),
@@ -63,9 +63,9 @@ namespace DataAccess
                         doorxinside.Add(new DoorStylexInsideEdgeProfile()
                         {
                             Id = int.Parse(item["Id"].ToString()),
-                            IdDoorStyle = int.Parse(item["IdDoorStyle"].ToString()),
-                            IdInsideEdgeProfile = int.Parse(item["IdInsideEdgeProfile"].ToString()),
-                            IdStatus = int.Parse(item["IdStatus"].ToString()),
+                            DoorStyle = new DoorStyle() { Id = int.Parse(item["IdDoorStyle"].ToString()), Description = item["Description"].ToString() },
+                            InsideEdgeProfile = new InsideEdgeProfile() { Id = int.Parse(item["IdInsideEdgeProfile"].ToString()), Description = item["Description"].ToString(), },
+                            Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["Description"].ToString() },
                             CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             ModificationDate = (item["ModificationDate"].ToString() != "") ? DateTime.Parse(item["ModificationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             CreatorUser = int.Parse(item["CreatorUser"].ToString()),
@@ -86,8 +86,8 @@ namespace DataAccess
         public int InsertDoorStylexInsideEdgeProfile(DoorStylexInsideEdgeProfile pDoorStylexInsideEdgeProfile)
         {
             string sql = @"[spInsertDoorStylexInsideEdgeProfile] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}','{6}'";
-            sql = string.Format(sql, pDoorStylexInsideEdgeProfile.IdDoorStyle, pDoorStylexInsideEdgeProfile.IdInsideEdgeProfile, pDoorStylexInsideEdgeProfile.IdStatus, pDoorStylexInsideEdgeProfile.CreationDate.ToString("yyyyMMdd"),
-                pDoorStylexInsideEdgeProfile.CreatorUser, pDoorStylexInsideEdgeProfile.ModificationDate.ToString("yyyyMMdd"), pDoorStylexInsideEdgeProfile.ModificationUser);
+            sql = string.Format(sql, pDoorStylexInsideEdgeProfile.DoorStyle.Id, pDoorStylexInsideEdgeProfile.InsideEdgeProfile.Id, pDoorStylexInsideEdgeProfile.Status.Id, pDoorStylexInsideEdgeProfile.CreationDate.ToString("yyyy-MM-dd"),
+                pDoorStylexInsideEdgeProfile.CreatorUser, pDoorStylexInsideEdgeProfile.ModificationDate.ToString("yyyy-MM-dd"), pDoorStylexInsideEdgeProfile.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -101,7 +101,7 @@ namespace DataAccess
         public void UpdateDoorStylexInsideEdgeProfile(DoorStylexInsideEdgeProfile pDoorStylexInsideEdgeProfile)
         {
             string sql = @"[spUpdateDoorStylexInsideEdgeProfile] '{0}', '{1}', '{2}', '{3}', '{4}'";
-            sql = string.Format(sql, pDoorStylexInsideEdgeProfile.IdDoorStyle, pDoorStylexInsideEdgeProfile.IdInsideEdgeProfile, pDoorStylexInsideEdgeProfile.IdStatus, pDoorStylexInsideEdgeProfile.ModificationDate.ToString("yyyyMMdd"),
+            sql = string.Format(sql, pDoorStylexInsideEdgeProfile.DoorStyle.Id, pDoorStylexInsideEdgeProfile.InsideEdgeProfile.Id, pDoorStylexInsideEdgeProfile.Status.Id, pDoorStylexInsideEdgeProfile.ModificationDate.ToString("yyyyMMdd"),
                 pDoorStylexInsideEdgeProfile.ModificationUser);
             try
             {

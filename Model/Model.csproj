@@ -66,9 +66,7 @@
     <Compile Include="Person.cs" />
     <Compile Include="Preparation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RailWidth.cs" />
     <Compile Include="Status.cs" />
-    <Compile Include="StileWidth.cs" />
     <Compile Include="TopRail.cs" />
     <Compile Include="TopRailxHorizontalDivisions.cs" />
     <Compile Include="TopRailxJoin.cs" />

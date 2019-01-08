@@ -13,7 +13,7 @@ namespace Model
         public string Lastname { get; set; }
         public string Telephone { get; set; }
         public string Direction { get; set; }
-        public int IdStatus { get; set; }
+        public Status Status { get; set; }
         public DateTime CreationDate { get; set; }
         public int CreatorUser { get; set; }
         public DateTime ModificationDate { get; set; }

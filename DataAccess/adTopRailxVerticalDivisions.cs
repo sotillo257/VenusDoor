@@ -29,9 +29,9 @@ namespace DataAccess
                         topdiv = new TopRailxVerticalDivisions()
                         {
                             Id = int.Parse(item["Id"].ToString()),
-                            IdTopRail = int.Parse(item["IdTopRail"].ToString()),
-                            IdVerticalDivisions = int.Parse(item["IdVerticalDivisions"].ToString()),
-                            IdStatus = int.Parse(item["IdStatus"].ToString()),
+                            TopRail = new TopRail() { Id = int.Parse(item["IdTopRail"].ToString()), Description = item["DescripTopRail"].ToString(), },
+                            VerticalDivisions = new VerticalDivisions() { Id = int.Parse(item["IdVerticalDivisions"].ToString()), Quantity = int.Parse(item["VerticalDivision"].ToString()), },
+                            Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["Description"].ToString() },
                             CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             ModificationDate = (item["ModificationDate"].ToString() != "") ? DateTime.Parse(item["ModificationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             CreatorUser = int.Parse(item["CreatorUser"].ToString()),
@@ -64,9 +64,9 @@ namespace DataAccess
                         topdiv.Add(new TopRailxVerticalDivisions()
                         {
                             Id = int.Parse(item["Id"].ToString()),
-                            IdTopRail = int.Parse(item["IdTopRail"].ToString()),
-                            IdVerticalDivisions = int.Parse(item["IdVerticalDivisions"].ToString()),
-                            IdStatus = int.Parse(item["IdStatus"].ToString()),
+                            TopRail = new TopRail() { Id = int.Parse(item["IdTopRail"].ToString()), Description = item["DescripTopRail"].ToString(), },
+                            VerticalDivisions = new VerticalDivisions() { Id = int.Parse(item["IdVerticalDivisions"].ToString()), Quantity = int.Parse(item["VerticalDivision"].ToString()), },
+                            Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["Description"].ToString() },
                             CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             ModificationDate = (item["ModificationDate"].ToString() != "") ? DateTime.Parse(item["ModificationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             CreatorUser = int.Parse(item["CreatorUser"].ToString()),
@@ -87,8 +87,8 @@ namespace DataAccess
         public int InsertTopRailxVerticalDivisions(TopRailxVerticalDivisions pTop)
         {
             string sql = @"[spInsertTopRailxVerticalDivisions] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}','{6}'";
-            sql = string.Format(sql, pTop.IdTopRail, pTop.IdVerticalDivisions, pTop.IdStatus, pTop.CreationDate.ToString("yyyyMMdd"),
-                pTop.CreatorUser, pTop.ModificationDate.ToString("yyyyMMdd"), pTop.ModificationUser);
+            sql = string.Format(sql, pTop.TopRail.Id, pTop.VerticalDivisions.Id, pTop.Status.Id, pTop.CreationDate.ToString("yyyy-MM-dd"),
+                pTop.CreatorUser, pTop.ModificationDate.ToString("yyyy-MM-dd"), pTop.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -102,7 +102,7 @@ namespace DataAccess
         public void UpdateTopRailxVerticalDivisions(TopRailxVerticalDivisions pTop)
         {
             string sql = @"[spUpdateTopRailxVerticalDivisions] '{0}', '{1}', '{2}', '{3}', '{4}'";
-            sql = string.Format(sql, pTop.IdTopRail, pTop.IdVerticalDivisions, pTop.IdStatus, pTop.ModificationDate.ToString("yyyyMMdd"),
+            sql = string.Format(sql, pTop.TopRail.Id, pTop.VerticalDivisions.Id, pTop.Status.Id, pTop.ModificationDate.ToString("yyyy-MM-dd"),
                 pTop.ModificationUser);
             try
             {

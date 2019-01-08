@@ -28,7 +28,7 @@ namespace DataAccess
                         outedge = new OutsideEdgeProfile()
                         {
                             Id = int.Parse(item["Id"].ToString()),
-                            IdStatus = int.Parse(item["IdStatus"].ToString()),
+                            Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["Description"].ToString() },
                             Description = item["Description"].ToString(),
                             CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             ModificationDate = (item["ModificationDate"].ToString() != "") ? DateTime.Parse(item["ModificationDate"].ToString()) : DateTime.Parse("01/01/1900"),
@@ -62,7 +62,7 @@ namespace DataAccess
                         outedge.Add(new OutsideEdgeProfile()
                         {
                             Id = int.Parse(item["Id"].ToString()),
-                            IdStatus = int.Parse(item["IdStatus"].ToString()),
+                            Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["Description"].ToString() },
                             Description = item["Description"].ToString(),
                             CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             ModificationDate = (item["ModificationDate"].ToString() != "") ? DateTime.Parse(item["ModificationDate"].ToString()) : DateTime.Parse("01/01/1900"),
@@ -84,8 +84,8 @@ namespace DataAccess
         public int InsertOutsideEdgeProfile(OutsideEdgeProfile pOutsideEdgeProfile)
         {
             string sql = @"[spInsertOutsideEdgeProfile] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}'";
-            sql = string.Format(sql, pOutsideEdgeProfile.Description, pOutsideEdgeProfile.IdStatus, pOutsideEdgeProfile.CreationDate.ToString("yyyyMMdd"),
-                pOutsideEdgeProfile.CreatorUser, pOutsideEdgeProfile.ModificationDate.ToString("yyyyMMdd"), pOutsideEdgeProfile.ModificationUser);
+            sql = string.Format(sql, pOutsideEdgeProfile.Description, pOutsideEdgeProfile.Status.Id, pOutsideEdgeProfile.CreationDate.ToString("yyyy-MM-dd"),
+                pOutsideEdgeProfile.CreatorUser, pOutsideEdgeProfile.ModificationDate.ToString("yyyy-MM-dd"), pOutsideEdgeProfile.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -99,7 +99,7 @@ namespace DataAccess
         public void UpdateOutsideEdgeProfile(OutsideEdgeProfile pOutsideEdgeProfile)
         {
             string sql = @"[spUpdateOutsideEdgeProfile] '{0}', '{1}', '{2}', '{3}'";
-            sql = string.Format(sql, pOutsideEdgeProfile.Description, pOutsideEdgeProfile.IdStatus, pOutsideEdgeProfile.ModificationDate.ToString("yyyyMMdd"),
+            sql = string.Format(sql, pOutsideEdgeProfile.Description, pOutsideEdgeProfile.Status.Id, pOutsideEdgeProfile.ModificationDate.ToString("yyyy-MM-dd"),
                 pOutsideEdgeProfile.ModificationUser);
             try
             {

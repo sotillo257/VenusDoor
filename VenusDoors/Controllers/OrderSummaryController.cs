@@ -1765,12 +1765,231 @@ namespace VenusDoors.Controllers
         #endregion
 
         #region TopRailxHorizontalDivisions
+        [HttpPost]
+        public ActionResult InsertTopRailxHorizontalDivisions(TopRailxHorizontalDivisions pTopRailxHorizontalDivisions)
+
+        {
+            try
+            {
+                BusinessLogic.lnTopRailxHorizontalDivisions _LN = new BusinessLogic.lnTopRailxHorizontalDivisions();
+                return Json(_LN.InsertTopRailxHorizontalDivisions(pTopRailxHorizontalDivisions));
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult UpdateTopRailxHorizontalDivisions(TopRailxHorizontalDivisions pTopRailxHorizontalDivisions)
+
+        {
+            try
+            {
+                BusinessLogic.lnTopRailxHorizontalDivisions _LN = new BusinessLogic.lnTopRailxHorizontalDivisions();
+                return Json(_LN.UpdateTopRailxHorizontalDivisions(pTopRailxHorizontalDivisions));
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult GetAllTopRailxHorizontalDivisions()
+        {
+            try
+            {
+                BusinessLogic.lnTopRailxHorizontalDivisions _LN = new BusinessLogic.lnTopRailxHorizontalDivisions();
+                return Json(_LN.GetAllTopRailxHorizontalDivisions());
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult GetTopRailxHorizontalDivisionsById(int pId)
+        {
+            try
+            {
+                BusinessLogic.lnTopRailxHorizontalDivisions _LN = new BusinessLogic.lnTopRailxHorizontalDivisions();
+                return Json(_LN.GetTopRailxHorizontalDivisionsById(pId));
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult DeleteTopRailxHorizontalDivisions(int pId)
+        {
+            try
+            {
+                BusinessLogic.lnTopRailxHorizontalDivisions _LN = new BusinessLogic.lnTopRailxHorizontalDivisions();
+                return Json(_LN.DeleteTopRailxHorizontalDivisions(pId));
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
         #endregion
 
         #region TopRailxJoin
+        [HttpPost]
+        public ActionResult InsertTopRailxJoin(TopRailxJoin pTopRailxJoin)
+
+        {
+            try
+            {
+                BusinessLogic.lnTopRailxJoin _LN = new BusinessLogic.lnTopRailxJoin();
+                return Json(_LN.InsertTopRailxJoin(pTopRailxJoin));
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult UpdateTopRailxJoin(TopRailxJoin pTopRailxJoin)
+
+        {
+            try
+            {
+                BusinessLogic.lnTopRailxJoin _LN = new BusinessLogic.lnTopRailxJoin();
+                return Json(_LN.UpdateTopRailxJoin(pTopRailxJoin));
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult GetAllTopRailxJoin()
+        {
+            try
+            {
+                BusinessLogic.lnTopRailxJoin _LN = new BusinessLogic.lnTopRailxJoin();
+                return Json(_LN.GetAllTopRailxJoin());
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult GetTopRailxJoinById(int pId)
+        {
+            try
+            {
+                BusinessLogic.lnTopRailxJoin _LN = new BusinessLogic.lnTopRailxJoin();
+                return Json(_LN.GetTopRailxJoinById(pId));
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult DeleteTopRailxJoin(int pId)
+        {
+            try
+            {
+                BusinessLogic.lnTopRailxJoin _LN = new BusinessLogic.lnTopRailxJoin();
+                return Json(_LN.DeleteTopRailxJoin(pId));
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
         #endregion
 
         #region TopRailxVerticalDivisions
+        [HttpPost]
+        public ActionResult InsertTopRailxVerticalDivisions(TopRailxVerticalDivisions pTopRailxVerticalDivisions)
+
+        {
+            try
+            {
+                BusinessLogic.lnTopRailxVerticalDivisions _LN = new BusinessLogic.lnTopRailxVerticalDivisions();
+                return Json(_LN.InsertTopRailxVerticalDivisions(pTopRailxVerticalDivisions));
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult UpdateTopRailxVerticalDivisions(TopRailxVerticalDivisions pTopRailxVerticalDivisions)
+
+        {
+            try
+            {
+                BusinessLogic.lnTopRailxVerticalDivisions _LN = new BusinessLogic.lnTopRailxVerticalDivisions();
+                return Json(_LN.UpdateTopRailxVerticalDivisions(pTopRailxVerticalDivisions));
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult GetAllTopRailxVerticalDivisions()
+        {
+            try
+            {
+                BusinessLogic.lnTopRailxVerticalDivisions _LN = new BusinessLogic.lnTopRailxVerticalDivisions();
+                return Json(_LN.GetAllTopRailxVerticalDivisions());
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult GetTopRailxVerticalDivisionsById(int pId)
+        {
+            try
+            {
+                BusinessLogic.lnTopRailxVerticalDivisions _LN = new BusinessLogic.lnTopRailxVerticalDivisions();
+                return Json(_LN.GetTopRailxVerticalDivisionsById(pId));
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult DeleteTopRailxVerticalDivisions(int pId)
+        {
+            try
+            {
+                BusinessLogic.lnTopRailxVerticalDivisions _LN = new BusinessLogic.lnTopRailxVerticalDivisions();
+                return Json(_LN.DeleteTopRailxVerticalDivisions(pId));
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
         #endregion
 
         #region Type

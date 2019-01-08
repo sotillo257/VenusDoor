@@ -28,7 +28,7 @@ namespace DataAccess
                         hinged = new HingeDirection()
                         {
                             Id = int.Parse(item["Id"].ToString()),
-                            IdStatus = int.Parse(item["IdStatus"].ToString()),
+                            Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["Description"].ToString() },
                             Direction = item["Direction"].ToString(),
                             CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             ModificationDate = (item["ModificationDate"].ToString() != "") ? DateTime.Parse(item["ModificationDate"].ToString()) : DateTime.Parse("01/01/1900"),
@@ -62,7 +62,7 @@ namespace DataAccess
                         hinged.Add(new HingeDirection()
                         {
                             Id = int.Parse(item["Id"].ToString()),
-                            IdStatus = int.Parse(item["IdStatus"].ToString()),
+                            Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["Description"].ToString() },
                             Direction = item["Direction"].ToString(),
                             CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             ModificationDate = (item["ModificationDate"].ToString() != "") ? DateTime.Parse(item["ModificationDate"].ToString()) : DateTime.Parse("01/01/1900"),
@@ -84,8 +84,8 @@ namespace DataAccess
         public int InsertHingeDirection(HingeDirection pHingeDirection)
         {
             string sql = @"[spInsertHingeDirection] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}'";
-            sql = string.Format(sql, pHingeDirection.Direction, pHingeDirection.IdStatus, pHingeDirection.CreationDate.ToString("yyyyMMdd"),
-                pHingeDirection.CreatorUser, pHingeDirection.ModificationDate.ToString("yyyyMMdd"), pHingeDirection.ModificationUser);
+            sql = string.Format(sql, pHingeDirection.Direction, pHingeDirection.Status.Id, pHingeDirection.CreationDate.ToString("yyyy-MM-dd"),
+                pHingeDirection.CreatorUser, pHingeDirection.ModificationDate.ToString("yyyy-MM-dd"), pHingeDirection.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -99,7 +99,7 @@ namespace DataAccess
         public void UpdateHingeDirection(HingeDirection pHingeDirection)
         {
             string sql = @"[spUpdateHingeDirection] '{0}', '{1}', '{2}', '{3}'";
-            sql = string.Format(sql, pHingeDirection.Direction, pHingeDirection.IdStatus, pHingeDirection.ModificationDate.ToString("yyyyMMdd"),
+            sql = string.Format(sql, pHingeDirection.Direction, pHingeDirection.Status.Id, pHingeDirection.ModificationDate.ToString("yyyy-MM-dd"),
                 pHingeDirection.ModificationUser);
             try
             {

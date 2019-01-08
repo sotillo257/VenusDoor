@@ -28,8 +28,8 @@ namespace DataAccess
                         preparation = new Preparation()
                         {
                             Id = int.Parse(item["Id"].ToString()),
-                            IdStatus = int.Parse(item["IdStatus"].ToString()),
                             Description = item["Description"].ToString(),
+                            Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["Description"].ToString() },
                             CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             ModificationDate = (item["ModificationDate"].ToString() != "") ? DateTime.Parse(item["ModificationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             CreatorUser = int.Parse(item["CreatorUser"].ToString()),
@@ -62,8 +62,8 @@ namespace DataAccess
                         preparation.Add(new Preparation()
                         {
                             Id = int.Parse(item["Id"].ToString()),
-                            IdStatus = int.Parse(item["IdStatus"].ToString()),
                             Description = item["Description"].ToString(),
+                            Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["Description"].ToString() },
                             CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             ModificationDate = (item["ModificationDate"].ToString() != "") ? DateTime.Parse(item["ModificationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             CreatorUser = int.Parse(item["CreatorUser"].ToString()),
@@ -84,8 +84,8 @@ namespace DataAccess
         public int InsertPreparation(Preparation pPreparation)
         {
             string sql = @"[spInsertPreparation] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}'";
-            sql = string.Format(sql, pPreparation.Description, pPreparation.IdStatus, pPreparation.CreationDate.ToString("yyyyMMdd"),
-                pPreparation.CreatorUser, pPreparation.ModificationDate.ToString("yyyyMMdd"), pPreparation.ModificationUser);
+            sql = string.Format(sql, pPreparation.Description, pPreparation.Status.Id, pPreparation.CreationDate.ToString("yyyy-MM-dd"),
+                pPreparation.CreatorUser, pPreparation.ModificationDate.ToString("yyyy-MM-dd"), pPreparation.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -99,7 +99,7 @@ namespace DataAccess
         public void UpdatePreparation(Preparation pPreparation)
         {
             string sql = @"[spUpdatePreparation] '{0}', '{1}', '{2}', '{3}'";
-            sql = string.Format(sql, pPreparation.Description, pPreparation.IdStatus, pPreparation.ModificationDate.ToString("yyyyMMdd"),
+            sql = string.Format(sql, pPreparation.Description, pPreparation.Status.Id, pPreparation.ModificationDate.ToString("yyyy-MM-dd"),
                 pPreparation.ModificationUser);
             try
             {

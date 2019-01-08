@@ -32,7 +32,7 @@ namespace DataAccess
                             Lastname = item["Lastname"].ToString(),
                             Telephone = item["Telephone"].ToString(),
                             Direction = item["Direction"].ToString(),
-                            IdStatus = int.Parse(item["IdStatus"].ToString()),
+                            Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["Description"].ToString() },
                             CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             ModificationDate = (item["ModificationDate"].ToString() != "") ? DateTime.Parse(item["ModificationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             CreatorUser = int.Parse(item["CreatorUser"].ToString()),
@@ -69,7 +69,7 @@ namespace DataAccess
                             Lastname = item["Lastname"].ToString(),
                             Telephone = item["Telephone"].ToString(),
                             Direction = item["Direction"].ToString(),
-                            IdStatus = int.Parse(item["IdStatus"].ToString()),
+                            Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["Description"].ToString() },
                             CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             ModificationDate = (item["ModificationDate"].ToString() != "") ? DateTime.Parse(item["ModificationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             CreatorUser = int.Parse(item["CreatorUser"].ToString()),
@@ -90,8 +90,8 @@ namespace DataAccess
         public int InsertPerson(Person pPerson)
         {
             string sql = @"[spInsertPerson] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}'";
-            sql = string.Format(sql, pPerson.Name, pPerson.Lastname, pPerson.Telephone, pPerson.Direction, pPerson.IdStatus, pPerson.CreationDate.ToString("yyyyMMdd"),
-                pPerson.CreatorUser, pPerson.ModificationDate.ToString("yyyyMMdd"), pPerson.ModificationUser);
+            sql = string.Format(sql, pPerson.Name, pPerson.Lastname, pPerson.Telephone, pPerson.Direction, pPerson.Status.Id, pPerson.CreationDate.ToString("yyyy-MM-dd"),
+                pPerson.CreatorUser, pPerson.ModificationDate.ToString("yyyy-MM-dd"), pPerson.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -105,7 +105,7 @@ namespace DataAccess
         public void UpdatePerson(Person pPerson)
         {
             string sql = @"[spUpdatePerson] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}, '{6}";
-            sql = string.Format(sql, pPerson.Name, pPerson.Lastname, pPerson.Telephone, pPerson.Direction, pPerson.IdStatus, pPerson.ModificationDate.ToString("yyyyMMdd"),
+            sql = string.Format(sql, pPerson.Name, pPerson.Lastname, pPerson.Telephone, pPerson.Direction, pPerson.Status.Id, pPerson.ModificationDate.ToString("yyyy-MM-dd"),
                 pPerson.ModificationUser);
             try
             {

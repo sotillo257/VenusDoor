@@ -15,22 +15,20 @@ namespace Model
         public  BottomRail BottomRail { get; set; }
         public  Preparation Preparation { get; set; }
         public  Join Join { get; set; }
-        public  StileWidth StileWidth { get; set; }
-        public  RailWidth RailWidth { get; set; }
+        public  Panel Panel { get; set; }
+        public  PanelMaterial PanelMaterial { get; set; }
         public  OutsideEdgeProfile OutsideEdgeProfile { get; set; }
         public  InsideEdgeProfile InsideEdgeProfile { get; set; }
         public  VerticalDivisions VerticalDivisions { get; set; }
         public  HorizontalDivisions HorizontalDivisions { get; set; }
         public  HingeDirection HingeDirection { get; set; }
         public  HingePositions HingePositions { get; set; }
-        public Panel Panel { get; set; }
-        public PanelMaterial PanelMaterial { get; set; }
         public bool isDrill { get; set; }
         public decimal Width { get; set; }
         public decimal Height { get; set; }
         public bool IsOpeningMeasurement { get; set; }
         public int Quantity { get; set; }
-        public int IdStatus { get; set; }
+        public Status Status { get; set; }
         public DateTime CreationDate { get; set; }
         public int CreatorUser { get; set; }
         public DateTime ModificationDate { get; set; }
