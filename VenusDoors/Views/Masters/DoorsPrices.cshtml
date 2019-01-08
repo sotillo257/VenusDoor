@@ -34,30 +34,30 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr role="row" class="odd">
-                                <td tabindex="0" class="">1</td>
-                                <td class="">Active</td>
-                                <td class="">Active</td>
-                                <td class="">Active</td>
-                                <td class="">Active</td>
-                                <td class="">Active</td>
-                                <td class="">Active</td>
-                                <td class="">Active</td>
-                                <td class="">Active</td>
-                                <td class="">Active</td>
-                                <td class="">Active</td>
-                                <td class="">
-                                    <a href="#" data-toggle="modal" data-target="#modaldemo2" class="btn btn-danger btn-icon">
-                                        <div><i class="fa fa-trash"></i></div>
-                                    </a>
-                                    <a href="#" data-toggle="modal" data-target="#modaldemo" class="btn btn-success btn-icon">
-                                        <div><i class="fa fa-plus"></i></div>
-                                    </a>
-                                    <a href="#" data-toggle="modal" data-target="#modaldemo1" class="btn btn-primary btn-icon">
-                                        <div><i class="fa fa-gear"></i></div>
-                                    </a>
-                                </td>
-                            </tr>
+                            @foreach (Model.DoorsPrices item in ViewBag.mDoorsPrices)
+                            {
+                                <tr role="row" class="odd">
+                                    <td tabindex="0" class="">@item.Id</td>
+                                    <td class="">@item.IdDoorStyle</td>
+                                    <td class="">@item.IdMaterial</td>
+                                    <td class="">@item.IdStileWidth</td>
+                                    <td class="">@item.IdRailWidth</td>
+                                    <td class="">@item.BasePrice</td>
+                                    <td class="">@item.AdditionalSFPrice</td>
+                                    <td class="">@item.VerticalAdditionalInchPrice</td>
+                                    <td class="">@item.HorizontalBase1FLPrice</td>
+                                    <td class="">@item.HorizontalAdditionalInchPrice</td>
+                                    <td class="">@item.IdStatus</td>
+                                    <td class="">
+                                        <a href="#" data-toggle="modal" data-target="#modaldemo1" value="@item.Id" class="btn btn-primary btn-icon">
+                                            <div><i class="fa fa-edit"></i></div>
+                                        </a>
+                                        <a href="#" data-toggle="modal" data-target="#modaldemo2" value="@item.Id" class="btn btn-danger btn-icon">
+                                            <div><i class="fa fa-trash"></i></div>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
 
                         </tbody>
                     </table>
@@ -191,7 +191,7 @@
                                         <div class="row">
                                             <div class="col-xs-4 col-md-3">
                                                 <label for="Template" style="margin-top: 25px;">Id: </label>
-                                                <input type="text" name="id" class="form-control pd-y-12" placeholder="">
+                                                <input type="text" name="id" class="form-control pd-y-12" readonly placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-3">
                                                 <label for="Template" style="margin-top: 25px;">Door Style: </label>

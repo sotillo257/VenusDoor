@@ -26,25 +26,25 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr role="row" class="odd">
-                            <td tabindex="0" class="">1</td>
-                            <td class="">Active</td>
-                            <td class="">Active</td>
-                            <td class="">
-                                <center>
-                                    <a href="#" data-toggle="modal" data-target="#modaldemo2" class="btn btn-danger btn-icon">
-                                        <div><i class="fa fa-trash"></i></div>
-                                    </a>
-                                    <a href="#" data-toggle="modal" data-target="#modaldemo" class="btn btn-success btn-icon">
-                                        <div><i class="fa fa-plus"></i></div>
-                                    </a>
-                                    <a href="#" data-toggle="modal" data-target="#modaldemo1" class="btn btn-primary btn-icon">
-                                        <div><i class="fa fa-gear"></i></div>
-                                    </a>
-                                </center>
-                            </td>
-                        </tr>
-
+                        @foreach (Model.Join item in ViewBag.mJoin)
+                        {
+                            <tr role="row" class="odd">
+                                <td tabindex="0" class="">@item.Id</td>
+                                <td class="">@item.Description</td>
+                                <td class="">@item.IdStatus</td>
+                                <td class="">
+                                    <center>
+                                        <a href="#" data-toggle="modal" data-target="#modaldemo1" value="@item.Id" class="Modificar btn btn-primary btn-icon">
+                                            <div><i class="fa fa-edit"></i></div>
+                                        </a>
+                                        <a href="#" data-toggle="modal" data-target="#modaldemo2" value="@item.Id" class="Eliminar btn btn-danger btn-icon">
+                                            <div><i class="fa fa-trash"></i></div>
+                                        </a>
+                                    </center>
+                                </td>
+                            </tr>
+                        }
+                        
                     </tbody>
                 </table>
             </div>
@@ -145,7 +145,7 @@
                                         <div class="row">
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="Template" style="margin-top: 25px;">Id: </label>
-                                                <input type="text" name="id" class="form-control pd-y-12" placeholder="">
+                                                <input type="text" name="id" class="form-control pd-y-12" readonly placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="Template" style="margin-top: 25px;">Description: </label>

@@ -1,39 +1,23 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Build a Door";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="br-pageheader pd-y-15 pd-l-20">
     <nav class="breadcrumb pd-0 mg-0 tx-12">
         <a class="breadcrumb-item" href="/">Venus Doors</a>
-        <span class="breadcrumb-item active">Door Configuration</span>
+        <span class="breadcrumb-item active">@ViewBag.Title</span>
     </nav>
 </div><!-- br-pageheader -->
 
-<div class="pd-x-20 pd-sm-x-30 pd-t-20 pd-sm-t-30">
-    <h4 class="tx-gray-800 mg-b-5">Door Configuration</h4>
-    <p class="mg-b-0">Modals are streamlined, but flexible, dialog prompts with the minimum required functionality and smart defaults.</p>
-</div>
-
 <div class="br-pagebody">
     <div class="br-section-wrapper">
-
-        <div class="row">
-            <div class="col-md-9">
-
-            </div>
-            <div class="col-md-3">
-                <div class="row">
-                    <label for="Quantity" style="margin-top: 25px;">Quantity: </label>
-                    <div class="col-sm-8 mg-t-10 mg-sm-t-0" style="margin-right: 0px;top: 15px;left: 10px;">
-                        <input style="width: 91px;" class="form-control" placeholder="" id="iptQuantity" type="number">
-                    </div>
-                </div>
-            </div>
+        <div class="pd-sm-bottom-30">
+            <h4 class="tx-gray-800 mg-b-5">Door Configuration</h4>
+            <p class="mg-b-0">Modals are streamlined, but flexible, dialog prompts with the minimum required functionality and smart defaults.</p>
         </div>
-
-        <div class="row">
+       <div class="row">
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-xs-4 col-md-3">
@@ -53,10 +37,6 @@
                     <div class="col-xs-4 col-md-3">
                         <label for="Height" style="margin-top: 25px;">Height: </label>
                         <input class="form-control" placeholder="" id="iptHeight" type="number">
-                    </div><!-- col -->
-                    <div class="col-xs-4 col-md-3">
-                        <label for="Template" style="margin-top: 25px;">Front View:</label>
-                        <button id="btn_carrito" style="padding-bottom: 7px;padding-top: 7px;" type="button" href="#" class="btn btn-primary" title="">Click for photo preview</button>
                     </div><!-- col -->
                 </div>
             </div>
@@ -162,6 +142,11 @@
                         <label for="HingePositions" style="margin-top: 25px;">Hinge Positions: </label>
                         <select class="form-control select2" id="cbHingePositions" data-placeholder=""></select>
                     </div><!-- col -->
+
+                    <div class="col-xs-4 col-md-3">
+                        <label for="Quantity" style="margin-top: 25px;">Quantity: </label>
+                        <input class="form-control" placeholder="" id="iptQuantity" type="number">
+                    </div>
                 </div>
             </div>
 

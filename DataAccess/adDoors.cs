@@ -74,10 +74,10 @@ namespace DataAccess
             try
             {
                 DataSet ds = new DataSet();
-                ds = _MB.CreaDS(ds, "Doors", sql, _CN);
-                if (ds.Tables["Doors"].Rows.Count > 0)
+                ds = _MB.CreaDS(ds, "Door", sql, _CN);
+                if (ds.Tables["Door"].Rows.Count > 0)
                 {
-                    foreach (DataRow item in ds.Tables["Doors"].Rows)
+                    foreach (DataRow item in ds.Tables["Door"].Rows)
                     {
                         doors.Add(new Doors()
                         {
