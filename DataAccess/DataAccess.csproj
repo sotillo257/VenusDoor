@@ -79,12 +79,6 @@
     <Compile Include="adVerticalDivisions.cs" />
     <Compile Include="Connection.cs" />
     <Compile Include="adMaterial.cs" />
-    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
-    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
-    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
-    <Compile Include="obj\Release\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
-    <Compile Include="obj\Release\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
-    <Compile Include="obj\Release\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -94,18 +88,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bin\Debug\DataAccess.dll" />
-    <Content Include="bin\Debug\DataAccess.pdb" />
-    <Content Include="bin\Debug\MetodosDB.dll" />
-    <Content Include="bin\Debug\MetodosDB.pdb" />
-    <Content Include="bin\Debug\Model.dll" />
-    <Content Include="bin\Debug\Model.pdb" />
-    <Content Include="bin\Release\DataAccess.dll" />
-    <Content Include="bin\Release\DataAccess.pdb" />
-    <Content Include="bin\Release\MetodosDB.dll" />
-    <Content Include="bin\Release\MetodosDB.pdb" />
-    <Content Include="bin\Release\Model.dll" />
-    <Content Include="bin\Release\Model.pdb" />
     <Content Include="DataAccess.csproj.vspscc" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
