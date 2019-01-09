@@ -38,16 +38,16 @@
                             {
                                 <tr role="row" class="odd">
                                     <td tabindex="0" class="">@item.Id</td>
-                                    <td class="">@item.IdDoorStyle</td>
-                                    <td class="">@item.IdMaterial</td>
-                                    <td class="">@item.IdStileWidth</td>
-                                    <td class="">@item.IdRailWidth</td>
+                                    <td class="">@item.DoorStyle.Id</td>
+                                    <td class="">@item.Material.Id</td>
+                                    @*<td class="">@item.IdStileWidth</td>
+                                    <td class="">@item.IdRailWidth</td>*@
                                     <td class="">@item.BasePrice</td>
                                     <td class="">@item.AdditionalSFPrice</td>
                                     <td class="">@item.VerticalAdditionalInchPrice</td>
                                     <td class="">@item.HorizontalBase1FLPrice</td>
                                     <td class="">@item.HorizontalAdditionalInchPrice</td>
-                                    <td class="">@item.IdStatus</td>
+                                    <td class="">@item.Status.Id</td>
                                     <td class="">
                                         <a href="#" data-toggle="modal" data-target="#modaldemo1" value="@item.Id" class="btn btn-primary btn-icon">
                                             <div><i class="fa fa-edit"></i></div>
@@ -214,7 +214,7 @@
                                                 </select>
                                             </div><!-- form-group -->
 
-                                            <div class="col-xs-4 col-md-3">
+                                            @*<div class="col-xs-4 col-md-3">
                                                 <label for="cbStileWidth" style="margin-top: 25px;">Stile Width: </label>
                                                 <select style="height: 43px;" class="form-control pd-y-12" id="cbStileWidth" data-placeholder="">
                                                     @foreach (Model.StileWidth item in ViewBag.cbStileWidth)
@@ -222,9 +222,9 @@
                                                         <option value="@item.Id">@item.Width</option>
                                                     }
                                                 </select>
-                                            </div><!-- form-group -->
+                                            </div>*@<!-- form-group -->
 
-                                            <div class="col-xs-4 col-md-3">
+                                            @*<div class="col-xs-4 col-md-3">
                                                 <label for="cbRailWidth" style="margin-top: 25px;">Rail Width: </label>
                                                 <select style="height: 43px;" class="form-control pd-y-12" id="cbRailWidth" data-placeholder="">
                                                     @foreach (Model.RailWidth item in ViewBag.cbRailWidth)
@@ -232,7 +232,7 @@
                                                         <option value="@item.Id">@item.Width</option>
                                                     }
                                                 </select>
-                                            </div><!-- form-group -->
+                                            </div>*@<!-- form-group -->
 
                                             <div class="col-xs-4 col-md-3">
                                                 <label for="Template" style="margin-top: 25px;">Base Price: </label>

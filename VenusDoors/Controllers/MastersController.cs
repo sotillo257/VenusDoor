@@ -76,8 +76,8 @@ namespace VenusDoors.Controllers
             ViewBag.mStatus = _LNStatus.GetAllStatus();
             ViewBag.cbDoorStyle = _LNStatus.GetAllStatus();
             ViewBag.cbMatarial = _LNMaterial.GetAllMaterial();
-            ViewBag.cbStileWidth = _LNStileWidth.GetAllStileWidth();
-            ViewBag.cbRailWidth = _LNRailWidth.GetAllRailWidth();
+            //ViewBag.cbStileWidth = _LNStileWidth.GetAllStileWidth();
+            //ViewBag.cbRailWidth = _LNRailWidth.GetAllRailWidth();
             return View();
         }
 
@@ -260,8 +260,8 @@ namespace VenusDoors.Controllers
         {
             ViewBag.Masters = "active show-sub";
             ViewBag.RailWidth = "active";
-            BusinessLogic.lnRailWidth _JES = new BusinessLogic.lnRailWidth();
-            ViewBag.mRailWidth = _JES.GetAllRailWidth();
+            //BusinessLogic.lnRailWidth _JES = new BusinessLogic.lnRailWidth();
+            //ViewBag.mRailWidth = _JES.GetAllRailWidth();
             ViewBag.mStatus = _LNStatus.GetAllStatus();
             return View();
         }
@@ -280,8 +280,8 @@ namespace VenusDoors.Controllers
         {
             ViewBag.Masters = "active show-sub";
             ViewBag.StileWidth = "active";
-            BusinessLogic.lnStileWidth _GRE = new BusinessLogic.lnStileWidth();
-            ViewBag.mStileWidth = _GRE.GetAllStileWidth();
+            //BusinessLogic.lnStileWidth _GRE = new BusinessLogic.lnStileWidth();
+            //ViewBag.mStileWidth = _GRE.GetAllStileWidth();
             ViewBag.mStatus = _LNStatus.GetAllStatus();
             return View();
         }
