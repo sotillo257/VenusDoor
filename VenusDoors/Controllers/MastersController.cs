@@ -37,7 +37,7 @@ namespace VenusDoors.Controllers
             ViewBag.BottomRail = "active";
             BusinessLogic.lnBottomRail _LN = new BusinessLogic.lnBottomRail();
             ViewBag.mBottomRail = _LN.GetAllBottomRail();
-            ViewBag.mStatus = _LNDoorStile.GetAllDoorStyle();
+            ViewBag.mStatus = _LNStatus.GetAllStatus();
             return View();
         }
 
@@ -48,7 +48,7 @@ namespace VenusDoors.Controllers
             BusinessLogic.lnDoors _LM = new BusinessLogic.lnDoors();
             ViewBag.mDoors = _LM.GetAllDoors();
             ViewBag.mStatus = _LNStatus.GetAllStatus();
-            ViewBag.cbDoorStyle = _LNStatus.GetAllStatus();
+            ViewBag.cbDoorStyle = _LNDoorStile.GetAllDoorStyle();
             ViewBag.cbMatarial = _LNMaterial.GetAllMaterial();
             ViewBag.cbTopRail = _LNTopRail.GetAllTopRail();
             ViewBag.cbBottomRail = _LNBottomRail.GetAllBottomRail();
@@ -74,7 +74,7 @@ namespace VenusDoors.Controllers
             BusinessLogic.lnDoorsPrices _LP = new BusinessLogic.lnDoorsPrices();
             ViewBag.mDoorsPrices = _LP.GetAllDoorsPrices();
             ViewBag.mStatus = _LNStatus.GetAllStatus();
-            ViewBag.cbDoorStyle = _LNStatus.GetAllStatus();
+            ViewBag.cbDoorStyle = _LNDoorStile.GetAllDoorStyle();
             ViewBag.cbMatarial = _LNMaterial.GetAllMaterial();
             //ViewBag.cbStileWidth = _LNStileWidth.GetAllStileWidth();
             //ViewBag.cbRailWidth = _LNRailWidth.GetAllRailWidth();
@@ -315,6 +315,8 @@ namespace VenusDoors.Controllers
             BusinessLogic.lnTopRailxJoin _TEP = new BusinessLogic.lnTopRailxJoin();
             ViewBag.mTopRailByJoin = _TEP.GetAllTopRailxJoin();
             ViewBag.mStatus = _LNStatus.GetAllStatus();
+            ViewBag.cbTopRail = _LNTopRail.GetAllTopRail();
+            ViewBag.cbJoin = _LNJoin.GetAllJoin();
             return View();
         }
 
