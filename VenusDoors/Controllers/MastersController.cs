@@ -17,8 +17,6 @@ namespace VenusDoors.Controllers
         BusinessLogic.lnBottomRail _LNBottomRail = new BusinessLogic.lnBottomRail();
         BusinessLogic.lnPreparation _LNPreparation = new BusinessLogic.lnPreparation();
         BusinessLogic.lnJoin _LNJoin = new BusinessLogic.lnJoin();
-        BusinessLogic.lnStileWidth _LNStileWidth = new BusinessLogic.lnStileWidth();
-        BusinessLogic.lnRailWidth _LNRailWidth = new BusinessLogic.lnRailWidth();
         BusinessLogic.lnInsideEdgeProfile _LNInsideEdgeProfile = new BusinessLogic.lnInsideEdgeProfile();
         BusinessLogic.lnOutsideEdgeProfile _LNOutsideEdgeProfile = new BusinessLogic.lnOutsideEdgeProfile();
         BusinessLogic.lnVerticalDivisions _LNVerticalDivisions = new BusinessLogic.lnVerticalDivisions();
@@ -52,8 +50,6 @@ namespace VenusDoors.Controllers
             ViewBag.cbBottomRail = _LNBottomRail.GetAllBottomRail();
             ViewBag.cbPreparation = _LNPreparation.GetAllPreparation();
             ViewBag.cbJoin = _LNJoin.GetAllJoin();
-            ViewBag.cbStileWidth = _LNStileWidth.GetAllStileWidth();
-            ViewBag.cbRailWidth = _LNRailWidth.GetAllRailWidth();
             ViewBag.cbInsideEdgeProfile = _LNInsideEdgeProfile.GetAllInsideEdgeProfile();
             ViewBag.cbOutsideEdgeProfile = _LNOutsideEdgeProfile.GetAllOutsideEdgeProfile();
             ViewBag.cbVerticalDivisions = _LNVerticalDivisions.GetAllVerticalDivisions();
@@ -74,8 +70,6 @@ namespace VenusDoors.Controllers
             ViewBag.mStatus = _LNStatus.GetAllStatus();
             ViewBag.cbDoorStyle = _LNStatus.GetAllStatus();
             ViewBag.cbMatarial = _LNMaterial.GetAllMaterial();
-            ViewBag.cbStileWidth = _LNStileWidth.GetAllStileWidth();
-            ViewBag.cbRailWidth = _LNRailWidth.GetAllRailWidth();
             return View();
         }
 
