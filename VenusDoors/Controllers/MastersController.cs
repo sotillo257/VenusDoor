@@ -36,8 +36,11 @@ namespace VenusDoors.Controllers
             ViewBag.Masters = "active show-sub";
             ViewBag.BottomRail = "active";
             BusinessLogic.lnBottomRail _LN = new BusinessLogic.lnBottomRail();
-            ViewBag.mBottomRail = _LN.GetAllBottomRail();
-            ViewBag.mStatus = _LNDoorStile.GetAllDoorStyle();
+            ViewBag.mStatus = _LNStatus.GetAllStatus();
+            var mBottomRail = _LN.GetAllBottomRail();
+            ViewBag.mBottomRail = mBottomRail;
+            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+            ViewBag.ListBottomRail = serializar.Serialize(mBottomRail);
             return View();
         }
 
@@ -46,9 +49,14 @@ namespace VenusDoors.Controllers
             ViewBag.Masters = "active show-sub";
             ViewBag.Doors = "active";
             BusinessLogic.lnDoors _LM = new BusinessLogic.lnDoors();
-            ViewBag.mDoors = _LM.GetAllDoors();
+
+            var mDoors = _LM.GetAllDoors();
+            ViewBag.mDoors = mDoors;
+            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+            ViewBag.ListDoors = serializar.Serialize(mDoors);
+
             ViewBag.mStatus = _LNStatus.GetAllStatus();
-            ViewBag.cbDoorStyle = _LNStatus.GetAllStatus();
+            ViewBag.cbDoorStyle = _LNDoorStile.GetAllDoorStyle();
             ViewBag.cbMatarial = _LNMaterial.GetAllMaterial();
             ViewBag.cbTopRail = _LNTopRail.GetAllTopRail();
             ViewBag.cbBottomRail = _LNBottomRail.GetAllBottomRail();
@@ -72,9 +80,14 @@ namespace VenusDoors.Controllers
             ViewBag.Masters = "active show-sub";
             ViewBag.DoorPrice = "active";
             BusinessLogic.lnDoorsPrices _LP = new BusinessLogic.lnDoorsPrices();
-            ViewBag.mDoorsPrices = _LP.GetAllDoorsPrices();
+
+            var mDoorsPrices = _LP.GetAllDoorsPrices();
+            ViewBag.mDoorsPrices = mDoorsPrices;
+            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+            ViewBag.ListDoorsPrices = serializar.Serialize(mDoorsPrices);
+
             ViewBag.mStatus = _LNStatus.GetAllStatus();
-            ViewBag.cbDoorStyle = _LNStatus.GetAllStatus();
+            ViewBag.cbDoorStyle = _LNDoorStile.GetAllDoorStyle();
             ViewBag.cbMatarial = _LNMaterial.GetAllMaterial();
             //ViewBag.cbStileWidth = _LNStileWidth.GetAllStileWidth();
             //ViewBag.cbRailWidth = _LNRailWidth.GetAllRailWidth();
@@ -119,7 +132,11 @@ namespace VenusDoors.Controllers
             ViewBag.Masters = "active show-sub";
             ViewBag.Group = "active";
             BusinessLogic.lnGroup _LC = new BusinessLogic.lnGroup();
-            ViewBag.mGroup = _LC.GetAllGroup();
+
+            var mGroup = _LC.GetAllGroup();
+            ViewBag.mGroup = mGroup;
+            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+            ViewBag.ListGroup = serializar.Serialize(mGroup);
             return View();
         }
 
@@ -256,15 +273,15 @@ namespace VenusDoors.Controllers
             return View();
         }
 
-        //public ActionResult RailWidth()
-        //{
-        //    ViewBag.Masters = "active show-sub";
-        //    ViewBag.RailWidth = "active";
-        //    BusinessLogic.lnRailWidth _JES = new BusinessLogic.lnRailWidth();
-        //    ViewBag.mRailWidth = _JES.GetAllRailWidth();
-        //    ViewBag.mStatus = _LNStatus.GetAllStatus();
-        //    return View();
-        //}
+        public ActionResult RailWidth()
+        {
+            ViewBag.Masters = "active show-sub";
+            ViewBag.RailWidth = "active";
+            //BusinessLogic.lnRailWidth _JES = new BusinessLogic.lnRailWidth();
+            //ViewBag.mRailWidth = _JES.GetAllRailWidth();
+            ViewBag.mStatus = _LNStatus.GetAllStatus();
+            return View();
+        }
 
         public ActionResult Status()
         {
@@ -276,15 +293,15 @@ namespace VenusDoors.Controllers
             return View();
         }
 
-        //public ActionResult StileWidth()
-        //{
-        //    ViewBag.Masters = "active show-sub";
-        //    ViewBag.StileWidth = "active";
-        //    BusinessLogic.lnStileWidth _GRE = new BusinessLogic.lnStileWidth();
-        //    ViewBag.mStileWidth = _GRE.GetAllStileWidth();
-        //    ViewBag.mStatus = _LNStatus.GetAllStatus();
-        //    return View();
-        //}
+        public ActionResult StileWidth()
+        {
+            ViewBag.Masters = "active show-sub";
+            ViewBag.StileWidth = "active";
+            //BusinessLogic.lnStileWidth _GRE = new BusinessLogic.lnStileWidth();
+            //ViewBag.mStileWidth = _GRE.GetAllStileWidth();
+            ViewBag.mStatus = _LNStatus.GetAllStatus();
+            return View();
+        }
 
         public ActionResult TopRail()
         {
@@ -315,6 +332,8 @@ namespace VenusDoors.Controllers
             BusinessLogic.lnTopRailxJoin _TEP = new BusinessLogic.lnTopRailxJoin();
             ViewBag.mTopRailByJoin = _TEP.GetAllTopRailxJoin();
             ViewBag.mStatus = _LNStatus.GetAllStatus();
+            ViewBag.cbTopRail = _LNTopRail.GetAllTopRail();
+            ViewBag.cbJoin = _LNJoin.GetAllJoin();
             return View();
         }
 

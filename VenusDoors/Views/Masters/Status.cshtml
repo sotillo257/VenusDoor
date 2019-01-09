@@ -101,15 +101,15 @@
                                         <div class="row">
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="Template" style="margin-top: 25px;">Id: </label>
-                                                <input type="text" name="id" class="form-control pd-y-12" readonly placeholder="">
+                                                <input type="text" name="id" class="form-control" readonly placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="Template" style="margin-top: 25px;">Description: </label>
-                                                <input type="text" name="id" class="form-control pd-y-12" placeholder="">
+                                                <input type="text" name="id" class="form-control" placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="Template" style="margin-top: 25px;">Group: </label>
-                                                <select style="height: 43px;" class="form-control pd-y-12" id="IdGroup" data-placeholder="">
+                                                <select style="width: 157px;" class="form-control select2" id="IdGroup" data-placeholder="">
                                                     @foreach (Model.Group item in ViewBag.cbGroup)
                                                     {
                                                         <option value="@item.Id">@item.Description</option>

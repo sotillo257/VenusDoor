@@ -31,7 +31,7 @@
                             <tr role="row" class="odd">
                                 <td tabindex="0" class="">@item.Id</td>
                                 <td class="">@item.Description</td>
-                                <td class="">@item.IdStatus</td>
+                                <td class="">@item.Status.Id</td>
                                 <td class="">
                                     <center>
                                         <a href="#" data-toggle="modal" data-target="#modaldemo1" value="@item.Id" class="Modificar btn btn-primary btn-icon">
@@ -145,15 +145,15 @@
                                         <div class="row">
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="Template" style="margin-top: 25px;">Id: </label>
-                                                <input type="text" name="id" class="form-control pd-y-12" readonly placeholder="">
+                                                <input type="text" name="id" class="form-control" readonly placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="Template" style="margin-top: 25px;">Description: </label>
-                                                <input type="text" name="id" class="form-control pd-y-12" placeholder="">
+                                                <input type="text" name="id" class="form-control" placeholder="">
                                             </div><!-- form-group -->
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="mStatus" style="margin-top: 25px;">Status: </label>
-                                                <select style="height: 43px;" class="form-control pd-y-12" id="mStatus" data-placeholder="">
+                                            <div class="col-xs-4 col-md-4">
+                                                <label for="Template" style="margin-top: 25px;">Status: </label>
+                                                <select style="width: 157px;" class="form-control select2" id="IdStatus" data-placeholder="">
                                                     @foreach (Model.Status item in ViewBag.mStatus)
                                                     {
                                                         <option value="@item.Id">@item.Description</option>
