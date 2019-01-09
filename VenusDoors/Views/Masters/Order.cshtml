@@ -33,11 +33,11 @@
                         {
                             <tr role="row" class="odd">
                                 <td tabindex="0" class="">@item.Id</td>
-                                <td class="">@item.IdUser</td>
+                                <td class="">@item.User.Id</td>
                                 <td class="">@item.Quantity</td>
                                 <td class="">@item.Total</td>
-                                <td class="">@item.IdType</td>
-                                <td class="">@item.IdStatus</td>
+                                <td class="">@item.Type.Id</td>
+                                <td class="">@item.Status.Id</td>
                                 <td class="">
                                     <center>
                                         <a href="#" data-toggle="modal" data-target="#modaldemo1" value="@item.Id" class="Modificar btn btn-primary btn-icon">
@@ -162,28 +162,44 @@
                                     <div class="col-md-12">
                                         <div class="row">
                                             <div class="col-xs-3 col-md-4">
-                                                <label for="Template" style="margin-top: 25px;">Id: </label>
+                                                <label for="Id" style="margin-top: 25px;">Id: </label>
+                                                <input type="text" name="id" class="form-control pd-y-12" readonly placeholder="">
+                                            </div><!-- form-group -->
+                                            <div class="col-xs-3 col-md-4">
+                                                <label for="cbUser" style="margin-top: 25px;">User: </label>
+                                                <select style="height: 43px;" class="form-control pd-y-12" id="cbUser" data-placeholder="">
+                                                    @foreach (Model.User item in ViewBag.cbUser)
+                                                    {
+                                                        <option value="@item.Id">@item.Email</option>
+                                                    }
+                                                </select>
+                                            </div><!-- form-group -->
+
+                                            <div class="col-xs-3 col-md-4">
+                                                <label for="Quantity" style="margin-top: 25px;">Quantity: </label>
                                                 <input type="text" name="id" class="form-control pd-y-12" placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-3 col-md-4">
-                                                <label for="Template" style="margin-top: 25px;">User: </label>
-                                                <select style="height: 43px;" class="form-control pd-y-12" id="IdUser" data-placeholder=""></select>
-                                            </div><!-- form-group -->
-                                            <div class="col-xs-3 col-md-4">
-                                                <label for="Template" style="margin-top: 25px;">Quantity: </label>
-                                                <input type="text" name="id" class="form-control pd-y-12" placeholder="">
-                                            </div><!-- form-group -->
-                                            <div class="col-xs-3 col-md-4">
-                                                <label for="Template" style="margin-top: 25px;">Total: </label>
-                                                <input type="text" name="id" class="form-control pd-y-12" placeholder="">
+                                                <label for="Total" style="margin-top: 25px;">Total: </label>
+                                                <input type="text" name="Total" class="form-control pd-y-12" placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-3 col-md-4">
                                                 <label for="Template" style="margin-top: 25px;">Type: </label>
-                                                <select style="height: 43px;" class="form-control pd-y-12" id="IdType" data-placeholder=""></select>
+                                                <select style="height: 43px;" class="form-control pd-y-12" id="IdType" data-placeholder="">
+                                                    @foreach (Model.Type item in ViewBag.cbType)
+                                                    {
+                                                        <option value="@item.Id">@item.Description</option>
+                                                    }
+                                                </select>
                                             </div><!-- form-group -->
-                                            <div class="col-xs-3 col-md-4">
-                                                <label for="Template" style="margin-top: 25px;">Status: </label>
-                                                <select style="height: 43px;" class="form-control pd-y-12" id="IdStatus" data-placeholder=""></select>
+                                            <div class="col-xs-4 col-md-3">
+                                                <label for="mStatus" style="margin-top: 25px;">Status: </label>
+                                                <select style="height: 43px;" class="form-control pd-y-12" id="mStatus" data-placeholder="">
+                                                    @foreach (Model.Status item in ViewBag.mStatus)
+                                                    {
+                                                        <option value="@item.Id">@item.Description</option>
+                                                    }
+                                                </select>
                                             </div><!-- form-group -->
                                         </div>
                                     </div><!-- pd-20 -->
