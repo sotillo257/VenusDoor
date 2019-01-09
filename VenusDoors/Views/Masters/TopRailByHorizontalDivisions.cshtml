@@ -31,9 +31,9 @@
                         {
                             <tr role="row" class="odd">
                                 <td tabindex="0" class="">@item.Id</td>
-                                <td class="">@item.IdTopRail</td>
-                                <td class="">@item.IdHorizontalDivisions</td>
-                                <td class="">@item.IdStatus</td>
+                                <td class="">@item.TopRail.Id</td>
+                                <td class="">@item.HorizontalDivisions.Id</td>
+                                <td class="">@item.Status.Id</td>
                                 <td class="">
                                     <center>
                                         <a href="#" data-toggle="modal" data-target="#modaldemo1" value="@item.Id" class="Modificar btn btn-primary btn-icon">
@@ -153,17 +153,32 @@
                                                 <label for="Template" style="margin-top: 25px;">Id: </label>
                                                 <input type="text" name="id" class="form-control pd-y-12" readonly placeholder="">
                                             </div><!-- form-group -->
-                                            <div class="col-xs-4 col-md-4">
-                                                <label for="Template" style="margin-top: 25px;">Top Rail: </label>
-                                                <select style="height: 43px;" class="form-control pd-y-12" id="IdTopRail" data-placeholder=""></select>
+                                            <div class="col-xs-4 col-md-3">
+                                                <label for="cbTopRail" style="margin-top: 25px;">Top Rail: </label>
+                                                <select style="height: 43px;" class="form-control pd-y-12" id="cbTopRail" data-placeholder="">
+                                                    @foreach (Model.TopRail item in ViewBag.cbTopRail)
+                                                    {
+                                                        <option value="@item.Id">@item.Description</option>
+                                                    }
+                                                </select>
                                             </div><!-- form-group -->
-                                            <div class="col-xs-4 col-md-4">
-                                                <label for="Template" style="margin-top: 25px;">Horizontal Divisions: </label>
-                                                <select style="height: 43px;" class="form-control pd-y-12" id="IdHorizontalDivisions" data-placeholder=""></select>
+                                            <div class="col-xs-4 col-md-3">
+                                                <label for="cbHorizontalDivisions" style="margin-top: 25px;">Horizontal Divisions: </label>
+                                                <select style="height: 43px;" class="form-control pd-y-12" id="cbHorizontalDivisions" data-placeholder="">
+                                                    @foreach (Model.HorizontalDivisions item in ViewBag.cbHorizontalDivisions)
+                                                    {
+                                                        <option value="@item.Id">@item.Quantity</option>
+                                                    }
+                                                </select>
                                             </div><!-- form-group -->
-                                            <div class="col-xs-4 col-md-4">
-                                                <label for="Template" style="margin-top: 25px;">Status: </label>
-                                                <select style="height: 43px;" class="form-control pd-y-12" id="IdStatus" data-placeholder=""></select>
+                                            <div class="col-xs-4 col-md-3">
+                                                <label for="mStatus" style="margin-top: 25px;">Status: </label>
+                                                <select style="height: 43px;" class="form-control pd-y-12" id="mStatus" data-placeholder="">
+                                                    @foreach (Model.Status item in ViewBag.mStatus)
+                                                    {
+                                                        <option value="@item.Id">@item.Description</option>
+                                                    }
+                                                </select>
                                             </div><!-- form-group -->
                                         </div>
                                     </div><!-- pd-20 -->

@@ -31,7 +31,7 @@
                             <tr role="row" class="odd">
                                 <td tabindex="0" class="">@item.Id</td>
                                 <td class="">@item.Description</td>
-                                <td class="">@item.IdGroup</td>
+                                <td class="">@item.Group.Id</td>
                                 <td class="">
                                     <center>
                                         <a href="#" data-toggle="modal" data-target="#modaldemo1" value="@item.Id" class="Modificar btn btn-primary btn-icon">
@@ -109,7 +109,12 @@
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="Template" style="margin-top: 25px;">Group: </label>
-                                                <select style="height: 43px;" class="form-control pd-y-12" id="IdGroup" data-placeholder=""></select>
+                                                <select style="height: 43px;" class="form-control pd-y-12" id="IdGroup" data-placeholder="">
+                                                    @foreach (Model.Group item in ViewBag.cbGroup)
+                                                    {
+                                                        <option value="@item.Id">@item.Description</option>
+                                                    }
+                                                </select>
                                             </div><!-- form-group -->
                                         </div>
                                     </div><!-- pd-20 -->
@@ -153,7 +158,12 @@
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="Template" style="margin-top: 25px;">Group: </label>
-                                                <select style="height: 43px;" class="form-control pd-y-12" id="IdGroup" data-placeholder=""></select>
+                                                <select style="height: 43px;" class="form-control pd-y-12" id="IdGroup" data-placeholder="">
+                                                    @foreach (Model.Group item in ViewBag.cbGroup)
+                                                    {
+                                                        <option value="@item.Id">@item.Description</option>
+                                                    }
+                                                </select>
                                             </div><!-- form-group -->
                                         </div>
                                     </div><!-- pd-20 -->
