@@ -17,8 +17,6 @@ namespace VenusDoors.Controllers
         BusinessLogic.lnBottomRail _LNBottomRail = new BusinessLogic.lnBottomRail();
         BusinessLogic.lnPreparation _LNPreparation = new BusinessLogic.lnPreparation();
         BusinessLogic.lnJoin _LNJoin = new BusinessLogic.lnJoin();
-        BusinessLogic.lnStileWidth _LNStileWidth = new BusinessLogic.lnStileWidth();
-        BusinessLogic.lnRailWidth _LNRailWidth = new BusinessLogic.lnRailWidth();
         BusinessLogic.lnInsideEdgeProfile _LNInsideEdgeProfile = new BusinessLogic.lnInsideEdgeProfile();
         BusinessLogic.lnOutsideEdgeProfile _LNOutsideEdgeProfile = new BusinessLogic.lnOutsideEdgeProfile();
         BusinessLogic.lnVerticalDivisions _LNVerticalDivisions = new BusinessLogic.lnVerticalDivisions();
@@ -78,8 +76,8 @@ namespace VenusDoors.Controllers
             ViewBag.mStatus = _LNStatus.GetAllStatus();
             ViewBag.cbDoorStyle = _LNStatus.GetAllStatus();
             ViewBag.cbMatarial = _LNMaterial.GetAllMaterial();
-            //ViewBag.cbStileWidth = _LNStileWidth.GetAllStileWidth();
-            //ViewBag.cbRailWidth = _LNRailWidth.GetAllRailWidth();
+            ViewBag.cbStileWidth = _LNStileWidth.GetAllStileWidth();
+            ViewBag.cbRailWidth = _LNRailWidth.GetAllRailWidth();
             return View();
         }
 
@@ -263,7 +261,7 @@ namespace VenusDoors.Controllers
             ViewBag.Masters = "active show-sub";
             ViewBag.RailWidth = "active";
             BusinessLogic.lnRailWidth _JES = new BusinessLogic.lnRailWidth();
-            //ViewBag.mRailWidth = _JES.GetAllRailWidth();
+            ViewBag.mRailWidth = _JES.GetAllRailWidth();
             ViewBag.mStatus = _LNStatus.GetAllStatus();
             return View();
         }
@@ -283,7 +281,7 @@ namespace VenusDoors.Controllers
             ViewBag.Masters = "active show-sub";
             ViewBag.StileWidth = "active";
             BusinessLogic.lnStileWidth _GRE = new BusinessLogic.lnStileWidth();
-            //ViewBag.mStileWidth = _GRE.GetAllStileWidth();
+            ViewBag.mStileWidth = _GRE.GetAllStileWidth();
             ViewBag.mStatus = _LNStatus.GetAllStatus();
             return View();
         }
