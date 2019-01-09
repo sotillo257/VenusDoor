@@ -212,31 +212,11 @@ namespace VenusDoors.Controllers
             return View();
         }
 
-        public ActionResult RailWidth()
-        {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.RailWidth = "active";
-            BusinessLogic.lnRailWidth _JES = new BusinessLogic.lnRailWidth();
-            ViewBag.mRailWidth = _JES.GetAllRailWidth();
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
-            return View();
-        }
-
         public ActionResult Status()
         {
             ViewBag.Masters = "active show-sub";
             ViewBag.Status = "active";
             BusinessLogic.lnStatus _LNStatus = new BusinessLogic.lnStatus();
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
-            return View();
-        }
-
-        public ActionResult StileWidth()
-        {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.StileWidth = "active";
-            BusinessLogic.lnStileWidth _GRE = new BusinessLogic.lnStileWidth();
-            ViewBag.mStileWidth = _GRE.GetAllStileWidth();
             ViewBag.mStatus = _LNStatus.GetAllStatus();
             return View();
         }

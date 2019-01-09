@@ -12,6 +12,8 @@ C:\Users\Javier Sotillo\Source\Repos\VenusDoor\DataAccess\bin\Debug\Model.pdb
 C:\Users\Javier Sotillo\Source\Repos\VenusDoor\DataAccess\obj\Debug\DataAccess.csprojResolveAssemblyReference.cache
 C:\Users\Javier Sotillo\Source\Repos\VenusDoor\DataAccess\obj\Debug\DataAccess.dll
 C:\Users\Javier Sotillo\Source\Repos\VenusDoor\DataAccess\obj\Debug\DataAccess.pdb
+C:\Desarrollo\VenusDoors\DataAccess\bin\Debug\MetodosDB.dll
+C:\Desarrollo\VenusDoors\DataAccess\bin\Debug\MetodosDB.pdb
 C:\Users\jesus\Source\Repos\VenusDoor\DataAccess\bin\Debug\DataAccess.dll
 C:\Users\jesus\Source\Repos\VenusDoor\DataAccess\bin\Debug\DataAccess.pdb
 C:\Users\jesus\Source\Repos\VenusDoor\DataAccess\bin\Debug\MetodosDB.dll
@@ -21,5 +23,3 @@ C:\Users\jesus\Source\Repos\VenusDoor\DataAccess\bin\Debug\MetodosDB.pdb
 C:\Users\jesus\Source\Repos\VenusDoor\DataAccess\obj\Debug\DataAccess.csprojResolveAssemblyReference.cache
 C:\Users\jesus\Source\Repos\VenusDoor\DataAccess\obj\Debug\DataAccess.dll
 C:\Users\jesus\Source\Repos\VenusDoor\DataAccess\obj\Debug\DataAccess.pdb
-C:\Desarrollo\VenusDoors\DataAccess\bin\Debug\MetodosDB.dll
-C:\Desarrollo\VenusDoors\DataAccess\bin\Debug\MetodosDB.pdb

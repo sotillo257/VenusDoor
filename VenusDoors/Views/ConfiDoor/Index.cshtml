@@ -183,6 +183,11 @@
         var urlGetAllHingeDirection = '@Url.Action("GetAllHingeDirection", "ConfiDoor")';
         var urlGetAllHingePositions = '@Url.Action("GetAllHingePositions", "ConfiDoor")';
         var urlInsertDoorsxUser = '@Url.Action("InsertDoorsxUser", "ConfiDoor")';
+
+        $(document).ready(function () {
+            var Doors = JSON.parse('@Html.Raw(ViewBag.Door)');
+            $("#cbPanelMaterial").val(Doors.PanelMaterial.Id);
+        });
     </script>
     @Scripts.Render("~/Scripts/js/ConfigDoor.Index.js")
     <script src="~/Content/lib/select2/js/select2.min.js"></script>

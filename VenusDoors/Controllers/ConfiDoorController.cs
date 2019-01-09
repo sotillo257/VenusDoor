@@ -16,7 +16,9 @@ namespace VenusDoors.Controllers
             BusinessLogic.lnDoors _LN = new BusinessLogic.lnDoors();
             if (Id > 0 )
             {
-                ViewBag.Door = _LN.GetDoorsById(Id.Value);
+                var Door = _LN.GetDoorsById(Id.Value);
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.Door = serializar.Serialize(Door);
             }           
             return View();
         }
@@ -224,9 +226,9 @@ namespace VenusDoors.Controllers
             {
                 Order order = new Order()
                 {
-                    IdUser = 6,
-                    IdStatus = 1,
-                    IdType = 1,
+                    User = new Model.User() { Id = 6 },
+                    Status = new Model.Status() { Id = 1} ,
+                    Type = new Model.Type() { Id = 1 },
                     Total = 100,
                     Quantity =  100,
                     CreationDate = DateTime.Now,

@@ -101,7 +101,7 @@ namespace DataAccess
                             Height = decimal.Parse(item["Height"].ToString()),
                             IsOpeningMeasurement = bool.Parse(item["IsOpeningMeasurement"].ToString()),
                             Quantity = int.Parse(item["Quantity"].ToString()),
-                            Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["Description"].ToString() },
+                            Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["DescripStatus"].ToString() },
                             CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             ModificationDate = (item["ModificationDate"].ToString() != "") ? DateTime.Parse(item["ModificationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             CreatorUser = int.Parse(item["CreatorUser"].ToString()),
