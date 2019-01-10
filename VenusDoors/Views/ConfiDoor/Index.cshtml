@@ -185,8 +185,11 @@
         var urlInsertDoorsxUser = '@Url.Action("InsertDoorsxUser", "ConfiDoor")';
 
         $(document).ready(function () {
-            var Doors = JSON.parse('@Html.Raw(ViewBag.Door)');
-            $("#cbPanelMaterial").val(Doors.PanelMaterial.Id);
+            var Door = JSON.parse('@Html.Raw(ViewBag.Door)');
+            //$("#cbMaterial option[value=" + Door.Material.Id + "]").attr("selected", true);
+            //$("#cbMaterial").val(Door.Material.Id);
+           
+       
         });
     </script>
     @Scripts.Render("~/Scripts/js/ConfigDoor.Index.js")
