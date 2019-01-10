@@ -172,6 +172,10 @@
     white-space: nowrap;
 }
 
+.pd-sm-bottom-30 {
+    padding-bottom: 30px
+}
+
 html {
   box-sizing: border-box;
   font-family: sans-serif;
@@ -2058,25 +2062,25 @@ fieldset[disabled] a.btn {
 
 .btn-success {
   color: #fff;
-  background-color: #23BF08;
-  border-color: #23BF08;
+  background-color: #15806f;
+  border-color: #15806f;
 }
 .btn-success:hover {
   color: #fff;
-  background-color: #1c9a06;
-  border-color: #1a8e06;
+  background-color: #0c443b;
+  border-color: #0c443b;
 }
 .btn-success:focus, .btn-success.focus {
-  box-shadow: 0 0 0 3px rgba(35, 191, 8, 0.5);
+  box-shadow: 0 0 0 3px rgba(1, 77, 65, 0.44);
 }
 .btn-success.disabled, .btn-success:disabled {
-  background-color: #23BF08;
-  border-color: #23BF08;
+  background-color: #014d41;
+  border-color: #014d41;
 }
 .btn-success:active, .btn-success.active, .show > .btn-success.dropdown-toggle {
-  background-color: #1c9a06;
+  background-color: #0c443b;
   background-image: none;
-  border-color: #1a8e06;
+  border-color: #0c443b;
 }
 
 #datatable1 {

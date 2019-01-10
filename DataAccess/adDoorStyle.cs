@@ -28,7 +28,7 @@ namespace DataAccess
                         doorStyle = new DoorStyle()
                         {
                             Id = int.Parse(item["Id"].ToString()),
-                            IdStatus = int.Parse(item["IdStatus"].ToString()),
+                            Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["DescripStatus"].ToString() },
                             Description = item["Description"].ToString(),
                             CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             ModificationDate = (item["ModificationDate"].ToString() != "") ? DateTime.Parse(item["ModificationDate"].ToString()) : DateTime.Parse("01/01/1900"),
@@ -62,7 +62,7 @@ namespace DataAccess
                         doorStyle.Add(new DoorStyle()
                         {
                             Id = int.Parse(item["Id"].ToString()),
-                            IdStatus = int.Parse(item["IdStatus"].ToString()),
+                            Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["DescripStatus"].ToString() },
                             Description = item["Description"].ToString(),
                             CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             ModificationDate = (item["ModificationDate"].ToString() != "") ? DateTime.Parse(item["ModificationDate"].ToString()) : DateTime.Parse("01/01/1900"),
@@ -84,7 +84,7 @@ namespace DataAccess
         public int InsertDoorStyle(DoorStyle pDoorStyle)
         {
             string sql = @"[spInsertDoorStyle] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}'";
-            sql = string.Format(sql, pDoorStyle.Description, pDoorStyle.IdStatus, pDoorStyle.CreationDate.ToString("yyyyMMdd"), 
+            sql = string.Format(sql, pDoorStyle.Description, pDoorStyle.Status.Id, pDoorStyle.CreationDate.ToString("yyyyMMdd"), 
                 pDoorStyle.CreatorUser, pDoorStyle.ModificationDate.ToString("yyyyMMdd"), pDoorStyle.ModificationUser);
             try
             {
@@ -99,7 +99,7 @@ namespace DataAccess
         public void UpdateDoorStyle(DoorStyle pDoorStyle)
         {
             string sql = @"[spUpdateDoorStyle] '{0}', '{1}', '{2}', '{3}'";
-            sql = string.Format(sql, pDoorStyle.Description, pDoorStyle.IdStatus, pDoorStyle.ModificationDate.ToString("yyyyMMdd"), 
+            sql = string.Format(sql, pDoorStyle.Description, pDoorStyle.Status.Id, pDoorStyle.ModificationDate.ToString("yyyyMMdd"), 
                 pDoorStyle.ModificationUser);
             try
             {

@@ -28,9 +28,9 @@ namespace DataAccess
                         matrail = new MaterialxBottomRail()
                         {
                             Id = int.Parse(item["Id"].ToString()),
-                            IdMaterial = int.Parse(item["IdMaterial"].ToString()),
-                            IdBottomRail = int.Parse(item["IdBottomRail"].ToString()),
-                            IdStatus = int.Parse(item["IdStatus"].ToString()),
+                            Material = new Material() { Id = int.Parse(item["IdMaterial"].ToString()), Description = item["DescripMaterial"].ToString(), },
+                            BottomRail = new BottomRail() { Id = int.Parse(item["IdBottomRail"].ToString()), Description = item["DescripBottomRail"].ToString(), },
+                            Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["DescripStatus"].ToString() },
                             CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             ModificationDate = (item["ModificationDate"].ToString() != "") ? DateTime.Parse(item["ModificationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             CreatorUser = int.Parse(item["CreatorUser"].ToString()),
@@ -63,9 +63,9 @@ namespace DataAccess
                         matrail.Add(new MaterialxBottomRail()
                         {
                             Id = int.Parse(item["Id"].ToString()),
-                            IdMaterial = int.Parse(item["IdMaterial"].ToString()),
-                            IdBottomRail = int.Parse(item["IdBottomRail"].ToString()),
-                            IdStatus = int.Parse(item["IdStatus"].ToString()),
+                            Material = new Material() { Id = int.Parse(item["IdMaterial"].ToString()), Description = item["DescripMaterial"].ToString(), },
+                            BottomRail = new BottomRail() { Id = int.Parse(item["IdBottomRail"].ToString()), Description = item["DescripBottomRail"].ToString(), },
+                            Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["DescripStatus"].ToString() },
                             CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             ModificationDate = (item["ModificationDate"].ToString() != "") ? DateTime.Parse(item["ModificationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             CreatorUser = int.Parse(item["CreatorUser"].ToString()),
@@ -86,8 +86,8 @@ namespace DataAccess
         public int InsertMaterialxBottomRail(MaterialxBottomRail pMaterialxBottomRail)
         {
             string sql = @"[spInsertMaterialxBottomRail] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}','{6}'";
-            sql = string.Format(sql, pMaterialxBottomRail.IdMaterial, pMaterialxBottomRail.IdBottomRail, pMaterialxBottomRail.IdStatus, pMaterialxBottomRail.CreationDate.ToString("yyyyMMdd"),
-                pMaterialxBottomRail.CreatorUser, pMaterialxBottomRail.ModificationDate.ToString("yyyyMMdd"), pMaterialxBottomRail.ModificationUser);
+            sql = string.Format(sql, pMaterialxBottomRail.Material.Id, pMaterialxBottomRail.BottomRail.Id, pMaterialxBottomRail.Status.Id, pMaterialxBottomRail.CreationDate.ToString("yyyy-MM-dd"),
+                pMaterialxBottomRail.CreatorUser, pMaterialxBottomRail.ModificationDate.ToString("yyyy-MM-dd"), pMaterialxBottomRail.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -101,7 +101,7 @@ namespace DataAccess
         public void UpdateMaterialxBottomRail(MaterialxBottomRail pMaterialxBottomRail)
         {
             string sql = @"[spUpdateMaterialxBottomRail] '{0}', '{1}', '{2}', '{3}', '{4}'";
-            sql = string.Format(sql, pMaterialxBottomRail.IdMaterial, pMaterialxBottomRail.IdBottomRail, pMaterialxBottomRail.IdStatus, pMaterialxBottomRail.ModificationDate.ToString("yyyyMMdd"),
+            sql = string.Format(sql, pMaterialxBottomRail.Material.Id, pMaterialxBottomRail.BottomRail.Id, pMaterialxBottomRail.Status.Id, pMaterialxBottomRail.ModificationDate.ToString("yyyy-MM-dd"),
                 pMaterialxBottomRail.ModificationUser);
             try
             {

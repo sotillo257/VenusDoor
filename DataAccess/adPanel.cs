@@ -28,7 +28,7 @@ namespace DataAccess
                         pan = new Panel()
                         {
                             Id = int.Parse(item["Id"].ToString()),
-                            IdStatus = int.Parse(item["IdStatus"].ToString()),
+                            Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["DescripStatus"].ToString() },
                             Description = item["Description"].ToString(),
                             CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             ModificationDate = (item["ModificationDate"].ToString() != "") ? DateTime.Parse(item["ModificationDate"].ToString()) : DateTime.Parse("01/01/1900"),
@@ -62,7 +62,7 @@ namespace DataAccess
                         pan.Add(new Panel()
                         {
                             Id = int.Parse(item["Id"].ToString()),
-                            IdStatus = int.Parse(item["IdStatus"].ToString()),
+                            Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["DescripStatus"].ToString() },
                             Description = item["Description"].ToString(),
                             CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             ModificationDate = (item["ModificationDate"].ToString() != "") ? DateTime.Parse(item["ModificationDate"].ToString()) : DateTime.Parse("01/01/1900"),
@@ -84,8 +84,8 @@ namespace DataAccess
         public int InsertPanel(Panel pPanel)
         {
             string sql = @"[spInsertPanel] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}'";
-            sql = string.Format(sql, pPanel.Description, pPanel.IdStatus, pPanel.CreationDate.ToString("yyyyMMdd"),
-                pPanel.CreatorUser, pPanel.ModificationDate.ToString("yyyyMMdd"), pPanel.ModificationUser);
+            sql = string.Format(sql, pPanel.Description, pPanel.Status.Id, pPanel.CreationDate.ToString("yyyy-MM-dd"),
+                pPanel.CreatorUser, pPanel.ModificationDate.ToString("yyyy-MM-dd"), pPanel.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -99,7 +99,7 @@ namespace DataAccess
         public void UpdatePanel(Panel pPanel)
         {
             string sql = @"[spUpdatePanel] '{0}', '{1}', '{2}', '{3}'";
-            sql = string.Format(sql, pPanel.Description, pPanel.IdStatus, pPanel.ModificationDate.ToString("yyyyMMdd"),
+            sql = string.Format(sql, pPanel.Description, pPanel.Status.Id, pPanel.ModificationDate.ToString("yyyy-MM-dd"),
                 pPanel.ModificationUser);
             try
             {

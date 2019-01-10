@@ -1,10 +1,12 @@
 ﻿$(document).ready(function () {
     GetAllMaterial();
+    GetAllInsideEdgeProfile();
+    GetAllOutsideEdgeProfile();
 	GetAllDoorStyle();
-	GetAllInsideEdgeProfile();
-	GetAllOutsideEdgeProfile();
 	GetAllBottomRail();
 	GetAllTopRail();
+	GetAllJoin();
+	GetAllPreparation();
 	GetAllPanel();
 	GetAllPanelMaterial();
 	GetAllVerticalDivisions();
@@ -183,6 +185,64 @@ function GetAllTopRail() {
             }
             else {
                 MensajeModal("Error al obtener Top Rail", 5);
+            }
+        },
+        error: function (err) {
+            MensajeModal(msgErrorinterno, 5);
+        }
+    });
+}
+
+function GetAllJoin() {
+    $.ajax({
+        url: urlGetAllJoin,
+        cache: false,
+        type: 'POST',
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        success: function (data) {
+            if (data != null) {
+                var option = '';
+                for (var i = 0; i < data.length; i++) {
+
+                    option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
+
+
+                }
+                $("#cbJoin").empty().append(option);
+
+            }
+            else {
+                MensajeModal("Error al obtener Join", 5);
+            }
+        },
+        error: function (err) {
+            MensajeModal(msgErrorinterno, 5);
+        }
+    });
+}
+
+function GetAllPreparation() {
+    $.ajax({
+        url: urlGetAllPreparation,
+        cache: false,
+        type: 'POST',
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        success: function (data) {
+            if (data != null) {
+                var option = '';
+                for (var i = 0; i < data.length; i++) {
+
+                    option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
+
+
+                }
+                $("#cbPreparation").empty().append(option);
+
+            }
+            else {
+                MensajeModal("Error al obtener Preparation", 5);
             }
         },
         error: function (err) {
@@ -370,20 +430,34 @@ function InsertDoorsxUser() {
                 var datos =
                     {
                         pDoorsxUser: {
-                             
+                            User: { Id: 6 },
+                            Status: {Id: 1},
                             Material: { Id: $("#cbMaterial").val() },                            
                             DoorStyle: { Id: $("#cbDoorStyle").val() },                                                        
                             TopRail: { Id: $("#cbTopRail").val() },
                             BottomRail: { Id: $("#cbBottomRail").val() },
-                            OutsideEDgeProfile: { Id: $("#cbOutsideEdgeProfile").val() },
+                            Preparation: { Id: $("#cbPreparation").val() },
+                            Panel: { Id: $("#cbPanel").val() },
+                            PanelMaterial: { Id: $("#cbPanelMaterial").val() },
+                            IsOpeningMeasurement: $("#cbIsOpeningMeasurement").val(),
+                            Join: { Id: $("#cbJoin").val() },
+                            OutsideEdgeProfile: { Id: $("#cbOutsideEdgeProfile").val() },
                             InsideEdgeProfile: { Id: $("#cbInsideEdgeProfile").val() },                            
                             VerticalDivisions: { Id: $("#cbVerticalDivisions").val() },
-                            HorizontalDivisions: { Id: $("#cbHorizontalDivisions").val() },                         
+                            HorizontalDivisions: { Id: $("#cbHorizontalDivisions").val() },
+                            isDrill: $("#cbisDrill").val(),
                             HingeDirection: { Id: $("#cbHingeDirection").val() },
                             HingePositions: { Id: $("#cbHingePositions").val() },                            
                             Width: $("#iptWidth").val(),
                             Height: $("#iptHeight").val(),
                             Quantity: $("#iptQuantity").val(),
+                            Picture: 'PruebaPicture',
+                            ProfilePicture: 'PruebaPP',
+                            CreatorUser: 6,
+                            ModificationUser: 6,
+                            
+
+
                            
                         }
                     };

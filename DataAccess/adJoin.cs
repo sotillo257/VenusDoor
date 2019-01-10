@@ -28,8 +28,8 @@ namespace DataAccess
                         join = new Join()
                         {
                             Id = int.Parse(item["Id"].ToString()),
-                            IdStatus = int.Parse(item["IdStatus"].ToString()),
                             Description = item["Description"].ToString(),
+                            Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["DescripStatus"].ToString() },
                             CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             ModificationDate = (item["ModificationDate"].ToString() != "") ? DateTime.Parse(item["ModificationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             CreatorUser = int.Parse(item["CreatorUser"].ToString()),
@@ -62,8 +62,8 @@ namespace DataAccess
                         join.Add(new Join()
                         {
                             Id = int.Parse(item["Id"].ToString()),
-                            IdStatus = int.Parse(item["IdStatus"].ToString()),
                             Description = item["Description"].ToString(),
+                            Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["DescripStatus"].ToString() },
                             CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             ModificationDate = (item["ModificationDate"].ToString() != "") ? DateTime.Parse(item["ModificationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             CreatorUser = int.Parse(item["CreatorUser"].ToString()),
@@ -84,8 +84,8 @@ namespace DataAccess
         public int InsertJoin(Join pjo)
         {
             string sql = @"[spInsertJoin] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}'";
-            sql = string.Format(sql, pjo.Description, pjo.IdStatus, pjo.CreationDate.ToString("yyyyMMdd"),
-                pjo.CreatorUser, pjo.ModificationDate.ToString("yyyyMMdd"), pjo.ModificationUser);
+            sql = string.Format(sql, pjo.Description, pjo.Status.Id, pjo.CreationDate.ToString("yyyy-MM-dd"),
+                pjo.CreatorUser, pjo.ModificationDate.ToString("yyyy-MM-dd"), pjo.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -99,7 +99,7 @@ namespace DataAccess
         public void UpdateJoin(Join pjo)
         {
             string sql = @"[spUpdateJoin] '{0}', '{1}', '{2}', '{3}'";
-            sql = string.Format(sql, pjo.Description, pjo.IdStatus, pjo.ModificationDate.ToString("yyyyMMdd"),
+            sql = string.Format(sql, pjo.Description, pjo.Status.Id, pjo.ModificationDate.ToString("yyyy-MM-dd"),
                 pjo.ModificationUser);
             try
             {

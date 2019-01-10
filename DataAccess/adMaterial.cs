@@ -28,7 +28,7 @@ namespace DataAccess
                         mate = new Material()
                         {
                             Id = int.Parse(item["Id"].ToString()),
-                            IdStatus = int.Parse(item["IdStatus"].ToString()),
+                            Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["DescripStatus"].ToString() },
                             Description = item["Description"].ToString(),
                             CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             ModificationDate = (item["ModificationDate"].ToString() != "") ? DateTime.Parse(item["ModificationDate"].ToString()) : DateTime.Parse("01/01/1900"),
@@ -62,7 +62,7 @@ namespace DataAccess
                         mate.Add(new Material()
                         {
                             Id = int.Parse(item["Id"].ToString()),
-                            IdStatus = int.Parse(item["IdStatus"].ToString()),
+                            Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["DescripStatus"].ToString() },
                             Description = item["Description"].ToString(),
                             CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             ModificationDate = (item["ModificationDate"].ToString() != "") ? DateTime.Parse(item["ModificationDate"].ToString()) : DateTime.Parse("01/01/1900"),
@@ -84,8 +84,8 @@ namespace DataAccess
         public int InsertMaterial(Material pMaterial)
         {
             string sql = @"[spInsertMaterial] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}'";
-            sql = string.Format(sql, pMaterial.Description, pMaterial.IdStatus, pMaterial.CreationDate.ToString("yyyyMMdd"),
-                pMaterial.CreatorUser, pMaterial.ModificationDate.ToString("yyyyMMdd"), pMaterial.ModificationUser);
+            sql = string.Format(sql, pMaterial.Description, pMaterial.Status.Id, pMaterial.CreationDate.ToString("yyyy-MM-dd"),
+                pMaterial.CreatorUser, pMaterial.ModificationDate.ToString("yyyy-MM-dd"), pMaterial.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -99,7 +99,7 @@ namespace DataAccess
         public void UpdateMaterial(Material pMaterial)
         {
             string sql = @"[spUpdateMaterial] '{0}', '{1}', '{2}', '{3}'";
-            sql = string.Format(sql, pMaterial.Description, pMaterial.IdStatus, pMaterial.ModificationDate.ToString("yyyyMMdd"),
+            sql = string.Format(sql, pMaterial.Description, pMaterial.Status.Id, pMaterial.ModificationDate.ToString("yyyy-MM-dd"),
                 pMaterial.ModificationUser);
             try
             {

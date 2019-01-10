@@ -16,7 +16,9 @@ namespace VenusDoors.Controllers
             BusinessLogic.lnDoors _LN = new BusinessLogic.lnDoors();
             if (Id > 0 )
             {
-                ViewBag.Door = _LN.GetDoorsById(Id.Value);
+                var Door = _LN.GetDoorsById(Id.Value);
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.Door = serializar.Serialize(Door);
             }           
             return View();
         }
@@ -98,6 +100,34 @@ namespace VenusDoors.Controllers
             {
                 BusinessLogic.lnTopRail _LN = new BusinessLogic.lnTopRail();
                 return Json(_LN.GetAllTopRail());
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult GetAllJoin()
+        {
+            try
+            {
+                BusinessLogic.lnJoin _LN = new BusinessLogic.lnJoin();
+                return Json(_LN.GetAllJoin());
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult GetAllPreparation()
+        {
+            try
+            {
+                BusinessLogic.lnPreparation _LN = new BusinessLogic.lnPreparation();
+                return Json(_LN.GetAllPreparation());
             }
             catch
             {
@@ -196,11 +226,11 @@ namespace VenusDoors.Controllers
             {
                 Order order = new Order()
                 {
-                    IdUser = 6,
-                    IdStatus = 1,
-                    IdType = 1,
+                    User = new Model.User() { Id = 6 },
+                    Status = new Model.Status() { Id = 1} ,
+                    Type = new Model.Type() { Id = 1 },
                     Total = 100,
-                    Quantity = pDoorsxUser.Quantity,
+                    Quantity =  100,
                     CreationDate = DateTime.Now,
                     CreatorUser = 6,
                     ModificationDate = DateTime.Now,
@@ -211,10 +241,8 @@ namespace VenusDoors.Controllers
                 BusinessLogic.lnOrder _LNOrder = new BusinessLogic.lnOrder();
                 int IdOrder = _LNOrder.InsertOrder(order);
                 order.Id = IdOrder;
-                pDoorsxUser.Order.IdStatus = order.IdStatus;
-                pDoorsxUser.User.Id = order.IdStatus;
-                pDoorsxUser.CreatorUser = order.CreatorUser;
-                pDoorsxUser.ModificationUser = order.ModificationUser;
+                pDoorsxUser.CreationDate = DateTime.Now;
+                pDoorsxUser.ModificationDate = DateTime.Now;
                 pDoorsxUser.Order = order;
                 BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
                 return Json(_LN.InsertDoorsxUser(pDoorsxUser));

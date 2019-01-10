@@ -46,44 +46,45 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr role="row" class="odd">
-                            <td tabindex="0" class="">1</td>
-                            <td class="">Active</td>
-                            <td class="">Active</td>
-                            <td class="">Active</td>
-                            <td class="">Active</td>
-                            <td class="">Active</td>
-                            <td class="">Active</td>
-                            <td class="">Active</td>
-                            <td class="">Active</td>
-                            <td class="">Active</td>
-                            <td class="">Active</td>
-                            <td class="">Active</td>
-                            <td class="">Active</td>
-                            <td class="">Active</td>
-                            <td class="">Active</td>
-                            <td class="">Active</td>
-                            <td class="">Active</td>
-                            <td class="">Active</td>
-                            <td class="">Active</td>
-                            <td class="">Active</td>
-                            <td class="">Active</td>
-                            <td class="">Active</td>
-                            <td class="">Active</td>
-                            <td class="">
-                                <center>
-                                    <a href="#" data-toggle="modal" data-target="#modaldemo2" class="btn btn-danger btn-icon">
-                                        <div><i class="fa fa-trash"></i></div>
-                                    </a>
-                                    <a href="#" data-toggle="modal" data-target="#modaldemo" class="btn btn-success btn-icon">
-                                        <div><i class="fa fa-plus"></i></div>
-                                    </a>
-                                    <a href="#" data-toggle="modal" data-target="#modaldemo1" class="btn btn-primary btn-icon">
-                                        <div><i class="fa fa-gear"></i></div>
-                                    </a>
-                                </center>
-                            </td>
-                        </tr>
+                        @foreach (Model.DoorsxUser item in ViewBag.mDoorxUser)
+                        {
+                            <tr role="row" class="odd">
+                                <td tabindex="0" class="">@item.Id</td>
+                                <td class="">@item.Order.Id</td>
+                                <td class="">@item.DoorStyle.Id</td>
+                                <td class="">@item.Material.Id</td>
+                                <td class="">@item.TopRail.Id</td>
+                                <td class="">@item.BottomRail.Id</td>
+                                <td class="">@item.Preparation.Id</td>
+                                <td class="">@item.Join.Id</td>
+                                <td class="">@item.OutsideEdgeProfile.Id</td>
+                                <td class="">@item.InsideEdgeProfile.Id</td>
+                                <td class="">@item.VerticalDivisions.Id</td>
+                                <td class="">@item.HorizontalDivisions.Id</td>
+                                <td class="">@item.HingeDirection.Id</td>
+                                <td class="">@item.HingePositions.Id</td>
+                                <td class="">@item.Panel.Id</td>
+                                <td class="">@item.PanelMaterial.Id</td>
+                                <td class="">@item.isDrill</td>
+                                <td class="">@item.Width</td>
+                                <td class="">@item.Height</td>
+                                <td class="">@item.IsOpeningMeasurement</td>
+                                <td class="">@item.Quantity</td>
+                                <td class="">@item.User</td>
+                                <td class="">@item.Status.Id</td>
+                                <td class="">
+                                    <center>
+                                        <a href="#" data-toggle="modal" data-target="#modaldemo1" value="@item.Id" class="Modificar btn btn-primary btn-icon">
+                                            <div><i class="fa fa-edit"></i></div>
+                                        </a>
+                                        <a href="#" data-toggle="modal" data-target="#modaldemo2" value="@item.Id" class="Eliminar btn btn-danger btn-icon">
+                                            <div><i class="fa fa-trash"></i></div>
+                                        </a>
+                                    </center>
+                                </td>
+                            </tr>
+                        }
+                        
 
                     </tbody>
                 </table>

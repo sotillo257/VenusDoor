@@ -28,7 +28,7 @@ namespace DataAccess
                         bottomrail = new BottomRail()
                         {
                             Id = int.Parse(item["Id"].ToString()),
-                            IdStatus = int.Parse(item["IdStatus"].ToString()),
+                            Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["DescripStatus"].ToString() },
                             Description = item["Description"].ToString(),
                             CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             ModificationDate = (item["ModificationDate"].ToString() != "") ? DateTime.Parse(item["ModificationDate"].ToString()) : DateTime.Parse("01/01/1900"),
@@ -62,7 +62,7 @@ namespace DataAccess
                         bottomrail.Add(new BottomRail()
                         {
                             Id = int.Parse(item["Id"].ToString()),
-                            IdStatus = int.Parse(item["IdStatus"].ToString()),
+                            Status = new Status() {Id = int.Parse(item["IdStatus"].ToString()), Description = item["Description"].ToString() },
                             Description = item["Description"].ToString(),
                             CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             ModificationDate = (item["ModificationDate"].ToString() != "") ? DateTime.Parse(item["ModificationDate"].ToString()) : DateTime.Parse("01/01/1900"),
@@ -84,7 +84,7 @@ namespace DataAccess
         public int InsertBottomRail(BottomRail pBottomRail)
         {
             string sql = @"[spInsertBottomRail] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}'";
-            sql = string.Format(sql, pBottomRail.Description, pBottomRail.IdStatus, pBottomRail.CreationDate.ToString("yyyyMMdd"),
+            sql = string.Format(sql, pBottomRail.Description, pBottomRail.Status.Id, pBottomRail.CreationDate.ToString("yyyyMMdd"),
                 pBottomRail.CreatorUser, pBottomRail.ModificationDate.ToString("yyyyMMdd"), pBottomRail.ModificationUser);
             try
             {
@@ -99,7 +99,7 @@ namespace DataAccess
         public void UpdateBottomRail(BottomRail pBottomRail)
         {
             string sql = @"[spUpdateBottomRail] '{0}', '{1}', '{2}', '{3}'";
-            sql = string.Format(sql, pBottomRail.Description, pBottomRail.IdStatus, pBottomRail.ModificationDate.ToString("yyyyMMdd"),
+            sql = string.Format(sql, pBottomRail.Description, pBottomRail.Status.Id, pBottomRail.ModificationDate.ToString("yyyyMMdd"),
                 pBottomRail.ModificationUser);
             try
             {

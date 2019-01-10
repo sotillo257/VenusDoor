@@ -34,30 +34,30 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr role="row" class="odd">
-                                <td tabindex="0" class="">1</td>
-                                <td class="">Active</td>
-                                <td class="">Active</td>
-                                <td class="">Active</td>
-                                <td class="">Active</td>
-                                <td class="">Active</td>
-                                <td class="">Active</td>
-                                <td class="">Active</td>
-                                <td class="">Active</td>
-                                <td class="">Active</td>
-                                <td class="">Active</td>
-                                <td class="">
-                                    <a href="#" data-toggle="modal" data-target="#modaldemo2" class="btn btn-danger btn-icon">
-                                        <div><i class="fa fa-trash"></i></div>
-                                    </a>
-                                    <a href="#" data-toggle="modal" data-target="#modaldemo" class="btn btn-success btn-icon">
-                                        <div><i class="fa fa-plus"></i></div>
-                                    </a>
-                                    <a href="#" data-toggle="modal" data-target="#modaldemo1" class="btn btn-primary btn-icon">
-                                        <div><i class="fa fa-gear"></i></div>
-                                    </a>
-                                </td>
-                            </tr>
+                            @foreach (Model.DoorsPrices item in ViewBag.mDoorsPrices)
+                            {
+                                <tr role="row" class="odd">
+                                    <td tabindex="0" class="">@item.Id</td>
+                                    <td class="">@item.DoorStyle.Id</td>
+                                    <td class="">@item.Material.Id</td>
+                                    @*<td class="">@item.IdStileWidth</td>
+                                    <td class="">@item.IdRailWidth</td>*@
+                                    <td class="">@item.BasePrice</td>
+                                    <td class="">@item.AdditionalSFPrice</td>
+                                    <td class="">@item.VerticalAdditionalInchPrice</td>
+                                    <td class="">@item.HorizontalBase1FLPrice</td>
+                                    <td class="">@item.HorizontalAdditionalInchPrice</td>
+                                    <td class="">@item.Status.Id</td>
+                                    <td class="">
+                                        <a href="#" data-toggle="modal" data-target="#modaldemo1" value="@item.Id" class="Modificar btn btn-primary btn-icon">
+                                            <div><i class="fa fa-edit"></i></div>
+                                        </a>
+                                        <a href="#" data-toggle="modal" data-target="#modaldemo2" value="@item.Id" class="btn btn-danger btn-icon">
+                                            <div><i class="fa fa-trash"></i></div>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
 
                         </tbody>
                     </table>
@@ -90,10 +90,62 @@
             $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
 
         });
+        $(function () {
+            'use strict'
+
+            $('.form-layout .form-control').on('focusin', function () {
+                $(this).closest('.form-group').addClass('form-group-active');
+            });
+
+            $('.form-layout .form-control').on('focusout', function () {
+                $(this).closest('.form-group').removeClass('form-group-active');
+            });
+
+            // Select2
+            $('#select2-a, #select2-b').select2({
+                minimumResultsForSearch: Infinity
+            });
+
+            $('#select2-a').on('select2:opening', function (e) {
+                $(this).closest('.form-group').addClass('form-group-active');
+            });
+
+            $('#select2-a').on('select2:closing', function (e) {
+                $(this).closest('.form-group').removeClass('form-group-active');
+            });
+
+        });
     </script>
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>
     <script src="~/Content/lib/select2/js/select2.min.js"></script>
+    <script src="~/Content/lib/select2/js/select2.full.min.js"></script>
+
+<script type="text/javascript">
+
+        $(document).ready(function () {
+            var listDoorP = JSON.parse('@Html.Raw(ViewBag.ListDoorsPrices)');
+            $(document).on('click', '.Modificar', function (event) {
+                for (var i = 0; i < listDoorP.length; i++) {
+                    if (listDoorP[i].Id == $(this).attr('value')) {
+                        $('#txtId').val(listDoorP[i].Id);
+                        $('#cbDoorStyle').val(listDoorP[i].DoorStyle.Id);
+                        $('#cbMatarial').val(listDoorP[i].Material.Id);
+                        $('#txtBasePrice').val(listDoorP[i].BasePrice);
+                        $('#txtAdditinalSFPrice').val(listDoorP[i].AdditionalSFPrice);
+                        $('#IdStatus').val(listDoorP[i].Status.Id);
+                        $('#txtidVerticalBase1FLPrice').val(listDoorP[i].VerticalAdditionalInchPrice);
+                        $('#txtHorizontalBase1FLPrice').val(listDoorP[i].HorizontalBase1FLPrice);
+                        $('#txtHorizontalAdditionalInchPrice').val(listDoorP[i].HorizontalAdditionalInchPrice);
+                    }
+                }
+            });
+
+
+        });
+
+</script>
+
 }
 <div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div>
 
@@ -191,47 +243,82 @@
                                         <div class="row">
                                             <div class="col-xs-4 col-md-3">
                                                 <label for="Template" style="margin-top: 25px;">Id: </label>
-                                                <input type="text" name="id" class="form-control pd-y-12" placeholder="">
+                                                <input type="text" name="id" id="txtId" class="form-control" readonly placeholder="">
                                             </div><!-- form-group -->
+
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="Template" style="margin-top: 25px;">Door Style: </label>
-                                                <select style="height: 43px;" class="form-control pd-y-12" id="IdDoorStyle" data-placeholder=""></select>
+                                                <label for="cbDoorStyle" style="margin-top: 25px;">Door Style: </label>
+                                                <select style="width: 157px;" class="form-control select2" id="cbDoorStyle" data-placeholder="">
+                                                    @foreach (Model.DoorStyle item in ViewBag.cbDoorStyle)
+                                                    {
+                                                        <option value="@item.Id">@item.Description</option>
+                                                    }
+                                                </select>
                                             </div><!-- form-group -->
+
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="Template" style="margin-top: 25px;">Material: </label>
-                                                <select style="height: 43px;" class="form-control pd-y-12" id="IdMaterial" data-placeholder=""></select>
+                                                <label for="cbMatarial" style="margin-top: 25px;">Material: </label>
+                                                <select style="width: 157px;" class="form-control select2" id="cbMatarial" data-placeholder="">
+                                                    @foreach (Model.Material item in ViewBag.cbMatarial)
+                                                    {
+                                                        <option value="@item.Id">@item.Description</option>
+                                                    }
+                                                </select>
                                             </div><!-- form-group -->
+
+                                            @*<div class="col-xs-4 col-md-3">
+                                                <label for="cbStileWidth" style="margin-top: 25px;">Stile Width: </label>
+                                                <select style="width: 157px;" class="form-control select2" id="cbStileWidth" data-placeholder="">
+                                                    @foreach (Model.StileWidth item in ViewBag.cbStileWidth)
+                                                    {
+                                                        <option value="@item.Id">@item.Width</option>
+                                                    }
+                                                </select>
+                                            </div>*@<!-- form-group -->
+
+                                            @*<div class="col-xs-4 col-md-3">
+                                                <label for="cbRailWidth" style="margin-top: 25px;">Rail Width: </label>
+                                                <select style="width: 157px;" class="form-control select2" id="cbRailWidth" data-placeholder="">
+                                                    @foreach (Model.RailWidth item in ViewBag.cbRailWidth)
+                                                    {
+                                                        <option value="@item.Id">@item.Width</option>
+                                                    }
+                                                </select>
+                                            </div>*@<!-- form-group -->
+
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="Template pd-y-12" style="margin-top: 25px;">Stile Width: </label>
-                                                <select style="height: 43px;" class="form-control pd-y-12" id="IdStileWidth" data-placeholder=""></select>
+                                                <label for="txtBasePrice" style="margin-top: 25px;">Base Price: </label>
+                                                <input type="text" name="id" id="txtBasePrice" class="form-control" placeholder="">
                                             </div><!-- form-group -->
+
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="Template" style="margin-top: 25px;">Rail Width: </label>
-                                                <select style="height: 43px;" class="form-control pd-y-12" id="IdRailWidth" data-placeholder=""></select>
+                                                <label for="Template" style="margin-top: 25px;">Additional SF Price: </label>
+                                                <input type="text" name="id" id="txtAdditinalSFPrice" class="form-control" placeholder="">
                                             </div><!-- form-group -->
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="Template" style="margin-top: 25px;">Base Price: </label>
-                                                <input type="text" name="id" class="form-control pd-y-12" placeholder="">
-                                            </div><!-- form-group -->
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="Template pd-y-12" style="margin-top: 25px;">Additional SF Price: </label>
-                                                <input type="text" name="id" class="form-control pd-y-12" placeholder="">
-                                            </div><!-- form-group -->
+
                                             <div class="col-xs-4 col-md-3">
                                                 <label for="Template" style="margin-top: 25px;">Status: </label>
-                                                <select style="height: 43px;" class="form-control pd-y-12" id="IdStatus" data-placeholder=""></select>
+                                                <select style="width: 157px;" class="form-control select2" id="IdStatus" data-placeholder="">
+                                                    @foreach (Model.Status item in ViewBag.mStatus)
+                                                    {
+                                                        <option value="@item.Id">@item.Description</option>
+                                                    }
+                                                </select>
                                             </div><!-- form-group -->
+
                                             <div class="col-xs-4 col-md-3">
                                                 <label for="Template" style="margin-top: 25px;">Vertical Base1 FL Price: </label>
-                                                <input type="text" name="id" class="form-control pd-y-12" placeholder="">
+                                                <input type="text" name="id" id="txtidVerticalBase1FLPrice" class="form-control" placeholder="">
                                             </div><!-- form-group -->
+
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="Template pd-y-12" style="margin-top: 25px;">Horizontal Base1 FL Price: </label>
-                                                <input type="text" name="id" class="form-control pd-y-12" placeholder="">
+                                                <label for="Template" style="margin-top: 25px;">Horizontal Base1 FL Price: </label>
+                                                <input type="text" name="id" id="" class="form-control" placeholder="">
                                             </div><!-- form-group -->
+
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="Template pd-y-12" style="margin-top: 25px;">Horizontal Additional Inch Price: </label>
-                                                <input type="text" name="id" class="form-control pd-y-12" placeholder="">
+                                                <label for="Template" style="margin-top: 25px;">Horizontal Additional Inch Price: </label>
+                                                <input type="text" name="id" id="txtHorizontalAdditionalInchPrice" class="form-control" placeholder="">
                                             </div><!-- form-group -->
                                         </div>
                                     </div><!-- pd-20 -->

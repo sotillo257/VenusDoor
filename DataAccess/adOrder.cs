@@ -28,11 +28,11 @@ namespace DataAccess
                         ord = new Order()
                         {
                             Id = int.Parse(item["Id"].ToString()),
-                            IdUser = int.Parse(item["IdUser"].ToString()),
+                            User = new User() { Id = int.Parse(item["IdUser"].ToString()) },
                             Quantity = int.Parse(item["Quantity"].ToString()),
                             Total = decimal.Parse(item["Total"].ToString()),
-                            IdType = int.Parse(item["IdType"].ToString()),
-                            IdStatus = int.Parse(item["IdStatus"].ToString()),
+                            Type = new Model.Type() { Id = int.Parse(item["IdType"].ToString()), Description = item["DescripType"].ToString() },
+                            Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["DescripStatus"].ToString() },
                             CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             ModificationDate = (item["ModificationDate"].ToString() != "") ? DateTime.Parse(item["ModificationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             CreatorUser = int.Parse(item["CreatorUser"].ToString()),
@@ -65,11 +65,11 @@ namespace DataAccess
                         ord.Add(new Order()
                         {
                             Id = int.Parse(item["Id"].ToString()),
-                            IdUser = int.Parse(item["IdUser"].ToString()),
+                            User = new User() { Id = int.Parse(item["IdUser"].ToString()) },
                             Quantity = int.Parse(item["Quantity"].ToString()),
                             Total = decimal.Parse(item["Total"].ToString()),
-                            IdType = int.Parse(item["IdType"].ToString()),
-                            IdStatus = int.Parse(item["IdStatus"].ToString()),
+                            Type = new Model.Type() { Id = int.Parse(item["IdType"].ToString()), Description = item["DescripType"].ToString() },
+                            Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["DescripStatus"].ToString() },
                             CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             ModificationDate = (item["ModificationDate"].ToString() != "") ? DateTime.Parse(item["ModificationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             CreatorUser = int.Parse(item["CreatorUser"].ToString()),
@@ -90,8 +90,8 @@ namespace DataAccess
         public int InsertOrder(Order pOrder)
         {
             string sql = @"[spInsertOrder] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}'";
-            sql = string.Format(sql, pOrder.IdUser, pOrder.Quantity, pOrder.Total, pOrder.IdType, pOrder.IdStatus, pOrder.CreationDate.ToString("yyyyMMdd"),
-                pOrder.CreatorUser, pOrder.ModificationDate.ToString("yyyyMMdd"), pOrder.ModificationUser);
+            sql = string.Format(sql, pOrder.User.Id, pOrder.Quantity, pOrder.Total, pOrder.Type.Id, pOrder.Status.Id, pOrder.CreationDate.ToString("yyyy-MM-dd"),
+                pOrder.CreatorUser, pOrder.ModificationDate.ToString("yyyy-MM-dd"), pOrder.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -105,7 +105,7 @@ namespace DataAccess
         public void UpdateOrder(Order pOrder)
         {
             string sql = @"[spUpdateOrder] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}, '{6}";
-            sql = string.Format(sql, pOrder.IdUser, pOrder.Quantity, pOrder.Total, pOrder.IdType, pOrder.IdStatus, pOrder.ModificationDate.ToString("yyyyMMdd"),
+            sql = string.Format(sql, pOrder.User.Id, pOrder.Quantity, pOrder.Total, pOrder.Type.Id, pOrder.Status.Id, pOrder.ModificationDate.ToString("yyyy-MM-dd"),
                 pOrder.ModificationUser);
             try
             {

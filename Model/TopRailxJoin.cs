@@ -9,9 +9,9 @@ namespace Model
     public class TopRailxJoin
     {
         public int Id { get; set; }
-        public int IdTopRail { get; set; }
-        public int IdJoin { get; set; }
-        public int IdStatus { get; set; }
+        public TopRail TopRail { get; set; }
+        public Join Join { get; set; }
+        public Status Status { get; set; }
         public DateTime CreationDate { get; set; }
         public int CreatorUser { get; set; }
         public DateTime ModificationDate { get; set; }

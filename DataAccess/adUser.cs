@@ -30,9 +30,9 @@ namespace DataAccess
                             Id = int.Parse(item["Id"].ToString()),
                             Email = item["Email"].ToString(),
                             Password = item["Password"].ToString(),
-                            IdType = int.Parse(item["IdType"].ToString()),
-                            IdPerson = int.Parse(item["IdPerson"].ToString()),
-                            IdStatus = int.Parse(item["IdStatus"].ToString()),
+                            Type = new Model.Type() { Id = int.Parse(item["IdType"].ToString()), Description = item["DescripType"].ToString() },
+                            Person = new Model.Person() { Id = int.Parse(item["IdPerson"].ToString())},
+                            Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["DescripStatus"].ToString() },
                             CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             ModificationDate = (item["ModificationDate"].ToString() != "") ? DateTime.Parse(item["ModificationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             CreatorUser = int.Parse(item["CreatorUser"].ToString()),
@@ -67,9 +67,9 @@ namespace DataAccess
                             Id = int.Parse(item["Id"].ToString()),
                             Email = item["Email"].ToString(),
                             Password = item["Password"].ToString(),
-                            IdType = int.Parse(item["IdType"].ToString()),
-                            IdPerson = int.Parse(item["IdPerson"].ToString()),
-                            IdStatus = int.Parse(item["IdStatus"].ToString()),
+                            Type = new Model.Type() { Id = int.Parse(item["IdType"].ToString()), Description = item["DescripType"].ToString() },
+                            Person = new Model.Person() { Id = int.Parse(item["IdPerson"].ToString()) },
+                            Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["DescripStatus"].ToString() },
                             CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             ModificationDate = (item["ModificationDate"].ToString() != "") ? DateTime.Parse(item["ModificationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             CreatorUser = int.Parse(item["CreatorUser"].ToString()),
@@ -90,8 +90,8 @@ namespace DataAccess
         public int InsertUser(User pUser)
         {
             string sql = @"[spInsertUser] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}'";
-            sql = string.Format(sql, pUser.Email, pUser.Password, pUser.IdType, pUser.IdPerson, pUser.IdStatus, pUser.CreationDate.ToString("yyyyMMdd"),
-                pUser.CreatorUser, pUser.ModificationDate.ToString("yyyyMMdd"), pUser.ModificationUser);
+            sql = string.Format(sql, pUser.Email, pUser.Password, pUser.Type.Id, pUser.Person.Id, pUser.Status.Id, pUser.CreationDate.ToString("yyyy-MM-dd"),
+                pUser.CreatorUser, pUser.ModificationDate.ToString("yyyy-MM-dd"), pUser.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -105,7 +105,7 @@ namespace DataAccess
         public void UpdateUser(User pUser)
         {
             string sql = @"[spUpdateUser] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}, '{6}";
-            sql = string.Format(sql, pUser.Email, pUser.Password, pUser.IdType, pUser.IdPerson, pUser.IdStatus, pUser.ModificationDate.ToString("yyyyMMdd"),
+            sql = string.Format(sql, pUser.Email, pUser.Password, pUser.Type.Id, pUser.Person.Id, pUser.Status.Id, pUser.ModificationDate.ToString("yyyy-MM-dd"),
                 pUser.ModificationUser);
             try
             {

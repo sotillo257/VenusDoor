@@ -64,9 +64,7 @@
     <Compile Include="lnPanelMaterial.cs" />
     <Compile Include="lnPerson.cs" />
     <Compile Include="lnPreparation.cs" />
-    <Compile Include="lnRailWidth.cs" />
     <Compile Include="lnStatus.cs" />
-    <Compile Include="lnStileWidth.cs" />
     <Compile Include="lnTopRail.cs" />
     <Compile Include="lnTopRailxHorizontalDivisions.cs" />
     <Compile Include="lnTopRailxJoin.cs" />
