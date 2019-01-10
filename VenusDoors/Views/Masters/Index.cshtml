@@ -78,6 +78,23 @@
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>
     <script src="~/Content/lib/select2/js/select2.min.js"></script>
+<script type="text/javascript">
+
+        $(document).ready(function () {
+            var listDS = JSON.parse('@Html.Raw(ViewBag.ListDoorStyle)');
+            $(document).on('click', '.Modificar', function (event) {
+                for (var i = 0; i < listDS.length; i++) {
+                    if (listDS[i].Id == $(this).attr('value')) {
+                        $('#txtId').val(listDS[i].Id);
+                        $('#txtDescription').val(listDS[i].Description);
+                    }
+                }
+            });
+
+
+        });
+
+</script>
 }
 <div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div>
 
@@ -99,11 +116,11 @@
                                         <div class="row">
                                             <div class="col-xs-3 col-md-5">
                                                 <label for="Template" style="margin-top: 25px;">Id: </label>
-                                                <input type="text" name="id" class="form-control pd-y-12" placeholder="id">
+                                                <input type="text" name="id" class="form-control pd-y-12" placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-3 col-md-5">
-                                                <label for="Template" style="margin-top: 25px;">Description: </label>
-                                                <input type="text" name="Description" class="form-control pd-y-12" placeholder="Description">
+                                                <label for="txtDescription" style="margin-top: 25px;">Description: </label>
+                                                <input type="text" name="Description" id="txtDescription" class="form-control pd-y-12" placeholder="">
                                             </div><!-- form-group -->
                                         </div>
                                     </div><!-- pd-20 -->

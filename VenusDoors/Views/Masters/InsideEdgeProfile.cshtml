@@ -80,6 +80,24 @@
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>
     <script src="~/Content/lib/select2/js/select2.min.js"></script>
+<script type="text/javascript">
+
+        $(document).ready(function () {
+            var listIEP = JSON.parse('@Html.Raw(ViewBag.ListInsideEdgeProfile)');
+            $(document).on('click', '.Modificar', function (event) {
+                for (var i = 0; i < listIEP.length; i++) {
+                    if (listIEP[i].Id == $(this).attr('value')) {
+                        $('#txtId').val(listIEP[i].Id);
+                        $('#IdStatus').val(listIEP[i].Status.Id);
+                        $('#txtDescription').val(listIEP[i].Description);
+                    }
+                }
+            });
+
+
+        });
+
+</script>
 }
 <div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div>
 
