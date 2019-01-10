@@ -80,6 +80,24 @@
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>
     <script src="~/Content/lib/select2/js/select2.min.js"></script>
+<script type="text/javascript">
+
+        $(document).ready(function () {
+            var listHD = JSON.parse('@Html.Raw(ViewBag.ListHingeDirection)');
+            $(document).on('click', '.Modificar', function (event) {
+                for (var i = 0; i < listHD.length; i++) {
+                    if (listHD[i].Id == $(this).attr('value')) {
+                        $('#txtId').val(listHD[i].Id);
+                        $('#txtDirection').val(listHD[i].Direction);
+                        $('#IdStatus').val(listHD[i].Status.Id);
+                    }
+                }
+            });
+
+
+        });
+
+</script>
 }
 <div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div>
 
@@ -149,7 +167,7 @@
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="Template" style="margin-top: 25px;">Direction: </label>
-                                                <input type="text" name="id" class="form-control pd-y-12" placeholder="">
+                                                <input type="text" name="id" id="txtDirection" class="form-control pd-y-12" placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="Template" style="margin-top: 25px;">Status: </label>

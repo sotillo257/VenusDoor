@@ -83,7 +83,7 @@
         $(document).ready(function () {
             var listGroup = JSON.parse('@Html.Raw(ViewBag.ListGroup)');
             $(document).on('click', '.Modificar', function (event) {
-                for (var i = 0; i < listBTR.length; i++) {
+                for (var i = 0; i < listGroup.length; i++) {
                     if (listGroup[i].Id == $(this).attr('value')) {
                         $('#txtId').val(listGroup[i].Id);
                         $('#txtDescription').val(listGroup[i].Description);
@@ -155,12 +155,12 @@
                                     <div class="col-md-12">
                                         <div class="row">
                                             <div class="col-xs-4 col-md-4">
-                                                <label for="Template" style="margin-top: 25px;">Id: </label>
-                                                <input type="text" name="id" id="txtId" class="form-control pd-y-12" readonly placeholder="id">
+                                                <label for="txtId" style="margin-top: 25px;">Id: </label>
+                                                <input type="text" name="id" id="txtId" class="form-control" readonly placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
-                                                <label for="Template" style="margin-top: 25px;">Description: </label>
-                                                <input type="text" name="id" id="txtDescription" class="form-control pd-y-12" placeholder="id">
+                                                <label for="txtDescription" style="margin-top: 25px;">Description: </label>
+                                                <input type="text" name="id" id="txtDescription" class="form-control" placeholder="">
                                             </div><!-- form-group -->
                                         </div>
                                     </div><!-- pd-20 -->
