@@ -81,12 +81,12 @@
 <script type="text/javascript">
 
         $(document).ready(function () {
-            var listDS = JSON.parse('@Html.Raw(ViewBag.ListDoorStyle)');
+            var listDoorS = JSON.parse('@Html.Raw(ViewBag.ListDoorsStyle)');
             $(document).on('click', '.Modificar', function (event) {
-                for (var i = 0; i < listDS.length; i++) {
-                    if (listDS[i].Id == $(this).attr('value')) {
-                        $('#txtId').val(listDS[i].Id);
-                        $('#txtDescription').val(listDS[i].Description);
+                for (var i = 0; i < listDoorS.length; i++) {
+                    if (listDoorS[i].Id == $(this).attr('value')) {
+                        $('#txtId').val(listDoorS[i].Id);
+                        $('#txtDescription').val(listDoorS[i].Description);
                     }
                 }
             });
@@ -116,7 +116,7 @@
                                         <div class="row">
                                             <div class="col-xs-3 col-md-5">
                                                 <label for="Template" style="margin-top: 25px;">Id: </label>
-                                                <input type="text" name="id" class="form-control pd-y-12" placeholder="">
+                                                <input type="text" name="id" id="txtId" class="form-control pd-y-12" placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-3 col-md-5">
                                                 <label for="txtDescription" style="margin-top: 25px;">Description: </label>
@@ -155,12 +155,12 @@
                                     <div class="col-md-12">
                                         <div class="row">
                                             <div class="col-xs-3 col-md-5">
-                                                <label for="Template" style="margin-top: 25px;">Id: </label>
-                                                <input type="text" name="id" class="form-control pd-y-12" readonly placeholder="">
+                                                <label for="txtId" style="margin-top: 25px;">Id: </label>
+                                                <input type="text" name="id" id="txtId" class="form-control" readonly placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-3 col-md-5">
-                                                <label for="Template" style="margin-top: 25px;">Description: </label>
-                                                <input type="text" name="Description" class="form-control pd-y-12" placeholder="">
+                                                <label for="txtDescription" style="margin-top: 25px;">Description: </label>
+                                                <input type="text" name="Description" id="txtDescription" class="form-control" placeholder="">
                                             </div><!-- form-group -->
                                         </div>
                                     </div><!-- pd-20 -->

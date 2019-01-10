@@ -82,6 +82,25 @@
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>
     <script src="~/Content/lib/select2/js/select2.min.js"></script>
+<script type="text/javascript">
+
+        $(document).ready(function () {
+            var listMBR = JSON.parse('@Html.Raw(ViewBag.ListMaterialxBottomRail)');
+            $(document).on('click', '.Modificar', function (event) {
+                for (var i = 0; i < listMBR.length; i++) {
+                    if (listMBR[i].Id == $(this).attr('value')) {
+                        $('#txtId').val(listMBR[i].Id);
+                        $('#cbMatarial').val(listMBR[i].Material.Id);
+                        $('#cbBottomRail').val(listMBR[i].BottomRail.Id);
+                        $('#IdStatus').val(listMBR[i].Status.Id);
+                    }
+                }
+            });
+
+
+        });
+
+</script>
 }
 <div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div>
 
@@ -166,19 +185,34 @@
                                         <div class="row">
                                             <div class="col-xs-3 col-md-4">
                                                 <label for="Template" style="margin-top: 25px;">Id: </label>
-                                                <input type="text" name="id" class="form-control" readonly placeholder="">
+                                                <input type="text" name="id" id="txtId" class="form-control" placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-3 col-md-4">
-                                                <label for="Template" style="margin-top: 25px;">Material: </label>
-                                                <select style="width: 157px;" class="form-control select2" id="IdMaterial" data-placeholder=""></select>
+                                                <label for="cbMatarial" style="margin-top: 25px;">Material: </label>
+                                                <select style="width: 157px;" class="form-control select2" id="cbMatarial" data-placeholder="">
+                                                    @foreach (Model.Material item in ViewBag.cbMatarial)
+                                                    {
+                                                        <option value="@item.Id">@item.Description</option>
+                                                    }
+                                                </select>
                                             </div><!-- form-group -->
                                             <div class="col-xs-3 col-md-4">
-                                                <label for="Template" style="margin-top: 25px;">Bottom Rail: </label>
-                                                <select style="width: 157px;" class="form-control select2" id="IdBottomRail" data-placeholder=""></select>
+                                                <label for="cbBottomRail" style="margin-top: 25px;">Bottom Rail: </label>
+                                                <select style="width: 157px;" class="form-control select2" id="cbBottomRail" data-placeholder="">
+                                                    @foreach (Model.BottomRail item in ViewBag.cbBottomRail)
+                                                    {
+                                                        <option value="@item.Id">@item.Description</option>
+                                                    }
+                                                </select>
                                             </div><!-- form-group -->
                                             <div class="col-xs-3 col-md-4">
-                                                <label for="Template" style="margin-top: 25px;">Status: </label>
-                                                <select style="width: 157px;" class="form-control select2" id="IdStatus" data-placeholder=""></select>
+                                                <label for="IdStatus" style="margin-top: 25px;">Status: </label>
+                                                <select style="width: 157px;" class="form-control select2" id="IdStatus" data-placeholder="">
+                                                    @foreach (Model.Status item in ViewBag.mStatus)
+                                                    {
+                                                        <option value="@item.Id">@item.Description</option>
+                                                    }
+                                                </select>
                                             </div><!-- form-group -->
                                         </div>
                                     </div><!-- pd-20 -->

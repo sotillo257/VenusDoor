@@ -166,7 +166,7 @@
   width: 100%;
 }
 
-.table_wrapper{
+.table_scroll{
     display: block;
     overflow-x: auto;
     white-space: nowrap;

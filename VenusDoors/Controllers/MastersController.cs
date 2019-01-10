@@ -103,7 +103,7 @@ namespace VenusDoors.Controllers
             var mDoorsStyle = _LA.GetAllDoorStyle();
             ViewBag.mDoorsStyle = mDoorsStyle;
             var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            ViewBag.ListDoorStyle = serializar.Serialize(mDoorsStyle);
+            ViewBag.ListDoorsStyle = serializar.Serialize(mDoorsStyle);
             return View();
         }
         
@@ -209,6 +209,12 @@ namespace VenusDoors.Controllers
             ViewBag.Masters = "active show-sub";
             ViewBag.Join = "active";
             BusinessLogic.lnJoin _LH = new BusinessLogic.lnJoin();
+
+            var mJoin = _LH.GetAllJoin();
+            ViewBag.mJoin = mJoin;
+            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+            ViewBag.ListJoin = serializar.Serialize(mJoin);
+
             ViewBag.mJoin = _LH.GetAllJoin();
             ViewBag.mStatus = _LNStatus.GetAllStatus();
             return View();
@@ -219,7 +225,12 @@ namespace VenusDoors.Controllers
             ViewBag.Masters = "active show-sub";
             ViewBag.Material = "active";
             BusinessLogic.lnMaterial _LI = new BusinessLogic.lnMaterial();
-            ViewBag.mMaterial = _LI.GetAllMaterial();
+
+            var mMaterial = _LI.GetAllMaterial();
+            ViewBag.mMaterial = mMaterial;
+            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+            ViewBag.ListMaterial = serializar.Serialize(mMaterial);
+
             ViewBag.mStatus = _LNStatus.GetAllStatus();
             return View();
         }
@@ -229,7 +240,12 @@ namespace VenusDoors.Controllers
             ViewBag.Masters = "active show-sub";
             ViewBag.MaterialxBottomRail = "active";
             BusinessLogic.lnMaterialxBottomRail _LJ = new BusinessLogic.lnMaterialxBottomRail();
-            ViewBag.mMaterialxBottomRail = _LJ.GetAllMaterialxBottomRail();
+
+            var mMaterialxBottomRail = _LJ.GetAllMaterialxBottomRail();
+            ViewBag.mMaterialxBottomRail = mMaterialxBottomRail;
+            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+            ViewBag.ListMaterialxBottomRail = serializar.Serialize(mMaterialxBottomRail);
+
             ViewBag.mStatus = _LNStatus.GetAllStatus();
             ViewBag.cbMatarial = _LNMaterial.GetAllMaterial();
             ViewBag.cbBottomRail = _LNBottomRail.GetAllBottomRail();
@@ -241,7 +257,12 @@ namespace VenusDoors.Controllers
             ViewBag.Masters = "active show-sub";
             ViewBag.Order = "active";
             BusinessLogic.lnOrder _LK = new BusinessLogic.lnOrder();
-            ViewBag.mOrder = _LK.GetAllOrder();
+
+            var mOrder = _LK.GetAllOrder();
+            ViewBag.mOrder = mOrder;
+            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+            ViewBag.ListOrder = serializar.Serialize(mOrder);
+
             ViewBag.mStatus = _LNStatus.GetAllStatus();
             ViewBag.cbUser = _LNUser.GetAllUser();
             ViewBag.cbType = _LNType.GetAllType();
@@ -253,7 +274,12 @@ namespace VenusDoors.Controllers
             ViewBag.Masters = "active show-sub";
             ViewBag.OutsideEdgeProfile = "active";
             BusinessLogic.lnOutsideEdgeProfile _LL = new BusinessLogic.lnOutsideEdgeProfile();
-            ViewBag.mOutsideEdgeProfile = _LL.GetAllOutsideEdgeProfile();
+
+            var mOutsideEdgeProfile = _LL.GetAllOutsideEdgeProfile();
+            ViewBag.mOutsideEdgeProfile = mOutsideEdgeProfile;
+            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+            ViewBag.ListOutsideEdgeProfile = serializar.Serialize(mOutsideEdgeProfile);
+
             ViewBag.mStatus = _LNStatus.GetAllStatus();
             return View();
         }
@@ -263,7 +289,12 @@ namespace VenusDoors.Controllers
             ViewBag.Masters = "active show-sub";
             ViewBag.Panel = "active";
             BusinessLogic.lnPanel _LX = new BusinessLogic.lnPanel();
-            ViewBag.mPanel = _LX.GetAllPanel();
+
+            var mPanel = _LX.GetAllPanel();
+            ViewBag.mPanel = mPanel;
+            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+            ViewBag.ListPanel = serializar.Serialize(mPanel);
+
             ViewBag.mStatus = _LNStatus.GetAllStatus();
             return View();
         }
@@ -272,7 +303,12 @@ namespace VenusDoors.Controllers
             ViewBag.Masters = "active show-sub";
             ViewBag.PanelMaterial = "active";
             BusinessLogic.lnPanelMaterial _PAC = new BusinessLogic.lnPanelMaterial();
-            ViewBag.mPanelMaterial = _PAC.GetAllPanelMaterial();
+
+            var mPanelMaterial = _PAC.GetAllPanelMaterial();
+            ViewBag.mPanelMaterial = mPanelMaterial;
+            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+            ViewBag.ListPanelMaterial = serializar.Serialize(mPanelMaterial);
+
             ViewBag.mStatus = _LNStatus.GetAllStatus();
             return View();
         }
@@ -282,7 +318,12 @@ namespace VenusDoors.Controllers
             ViewBag.Masters = "active show-sub";
             ViewBag.Person = "active";
             BusinessLogic.lnPerson _PAX = new BusinessLogic.lnPerson();
-            ViewBag.mPerson = _PAX.GetAllPerson();            
+
+            var mPerson = _PAX.GetAllPerson();
+            ViewBag.mPerson = mPerson;
+            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+            ViewBag.ListPerson = serializar.Serialize(mPerson);
+
             ViewBag.mStatus = _LNStatus.GetAllStatus();
             return View();
         }
@@ -292,38 +333,29 @@ namespace VenusDoors.Controllers
             ViewBag.Masters = "active show-sub";
             ViewBag.Preparation = "active";
             BusinessLogic.lnPreparation _JFK = new BusinessLogic.lnPreparation();
-            ViewBag.mPreparation = _JFK.GetAllPreparation();
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
-            return View();
-        }
 
-        public ActionResult RailWidth()
-        {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.RailWidth = "active";
-            //BusinessLogic.lnRailWidth _JES = new BusinessLogic.lnRailWidth();
-            //ViewBag.mRailWidth = _JES.GetAllRailWidth();
+            var mPreparation = _JFK.GetAllPreparation();
+            ViewBag.mPreparation = mPreparation;
+            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+            ViewBag.ListPreparation = serializar.Serialize(mPreparation);
+
             ViewBag.mStatus = _LNStatus.GetAllStatus();
             return View();
         }
+        
 
         public ActionResult Status()
         {
             ViewBag.Masters = "active show-sub";
             ViewBag.Status = "active";
             BusinessLogic.lnStatus _LNStatus = new BusinessLogic.lnStatus();
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
-            ViewBag.cbGroup = _LNGroup.GetAllGroup();
-            return View();
-        }
 
-        public ActionResult StileWidth()
-        {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.StileWidth = "active";
-            //BusinessLogic.lnStileWidth _GRE = new BusinessLogic.lnStileWidth();
-            //ViewBag.mStileWidth = _GRE.GetAllStileWidth();
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
+            var mStatus = _LNStatus.GetAllStatus();
+            ViewBag.mStatus = mStatus;
+            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+            ViewBag.ListStatus = serializar.Serialize(mStatus);
+
+            ViewBag.cbGroup = _LNGroup.GetAllGroup();
             return View();
         }
 
@@ -332,7 +364,12 @@ namespace VenusDoors.Controllers
             ViewBag.Masters = "active show-sub";
             ViewBag.TopRail = "active";
             BusinessLogic.lnTopRail _TOP = new BusinessLogic.lnTopRail();
-            ViewBag.mTopRail = _TOP.GetAllTopRail();
+
+            var mTopRail = _TOP.GetAllTopRail();
+            ViewBag.mTopRail = mTopRail;
+            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+            ViewBag.ListTopRail = serializar.Serialize(mTopRail);
+
             ViewBag.mStatus = _LNStatus.GetAllStatus();
             return View();
         }
@@ -342,7 +379,12 @@ namespace VenusDoors.Controllers
             ViewBag.Masters = "active show-sub";
             ViewBag.TopRailByHorizontalDivisions = "active";
             BusinessLogic.lnTopRailxHorizontalDivisions _TAP = new BusinessLogic.lnTopRailxHorizontalDivisions();
-            ViewBag.mTopRailByHorizontalDivisions = _TAP.GetAllTopRailxHorizontalDivisions();
+
+            var mTopRailByHorizontalDivisions = _TAP.GetAllTopRailxHorizontalDivisions();
+            ViewBag.mTopRailByHorizontalDivisions = mTopRailByHorizontalDivisions;
+            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+            ViewBag.ListTopRailxHorizontal = serializar.Serialize(mTopRailByHorizontalDivisions);
+
             ViewBag.mStatus = _LNStatus.GetAllStatus();
             ViewBag.cbTopRail = _LNTopRail.GetAllTopRail();
             ViewBag.cbHorizontalDivisions = _LNHorizontalDivisions.GetAllHorizontalDivisions();
@@ -354,7 +396,12 @@ namespace VenusDoors.Controllers
             ViewBag.Masters = "active show-sub";
             ViewBag.TopRailByJoin = "active";
             BusinessLogic.lnTopRailxJoin _TEP = new BusinessLogic.lnTopRailxJoin();
-            ViewBag.mTopRailByJoin = _TEP.GetAllTopRailxJoin();
+
+            var mTopRailByJoin = _TEP.GetAllTopRailxJoin();
+            ViewBag.mTopRailByJoin = mTopRailByJoin;
+            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+            ViewBag.ListTopRailByJoin = serializar.Serialize(mTopRailByJoin);
+
             ViewBag.mStatus = _LNStatus.GetAllStatus();
             ViewBag.cbTopRail = _LNTopRail.GetAllTopRail();
             ViewBag.cbJoin = _LNJoin.GetAllJoin();
@@ -366,7 +413,12 @@ namespace VenusDoors.Controllers
             ViewBag.Masters = "active show-sub";
             ViewBag.TopRailByVerticalDivisions = "active";
             BusinessLogic.lnTopRailxVerticalDivisions _TUP = new BusinessLogic.lnTopRailxVerticalDivisions();
-            ViewBag.mTopRailByVerticalDivisions = _TUP.GetAllTopRailxVerticalDivisions();
+
+            var mTopRailByVerticalDivisions = _TUP.GetAllTopRailxVerticalDivisions();
+            ViewBag.mTopRailByVerticalDivisions = mTopRailByVerticalDivisions;
+            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+            ViewBag.ListTopRailxVertical = serializar.Serialize(mTopRailByVerticalDivisions);
+
             ViewBag.mStatus = _LNStatus.GetAllStatus();
             ViewBag.cbTopRail = _LNTopRail.GetAllTopRail();
             ViewBag.cbVerticalDivisions = _LNVerticalDivisions.GetAllVerticalDivisions();
@@ -378,7 +430,12 @@ namespace VenusDoors.Controllers
             ViewBag.Masters = "active show-sub";
             ViewBag.Type = "active";
             BusinessLogic.lnType _LBL = new BusinessLogic.lnType();
-            ViewBag.mType = _LBL.GetAllType();
+
+            var mType = _LBL.GetAllType();
+            ViewBag.mType = mType;
+            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+            ViewBag.ListType = serializar.Serialize(mType);
+
             ViewBag.mStatus = _LNStatus.GetAllStatus();
             ViewBag.cbGroup = _LNGroup.GetAllGroup();
             return View();
@@ -389,7 +446,12 @@ namespace VenusDoors.Controllers
             ViewBag.Masters = "active show-sub";
             ViewBag.Usuario = "active";
             BusinessLogic.lnUser _USB = new BusinessLogic.lnUser();
-            ViewBag.mUsuario = _USB.GetAllUser();
+
+            var mUsuario = _USB.GetAllUser();
+            ViewBag.mUsuario = mUsuario;
+            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+            ViewBag.ListUsuario = serializar.Serialize(mUsuario);
+
             ViewBag.mStatus = _LNStatus.GetAllStatus();
             ViewBag.cbType = _LNType.GetAllType();
             ViewBag.cbPerson = _LNPerson.GetAllPerson();
@@ -401,7 +463,12 @@ namespace VenusDoors.Controllers
             ViewBag.Masters = "active show-sub";
             ViewBag.VerticalDivisions = "active";
             BusinessLogic.lnVerticalDivisions _USB = new BusinessLogic.lnVerticalDivisions();
-            ViewBag.mVerticalDivisions = _USB.GetAllVerticalDivisions();
+
+            var mVerticalDivisions = _USB.GetAllVerticalDivisions();
+            ViewBag.mVerticalDivisions = mVerticalDivisions;
+            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+            ViewBag.ListVerticalDivisions = serializar.Serialize(mVerticalDivisions);
+
             ViewBag.mStatus = _LNStatus.GetAllStatus();
             return View();
         }

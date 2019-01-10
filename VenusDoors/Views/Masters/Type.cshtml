@@ -83,6 +83,25 @@
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>
     <script src="~/Content/lib/select2/js/select2.min.js"></script>
+<script type="text/javascript">
+
+        $(document).ready(function () {
+            var listTy = JSON.parse('@Html.Raw(ViewBag.ListType)');
+            $(document).on('click', '.Modificar', function (event) {
+                for (var i = 0; i < listTy.length; i++) {
+                    if (listBTR[i].Id == $(this).attr('value')) {
+                        $('#txtId').val(listTy[i].Id);
+                        $('#txtDescription').val(listTy[i].Description);
+                        $('#IdGroup').val(listTy[i].Group.Id);
+                        $('#IdStatus').val(listTy[i].Status.Id);
+                    }
+                }
+            });
+
+
+        });
+
+</script>
 }
 <div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div>
 
@@ -151,12 +170,12 @@
                                     <div class="col-md-12">
                                         <div class="row">
                                             <div class="col-xs-4 col-md-4">
-                                                <label for="Template" style="margin-top: 25px;">Id: </label>
-                                                <input type="text" name="id" class="form-control" readonly placeholder="">
+                                                <label for="txtId" style="margin-top: 25px;">Id: </label>
+                                                <input type="text" name="id" id="txtId" class="form-control" readonly placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
-                                                <label for="Template" style="margin-top: 25px;">Description: </label>
-                                                <input type="text" name="id" class="form-control" placeholder="">
+                                                <label for="txtDescription" style="margin-top: 25px;">Description: </label>
+                                                <input type="text" name="id" id="txtDescription" class="form-control" placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="Template" style="margin-top: 25px;">Group: </label>

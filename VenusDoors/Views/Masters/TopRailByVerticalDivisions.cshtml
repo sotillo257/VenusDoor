@@ -83,6 +83,25 @@
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>
     <script src="~/Content/lib/select2/js/select2.min.js"></script>
+<script type="text/javascript">
+
+        $(document).ready(function () {
+            var listTRV = JSON.parse('@Html.Raw(ViewBag.ListTopRailxVertical)');
+            $(document).on('click', '.Modificar', function (event) {
+                for (var i = 0; i < listTRV.length; i++) {
+                    if (listTRV[i].Id == $(this).attr('value')) {
+                        $('#txtId').val(listTRV[i].Id);
+                        $('#cbTopRail').val(listTRV[i].TopRail.Id);
+                        $('#cbVerticalDivisions').val(listTRV[i].VerticalDivisions.Id);
+                        $('#IdStatus').val(listTRV[i].Status.Id);
+                    }
+                }
+            });
+
+
+        });
+
+</script>
 }
 <div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div>
 
@@ -151,8 +170,8 @@
                                     <div class="col-md-12">
                                         <div class="row">
                                             <div class="col-xs-4 col-md-4">
-                                                <label for="Template" style="margin-top: 25px;">Id: </label>
-                                                <input type="text" name="id" class="form-control" readonly placeholder="">
+                                                <label for="txtId" style="margin-top: 25px;">Id: </label>
+                                                <input type="text" name="id" id="txtId" class="form-control" readonly placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="cbTopRail" style="margin-top: 25px;">Top Rail: </label>
@@ -173,8 +192,8 @@
                                                 </select>
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
-                                                <label for="mStatus" style="margin-top: 25px;">Status: </label>
-                                                <select style="width: 157px;" class="form-control select2" id="mStatus" data-placeholder="">
+                                                <label for="IdStatus" style="margin-top: 25px;">Status: </label>
+                                                <select style="width: 157px;" class="form-control select2" id="IdStatus" data-placeholder="">
                                                     @foreach (Model.Status item in ViewBag.mStatus)
                                                     {
                                                         <option value="@item.Id">@item.Description</option>

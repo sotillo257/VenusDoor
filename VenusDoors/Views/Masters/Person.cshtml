@@ -86,6 +86,27 @@
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>
     <script src="~/Content/lib/select2/js/select2.min.js"></script>
+<script type="text/javascript">
+
+        $(document).ready(function () {
+            var listPer = JSON.parse('@Html.Raw(ViewBag.ListPerson)');
+            $(document).on('click', '.Modificar', function (event) {
+                for (var i = 0; i < listPer.length; i++) {
+                    if (listPer[i].Id == $(this).attr('value')) {
+                        $('#txtId').val(listPer[i].Id);
+                        $('#txtName').val(listPer[i].Name);
+                        $('#txtLastname').val(listPer[i].Lastname);
+                        $('#txtTelephone').val(listPer[i].Telephone);
+                        $('#txtDirection').val(listPer[i].Direction);
+                        $('#IdStatus').val(listPer[i].Status.Id);
+                    }
+                }
+            });
+
+
+        });
+
+</script>
 }
 <div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div>
 
@@ -162,24 +183,24 @@
                                     <div class="col-md-12">
                                         <div class="row">
                                             <div class="col-xs-4 col-md-4">
-                                                <label for="Template" style="margin-top: 25px;">Id: </label>
-                                                <input type="text" name="id" class="form-control" readonly placeholder="">
+                                                <label for="txtId" style="margin-top: 25px;">Id: </label>
+                                                <input type="text" name="id" id="txtId" class="form-control" readonly placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
-                                                <label for="Template" style="margin-top: 25px;">Name: </label>
-                                                <input type="text" name="id" class="form-control" placeholder="">
+                                                <label for="txtName" style="margin-top: 25px;">Name: </label>
+                                                <input type="text" name="id" id="txtName" class="form-control" placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
-                                                <label for="Template" style="margin-top: 25px;">Lastname: </label>
-                                                <input type="text" name="id" class="form-control" placeholder="">
+                                                <label for="txtLastname" style="margin-top: 25px;">Lastname: </label>
+                                                <input type="text" name="id" id="txtLastname" class="form-control" placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
-                                                <label for="Template" style="margin-top: 25px;">Telephone: </label>
-                                                <input type="text" name="id" class="form-control" placeholder="">
+                                                <label for="txtTelephone" style="margin-top: 25px;">Telephone: </label>
+                                                <input type="text" name="id" id="txtTelephone" class="form-control" placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
-                                                <label for="Template" style="margin-top: 25px;">Direction: </label>
-                                                <input type="text" name="id" class="form-control" placeholder="">
+                                                <label for="txtDirection" style="margin-top: 25px;">Direction: </label>
+                                                <input type="text" name="id" id="txtDirection" class="form-control" placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-3 col-md-4">
                                                 <label for="mStatus" style="margin-top: 25px;">Status: </label>

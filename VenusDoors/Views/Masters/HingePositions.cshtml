@@ -83,7 +83,7 @@
 <script type="text/javascript">
 
         $(document).ready(function () {
-            var listHP = JSON.parse('@Html.Raw(ViewBag.ListBottomRail)');
+            var listHP = JSON.parse('@Html.Raw(ViewBag.ListHingePositions)');
             $(document).on('click', '.Modificar', function (event) {
                 for (var i = 0; i < listHP.length; i++) {
                     if (listHP[i].Id == $(this).attr('value')) {
@@ -163,11 +163,11 @@
                                         <div class="row">
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="Template" style="margin-top: 25px;">Id: </label>
-                                                <input type="text" name="id" class="form-control pd-y-12" readonly placeholder="">
+                                                <input type="text" name="id" id="txtId" class="form-control" readonly placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="Template" style="margin-top: 25px;">Position: </label>
-                                                <input type="text" name="id" id="txtPosition" class="form-control pd-y-12" placeholder="">
+                                                <input type="text" name="id" id="txtPosition" class="form-control" placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="IdStatus" style="margin-top: 25px;">Status: </label>
