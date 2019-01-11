@@ -37,6 +37,7 @@ namespace VenusDoors.Controllers
             }
         }
 
+
         [HttpPost]
         public ActionResult GetAllDoorStyle()
         {
@@ -221,7 +222,7 @@ namespace VenusDoors.Controllers
 
         [HttpPost]
         public ActionResult InsertDoorsxUser(DoorsxUser pDoorsxUser)
-        .{
+        {
             try
             {
                 Order order = new Order()
