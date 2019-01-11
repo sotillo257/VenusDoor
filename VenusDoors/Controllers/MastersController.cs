@@ -111,6 +111,10 @@ namespace VenusDoors.Controllers
         {
             ViewBag.Masters = "active show-sub";
             ViewBag.DoorStyleByInsideEdgeProfile = "active";
+            BusinessLogic.lnDoorStylexInsideEdgeProfile _XS = new BusinessLogic.lnDoorStylexInsideEdgeProfile();
+
+            var mDoorStyleByInsideEdgeProfile = _XS.GetAllDoorStylexInsideEdgeProfile();
+            ViewBag.mDoorStyleByInsideEdgeProfile = mDoorStyleByInsideEdgeProfile;
             return View();
         }
 
