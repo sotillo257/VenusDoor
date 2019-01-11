@@ -127,7 +127,7 @@ namespace DataAccess
             sql = string.Format(sql, pDoors.DoorStyle.Id, pDoors.Material.Id, pDoors.TopRail.Id,pDoors.BottomRail.Id, 
                 pDoors.Preparation.Id, pDoors.Join.Id, pDoors.OutsideEdgeProfile.Id, 
                 pDoors.InsideEdgeProfile.Id, pDoors.VerticalDivisions.Id, pDoors.HorizontalDivisions.Id, pDoors.HingeDirection.Id, 
-                pDoors.HingePositions.Id, pDoors.isDrill, pDoors.Width, pDoors.Height, pDoors.IsOpeningMeasurement, pDoors.Quantity, 
+                pDoors.HingePositions.Id, (pDoors.isDrill == true) ? 1 : 0, pDoors.Width, pDoors.Height, (pDoors.IsOpeningMeasurement == true) ? 1 : 0, pDoors.Quantity, 
                 pDoors.Status.Id, pDoors.CreationDate.ToString("yyyy-MM-dd"), pDoors.CreatorUser, pDoors.ModificationDate.ToString("yyyy-MM-dd"),
                 pDoors.ModificationUser, pDoors.Picture, pDoors.ProfilePicture, pDoors.Panel.Id, pDoors.PanelMaterial.Id);
             try
