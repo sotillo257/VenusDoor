@@ -36,14 +36,34 @@ namespace VenusDoors.Controllers
             ViewBag.Masters = "active show-sub";
             ViewBag.BottomRail = "active";
             BusinessLogic.lnBottomRail _LN = new BusinessLogic.lnBottomRail();
+
             ViewBag.mStatus = _LNStatus.GetAllStatus();
             var mBottomRail = _LN.GetAllBottomRail();
             ViewBag.mBottomRail = mBottomRail;
             var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+
             ViewBag.ListBottomRail = serializar.Serialize(mBottomRail);
             return View();
         }
 
+        [HttpPost]
+        public ActionResult InsertBottomRail(BottomRail pBottomRail)
+        {
+            try
+            {
+
+                pBottomRail.CreationDate = DateTime.Now;
+                pBottomRail.ModificationDate = DateTime.Now;
+                BusinessLogic.lnBottomRail _LN = new BusinessLogic.lnBottomRail();
+                return Json(_LN.InsertBottomRail(pBottomRail));
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+        
         public ActionResult Doors()
         {
             ViewBag.Masters = "active show-sub";
@@ -62,8 +82,6 @@ namespace VenusDoors.Controllers
             ViewBag.cbBottomRail = _LNBottomRail.GetAllBottomRail();
             ViewBag.cbPreparation = _LNPreparation.GetAllPreparation();
             ViewBag.cbJoin = _LNJoin.GetAllJoin();
-            //ViewBag.cbStileWidth = _LNStileWidth.GetAllStileWidth();
-            //ViewBag.cbRailWidth = _LNRailWidth.GetAllRailWidth();
             ViewBag.cbInsideEdgeProfile = _LNInsideEdgeProfile.GetAllInsideEdgeProfile();
             ViewBag.cbOutsideEdgeProfile = _LNOutsideEdgeProfile.GetAllOutsideEdgeProfile();
             ViewBag.cbVerticalDivisions = _LNVerticalDivisions.GetAllVerticalDivisions();
@@ -73,6 +91,24 @@ namespace VenusDoors.Controllers
             ViewBag.cbPanel = _LNPanel.GetAllPanel();
             ViewBag.cbPanelMaterial = _LNPanelMaterial.GetAllPanelMaterial();
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult InsertDoors(Doors pDoors)
+        {
+            try
+            {
+
+                pDoors.CreationDate = DateTime.Now;
+                pDoors.ModificationDate = DateTime.Now;
+                BusinessLogic.lnDoors _LM = new BusinessLogic.lnDoors();
+                return Json(_LM.InsertDoors(pDoors));
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
         }
 
         public ActionResult DoorsPrices()
@@ -89,9 +125,25 @@ namespace VenusDoors.Controllers
             ViewBag.mStatus = _LNStatus.GetAllStatus();
             ViewBag.cbDoorStyle = _LNDoorStile.GetAllDoorStyle();
             ViewBag.cbMatarial = _LNMaterial.GetAllMaterial();
-            //ViewBag.cbStileWidth = _LNStileWidth.GetAllStileWidth();
-            //ViewBag.cbRailWidth = _LNRailWidth.GetAllRailWidth();
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult InsertDoorPrice(DoorsPrices pDoorPrice)
+        {
+            try
+            {
+
+                pDoorPrice.CreationDate = DateTime.Now;
+                pDoorPrice.ModificationDate = DateTime.Now;
+                BusinessLogic.lnDoorsPrices _LP = new BusinessLogic.lnDoorsPrices();
+                return Json(_LP.InsertDoorsPrices(pDoorPrice));
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
         }
 
         public ActionResult Index()
@@ -106,7 +158,25 @@ namespace VenusDoors.Controllers
             ViewBag.ListDoorsStyle = serializar.Serialize(mDoorsStyle);
             return View();
         }
-        
+
+        [HttpPost]
+        public ActionResult InsertDoorStyle(DoorStyle pDoorStyle)
+        {
+            try
+            {
+
+                pDoorStyle.CreationDate = DateTime.Now;
+                pDoorStyle.ModificationDate = DateTime.Now;
+                BusinessLogic.lnDoorStyle _LA = new BusinessLogic.lnDoorStyle();
+                return Json(_LA.InsertDoorStyle(pDoorStyle));
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
         public ActionResult DoorStyleByInsideEdgeProfile()
         {
             ViewBag.Masters = "active show-sub";
