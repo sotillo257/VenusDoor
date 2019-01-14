@@ -214,6 +214,24 @@ namespace VenusDoors.Controllers
             return View();
         }
 
+        //[HttpPost]
+        //public ActionResult InsertGroup(Group pGroup)
+        //{
+        //    try
+        //    {
+
+        //        pGroup.CreationDate = DateTime.Now;
+        //        pGroup.ModificationDate = DateTime.Now;
+        //        BusinessLogic.lnGroup _LC = new BusinessLogic.lnGroup();
+        //        return Json(_LC.InsertGroup(pGroup));
+
+        //    }
+        //    catch
+        //    {
+        //        return Json(false, JsonRequestBehavior.AllowGet);
+        //    }
+        //}
+
         public ActionResult HingeDirection()
         {
             ViewBag.Masters = "active show-sub";
@@ -227,6 +245,24 @@ namespace VenusDoors.Controllers
 
             ViewBag.mStatus = _LNStatus.GetAllStatus();
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult InserHingeDirection(HingeDirection pHingeDirection)
+        {
+            try
+            {
+
+                pHingeDirection.CreationDate = DateTime.Now;
+                pHingeDirection.ModificationDate = DateTime.Now;
+                BusinessLogic.lnHingeDirection _LD = new BusinessLogic.lnHingeDirection();
+                return Json(_LD.InsertHingeDirection(pHingeDirection));
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
         }
 
         public ActionResult HingePositions()
@@ -244,6 +280,24 @@ namespace VenusDoors.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult InserHingePositions(HingePositions pHingePositions)
+        {
+            try
+            {
+
+                pHingePositions.CreationDate = DateTime.Now;
+                pHingePositions.ModificationDate = DateTime.Now;
+                BusinessLogic.lnHingePositions _LE = new BusinessLogic.lnHingePositions();
+                return Json(_LE.InsertHingePositions(pHingePositions));
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
         public ActionResult HorizontalDivisions()
         {
             ViewBag.Masters = "active show-sub";
@@ -259,6 +313,24 @@ namespace VenusDoors.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult InserHorizontalDivisions(HorizontalDivisions pHorizontalDivisions)
+        {
+            try
+            {
+
+                pHorizontalDivisions.CreationDate = DateTime.Now;
+                pHorizontalDivisions.ModificationDate = DateTime.Now;
+                BusinessLogic.lnHorizontalDivisions _LF = new BusinessLogic.lnHorizontalDivisions();
+                return Json(_LF.InsertHorizontalDivisions(pHorizontalDivisions));
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
         public ActionResult InsideEdgeProfile()
         {
             ViewBag.Masters = "active show-sub";
@@ -272,6 +344,24 @@ namespace VenusDoors.Controllers
 
             ViewBag.mStatus = _LNStatus.GetAllStatus();
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult InsertInsideEdgeProfile(InsideEdgeProfile pInsideEdgeProfile)
+        {
+            try
+            {
+
+                pInsideEdgeProfile.CreationDate = DateTime.Now;
+                pInsideEdgeProfile.ModificationDate = DateTime.Now;
+                BusinessLogic.lnInsideEdgeProfile _LG = new BusinessLogic.lnInsideEdgeProfile();
+                return Json(_LG.InsertInsideEdgeProfile(pInsideEdgeProfile));
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
         }
 
         public ActionResult Join()
@@ -290,6 +380,24 @@ namespace VenusDoors.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult InsertJoin(Join pJoin)
+        {
+            try
+            {
+
+                pJoin.CreationDate = DateTime.Now;
+                pJoin.ModificationDate = DateTime.Now;
+                BusinessLogic.lnJoin _LH = new BusinessLogic.lnJoin();
+                return Json(_LH.InsertJoin(pJoin));
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
         public ActionResult Material()
         {
             ViewBag.Masters = "active show-sub";
@@ -303,6 +411,24 @@ namespace VenusDoors.Controllers
 
             ViewBag.mStatus = _LNStatus.GetAllStatus();
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult InsertMaterial(Material pMaterial)
+        {
+            try
+            {
+
+                pMaterial.CreationDate = DateTime.Now;
+                pMaterial.ModificationDate = DateTime.Now;
+                BusinessLogic.lnMaterial _LI = new BusinessLogic.lnMaterial();
+                return Json(_LI.InsertMaterial(pMaterial));
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
         }
 
         public ActionResult MaterialxBottomRail()
@@ -322,6 +448,24 @@ namespace VenusDoors.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult InsertMaterialxBottomRail(MaterialxBottomRail pMaterialxBottomRail)
+        {
+            try
+            {
+
+                pMaterialxBottomRail.CreationDate = DateTime.Now;
+                pMaterialxBottomRail.ModificationDate = DateTime.Now;
+                BusinessLogic.lnMaterialxBottomRail _LJ = new BusinessLogic.lnMaterialxBottomRail();
+                return Json(_LJ.InsertMaterialxBottomRail(pMaterialxBottomRail));
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
         public ActionResult Order()
         {
             ViewBag.Masters = "active show-sub";
@@ -339,6 +483,24 @@ namespace VenusDoors.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult InsertOrder(Order pOrder)
+        {
+            try
+            {
+
+                pOrder.CreationDate = DateTime.Now;
+                pOrder.ModificationDate = DateTime.Now;
+                BusinessLogic.lnOrder _LK = new BusinessLogic.lnOrder();
+                return Json(_LK.InsertOrder(pOrder));
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
         public ActionResult OutsideEdgeProfile()
         {
             ViewBag.Masters = "active show-sub";
@@ -352,6 +514,24 @@ namespace VenusDoors.Controllers
 
             ViewBag.mStatus = _LNStatus.GetAllStatus();
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult InsertOutsideEdgeProfile(OutsideEdgeProfile pOutsideEdgeProfiler)
+        {
+            try
+            {
+
+                pOutsideEdgeProfiler.CreationDate = DateTime.Now;
+                pOutsideEdgeProfiler.ModificationDate = DateTime.Now;
+                BusinessLogic.lnOutsideEdgeProfile _LL = new BusinessLogic.lnOutsideEdgeProfile();
+                return Json(_LL.InsertOutsideEdgeProfile(pOutsideEdgeProfiler));
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
         }
 
         public ActionResult Panel()
@@ -368,6 +548,25 @@ namespace VenusDoors.Controllers
             ViewBag.mStatus = _LNStatus.GetAllStatus();
             return View();
         }
+
+        [HttpPost]
+        public ActionResult InsertPanel(Panel pPanel)
+        {
+            try
+            {
+
+                pPanel.CreationDate = DateTime.Now;
+                pPanel.ModificationDate = DateTime.Now;
+                BusinessLogic.lnPanel _LX = new BusinessLogic.lnPanel();
+                return Json(_LX.InsertPanel(pPanel));
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
         public ActionResult PanelMaterial()
         {
             ViewBag.Masters = "active show-sub";
@@ -381,6 +580,24 @@ namespace VenusDoors.Controllers
 
             ViewBag.mStatus = _LNStatus.GetAllStatus();
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult InsertPanelMaterial(PanelMaterial pPanelMaterial)
+        {
+            try
+            {
+
+                pPanelMaterial.CreationDate = DateTime.Now;
+                pPanelMaterial.ModificationDate = DateTime.Now;
+                BusinessLogic.lnPanelMaterial _PAC = new BusinessLogic.lnPanelMaterial();
+                return Json(_PAC.InsertPanelMaterial(pPanelMaterial));
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
         }
 
         public ActionResult Person()
@@ -398,6 +615,24 @@ namespace VenusDoors.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult InsertPerson(Person pPerson)
+        {
+            try
+            {
+
+                pPerson.CreationDate = DateTime.Now;
+                pPerson.ModificationDate = DateTime.Now;
+                BusinessLogic.lnPerson _PAX = new BusinessLogic.lnPerson();
+                return Json(_PAX.InsertPerson(pPerson));
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
         public ActionResult Preparation()
         {
             ViewBag.Masters = "active show-sub";
@@ -412,7 +647,25 @@ namespace VenusDoors.Controllers
             ViewBag.mStatus = _LNStatus.GetAllStatus();
             return View();
         }
-        
+
+        [HttpPost]
+        public ActionResult InsertPreparation(Preparation pPreparation)
+        {
+            try
+            {
+
+                pPreparation.CreationDate = DateTime.Now;
+                pPreparation.ModificationDate = DateTime.Now;
+                BusinessLogic.lnPreparation _JFK = new BusinessLogic.lnPreparation();
+                return Json(_JFK.InsertPreparation(pPreparation));
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
 
         public ActionResult Status()
         {
@@ -429,6 +682,24 @@ namespace VenusDoors.Controllers
             return View();
         }
 
+        //[HttpPost]
+        //public ActionResult InsertStatus(Status pStatus)
+        //{
+        //    try
+        //    {
+
+        //        pStatus.CreationDate = DateTime.Now;
+        //        pStatus.ModificationDate = DateTime.Now;
+        //        BusinessLogic.lnStatus _LNStatus = new BusinessLogic.lnStatus();
+        //        return Json(_LNStatus.InsertStatus(pStatus));
+
+        //    }
+        //    catch
+        //    {
+        //        return Json(false, JsonRequestBehavior.AllowGet);
+        //    }
+        //}
+
         public ActionResult TopRail()
         {
             ViewBag.Masters = "active show-sub";
@@ -442,6 +713,24 @@ namespace VenusDoors.Controllers
 
             ViewBag.mStatus = _LNStatus.GetAllStatus();
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult InsertTopRail(TopRail pTopRail)
+        {
+            try
+            {
+
+                pTopRail.CreationDate = DateTime.Now;
+                pTopRail.ModificationDate = DateTime.Now;
+                BusinessLogic.lnTopRail _TOP = new BusinessLogic.lnTopRail();
+                return Json(_TOP.InsertTopRail(pTopRail));
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
         }
 
         public ActionResult TopRailByHorizontalDivisions()
@@ -461,6 +750,24 @@ namespace VenusDoors.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult InsertTopRailxHorizontalDivisions(TopRailxHorizontalDivisions pTopRailByHorizontalDivisions)
+        {
+            try
+            {
+
+                pTopRailByHorizontalDivisions.CreationDate = DateTime.Now;
+                pTopRailByHorizontalDivisions.ModificationDate = DateTime.Now;
+                BusinessLogic.lnTopRailxHorizontalDivisions _TAP = new BusinessLogic.lnTopRailxHorizontalDivisions();
+                return Json(_TAP.InsertTopRailxHorizontalDivisions(pTopRailByHorizontalDivisions));
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
         public ActionResult TopRailByJoin()
         {
             ViewBag.Masters = "active show-sub";
@@ -476,6 +783,24 @@ namespace VenusDoors.Controllers
             ViewBag.cbTopRail = _LNTopRail.GetAllTopRail();
             ViewBag.cbJoin = _LNJoin.GetAllJoin();
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult InsertTopRailByJoin(TopRailxJoin pTopRailByJoin)
+        {
+            try
+            {
+
+                pTopRailByJoin.CreationDate = DateTime.Now;
+                pTopRailByJoin.ModificationDate = DateTime.Now;
+                BusinessLogic.lnTopRailxJoin _TEP = new BusinessLogic.lnTopRailxJoin();
+                return Json(_TEP.InsertTopRailxJoin(pTopRailByJoin));
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
         }
 
         public ActionResult TopRailByVerticalDivisions()
@@ -495,6 +820,24 @@ namespace VenusDoors.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult InsertTopRailByVerticalDivisions(TopRailxVerticalDivisions pTopRailByVerticalDivisions)
+        {
+            try
+            {
+
+                pTopRailByVerticalDivisions.CreationDate = DateTime.Now;
+                pTopRailByVerticalDivisions.ModificationDate = DateTime.Now;
+                BusinessLogic.lnTopRailxVerticalDivisions _TUP = new BusinessLogic.lnTopRailxVerticalDivisions();
+                return Json(_TUP.InsertTopRailxVerticalDivisions(pTopRailByVerticalDivisions));
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
         public ActionResult Type()
         {
             ViewBag.Masters = "active show-sub";
@@ -509,6 +852,24 @@ namespace VenusDoors.Controllers
             ViewBag.mStatus = _LNStatus.GetAllStatus();
             ViewBag.cbGroup = _LNGroup.GetAllGroup();
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult InsertType(Model.Type pTypes)
+        {
+            try
+            {
+
+                pTypes.CreationDate = DateTime.Now;
+                pTypes.ModificationDate = DateTime.Now;
+                BusinessLogic.lnType _LBL = new BusinessLogic.lnType();
+                return Json(_LBL.InsertType(pTypes));
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
         }
 
         public ActionResult Usuario()
@@ -528,19 +889,55 @@ namespace VenusDoors.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult InsertUsuario(User pUsuario)
+        {
+            try
+            {
+
+                pUsuario.CreationDate = DateTime.Now;
+                pUsuario.ModificationDate = DateTime.Now;
+                BusinessLogic.lnUser _USB = new BusinessLogic.lnUser();
+                return Json(_USB.InsertUser(pUsuario));
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
         public ActionResult VerticalDivisions()
         {
             ViewBag.Masters = "active show-sub";
             ViewBag.VerticalDivisions = "active";
-            BusinessLogic.lnVerticalDivisions _USB = new BusinessLogic.lnVerticalDivisions();
+            BusinessLogic.lnVerticalDivisions _UCB = new BusinessLogic.lnVerticalDivisions();
 
-            var mVerticalDivisions = _USB.GetAllVerticalDivisions();
+            var mVerticalDivisions = _UCB.GetAllVerticalDivisions();
             ViewBag.mVerticalDivisions = mVerticalDivisions;
             var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
             ViewBag.ListVerticalDivisions = serializar.Serialize(mVerticalDivisions);
 
             ViewBag.mStatus = _LNStatus.GetAllStatus();
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult InsertVerticalDivisions(VerticalDivisions pVerticalDivisions)
+        {
+            try
+            {
+
+                pVerticalDivisions.CreationDate = DateTime.Now;
+                pVerticalDivisions.ModificationDate = DateTime.Now;
+                BusinessLogic.lnVerticalDivisions _UCB = new BusinessLogic.lnVerticalDivisions();
+                return Json(_UCB.InsertVerticalDivisions(pVerticalDivisions));
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
         }
 
         // GET: Masters/Details/5

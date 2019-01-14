@@ -14,6 +14,19 @@
 
 <div class="br-pagebody">
     <div class="br-section-wrapper">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-11 pd-sm-bottom-30">
+                        <h4 class="tx-gray-800 mg-b-5">@ViewBag.Title</h4>
+                        <p class="mg-b-0">Modals are streamlined, but flexible, dialog prompts with the minimum required functionality and smart defaults.</p>
+                    </div>
+                    <div class="col-md-1">
+                        <button type="button" data-toggle="modal" data-target="#modalInsert" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Insert</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="table-wrapper">
             <div id="datatable1_wrapper" class="dataTables_wrapper no-footer">
                 <table id="datatable1" style="width: 100%;" class="table display responsive nowrap dataTable no-footer dtr-inline" role="grid" aria-describedby="datatable1_info">
@@ -53,6 +66,9 @@
 </div>
 
 @section scripts{
+<script>
+    var urlInsertInsideEdgeProfile = '@Url.Action("InsertInsideEdgeProfile", "Masters")';
+</script>
     <script>
         $(function () {
             'use strict';
@@ -80,6 +96,7 @@
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>
     <script src="~/Content/lib/select2/js/select2.min.js"></script>
+@Scripts.Render("~/Scripts/js/Masters.js")
 <script type="text/javascript">
 
         $(document).ready(function () {
@@ -101,7 +118,7 @@
 }
 <div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div>
 
-<div id="modaldemo" class="modal fade effect-scale" aria-hidden="true" style="display: none;">
+<div id="modalInsert" class="modal fade effect-scale" aria-hidden="true" style="display: none;">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content bd-0 rounded-0">
             <div class="modal-body pd-0">
@@ -119,22 +136,22 @@
                                         <div class="row">
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="Template" style="margin-top: 25px;">Id: </label>
-                                                <input type="text" name="id" class="form-control pd-y-12" placeholder="">
+                                                <input type="text" name="id" id="inId" class="form-control pd-y-12" readonly placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="Template" style="margin-top: 25px;">Description: </label>
-                                                <input type="text" name="id" class="form-control pd-y-12" placeholder="">
+                                                <input type="text" name="id" id="inDescription" class="form-control pd-y-12" placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="Template" style="margin-top: 25px;">Status: </label>
-                                                <select style="height: 43px;" class="form-control pd-y-12" id="IdStatus" data-placeholder=""></select>
+                                                <select style="height: 43px;" class="form-control pd-y-12" id="inStatus" data-placeholder=""></select>
                                             </div><!-- form-group -->
                                         </div>
                                     </div><!-- pd-20 -->
                                 </div><!-- col-6 -->
                             </div><!-- row -->
                             <div class="modal-footer justify-content-lg-end">
-                                <button type="button" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Insert</button>
+                                <button type="button" id="btnInsertIEP" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Insert</button>
                                 <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>
                             </div>
                         </div><!-- modal-body -->
@@ -214,3 +231,37 @@
     </div><!-- modal-dialog -->
 </div>
 
+<div id="modalCongra" class="modal fade" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content tx-size-sm">
+            <div class="modal-body tx-center pd-y-20 pd-x-20">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <i class="icon ion-ios-checkmark-outline tx-100 tx-success lh-1 mg-t-20 d-inline-block"></i>
+                <h4 class="tx-success tx-semibold mg-b-20">Congratulations!</h4>
+                <p class="mg-b-20 mg-x-20">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration.</p>
+                <button type="button" onclick="window.location.reload()" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">
+                    Continue
+                </button>
+            </div><!-- modal-body -->
+        </div><!-- modal-content -->
+    </div><!-- modal-dialog -->
+</div>
+<div id="modalError" class="modal fade">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content tx-size-sm">
+            <div class="modal-body tx-center pd-y-20 pd-x-20">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <i class="icon icon ion-ios-close-outline tx-100 tx-danger lh-1 mg-t-20 d-inline-block"></i>
+                <h4 class="tx-danger  tx-semibold mg-b-20">Error: Cannot process your entry!</h4>
+                <p class="mg-b-20 mg-x-20">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration.</p>
+                <button type="button" class="btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">
+                    Continue
+                </button>
+            </div><!-- modal-body -->
+        </div><!-- modal-content -->
+    </div><!-- modal-dialog -->
+</div>
