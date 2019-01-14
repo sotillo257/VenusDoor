@@ -481,7 +481,6 @@ function InsertDoorsxUser() {
                         alert("error");
                     },
               
-             });
+                });
 }
-
 
