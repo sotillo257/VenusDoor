@@ -14,12 +14,13 @@ namespace VenusDoors.Controllers
         {
             ViewBag.OrderSummary = "active";
             BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
-            if (Id > 0)
-            {
-                var Door = _LN.GetDoorsxUserById(Id.Value);
-                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-                ViewBag.Door = serializar.Serialize(Door);
-            }
+            ViewBag.xDoorsxUser = _LN.GetAllDoorsxUser();
+            //if (Id > 0)
+            //{
+            //    var Door = _LN.GetDoorsxUserById(Id.Value);
+            //    var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+            //    ViewBag.Door = serializar.Serialize(Door);
+            //}
             return View();
         }
 
