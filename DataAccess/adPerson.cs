@@ -65,7 +65,7 @@ namespace DataAccess
                         per.Add(new Person()
                         {
                             Id = int.Parse(item["Id"].ToString()),
-                            Name = item["IdUser"].ToString(),
+                            Name = item["Name"].ToString(),
                             Lastname = item["Lastname"].ToString(),
                             Telephone = item["Telephone"].ToString(),
                             Direction = item["Direction"].ToString(),

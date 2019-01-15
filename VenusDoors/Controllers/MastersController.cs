@@ -288,41 +288,38 @@ namespace VenusDoors.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //public ActionResult InsertGroup(Group pGroup)
-        //{
-        //    try
-        //    {
+        [HttpPost]
+        public ActionResult InsertGroup(Group pGroup)
+        {
+            try
+            {
 
-        //        pGroup.CreationDate = DateTime.Now;
-        //        pGroup.ModificationDate = DateTime.Now;
-        //        BusinessLogic.lnGroup _LC = new BusinessLogic.lnGroup();
-        //        return Json(_LC.InsertGroup(pGroup));
+                BusinessLogic.lnGroup _LC = new BusinessLogic.lnGroup();
+                return Json(_LC.InsertGroup(pGroup));
 
-        //    }
-        //    catch
-        //    {
-        //        return Json(false, JsonRequestBehavior.AllowGet);
-        //    }
-        //}
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
 
-        //[HttpPost]
-        //public ActionResult UpdateGroup(Group uGroup)
-        //{
-        //    try
-        //    {
+        [HttpPost]
+        public ActionResult UpdateGroup(Group uGroup)
+        {
+            try
+            {
 
-        //        uGroup.CreationDate = DateTime.Now;
-        //        uGroup.ModificationDate = DateTime.Now;
-        //        BusinessLogic.lnGroup _LC = new BusinessLogic.lnGroup();
-        //        return Json(_LC.UpdateGroup(uGroup));
+                
+                BusinessLogic.lnGroup _LC = new BusinessLogic.lnGroup();
+                return Json(_LC.UpdateGroup(uGroup));
 
-        //    }
-        //    catch
-        //    {
-        //        return Json(false, JsonRequestBehavior.AllowGet);
-        //    }
-        //}
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
 
         public ActionResult HingeDirection()
         {
