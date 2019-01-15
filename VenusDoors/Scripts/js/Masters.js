@@ -2,80 +2,183 @@
     $("#btInsert").on("click", function () {
         InsertBottomRail();
     });
+    $("#btnModify").on("click", function () {
+        InsertBottomRail();
+    });
+
     $("#btInsertDoors").on("click", function () {
         InsertDoors();
     });
+    $("#btnUpdateDoors").on("click", function () {
+        UpdateDoors();
+    });
+
     $("#btnInsertDP").on("click", function () {
         InsertDoorPrice();
     });
+    $("#btUpdateDoorPrice").on("click", function () {
+        UpdateDoorPrice();
+    });
+
     $("#btnInsertDS").on("click", function () {
         InsertDoorStyle();
     });
+    $("#btnUpdateDoorStyle").on("click", function () {
+        UpdateDoorStyle();
+    });
+
     $("#btInsertGroup").on("click", function () {
         InsertGroup();
     });
+    $("#btUpdateGroup").on("click", function () {
+        UpdateGroup();
+    });
+
     $("#btInsertHingeDirection").on("click", function () {
         InserHingeDirection();
     });
+    $("#btUpdateHingeDirec").on("click", function () {
+        UpdateHingeDirection();
+    });
+
     $("#btnInsertHP").on("click", function () {
         InserHingePositions();
     });
+    $("#btnUpdateHingePosi").on("click", function () {
+        UpdateHingePositions();
+    });
+
     $("#btnInsertHD").on("click", function () {
         InserHorizontalDivisions();
     });
+    $("#btnUpdateHorizontalDivi").on("click", function () {
+        UpdateHorizontalDivisions();
+    });
+
     $("#btnInsertIEP").on("click", function () {
         InsertInsideEdgeProfile();
     });
+    $("#btUpdateInsideEdgeProfile").on("click", function () {
+        UpdateInsideEdgeProfile();
+    });
+
     $("#btInsertJoin").on("click", function () {
         InsertJoin();
     });
+    $("#btUpdateJoin").on("click", function () {
+        UpdateJoin();
+    });
+
     $("#btInsertMaterial").on("click", function () {
         InsertMaterial();
     });
+    $("#btnUpdateMaterial").on("click", function () {
+        UpdateMaterial();
+    });
+
     $("#btInsertMaterialxBR").on("click", function () {
         InsertMaterialxBottomRail();
     });
+    $("#btnUpdateMaterialxBottom").on("click", function () {
+        UpdateMaterialxBottomRail();
+    });
+
     $("#btInsertOrder").on("click", function () {
         InsertOrder();
     });
+    $("#btnUpdateOrder").on("click", function () {
+        UpdateOrder();
+    });
+
     $("#btnInserOutside").on("click", function () {
         InsertOutsideEdgeProfile();
     });
+    $("#btnUpdateOutsideEdgePro").on("click", function () {
+        UpdateOutsideEdgeProfile();
+    });
+
     $("#btInsertPanel").on("click", function () {
         InsertPanel();
     });
+    $("#btnUpdatePanel").on("click", function () {
+        UpdatePanel();
+    });
+
     $("#btInsertPanelMaterial").on("click", function () {
         InsertPanelMaterial();
     });
+    $("#btnUpdatePanelMaterial").on("click", function () {
+        UpdatePanelMaterial();
+    });
+
     $("#btnInsertPerson").on("click", function () {
         InsertPerson();
     });
+    $("#btnUpdatePerson").on("click", function () {
+        UpdatePerson();
+    });
+
     $("#btInsertPreparation").on("click", function () {
         InsertPreparation();
     });
+    $("#btnUpdatePreparation").on("click", function () {
+        UpdatePreparation();
+    });
+
     $("#btnInsertStatus").on("click", function () {
         InsertStatus();
     });
+    $("#btnUpdateStatus").on("click", function () {
+        UpdateStatus();
+    });
+
     $("#btnInsertTopRail").on("click", function () {
         InsertTopRail();
     });
+    $("#btnUpdateTopRail").on("click", function () {
+        UpdateTopRail();
+    });
+
     $("#btInserTRHD").on("click", function () {
         InsertTopRailxHorizontalDivisions();
     });
+    $("#btbUpdateTRHorizonatlDivi").on("click", function () {
+        UpdateTopRailxHorizontalDivisions();
+    });
+
     $("#btnInsertTopRJ").on("click", function () {
         InsertTopRailByJoin();
     });
+    $("#btnUpdateTRJoin").on("click", function () {
+        UpdateTopRailByJoin();
+    });
+
     $("#btnInsertTopVD").on("click", function () {
         InsertTopRailByVerticalDivisions();
     });
+    $("#btUpdateTRVDivi").on("click", function () {
+        UpdateTopRailByVerticalDivisions();
+    });
+
     $("#btInsertType").on("click", function () {
         InsertType();
     });
+    $("#btnUpdateType").on("click", function () {
+        UpdateType();
+    });
+
     $("#btnInsertUser").on("click", function () {
         InsertUsuario();
     });
+    $("#btUpdateUser").on("click", function () {
+        UpdateUsuario();
+    });
+
     $("#btInsertVerticalDivi").on("click", function () {
         InsertVerticalDivisions();
+    });
+    $("#btUpdateVerticalDivision").on("click", function () {
+        UpdateVerticalDivisions();
     });
 });
 
@@ -96,6 +199,40 @@ function InsertBottomRail() {
         type: 'POST',
         data: JSON.stringify(datos),
         url: urlInsertBottomRail,
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+
+            //Validar data para ver si mostrar error al guardar o exito al guardar
+            if (result == true) {
+                $('#modalCongra').modal('toggle');
+            } else {
+                $('#modalError').modal('toggle');
+            }
+        },
+        error: function (err) {
+            alert("error");
+        },
+
+    });
+}
+function UpdateBottomRail() {
+
+    var datos =
+    {
+        uBottomRail: {
+            Description: $("#txtDescription").val(),
+            Status: { Id: $("#IdStatus").val() },
+            CreatorUser: 6,
+            ModificationUser: 6,
+
+        }
+    };
+    console.log(datos);
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(datos),
+        url: urlUpdateBottomRail,
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function (result) {
@@ -138,6 +275,7 @@ function InsertDoors() {
             Height: $("#inHeight").val(),
             Picture: $("#inPicture").val(),
             ProfilePicture: $("#inProfilePicture").val(),
+            Quantity: $("#inQuantity").val(),
             Status: { Id: $("#inStatus").val() },
             OpeningMeasurement: { Id: $("#inOpeningMeasurement").val() },
             CreatorUser: 6,
@@ -150,6 +288,60 @@ function InsertDoors() {
         type: 'POST',
         data: JSON.stringify(datos),
         url: urlInsertDoors,
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+
+            //Validar data para ver si mostrar error al guardar o exito al guardar
+            if (result == true) {
+                $('#modalCongra').modal('toggle');
+            } else {
+                $('#modalError').modal('toggle');
+            }
+        },
+        error: function (err) {
+            alert("error");
+        },
+
+    });
+}
+function UpdateDoors() {
+
+    var datos =
+    {
+        uDoors: {
+            DoorStyle: { Id: $("#cbDoorStyle").val() },
+            Matarial: { Id: $("#cbMatarial").val() },
+            TopRail: { Id: $("#cbTopRail").val() },
+            BottomRail: { Id: $("#cbBottomRail").val() },
+            Preparation: { Id: $("#cbPreparation").val() },
+            Join: { Id: $("#cbJoin").val() },
+            OutsideEdgeProfile: { Id: $("#cbOutsideEdgeProfile").val() },
+            InsideEdgeProfile: { Id: $("#cbInsideEdgeProfile").val() },
+            VerticalDivisions: { Id: $("#cbVerticalDivisions").val() },
+            HorizontalDivisions: { Id: $("#cbHorizontalDivisions").val() },
+            HingeDirection: { Id: $("#cbHingeDirection").val() },
+            HingePositions: { Id: $("#cbHingePositions").val() },
+            Panel: { Id: $("#cbPanel").val() },
+            PanelMaterial: { Id: $("#cbPanelMaterial").val() },
+            Drill: { Id: $("#isDrill").val() },
+            Width: $("#txtWidth").val(),
+            Height: $("#txtHeight").val(),
+            Picture: $("#txtPicture").val(),
+            ProfilePicture: $("#txtProfilePicture").val(),
+            Quantity: $("#txtQuantity").val(),
+            Status: { Id: $("#IdStatus").val() },
+            OpeningMeasurement: { Id: $("#isOpeningMeasurement").val() },
+            CreatorUser: 6,
+            ModificationUser: 6,
+
+        }
+    };
+    console.log(datos);
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(datos),
+        url: urlUpdateDoors,
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function (result) {
@@ -210,22 +402,56 @@ function InsertDoorPrice() {
 
     });
 }
+function UpdateDoorPrice() {
+
+    var datos =
+    {
+        uDoorPrice: {
+            DoorStyle: { Id: $("#cbDoorStyle").val() },
+            Matarial: { Id: $("#cbMatarial").val() },
+            BasePrice: $("#txtBasePrice").val(),
+            AdditinalSFPrice: $("#txtAdditinalSFPrice").val(),
+            Status: { Id: $("#IdStatus").val() },
+            Picture: $("#txtPicture").val(),
+            ProfilePicture: $("#txtProfilePicture").val(),
+            VerticalBase1FLPrice: $("#txtVerticalBase1FLPrice").val(),
+            HorizontalBase1FLPrice: $("#txtHorizontalBase1FLPrice").val(),
+            HorizontalAdditionalInchPrice: $("#txtHorizontalAdditionalInchPrice").val(),
+            CreatorUser: 6,
+            ModificationUser: 6,
+
+        }
+    };
+    console.log(datos);
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(datos),
+        url: urlUpdateDoorPrice,
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+
+            //Validar data para ver si mostrar error al guardar o exito al guardar
+            if (result == true) {
+                $('#modalCongra').modal('toggle');
+            } else {
+                $('#modalError').modal('toggle');
+            }
+        },
+        error: function (err) {
+            alert("error");
+        },
+
+    });
+}
 
 function InsertDoorStyle() {
 
     var datos =
     {
         pDoorStyle: {
-            DoorStyle: { Id: $("#inDoorStyle").val() },
-            Matarial: { Id: $("#inMatarial").val() },
-            BasePrice: $("#inBasePrice").val(),
-            AdditinalSFPrice: $("#inAdditinalSFPrice").val(),
+            Description: $("#inDescription").val(),
             Status: { Id: $("#inStatus").val() },
-            Picture: $("#inPicture").val(),
-            ProfilePicture: $("#inProfilePicture").val(),
-            VerticalBase1FLPrice: $("#inVerticalBase1FLPrice").val(),
-            HorizontalBase1FLPrice: $("#inHorizontalBase1FLPrice").val(),
-            HorizontalAdditionalInchPrice: $("#inHorizontalAdditionalInchPrice").val(),
             CreatorUser: 6,
             ModificationUser: 6,
 
@@ -236,6 +462,40 @@ function InsertDoorStyle() {
         type: 'POST',
         data: JSON.stringify(datos),
         url: urlInsertDoorStyle,
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+
+            //Validar data para ver si mostrar error al guardar o exito al guardar
+            if (result == true) {
+                $('#modalCongra').modal('toggle');
+            } else {
+                $('#modalError').modal('toggle');
+            }
+        },
+        error: function (err) {
+            alert("error");
+        },
+
+    });
+}
+function UpdateDoorStyle() {
+
+    var datos =
+    {
+        uDoorStyle: {
+            Description: $("#txtDescription").val(),
+            Status: { Id: $("#IdStatus").val() },
+            CreatorUser: 6,
+            ModificationUser: 6,
+
+        }
+    };
+    console.log(datos);
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(datos),
+        url: urlUpdateDoorStyle,
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function (result) {
@@ -270,6 +530,39 @@ function InsertGroup() {
         type: 'POST',
         data: JSON.stringify(datos),
         url: urlInsertGroup,
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+
+            //Validar data para ver si mostrar error al guardar o exito al guardar
+            if (result == true) {
+                $('#modalCongra').modal('toggle');
+            } else {
+                $('#modalError').modal('toggle');
+            }
+        },
+        error: function (err) {
+            alert("error");
+        },
+
+    });
+}
+function UpdateGroup() {
+
+    var datos =
+    {
+        uGroup: {
+            Description: $("#txtDescription").val(),
+            CreatorUser: 6,
+            ModificationUser: 6,
+
+        }
+    };
+    console.log(datos);
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(datos),
+        url: urlUpdateGroup,
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function (result) {
@@ -322,6 +615,40 @@ function InserHingeDirection() {
 
     });
 }
+function UpdateHingeDirection() {
+
+    var datos =
+    {
+        uHingeDirection: {
+            Direction: $("#txtDirection").val(),
+            Status: { Id: $("#IdStatus").val() },
+            CreatorUser: 6,
+            ModificationUser: 6,
+
+        }
+    };
+    console.log(datos);
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(datos),
+        url: urlUpdateHingeDirection,
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+
+            //Validar data para ver si mostrar error al guardar o exito al guardar
+            if (result == true) {
+                $('#modalCongra').modal('toggle');
+            } else {
+                $('#modalError').modal('toggle');
+            }
+        },
+        error: function (err) {
+            alert("error");
+        },
+
+    });
+}
 
 function InserHingePositions() {
 
@@ -340,6 +667,40 @@ function InserHingePositions() {
         type: 'POST',
         data: JSON.stringify(datos),
         url: urlInserHingePositions,
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+
+            //Validar data para ver si mostrar error al guardar o exito al guardar
+            if (result == true) {
+                $('#modalCongra').modal('toggle');
+            } else {
+                $('#modalError').modal('toggle');
+            }
+        },
+        error: function (err) {
+            alert("error");
+        },
+
+    });
+}
+function UpdateHingePositions() {
+
+    var datos =
+    {
+        uHingePositions: {
+            Position: $("#txtPosition").val(),
+            Status: { Id: $("#IdStatus").val() },
+            CreatorUser: 6,
+            ModificationUser: 6,
+
+        }
+    };
+    console.log(datos);
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(datos),
+        url: urlUpdateHingePositions,
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function (result) {
@@ -392,6 +753,40 @@ function InserHorizontalDivisions() {
 
     });
 }
+function UpdateHorizontalDivisions() {
+
+    var datos =
+    {
+        uHorizontalDivisions: {
+            Quantity: $("#txtQuantity").val(),
+            Status: { Id: $("#IdStatus").val() },
+            CreatorUser: 6,
+            ModificationUser: 6,
+
+        }
+    };
+    console.log(datos);
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(datos),
+        url: urlUpdateHorizontalDivisions,
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+
+            //Validar data para ver si mostrar error al guardar o exito al guardar
+            if (result == true) {
+                $('#modalCongra').modal('toggle');
+            } else {
+                $('#modalError').modal('toggle');
+            }
+        },
+        error: function (err) {
+            alert("error");
+        },
+
+    });
+}
 
 function InsertInsideEdgeProfile() {
 
@@ -410,6 +805,40 @@ function InsertInsideEdgeProfile() {
         type: 'POST',
         data: JSON.stringify(datos),
         url: urlInsertInsideEdgeProfile,
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+
+            //Validar data para ver si mostrar error al guardar o exito al guardar
+            if (result == true) {
+                $('#modalCongra').modal('toggle');
+            } else {
+                $('#modalError').modal('toggle');
+            }
+        },
+        error: function (err) {
+            alert("error");
+        },
+
+    });
+}
+function UpdateInsideEdgeProfile() {
+
+    var datos =
+    {
+        pInsideEdgeProfile: {
+            Description: $("#txtDescription").val(),
+            Status: { Id: $("#IdStatus").val() },
+            CreatorUser: 6,
+            ModificationUser: 6,
+
+        }
+    };
+    console.log(datos);
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(datos),
+        url: urlUpdateInsideEdgeProfile,
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function (result) {
@@ -462,6 +891,40 @@ function InsertJoin() {
 
     });
 }
+function UpdateJoin() {
+
+    var datos =
+    {
+        uJoin: {
+            Description: $("#txtDescription").val(),
+            Status: { Id: $("#IdStatus").val() },
+            CreatorUser: 6,
+            ModificationUser: 6,
+
+        }
+    };
+    console.log(datos);
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(datos),
+        url: urlUpdateJoin,
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+
+            //Validar data para ver si mostrar error al guardar o exito al guardar
+            if (result == true) {
+                $('#modalCongra').modal('toggle');
+            } else {
+                $('#modalError').modal('toggle');
+            }
+        },
+        error: function (err) {
+            alert("error");
+        },
+
+    });
+}
 
 function InsertMaterial() {
 
@@ -480,6 +943,40 @@ function InsertMaterial() {
         type: 'POST',
         data: JSON.stringify(datos),
         url: urlInsertMaterial,
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+
+            //Validar data para ver si mostrar error al guardar o exito al guardar
+            if (result == true) {
+                $('#modalCongra').modal('toggle');
+            } else {
+                $('#modalError').modal('toggle');
+            }
+        },
+        error: function (err) {
+            alert("error");
+        },
+
+    });
+}
+function UpdateMaterial() {
+
+    var datos =
+    {
+        uMaterial: {
+            Description: $("#txtDescription").val(),
+            Status: { Id: $("#IdStatus").val() },
+            CreatorUser: 6,
+            ModificationUser: 6,
+
+        }
+    };
+    console.log(datos);
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(datos),
+        url: urlUpdateMaterial,
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function (result) {
@@ -516,6 +1013,41 @@ function InsertMaterialxBottomRail() {
         type: 'POST',
         data: JSON.stringify(datos),
         url: urlInsertMaterialxBottomRail,
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+
+            //Validar data para ver si mostrar error al guardar o exito al guardar
+            if (result == true) {
+                $('#modalCongra').modal('toggle');
+            } else {
+                $('#modalError').modal('toggle');
+            }
+        },
+        error: function (err) {
+            alert("error");
+        },
+
+    });
+}
+function UpdateMaterialxBottomRail() {
+
+    var datos =
+    {
+        uMaterialxBottomRail: {
+            Matarial: { Id: $("#cbMatarial").val() },
+            BottomRail: { Id: $("#cbBottomRail").val() },
+            Status: { Id: $("#IdStatus").val() },
+            CreatorUser: 6,
+            ModificationUser: 6,
+
+        }
+    };
+    console.log(datos);
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(datos),
+        url: urlUpdateMaterialxBottomRail,
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function (result) {
@@ -571,6 +1103,43 @@ function InsertOrder() {
 
     });
 }
+function UpdateOrder() {
+
+    var datos =
+    {
+        uOrder: {
+            User: { Id: $("#cbUser").val() },
+            Quantity: $("#txtQuantity").val(),
+            Total: $("#txtTotal").val(),
+            Type: { Id: $("#IdType").val() },
+            Status: { Id: $("#IdStatus").val() },
+            CreatorUser: 6,
+            ModificationUser: 6,
+
+        }
+    };
+    console.log(datos);
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(datos),
+        url: urlUpdateOrder,
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+
+            //Validar data para ver si mostrar error al guardar o exito al guardar
+            if (result == true) {
+                $('#modalCongra').modal('toggle');
+            } else {
+                $('#modalError').modal('toggle');
+            }
+        },
+        error: function (err) {
+            alert("error");
+        },
+
+    });
+}
 
 function InsertOutsideEdgeProfile() {
 
@@ -589,6 +1158,40 @@ function InsertOutsideEdgeProfile() {
         type: 'POST',
         data: JSON.stringify(datos),
         url: urlInsertOutsideEdgeProfile,
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+
+            //Validar data para ver si mostrar error al guardar o exito al guardar
+            if (result == true) {
+                $('#modalCongra').modal('toggle');
+            } else {
+                $('#modalError').modal('toggle');
+            }
+        },
+        error: function (err) {
+            alert("error");
+        },
+
+    });
+}
+function UpdateOutsideEdgeProfile() {
+
+    var datos =
+    {
+        uOutsideEdgeProfiler: {
+            Description: $("#txtDescription").val(),
+            Status: { Id: $("#IdStatus").val() },
+            CreatorUser: 6,
+            ModificationUser: 6,
+
+        }
+    };
+    console.log(datos);
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(datos),
+        url: urlUpdateOutsideEdgeProfile,
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function (result) {
@@ -641,6 +1244,40 @@ function InsertPanel() {
 
     });
 }
+function UpdatePanel() {
+
+    var datos =
+    {
+        uPanel: {
+            Description: $("#txtDescription").val(),
+            Status: { Id: $("#IdStatus").val() },
+            CreatorUser: 6,
+            ModificationUser: 6,
+
+        }
+    };
+    console.log(datos);
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(datos),
+        url: urlUpdatePanel,
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+
+            //Validar data para ver si mostrar error al guardar o exito al guardar
+            if (result == true) {
+                $('#modalCongra').modal('toggle');
+            } else {
+                $('#modalError').modal('toggle');
+            }
+        },
+        error: function (err) {
+            alert("error");
+        },
+
+    });
+}
 
 function InsertPanelMaterial() {
 
@@ -659,6 +1296,40 @@ function InsertPanelMaterial() {
         type: 'POST',
         data: JSON.stringify(datos),
         url: urlInsertPanelMaterial,
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+
+            //Validar data para ver si mostrar error al guardar o exito al guardar
+            if (result == true) {
+                $('#modalCongra').modal('toggle');
+            } else {
+                $('#modalError').modal('toggle');
+            }
+        },
+        error: function (err) {
+            alert("error");
+        },
+
+    });
+}
+function UpdatePanelMaterial() {
+
+    var datos =
+    {
+        uPanelMaterial: {
+            Description: $("#txtDescription").val(),
+            Status: { Id: $("#IdStatus").val() },
+            CreatorUser: 6,
+            ModificationUser: 6,
+
+        }
+    };
+    console.log(datos);
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(datos),
+        url: urlUpdatePanelMaterial,
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function (result) {
@@ -714,6 +1385,43 @@ function InsertPerson() {
 
     });
 }
+function UpdatePerson() {
+
+    var datos =
+    {
+        uPerson: {
+            Name: $("#txtName").val(),
+            Lastname: $("#txtLastname").val(),
+            Telephone: $("#txtTelephone").val(),
+            Direction: $("#txtDirection").val(),
+            Status: { Id: $("#IdStatus").val() },
+            CreatorUser: 6,
+            ModificationUser: 6,
+
+        }
+    };
+    console.log(datos);
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(datos),
+        url: urlUpdatePerson,
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+
+            //Validar data para ver si mostrar error al guardar o exito al guardar
+            if (result == true) {
+                $('#modalCongra').modal('toggle');
+            } else {
+                $('#modalError').modal('toggle');
+            }
+        },
+        error: function (err) {
+            alert("error");
+        },
+
+    });
+}
 
 function InsertPreparation() {
 
@@ -732,6 +1440,40 @@ function InsertPreparation() {
         type: 'POST',
         data: JSON.stringify(datos),
         url: urlInsertPreparation,
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+
+            //Validar data para ver si mostrar error al guardar o exito al guardar
+            if (result == true) {
+                $('#modalCongra').modal('toggle');
+            } else {
+                $('#modalError').modal('toggle');
+            }
+        },
+        error: function (err) {
+            alert("error");
+        },
+
+    });
+}
+function UpdatePreparation() {
+
+    var datos =
+    {
+        uPreparation: {
+            Description: $("#txtDescription").val(),
+            Status: { Id: $("#IdStatus").val() },
+            CreatorUser: 6,
+            ModificationUser: 6,
+
+        }
+    };
+    console.log(datos);
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(datos),
+        url: urlUpdatePreparation,
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function (result) {
@@ -784,6 +1526,40 @@ function InsertStatus() {
 
     });
 }
+function UpdateStatus() {
+
+    var datos =
+    {
+        uStatus: {
+            Description: $("#txtDescription").val(),
+            Group: { Id: $("#IdGroup").val() },
+            CreatorUser: 6,
+            ModificationUser: 6,
+
+        }
+    };
+    console.log(datos);
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(datos),
+        url: urlUpdateStatus,
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+
+            //Validar data para ver si mostrar error al guardar o exito al guardar
+            if (result == true) {
+                $('#modalCongra').modal('toggle');
+            } else {
+                $('#modalError').modal('toggle');
+            }
+        },
+        error: function (err) {
+            alert("error");
+        },
+
+    });
+}
 
 function InsertTopRail() {
 
@@ -802,6 +1578,40 @@ function InsertTopRail() {
         type: 'POST',
         data: JSON.stringify(datos),
         url: urlInsertTopRail,
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+
+            //Validar data para ver si mostrar error al guardar o exito al guardar
+            if (result == true) {
+                $('#modalCongra').modal('toggle');
+            } else {
+                $('#modalError').modal('toggle');
+            }
+        },
+        error: function (err) {
+            alert("error");
+        },
+
+    });
+}
+function UpdateTopRail() {
+
+    var datos =
+    {
+        uTopRail: {
+            Description: $("#txtDescription").val(),
+            Status: { Id: $("#IdStatus").val() },
+            CreatorUser: 6,
+            ModificationUser: 6,
+
+        }
+    };
+    console.log(datos);
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(datos),
+        url: urlUpdateTopRail,
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function (result) {
@@ -855,6 +1665,41 @@ function InsertTopRailxHorizontalDivisions() {
 
     });
 }
+function UpdateTopRailxHorizontalDivisions() {
+
+    var datos =
+    {
+        uTopRailByHorizontalDivisions: {
+            TopRail: { Id: $("#cbTopRail").val() },
+            HorizontalDivisions: { Id: $("#cbHorizontalDivisions").val() },
+            Status: { Id: $("#IdStatus").val() },
+            CreatorUser: 6,
+            ModificationUser: 6,
+
+        }
+    };
+    console.log(datos);
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(datos),
+        url: urlUpdateTopRailxHorizontalDivisions,
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+
+            //Validar data para ver si mostrar error al guardar o exito al guardar
+            if (result == true) {
+                $('#modalCongra').modal('toggle');
+            } else {
+                $('#modalError').modal('toggle');
+            }
+        },
+        error: function (err) {
+            alert("error");
+        },
+
+    });
+}
 
 function InsertTopRailByJoin() {
 
@@ -874,6 +1719,41 @@ function InsertTopRailByJoin() {
         type: 'POST',
         data: JSON.stringify(datos),
         url: urlInsertTopRailByJoin,
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+
+            //Validar data para ver si mostrar error al guardar o exito al guardar
+            if (result == true) {
+                $('#modalCongra').modal('toggle');
+            } else {
+                $('#modalError').modal('toggle');
+            }
+        },
+        error: function (err) {
+            alert("error");
+        },
+
+    });
+}
+function UpdateTopRailByJoin() {
+
+    var datos =
+    {
+        uTopRailByHorizontalDivisions: {
+            TopRail: { Id: $("#cbTopRail").val() },
+            Join: { Id: $("#cbJoin").val() },
+            Status: { Id: $("#IdStatus").val() },
+            CreatorUser: 6,
+            ModificationUser: 6,
+
+        }
+    };
+    console.log(datos);
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(datos),
+        url: urlUpdateTopRailByJoin,
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function (result) {
@@ -927,6 +1807,41 @@ function InsertTopRailByVerticalDivisions() {
 
     });
 }
+function UpdateTopRailByVerticalDivisions() {
+
+    var datos =
+    {
+        uTopRailByHorizontalDivisions: {
+            TopRail: { Id: $("#cbTopRail").val() },
+            VerticalDivisions: { Id: $("#cbVerticalDivisions").val() },
+            Status: { Id: $("#IdStatus").val() },
+            CreatorUser: 6,
+            ModificationUser: 6,
+
+        }
+    };
+    console.log(datos);
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(datos),
+        url: urlUpdateTopRailByVerticalDivisions,
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+
+            //Validar data para ver si mostrar error al guardar o exito al guardar
+            if (result == true) {
+                $('#modalCongra').modal('toggle');
+            } else {
+                $('#modalError').modal('toggle');
+            }
+        },
+        error: function (err) {
+            alert("error");
+        },
+
+    });
+}
 
 function InsertType() {
 
@@ -946,6 +1861,41 @@ function InsertType() {
         type: 'POST',
         data: JSON.stringify(datos),
         url: urlInsertType,
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+
+            //Validar data para ver si mostrar error al guardar o exito al guardar
+            if (result == true) {
+                $('#modalCongra').modal('toggle');
+            } else {
+                $('#modalError').modal('toggle');
+            }
+        },
+        error: function (err) {
+            alert("error");
+        },
+
+    });
+}
+function UpdateType() {
+
+    var datos =
+    {
+        uTypes: {
+            Description: $("#txtDescription").val(),
+            Group: { Id: $("#IdGroup").val() },
+            Status: { Id: $("#IdStatus").val() },
+            CreatorUser: 6,
+            ModificationUser: 6,
+
+        }
+    };
+    console.log(datos);
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(datos),
+        url: urlUpdateType,
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function (result) {
@@ -1001,6 +1951,43 @@ function InsertUsuario() {
 
     });
 }
+function UpdateUsuario() {
+
+    var datos =
+    {
+        uUsuario: {
+            Email: $("#txtEmail").val(),
+            Password: $("#txtPassword").val(),
+            Type: { Id: $("#IdType").val() },
+            Person: { Id: $("#cbPerson").val() },
+            Status: { Id: $("#IdStatus").val() },
+            CreatorUser: 6,
+            ModificationUser: 6,
+
+        }
+    };
+    console.log(datos);
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(datos),
+        url: urlUpdateUsuario,
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+
+            //Validar data para ver si mostrar error al guardar o exito al guardar
+            if (result == true) {
+                $('#modalCongra').modal('toggle');
+            } else {
+                $('#modalError').modal('toggle');
+            }
+        },
+        error: function (err) {
+            alert("error");
+        },
+
+    });
+}
 
 function InsertVerticalDivisions() {
 
@@ -1019,6 +2006,40 @@ function InsertVerticalDivisions() {
         type: 'POST',
         data: JSON.stringify(datos),
         url: urlInsertInsertVerticalDivisions,
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+
+            //Validar data para ver si mostrar error al guardar o exito al guardar
+            if (result == true) {
+                $('#modalCongra').modal('toggle');
+            } else {
+                $('#modalError').modal('toggle');
+            }
+        },
+        error: function (err) {
+            alert("error");
+        },
+
+    });
+}
+function UpdateVerticalDivisions() {
+
+    var datos =
+    {
+        uVerticalDivisions: {
+            Quantity: $("#IdStatus").val(),
+            Status: { Id: $("#txtQuanty").val() },
+            CreatorUser: 6,
+            ModificationUser: 6,
+
+        }
+    };
+    console.log(datos);
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(datos),
+        url: urlUpdateVerticalDivisions,
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function (result) {

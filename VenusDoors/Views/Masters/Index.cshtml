@@ -34,6 +34,7 @@
                         <tr>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" style="width: 100px;" aria-label="First name: activate to sort column ascending">Id</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" style="width: 400px;" aria-label="Last name: activate to sort column ascending">Description</th>
+                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Status</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" style="text-align: center" aria-label="Last name: activate to sort column ascending"><i class="fa fa-flash"></i></th>
                         </tr>
                     </thead>
@@ -43,9 +44,10 @@
                             <tr role="row" class="odd">
                                 <td tabindex="0" class="">@item.Id</td>
                                 <td class="">@item.Description</td>
+                                <td class="">@item.Status.Id</td>
                                 <td class="">
                                     <center>
-                                        <a href="#" data-toggle="modal" data-target="#modaldemo1" value="@item.Id" class="Modificar btn btn-primary btn-icon">
+                                        <a href="#" data-toggle="modal" data-target="#modalModify" value="@item.Id" class="Modificar btn btn-primary btn-icon">
                                             <div><i class="fa fa-edit"></i></div>
                                         </a>
                                         <a href="#" data-toggle="modal" data-target="#modaldemo2" value="@item.Id" class="Eliminar btn btn-danger btn-icon">
@@ -66,6 +68,7 @@
 @section scripts{
 <script>
     var urlInsertDoorStyle = '@Url.Action("InsertDoorStyle", "Masters")';
+    var urlUpdateDoorStyle = '@Url.Action("UpdateDoorStyle", "Masters")';
 </script>
     <script>
         $(function () {
@@ -104,6 +107,7 @@
                     if (ListDoorsStyle[i].Id == $(this).attr('value')) {
                         $('#txtId').val(ListDoorsStyle[i].Id);
                         $('#txtDescription').val(ListDoorsStyle[i].Description);
+                        $('#IdStatus').val(ListDoorsStyle[i].Status.Id);
                     }
                 }
             });
@@ -139,6 +143,16 @@
                                                 <label for="inDescription" style="margin-top: 25px;">Description: </label>
                                                 <input type="text" name="Description" id="inDescription" class="form-control" placeholder="">
                                             </div><!-- form-group -->
+                                            <div class="col-xs-4 col-md-5">
+                                                <label for="inStatus" style="margin-top: 25px;">Status: </label>
+                                                <select style="width:100%" class="form-control select2" id="inStatus" data-placeholder="">
+                                                    <option value="0">select</option>
+                                                    @foreach (Model.Status item in ViewBag.mStatus)
+                                                    {
+                                                        <option value="@item.Id">@item.Description</option>
+                                                    }
+                                                </select>
+                                            </div><!-- form-group -->
                                         </div>
                                     </div><!-- pd-20 -->
                                 </div><!-- col-6 -->
@@ -155,7 +169,7 @@
     </div><!-- modal-dialog -->
 </div>
 
-<div id="modaldemo1" class="modal fade effect-scale" aria-hidden="true" style="display: none;">
+<div id="modalModify" class="modal fade effect-scale" aria-hidden="true" style="display: none;">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content bd-0 rounded-0">
             <div class="modal-body pd-0">
@@ -179,12 +193,22 @@
                                                 <label for="txtDescription" style="margin-top: 25px;">Description: </label>
                                                 <input type="text" name="id" id="txtDescription" class="form-control" placeholder="">
                                             </div><!-- form-group -->
+                                            <div class="col-xs-4 col-md-4">
+                                                <label for="Template" style="margin-top: 25px;">Status: </label>
+                                                <select style="width: 157px;" class="form-control select2" id="IdStatus" data-placeholder="">
+                                                    <option value="0">select</option>
+                                                    @foreach (Model.Status item in ViewBag.mStatus)
+                                                    {
+                                                        <option value="@item.Id">@item.Description</option>
+                                                    }
+                                                </select>
+                                            </div><!-- form-group -->
                                         </div>
                                     </div><!-- pd-20 -->
                                 </div><!-- col-6 -->
                             </div><!-- row -->
                             <div class="modal-footer justify-content-lg-end">
-                                <button type="button" class="btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Modify</button>
+                                <button type="button" id="btnUpdateDoorStyle" class="btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Modify</button>
                                 <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>
                             </div>
                         </div><!-- modal-body -->

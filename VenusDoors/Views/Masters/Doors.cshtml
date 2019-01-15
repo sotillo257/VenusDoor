@@ -51,6 +51,7 @@
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Width</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Height</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Opening Measurement</th>
+                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Quantity</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Picture</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">ProfilePicture</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Status</th>
@@ -82,10 +83,11 @@
                                 <td class="">@item.IsOpeningMeasurement</td>
                                 <td class="">@item.Picture</td>
                                 <td class="">@item.ProfilePicture</td>
+                                <td class="">@item.Quantity</td>
                                 <td class="">@item.Status.Id</td>
                                 <td class="">
                                     <center>
-                                        <a href="#" data-toggle="modal" data-target="#modaldemo1" class="Modificar btn btn-primary btn-icon">
+                                        <a href="#" data-toggle="modal" data-target="#modalModify" class="Modificar btn btn-primary btn-icon">
                                             <div><i class="fa fa-edit"></i></div>
                                         </a>
                                         <a href="#" data-toggle="modal" data-target="#modaldemo2" class="Eliminar btn btn-danger btn-icon">
@@ -286,6 +288,10 @@
                                                 <input type="text" name="id" id="inProfilePicture" class="form-control" placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-3">
+                                                <label for="Quantity" style="margin-top: 25px;">Quantity: </label>
+                                                <input type="text" name="id" id="inQuantity" class="form-control" placeholder="">
+                                            </div><!-- form-group -->
+                                            <div class="col-xs-4 col-md-3">
                                                 <label for="Template" style="margin-top: 25px;">Status: </label>
                                                 <select style="width:100%" class="form-control select2" id="inStatus" data-placeholder="">
                                                     <option value="0">select</option>
@@ -320,7 +326,7 @@
     </div><!-- modal-dialog -->
 </div>
 
-<div id="modaldemo1" class="modal fade effect-scale" aria-hidden="true" style="display: none;">
+<div id="modalModify" class="modal fade effect-scale" aria-hidden="true" style="display: none;">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content bd-0 rounded-0">
             <div class="modal-body pd-0">
@@ -501,6 +507,10 @@
                                                 <input type="text" name="id" id="txtProfilePicture" class="form-control" placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-3">
+                                                <label for="Quantity" style="margin-top: 25px;">Quantity: </label>
+                                                <input type="text" name="id" id="txtQuantity" class="form-control" placeholder="">
+                                            </div><!-- form-group -->
+                                            <div class="col-xs-4 col-md-3">
                                                 <label for="Template" style="margin-top: 25px;">Status: </label>
                                                 <select style="width:100%" class="form-control select2" id="IdStatus" data-placeholder="">
                                                     <option value="0">select</option>
@@ -524,7 +534,7 @@
                                 </div><!-- col-6 -->
                             </div><!-- row -->
                             <div class="modal-footer justify-content-lg-end">
-                                <button type="button" class="btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Modify</button>
+                                <button type="button" id="btnUpdateDoors" class="btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Modify</button>
                                 <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>
                             </div>
                         </div><!-- modal-body -->
@@ -594,6 +604,7 @@
 @section scripts{
     <script>
         var urlInsertDoors = '@Url.Action("InsertDoors", "Masters")';
+        var urlUpdateDoors = '@Url.Action("UpdateDoors", "Masters")';
     </script>
     <script>
         $(function () {
@@ -653,6 +664,7 @@
                         $('#isOpeningMeasurement').val(ListDoors[i].IsOpeningMeasurement);
                         $('#txtPicture').val(ListDoors[i].Picture);
                         $('#txtProfilePicture').val(ListDoors[i].ProfilePicture);
+                        $('#txtQuantity').val(ListDoors[i].Quantity);
                         $('#IdStatus').val(ListDoors[i].Status.Id);
                     }
                 }
