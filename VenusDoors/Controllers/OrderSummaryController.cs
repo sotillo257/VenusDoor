@@ -10,6 +10,7 @@ namespace VenusDoors.Controllers
     public class OrderSummaryController : Controller
     {
         // GET: OrderSummary
+        [HttpPost]
         public ActionResult Index(int? Id)
         {
             ViewBag.OrderSummary = "active";
