@@ -288,41 +288,37 @@ namespace VenusDoors.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //public ActionResult InsertGroup(Group pGroup)
-        //{
-        //    try
-        //    {
+        [HttpPost]
+        public ActionResult InsertGroup(Group pGroup)
+        {
+            try
+            {
 
-        //        pGroup.CreationDate = DateTime.Now;
-        //        pGroup.ModificationDate = DateTime.Now;
-        //        BusinessLogic.lnGroup _LC = new BusinessLogic.lnGroup();
-        //        return Json(_LC.InsertGroup(pGroup));
+                BusinessLogic.lnGroup _LC = new BusinessLogic.lnGroup();
+                return Json(_LC.InsertGroup(pGroup));
 
-        //    }
-        //    catch
-        //    {
-        //        return Json(false, JsonRequestBehavior.AllowGet);
-        //    }
-        //}
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
 
-        //[HttpPost]
-        //public ActionResult UpdateGroup(Group uGroup)
-        //{
-        //    try
-        //    {
+        [HttpPost]
+        public ActionResult UpdateGroup(Group uGroup)
+        {
+            try
+            {
 
-        //        uGroup.CreationDate = DateTime.Now;
-        //        uGroup.ModificationDate = DateTime.Now;
-        //        BusinessLogic.lnGroup _LC = new BusinessLogic.lnGroup();
-        //        return Json(_LC.UpdateGroup(uGroup));
+                BusinessLogic.lnGroup _LC = new BusinessLogic.lnGroup();
+                return Json(_LC.UpdateGroup(uGroup));
 
-        //    }
-        //    catch
-        //    {
-        //        return Json(false, JsonRequestBehavior.AllowGet);
-        //    }
-        //}
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
 
         public ActionResult HingeDirection()
         {
@@ -1008,41 +1004,37 @@ namespace VenusDoors.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //public ActionResult InsertStatus(Status pStatus)
-        //{
-        //    try
-        //    {
+        [HttpPost]
+        public ActionResult InsertStatus(Status pStatus)
+        {
+            try
+            {
 
-        //        pStatus.CreationDate = DateTime.Now;
-        //        pStatus.ModificationDate = DateTime.Now;
-        //        BusinessLogic.lnStatus _LNStatus = new BusinessLogic.lnStatus();
-        //        return Json(_LNStatus.InsertStatus(pStatus));
+                BusinessLogic.lnStatus _LNStatus = new BusinessLogic.lnStatus();
+                return Json(_LNStatus.InsertStatus(pStatus));
 
-        //    }
-        //    catch
-        //    {
-        //        return Json(false, JsonRequestBehavior.AllowGet);
-        //    }
-        //}
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
 
-        //[HttpPost]
-        //public ActionResult UpdateStatus(Status uStatus)
-        //{
-        //    try
-        //    {
+        [HttpPost]
+        public ActionResult UpdateStatus(Status uStatus)
+        {
+            try
+            {
 
-        //        uStatus.CreationDate = DateTime.Now;
-        //        uStatus.ModificationDate = DateTime.Now;
-        //        BusinessLogic.lnStatus _LNStatus = new BusinessLogic.lnStatus();
-        //        return Json(_LNStatus.UpdateStatus(uStatus));
+                BusinessLogic.lnStatus _LNStatus = new BusinessLogic.lnStatus();
+                return Json(_LNStatus.UpdateStatus(uStatus));
 
-        //    }
-        //    catch
-        //    {
-        //        return Json(false, JsonRequestBehavior.AllowGet);
-        //    }
-        //}
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
 
         public ActionResult TopRail()
         {
