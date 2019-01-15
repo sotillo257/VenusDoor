@@ -310,7 +310,6 @@ namespace VenusDoors.Controllers
             try
             {
 
-                
                 BusinessLogic.lnGroup _LC = new BusinessLogic.lnGroup();
                 return Json(_LC.UpdateGroup(uGroup));
 
@@ -1005,41 +1004,37 @@ namespace VenusDoors.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //public ActionResult InsertStatus(Status pStatus)
-        //{
-        //    try
-        //    {
+        [HttpPost]
+        public ActionResult InsertStatus(Status pStatus)
+        {
+            try
+            {
 
-        //        pStatus.CreationDate = DateTime.Now;
-        //        pStatus.ModificationDate = DateTime.Now;
-        //        BusinessLogic.lnStatus _LNStatus = new BusinessLogic.lnStatus();
-        //        return Json(_LNStatus.InsertStatus(pStatus));
+                BusinessLogic.lnStatus _LNStatus = new BusinessLogic.lnStatus();
+                return Json(_LNStatus.InsertStatus(pStatus));
 
-        //    }
-        //    catch
-        //    {
-        //        return Json(false, JsonRequestBehavior.AllowGet);
-        //    }
-        //}
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
 
-        //[HttpPost]
-        //public ActionResult UpdateStatus(Status uStatus)
-        //{
-        //    try
-        //    {
+        [HttpPost]
+        public ActionResult UpdateStatus(Status uStatus)
+        {
+            try
+            {
 
-        //        uStatus.CreationDate = DateTime.Now;
-        //        uStatus.ModificationDate = DateTime.Now;
-        //        BusinessLogic.lnStatus _LNStatus = new BusinessLogic.lnStatus();
-        //        return Json(_LNStatus.UpdateStatus(uStatus));
+                BusinessLogic.lnStatus _LNStatus = new BusinessLogic.lnStatus();
+                return Json(_LNStatus.UpdateStatus(uStatus));
 
-        //    }
-        //    catch
-        //    {
-        //        return Json(false, JsonRequestBehavior.AllowGet);
-        //    }
-        //}
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
 
         public ActionResult TopRail()
         {
