@@ -48,30 +48,6 @@ function GetAllMaterial() {
     });
 }
 
-function SelectCombos() {
-    $.ajax({
-        url: urlGetDoorsById,
-        cache: false,
-        type: 'POST',
-        async: false,
-        contentType: "application/json; charset=utf-8",
-        success: function (data) {
-            if (data != null) {
-                var option = '';
-                for (var i = 0; i < data.length; i++) {
-
-                    $("#cbMaterial").val(data[i].Id);
-                }
-            }
-            else {
-                MensajeModal("Error al selecionar Material", 5);
-            }
-        },
-        error: function (err) {
-            MensajeModal(msgErrorinterno, 5);
-        }
-    });
-}
 
 function GetAllDoorStyle() {
 	$.ajax({
