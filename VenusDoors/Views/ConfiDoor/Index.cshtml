@@ -184,6 +184,11 @@
         var urlGetAllHingePositions = '@Url.Action("GetAllHingePositions", "ConfiDoor")';
         var urlInsertDoorsxUser = '@Url.Action("InsertDoorsxUser", "ConfiDoor")';
 
+        $(document).ready(function (a) {
+            var listDoors = JSON.parse('@Html.Raw(ViewBag.ListDoor)');
+             
+        });
+
     </script>
     @Scripts.Render("~/Scripts/js/ConfigDoor.Index.js")
     <script src="~/Content/lib/select2/js/select2.min.js"></script>
