@@ -41,10 +41,10 @@ namespace VenusDoors.Controllers
             var mBottomRail = _LN.GetAllBottomRail();
             ViewBag.mBottomRail = mBottomRail;
             var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-
             ViewBag.ListBottomRail = serializar.Serialize(mBottomRail);
             return View();
-        }
+
+    }
 
         [HttpPost]
         public ActionResult InsertBottomRail(BottomRail pBottomRail)
@@ -1251,14 +1251,14 @@ namespace VenusDoors.Controllers
             ViewBag.Masters = "active show-sub";
             ViewBag.Type = "active";
             BusinessLogic.lnType _LBL = new BusinessLogic.lnType();
+            ViewBag.cbGroup = _LNGroup.GetAllGroup();
+            ViewBag.mStatus = _LNStatus.GetAllStatus();
 
             var mType = _LBL.GetAllType();
             ViewBag.mType = mType;
             var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
             ViewBag.ListType = serializar.Serialize(mType);
-
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
-            ViewBag.cbGroup = _LNGroup.GetAllGroup();
+            
             return View();
         }
 

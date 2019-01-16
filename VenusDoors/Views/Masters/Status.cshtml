@@ -145,7 +145,7 @@
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="Template" style="margin-top: 25px;">Group: </label>
-                                                <select style="width: 157px;" class="form-control select2" id="inGroup" data-placeholder="">
+                                                <select style="width:100%" class="form-control select2" id="inGroup" data-placeholder="">
                                                     @foreach (Model.Group item in ViewBag.cbGroup)
                                                     {
                                                         <option value="@item.Id">@item.Description</option>
@@ -194,7 +194,7 @@
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="IdGroup" style="margin-top: 25px;">Group: </label>
-                                                <select style="width: 157px;" class="form-control select2" id="IdGroup" data-placeholder="">
+                                                <select style="width:100%" class="form-control select2" id="IdGroup" data-placeholder="">
                                                     @foreach (Model.Group item in ViewBag.cbGroup)
                                                     {
                                                         <option value="@item.Id">@item.Description</option>

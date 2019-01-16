@@ -267,7 +267,7 @@
 
                                             <div class="col-xs-4 col-md-3">
                                                 <label for="cbDoorStyle" style="margin-top: 25px;">Door Style: </label>
-                                                <select style="width: 157px;" class="form-control select2" id="cbDoorStyle" data-placeholder="">
+                                                <select style="width:100%" class="form-control select2" id="cbDoorStyle" data-placeholder="">
                                                     @foreach (Model.DoorStyle item in ViewBag.cbDoorStyle)
                                                     {
                                                         <option value="@item.Id">@item.Description</option>
@@ -277,7 +277,7 @@
 
                                             <div class="col-xs-4 col-md-3">
                                                 <label for="cbMatarial" style="margin-top: 25px;">Material: </label>
-                                                <select style="width: 157px;" class="form-control select2" id="cbMatarial" data-placeholder="">
+                                                <select style="width:100%" class="form-control select2" id="cbMatarial" data-placeholder="">
                                                     @foreach (Model.Material item in ViewBag.cbMatarial)
                                                     {
                                                         <option value="@item.Id">@item.Description</option>
@@ -296,7 +296,7 @@
 
                                             <div class="col-xs-4 col-md-3">
                                                 <label for="Template" style="margin-top: 25px;">Status: </label>
-                                                <select style="width: 157px;" class="form-control select2" id="IdStatus" data-placeholder="">
+                                                <select style="width:100%" class="form-control select2" id="IdStatus" data-placeholder="">
                                                     @foreach (Model.Status item in ViewBag.mStatus)
                                                     {
                                                         <option value="@item.Id">@item.Description</option>

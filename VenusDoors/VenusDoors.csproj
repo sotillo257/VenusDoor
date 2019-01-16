@@ -939,6 +939,7 @@
     <Content Include="Views\Masters\Usuario.cshtml" />
     <Content Include="Views\Masters\VerticalDivisions.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Login\sing_up.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

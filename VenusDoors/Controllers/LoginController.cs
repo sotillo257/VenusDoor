@@ -13,5 +13,11 @@ namespace VenusDoors.Controllers
         {
             return View();
         }
+
+        public ActionResult sing_up()
+        {
+            return View();
+        }
     }
+    
 }
