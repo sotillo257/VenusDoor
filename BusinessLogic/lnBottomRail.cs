@@ -91,5 +91,20 @@ namespace BusinessLogic
             }
 
         }
+
+        public BottomRail dBottomRail(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Save()
+        {
+            throw new NotImplementedException();
+        }
+
+        public object DeleteBottomRail(BottomRail dBottomRail)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

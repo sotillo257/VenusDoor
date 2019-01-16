@@ -31,6 +31,7 @@ namespace VenusDoors.Controllers
         BusinessLogic.lnGroup _LNGroup = new BusinessLogic.lnGroup();
         BusinessLogic.lnPerson _LNPerson = new BusinessLogic.lnPerson();
 
+
         public ActionResult BottomRail()
         {
             ViewBag.Masters = "active show-sub";
@@ -38,13 +39,13 @@ namespace VenusDoors.Controllers
             BusinessLogic.lnBottomRail _LN = new BusinessLogic.lnBottomRail();
 
             ViewBag.mStatus = _LNStatus.GetAllStatus();
+
             var mBottomRail = _LN.GetAllBottomRail();
             ViewBag.mBottomRail = mBottomRail;
             var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
             ViewBag.ListBottomRail = serializar.Serialize(mBottomRail);
             return View();
-
-    }
+        }
 
         [HttpPost]
         public ActionResult InsertBottomRail(BottomRail pBottomRail)
@@ -67,7 +68,7 @@ namespace VenusDoors.Controllers
         [HttpPost]
         public ActionResult UpdateBottomRail(BottomRail uBottomRail)
         {
-            try
+           try
             {
 
                 uBottomRail.CreationDate = DateTime.Now;
@@ -81,6 +82,24 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
+        //[HttpPost]
+        //public ActionResult DeleteBottomRail(BottomRail dBottomRail)
+        //{
+        //    try
+        //    {
+
+        //        dBottomRail.CreationDate = DateTime.Now;
+        //        dBottomRail.ModificationDate = DateTime.Now;
+        //        BusinessLogic.lnBottomRail _LN = new BusinessLogic.lnBottomRail();
+        //        return Json(_LN.de(dBottomRail));
+
+        //    }
+        //    catch
+        //    {
+        //        return Json(false, JsonRequestBehavior.AllowGet);
+        //    }
+        //}
+
 
         public ActionResult Doors()
         {
@@ -199,7 +218,7 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
-
+        
         public ActionResult Index()
         {
             ViewBag.Masters = "active show-sub";
