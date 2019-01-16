@@ -15,7 +15,15 @@
     <div class="br-section-wrapper">
         <div class="card-header pd-sm-bottom-30" style="background-color: #ffffff00;">
             <h4 class="tx-gray-800 mg-b-5">Order Summary</h4>
-            <p class="mg-b-0">Modals are streamlined, but flexible, dialog prompts with the minimum required functionality and smart defaults.</p>
+            @if (Session["OrderCart"] != null)
+            {
+                <p class="mg-b-0">Modals are streamlined, but flexible, dialog prompts with the minimum required functionality and smart defaults.</p>
+            }
+            else
+            {
+                <h3 style="color:red">No items</h3>
+            }
+
         </div>
         
             <table class="table table-responsive mg-b-0 tx-12">
@@ -31,27 +39,26 @@
                         <th>Total Price</th>
                     </tr>
                 </thead>
-                <tbody>           
-                    <tr>
-                        <td><img src="~/Content/img/Cabinet Vector-01.png" style="width: 120px;" /></td>
-                        <td>Poplar</td>
-                        <td>Finger pull</td>
-                        <td>Ogee</td>
-                        <td>MDF</td>
-                        <td>5</td>
-                        <td>100 $</td>
-                        <td>500 $</td>
-                    </tr>
-                    <tr>
-                        <td><img src="~/Content/img/Cabinet Vector-01.png" style="width: 120px;" /></td>
-                        <td>Poplar</td>
-                        <td>Finger pull</td>
-                        <td>Ogee</td>
-                        <td>MDF</td>
-                        <td>5</td>
-                        <td>100 $</td>
-                        <td>500 $</td>
-                    </tr>
+                <tbody>
+                    @foreach (Model.DoorsxUser i in ViewBag.xDoorsxUser)
+                    {
+                        int IduserLogin = 6;
+                        if(@i.User.Id == IduserLogin)
+                        {
+                            <tr>
+                                <td><img src="@i.Picture"></td>
+                                <td>@i.Material.Description</td>
+                                <td>@i.OutsideEdgeProfile.Description</td>
+                                <td>@i.InsideEdgeProfile.Description</td>
+                                <td>@i.PanelMaterial.Description</td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+
+                    }
+
                 </tbody>
             </table>
 

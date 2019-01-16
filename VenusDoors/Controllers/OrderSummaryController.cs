@@ -10,17 +10,11 @@ namespace VenusDoors.Controllers
     public class OrderSummaryController : Controller
     {
         // GET: OrderSummary
-        public ActionResult Index(int? Id)
+        public ActionResult Index()
         {
             ViewBag.OrderSummary = "active";
             BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
             ViewBag.xDoorsxUser = _LN.GetAllDoorsxUser();
-            //if (Id > 0)
-            //{
-            //    var Door = _LN.GetDoorsxUserById(Id.Value);
-            //    var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            //    ViewBag.Door = serializar.Serialize(Door);
-            //}
             return View();
         }
 

@@ -456,10 +456,6 @@ function InsertDoorsxUser() {
                             ProfilePicture: 'PruebaPP',
                             CreatorUser: 6,
                             ModificationUser: 6,
-                            
-
-
-                           
                         }
                     };
                 console.log(datos);
@@ -473,7 +469,7 @@ function InsertDoorsxUser() {
 
                         //Validar data para ver si mostrar error al guardar o exito al guardar
                         if (result == true) {
-                            alert("yes");
+                            $('#ModalSuccess').modal('toggle');
                         } else {
                             alert("no");
                         }
