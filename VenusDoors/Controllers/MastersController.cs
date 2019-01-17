@@ -82,23 +82,17 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
-        //[HttpPost]
-        //public ActionResult DeleteBottomRail(BottomRail dBottomRail)
-        //{
-        //    try
-        //    {
 
-        //        dBottomRail.CreationDate = DateTime.Now;
-        //        dBottomRail.ModificationDate = DateTime.Now;
-        //        BusinessLogic.lnBottomRail _LN = new BusinessLogic.lnBottomRail();
-        //        return Json(_LN.de(dBottomRail));
+        public ActionResult DeleteBottomRail(int id)
+        {
 
-        //    }
-        //    catch
-        //    {
-        //        return Json(false, JsonRequestBehavior.AllowGet);
-        //    }
-        //}
+            BottomRail dBottomRail = ViewBag.delBottomRail(id);
+
+            if (dBottomRail == null)
+                return View("NotFound");
+            else
+                return View(dBottomRail);
+        }
 
 
         public ActionResult Doors()
