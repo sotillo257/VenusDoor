@@ -228,33 +228,46 @@ namespace VenusDoors.Controllers
         }
 
         [HttpPost]
+        public ActionResult UpdateOrderExist(Order Ord)
+        {
+            BusinessLogic.lnOrder _LNUPor = new BusinessLogic.lnOrder();
+            var IdOrder = _LNUPor.UpdateOrder(Ord);
+            return View();
+        }
+
         public ActionResult InsertDoorsxUser(DoorsxUser pDoorsxUser)
         {
-            try
+            BusinessLogic.lnOrder _LNOrder = new BusinessLogic.lnOrder();
+            int userID = (int)Session["UserID"];
+            int idU = userID;
+            var orderList = _LNOrder.GetOrderByUser(idU);
+            ViewBag.Listo = orderList;
+            Order item = ViewBag.Listo;
+            if (item.Status == null)
             {
-                Order order = new Order()
+                Order neworder = new Order()
                 {
-                    User = new Model.User() { Id = 6 },
+                    User = new Model.User() { Id = userID },
                     Status = new Model.Status() { Id = 1 },
                     Type = new Model.Type() { Id = 1 },
-                    Total = 100,
-                    Quantity = 100,
+                    Quantity = pDoorsxUser.Quantity,
+                    Total = pDoorsxUser.Quantity * 120,
                     CreationDate = DateTime.Now,
-                    CreatorUser = 6,
+                    CreatorUser = userID,
                     ModificationDate = DateTime.Now,
-                    ModificationUser = 6
-
+                    ModificationUser = userID
                 };
 
-                BusinessLogic.lnOrder _LNOrder = new BusinessLogic.lnOrder();
-                int IdOrder = _LNOrder.InsertOrder(order);
-                order.Id = IdOrder;
+                int IdOrder = _LNOrder.InsertOrder(neworder);
+                neworder.Id = IdOrder;
+                pDoorsxUser.User.Id = userID;
+                pDoorsxUser.CreatorUser = userID;
+                pDoorsxUser.ModificationUser = userID;
                 pDoorsxUser.CreationDate = DateTime.Now;
                 pDoorsxUser.ModificationDate = DateTime.Now;
-                pDoorsxUser.Order = order;
+                pDoorsxUser.Order = neworder;
                 BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
 
-                
                 MailMessage mail = new MailMessage();
                 SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
 
@@ -269,13 +282,80 @@ namespace VenusDoors.Controllers
                 SmtpServer.EnableSsl = true;
 
                 SmtpServer.Send(mail);
-
-return Json(_LN.InsertDoorsxUser(pDoorsxUser));
-
+                return Json(_LN.InsertDoorsxUser(pDoorsxUser));
             }
-            catch
+            else if (item.Status.Id == 1)
             {
-                return Json(false, JsonRequestBehavior.AllowGet);
+                UpdateOrderExist(item);
+        
+                pDoorsxUser.User.Id = userID;
+                pDoorsxUser.CreatorUser = userID;
+                pDoorsxUser.ModificationUser = userID;
+                pDoorsxUser.CreationDate = DateTime.Now;
+                pDoorsxUser.ModificationDate = DateTime.Now;
+                pDoorsxUser.Order.Id = item.Id;
+                BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
+
+                MailMessage mail = new MailMessage();
+                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+
+                mail.From = new MailAddress("javier.sotillo13@gmail.com");
+                mail.To.Add("javier.sotillo13@gmail.com");
+                mail.Subject = "Nuevo Pedido";
+                mail.Body = "<html><body><table><thead><tr tx-10><td>Preview</td><td>Name a Door</td><td>Outside profile</td><td>Inside profile</td><td>Flat Panel</td><td>Quantity</td><td>Sub-Total</td><td>Total Price</td></tr></thead><tbody>@foreach (Model.DoorsxUser i in ViewBag.xDoorsxUser){<tr><td><img src=@i.Picture></td><td>@i.Material.Description</td><td>@i.OutsideEdgeProfile.Description</td><td>@i.InsideEdgeProfile.Description</td><td>@i.PanelMaterial.Description</td><td>@i.Quantity</td></tr>}</tbody></table></body></html>";
+                mail.IsBodyHtml = true;
+
+                SmtpServer.Port = 587;
+                SmtpServer.Credentials = new System.Net.NetworkCredential("javier.sotillo13@gmail.com", "javier123sotillo");
+                SmtpServer.EnableSsl = true;
+
+                SmtpServer.Send(mail);
+                return Json(_LN.InsertDoorsxUser(pDoorsxUser));
+            }
+            else if (item.Status.Id == 2)
+            {
+                Order neworder = new Order()
+                {
+                    User = new Model.User() { Id = userID },
+                    Status = new Model.Status() { Id = 1 },
+                    Type = new Model.Type() { Id = 1 },
+                    Quantity = pDoorsxUser.Quantity,
+                    Total = pDoorsxUser.Quantity * 120,
+                    CreationDate = DateTime.Now,
+                    CreatorUser = userID,
+                    ModificationDate = DateTime.Now,
+                    ModificationUser = userID
+                };
+
+                int IdOrder = _LNOrder.InsertOrder(neworder);
+                neworder.Id = IdOrder;
+                pDoorsxUser.User.Id = userID;
+                pDoorsxUser.CreatorUser = userID;
+                pDoorsxUser.ModificationUser = userID;
+                pDoorsxUser.CreationDate = DateTime.Now;
+                pDoorsxUser.ModificationDate = DateTime.Now;
+                pDoorsxUser.Order = neworder;
+                BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
+
+                MailMessage mail = new MailMessage();
+                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+
+                mail.From = new MailAddress("javier.sotillo13@gmail.com");
+                mail.To.Add("javier.sotillo13@gmail.com");
+                mail.Subject = "Nuevo Pedido";
+                mail.Body = "<html><body><table><thead><tr tx-10><td>Preview</td><td>Name a Door</td><td>Outside profile</td><td>Inside profile</td><td>Flat Panel</td><td>Quantity</td><td>Sub-Total</td><td>Total Price</td></tr></thead><tbody>@foreach (Model.DoorsxUser i in ViewBag.xDoorsxUser){<tr><td><img src=@i.Picture></td><td>@i.Material.Description</td><td>@i.OutsideEdgeProfile.Description</td><td>@i.InsideEdgeProfile.Description</td><td>@i.PanelMaterial.Description</td><td>@i.Quantity</td></tr>}</tbody></table></body></html>";
+                mail.IsBodyHtml = true;
+
+                SmtpServer.Port = 587;
+                SmtpServer.Credentials = new System.Net.NetworkCredential("javier.sotillo13@gmail.com", "javier123sotillo");
+                SmtpServer.EnableSsl = true;
+
+                SmtpServer.Send(mail);
+                return Json(_LN.InsertDoorsxUser(pDoorsxUser));
+            }
+            else
+            {
+                return View();
             }
         }
 
