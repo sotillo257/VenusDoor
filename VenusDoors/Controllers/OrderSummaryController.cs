@@ -4,11 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Model;
+using System.Net.Mail;
 
 namespace VenusDoors.Controllers
 {
     public class OrderSummaryController : Controller
     {
+
+
         // GET: OrderSummary
         public ActionResult Index()
         {
@@ -1999,5 +2002,6 @@ namespace VenusDoors.Controllers
 
         #region VerticalDivisions
         #endregion
+        
     }
 }

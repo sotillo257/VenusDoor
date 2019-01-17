@@ -16,3 +16,6 @@ C:\Users\jesus\Source\Repos\VenusDoor\Model\obj\Debug\Model.csprojResolveAssembl
 C:\Users\jesus\Source\Repos\VenusDoor\Model\bin\Debug\Model.dll.config
 C:\Users\jesus\Source\Repos\VenusDoor\Model\bin\Debug\EntityFramework.dll
 C:\Users\jesus\Source\Repos\VenusDoor\Model\bin\Debug\EntityFramework.xml
+C:\Desarrollo\VenusDoors\Model\bin\Debug\Model.dll.config
+C:\Desarrollo\VenusDoors\Model\bin\Debug\EntityFramework.dll
+C:\Desarrollo\VenusDoors\Model\bin\Debug\EntityFramework.xml
