@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -128,6 +130,20 @@
                 </span>
             </div><!-- input-group -->
         </div><!-- br-header-left -->
+
+    @if (Session["UserID"] == null)
+    {
+        <div class="br-header-right">
+            <nav class="nav">
+                <ul>
+                    <li>@Html.ActionLink("Log in", "Index", "Login")</li>
+                    <li>@Html.ActionLink("Sign up", "sing_up", "Login")</li>
+                </ul>
+            </nav>
+        </div><!--br-header-right-->
+    }
+    else
+    {
         <div class="br-header-right">
             <nav class="nav">
                 <div class="dropdown">
@@ -260,7 +276,7 @@
                 </div><!-- dropdown -->
                 <div class="dropdown">
                     <a href="" class="nav-link nav-link-profile" data-toggle="dropdown">
-                        <span class="logged-name hidden-md-down">Katherine</span>
+                        <span class="logged-name hidden-md-dow">Katherinen></span>
                         <img src="http://via.placeholder.com/64x64" class="wd-32 rounded-circle" alt="">
                         <span class="square-10 bg-success"></span>
                     </a>
@@ -285,6 +301,8 @@
                 </a>
             </div><!-- navicon-right -->
         </div><!-- br-header-right -->
+    }
+        
     </div><!-- br-header -->
     <!-- ########## END: HEAD PANEL ########## -->
     <!-- ########## START: RIGHT PANEL ########## -->

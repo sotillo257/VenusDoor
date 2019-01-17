@@ -219,42 +219,6 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
-
-        [HttpPost]
-        public ActionResult InsertDoorsxUser(DoorsxUser pDoorsxUser)
-        {
-            try
-            {
-                Order order = new Order()
-                {
-                    User = new Model.User() { Id = 6 },
-                    Status = new Model.Status() { Id = 1} ,
-                    Type = new Model.Type() { Id = 1 },
-                    Total = 100,
-                    Quantity =  100,
-                    CreationDate = DateTime.Now,
-                    CreatorUser = 6,
-                    ModificationDate = DateTime.Now,
-                    ModificationUser = 6
-
-                };
-
-                BusinessLogic.lnOrder _LNOrder = new BusinessLogic.lnOrder();
-                int IdOrder = _LNOrder.InsertOrder(order);
-                order.Id = IdOrder;
-                pDoorsxUser.CreationDate = DateTime.Now;
-                pDoorsxUser.ModificationDate = DateTime.Now;
-                pDoorsxUser.Order = order;
-                BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
-                return Json(_LN.InsertDoorsxUser(pDoorsxUser));
-                
-            }
-            catch
-            {
-                return Json(false, JsonRequestBehavior.AllowGet);
-            }
-        }
-
     }
 }
 

@@ -431,7 +431,6 @@ function InsertDoorsxUser() {
                 var datos =
                     {
                         pDoorsxUser: {
-                            User: { Id: 6 },
                             Status: {Id: 1},
                             Material: { Id: $("#cbMaterial").val() },                            
                             DoorStyle: { Id: $("#cbDoorStyle").val() },                                                        
@@ -454,8 +453,6 @@ function InsertDoorsxUser() {
                             Quantity: $("#iptQuantity").val(),
                             Picture: 'PruebaPicture',
                             ProfilePicture: 'PruebaPP',
-                            CreatorUser: 6,
-                            ModificationUser: 6,
                         }
                     };
                 console.log(datos);

@@ -35,8 +35,9 @@ namespace VenusDoors.Controllers
                 }
                 else
                 {
-                    Session["UserID"] = userDetails.Id;
-                    return RedirectToAction("Index", "Home");
+                    System.Web.HttpContext.Current.Session["UserID"] = userDetails.Id;
+                    System.Web.HttpContext.Current.Session["UserName"] = userDetails.IdPerson;
+                    return RedirectToAction("Index", "Home");  
                 }
             }         
         }
@@ -44,15 +45,29 @@ namespace VenusDoors.Controllers
         [HttpPost]
         public ActionResult InsertUser(Model.Person PersonData, Model.User UserData)
         {
-            
-            BusinessLogic.lnPerson _LNP = new BusinessLogic.lnPerson();
-            PersonData.CreationDate = DateTime.Now;
-            PersonData.ModificationDate = DateTime.Now;
-            int IdPerson = _LNP.InsertPerson(PersonData);
-            PersonData.Id = IdPerson;
-            UserData.Person = PersonData;
-            BusinessLogic.lnUser _LNU = new BusinessLogic.lnUser();
-            return Json(_LNU.InsertUser(UserData));
+            try
+            {
+                BusinessLogic.lnPerson _LNP = new BusinessLogic.lnPerson();
+                PersonData.CreationDate = DateTime.Now;
+                PersonData.ModificationDate = DateTime.Now;
+                int IdPerson = _LNP.InsertPerson(PersonData);
+                PersonData.Id = IdPerson;
+                UserData.Person = PersonData;
+                UserData.CreationDate = DateTime.Now;
+                UserData.ModificationDate = DateTime.Now;
+                BusinessLogic.lnUser _LNU = new BusinessLogic.lnUser();
+                return Json(_LNU.InsertUser(UserData));
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
         }
+
+        public ActionResult LogOut()
+        {
+            Session.Abandon();
+            return RedirectToAction("Index", "Login");
+        } 
     }  
 }

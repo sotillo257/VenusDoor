@@ -51,6 +51,19 @@ namespace BusinessLogic
 
         }
 
+        public Order GetOrderByUser(int pId)
+        {
+            try
+            {
+                return _AD.GetOrderByUser(pId);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+        }
+
         public int InsertOrder(Order pOrder)
         {
             try

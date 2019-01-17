@@ -83,16 +83,18 @@ namespace VenusDoors.Controllers
             }
         }
 
-        //public ActionResult DeleteBottomRail(int id)
-        //{
+        public ActionResult DeleteBottomRail(int id)
+        {
+            BusinessLogic.lnBottomRail _LN = new BusinessLogic.lnBottomRail();
+            var dBottomRail = _LN.DeleteBottomRail(id);
 
-        //    BottomRail dBottomRail = ViewBag.delBottomRail(id);
+            //BottomRail dBottomRail = ViewBag.delBottomRail(id);
 
-        //    if (dBottomRail == null)
-        //        return View("NotFound");
-        //    else
-        //        return View(dBottomRail);
-        //}
+            //if (dBottomRail == null)
+            //    return View("NotFound");
+            //else
+                return View();
+        }
 
 
         public ActionResult Doors()

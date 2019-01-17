@@ -51,7 +51,7 @@
                                                     <a href="#" data-toggle="modal" data-target="#modalModify" value="@item.Id" class="Modificar btn btn-primary btn-icon">
                                                         <div><i class="fa fa-edit"></i></div>
                                                     </a>
-                                                    <a href="#" data-toggle="modal" data-target="#modalDelete" value="@item.Id" class="Eliminar btn btn-danger btn-icon">
+                                                    <a href="#" id="deleteBTR" data-toggle="modal" data-target="#modalDelete" value="@item.Id" class="Eliminar btn btn-danger btn-icon">
                                                         <div><i class="fa fa-trash"></i></div>
                                                     </a>
                                                 </center>
@@ -181,9 +181,10 @@
                         </div>
                         <div class="modal-body pd-20">
                             <p class="mg-b-5">You are about to delete an article. What would you like to do?</p>
+                            <input id="iptHdeleBTR" type="hidden" value="" />
                         </div>
                         <div class="modal-footer justify-content-center">
-                            <button ame="confirmButton" type="submit" value="Delete" onclick="DeleteBottomRail" class="btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Remove</button>
+                            <button name="confirmButton" type="submit" value="Delete" id="btndelete" class="btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Remove</button>
                             <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>
                         </div>
                     </div>
@@ -227,9 +228,17 @@
 
 
             @section scripts{
-                <script>
+                <@*script>
                     var urlInsertBottomRail = '@Url.Action("InsertBottomRail", "Masters")';
                     var urlUpdateBottomRail = '@Url.Action("UpdateBottomRail", "Masters")';
+
+                    $(document).ready(function () {
+                        var BTR = JSON.parse('@Html.Raw(ViewBag.btr)');
+                        $(document).on('click', '#deleteBTR', function (event) {
+                            
+                        });
+                    });*@
+                    
                 </script>
 
                 <script>

@@ -40,7 +40,7 @@
                                         </div><!-- form-group -->
                                         <div class="form-group mg-b-20">
                                             @Html.ValidationMessageFor(model => model.Password)
-                                        </div><
+                                        </div>
                                         </div><!-- form-group -->
                                         <div class="form-group mg-b-20">                                          
                                         @Html.ValidationMessageFor(model => model.Password)
@@ -49,7 +49,7 @@
 
                                         <input type="submit" value="Sign In" class="btn btn-primary pd-y-12 btn-block"/>
 
-                                        <div class="mg-t-30 mg-b-20 tx-12">Don't have an account yet? <a href="~/Views/Login/sing_up.cshtml">Create one!</a></div>
+                                        <div class="mg-t-30 mg-b-20 tx-12">Don't have an account yet? @Html.ActionLink("Create one!", "sing_up", "Login")</div>
 
                                         <p class="tx-11 tx-uppercase tx-spacing-2">Or Sign In With</p>
                                         <a href="#" class="btn btn-primary btn-icon">
