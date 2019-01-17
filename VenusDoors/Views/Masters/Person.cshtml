@@ -229,7 +229,7 @@
                                             </div><!-- form-group -->
                                             <div class="col-xs-3 col-md-4">
                                                 <label for="mStatus" style="margin-top: 25px;">Status: </label>
-                                                <select style="width: 157px;" class="form-control select2" id="mStatus" data-placeholder="">
+                                                <select style="width:100%" class="form-control select2" id="mStatus" data-placeholder="">
                                                     @foreach (Model.Status item in ViewBag.mStatus)
                                                     {
                                                         <option value="@item.Id">@item.Description</option>

@@ -46,7 +46,7 @@
                                 <td tabindex="0" class="">@item.Id</td>
                                 <td class="">@item.Description</td>
                                 <td class="">@item.Group.Id</td>
-                                <td class="">@item.Status.Id</td>
+                                @*<td class="">@item.Status.Id</td>*@
                                 <td class="">
                                     <center>
                                         <a href="#" data-toggle="modal" data-target="#modalModify" value="@item.Id" class="Modificar btn btn-primary btn-icon">
@@ -149,7 +149,7 @@
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="Template" style="margin-top: 25px;">Group: </label>
-                                                <select style="width: 157px;" class="form-control select2" id="inGroup" data-placeholder="">
+                                                <select style="width: 100%;" class="form-control select2" id="inGroup" data-placeholder="">
                                                     @foreach (Model.Group item in ViewBag.cbGroup)
                                                     {
                                                         <option value="@item.Id">@item.Description</option>
@@ -158,7 +158,7 @@
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="mStatus" style="margin-top: 25px;">Status: </label>
-                                                <select style="width: 157px;" class="form-control select2" id="IdStatus" data-placeholder="">
+                                                <select style="width: 100%;" class="form-control select2" id="IdStatus" data-placeholder="">
                                                     @foreach (Model.Status item in ViewBag.mStatus)
                                                     {
                                                         <option value="@item.Id">@item.Description</option>
@@ -207,7 +207,7 @@
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="Template" style="margin-top: 25px;">Group: </label>
-                                                <select style="width: 157px;" class="form-control select2" id="IdGroup" data-placeholder="">
+                                                <select style="width: 100%;" class="form-control select2" id="IdGroup" data-placeholder="">
                                                     @foreach (Model.Group item in ViewBag.cbGroup)
                                                     {
                                                         <option value="@item.Id">@item.Description</option>
@@ -216,7 +216,7 @@
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="mStatus" style="margin-top: 25px;">Status: </label>
-                                                <select style="width: 157px;" class="form-control select2" id="IdStatus" data-placeholder="">
+                                                <select style="width: 100%;" class="form-control select2" id="IdStatus" data-placeholder="">
                                                     @foreach (Model.Status item in ViewBag.mStatus)
                                                     {
                                                         <option value="@item.Id">@item.Description</option>

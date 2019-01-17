@@ -187,15 +187,15 @@
                                         <div class="row">
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="Template" style="margin-top: 25px;">Id: </label>
-                                                <input type="text" name="id" id="txtId" class="form-control pd-y-12" readonly placeholder="">
+                                                <input type="text" name="id" id="txtId" class="form-control" readonly placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="Template" style="margin-top: 25px;">Direction: </label>
-                                                <input type="text" name="id" id="txtDirection" class="form-control pd-y-12" placeholder="">
+                                                <input type="text" name="id" id="txtDirection" class="form-control" placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="Template" style="margin-top: 25px;">Status: </label>
-                                                <select style="width: 157px;" class="form-control select2" id="IdStatus" data-placeholder="">
+                                                <select style="width:100%" class="form-control select2" id="IdStatus" data-placeholder="">
                                                     @foreach (Model.Status item in ViewBag.mStatus)
                                                     {
                                                         <option value="@item.Id">@item.Description</option>
