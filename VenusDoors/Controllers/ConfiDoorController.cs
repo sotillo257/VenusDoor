@@ -4,22 +4,29 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Model;
+using System.Net.Mail;
 
 namespace VenusDoors.Controllers
 {
     public class ConfiDoorController : Controller
     {
+
+        String path;
+        MailMessage mail = new MailMessage();
+
+
+
         // GET: ConfiDoor
         public ActionResult Index(int? Id)
         {
             ViewBag.ConfiDoor = "active";
             BusinessLogic.lnDoors _LN = new BusinessLogic.lnDoors();
-            if (Id > 0 )
+            if (Id > 0)
             {
                 var Door = _LN.GetDoorsById(Id.Value);
                 var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
                 ViewBag.Door = serializar.Serialize(Door);
-            }           
+            }
             return View();
         }
 
@@ -219,6 +226,59 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
+
+        [HttpPost]
+        public ActionResult InsertDoorsxUser(DoorsxUser pDoorsxUser)
+        {
+            try
+            {
+                Order order = new Order()
+                {
+                    User = new Model.User() { Id = 6 },
+                    Status = new Model.Status() { Id = 1 },
+                    Type = new Model.Type() { Id = 1 },
+                    Total = 100,
+                    Quantity = 100,
+                    CreationDate = DateTime.Now,
+                    CreatorUser = 6,
+                    ModificationDate = DateTime.Now,
+                    ModificationUser = 6
+
+                };
+
+                BusinessLogic.lnOrder _LNOrder = new BusinessLogic.lnOrder();
+                int IdOrder = _LNOrder.InsertOrder(order);
+                order.Id = IdOrder;
+                pDoorsxUser.CreationDate = DateTime.Now;
+                pDoorsxUser.ModificationDate = DateTime.Now;
+                pDoorsxUser.Order = order;
+                BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
+
+                
+                MailMessage mail = new MailMessage();
+                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+
+                mail.From = new MailAddress("javier.sotillo13@gmail.com");
+                mail.To.Add("javier.sotillo13@gmail.com");
+                mail.Subject = "Nuevo Pedido";
+                mail.Body = "<html><body><table><thead><tr tx-10><td>Preview</td><td>Name a Door</td><td>Outside profile</td><td>Inside profile</td><td>Flat Panel</td><td>Quantity</td><td>Sub-Total</td><td>Total Price</td></tr></thead><tbody>@foreach (Model.DoorsxUser i in ViewBag.xDoorsxUser){<tr><td><img src=@i.Picture></td><td>@i.Material.Description</td><td>@i.OutsideEdgeProfile.Description</td><td>@i.InsideEdgeProfile.Description</td><td>@i.PanelMaterial.Description</td><td>@i.Quantity</td></tr>}</tbody></table></body></html>";
+                mail.IsBodyHtml = true;
+
+                SmtpServer.Port = 587;
+                SmtpServer.Credentials = new System.Net.NetworkCredential("javier.sotillo13@gmail.com", "javier123sotillo");
+                SmtpServer.EnableSsl = true;
+
+                SmtpServer.Send(mail);
+
+return Json(_LN.InsertDoorsxUser(pDoorsxUser));
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
     }
 }
 
