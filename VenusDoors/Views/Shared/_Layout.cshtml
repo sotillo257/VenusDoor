@@ -133,13 +133,17 @@
 
     @if (Session["UserID"] == null)
     {
-        <div class="br-header-right">
-            <nav class="nav">
-                <ul>
+        <div class="col-md-1">
+            <div class="br-header-right" style="margin-top: 10px;">
+
+                    <a href="" class="btn btn-primary btn-icon rounded-circle mg-r-5 mg-b-10" style="margin-right: 10px;"><div><i class="fa fa-user"></i></div></a>
+
+                    <a href="" class="btn btn-success btn-icon rounded-circle mg-r-5 mg-b-10"><div><i class="fa fa-user-plus"></i></div></a>
+            </div>
+            @*<ul>
                     <li>@Html.ActionLink("Log in", "Index", "Login")</li>
                     <li>@Html.ActionLink("Sign up", "sing_up", "Login")</li>
-                </ul>
-            </nav>
+                </ul>*@
         </div><!--br-header-right-->
     }
     else
