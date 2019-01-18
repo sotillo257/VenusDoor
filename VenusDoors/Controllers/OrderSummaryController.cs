@@ -11,6 +11,8 @@ namespace VenusDoors.Controllers
     public class OrderSummaryController : Controller
     {
 
+        String path;
+        MailMessage mail = new MailMessage();
 
         // GET: OrderSummary
         public ActionResult Index()
@@ -60,9 +62,33 @@ namespace VenusDoors.Controllers
         }
 
         [HttpPost]
-        public ActionResult ConfirmOrder()
+        public ActionResult ConfirmOrder (int pConfirmOrder)
         {
-            return View();
+            try
+            {
+                MailMessage mail = new MailMessage();
+                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+
+                mail.From = new MailAddress("javier.sotillo13@gmail.com");
+                mail.To.Add("javier.sotillo13@gmail.com");
+                mail.Subject = "Nuevo Pedido";
+                mail.Body = "<html><body><table><thead><tr tx-10><td>Preview</td><td>Name a Door</td><td>Outside profile</td><td>Inside profile</td><td>Flat Panel</td><td>Quantity</td><td>Sub-Total</td><td>Total Price</td></tr></thead><tbody>@foreach (Model.DoorsxUser i in ViewBag.xDoorsxUser){<tr><td><img src=@i.Picture></td><td>@i.Material.Description</td><td>@i.OutsideEdgeProfile.Description</td><td>@i.InsideEdgeProfile.Description</td><td>@i.PanelMaterial.Description</td><td>@i.Quantity</td></tr>}</tbody></table></body></html>";
+                mail.IsBodyHtml = true;
+
+                SmtpServer.Port = 587;
+                SmtpServer.Credentials = new System.Net.NetworkCredential("javier.sotillo13@gmail.com", "javier123sotillo");
+                SmtpServer.EnableSsl = true;
+
+                SmtpServer.Send(mail);
+
+                BusinessLogic.lnDoorsxUser _LND = new BusinessLogic.lnDoorsxUser();
+                return Json(ConfirmOrder(pConfirmOrder));
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
         }
 
         #region BottomRail 
@@ -2048,4 +2074,5 @@ namespace VenusDoors.Controllers
         #endregion
 
     }
+
 }

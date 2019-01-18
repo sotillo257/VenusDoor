@@ -5,19 +5,19 @@
 }
 
 @*<style>
-    #tddelete{
-        text-align:center;
-    }
+        #tddelete{
+            text-align:center;
+        }
 
-    #tddelete a i{
-        color:red;
-        font-size:20px;
-    }
+        #tddelete a i{
+            color:red;
+            font-size:20px;
+        }
 
-    #tddelete a i:hover{
-        color:#bb0000;
-    }
-</style>*@
+        #tddelete a i:hover{
+            color:#bb0000;
+        }
+    </style>*@
 
 <div class="br-pageheader pd-y-15 pd-l-20">
     <nav class="breadcrumb pd-0 mg-0 tx-12">
@@ -40,57 +40,57 @@
             }
 
         </div>
-        
-            <table class="table table-responsive mg-b-0 tx-12">
-                <thead>
-                    <tr class="tx-10">
-                        <th>Preview</th>
-                        <th>Name a Door</th>
-                        <th>Outside profile</th>
-                        <th>Inside profile</th>
-                        <th>Flat Panel</th>
-                        <th>Quantity</th>
-                        <th>Sub-Total</th>
-                        <th>Delete item</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if (Session["UserID"] == null)
+
+        <table class="table table-responsive mg-b-0 tx-12">
+            <thead>
+                <tr class="tx-10">
+                    <th>Preview</th>
+                    <th>Name a Door</th>
+                    <th>Outside profile</th>
+                    <th>Inside profile</th>
+                    <th>Flat Panel</th>
+                    <th>Quantity</th>
+                    <th>Sub-Total</th>
+                    <th>Delete item</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Session["UserID"] == null)
+                {
+
+                }
+                else
+                {
+                    if (ViewBag.xUserDoors == null)
                     {
 
                     }
                     else
                     {
-                        if (ViewBag.xUserDoors == null)
+                        foreach (Model.DoorsxUser i in ViewBag.xUserDoors)
                         {
-
-                        }
-                        else
-                        {
-                            foreach (Model.DoorsxUser i in ViewBag.xUserDoors)
-                            {
-                                <tr>
-                                    <td><img src="@i.Picture"></td>
-                                    <td>@i.Material.Description</td>
-                                    <td>@i.OutsideEdgeProfile.Description</td>
-                                    <td>@i.InsideEdgeProfile.Description</td>
-                                    <td>@i.PanelMaterial.Description</td>
-                                    <td>@i.Quantity</td>
-                                    <td>@i.SubTotal $</td>
-                                    <td  id="tddelete">
-                                        <input id="valitemID" type="hidden" value="@i.Id"/>
-                                        <input id="valitemSub" type="hidden" value="@i.SubTotal" />
-                                        <input id="valitemQtt" type="hidden" value="@i.Quantity" />
-                                        <input id="valitemIDOrder" type="hidden" value="@i.Order.Id" />
-                                        <button type="submit" id="btn-delete"><i class="fa fa-trash"></i></button>
-                                    </td>
-                                </tr>
-                            }
+                            <tr>
+                                <td><img src="@i.Picture"></td>
+                                <td>@i.Material.Description</td>
+                                <td>@i.OutsideEdgeProfile.Description</td>
+                                <td>@i.InsideEdgeProfile.Description</td>
+                                <td>@i.PanelMaterial.Description</td>
+                                <td>@i.Quantity</td>
+                                <td>@i.SubTotal $</td>
+                                <td id="tddelete">
+                                    <input id="valitemID" type="hidden" value="@i.Id" />
+                                    <input id="valitemSub" type="hidden" value="@i.SubTotal" />
+                                    <input id="valitemQtt" type="hidden" value="@i.Quantity" />
+                                    <input id="valitemIDOrder" type="hidden" value="@i.Order.Id" />
+                                    <button class="btn btn-danger btn-icon" style="width: 37px;height: 37px;" type="submit" id="btn-delete"><i class="fa fa-trash"></i></button>
+                                </td>
+                            </tr>
                         }
                     }
-                    
-                </tbody>
-            </table>
+                }
+
+            </tbody>
+        </table>
 
         <div class="row">
             <div class="col-md-7">
@@ -98,9 +98,9 @@
             </div>
             <div class="col-md-5">
                 <center>
-                        <button id="btn_carrito" type="button" href="~/Views/ConfiDoor/Index.cshtml" class="btn btn-warning" title="">To return</button>
-                        <button id="btn_carrito" style="margin-left: 10px;" type="button" src="#" class="btn btn-success" title="">Build a Door</button>
-                        <button id="btn_carrito" style="margin-left: 10px;" type="button" src="#" class="btn btn-primary" title="">Continue</button>
+                    <button id="btn_carrito" type="button" href="~/Views/ConfiDoor/Index.cshtml" class="btn btn-warning" title="">To return</button>
+                    <button id="btn_carrito" style="margin-left: 10px;" type="button" src="#" class="btn btn-success" title="">Build a Door</button>
+                    <button style="margin-left: 10px;" onclick="ConfirmOrder(Model.DoorsxUser.Order.Id)" type="submit" src="#" class="btn btn-primary" title="">Continue</button>
                 </center>
             </div>
         </div>

@@ -475,7 +475,7 @@ function InsertDoorsxUser() {
                         if (result == true) {
                             $('#ModalSuccess').modal('toggle');
                         } else {
-                            alert("no");
+                            $('#modalFail').modal('toggle');
                         }
                     },
                     error: function (err) {

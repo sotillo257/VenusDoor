@@ -13319,10 +13319,10 @@ textarea.parsley-success:focus {
   align-items: center;
 }
 .br-header-right a {
-  color: #fff;
+  color: #656464;
 }
 .br-header-right a:hover, .br-header-right a:focus {
-  color: #fff;
+  color: #ccc;
 }
 .br-header-right .dropdown:last-child .dropdown-menu {
   padding: 0 10px 10px;
