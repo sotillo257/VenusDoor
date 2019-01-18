@@ -100,18 +100,56 @@
                 <center>
                     <button id="btn_carrito" type="button" href="~/Views/ConfiDoor/Index.cshtml" class="btn btn-warning" title="">To return</button>
                     <button id="btn_carrito" style="margin-left: 10px;" type="button" src="#" class="btn btn-success" title="">Build a Door</button>
-                    <button style="margin-left: 10px;" onclick="ConfirmOrder(Model.DoorsxUser.Order.Id)" type="submit" src="#" class="btn btn-primary" title="">Continue</button>
+                    <button id="btn-continue" style="margin-left: 10px;" type="submit" src="#" class="btn btn-primary" title="">Continue</button>
                 </center>
             </div>
         </div>
     </div>
 </div>
+
+<div id="modalCongra" class="modal fade" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content tx-size-sm">
+            <div class="modal-body tx-center pd-y-20 pd-x-20">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <i class="icon ion-ios-checkmark-outline tx-100 tx-success lh-1 mg-t-20 d-inline-block"></i>
+                <h4 class="tx-success tx-semibold mg-b-20">Congratulations!</h4>
+                <p class="mg-b-20 mg-x-20">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration.</p>
+                <button type="button" onclick="window.location.reload()" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">
+                    Continue
+                </button>
+            </div><!-- modal-body -->
+        </div><!-- modal-content -->
+    </div><!-- modal-dialog -->
+</div>
+<div id="modalError" class="modal fade">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content tx-size-sm">
+            <div class="modal-body tx-center pd-y-20 pd-x-20">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <i class="icon icon ion-ios-close-outline tx-100 tx-danger lh-1 mg-t-20 d-inline-block"></i>
+                <h4 class="tx-danger  tx-semibold mg-b-20">Error: Cannot process your entry!</h4>
+                <p class="mg-b-20 mg-x-20">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration.</p>
+                <button type="button" class="btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">
+                    Continue
+                </button>
+            </div><!-- modal-body -->
+        </div><!-- modal-content -->
+    </div><!-- modal-dialog -->
+</div>
+
 @section scripts{
 
     <script type="text/javascript">
         var urlDeleteItem = '@Url.Action("DeleteItem", "OrderSummary")';
+		var urlConfirmOrder = '@Url.Action("ConfirmOrder", "OrderSummary")';
     </script>
 
 
     @Scripts.Render("~/Scripts/js/OrderSumm.js")
+    @Scripts.Render("~/Scripts/js/envio.js")
 }
