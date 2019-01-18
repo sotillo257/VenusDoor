@@ -276,7 +276,23 @@
                 </div><!-- dropdown -->
                 <div class="dropdown">
                     <a href="" class="nav-link nav-link-profile" data-toggle="dropdown">
-                        <span class="logged-name hidden-md-dow">Katherinen></span>
+                        <span class="logged-name hidden-md-dow">
+                            @if (Session["UserName"] == null)
+                            {
+
+                            }
+                            else
+                            {
+                                int perID = (int)Session["UserName"];
+                                BusinessLogic.lnPerson _LNP = new BusinessLogic.lnPerson();
+                                var perList = _LNP.GetPersonById(perID);
+                                ViewBag.xPerson = perList;
+                                Model.Person item = ViewBag.xPerson;
+                                
+                                @item.Name
+                                
+                            }
+                        </span>
                         <img src="http://via.placeholder.com/64x64" class="wd-32 rounded-circle" alt="">
                         <span class="square-10 bg-success"></span>
                     </a>

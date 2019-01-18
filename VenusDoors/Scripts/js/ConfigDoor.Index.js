@@ -17,6 +17,10 @@
 	$("#btConfirm").on("click", function () {
 	    InsertDoorsxUser();
 	});
+    
+	$("#bt-conf-log").on("click", function () {
+	    $('#ModalLogin').modal('toggle');
+	});
 });
 
 function GetAllMaterial() {
@@ -431,6 +435,7 @@ function InsertDoorsxUser() {
                 var datos =
                     {
                         pDoorsxUser: {
+
                             Status: {Id: 1},
                             Material: { Id: $("#cbMaterial").val() },                            
                             DoorStyle: { Id: $("#cbDoorStyle").val() },                                                        
@@ -451,6 +456,8 @@ function InsertDoorsxUser() {
                             Width: $("#iptWidth").val(),
                             Height: $("#iptHeight").val(),
                             Quantity: $("#iptQuantity").val(),
+                            SubTotal: $("#iptQuantity").val() * 120,
+                            User: { Id: 1007 },
                             Picture: 'PruebaPicture',
                             ProfilePicture: 'PruebaPP',
                         }

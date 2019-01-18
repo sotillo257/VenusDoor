@@ -16,8 +16,52 @@ namespace VenusDoors.Controllers
         public ActionResult Index()
         {
             ViewBag.OrderSummary = "active";
-            BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
-            ViewBag.xDoorsxUser = _LN.GetAllDoorsxUser();
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                BusinessLogic.lnOrder _LNOrder = new BusinessLogic.lnOrder();
+                int userID = (int)Session["UserID"];
+                int idU = userID;
+                var orderList = _LNOrder.GetOrderByUser(idU);
+                ViewBag.Listo = orderList;
+                Order item = ViewBag.Listo;
+                if (item.Status == null)
+                {
+                    return View();
+                }
+                else if (item.Status.Id == 1)
+                {
+                    BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
+                    List<DoorsxUser> xDoorsU = _LN.GetAllDoorsxUser();
+                    List<DoorsxUser> doorByOrder = xDoorsU.Where(x => x.Order.Id == item.Id).ToList();
+                    ViewBag.xUserDoors = doorByOrder;
+                    return View();
+                }
+                else
+                {
+                    return View();
+                }
+            }
+        }
+
+        [HttpPost]
+        public ActionResult DeleteItem(int itemID/*, int itemOrder, int itemSub, int itemQtt*/)
+        {
+            //BusinessLogic.lnOrder _LNUPor = new BusinessLogic.lnOrder();
+            //item.Quantity = item.Quantity + pDoorsxUser.Quantity;
+            //item.Total = item.Total + pDoorsxUser.SubTotal;
+            //return Json(_LNUPor.UpdateOrder(item));
+
+            BusinessLogic.lnDoorsxUser _LND = new BusinessLogic.lnDoorsxUser();
+            return Json(_LND.DeleteDoorsxUser(itemID));
+        }
+
+        [HttpPost]
+        public ActionResult ConfirmOrder()
+        {
             return View();
         }
 

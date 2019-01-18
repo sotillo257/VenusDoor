@@ -4,6 +4,21 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@*<style>
+    #tddelete{
+        text-align:center;
+    }
+
+    #tddelete a i{
+        color:red;
+        font-size:20px;
+    }
+
+    #tddelete a i:hover{
+        color:#bb0000;
+    }
+</style>*@
+
 <div class="br-pageheader pd-y-15 pd-l-20">
     <nav class="breadcrumb pd-0 mg-0 tx-12">
         <a class="breadcrumb-item" href="/">Venus Doors</a>
@@ -15,13 +30,13 @@
     <div class="br-section-wrapper">
         <div class="card-header pd-sm-bottom-30" style="background-color: #ffffff00;">
             <h4 class="tx-gray-800 mg-b-5">Order Summary</h4>
-            @if (Session["OrderCart"] != null)
+            @if (ViewBag.xUserDoors == null)
             {
-                <p class="mg-b-0">Modals are streamlined, but flexible, dialog prompts with the minimum required functionality and smart defaults.</p>
+                <h3 style="color:red">No items</h3>
             }
             else
             {
-                <h3 style="color:red">No items</h3>
+                <p class="mg-b-0">Modals are streamlined, but flexible, dialog prompts with the minimum required functionality and smart defaults.</p>
             }
 
         </div>
@@ -36,30 +51,44 @@
                         <th>Flat Panel</th>
                         <th>Quantity</th>
                         <th>Sub-Total</th>
-                        <th>Total Price</th>
+                        <th>Delete item</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (Model.DoorsxUser i in ViewBag.xDoorsxUser)
+                    @if (Session["UserID"] == null)
                     {
-                        int IduserLogin = 6;
-                        if(@i.User.Id == IduserLogin)
-                        {
-                            <tr>
-                                <td><img src="@i.Picture"></td>
-                                <td>@i.Material.Description</td>
-                                <td>@i.OutsideEdgeProfile.Description</td>
-                                <td>@i.InsideEdgeProfile.Description</td>
-                                <td>@i.PanelMaterial.Description</td>
-                                <td>@i.Quantity</td>
-                            </tr>
-                        }
+
                     }
                     else
                     {
+                        if (ViewBag.xUserDoors == null)
+                        {
 
+                        }
+                        else
+                        {
+                            foreach (Model.DoorsxUser i in ViewBag.xUserDoors)
+                            {
+                                <tr>
+                                    <td><img src="@i.Picture"></td>
+                                    <td>@i.Material.Description</td>
+                                    <td>@i.OutsideEdgeProfile.Description</td>
+                                    <td>@i.InsideEdgeProfile.Description</td>
+                                    <td>@i.PanelMaterial.Description</td>
+                                    <td>@i.Quantity</td>
+                                    <td>@i.SubTotal $</td>
+                                    <td  id="tddelete">
+                                        <input id="valitemID" type="hidden" value="@i.Id"/>
+                                        <input id="valitemSub" type="hidden" value="@i.SubTotal" />
+                                        <input id="valitemQtt" type="hidden" value="@i.Quantity" />
+                                        <input id="valitemIDOrder" type="hidden" value="@i.Order.Id" />
+                                        <button type="submit" id="btn-delete"><i class="fa fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                            }
+                        }
                     }
-
+                    
                 </tbody>
             </table>
 
@@ -77,3 +106,12 @@
         </div>
     </div>
 </div>
+@section scripts{
+
+    <script type="text/javascript">
+        var urlDeleteItem = '@Url.Action("DeleteItem", "OrderSummary")';
+    </script>
+
+
+    @Scripts.Render("~/Scripts/js/OrderSumm.js")
+}

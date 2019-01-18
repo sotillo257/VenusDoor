@@ -30,7 +30,7 @@ namespace DataAccess
                             Id = int.Parse(item["Id"].ToString()),
                             User = new User() { Id = int.Parse(item["IdUser"].ToString()) },
                             Quantity = int.Parse(item["Quantity"].ToString()),
-                            Total = decimal.Parse(item["Total"].ToString()),
+                            Total = int.Parse(item["Total"].ToString()),
                             Type = new Model.Type() { Id = int.Parse(item["IdType"].ToString()), Description = item["DescripType"].ToString() },
                             Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["DescripStatus"].ToString() },
                             CreationDate = DateTime.Parse(item["CreationDate"].ToString()),
@@ -69,7 +69,7 @@ namespace DataAccess
                             Id = int.Parse(item["Id"].ToString()),
                             User = new User() { Id = int.Parse(item["IdUser"].ToString()) },
                             Quantity = int.Parse(item["Quantity"].ToString()),
-                            Total = decimal.Parse(item["Total"].ToString()),
+                            Total = int.Parse(item["Total"].ToString()),
                             Type = new Model.Type() { Id = int.Parse(item["IdType"].ToString()), Description = item["DescripType"].ToString() },
                             Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["DescripStatus"].ToString() },
                             CreationDate = DateTime.Parse(item["CreationDate"].ToString()),
@@ -105,7 +105,7 @@ namespace DataAccess
                             Id = int.Parse(item["Id"].ToString()),
                             User = new User() { Id = int.Parse(item["IdUser"].ToString()) },
                             Quantity = int.Parse(item["Quantity"].ToString()),
-                            Total = decimal.Parse(item["Total"].ToString()),
+                            Total = int.Parse(item["Total"].ToString()),
                             Type = new Model.Type() { Id = int.Parse(item["IdType"].ToString()), Description = item["DescripType"].ToString() },
                             Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["DescripStatus"].ToString() },
                             CreationDate = DateTime.Parse(item["CreationDate"].ToString()),
@@ -142,8 +142,8 @@ namespace DataAccess
 
         public void UpdateOrder(Order pOrder)
         {
-            string sql = @"[spUpdateOrder] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}, '{6}";
-            sql = string.Format(sql, pOrder.User.Id, pOrder.Quantity, pOrder.Total, pOrder.Type.Id, pOrder.Status.Id, pOrder.ModificationDate.ToString("yyyy-MM-dd"),
+            string sql = @"[spUpdateOrder] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}'";
+            sql = string.Format(sql, pOrder.Id, pOrder.User.Id, pOrder.Quantity, pOrder.Total, pOrder.Type.Id, pOrder.Status.Id, pOrder.ModificationDate.ToString("yyyy-MM-dd"),
                 pOrder.ModificationUser);
             try
             {
