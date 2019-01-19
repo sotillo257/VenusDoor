@@ -116,9 +116,19 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
-        public ActionResult ConfirmOrder (int pConfirmOrder)
+[HttpPost]
+        public ActionResult ConfirmOrder ()
         {
+            //ViewBag.OrderSummary = "active";
+            //if (Session["UserID"] == null)
+            //{
+            //    return View();
+            //}
+            //else
+            //{
+
+            //}
+
             try
             {
                 MailMessage mail = new MailMessage();
@@ -126,8 +136,9 @@ namespace VenusDoors.Controllers
 
                 mail.From = new MailAddress("javier.sotillo13@gmail.com");
                 mail.To.Add("javier.sotillo13@gmail.com");
-                mail.Subject = "Nuevo Pedido";
-                mail.Body = "<html><body><table><thead><tr tx-10><td>Preview</td><td>Name a Door</td><td>Outside profile</td><td>Inside profile</td><td>Flat Panel</td><td>Quantity</td><td>Sub-Total</td><td>Total Price</td></tr></thead><tbody>@foreach (Model.DoorsxUser i in ViewBag.xDoorsxUser){<tr><td><img src=@i.Picture></td><td>@i.Material.Description</td><td>@i.OutsideEdgeProfile.Description</td><td>@i.InsideEdgeProfile.Description</td><td>@i.PanelMaterial.Description</td><td>@i.Quantity</td></tr>}</tbody></table></body></html>";
+                mail.Subject = "New order";
+                mail.Body =
+                    "<table border striped><thead><tr><td>Preview</td><td>Name a Door</td><td>Outside profile</td><td>Inside profile</td><td>Flat Panel</td><td>Quantity</td><td>Sub-Total</td><td>Total Price</td></tr></thead><tbody><tr><td><img src=@i.Picture></td><td>@i.Material.Description</td><td>@i.OutsideEdgeProfile.Description</td><td>@i.InsideEdgeProfile.Description</td><td>@i.PanelMaterial.Description</td><td>@i.Quantity</td></tr></tbody></table>";
                 mail.IsBodyHtml = true;
 
                 SmtpServer.Port = 587;
@@ -136,14 +147,15 @@ namespace VenusDoors.Controllers
 
                 SmtpServer.Send(mail);
 
-                BusinessLogic.lnDoorsxUser _LND = new BusinessLogic.lnDoorsxUser();
-                return Json(ConfirmOrder(pConfirmOrder));
+                // BusinessLogic.lnDoorsxUser _LND = new BusinessLogic.lnDoorsxUser();
+                return Json(true, JsonRequestBehavior.AllowGet);
 
             }
             catch
             {
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
+
         }
 
         #region BottomRail 
