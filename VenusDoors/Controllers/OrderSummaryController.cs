@@ -50,15 +50,70 @@ namespace VenusDoors.Controllers
         }
 
         [HttpPost]
-        public ActionResult DeleteItem(int itemID/*, int itemOrder, int itemSub, int itemQtt*/)
+        public ActionResult DeleteItem(int itemID)
         {
-            //BusinessLogic.lnOrder _LNUPor = new BusinessLogic.lnOrder();
-            //item.Quantity = item.Quantity + pDoorsxUser.Quantity;
-            //item.Total = item.Total + pDoorsxUser.SubTotal;
-            //return Json(_LNUPor.UpdateOrder(item));
-
+            BusinessLogic.lnOrder _LNOrder = new BusinessLogic.lnOrder();
             BusinessLogic.lnDoorsxUser _LND = new BusinessLogic.lnDoorsxUser();
-            return Json(_LND.DeleteDoorsxUser(itemID));
+            int userID = (int)Session["UserID"];
+            int idU = userID;
+            var orderList = _LNOrder.GetOrderByUser(idU);
+            ViewBag.Listo = orderList;
+            Order item = ViewBag.Listo;
+            if(item.Status == null)
+            {
+                return View();
+            }
+            else if(item.Status.Id == 1)
+            {
+                var xDoor = _LND.GetDoorsxUserById(itemID);
+                UpdateOrderExist(xDoor, item);
+                return Json(_LND.DeleteDoorsxUser(itemID));
+            }
+            else
+            {
+                return View();
+            }            
+        }
+
+        [HttpPost]
+        public ActionResult UpdateOrderExist(DoorsxUser xDoor, Order item)
+        {
+            BusinessLogic.lnOrder _LNUPor = new BusinessLogic.lnOrder();
+            item.Quantity = item.Quantity - xDoor.Quantity;
+            item.Total = item.Total - xDoor.SubTotal;
+            if(item.Total == 0 && item.Quantity == 0)
+            {
+                return Json(_LNUPor.DeleteOrder(item.Id));
+            }
+            else
+            {
+                return Json(_LNUPor.UpdateOrder(item));
+            } 
+        }
+
+        [HttpPost]
+        public ActionResult DropOrder()
+        {
+            BusinessLogic.lnOrder _LNOrder = new BusinessLogic.lnOrder();
+            BusinessLogic.lnDoorsxUser _LND = new BusinessLogic.lnDoorsxUser();
+            int userID = (int)Session["UserID"];
+            int idU = userID;
+            var orderList = _LNOrder.GetOrderByUser(idU);
+            ViewBag.Listo = orderList;
+            Order item = ViewBag.Listo;
+            if(item.Status == null)
+            {
+                return View();
+            }
+            else if(item.Status.Id == 1)
+            {
+                var xDeleteAllDoor = _LND.DeleteAllDoorsxUserByOrder(item.Id);
+                return Json(_LNOrder.DeleteOrder(item.Id));
+            }
+            else
+            {
+                return View();
+            }
         }
 
         [HttpPost]

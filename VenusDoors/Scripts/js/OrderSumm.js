@@ -1,18 +1,18 @@
 ﻿$(document).ready(function () {
 
-    $("#btn-delete").on("click", function () {
-        DltItem();
+    $(".btnn-dele").click(function (e) {
+        e.preventDefault();
+        var id = $(this).parentsUntil('#id-table').find('.btnn-dele').attr('data-id');
+        Id: id
+        DltItem(id);
     });
 
 });
 
-function DltItem() {
+function DltItem(id) {
     var datos =
                     {
-                        itemID: $("#valitemID").val(),
-                        //itemSub:$("#valitemSub").val(),
-                        //itemQtt: $("#valitemQtt").val(),
-                        //itemOrder: $("#valitemIDOrder").val(),
+                        itemID: id,
                         }
               
     console.log(datos);
@@ -28,7 +28,7 @@ function DltItem() {
             if (result == true) {
                 alert("Delete complete");
             } else {
-                alert("No");
+                alert("Failed");
             }
         },
         error: function (err) {

@@ -54,7 +54,7 @@
                     <th>Delete item</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="id-table">
                 @if (Session["UserID"] == null)
                 {
 
@@ -69,6 +69,7 @@
                     {
                         foreach (Model.DoorsxUser i in ViewBag.xUserDoors)
                         {
+                            
                             <tr>
                                 <td><img src="@i.Picture"></td>
                                 <td>@i.Material.Description</td>
@@ -78,11 +79,7 @@
                                 <td>@i.Quantity</td>
                                 <td>@i.SubTotal $</td>
                                 <td id="tddelete">
-                                    <input id="valitemID" type="hidden" value="@i.Id" />
-                                    <input id="valitemSub" type="hidden" value="@i.SubTotal" />
-                                    <input id="valitemQtt" type="hidden" value="@i.Quantity" />
-                                    <input id="valitemIDOrder" type="hidden" value="@i.Order.Id" />
-                                    <button class="btn btn-danger btn-icon" style="width: 37px;height: 37px;" type="submit" id="btn-delete"><i class="fa fa-trash"></i></button>
+                                    <button class="btn btn-danger btn-icon btnn-dele" data-id="@i.Id" style="width: 37px;height: 37px;" type="submit"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
                         }
@@ -108,7 +105,7 @@
 </div>
 @section scripts{
 
-    <script type="text/javascript">
+    <script type="text/javascript">        
         var urlDeleteItem = '@Url.Action("DeleteItem", "OrderSummary")';
     </script>
 

@@ -184,5 +184,19 @@ namespace DataAccess
                 throw err;
             }
         }
+
+        public void DeleteAllDoorsxUserByOrder(int pId)
+        {
+            string sql = @"[spDeleteAllDoorsxUserByOrder] '{0}'";
+            sql = string.Format(sql, pId);
+            try
+            {
+                _MB.EjecutarSQL(_CN, sql);
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
     }
 }
