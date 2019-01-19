@@ -52,110 +52,159 @@ namespace VenusDoors.Controllers
         [HttpPost]
         public ActionResult DeleteItem(int itemID)
         {
-            BusinessLogic.lnOrder _LNOrder = new BusinessLogic.lnOrder();
-            BusinessLogic.lnDoorsxUser _LND = new BusinessLogic.lnDoorsxUser();
-            int userID = (int)Session["UserID"];
-            int idU = userID;
-            var orderList = _LNOrder.GetOrderByUser(idU);
-            ViewBag.Listo = orderList;
-            Order item = ViewBag.Listo;
-            if(item.Status == null)
+            if(Session["UserID"] == null)
             {
                 return View();
-            }
-            else if(item.Status.Id == 1)
-            {
-                var xDoor = _LND.GetDoorsxUserById(itemID);
-                UpdateOrderExist(xDoor, item);
-                return Json(_LND.DeleteDoorsxUser(itemID));
             }
             else
             {
-                return View();
-            }            
+                BusinessLogic.lnOrder _LNOrder = new BusinessLogic.lnOrder();
+                BusinessLogic.lnDoorsxUser _LND = new BusinessLogic.lnDoorsxUser();
+                int userID = (int)Session["UserID"];
+                int idU = userID;
+                var orderList = _LNOrder.GetOrderByUser(idU);
+                ViewBag.Listo = orderList;
+                Order item = ViewBag.Listo;
+                if (item.Status == null)
+                {
+                    return View();
+                }
+                else if (item.Status.Id == 1)
+                {
+                    var xDoor = _LND.GetDoorsxUserById(itemID);
+                    UpdateOrderExist(xDoor, item);
+                    return Json(_LND.DeleteDoorsxUser(itemID));
+                }
+                else
+                {
+                    return View();
+                }
+            }         
         }
 
         [HttpPost]
         public ActionResult UpdateOrderExist(DoorsxUser xDoor, Order item)
         {
-            BusinessLogic.lnOrder _LNUPor = new BusinessLogic.lnOrder();
-            item.Quantity = item.Quantity - xDoor.Quantity;
-            item.Total = item.Total - xDoor.SubTotal;
-            if(item.Total == 0 && item.Quantity == 0)
+            if (Session["UserID"] == null)
             {
-                return Json(_LNUPor.DeleteOrder(item.Id));
+                return View();
             }
             else
             {
-                return Json(_LNUPor.UpdateOrder(item));
-            } 
+                BusinessLogic.lnOrder _LNUPor = new BusinessLogic.lnOrder();
+                item.Quantity = item.Quantity - xDoor.Quantity;
+                item.Total = item.Total - xDoor.SubTotal;
+                if (item.Total == 0 && item.Quantity == 0)
+                {
+                    return Json(_LNUPor.DeleteOrder(item.Id));
+                }
+                else
+                {
+                    return Json(_LNUPor.UpdateOrder(item));
+                }
+            }
         }
 
         [HttpPost]
         public ActionResult DropOrder()
         {
-            BusinessLogic.lnOrder _LNOrder = new BusinessLogic.lnOrder();
-            BusinessLogic.lnDoorsxUser _LND = new BusinessLogic.lnDoorsxUser();
-            int userID = (int)Session["UserID"];
-            int idU = userID;
-            var orderList = _LNOrder.GetOrderByUser(idU);
-            ViewBag.Listo = orderList;
-            Order item = ViewBag.Listo;
-            if(item.Status == null)
+            if (Session["UserID"] == null)
             {
                 return View();
-            }
-            else if(item.Status.Id == 1)
-            {
-                var xDeleteAllDoor = _LND.DeleteAllDoorsxUserByOrder(item.Id);
-                return Json(_LNOrder.DeleteOrder(item.Id));
             }
             else
             {
-                return View();
+                BusinessLogic.lnOrder _LNOrder = new BusinessLogic.lnOrder();
+                BusinessLogic.lnDoorsxUser _LND = new BusinessLogic.lnDoorsxUser();
+                int userID = (int)Session["UserID"];
+                int idU = userID;
+                var orderList = _LNOrder.GetOrderByUser(idU);
+                ViewBag.Listo = orderList;
+                Order item = ViewBag.Listo;
+                int IdOrder = item.Id;
+                if (item.Status == null)
+                {
+                    return View();
+                }
+                else if (item.Status.Id == 1)
+                {
+                    var xDeleteAllDoor = _LND.DeleteAllDoorsxUserByOrder(IdOrder);
+                    return Json(_LNOrder.DeleteOrder(IdOrder));
+                }
+                else
+                {
+                    return View();
+                }
+
             }
         }
 
-[HttpPost]
+        public ActionResult CloseOrder(Order item)
+        {
+            if(Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                if(item.Status == null)
+                {
+                    return View();
+                }
+                else if (item.Status.Id == 1)
+                {
+                    BusinessLogic.lnOrder _LNUPor = new BusinessLogic.lnOrder();
+                    item.Status.Id = 2;
+                    return Json(_LNUPor.UpdateOrder(item));
+                }
+                else
+                {
+                    return View();
+                }
+                
+            }            
+        }
+
+        [HttpPost]
         public ActionResult ConfirmOrder ()
         {
-            //ViewBag.OrderSummary = "active";
-            //if (Session["UserID"] == null)
-            //{
-            //    return View();
-            //}
-            //else
-            //{
-
-            //}
-
-            try
+            if (Session["UserID"] == null)
             {
-                MailMessage mail = new MailMessage();
-                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
-
-                mail.From = new MailAddress("javier.sotillo13@gmail.com");
-                mail.To.Add("javier.sotillo13@gmail.com");
-                mail.Subject = "New order";
-                mail.Body =
-                    "<table border striped><thead><tr><td>Preview</td><td>Name a Door</td><td>Outside profile</td><td>Inside profile</td><td>Flat Panel</td><td>Quantity</td><td>Sub-Total</td><td>Total Price</td></tr></thead><tbody><tr><td><img src=@i.Picture></td><td>@i.Material.Description</td><td>@i.OutsideEdgeProfile.Description</td><td>@i.InsideEdgeProfile.Description</td><td>@i.PanelMaterial.Description</td><td>@i.Quantity</td></tr></tbody></table>";
-                mail.IsBodyHtml = true;
-
-                SmtpServer.Port = 587;
-                SmtpServer.Credentials = new System.Net.NetworkCredential("javier.sotillo13@gmail.com", "javier123sotillo");
-                SmtpServer.EnableSsl = true;
-
-                SmtpServer.Send(mail);
-
-                // BusinessLogic.lnDoorsxUser _LND = new BusinessLogic.lnDoorsxUser();
-                return Json(true, JsonRequestBehavior.AllowGet);
-
+                return View();
             }
-            catch
+            else
             {
-                return Json(false, JsonRequestBehavior.AllowGet);
-            }
+                try
+                {
+                    int userID = (int)Session["UserID"];
+                    int idU = userID;
+                    
+                    MailMessage mail = new MailMessage();
+                    SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+                    mail.From = new MailAddress("javier.sotillo13@gmail.com");
+                    mail.To.Add("gregorisalazar.a@gmail.com");
+                    mail.Subject = "New order";
+                    mail.Body =
+                        "<table border striped><thead><tr><td>Preview</td><td>Name a Door</td><td>Outside profile</td><td>Inside profile</td><td>Flat Panel</td><td>Quantity</td><td>Sub-Total</td><td>Total Price</td></tr></thead><tbody><tr><td><img src=@i.Picture></td><td>@i.Material.Description</td><td>@i.OutsideEdgeProfile.Description</td><td>@i.InsideEdgeProfile.Description</td><td>@i.PanelMaterial.Description</td><td>@i.Quantity</td></tr></tbody></table>";
+                    mail.IsBodyHtml = true;
 
+                    SmtpServer.Port = 587;
+                    SmtpServer.Credentials = new System.Net.NetworkCredential("javier.sotillo13@gmail.com", "javier123sotillo");
+                    SmtpServer.EnableSsl = true;
+                    SmtpServer.Send(mail);
+
+                    BusinessLogic.lnOrder _LNUPor = new BusinessLogic.lnOrder();
+                    var orderList = _LNUPor.GetOrderByUser(idU);
+                    ViewBag.Listo = orderList;
+                    Order item = ViewBag.Listo;
+                    CloseOrder(item);
+                    return Json(true, JsonRequestBehavior.AllowGet);
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
         }
 
         #region BottomRail 

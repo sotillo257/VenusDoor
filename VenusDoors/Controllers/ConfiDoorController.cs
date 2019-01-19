@@ -271,6 +271,7 @@ namespace VenusDoors.Controllers
                     pDoorsxUser.CreationDate = DateTime.Now;
                     pDoorsxUser.ModificationDate = DateTime.Now;
                     pDoorsxUser.Order = neworder;
+                    pDoorsxUser.User.Id = idU;
                     BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
 
                     return Json(_LN.InsertDoorsxUser(pDoorsxUser));
@@ -284,6 +285,8 @@ namespace VenusDoors.Controllers
                     pDoorsxUser.CreationDate = DateTime.Now;
                     pDoorsxUser.ModificationDate = DateTime.Now;
                     pDoorsxUser.Order = item;
+                    pDoorsxUser.User.Id = idU;
+
                     BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
 
                     return Json(_LN.InsertDoorsxUser(pDoorsxUser));
@@ -310,6 +313,7 @@ namespace VenusDoors.Controllers
                     pDoorsxUser.CreationDate = DateTime.Now;
                     pDoorsxUser.ModificationDate = DateTime.Now;
                     pDoorsxUser.Order = neworder;
+                    pDoorsxUser.User.Id = idU;
                     BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
 
                     return Json(_LN.InsertDoorsxUser(pDoorsxUser));

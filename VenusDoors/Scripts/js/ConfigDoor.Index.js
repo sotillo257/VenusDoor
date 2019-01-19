@@ -457,7 +457,6 @@ function InsertDoorsxUser() {
                             Height: $("#iptHeight").val(),
                             Quantity: $("#iptQuantity").val(),
                             SubTotal: $("#iptQuantity").val() * 120,
-                            User: { Id: 1007 },
                             Picture: 'PruebaPicture',
                             ProfilePicture: 'PruebaPP',
                         }

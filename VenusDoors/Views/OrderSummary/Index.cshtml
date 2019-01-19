@@ -4,20 +4,29 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@*<style>
-        #tddelete{
-            text-align:center;
+<style>
+        #confirmDROP{
+            background-color:#ff9900; 
+            border-color:#ff9900;
         }
 
-        #tddelete a i{
-            color:red;
-            font-size:20px;
+         #confirmDROP:hover{
+             background-color:#c74000; 
+            border-color:#c74000;
+            cursor:pointer;
         }
 
-        #tddelete a i:hover{
-            color:#bb0000;
-        }
-    </style>*@
+         #cnlDROP{
+             background-color:#868686; 
+             border-color:#868686
+         }
+
+         #cnlDROP:hover{
+             background-color: #dedcdc;
+            color: black;
+            cursor:pointer;
+         }
+    </style>
 
 <div class="br-pageheader pd-y-15 pd-l-20">
     <nav class="breadcrumb pd-0 mg-0 tx-12">
@@ -32,7 +41,7 @@
             <h4 class="tx-gray-800 mg-b-5">Order Summary</h4>
             @if (ViewBag.xUserDoors == null)
             {
-                <h3 style="color:red">No items</h3>
+                
             }
             else
             {
@@ -93,13 +102,22 @@
             <div class="col-md-7">
 
             </div>
-            <div class="col-md-5">
-                <center>
-                    <button id="btn_carrito" type="button" href="~/Views/ConfiDoor/Index.cshtml" class="btn btn-warning" title="">To return</button>
-                    <button id="btn_carrito" style="margin-left: 10px;" type="button" src="#" class="btn btn-success" title="">Build a Door</button>
-                    <button id="btn-continue" style="margin-left: 10px;" type="submit" src="#" class="btn btn-primary" title="">Continue</button>
-                </center>
-            </div>
+            @if (ViewBag.xUserDoors == null)
+            {
+                <div class="col-md-5" style="display:flex; justify-content:flex-end">
+                    <h3 style="color:red">No items</h3><button id="btn_carrito" style="margin-left: 25px;" type="button" src="#" class="btn btn-success" title="">Build a Door</button>                     
+                </div>
+            }
+            else
+            {
+                <div class="col-md-5">
+                    <center>
+                        <button id="btn_dropItems" type="submit" class="btn btn-danger" title="">Delete all items</button>
+                        <button id="btn_carrito" style="margin-left: 10px;" type="button" src="#" class="btn btn-success" title="">Build a Door</button>
+                        <button id="btn-continue" style="margin-left: 10px;" type="submit" src="#" class="btn btn-primary" title="">Continue</button>
+                    </center>
+                </div>
+            }
         </div>
     </div>
 </div>
@@ -138,12 +156,33 @@
         </div><!-- modal-content -->
     </div><!-- modal-dialog -->
 </div>
+<div id="modalConfirmDeleteAll" class="modal fade">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content tx-size-sm">
+            <div class="modal-body tx-center pd-y-20 pd-x-20">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button><ion-icon name="alert"></ion-icon>
+                <i style="color:#ff9900" class="ion-alert tx-100 lh-1 mg-t-20 d-inline-block"></i>
+                <h4 style="color:#ff9900"class="tx-semibold mg-b-20">This option is going to delete all your items </h4>
+                <p class="mg-b-20 mg-x-20">Are you sure you want that?</p>                
+                <button id="cnlDROP" type="button" class="btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">
+                    Cancel
+                </button>
+                <button id="confirmDROP" type="button" class="btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" aria-label="Close">
+                    Continue
+                </button>
+            </div><!-- modal-body -->
+        </div><!-- modal-content -->
+    </div><!-- modal-dialog -->
+</div>
 
 @section scripts{
 
-    <script type="text/javascript">        
+    <script type="text/javascript">
         var urlDeleteItem = '@Url.Action("DeleteItem", "OrderSummary")';
-		var urlConfirmOrder = '@Url.Action("ConfirmOrder", "OrderSummary")';
+        var urlConfirmOrder = '@Url.Action("ConfirmOrder", "OrderSummary")';
+        var urlDropItems = '@Url.Action("DropOrder", "OrderSummary")';
     </script>
 
 
