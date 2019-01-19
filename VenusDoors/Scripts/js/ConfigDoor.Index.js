@@ -435,7 +435,7 @@ function InsertDoorsxUser() {
                 var datos =
                     {
                         pDoorsxUser: {
-
+                            User: { Id: 1 },
                             Status: {Id: 1},
                             Material: { Id: $("#cbMaterial").val() },                            
                             DoorStyle: { Id: $("#cbDoorStyle").val() },                                                        

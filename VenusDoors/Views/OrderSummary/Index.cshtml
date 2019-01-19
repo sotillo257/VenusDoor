@@ -50,7 +50,7 @@
 
         </div>
 
-        <table class="table table-responsive mg-b-0 tx-12">
+        <table id="idOrderSummary" class="table table-responsive mg-b-0 tx-12">
             <thead>
                 <tr class="tx-10">
                     <th>Preview</th>
@@ -114,7 +114,7 @@
                     <center>
                         <button id="btn_dropItems" type="submit" class="btn btn-danger" title="">Delete all items</button>
                         <button id="btn_carrito" style="margin-left: 10px;" type="button" src="#" class="btn btn-success" title="">Build a Door</button>
-                        <button id="btn-continue" style="margin-left: 10px;" type="submit" src="#" class="btn btn-primary" title="">Continue</button>
+                        <button id="btn-continue" style="margin-left: 10px;" onclick="this.disabled=true;" type="submit" src="#" class="btn btn-primary" title="">Continue</button>
                     </center>
                 </div>
             }
@@ -184,7 +184,6 @@
         var urlConfirmOrder = '@Url.Action("ConfirmOrder", "OrderSummary")';
         var urlDropItems = '@Url.Action("DropOrder", "OrderSummary")';
     </script>
-
 
     @Scripts.Render("~/Scripts/js/OrderSumm.js")
     @Scripts.Render("~/Scripts/js/envio.js")
