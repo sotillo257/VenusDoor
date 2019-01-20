@@ -10,6 +10,8 @@ namespace VenusDoors.Controllers
 {
     public class LoginController : Controller
     {
+        private object item;
+
         // GET: Login
         public ActionResult Index()
         {
@@ -42,6 +44,7 @@ namespace VenusDoors.Controllers
             }         
         }
 
+      
         [HttpPost]
         public ActionResult InsertUser(Model.Person PersonData, Model.User UserData)
         {

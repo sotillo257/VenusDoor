@@ -6,7 +6,7 @@
 });
 
 function Continuar() {
-    var datos = $("#idOrderSummary").val();
+    var datos = $("#idOrderSummary").serialize();
     console.log(datos);
     $.ajax({
         type: 'POST',

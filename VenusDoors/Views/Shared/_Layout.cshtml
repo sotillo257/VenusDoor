@@ -136,9 +136,9 @@
         <div class="col-md-1">
             <div class="br-header-right" style="margin-top: 10px;">
 
-                    <a href="" class="btn btn-primary btn-icon rounded-circle mg-r-5 mg-b-10" style="color: #fff !important; margin-right: 10px;">@Html.ActionLink("Log in", "Index", "Login")<div><i class="fa fa-user"></i></div></a>
+                    <a href="" id="idLogin" class="btn btn-primary btn-icon rounded-circle mg-r-5 mg-b-10" style="color: #fff !important; margin-right: 10px;"><div><i class="fa fa-user"></i></div></a>
                 
-                    <a href="" class="btn btn-success btn-icon rounded-circle mg-r-5 mg-b-10" style="color: #fff !important;"><div><i class="fa fa-user-plus"></i></div></a>
+                    <a href="" id="idSignUp" class="btn btn-success btn-icon rounded-circle mg-r-5 mg-b-10" style="color: #fff !important;"><div><i class="fa fa-user-plus"></i></div></a>
             </div>
             @*<ul>
                     <li>@Html.ActionLink("Log in", "Index", "Login")</li>
@@ -302,7 +302,7 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-header wd-200">
                         <ul class="list-unstyled user-profile-nav">
-                            <li><a href=""><i class="icon ion-ios-person"></i> Edit Profile</a></li>
+                            @*<li><a href=""><i class="icon ion-ios-person"></i> Edit Profile</a></li>*@
                             @*<li><a href=""><i class="icon ion-ios-gear"></i> Settings</a></li>
                             <li><a href=""><i class="icon ion-ios-download"></i> Downloads</a></li>
                             <li><a href=""><i class="icon ion-ios-star"></i> Favorites</a></li>
@@ -790,6 +790,11 @@
                 }
             });
     </script>
-    @RenderSection("scripts", required: false)
+    <script type="text/javascript">
+        var urlInsertUser = '@Url.Action("InsertUser", "LoginController")';
+        var urlAutherize = '@Url.Action("Autherize", "LoginController")';
+    </script>
+    @RenderSection("scripts", required: false);
+    @Scripts.Render("~/Scripts/js/LogSing.js")
 </body>
 </html>

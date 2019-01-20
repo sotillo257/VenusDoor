@@ -903,6 +903,7 @@
     <Content Include="Scripts\js\ComboBox.js" />
     <Content Include="Scripts\js\envio.js" />
     <Content Include="Scripts\js\LoginSiginUp.js" />
+    <Content Include="Scripts\js\LogSing.js" />
     <Content Include="Scripts\js\Masters.js" />
     <Content Include="Scripts\js\OrderSumm.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
