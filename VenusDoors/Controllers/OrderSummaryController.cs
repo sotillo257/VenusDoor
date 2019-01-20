@@ -178,14 +178,16 @@ namespace VenusDoors.Controllers
                 {
                     int userID = (int)Session["UserID"];
                     int idU = userID;
-                    
+                    BusinessLogic.lnUser _LN = new BusinessLogic.lnUser();
+                    User use = _LN.GetUserById(idU);
+                    string To = use.Email;
                     MailMessage mail = new MailMessage();
                     SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
                     mail.From = new MailAddress("javier.sotillo13@gmail.com");
-                    mail.To.Add("gregorisalazar.a@gmail.com");
+                    mail.To.Add(new MailAddress(To));
                     mail.Subject = "New order";
                     mail.Body =
-                        "<table border striped><thead><tr><td>Preview</td><td>Name a Door</td><td>Outside profile</td><td>Inside profile</td><td>Flat Panel</td><td>Quantity</td><td>Sub-Total</td><td>Total Price</td></tr></thead><tbody><tr><td><img src=@i.Picture></td><td>@i.Material.Description</td><td>@i.OutsideEdgeProfile.Description</td><td>@i.InsideEdgeProfile.Description</td><td>@i.PanelMaterial.Description</td><td>@i.Quantity</td></tr></tbody></table>";
+                        "<table border striped><thead><tr><td>P review</td><td>Name a Door</td><td>Outside profile</td><td>Inside profile</td><td>Flat Panel</td><td>Quantity</td><td>Sub-Total</td><td>Total Price</td></tr></thead><tbody><tr><td><img src=@i.Picture></td><td>@i.Material.Description</td><td>@i.OutsideEdgeProfile.Description</td><td>@i.InsideEdgeProfile.Description</td><td>@i.PanelMaterial.Description</td><td>@i.Quantity</td></tr></tbody></table>";
                     mail.IsBodyHtml = true;
 
                     SmtpServer.Port = 587;

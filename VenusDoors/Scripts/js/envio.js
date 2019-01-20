@@ -6,11 +6,7 @@
 });
 
 function Continuar() {
-    var datos =
-                    {
-                        itemOrder: $("#valitemIDOrder").val(),
-                    }
-
+    var datos = $("#idOrderSummary").val();
     console.log(datos);
     $.ajax({
         type: 'POST',

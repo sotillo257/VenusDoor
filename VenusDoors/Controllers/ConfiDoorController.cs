@@ -278,8 +278,8 @@ namespace VenusDoors.Controllers
                 }
                 else if (item.Status.Id == 1)
                 {
-                    UpdateOrderExist(item, pDoorsxUser);
 
+                    UpdateOrderExist(item, pDoorsxUser);
                     pDoorsxUser.CreatorUser = userID;
                     pDoorsxUser.ModificationUser = userID;
                     pDoorsxUser.CreationDate = DateTime.Now;
