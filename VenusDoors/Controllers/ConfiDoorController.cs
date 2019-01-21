@@ -251,72 +251,93 @@ namespace VenusDoors.Controllers
                 Order item = ViewBag.Listo;
                 if (item.Status == null)
                 {
-                    Order neworder = new Order()
+                    try
                     {
-                        User = new Model.User() { Id = userID },
-                        Status = new Model.Status() { Id = 1 },
-                        Type = new Model.Type() { Id = 1 },
-                        Quantity = pDoorsxUser.Quantity,
-                        Total = pDoorsxUser.SubTotal,
-                        CreationDate = DateTime.Now,
-                        CreatorUser = userID,
-                        ModificationDate = DateTime.Now,
-                        ModificationUser = userID
-                    };
+                        Order neworder = new Order()
+                        {
+                            User = new Model.User() { Id = userID },
+                            Status = new Model.Status() { Id = 1 },
+                            Type = new Model.Type() { Id = 1 },
+                            Quantity = pDoorsxUser.Quantity,
+                            Total = pDoorsxUser.SubTotal,
+                            CreationDate = DateTime.Now,
+                            CreatorUser = userID,
+                            ModificationDate = DateTime.Now,
+                            ModificationUser = userID
+                        };
 
-                    int IdOrder = _LNOrder.InsertOrder(neworder);
-                    neworder.Id = IdOrder;
-                    pDoorsxUser.CreatorUser = userID;
-                    pDoorsxUser.ModificationUser = userID;
-                    pDoorsxUser.CreationDate = DateTime.Now;
-                    pDoorsxUser.ModificationDate = DateTime.Now;
-                    pDoorsxUser.Order = neworder;
-                    pDoorsxUser.User.Id = idU;
-                    BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
-
-                    return Json(_LN.InsertDoorsxUser(pDoorsxUser));
+                        int IdOrder = _LNOrder.InsertOrder(neworder);
+                        neworder.Id = IdOrder;
+                        pDoorsxUser.CreatorUser = userID;
+                        pDoorsxUser.ModificationUser = userID;
+                        pDoorsxUser.CreationDate = DateTime.Now;
+                        pDoorsxUser.ModificationDate = DateTime.Now;
+                        pDoorsxUser.Order = neworder;
+                        pDoorsxUser.User.Id = idU;
+                        BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
+                        var OrDoor = _LN.InsertDoorsxUser(pDoorsxUser);
+                        return Json(true, JsonRequestBehavior.AllowGet);
+                    }
+                    catch
+                    {
+                        return Json(false, JsonRequestBehavior.AllowGet);
+                    }
+                    
                 }
                 else if (item.Status.Id == 1)
                 {
+                    try
+                    {
+                        UpdateOrderExist(item, pDoorsxUser);
+                        pDoorsxUser.CreatorUser = userID;
+                        pDoorsxUser.ModificationUser = userID;
+                        pDoorsxUser.CreationDate = DateTime.Now;
+                        pDoorsxUser.ModificationDate = DateTime.Now;
+                        pDoorsxUser.Order = item;
+                        pDoorsxUser.User.Id = idU;
 
-                    UpdateOrderExist(item, pDoorsxUser);
-                    pDoorsxUser.CreatorUser = userID;
-                    pDoorsxUser.ModificationUser = userID;
-                    pDoorsxUser.CreationDate = DateTime.Now;
-                    pDoorsxUser.ModificationDate = DateTime.Now;
-                    pDoorsxUser.Order = item;
-                    pDoorsxUser.User.Id = idU;
-
-                    BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
-
-                    return Json(_LN.InsertDoorsxUser(pDoorsxUser));
+                        BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
+                        var updaOrDoor = (_LN.InsertDoorsxUser(pDoorsxUser));
+                        return Json(true, JsonRequestBehavior.AllowGet);
+                    }
+                    catch
+                    {
+                        return Json(false, JsonRequestBehavior.AllowGet);
+                    }
                 }
                 else if (item.Status.Id == 2)
                 {
-                    Order neworder = new Order()
+                    try
                     {
-                        User = new Model.User() { Id = userID },
-                        Status = new Model.Status() { Id = 1 },
-                        Type = new Model.Type() { Id = 1 },
-                        Quantity = pDoorsxUser.Quantity,
-                        Total = pDoorsxUser.SubTotal,
-                        CreationDate = DateTime.Now,
-                        CreatorUser = userID,
-                        ModificationDate = DateTime.Now,
-                        ModificationUser = userID
-                    };
+                        Order neworder = new Order()
+                        {
+                            User = new Model.User() { Id = userID },
+                            Status = new Model.Status() { Id = 1 },
+                            Type = new Model.Type() { Id = 1 },
+                            Quantity = pDoorsxUser.Quantity,
+                            Total = pDoorsxUser.SubTotal,
+                            CreationDate = DateTime.Now,
+                            CreatorUser = userID,
+                            ModificationDate = DateTime.Now,
+                            ModificationUser = userID
+                        };
 
-                    int IdOrder = _LNOrder.InsertOrder(neworder);
-                    neworder.Id = IdOrder;
-                    pDoorsxUser.CreatorUser = userID;
-                    pDoorsxUser.ModificationUser = userID;
-                    pDoorsxUser.CreationDate = DateTime.Now;
-                    pDoorsxUser.ModificationDate = DateTime.Now;
-                    pDoorsxUser.Order = neworder;
-                    pDoorsxUser.User.Id = idU;
-                    BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
-
-                    return Json(_LN.InsertDoorsxUser(pDoorsxUser));
+                        int IdOrder = _LNOrder.InsertOrder(neworder);
+                        neworder.Id = IdOrder;
+                        pDoorsxUser.CreatorUser = userID;
+                        pDoorsxUser.ModificationUser = userID;
+                        pDoorsxUser.CreationDate = DateTime.Now;
+                        pDoorsxUser.ModificationDate = DateTime.Now;
+                        pDoorsxUser.Order = neworder;
+                        pDoorsxUser.User.Id = idU;
+                        BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
+                        var OrDoor = _LN.InsertDoorsxUser(pDoorsxUser);
+                        return Json(true, JsonRequestBehavior.AllowGet);
+                    }
+                    catch
+                    {
+                        return Json(false, JsonRequestBehavior.AllowGet);
+                    }
                 }
                 else
                 {

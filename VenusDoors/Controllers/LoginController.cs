@@ -15,13 +15,29 @@ namespace VenusDoors.Controllers
         // GET: Login
         public ActionResult Index()
         {
+            if (Session["UserID"] == null)
+            {
+                return View();
 
-            return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
         }
 
         public ActionResult sing_up()
         {
-            return View();
+            if (Session["UserID"] == null)
+            {
+                return View();
+
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         [HttpPost]
@@ -59,7 +75,8 @@ namespace VenusDoors.Controllers
                 UserData.CreationDate = DateTime.Now;
                 UserData.ModificationDate = DateTime.Now;
                 BusinessLogic.lnUser _LNU = new BusinessLogic.lnUser();
-                return Json(_LNU.InsertUser(UserData));
+                var create = _LNU.InsertUser(UserData);
+                return Json(true, JsonRequestBehavior.AllowGet);
             }
             catch
             {
