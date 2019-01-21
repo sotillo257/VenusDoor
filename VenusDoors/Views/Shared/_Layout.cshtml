@@ -136,14 +136,10 @@
         <div class="col-md-1">
             <div class="br-header-right" style="margin-top: 10px;">
 
-                    <a href="" id="idLogin" class="btn btn-primary btn-icon rounded-circle mg-r-5 mg-b-10" style="color: #fff !important; margin-right: 10px;"><div><i class="fa fa-user"></i></div></a>
+                    <a id="idLogin" value="enviar" class="btn btn-primary btn-icon rounded-circle mg-r-5 mg-b-10" onclick="location.href='@Url.Action("Index","Login")'"  style="color: #fff !important; margin-right: 10px;"><div><i class="fa fa-user"></i></div></a>
                 
-                    <a href="" id="idSignUp" class="btn btn-success btn-icon rounded-circle mg-r-5 mg-b-10" style="color: #fff !important;"><div><i class="fa fa-user-plus"></i></div></a>
+                    <a id="idSignUp" class="btn btn-success btn-icon rounded-circle mg-r-5 mg-b-10" onclick="location.href='@Url.Action("sing_up","Login")'" style="color: #fff !important;"><div><i class="fa fa-user-plus"></i></div></a>
             </div>
-            @*<ul>
-                    <li>@Html.ActionLink("Log in", "Index", "Login")</li>
-                    <li>@Html.ActionLink("Sign up", "sing_up", "Login")</li>
-                </ul>*@
         </div><!--br-header-right-->
     }
     else

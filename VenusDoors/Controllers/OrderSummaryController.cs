@@ -166,7 +166,7 @@ namespace VenusDoors.Controllers
         }
 
         [HttpPost]
-        public ActionResult ConfirmOrder ()
+        public ActionResult ConfirmOrder (string idOrderSummary)
         {
             if (Session["UserID"] == null)
             {
@@ -186,8 +186,8 @@ namespace VenusDoors.Controllers
                     mail.From = new MailAddress("javier.sotillo13@gmail.com");
                     mail.To.Add(new MailAddress(To));
                     mail.Subject = "New order";
-                    mail.Body =
-                        "<table border striped><thead><tr><td>P review</td><td>Name a Door</td><td>Outside profile</td><td>Inside profile</td><td>Flat Panel</td><td>Quantity</td><td>Sub-Total</td><td>Total Price</td></tr></thead><tbody><tr><td><img src=@i.Picture></td><td>@i.Material.Description</td><td>@i.OutsideEdgeProfile.Description</td><td>@i.InsideEdgeProfile.Description</td><td>@i.PanelMaterial.Description</td><td>@i.Quantity</td></tr></tbody></table>";
+                    mail.Body = idOrderSummary;
+                        //"<table border striped><thead><tr><td>P review</td><td>Name a Door</td><td>Outside profile</td><td>Inside profile</td><td>Flat Panel</td><td>Quantity</td><td>Sub-Total</td><td>Total Price</td></tr></thead><tbody><tr><td><img src=@i.Picture></td><td>@i.Material.Description</td><td>@i.OutsideEdgeProfile.Description</td><td>@i.InsideEdgeProfile.Description</td><td>@i.PanelMaterial.Description</td><td>@i.Quantity</td></tr></tbody></table>";
                     mail.IsBodyHtml = true;
 
                     SmtpServer.Port = 587;

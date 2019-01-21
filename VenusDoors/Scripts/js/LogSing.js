@@ -21,7 +21,7 @@ function Login() {
         success: function (result) {
 
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                $('#idLogin').urlAutherize('toggle');
             } else {
                 $('#modalError').modal('toggle');
             }
