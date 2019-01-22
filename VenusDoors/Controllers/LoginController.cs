@@ -81,8 +81,10 @@ namespace VenusDoors.Controllers
             catch
             {
                 return Json(false, JsonRequestBehavior.AllowGet);
-            }
+            }    
         }
+
+        
 
         public ActionResult LogOut()
         {
