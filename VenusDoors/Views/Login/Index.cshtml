@@ -28,14 +28,16 @@
                                         <br>
                                         <div class="form-group">
                                         @Html.LabelFor(model => model.Email)
-                                        @Html.EditorFor(model => model.Email)                                           
+                                        @*@Html.EditorFor(model => model.Email)*@  
+                                            <input class="form-control" data-val="true" data-val-required="This field is required" id="Email" name="Email" type="text" value="">                                          
                                         </div><!-- form-group -->
                                         <div class="form-group mg-b-20">
                                             @Html.ValidationMessageFor(model => model.Password)
                                         </div><!-- form-group -->
                                         <div class="form-group mg-b-20">
                                             @Html.LabelFor(model => model.Password)
-                                            @Html.EditorFor(model => model.Password)     
+                                            @*@Html.EditorFor(model => model.Password)*@ 
+                                            <input class="form-control" data-val="true" data-val-required="This field is required" id="Password" name="Password" type="password" value="">    
                                             <a href="" class="tx-12 d-block mg-t-10">Forgot password?</a>
                                         </div><!-- form-group -->
                                         <div class="form-group mg-b-20">
