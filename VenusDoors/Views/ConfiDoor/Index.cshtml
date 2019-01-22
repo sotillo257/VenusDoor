@@ -136,9 +136,8 @@
                     <div class="col-xs-4 col-md-3">
                         <label for="isDrill" style="margin-top: 25px;">Hinge Drilling: </label>
                         <select style="width:100%"  class="form-control select2" id="cbisDrill" data-placeholder="">
-                            <option value="1">Select</option>
-                            <option value="2">No Drill</option>
-                            <option value="3">Drill</option>
+                            <option value="1">No Drill</option>
+                            <option value="2">Drill</option>
                         </select>
                     </div><!-- col -->
 
@@ -303,7 +302,7 @@
 
       <script type="text/javascript">
           $("#cbisDrill").change(function () {
-              if (this.value == 3) {
+              if (this.value == 2) {
                   $("#HingeDirectionDiv").css('display', 'block');
                   $("#HingePositionsDiv").css('display', 'block');
               } else {

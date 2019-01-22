@@ -29,7 +29,11 @@ namespace DataAccess
                         {
                             Id = int.Parse(item["Id"].ToString()),
                             Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["DescripStatus"].ToString() },
-                            Position = item["Position"].ToString(),
+                            Position1 = item["Position1"].ToString(),
+                            Position2 = item["Position2"].ToString(),
+                            Position3 = item["Position3"].ToString(),
+                            Position4 = item["Position4"].ToString(),
+                            Position5 = item["Position5"].ToString(),
                             CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             ModificationDate = (item["ModificationDate"].ToString() != "") ? DateTime.Parse(item["ModificationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             CreatorUser = int.Parse(item["CreatorUser"].ToString()),
@@ -63,7 +67,11 @@ namespace DataAccess
                         {
                             Id = int.Parse(item["Id"].ToString()),
                             Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["DescripStatus"].ToString() },
-                            Position = item["Position"].ToString(),
+                            Position1 = item["Position1"].ToString(),
+                            Position2 = item["Position2"].ToString(),
+                            Position3 = item["Position3"].ToString(),
+                            Position4 = item["Position4"].ToString(),
+                            Position5 = item["Position5"].ToString(),
                             CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             ModificationDate = (item["ModificationDate"].ToString() != "") ? DateTime.Parse(item["ModificationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             CreatorUser = int.Parse(item["CreatorUser"].ToString()),
@@ -84,7 +92,7 @@ namespace DataAccess
         public int InsertHingePositions(HingePositions pHingePositions)
         {
             string sql = @"[spInsertHingePositions] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}'";
-            sql = string.Format(sql, pHingePositions.Position, pHingePositions.Status.Id, pHingePositions.CreationDate.ToString("yyyy-MM-dd"),
+            sql = string.Format(sql, pHingePositions.Position1, pHingePositions.Position2, pHingePositions.Position3, pHingePositions.Position4, pHingePositions.Position5, pHingePositions.Status.Id, pHingePositions.CreationDate.ToString("yyyy-MM-dd"),
                 pHingePositions.CreatorUser, pHingePositions.ModificationDate.ToString("yyyy-MM-dd"), pHingePositions.ModificationUser);
             try
             {
@@ -99,7 +107,7 @@ namespace DataAccess
         public void UpdateHingePositions(HingePositions pHingePositions)
         {
             string sql = @"[spUpdateHingePositions] '{0}', '{1}', '{2}', '{3}'";
-            sql = string.Format(sql, pHingePositions.Position, pHingePositions.Status.Id, pHingePositions.ModificationDate.ToString("yyyy-MM-dd"),
+            sql = string.Format(sql, pHingePositions.Position1, pHingePositions.Position2, pHingePositions.Position3, pHingePositions.Position4, pHingePositions.Position5, pHingePositions.Status.Id, pHingePositions.ModificationDate.ToString("yyyy-MM-dd"),
                 pHingePositions.ModificationUser);
             try
             {
