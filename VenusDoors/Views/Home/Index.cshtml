@@ -316,10 +316,11 @@
 </div>
 
 
+
 @section scripts{
 <script type="text/javascript">
 
-
+   
     $(document).ready(function () {
         var listDoors = JSON.parse('@Html.Raw(ViewBag.ListDoor)');
         $(document).on('click', '.Door', function (event) {
@@ -331,6 +332,9 @@
             window.location.href = '@Url.Action("Index","ConfiDoor")'+'/Index/'+$(this).attr('value');
         });
     });
+
+    
+
     function SearchDoor(data, idDoor) {
         if (data != null) {
             for (var i = 0; i < data.length; i++) {
