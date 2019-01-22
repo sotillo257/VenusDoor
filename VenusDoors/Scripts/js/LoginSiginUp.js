@@ -38,9 +38,9 @@ function CreateNewUser() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                alert("yes");
+                $('#modalCongra').modal('toggle');
             } else {
-                alert("no");
+                $('#modalError').modal('toggle');
             }
         },
         error: function (err) {
