@@ -72,11 +72,47 @@
             </div><!-- row -->
 
             <div class="form-layout-footer">
-                <button id="btNewUser" class="btn btn-info">Submit Form</button>
-                <button class="btn btn-secondary">Cancel</button>
+                <button id="btNewUser" onclick="this.disabled=true" class="btn btn-info">Submit Form</button>
+                <button onclick="location.href='@Url.Action("Index","Login")'" class="btn btn-secondary">Back</button>
             </div><!-- form-layout-footer -->
         </div>
     </div>
+</div>
+
+<div id="modalCongra" class="modal fade" onclick="location.href='@Url.Action("Index","Login")'" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content tx-size-sm">
+            <div class="modal-body tx-center pd-y-20 pd-x-20">
+                <button type="button" class="close" data-dismiss="modal" onclick="location.href='@Url.Action("Index","Login")'" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <i class="icon ion-ios-checkmark-outline tx-100 tx-success lh-1 mg-t-20 d-inline-block"></i>
+                <h4 class="tx-success tx-semibold mg-b-20">Congratulations! The creation of your user has been successful.</h4>
+                <p class="mg-b-20 mg-x-20">A message has been sent to the email supplied with an activation code to complete your registration.</p>
+                <button type="button" onclick="window.location.reload()" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">
+                    Continue
+                </button>
+            </div><!-- modal-body -->
+        </div><!-- modal-content -->
+    </div><!-- modal-dialog -->
+</div>
+
+<div id="modalError" class="modal fade">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content tx-size-sm">
+            <div class="modal-body tx-center pd-y-20 pd-x-20">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <i class="icon icon ion-ios-close-outline tx-100 tx-danger lh-1 mg-t-20 d-inline-block"></i>
+                <h4 class="tx-danger  tx-semibold mg-b-20">Error: Cannot process your entry!</h4>
+                <p class="mg-b-20 mg-x-20">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration.</p>
+                <button type="button" class="btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">
+                    Continue
+                </button>
+            </div><!-- modal-body -->
+        </div><!-- modal-content -->
+    </div><!-- modal-dialog -->
 </div>
 
 @section scripts{
