@@ -40,7 +40,7 @@ function ConfirmOrder() {
         data: data,
         //Se ejecutó correctamente
         success: function (data) {
-            if (result == true) {
+            if (data == true) {
                 $('#modalCongra').modal('toggle');
                             } else {
                 $('#modalError').modal('toggle');

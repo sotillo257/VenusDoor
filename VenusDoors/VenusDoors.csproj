@@ -902,6 +902,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\js\ComboBox.js" />
     <Content Include="Scripts\js\envio.js" />
+    <Content Include="Scripts\js\HideShow.js" />
     <Content Include="Scripts\js\LoginSiginUp.js" />
     <Content Include="Scripts\js\LogSing.js" />
     <Content Include="Scripts\js\Masters.js" />

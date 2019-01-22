@@ -22,21 +22,21 @@
                 <div class="row">
                     <div class="col-xs-4 col-md-3">
                         <label for="Name" style="margin-top: 25px;">Template / Item Name: </label>
-                        <input class="form-control" placeholder=""  maxlength="25" id="txtTemplate" type="text">
+                        <input class="form-control" placeholder="" data-val="true" data-val-required="This field is required"  maxlength="25" id="txtTemplate" type="text">
                     </div><!-- col -->
 
                     <div class="col-xs-4 col-md-3">
                         <label for="Material" style="margin-top: 25px;">Wood Species: </label>
-                        <select class="form-control select2" id="cbMaterial" data-placeholder=""></select>
+                        <select style="width:100%"  class="form-control select2" id="cbMaterial" data-placeholder=""></select>
                     </div><!-- col -->
 
                     <div class="col-xs-4 col-md-3">
                         <label for="Width" style="margin-top: 25px;">Width: </label>
-                        <input class="form-control" placeholder="" onkeypress="return onKeyDecimal(event,this);" id="iptWidth" type="number">
+                        <input class="form-control" placeholder="" data-val="true" data-val-required="This field is required" onkeypress="return onKeyDecimal(event,this);" id="iptWidth" type="number">
                     </div><!-- col -->
                     <div class="col-xs-4 col-md-3">
                         <label for="Height" style="margin-top: 25px;">Height: </label>
-                        <input class="form-control" placeholder="" onkeypress="return onKeyDecimal(event,this);" id="iptHeight" type="number">
+                        <input class="form-control" placeholder="" data-val="true" data-val-required="This field is required" onkeypress="return onKeyDecimal(event,this);" id="iptHeight" type="number">
                     </div><!-- col -->
                 </div>
             </div>
@@ -64,52 +64,52 @@
                 <div class="row">
                     <div class="col-xs-4 col-md-3">
                         <label for="DoorStyle" style="margin-top: 25px;">Door Style </label>
-                        <select class="form-control select2" id="cbDoorStyle" data-placeholder=""></select>
+                        <select style="width:100%" class="form-control select2" id="cbDoorStyle" data-placeholder=""></select>
                     </div><!-- col -->
 
                     <div class="col-xs-4 col-md-3">
                         <label for="InsideEdgeProfile" style="margin-top: 25px;">Inside Edge Profile: </label>
-                        <select class="form-control select2" id="cbInsideEdgeProfile" data-placeholder=""></select>
+                        <select style="width:100%"  class="form-control select2" id="cbInsideEdgeProfile" data-placeholder=""></select>
                     </div><!-- col -->
 
                     <div class="col-xs-4 col-md-3">
                         <label for="OutsideEdgeProfile" style="margin-top: 25px;">Outside Edge Profile: </label>
-                        <select class="form-control select2" id="cbOutsideEdgeProfile" data-placeholder=""></select>
+                        <select style="width:100%"  class="form-control select2" id="cbOutsideEdgeProfile" data-placeholder=""></select>
                     </div><!-- col -->
 
                     <div class="col-xs-4 col-md-3">
                         <label for="BottomRail" style="margin-top: 25px;">Bottom Rail: </label>
-                        <select class="form-control select2" id="cbBottomRail" data-placeholder=""></select>
+                        <select style="width:100%"  class="form-control select2" id="cbBottomRail" data-placeholder=""></select>
                     </div><!-- col -->
 
                     <div class="col-xs-4 col-md-3">
                         <label for="TopRail" style="margin-top: 25px;">Top Rail:</label>
-                        <select class="form-control select2" id="cbTopRail" data-placeholder=""></select>
+                        <select style="width:100%"  class="form-control select2" id="cbTopRail" data-placeholder=""></select>
                     </div><!-- col -->
 
                     <div class="col-xs-4 col-md-3">
                         <label for="Join" style="margin-top: 25px;">Join: </label>
-                        <select class="form-control select2" id="cbJoin" data-placeholder=""></select>
+                        <select style="width:100%"  class="form-control select2" id="cbJoin" data-placeholder=""></select>
                     </div><!-- col -->
 
                     <div class="col-xs-4 col-md-3">
                         <label for="Preparation" style="margin-top: 25px;">Preparation: </label>
-                        <select class="form-control select2" id="cbPreparation" data-placeholder=""></select>
+                        <select style="width:100%"  class="form-control select2" id="cbPreparation" data-placeholder=""></select>
                     </div><!-- col -->
 
                     <div class="col-xs-4 col-md-3">
                         <label for="Panel" style="margin-top: 25px;">Panel Type: </label>
-                        <select class="form-control select2" id="cbPanel" data-placeholder=""></select>
+                        <select style="width:100%"  class="form-control select2" id="cbPanel" data-placeholder=""></select>
                     </div><!-- col -->
 
                     <div class="col-xs-4 col-md-3">
                         <label for="PanelMaterial" style="margin-top: 25px;">Panel Profile: </label>
-                        <select class="form-control select2" id="cbPanelMaterial" data-placeholder=""></select>
+                        <select style="width:100%"  class="form-control select2" id="cbPanelMaterial" data-placeholder=""></select>
                     </div><!-- col -->
 
                     <div class="col-xs-4 col-md-3">
                         <label for="IsOpeningMeasurement" style="margin-top: 25px;">Opening Measurement: </label>
-                        <select class="form-control select2" id="cbIsOpeningMeasurement" data-placeholder="">
+                        <select style="width:100%"  class="form-control select2" id="cbIsOpeningMeasurement" data-placeholder="">
                             <option value="false">No Opening </option>
                             <option value="true">Opening</option>
                         </select>
@@ -117,35 +117,36 @@
 
                     <div class="col-xs-4 col-md-3">
                         <label for="VerticalDivisions" style="margin-top: 25px;">Vertical Divisions: </label>
-                        <select class="form-control select2" id="cbVerticalDivisions" data-placeholder=""></select>
+                        <select style="width:100%"  class="form-control select2" id="cbVerticalDivisions" data-placeholder=""></select>
                     </div><!-- col -->
 
                     <div class="col-xs-4 col-md-3">
                         <label for="HorizontalDivisions" style="margin-top: 25px;">Horizontal Divisions: </label>
-                        <select class="form-control select2" id="cbHorizontalDivisions" data-placeholder=""></select>
+                        <select style="width:100%"  class="form-control select2" id="cbHorizontalDivisions" data-placeholder=""></select>
                     </div><!-- col -->
 
                     <div class="col-xs-4 col-md-3">
                         <label for="isDrill" style="margin-top: 25px;">Hinge Drilling: </label>
-                        <select class="form-control select2" id="cbisDrill" data-placeholder="">
-                            <option value="false">No Drill</option>
-                            <option value="true">Drill</option>
+                        <select style="width:100%"  class="form-control select2" id="cbisDrill" data-placeholder="">
+                            <option>Select</option>
+                            <option id="hide" value="false">No Drill</option>
+                            <option id="show" value="true">Drill</option>
                         </select>
                     </div><!-- col -->
 
-                    <div class="col-xs-4 col-md-3">
+                    <div class="target col-xs-4 col-md-3">
                         <label for="HingeDirection" style="margin-top: 25px;">Hinge Direction: </label>
-                        <select class="form-control select2" id="cbHingeDirection" data-placeholder=""></select>
+                        <select style="width:100%"  class="ocultar form-control select2" id="cbHingeDirection" data-placeholder=""></select>
                     </div><!-- col -->
 
-                    <div class="col-xs-4 col-md-3">
+                    <div class="target col-xs-4 col-md-3">
                         <label for="HingePositions" style="margin-top: 25px;">Hinge Positions: </label>
-                        <select class="form-control select2" id="cbHingePositions" data-placeholder=""></select>
+                        <select style="width:100%"  class="ocultar form-control select2" id="cbHingePositions" data-placeholder=""></select>
                     </div><!-- col -->
 
                     <div class="col-xs-4 col-md-3">
                         <label for="Quantity" style="margin-top: 25px;">Quantity: </label>
-                        <input class="form-control" placeholder="" id="iptQuantity" onkeypress="return onKeyDecimal(event,this);" type="number">
+                        <input class="form-control" placeholder="" data-val="true" data-val-required="This field is required" id="iptQuantity" onkeypress="return onKeyDecimal(event,this);" type="number">
                     </div>
                 </div>
             </div>
@@ -247,7 +248,7 @@
         var urlInsertDoorsxUser = '@Url.Action("InsertDoorsxUser", "ConfiDoor")';
     </script>
 
-
+    @Scripts.Render("~/Scripts/js/HideShow.js")
     @Scripts.Render("~/Scripts/js/ConfigDoor.Index.js")
     <script src="~/Content/lib/select2/js/select2.min.js"></script>
     <script src="~/Content/lib/select2/js/select2.full.min.js"></script>
@@ -288,4 +289,21 @@
           return /\d/.test(String.fromCharCode(keynum));
       }
     </script>
+      @*<script type="text/javascript">
+          $(document).ready(function () {
+          var optionValue = $("#cbisDrill").val();
+
+          $('#cbHingeDirection, #cbHingePositions').hide();
+
+          switch (optionValue) {
+              case false:
+                  $("#cbHingeDirection").show();
+                  break;
+              case true:
+                  $("#cbHingePositions").show();
+                  break;
+          }
+
+      });
+    </script>*@
 }
