@@ -266,6 +266,20 @@ namespace VenusDoors.Controllers
                             ModificationUser = userID
                         };
 
+                        HingePositions newhp = new HingePositions()
+                        {
+                            Status = new Model.Status() { Id = 1 },
+                            Position1 = "1",
+                            Position2 = "2",
+                            Position3 = "3",
+                            Position4 = "4",
+                            Position5 = "5",
+                            CreationDate = DateTime.Now,
+                            CreatorUser = userID,
+                            ModificationDate = DateTime.Now,
+                            ModificationUser = userID
+                        };
+
                         int IdOrder = _LNOrder.InsertOrder(neworder);
                         neworder.Id = IdOrder;
                         pDoorsxUser.CreatorUser = userID;

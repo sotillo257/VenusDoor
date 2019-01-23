@@ -450,15 +450,14 @@ function InsertDoorsxUser() {
                             InsideEdgeProfile: { Id: $("#cbInsideEdgeProfile").val() },                            
                             VerticalDivisions: { Id: $("#cbVerticalDivisions").val() },
                             HorizontalDivisions: { Id: $("#cbHorizontalDivisions").val() },
-                            isDrill: $("#cbisDrill").val(),
-                            HingeDirection: { Id: $("#cbHingeDirection").val() },
-                            HingePositions: { Id: $("#cbHingePositions").val() },                            
                             Width: $("#iptWidth").val(),
                             Height: $("#iptHeight").val(),
                             Quantity: $("#iptQuantity").val(),
                             SubTotal: $("#iptQuantity").val() * 120,
                             Picture: 'PruebaPicture',
                             ProfilePicture: 'PruebaPP',
+                            isDrill: $("#cbisDrill").val(),
+                            HingeDirection: { Id: $("#cbHingeDirection").val() },
                         }
                     };
                 console.log(datos);
