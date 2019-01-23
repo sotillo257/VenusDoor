@@ -24,6 +24,5 @@ C:\Users\jesus\Source\Repos\VenusDoor2\Model\bin\Debug\Model.dll
 C:\Users\jesus\Source\Repos\VenusDoor2\Model\bin\Debug\Model.pdb
 C:\Users\jesus\Source\Repos\VenusDoor2\Model\bin\Debug\EntityFramework.dll
 C:\Users\jesus\Source\Repos\VenusDoor2\Model\bin\Debug\EntityFramework.xml
-C:\Users\jesus\Source\Repos\VenusDoor2\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
 C:\Users\jesus\Source\Repos\VenusDoor2\Model\obj\Debug\Model.dll
 C:\Users\jesus\Source\Repos\VenusDoor2\Model\obj\Debug\Model.pdb

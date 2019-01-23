@@ -1,4 +1,5 @@
 ﻿$(document).ready(function () {
+
     GetAllMaterial();
     GetAllInsideEdgeProfile();
     GetAllOutsideEdgeProfile();
@@ -12,7 +13,6 @@
 	GetAllVerticalDivisions();
 	GetAllHorizontalDivisions();
 	GetAllHingeDirection();
-	GetAllHingePositions();
 
 	$("#btConfirm").on("click", function () {
 	    InsertDoorsxUser();
@@ -401,37 +401,7 @@ function GetAllHingeDirection() {
     });
 }
 
-function GetAllHingePositions() {
-    $.ajax({
-        url: urlGetAllHingePositions,
-        cache: false,
-        type: 'POST',
-        async: false,
-        contentType: "application/json; charset=utf-8",
-        success: function (data) {
-            if (data != null) {
-                var option = '';
-                for (var i = 0; i < data.length; i++) {
-
-                    option += '<option value="' + data[i].Id + '">' + data[i].Position + '</option>';
-
-
-                }
-                $("#cbHingePositions").empty().append(option);
-
-            }
-            else {
-                MensajeModal("Error al obtener Hinge Positions", 5);
-            }
-        },
-        error: function (err) {
-            MensajeModal(msgErrorinterno, 5);
-        }
-    });
-}
-
 function InsertDoorsxUser() {
-                
                 var datos =
                     {
                         pDoorsxUser: {
@@ -458,6 +428,11 @@ function InsertDoorsxUser() {
                             ProfilePicture: 'PruebaPP',
                             isDrill: $("#cbisDrill").val(),
                             HingeDirection: { Id: $("#cbHingeDirection").val() },
+                        },
+                        
+
+                        HingeP: {
+                                                     
                         }
                     };
                 console.log(datos);
@@ -482,4 +457,50 @@ function InsertDoorsxUser() {
               
                 });
 }
+
+$(document).ready(function () {
+    $(".iptHeight").keyup(function (e) {
+        if ($(this).val() <= 36) {
+            if (e.keyup = true) {
+                $(".hp1").css('display', 'block');
+                $(".hp2").css('display', 'block');
+                $(".hp3").css('display', 'none');
+                $(".hp4").css('display', 'none');
+                $(".hp5").css('display', 'none');
+                $("#HingePositionsDiv").removeClass("target col-xs-4 col-md-4").addClass("target col-xs-4 col-md-3");
+            }
+        }
+        else if ($(this).val() <= 60) {
+            if (e.keyup = true) {
+                $(".hp1").css('display', 'block');
+                $(".hp2").css('display', 'block');
+                $(".hp3").css('display', 'block');
+                $(".hp4").css('display', 'none');
+                $(".hp5").css('display', 'none');
+                $("#HingePositionsDiv").removeClass("target col-xs-4 col-md-4").addClass("target col-xs-4 col-md-3");
+            }
+        } else if ($(this).val() <= 80) {
+            if (e.keyup = true) {
+                $(".hp1").css('display', 'block');
+                $(".hp2").css('display', 'block');
+                $(".hp3").css('display', 'block');
+                $(".hp4").css('display', 'block');
+                $(".hp5").css('display', 'none');
+                $("#HingePositionsDiv").removeClass("target col-xs-4 col-md-3").addClass("target col-xs-4 col-md-4");
+            }
+        } else if ($(this).val() > 80) {
+            if (e.keyup = true) {
+                $(".hp1").css('display', 'block');
+                $(".hp2").css('display', 'block');
+                $(".hp3").css('display', 'block');
+                $(".hp4").css('display', 'block');
+                $(".hp5").css('display', 'block');
+                $("#HingePositionsDiv").removeClass("target col-xs-4 col-md-3").addClass("target col-xs-4 col-md-4");
+            }
+        }
+        else{
+
+        }
+    });
+});
 

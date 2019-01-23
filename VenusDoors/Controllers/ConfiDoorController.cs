@@ -244,6 +244,7 @@ namespace VenusDoors.Controllers
             else
             {
                 BusinessLogic.lnOrder _LNOrder = new BusinessLogic.lnOrder();
+                BusinessLogic.lnHingePositions _LNHP = new BusinessLogic.lnHingePositions();
                 int userID = (int)Session["UserID"];
                 int idU = userID;
                 var orderList = _LNOrder.GetOrderByUser(idU);
@@ -266,6 +267,9 @@ namespace VenusDoors.Controllers
                             ModificationUser = userID
                         };
 
+                        int IdOrder = _LNOrder.InsertOrder(neworder);
+                        neworder.Id = IdOrder;
+
                         HingePositions newhp = new HingePositions()
                         {
                             Status = new Model.Status() { Id = 1 },
@@ -280,13 +284,15 @@ namespace VenusDoors.Controllers
                             ModificationUser = userID
                         };
 
-                        int IdOrder = _LNOrder.InsertOrder(neworder);
-                        neworder.Id = IdOrder;
+                        int IdHingeP = _LNHP.InsertHingePositions(newhp);
+                        newhp.Id = IdHingeP;                        
+
                         pDoorsxUser.CreatorUser = userID;
                         pDoorsxUser.ModificationUser = userID;
                         pDoorsxUser.CreationDate = DateTime.Now;
                         pDoorsxUser.ModificationDate = DateTime.Now;
                         pDoorsxUser.Order = neworder;
+                        pDoorsxUser.HingePositions = newhp;
                         pDoorsxUser.User.Id = idU;
                         BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
                         var OrDoor = _LN.InsertDoorsxUser(pDoorsxUser);
@@ -295,18 +301,35 @@ namespace VenusDoors.Controllers
                     catch
                     {
                         return Json(false, JsonRequestBehavior.AllowGet);
-                    }
-                    
+                    }               
                 }
                 else if (item.Status.Id == 1)
                 {
                     try
                     {
+                        HingePositions newhp = new HingePositions()
+                        {
+                            Status = new Model.Status() { Id = 1 },
+                            Position1 = "1",
+                            Position2 = "2",
+                            Position3 = "3",
+                            Position4 = "4",
+                            Position5 = "5",
+                            CreationDate = DateTime.Now,
+                            CreatorUser = userID,
+                            ModificationDate = DateTime.Now,
+                            ModificationUser = userID
+                        };
+
+                        int IdHingeP = _LNHP.InsertHingePositions(newhp);
+                        newhp.Id = IdHingeP;
+
                         UpdateOrderExist(item, pDoorsxUser);
                         pDoorsxUser.CreatorUser = userID;
                         pDoorsxUser.ModificationUser = userID;
                         pDoorsxUser.CreationDate = DateTime.Now;
                         pDoorsxUser.ModificationDate = DateTime.Now;
+                        pDoorsxUser.HingePositions = newhp;
                         pDoorsxUser.Order = item;
                         pDoorsxUser.User.Id = idU;
 
@@ -337,12 +360,30 @@ namespace VenusDoors.Controllers
                         };
 
                         int IdOrder = _LNOrder.InsertOrder(neworder);
+
+                        HingePositions newhp = new HingePositions()
+                        {
+                            Status = new Model.Status() { Id = 1 },
+                            Position1 = "1",
+                            Position2 = "2",
+                            Position3 = "3",
+                            Position4 = "4",
+                            Position5 = "5",
+                            CreationDate = DateTime.Now,
+                            CreatorUser = userID,
+                            ModificationDate = DateTime.Now,
+                            ModificationUser = userID
+                        };
+
+                        int IdHingeP = _LNHP.InsertHingePositions(newhp);
+                        newhp.Id = IdHingeP;
                         neworder.Id = IdOrder;
                         pDoorsxUser.CreatorUser = userID;
                         pDoorsxUser.ModificationUser = userID;
                         pDoorsxUser.CreationDate = DateTime.Now;
                         pDoorsxUser.ModificationDate = DateTime.Now;
                         pDoorsxUser.Order = neworder;
+                        pDoorsxUser.HingePositions = newhp;
                         pDoorsxUser.User.Id = idU;
                         BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
                         var OrDoor = _LN.InsertDoorsxUser(pDoorsxUser);
