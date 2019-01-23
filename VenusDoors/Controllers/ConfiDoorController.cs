@@ -301,8 +301,7 @@ namespace VenusDoors.Controllers
                     catch
                     {
                         return Json(false, JsonRequestBehavior.AllowGet);
-                    }
-                    
+                    }               
                 }
                 else if (item.Status.Id == 1)
                 {
