@@ -973,6 +973,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\js\CargaImg.js" />
     <Content Include="Scripts\js\ComboBox.js" />
+    <Content Include="Scripts\js\ConverExcel.js" />
     <Content Include="Scripts\js\envio.js" />
     <Content Include="Scripts\js\HideShow.js" />
     <Content Include="Scripts\js\LoginSiginUp.js" />
