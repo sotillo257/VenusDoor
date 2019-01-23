@@ -141,7 +141,7 @@
             @if (ViewBag.xUserDoors == null)
             {
                 <div class="col-md-5" style="display:flex; justify-content:flex-end">
-                    <h3 style="color:red">No items</h3><button id="btn_carrito" style="margin-left: 25px;" type="button" src="#" class="btn btn-success" title="">Build a Door</button>                     
+                    <h3 style="color:red">No items</h3><button id="btn_carrito" onclick="location.href='@Url.Action("Index","ConfiDoor")'" style="margin-left: 25px;" type="button" src="#" class="btn btn-success" title="">Build a Door</button>                     
                 </div>
             }
             else
