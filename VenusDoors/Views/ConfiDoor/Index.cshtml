@@ -46,13 +46,13 @@
                         <select style="width:100%"  class="form-control select2" id="cbMaterial" data-placeholder=""></select>
                     </div><!-- col -->
 
-                    <div class="col-xs-4 col-md-3">
+                    <div name="SoloNumeros" class="col-xs-4 col-md-3">
                         <label for="Width" style="margin-top: 25px;">Width: </label>
-                        <input class="form-control" data-val="true" data-val-required="This field is required" maxlength="3" minlength="1" onkeypress="return soloNumeros(event);" id="iptWidth">
+                        <input name="SoloNumeros" class="form-control" data-val="true" data-val-required="This field is required" maxlength="4" minlength="1" onkeypress="return soloNumeros(event);" id="iptWidth">
                     </div><!-- col -->
-                    <div class="col-xs-4 col-md-3">
+                    <div name="SoloNumeros" class="col-xs-4 col-md-3">
                         <label for="Height" style="margin-top: 25px;">Height: </label>
-                        <input class="form-control" data-val="true" data-val-required="This field is required" maxlength="3" minlength="1" onkeypress="return soloNumeros(event);" id="iptHeight">
+                        <input name="SoloNumeros" class="form-control" data-val="true" data-val-required="This field is required" maxlength="4" minlength="1" onkeypress="return soloNumeros(event);" id="iptHeight">
                     </div><!-- col -->
                 </div>
             </div>
@@ -159,9 +159,9 @@
                         <div style="display:flex"><span class="hp1">1: </span><input class="form-control HPinpt hp1" /><span class="hp2">2: </span><input class="form-control HPinpt hp2" /><span class="hp3">3: </span><input class="form-control HPinpt hp3" /><span class="hp4">4: </span><input class="form-control HPinpt hp4" /><span class="hp5">5: </span><input class="form-control HPinpt hp5" /></div>
                     </div><!-- col -->
 
-                    <div class="col-xs-4 col-md-3">
+                    <div name="SoloNumeros" class="col-xs-4 col-md-3">
                         <label for="Quantity" style="margin-top: 25px;">Quantity: </label>
-                        <input class="form-control" maxlength="3" minlength="1" onkeypress="return soloNumeros(event);" data-val="true" data-val-required="This field is required" id="iptQuantity">
+                        <input name="SoloNumeros" class="form-control" maxlength="3" minlength="1" onkeypress="return soloNumeros(event);" data-val="true" data-val-required="This field is required" id="iptQuantity">
                     </div>
                 </div>
             </div>
@@ -169,7 +169,7 @@
             <div class="col-md-2">
                 <div class="row" style="margin-right: 0px;">
                     <center>
-                        <img src="~/Content/img/- Double Roman Ogee + ogee + flat panel beaded.png" />
+                        <img style="height: 100px;width: 260px;margin-top: 20px;" src="~/Content/img/- Double Roman Ogee + ogee + flat panel beaded.png" />
                         @*<img style="height: 100px;width: 260px;margin-top: 20px;" src="~/Content/img/Cabinet Vector-01.png" />*@
                         <img style="width: 230px;height: 230px;" src="~/Content/img/Cabinet Vector-01.png" />
                     </center>
@@ -357,19 +357,30 @@
                 return false;
         }
 
-        function soloNumeros(e) {
-            key = e.keyCode || e.which;
-            tecla = String.fromCharCode(key).toLowerCase();
-            letras = " 0123456789";
-            especiales = [8, 37, 39, 46];
+        //function soloNumeros(e) {
+        //    key = e.keyCode || e.which;
+        //    tecla = String.fromCharCode(key).toLowerCase();
+        //    numeros = "0123456789";
+        //    especiales = [8, 37, 39, 46];
 
-            tecla_especial = false
-            for (var i in especiales) {
-                if (key == especiales[i]) {
-                    tecla_especial = true;
-                    break;
-                }
+        //    tecla_especial = false
+        //    for (var i in especiales) {
+        //        if (key == especiales[i]) {
+        //            tecla_especial = true;
+        //            break;
+        //        }
+    //    }
+        window.addEventListener("load", function() {
+            SoloNumeros.SoloNumeros.addEventListener("keypress", soloNumeros, false);
+        });
+
+        //Solo permite introducir numeros.
+        function soloNumeros(e){
+            var key = window.event ? e.which : e.keyCode;
+            if (key < 48 || key > 57) {
+                e.preventDefault();
             }
+        
             var keynum = window.event ? window.event.keyCode : e.which;
             if (document.getElementById(thix.id).value.indexOf('.') != -1 && keynum == 46)
                 return false;
