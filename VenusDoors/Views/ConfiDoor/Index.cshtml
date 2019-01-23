@@ -124,21 +124,8 @@
                     </div><!-- col -->
 
                     <div class="col-xs-4 col-md-3">
-                        <label for="IsOpeningMeasurement" style="margin-top: 25px;">Opening Measurement: </label>
-                        <select style="width:100%"  class="form-control select2" id="cbIsOpeningMeasurement" data-placeholder="">
-                            <option value="false">No Opening </option>
-                            <option value="true">Opening</option>
-                        </select>
-                    </div><!-- col -->
-
-                    <div class="col-xs-4 col-md-3">
                         <label for="VerticalDivisions" style="margin-top: 25px;">Vertical Divisions: </label>
                         <select style="width:100%"  class="form-control select2" id="cbVerticalDivisions" data-placeholder=""></select>
-                    </div><!-- col -->
-
-                    <div class="col-xs-4 col-md-3">
-                        <label for="HorizontalDivisions" style="margin-top: 25px;">Horizontal Divisions: </label>
-                        <select style="width:100%"  class="form-control select2" id="cbHorizontalDivisions" data-placeholder=""></select>
                     </div><!-- col -->
 
                     <div class="col-xs-4 col-md-3">
@@ -163,14 +150,26 @@
                         <label for="Quantity" style="margin-top: 25px;">Quantity: </label>
                         <input name="SoloNumeros" class="form-control" maxlength="3" minlength="1" onkeypress="return soloNumeros(event);" data-val="true" data-val-required="This field is required" id="iptQuantity">
                     </div>
+
+                    <div class="col-xs-4 col-md-3">
+                        <label for="IsOpeningMeasurement" style="margin-top: 25px;">Opening Measurement: </label>
+                        <select style="width:100%" class="form-control select2" id="cbIsOpeningMeasurement" data-placeholder="">
+                            <option value="false">No Opening </option>
+                            <option value="true">Opening</option>
+                        </select>
+                    </div><!-- col -->
+
+                    <div class="col-xs-4 col-md-3">
+                        <label for="HorizontalDivisions" style="margin-top: 25px;">Horizontal Divisions: </label>
+                        <select style="width:100%" class="form-control select2" id="cbHorizontalDivisions" data-placeholder=""></select>
+                    </div><!-- col -->
                 </div>
             </div>
 
             <div class="col-md-2">
                 <div class="row" style="margin-right: 0px;">
-                    <center>
-                        <img style="height: 100px;width: 260px;margin-top: 20px;" src="~/Content/img/- Double Roman Ogee + ogee + flat panel beaded.png" />
-                        @*<img style="height: 100px;width: 260px;margin-top: 20px;" src="~/Content/img/Cabinet Vector-01.png" />*@
+                    <center>   
+                        <img src="~/Content/img/-DoubleRomanOgee+ogee+flatpanelbeaded.png" />
                         <img style="width: 230px;height: 230px;" src="~/Content/img/Cabinet Vector-01.png" />
                     </center>
                 </div>
