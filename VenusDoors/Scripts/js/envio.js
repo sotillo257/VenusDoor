@@ -25,6 +25,7 @@
 
 //    });
 //}
+
 function ConfirmOrder() {
     ConverExcel('idOrderSummary', 'W3C Example Table');
     var OrderSummary = $("#idOrderSummary").val();

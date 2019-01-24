@@ -72,6 +72,8 @@
                     <th>Flat Panel</th>
                     <th>Quantity</th>
                     <th>Sub-Total</th>
+                    <th>Tax</th>
+                    <th>Total</th>
                     <th>Delete item</th>
                 </tr>
             </thead>
@@ -99,6 +101,8 @@
                                 <td>@i.PanelMaterial.Description</td>
                                 <td>@i.Quantity</td>
                                 <td>@i.SubTotal $</td>
+                                <td>8.25%</td>
+                                <td>$</td>
                                 <td id="tddelete">
                                     <button class="btn btn-danger btn-icon btnn-dele" data-id="@i.Id" style="width: 37px;height: 37px;" type="submit"><i class="fa fa-trash"></i></button>
                                 </td>
@@ -128,7 +132,7 @@
                 else if(ord.Status.Id == 1 && ord.Total != 0)
                 {
                     <div class="col-md-7">
-                        <h3 style="color:#000">Total: @ord.Total $</h3>
+                        <h3 style="color:#000">Total Price: @ord.Total $</h3>
                     </div>
                 }
                 else

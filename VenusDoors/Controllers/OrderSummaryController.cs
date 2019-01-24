@@ -14,6 +14,8 @@ namespace VenusDoors.Controllers
         String path;
         MailMessage mail = new MailMessage();
 
+        public IEnumerable<string> ConverExcel { get; private set; }
+
         // GET: OrderSummary
         public ActionResult Index()
         {
@@ -186,8 +188,20 @@ namespace VenusDoors.Controllers
                     mail.From = new MailAddress("javier.sotillo13@gmail.com");
                     mail.To.Add(new MailAddress(To));
                     mail.Subject = "New order";
-                    mail.Body = idOrderSummary;
-                        //"<table border striped><thead><tr><td>P review</td><td>Name a Door</td><td>Outside profile</td><td>Inside profile</td><td>Flat Panel</td><td>Quantity</td><td>Sub-Total</td><td>Total Price</td></tr></thead><tbody><tr><td><img src=@i.Picture></td><td>@i.Material.Description</td><td>@i.OutsideEdgeProfile.Description</td><td>@i.InsideEdgeProfile.Description</td><td>@i.PanelMaterial.Description</td><td>@i.Quantity</td></tr></tbody></table>";
+                    mail.Body =
+                    "<p>Dear Javier,</p><br><p>Please review the estimate below.Feel free to contact us if you have any questions.</p><br>We look forward to working with you.</p><br><br><p>Thanks for your business!</p><br><p>Sage Moulding & Millwork </p><br><br>< table width=700 border=0 cellspacing=0 cellpadding=0 style=background:#f7f7f7;font-family:Arial,Helvetica,sans-serif;font-size:12px><tbody><tr><td style = padding:20px><p> ------------------------&nbsp; &nbsp; &nbsp;Estimate & nbsp; Summary & nbsp; &nbsp; --------------------------<br> Estimate & nbsp;#&nbsp;:&nbsp;1010<br>Estimate&nbsp;Date:&nbsp;01/15/2019<br>Total:&nbsp;$4,360.00<br>The&nbsp;complete&nbsp;version&nbsp;has&nbsp;been&nbsp;<wbr>provided&nbsp;as&nbsp;an&nbsp;attachment&nbsp;to&nbsp;<wbr>this&nbsp;email.<br>---------------------------------------------------------------------</p></td></tr></tbody></table> ";
+
+                    if (ConverExcel != null)
+                    {
+                        //agregado de archivo
+                        foreach (string archivo in ConverExcel)
+                        {
+                            //comprobamos si existe el archivo y lo agregamos a los adjuntos
+                            if (System.IO.File.Exists(@archivo))
+                                mail.Attachments.Add(new Attachment(@archivo));
+
+                        }
+                    }
                     mail.IsBodyHtml = true;
 
                     SmtpServer.Port = 587;
@@ -201,6 +215,7 @@ namespace VenusDoors.Controllers
                     Order item = ViewBag.Listo;
                     CloseOrder(item);
                     return Json(true, JsonRequestBehavior.AllowGet);
+                    
                 }
                 catch
                 {
