@@ -14,7 +14,7 @@
     });
 
     $("#btnInsertDP").on("click", function () {
-        InsertDoorPrice();
+        InsertDoorsPrices();
     });
     $("#btUpdateDoorPrice").on("click", function () {
         UpdateDoorPrice();
@@ -360,21 +360,23 @@ function UpdateDoors() {
     });
 }
 
-function InsertDoorPrice() {
+function InsertDoorsPrices() {
 
     var datos =
     {
-        pDoorPrice: {
+        pDoorsPrices: {
             DoorStyle: { Id: $("#inDoorStyle").val() },
-            Matarial: { Id: $("#inMatarial").val() },
-            BasePrice: $("#inBasePrice").val(),
-            AdditinalSFPrice: $("#inAdditinalSFPrice").val(),
+            Material: { Id: $("#inMatarial").val() },
+            RailThickness: { Id: $("#inRailThickness").val() },
+            BasePrice: parseFloat($("#inBasePrice").val()),
+            AdditionalSFPrice: parseFloat($("#inAdditionalSFPrice").val()),
             Status: { Id: $("#inStatus").val() },
             Picture: $("#inPicture").val(),
             ProfilePicture: $("#inProfilePicture").val(),
-            VerticalBase1FLPrice: $("#inVerticalBase1FLPrice").val(),
-            HorizontalBase1FLPrice: $("#inHorizontalBase1FLPrice").val(),
-            HorizontalAdditionalInchPrice: $("#inHorizontalAdditionalInchPrice").val(),
+            VerticalBase1FLPrice: parseFloat($("#inVerticalBase1FLPrice").val()),
+            VerticalAdditionalInchPrice: parseFloat($("#inVerticalAdditionalInchPrice").val()),
+            HorizontalBase1FLPrice: parseFloat($("#inHorizontalBase1FLPrice").val()),
+            HorizontalAdditionalInchPrice: parseFloat($("#inHorizontalAdditionalInchPrice").val()),
             CreatorUser: 6,
             ModificationUser: 6,
 
@@ -384,7 +386,7 @@ function InsertDoorPrice() {
     $.ajax({
         type: 'POST',
         data: JSON.stringify(datos),
-        url: urlInsertDoorPrice,
+        url: urlInsertDoorsPrices,
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function (result) {
@@ -409,6 +411,7 @@ function UpdateDoorPrice() {
         uDoorPrice: {
             DoorStyle: { Id: $("#cbDoorStyle").val() },
             Matarial: { Id: $("#cbMatarial").val() },
+            RailThickness: { Id: $("#cbRailThickness").val() },
             BasePrice: $("#txtBasePrice").val(),
             AdditinalSFPrice: $("#txtAdditinalSFPrice").val(),
             Status: { Id: $("#IdStatus").val() },

@@ -29,7 +29,8 @@ namespace DataAccess
                         {
                             Id = int.Parse(item["Id"].ToString()),
                             DoorStyle = new DoorStyle() { Id = int.Parse(item["IdDoorStyle"].ToString()), Description = item["DescripDoorStyle"].ToString() },
-                            Material = new Material() { Id = int.Parse(item["IdMaterial"].ToString()), Description = item["DescripMaterial"].ToString(), },                            
+                            Material = new Material() { Id = int.Parse(item["IdMaterial"].ToString()), Description = item["DescripMaterial"].ToString(), },
+                            RailThickness = new RailThickness() { Id = int.Parse(item["IdRailThickness"].ToString()), Description = item["DescripRT"].ToString()},
                             BasePrice = decimal.Parse(item["BasePrice"].ToString()),
                             AdditionalSFPrice = decimal.Parse(item["AdditionalSFPrice"].ToString()),
                             VerticalBase1FLPrice = decimal.Parse(item["VerticalBase1FLPrice"].ToString()),
@@ -73,6 +74,7 @@ namespace DataAccess
                             Id = int.Parse(item["Id"].ToString()),
                             DoorStyle = new DoorStyle() { Id = int.Parse(item["IdDoorStyle"].ToString()), Description = item["DescripDoorStyle"].ToString() },
                             Material = new Material() { Id = int.Parse(item["IdMaterial"].ToString()), Description = item["DescripMaterial"].ToString(), },
+                            RailThickness = new RailThickness() { Id = int.Parse(item["IdRailThickness"].ToString()), Description = item["DescripRT"].ToString() },
                             BasePrice = decimal.Parse(item["BasePrice"].ToString()),
                             AdditionalSFPrice = decimal.Parse(item["AdditionalSFPrice"].ToString()),
                             VerticalBase1FLPrice = decimal.Parse(item["VerticalBase1FLPrice"].ToString()),
@@ -101,8 +103,8 @@ namespace DataAccess
 
         public int InsertDoorsPrices(DoorsPrices pDoorsPrices)
         {
-            string sql = @"[spInsertDoorsPrices] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}'";
-            sql = string.Format(sql, pDoorsPrices.DoorStyle.Id, pDoorsPrices.Material.Id, pDoorsPrices.BasePrice, pDoorsPrices.AdditionalSFPrice, pDoorsPrices.VerticalBase1FLPrice, 
+            string sql = @"[spInsertDoorsPrices] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}'";
+            sql = string.Format(sql, pDoorsPrices.DoorStyle.Id, pDoorsPrices.Material.Id, pDoorsPrices.RailThickness.Id, pDoorsPrices.BasePrice, pDoorsPrices.AdditionalSFPrice, pDoorsPrices.VerticalBase1FLPrice, 
                 pDoorsPrices.VerticalAdditionalInchPrice, pDoorsPrices.HorizontalBase1FLPrice, pDoorsPrices.HorizontalAdditionalInchPrice,
                 pDoorsPrices.Status.Id, pDoorsPrices.CreationDate.ToString("yyyy-MM-dd"), pDoorsPrices.CreatorUser, 
                 pDoorsPrices.ModificationDate.ToString("yyyy-MM-dd"), pDoorsPrices.ModificationUser, pDoorsPrices.Picture, pDoorsPrices.ProfilePicture);
@@ -118,8 +120,8 @@ namespace DataAccess
 
         public void UpdateDoorsPrices(DoorsPrices pDoorsPrices)
         {
-            string sql = @"[spInsertDoorsPrices] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}'";
-            sql = string.Format(sql, pDoorsPrices.DoorStyle.Id, pDoorsPrices.Material.Id, pDoorsPrices.BasePrice, pDoorsPrices.AdditionalSFPrice, pDoorsPrices.VerticalBase1FLPrice,
+            string sql = @"[spUpdateDoorsPrices] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}'";
+            sql = string.Format(sql, pDoorsPrices.DoorStyle.Id, pDoorsPrices.Material.Id, pDoorsPrices.RailThickness.Id, pDoorsPrices.BasePrice, pDoorsPrices.AdditionalSFPrice, pDoorsPrices.VerticalBase1FLPrice,
                 pDoorsPrices.VerticalAdditionalInchPrice, pDoorsPrices.HorizontalBase1FLPrice, pDoorsPrices.HorizontalAdditionalInchPrice,
                 pDoorsPrices.Status.Id, pDoorsPrices.ModificationDate.ToString("yyyy-MM-dd"), pDoorsPrices.ModificationUser, pDoorsPrices.Picture, pDoorsPrices.ProfilePicture);
             try

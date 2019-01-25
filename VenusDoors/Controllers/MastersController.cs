@@ -30,6 +30,7 @@ namespace VenusDoors.Controllers
         BusinessLogic.lnType _LNType = new BusinessLogic.lnType();
         BusinessLogic.lnGroup _LNGroup = new BusinessLogic.lnGroup();
         BusinessLogic.lnPerson _LNPerson = new BusinessLogic.lnPerson();
+        BusinessLogic.lnRailThickness _LNRT = new BusinessLogic.lnRailThickness();
 
 
         public ActionResult BottomRail()
@@ -171,6 +172,7 @@ namespace VenusDoors.Controllers
             var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
             ViewBag.ListDoorsPrices = serializar.Serialize(mDoorsPrices);
 
+            ViewBag.mRailThickness = _LNRT.GetAllRailThickness();
             ViewBag.mStatus = _LNStatus.GetAllStatus();
             ViewBag.cbDoorStyle = _LNDoorStile.GetAllDoorStyle();
             ViewBag.cbMatarial = _LNMaterial.GetAllMaterial();
@@ -178,16 +180,16 @@ namespace VenusDoors.Controllers
         }
 
         [HttpPost]
-        public ActionResult InsertDoorPrice(DoorsPrices pDoorPrice)
+        public ActionResult InsertDoorsPrices(DoorsPrices pDoorsPrices)
         {
             try
             {
 
-                pDoorPrice.CreationDate = DateTime.Now;
-                pDoorPrice.ModificationDate = DateTime.Now;
+                pDoorsPrices.CreationDate = DateTime.Now;
+                pDoorsPrices.ModificationDate = DateTime.Now;
                 BusinessLogic.lnDoorsPrices _LP = new BusinessLogic.lnDoorsPrices();
-                return Json(_LP.InsertDoorsPrices(pDoorPrice));
-
+                var InserDP = _LP.InsertDoorsPrices(pDoorsPrices);
+                return Json(true, JsonRequestBehavior.AllowGet);
             }
             catch
             {
@@ -1001,6 +1003,67 @@ namespace VenusDoors.Controllers
             }
         }
 
+        public ActionResult RailThickness()
+        {
+            ViewBag.Masters = "active show-sub";
+            ViewBag.RailThickness = "active";
+            BusinessLogic.lnRailThickness _LN = new BusinessLogic.lnRailThickness();
+
+            ViewBag.mStatus = _LNStatus.GetAllStatus();
+
+            var mRailThickness = _LN.GetAllRailThickness();
+            ViewBag.mRailThickness = mRailThickness;
+            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+            ViewBag.ListRailThickness = serializar.Serialize(mRailThickness);
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult RailThickness(RailThickness pRailThickness)
+        {
+            try
+            {
+
+                pRailThickness.CreationDate = DateTime.Now;
+                pRailThickness.ModificationDate = DateTime.Now;
+                BusinessLogic.lnRailThickness _LN = new BusinessLogic.lnRailThickness();
+                return Json(_LN.InsertRailThickness(pRailThickness));
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult UpdateRailThickness(RailThickness uRailThickness)
+        {
+            try
+            {
+
+                uRailThickness.CreationDate = DateTime.Now;
+                uRailThickness.ModificationDate = DateTime.Now;
+                BusinessLogic.lnRailThickness _LN = new BusinessLogic.lnRailThickness();
+                return Json(_LN.UpdateRailThickness(uRailThickness));
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public ActionResult DeleteRailThickness(int id)
+        {
+
+            RailThickness dRailThickness = ViewBag.delRailThickness(id);
+
+            if (dRailThickness == null)
+                return View("NotFound");
+            else
+                return View(dRailThickness);
+        }
 
         public ActionResult Status()
         {
