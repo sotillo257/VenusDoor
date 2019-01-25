@@ -67,6 +67,7 @@
     <Compile Include="adPanelMaterial.cs" />
     <Compile Include="adPerson.cs" />
     <Compile Include="adPreparation.cs" />
+    <Compile Include="adRailThickness.cs" />
     <Compile Include="adStatus.cs" />
     <Compile Include="adTopRail.cs" />
     <Compile Include="adTopRailxHorizontalDivisions.cs" />

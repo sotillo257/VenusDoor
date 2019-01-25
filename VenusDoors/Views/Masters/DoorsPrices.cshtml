@@ -35,6 +35,7 @@
                                 <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="First name: activate to sort column ascending">Id</th>
                                 <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Door Style</th>
                                 <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Material</th>
+                                <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">RailThickness</th>
                                 <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Base Price</th>
                                 <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Additional SF Price</th>
                                 <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Vertical Base1 FL Price</th>
@@ -53,6 +54,7 @@
                                     <td tabindex="0" class="">@item.Id</td>
                                     <td class="">@item.DoorStyle.Id</td>
                                     <td class="">@item.Material.Id</td>
+                                    <td class="">@item.RailThickness.Id</td>
                                     <td class="">@item.BasePrice</td>
                                     <td class="">@item.AdditionalSFPrice</td>
                                     <td class="">@item.VerticalAdditionalInchPrice</td>
@@ -79,69 +81,6 @@
     </div>
 </div>
 
-@section scripts{
-<script>
-    var urlInsertDoorPrice = '@Url.Action("InsertDoorPrice", "Masters")';
-    var urlUpdateDoorPrice = '@Url.Action("UpdateDoorPrice", "Masters")';
-</script>
-    <script>
-        $(function () {
-            'use strict';
-
-            $('#datatable1').DataTable({
-                responsive: true,
-                language: {
-                    searchPlaceholder: 'Search...',
-                    sSearch: '',
-                    lengthMenu: '_MENU_ items/page',
-                }
-            });
-
-            $('#datatable2').DataTable({
-                bLengthChange: false,
-                searching: false,
-                responsive: true
-            });
-
-            // Select2
-            $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
-
-        });
-    </script>
-    <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
-    <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>
-    <script src="~/Content/lib/select2/js/select2.min.js"></script>
-    <script src="~/Content/lib/select2/js/select2.full.min.js"></script>
-@Scripts.Render("~/Scripts/js/Masters.js")
-
-<script type="text/javascript">
-
-        $(document).ready(function () {
-            var listDoorP = JSON.parse('@Html.Raw(ViewBag.ListDoorsPrices)');
-            $(document).on('click', '.Modificar', function (event) {
-                for (var i = 0; i < listDoorP.length; i++) {
-                    if (listDoorP[i].Id == $(this).attr('value')) {
-                        $('#txtId').val(listDoorP[i].Id);
-                        $('#cbDoorStyle').val(listDoorP[i].DoorStyle.Id);
-                        $('#cbMatarial').val(listDoorP[i].Material.Id);
-                        $('#txtBasePrice').val(listDoorP[i].BasePrice);
-                        $('#txtAdditinalSFPrice').val(listDoorP[i].AdditionalSFPrice);
-                        $('#IdStatus').val(listDoorP[i].Status.Id);
-                        $('#txtVerticalBase1FLPrice').val(listDoorP[i].VerticalAdditionalInchPrice);
-                        $('#txtHorizontalBase1FLPrice').val(listDoorP[i].HorizontalBase1FLPrice);
-                        $('#txtPicture').val(listDoorP[i].Picture);
-                        $('#txtProfilePicture').val(listDoorP[i].ProfilePicture);
-                        $('#txtHorizontalAdditionalInchPrice').val(listDoorP[i].HorizontalAdditionalInchPrice);
-                    }
-                }
-            });
-
-
-        });
-
-</script>
-
-}
 <div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div>
 
 <div id="modalInsert" class="modal fade effect-scale" aria-hidden="true" style="display: none;">
@@ -184,18 +123,29 @@
                                                     }
                                                 </select>
                                             </div><!-- form-group -->
+
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="txtBasePrice" style="margin-top: 25px;">Base Price: </label>
+                                                <label for="RailThick" style="margin-top: 25px;">Rail Thickness: </label>
+                                                <select style="width:100%" class="form-control select2" id="inRailThick" data-placeholder="">
+                                                    @foreach (Model.RailThickness item in ViewBag.mRailThickness)
+                                                    {
+                                                        <option value="@item.Id">@item.Description</option>
+                                                    }
+                                                </select>
+                                            </div><!-- form-group -->
+
+                                            <div class="col-xs-4 col-md-3">
+                                                <label for="BasePrice" style="margin-top: 25px;">Base Price: </label>
                                                 <input type="text" name="id" id="inBasePrice" class="form-control" placeholder="">
                                             </div><!-- form-group -->
 
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="Template" style="margin-top: 25px;">Additional SF Price: </label>
-                                                <input type="text" name="id" id="inAdditinalSFPrice" class="form-control" placeholder="">
+                                                <label for="AdditionalSFPrice" style="margin-top: 25px;">Additional SF Price: </label>
+                                                <input type="text" name="id" id="inAdditionalSFPrice" class="form-control" placeholder="">
                                             </div><!-- form-group -->
 
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="Template" style="margin-top: 25px;">Status: </label>
+                                                <label for="Status" style="margin-top: 25px;">Status: </label>
                                                 <select style="width:100%" class="form-control select2" id="inStatus" data-placeholder="">
                                                     @foreach (Model.Status item in ViewBag.mStatus)
                                                     {
@@ -215,17 +165,22 @@
                                             </div><!-- form-group -->
 
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="Template" style="margin-top: 25px;">Vertical Base1 FL Price: </label>
+                                                <label for="VerticalBase1FLPrice" style="margin-top: 25px;">Vertical Base1 FL Price: </label>
                                                 <input type="text" name="id" id="inVerticalBase1FLPrice" class="form-control" placeholder="">
                                             </div><!-- form-group -->
 
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="Template" style="margin-top: 25px;">Horizontal Base1 FL Price: </label>
+                                                <label for="VerticallAdditionalInchPrice" style="margin-top: 25px;">Vertical Additional Inch Price: </label>
+                                                <input type="text" name="id" id="inVerticalAdditionalInchPrice" class="form-control" placeholder="">
+                                            </div><!-- form-group -->
+
+                                            <div class="col-xs-4 col-md-3">
+                                                <label for="HorizontalBase1FLPrice" style="margin-top: 25px;">Horizontal Base1 FL Price: </label>
                                                 <input type="text" name="id" id="inHorizontalBase1FLPrice" class="form-control" placeholder="">
                                             </div><!-- form-group -->
 
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="Template" style="margin-top: 25px;">Horizontal Additional Inch Price: </label>
+                                                <label for="HorizontalAdditionalInchPrice" style="margin-top: 25px;">Horizontal Additional Inch Price: </label>
                                                 <input type="text" name="id" id="inHorizontalAdditionalInchPrice" class="form-control" placeholder="">
                                             </div><!-- form-group -->
                                         </div>
@@ -284,6 +239,17 @@
                                                     }
                                                 </select>
                                             </div><!-- form-group -->
+
+                                            <div class="col-xs-4 col-md-3">
+                                                <label for="RailThickness" style="margin-top: 25px;">Material: </label>
+                                                <select style="width:100%" class="form-control select2" id="cbRailThickness" data-placeholder="">
+                                                    @foreach (Model.RailThickness item in ViewBag.mRailThickness)
+                                                    {
+                                                        <option value="@item.Id">@item.Description</option>
+                                                    }
+                                                </select>
+                                            </div><!-- form-group -->
+
                                             <div class="col-xs-4 col-md-3">
                                                 <label for="txtBasePrice" style="margin-top: 25px;">Base Price: </label>
                                                 <input type="text" name="id" id="txtBasePrice" class="form-control" placeholder="">
@@ -398,5 +364,69 @@
         </div><!-- modal-content -->
     </div><!-- modal-dialog -->
 </div>
+
+@section scripts{
+    <script type="text/javascript">
+    var urlInsertDoorsPrices = '@Url.Action("InsertDoorsPrices", "Masters")';
+    var urlUpdateDoorPrice = '@Url.Action("UpdateDoorPrice", "Masters")';
+    </script>
+    <script>
+        $(function () {
+            'use strict';
+
+            $('#datatable1').DataTable({
+                responsive: true,
+                language: {
+                    searchPlaceholder: 'Search...',
+                    sSearch: '',
+                    lengthMenu: '_MENU_ items/page',
+                }
+            });
+
+            $('#datatable2').DataTable({
+                bLengthChange: false,
+                searching: false,
+                responsive: true
+            });
+
+            // Select2
+            $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
+
+        });
+    </script>
+    <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
+    <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>
+    <script src="~/Content/lib/select2/js/select2.min.js"></script>
+    <script src="~/Content/lib/select2/js/select2.full.min.js"></script>
+    @Scripts.Render("~/Scripts/js/Masters.js")
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            var listDoorP = JSON.parse('@Html.Raw(ViewBag.ListDoorsPrices)');
+            $(document).on('click', '.Modificar', function (event) {
+                for (var i = 0; i < listDoorP.length; i++) {
+                    if (listDoorP[i].Id == $(this).attr('value')) {
+                        $('#txtId').val(listDoorP[i].Id);
+                        $('#cbDoorStyle').val(listDoorP[i].DoorStyle.Id);
+                        $('#cbMatarial').val(listDoorP[i].Material.Id);
+                        $('#txtBasePrice').val(listDoorP[i].BasePrice);
+                        $('#txtAdditinalSFPrice').val(listDoorP[i].AdditionalSFPrice);
+                        $('#IdStatus').val(listDoorP[i].Status.Id);
+                        $('#txtVerticalBase1FLPrice').val(listDoorP[i].VerticalAdditionalInchPrice);
+                        $('#txtHorizontalBase1FLPrice').val(listDoorP[i].HorizontalBase1FLPrice);
+                        $('#txtPicture').val(listDoorP[i].Picture);
+                        $('#txtProfilePicture').val(listDoorP[i].ProfilePicture);
+                        $('#txtHorizontalAdditionalInchPrice').val(listDoorP[i].HorizontalAdditionalInchPrice);
+                    }
+                }
+            });
+
+
+        });
+
+    </script>
+
+}
 
 

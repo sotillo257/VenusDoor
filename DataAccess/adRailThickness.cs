@@ -9,23 +9,23 @@ using System.Data;
 
 namespace DataAccess
 {
-    public class adBottomRail : Connection
+    public class adRailThickness : Connection
     {
-        public BottomRail GetBottomRailById(int Id)
+        public RailThickness GetRailThicknessById(int Id)
         {
-            BottomRail bottomrail = new BottomRail();
-            string sql = @"[spGetBottomRail] '{0}' ";
+            RailThickness RT = new RailThickness();
+            string sql = @"[spGetRailThickness] '{0}' ";
             sql = string.Format(sql, Id);
 
             try
             {
                 DataSet ds = new DataSet();
-                ds = _MB.CreaDS(ds, "BottomRail", sql, _CN);
-                if (ds.Tables["BottomRail"].Rows.Count > 0)
+                ds = _MB.CreaDS(ds, "RailThickness", sql, _CN);
+                if (ds.Tables["RailThickness"].Rows.Count > 0)
                 {
-                    foreach (DataRow item in ds.Tables["BottomRail"].Rows)
+                    foreach (DataRow item in ds.Tables["RailThickness"].Rows)
                     {
-                        bottomrail = new BottomRail()
+                        RT = new RailThickness()
                         {
                             Id = int.Parse(item["Id"].ToString()),
                             Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["DescripStatus"].ToString() },
@@ -38,7 +38,7 @@ namespace DataAccess
                         };
                     }
                 }
-                return bottomrail;
+                return RT;
             }
             catch (Exception)
             {
@@ -47,22 +47,22 @@ namespace DataAccess
 
         }
 
-        public List<BottomRail> GetAllBottomRail()
+        public List<RailThickness> GetAllRailThickness()
         {
-            List<BottomRail> bottomrail = new List<BottomRail>();
-            string sql = @"[spGetAllBottomRail]";
+            List<RailThickness> RT = new List<RailThickness>();
+            string sql = @"[spGetAllRailThickness]";
             try
             {
                 DataSet ds = new DataSet();
-                ds = _MB.CreaDS(ds, "BottomRail", sql, _CN);
-                if (ds.Tables["BottomRail"].Rows.Count > 0)
+                ds = _MB.CreaDS(ds, "RailThickness", sql, _CN);
+                if (ds.Tables["RailThickness"].Rows.Count > 0)
                 {
-                    foreach (DataRow item in ds.Tables["BottomRail"].Rows)
+                    foreach (DataRow item in ds.Tables["RailThickness"].Rows)
                     {
-                        bottomrail.Add(new BottomRail()
+                        RT.Add(new RailThickness()
                         {
                             Id = int.Parse(item["Id"].ToString()),
-                            Status = new Status() {Id = int.Parse(item["IdStatus"].ToString()), Description = item["Description"].ToString() },
+                            Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["Description"].ToString() },
                             Description = item["Description"].ToString(),
                             CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             ModificationDate = (item["ModificationDate"].ToString() != "") ? DateTime.Parse(item["ModificationDate"].ToString()) : DateTime.Parse("01/01/1900"),
@@ -72,7 +72,7 @@ namespace DataAccess
                         });
                     }
                 }
-                return bottomrail;
+                return RT;
             }
             catch (Exception)
             {
@@ -81,11 +81,11 @@ namespace DataAccess
 
         }
 
-        public int InsertBottomRail(BottomRail pBottomRail)
+        public int InsertRailThickness(RailThickness pRailThickness)
         {
-            string sql = @"[spInsertBottomRail] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}'";
-            sql = string.Format(sql, pBottomRail.Description, pBottomRail.Status.Id, pBottomRail.CreationDate.ToString("yyyy-MM-dd"),
-                pBottomRail.CreatorUser, pBottomRail.ModificationDate.ToString("yyyy-MM-dd"), pBottomRail.ModificationUser);
+            string sql = @"[spInsertRailThickness] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}'";
+            sql = string.Format(sql, pRailThickness.Description, pRailThickness.Status.Id, pRailThickness.CreationDate.ToString("yyyy-MM-dd"),
+                pRailThickness.CreatorUser, pRailThickness.ModificationDate.ToString("yyyy-MM-dd"), pRailThickness.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -96,11 +96,11 @@ namespace DataAccess
             }
         }
 
-        public void UpdateBottomRail(BottomRail pBottomRail)
+        public void UpdateRailThickness(RailThickness pRailThickness)
         {
-            string sql = @"[spUpdateBottomRail] '{0}', '{1}', '{2}', '{3}'";
-            sql = string.Format(sql, pBottomRail.Description, pBottomRail.Status.Id, pBottomRail.ModificationDate.ToString("yyyy-MM-dd"),
-                pBottomRail.ModificationUser);
+            string sql = @"[spUpdateRailThickness] '{0}', '{1}', '{2}', '{3}'";
+            sql = string.Format(sql, pRailThickness.Description, pRailThickness.Status.Id, pRailThickness.ModificationDate.ToString("yyyy-MM-dd"),
+                pRailThickness.ModificationUser);
             try
             {
                 _MB.EjecutarSQL(_CN, sql);
@@ -118,9 +118,9 @@ namespace DataAccess
         /// </summary>
         /// <param name="pId"></param>
         /// <returns></returns>
-        public void DeleteBottomRail(int pId)
+        public void DeleteRailThickness(int pId)
         {
-            string sql = @"[spDeleteBottomRail] '{0}'";
+            string sql = @"[spRailThickness] '{0}'";
             sql = string.Format(sql, pId);
             try
             {
