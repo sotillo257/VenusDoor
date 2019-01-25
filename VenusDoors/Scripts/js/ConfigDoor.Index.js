@@ -12,7 +12,6 @@
 	GetAllPanelMaterial();
 	GetAllVerticalDivisions();
 	GetAllHorizontalDivisions();
-	GetAllHingeDirection();
 
 	$("#btConfirm").on("click", function () {
 	    InsertDoorsxUser();
@@ -373,39 +372,59 @@ function GetAllHorizontalDivisions() {
 }
 
 function InsertDoorsxUser() {
-                var datos =
-                    {
-                        pDoorsxUser: {
-                            User: { Id: 1 },
-                            Status: {Id: 1},
-                            Material: { Id: $("#cbMaterial").val() },                            
-                            DoorStyle: { Id: $("#cbDoorStyle").val() },                                                        
-                            TopRail: { Id: $("#cbTopRail").val() },
-                            BottomRail: { Id: $("#cbBottomRail").val() },
-                            Preparation: { Id: $("#cbPreparation").val() },
-                            Panel: { Id: $("#cbPanel").val() },
-                            PanelMaterial: { Id: $("#cbPanelMaterial").val() },
-                            IsOpeningMeasurement: $("#cbIsOpeningMeasurement").val(),
-                            Join: { Id: $("#cbJoin").val() },
-                            OutsideEdgeProfile: { Id: $("#cbOutsideEdgeProfile").val() },
-                            InsideEdgeProfile: { Id: $("#cbInsideEdgeProfile").val() },                            
-                            VerticalDivisions: { Id: $("#cbVerticalDivisions").val() },
-                            HorizontalDivisions: { Id: $("#cbHorizontalDivisions").val() },
-                            Width: $("#iptWidth").val(),
-                            Height: $("#iptHeight").val(),
-                            Quantity: $("#iptQuantity").val(),
-                            SubTotal: $("#iptQuantity").val() * 120,
-                            Picture: 'PruebaPicture',
-                            ProfilePicture: 'PruebaPP',
-                            isDrill: $("#cbisDrill").val(),
-                            HingeDirection: { Id: $("#cbHingeDirection").val() },
-                        },
+    var TR = $("#cbTopRail").val();
+    var BR = $("#cbBottomRail").val();
+    var RT;
+    if (TR == '2.5' && BR == '2.5') {
+        RT = 1;
+    }
+    else if (TR == '2.5' && BR == '2.5') {
+        RT = 2;
+    }
+    else {
+        RT = 3;
+    }
+    var datos =
+         {
+             pDoorsxUser: {
+                 User: { Id: 1 },
+                 Status: {Id: 1},
+                 Material: { Id: $("#cbMaterial").val() },                            
+                 DoorStyle: { Id: $("#cbDoorStyle").val() },                                                        
+                 TopRail: { Id: $("#cbTopRail").val() },
+                 BottomRail: { Id: $("#cbBottomRail").val() },
+                 Preparation: { Id: $("#cbPreparation").val() },
+                 Panel: { Id: $("#cbPanel").val() },
+                 PanelMaterial: { Id: $("#cbPanelMaterial").val() },
+                 IsOpeningMeasurement: $("#cbIsOpeningMeasurement").val(),
+                 Join: { Id: $("#cbJoin").val() },
+                 OutsideEdgeProfile: { Id: $("#cbOutsideEdgeProfile").val() },
+                 InsideEdgeProfile: { Id: $("#cbInsideEdgeProfile").val() },                            
+                 VerticalDivisions: { Id: $("#cbVerticalDivisions").val() },
+                 HorizontalDivisions: { Id: $("#cbHorizontalDivisions").val() },
+                 Width: $("#iptWidth").val(),
+                 Height: $("#iptHeight").val(),
+                 Quantity: $("#iptQuantity").val(),
+                 SubTotal: $("#iptQuantity").val() * 120,
+                 Picture: 'PruebaPicture',
+                 ProfilePicture: 'PruebaPP',
+                 isDrill: $("#cbisDrill").val(),
+                 HingeDirection: { Id: 1},
+             },
                         
 
-                        HingeP: {
-                                                     
-                        }
-                    };
+             HingeP: {
+                 Position1: $(".hp1").val(),
+                 Position2: $(".hp2").val(),
+                 Position3: $(".hp3").val(),
+                 Position4: $(".hp4").val(),
+                 Position5: $(".hp5").val(),                        
+             },
+
+             RailThick: {
+                 Id: RT,
+             }
+         };
                 console.log(datos);
                 $.ajax({
                     type: 'POST',
