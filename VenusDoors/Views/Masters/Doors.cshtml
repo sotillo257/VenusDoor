@@ -97,7 +97,7 @@
                                 </td>
                             </tr>
                         }
-                        
+
                     </tbody>
                 </table>
             </div>
@@ -224,26 +224,6 @@
                                             </div><!-- form-group -->
 
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="cbHingeDirection" style="margin-top: 25px;">Hinge Direction: </label>
-                                                <select style="width:100%" class="form-control select2" id="inHingeDirection" data-placeholder="">
-                                                    @foreach (Model.HingeDirection item in ViewBag.cbHingeDirection)
-                                                    {
-                                                        <option value="@item.Id">@item.Direction</option>
-                                                    }
-                                                </select>
-                                            </div><!-- form-group -->
-
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="cbHingePositions" style="margin-top: 25px;">Hinge Positions: </label>
-                                                <select style="width:100%" class="form-control select2" id="inHingePositions" data-placeholder="">
-                                                    @foreach (Model.HingePositions item in ViewBag.cbHingePositions)
-                                                    {
-                                                        <option value="@item.Id">@item.Position</option>
-                                                    }
-                                                </select>
-                                            </div><!-- form-group -->
-
-                                            <div class="col-xs-4 col-md-3">
                                                 <label for="cbPanel" style="margin-top: 25px;">Panel: </label>
                                                 <select style="width:100%" class="form-control select2" id="inPanel" data-placeholder="">
                                                     @foreach (Model.Panel item in ViewBag.cbPanel)
@@ -264,20 +244,56 @@
                                             </div><!-- form-group -->
 
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="isDrill" style="margin-top: 25px;">Drill: </label>
-                                                <select style="width:100%" class="form-control select2" id="inDrill" data-placeholder="">
-                                                    <option value="true">Drill</option>
-                                                    <option value="false">No Drill</option>
-                                                </select>
-                                            </div><!-- form-group -->
-                                            <div class="col-xs-4 col-md-3">
                                                 <label for="Width" style="margin-top: 25px;">Width: </label>
                                                 <input type="text" id="inWidth" name="Width" class="form-control" placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-3">
                                                 <label for="Height" style="margin-top: 25px;">Height: </label>
-                                                <input type="text" id="inHeight" name="Height" class="form-control" placeholder="">
+                                                <input type="text" id="inHeight" name="Height" class="txtHeight form-control" placeholder="">
                                             </div><!-- form-group -->
+
+                                            <div class="col-xs-4 col-md-3">
+                                                <label for="isDrill" style="margin-top: 25px;">Drill: </label>
+                                                <select style="width:100%" class="form-control select2" id="inDrill" data-placeholder="">
+                                                    <option value="false">No Drill</option>
+                                                    <option value="true">Drill</option>
+                                                </select>
+                                            </div><!-- form-group -->
+
+                                            <div class="col-xs-4 col-md-3">
+                                                <label for="cbHingeDirection" style="margin-top: 25px;">Hinge Direction: </label>
+                                                <select style="width:100%" class="form-control select2" id="inHingeDirection" data-placeholder="">
+                                                    <option hidden selected value="3">No hinge</option>
+                                                    <option value="1">Right</option>
+                                                    <option value="2">Left</option>
+                                                </select>
+                                            </div><!-- form-group -->
+
+                                            <div class="col-xs-4 col-md-3">
+                                                <label for="HingePositions1" style="margin-top: 25px;">Hinge Position 1: </label>
+                                                <input disabled type="text" id="HingePositions1" class="form-control" placeholder="">
+                                            </div><!-- form-group -->
+
+                                            <div class="col-xs-4 col-md-3">
+                                                <label for="HingePositions2" style="margin-top: 25px;">Hinge Position 2: </label>
+                                                <input disabled type="text" id="HingePositions2" class="form-control" placeholder="">
+                                            </div><!-- form-group -->
+
+                                            <div class="col-xs-4 col-md-3">
+                                                <label for="HingePositions3" style="margin-top: 25px;">Hinge Position 3: </label>
+                                                <input disabled type="text" id="HingePositions3" class="form-control" placeholder="">
+                                            </div><!-- form-group -->
+
+                                            <div class="col-xs-4 col-md-3">
+                                                <label for="HingePositions4" style="margin-top: 25px;">Hinge Position 4: </label>
+                                                <input disabled type="text" id="HingePositions4" class="form-control" placeholder="">
+                                            </div><!-- form-group -->
+
+                                            <div class="col-xs-4 col-md-3">
+                                                <label for="HingePositions5" style="margin-top: 25px;">Hinge Position 5: </label>
+                                                <input disabled type="text" id="HingePositions5" class="form-control" placeholder="">
+                                            </div><!-- form-group -->
+
                                             <div class="col-xs-4 col-md-3">
                                                 <label for="Picture" style="margin-top: 25px;">Picture: </label>
                                                 <input type="text" name="id" id="inPicture" class="form-control" placeholder="">
@@ -442,25 +458,6 @@
                                                 </select>
                                             </div><!-- form-group -->
 
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="cbHingeDirection" style="margin-top: 25px;">Hinge Direction: </label>
-                                                <select style="width:100%" class="form-control select2" id="cbHingeDirection" data-placeholder="">
-                                                    @foreach (Model.HingeDirection item in ViewBag.cbHingeDirection)
-                                                    {
-                                                        <option value="@item.Id">@item.Direction</option>
-                                                    }
-                                                </select>
-                                            </div><!-- form-group -->
-
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="cbHingePositions" style="margin-top: 25px;">Hinge Positions: </label>
-                                                <select style="width:100%" class="form-control select2" id="cbHingePositions" data-placeholder="">
-                                                    @foreach (Model.HingePositions item in ViewBag.cbHingePositions)
-                                                    {
-                                                        <option value="@item.Id">@item.Position</option>
-                                                    }
-                                                </select>
-                                            </div><!-- form-group -->
 
                                             <div class="col-xs-4 col-md-3">
                                                 <label for="cbPanel" style="margin-top: 25px;">Panel: </label>
@@ -483,20 +480,58 @@
                                             </div><!-- form-group -->
 
                                             <div class="col-xs-4 col-md-3">
+                                                <label for="Width" style="margin-top: 25px;">Width: </label>
+                                                <input type="text" id="txtWidth" name="Width" class="form-control" placeholder="">
+                                            </div><!-- form-group -->
+                                            <div class="col-xs-4 col-md-3">
+                                                <label for="Height" style="margin-top: 25px;">Height: </label>
+                                                <input type="text" id="txtHeight" name="Height" class="txtHeight form-control" placeholder="">
+                                            </div><!-- form-group -->
+
+
+                                            <div class="col-xs-4 col-md-3">
                                                 <label for="isDrill" style="margin-top: 25px;">Drill: </label>
                                                 <select style="width:100%" class="form-control select2" id="isDrill" data-placeholder="">
                                                     <option value="true">Drill</option>
                                                     <option value="false">No Drill</option>
                                                 </select>
                                             </div><!-- form-group -->
+
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="Width" style="margin-top: 25px;">Width: </label>
-                                                <input type="text" id="txtWidth" name="Width" class="form-control" placeholder="">
+                                                <label for="cbHingeDirection" style="margin-top: 25px;">Hinge Direction: </label>
+                                                <select style="width:100%" class="form-control select2" id="cbHingeDirection" data-placeholder="">
+                                                    @foreach (Model.HingeDirection item in ViewBag.cbHingeDirection)
+                                                    {
+                                                        <option value="@item.Id">@item.Direction</option>
+                                                    }
+                                                </select>
                                             </div><!-- form-group -->
-                                             <div class="col-xs-4 col-md-3">
-                                                <label for="Height" style="margin-top: 25px;">Height: </label>
-                                                <input type="text" id="txtHeight" name="Height" class="form-control" placeholder="">
+
+                                            <div class="col-xs-4 col-md-3">
+                                                <label for="HingePositions1" style="margin-top: 25px;">Hinge Position 1: </label>
+                                                <input disabled type="text" id="HingePositions1" class="form-control" placeholder="">
                                             </div><!-- form-group -->
+
+                                            <div class="col-xs-4 col-md-3">
+                                                <label for="HingePositions2" style="margin-top: 25px;">Hinge Position 2: </label>
+                                                <input disabled type="text" id="HingePositions2" class="form-control" placeholder="">
+                                            </div><!-- form-group -->
+
+                                            <div class="col-xs-4 col-md-3">
+                                                <label for="HingePositions3" style="margin-top: 25px;">Hinge Position 3: </label>
+                                                <input disabled type="text" id="HingePositions3" class="form-control" placeholder="">
+                                            </div><!-- form-group -->
+
+                                            <div class="col-xs-4 col-md-3">
+                                                <label for="HingePositions4" style="margin-top: 25px;">Hinge Position 4: </label>
+                                                <input disabled type="text" id="HingePositions4" class="form-control" placeholder="">
+                                            </div><!-- form-group -->
+
+                                            <div class="col-xs-4 col-md-3">
+                                                <label for="HingePositions5" style="margin-top: 25px;">Hinge Position 5: </label>
+                                                <input disabled type="text" id="HingePositions5" class="form-control" placeholder="">
+                                            </div><!-- form-group -->
+
                                             <div class="col-xs-4 col-md-3">
                                                 <label for="Picture" style="margin-top: 25px;">Picture: </label>
                                                 <input type="text" name="id" id="txtPicture" class="form-control" placeholder="">
@@ -527,7 +562,7 @@
                                                     <option value="false">No Opening</option>
                                                 </select>
                                             </div><!-- form-group -->
-                                            
+
 
                                         </div>
                                     </div><!-- pd-20 -->
@@ -634,7 +669,7 @@
     <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>
     <script src="~/Content/lib/select2/js/select2.min.js"></script>
     <script src="~/Content/lib/select2/js/select2.full.min.js"></script>
-@Scripts.Render("~/Scripts/js/Masters.js")
+    @Scripts.Render("~/Scripts/js/Masters.js")
     <script type="text/javascript">
 
         $(document).ready(function () {
@@ -676,5 +711,6 @@
     </script>
 
 }
+
 
 

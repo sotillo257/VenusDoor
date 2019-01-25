@@ -285,7 +285,7 @@ namespace VenusDoors.Controllers
                         };
 
                         int IdHingeP = _LNHP.InsertHingePositions(newhp);
-                        newhp.Id = IdHingeP;                        
+                        newhp.Id = IdHingeP;
 
                         pDoorsxUser.CreatorUser = userID;
                         pDoorsxUser.ModificationUser = userID;
@@ -301,7 +301,7 @@ namespace VenusDoors.Controllers
                     catch
                     {
                         return Json(false, JsonRequestBehavior.AllowGet);
-                    }               
+                    }
                 }
                 else if (item.Status.Id == 1)
                 {
