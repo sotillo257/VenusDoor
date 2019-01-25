@@ -372,35 +372,6 @@ function GetAllHorizontalDivisions() {
     });
 }
 
-function GetAllHingeDirection() {
-    $.ajax({
-        url: urlGetAllHingeDirection,
-        cache: false,
-        type: 'POST',
-        async: false,
-        contentType: "application/json; charset=utf-8",
-        success: function (data) {
-            if (data != null) {
-                var option = '';
-                for (var i = 0; i < data.length; i++) {
-
-                    option += '<option value="' + data[i].Id + '">' + data[i].Direction + '</option>';
-
-
-                }
-                $("#cbHingeDirection").empty().append(option);
-
-            }
-            else {
-                MensajeModal("Error al obtener Hinge Direction", 5);
-            }
-        },
-        error: function (err) {
-            MensajeModal(msgErrorinterno, 5);
-        }
-    });
-}
-
 function InsertDoorsxUser() {
                 var datos =
                     {
@@ -503,4 +474,61 @@ $(document).ready(function () {
         }
     });
 });
+
+$(document).ready(function () {
+    $(".iptHeight").keyup(function (e) {
+        var Height = parseFloat($(this).val())
+        if ($(this).val() <= 36) {
+            if (e.keyup = true) {
+                var ip1 = 3.5;
+                var ip2 = Height - 3.5;
+                $('.HPinpt1').val(ip1);
+                $('.HPinpt2').val(ip2);
+                $('.HPinpt3').val("No hinge");
+                $('.HPinpt4').val("No hinge");
+                $('.HPinpt5').val("No hinge");
+            }
+        }
+        else if ($(this).val() <= 60) {
+            if (e.keyup = true) {
+                var ip1 = 3.5;
+                var ip2 = Height / 2;
+                var ip3 = Height - 3.5;
+                $('.HPinpt1').val(ip1);
+                $('.HPinpt2').val(ip2);
+                $('.HPinpt3').val(ip3);
+                $('.HPinpt4').val("No hinge");
+                $('.HPinpt5').val("No hinge");
+            }
+        }
+        else if ($(this).val() <= 80) {
+            if (e.keyup = true) {
+                var ip1 = 3.5;
+                var ip2 = ((Height - 7) / 3) + 3.5;
+                var ip3 = Height - (((Height - 7) / 3) + 3.5);
+                var ip4 = Height - 3.5;
+                $('.HPinpt1').val(ip1);
+                $('.HPinpt2').val(ip2);
+                $('.HPinpt3').val(ip3);
+                $('.HPinpt4').val(ip4);
+                $('.HPinpt5').val("No hinge");
+            }
+        }
+        else if ($(this).val() > 80) {
+            if (e.keyup = true) {
+                var ip1 = 3.5;
+                var ip2 = 3.5 + (((Height / 2) - 3.5) / 2);
+                var ip3 = Height / 2;
+                var ip4 = Height - (3.5 + (((Height / 2) - 3.5) / 2));
+                var ip5 = Height - 3.5;
+                $('.HPinpt1').val(ip1);
+                $('.HPinpt2').val(ip2);
+                $('.HPinpt3').val(ip3);
+                $('.HPinpt4').val(ip4);
+                $('.HPinpt5').val(ip5);
+            }
+        }
+    });
+});
+
 

@@ -5,18 +5,25 @@
 }
 
 <style>
-    #GoToSign:hover{
+    #GoToSign:hover {
         background-color: #15806f;
         border-color: #15806f;
-        cursor:pointer;
+        cursor: pointer;
     }
 
-    .HPinpt{
-        width:40px;
+    .HPinpt1, .HPinpt2, .HPinpt3, .HPinpt4, .HPinpt5 {
+        width: 50px;
+        font-size: 11px;
+        text-align: center;
+        padding: 10px;
     }
 
-    .hp3, .hp4, .hp5{
-        display:none;
+    .HPinpt1, .HPinpt2, .HPinpt3, .HPinpt4 {
+        margin-right: 3px;
+    }
+
+    .hp3, .hp4, .hp5 {
+        display: none;
     }
 </style>
 
@@ -33,17 +40,17 @@
             <h4 class="tx-gray-800 mg-b-5">Door Configuration</h4>
             <p class="mg-b-0">Modals are streamlined, but flexible, dialog prompts with the minimum required functionality and smart defaults.</p>
         </div>
-       <div class="row">
+        <div class="row">
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-xs-4 col-md-3">
                         <label for="Name" style="margin-top: 25px;">Template / Item Name: </label>
-                        <input class="form-control" onkeypress="return soloAndNumeros(event)" onblur="limpia()" maxlength="30" minlength="2" data-val="true" data-val-required="This field is required"  id="txtTemplate" type="text">
+                        <input class="form-control" onblur="limpia()" maxlength="20" minlength="4" data-val="true" data-val-required="This field is required" id="txtTemplate" type="text">
                     </div><!-- col -->
 
                     <div class="col-xs-4 col-md-3">
                         <label for="Material" style="margin-top: 25px;">Wood Species: </label>
-                        <select style="width:100%"  class="form-control select2" id="cbMaterial" data-placeholder=""></select>
+                        <select style="width:100%" class="form-control select2" id="cbMaterial" data-placeholder=""></select>
                     </div><!-- col -->
 
                     <div name="SoloNumeros" class="col-xs-4 col-md-3">
@@ -85,71 +92,43 @@
 
                     <div class="col-xs-4 col-md-3">
                         <label for="InsideEdgeProfile" style="margin-top: 25px;">Inside Edge Profile: </label>
-                        <select style="width:100%"  class="form-control select2" id="cbInsideEdgeProfile" data-placeholder=""></select>
+                        <select style="width:100%" class="form-control select2" id="cbInsideEdgeProfile" data-placeholder=""></select>
                     </div><!-- col -->
 
                     <div class="col-xs-4 col-md-3">
                         <label for="OutsideEdgeProfile" style="margin-top: 25px;">Outside Edge Profile: </label>
-                        <select style="width:100%"  class="form-control select2" id="cbOutsideEdgeProfile" data-placeholder=""></select>
+                        <select style="width:100%" class="form-control select2" id="cbOutsideEdgeProfile" data-placeholder=""></select>
                     </div><!-- col -->
 
                     <div class="col-xs-4 col-md-3">
                         <label for="BottomRail" style="margin-top: 25px;">Bottom Rail: </label>
-                        <select style="width:100%"  class="form-control select2" id="cbBottomRail" data-placeholder=""></select>
+                        <select style="width:100%" class="form-control select2" id="cbBottomRail" data-placeholder=""></select>
                     </div><!-- col -->
 
                     <div class="col-xs-4 col-md-3">
                         <label for="TopRail" style="margin-top: 25px;">Top Rail:</label>
-                        <select style="width:100%"  class="form-control select2" id="cbTopRail" data-placeholder=""></select>
+                        <select style="width:100%" class="form-control select2" id="cbTopRail" data-placeholder=""></select>
                     </div><!-- col -->
 
                     <div class="col-xs-4 col-md-3">
                         <label for="Join" style="margin-top: 25px;">Join: </label>
-                        <select style="width:100%"  class="form-control select2" id="cbJoin" data-placeholder=""></select>
+                        <select style="width:100%" class="form-control select2" id="cbJoin" data-placeholder=""></select>
                     </div><!-- col -->
 
                     <div class="col-xs-4 col-md-3">
                         <label for="Preparation" style="margin-top: 25px;">Preparation: </label>
-                        <select style="width:100%"  class="form-control select2" id="cbPreparation" data-placeholder=""></select>
+                        <select style="width:100%" class="form-control select2" id="cbPreparation" data-placeholder=""></select>
                     </div><!-- col -->
 
                     <div class="col-xs-4 col-md-3">
                         <label for="Panel" style="margin-top: 25px;">Panel Type: </label>
-                        <select style="width:100%"  class="form-control select2" id="cbPanel" data-placeholder=""></select>
+                        <select style="width:100%" class="form-control select2" id="cbPanel" data-placeholder=""></select>
                     </div><!-- col -->
 
                     <div class="col-xs-4 col-md-3">
                         <label for="PanelMaterial" style="margin-top: 25px;">Panel Profile: </label>
-                        <select style="width:100%"  class="form-control select2" id="cbPanelMaterial" data-placeholder=""></select>
+                        <select style="width:100%" class="form-control select2" id="cbPanelMaterial" data-placeholder=""></select>
                     </div><!-- col -->
-
-                    <div class="col-xs-4 col-md-3">
-                        <label for="VerticalDivisions" style="margin-top: 25px;">Vertical Divisions: </label>
-                        <select style="width:100%"  class="form-control select2" id="cbVerticalDivisions" data-placeholder=""></select>
-                    </div><!-- col -->
-
-                    <div class="col-xs-4 col-md-3">
-                        <label for="isDrill" style="margin-top: 25px;">Hinge Drilling: </label>
-                        <select style="width:100%"  class="form-control select2" id="cbisDrill" data-placeholder="">
-                            <option value="1">No Drill</option>
-                            <option value="2">Drill</option>
-                        </select>
-                    </div><!-- col -->
-
-                    <div id="HingeDirectionDiv" style="display:none" class="target col-xs-4 col-md-3">
-                        <label for="HingeDirection" style="margin-top: 25px;">Hinge Direction: </label>
-                        <select style="width:100%" value="true" class="ocultar form-control select2" id="cbHingeDirection" data-placeholder=""></select>
-                    </div><!-- col -->
-
-                    <div id="HingePositionsDiv" style="display:none" class="target col-xs-4 col-md-3">
-                        <label for="HingePositions" alue="true"  style="margin-top: 25px;">Hinge Positions: </label>
-                        <div style="display:flex"><span class="hp1">1: </span><input class="form-control HPinpt hp1" /><span class="hp2">2: </span><input class="form-control HPinpt hp2" /><span class="hp3">3: </span><input class="form-control HPinpt hp3" /><span class="hp4">4: </span><input class="form-control HPinpt hp4" /><span class="hp5">5: </span><input class="form-control HPinpt hp5" /></div>
-                    </div><!-- col -->
-
-                    <div name="SoloNumeros" class="col-xs-4 col-md-3">
-                        <label for="Quantity" style="margin-top: 25px;">Quantity: </label>
-                        <input name="SoloNumeros" class="form-control" maxlength="3" minlength="1" onkeypress="return soloNumeros(event);" data-val="true" data-val-required="This field is required" id="iptQuantity">
-                    </div>
 
                     <div class="col-xs-4 col-md-3">
                         <label for="IsOpeningMeasurement" style="margin-top: 25px;">Opening Measurement: </label>
@@ -160,16 +139,49 @@
                     </div><!-- col -->
 
                     <div class="col-xs-4 col-md-3">
+                        <label for="VerticalDivisions" style="margin-top: 25px;">Vertical Divisions: </label>
+                        <select style="width:100%" class="form-control select2" id="cbVerticalDivisions" data-placeholder=""></select>
+                    </div><!-- col -->
+
+                    <div class="col-xs-4 col-md-3">
                         <label for="HorizontalDivisions" style="margin-top: 25px;">Horizontal Divisions: </label>
                         <select style="width:100%" class="form-control select2" id="cbHorizontalDivisions" data-placeholder=""></select>
                     </div><!-- col -->
+
+                    <div class="col-xs-4 col-md-3">
+                        <label for="isDrill" style="margin-top: 25px;">Hinge Drilling: </label>
+                        <select style="width:100%" class="form-control select2" id="cbisDrill" data-placeholder="">
+                            <option value="1">No Drill</option>
+                            <option value="2">Drill</option>
+                        </select>
+                    </div><!-- col -->
+
+                    <div id="HingeDirectionDiv" style="display:none" class="target col-xs-4 col-md-3">
+                        <label for="HingeDirection" style="margin-top: 25px;">Hinge Direction: </label>
+                        <select style="width:100%" value="true" class="ocultar form-control" id="cbHingeDirection" data-placeholder="">
+                            <option hidden="hidden" selected value="0" disabled>Select direction</option>
+                            <option value="1">Right</option>
+                            <option value="2">Left</option>
+                            <option value="3" hidden="hidden">No Hinge</option>
+                        </select>                                             
+                    </div><!-- col -->
+
+                    <div id="HingePositionsDiv" style="display:none" class="target col-xs-4 col-md-3">
+                        <label for="HingePositions" alue="true" style="margin-top: 25px;">Hinge Positions: </label>
+                        <div style="display:flex"><span class="hp1">1: </span><input disabled class="form-control HPinpt1 hp1" /><span class="hp2">2: </span><input disabled class="form-control HPinpt2 hp2" /><span class="hp3">3: </span><input disabled class="form-control HPinpt3 hp3" /><span class="hp4">4: </span><input disabled class="form-control HPinpt4 hp4" /><span class="hp5">5: </span><input disabled class="form-control HPinpt5 hp5" /></div>
+                    </div><!-- col -->
+
+                    <div class="col-xs-4 col-md-3">
+                        <label for="Quantity" style="margin-top: 25px;">Quantity: </label>
+                        <input class="form-control" maxlength="3" minlength="1" onkeypress="return soloNumeros(event);" data-val="true" data-val-required="This field is required" id="iptQuantity">
+                    </div>
                 </div>
             </div>
 
             <div class="col-md-2">
                 <div class="row" style="margin-right: 0px;">
-                    <center>   
-                        <img src="~/Content/img/-DoubleRomanOgee+ogee+flatpanelbeaded.png" />
+                    <center>
+                        <img style="height: 100px;width: 260px;margin-top: 20px;" src="~/Content/img/Cabinet Vector-01.png" />
                         <img style="width: 230px;height: 230px;" src="~/Content/img/Cabinet Vector-01.png" />
                     </center>
                 </div>
@@ -236,8 +248,8 @@
                     <span aria-hidden="true">×</span>
                 </button><ion-icon name="alert"></ion-icon>
                 <i id="icon_modal" class="ion-alert tx-100 lh-1 mg-t-20 tx-primary d-inline-block"></i>
-                <h4 style="color:#000" class="tx-semibold mg-b-20">Sign in to your account to process your order!</h4>                
-                <button  onclick="location.href='@Url.Action("Index","Login")'" id="GoToSign" type="button" class="btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" aria-label="Close">
+                <h4 style="color:#000" class="tx-semibold mg-b-20">Sign in to your account to process your order!</h4>
+                <button onclick="location.href='@Url.Action("Index","Login")'" id="GoToSign" type="button" class="btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" aria-label="Close">
                     Sign in
                 </button>
             </div><!-- modal-body -->
@@ -298,7 +310,7 @@
       });
     </script>
 
-      <script type="text/javascript">
+    <script type="text/javascript">
           $("#cbisDrill").change(function () {
               if (this.value == 2) {
                   $("#HingeDirectionDiv").css('display', 'block');
@@ -310,7 +322,7 @@
           })
     </script>
 
-<script>
+    <script>
         function soloLetras(e) {
             key = e.keyCode || e.which;
             tecla = String.fromCharCode(key).toLowerCase();
@@ -338,10 +350,10 @@
             }
         }
 
-        function soloAndNumeros(e) {
+        function soloNumeros(e) {
             key = e.keyCode || e.which;
             tecla = String.fromCharCode(key).toLowerCase();
-            letras = "0123456789 abcdefghijklmnopqrstuvwxyz";
+            letras = " 0123456789";
             especiales = [8, 37, 39, 46];
 
             tecla_especial = false
@@ -351,35 +363,6 @@
                     break;
                 }
             }
-
-            if (letras.indexOf(tecla) == -1 && !tecla_especial)
-                return false;
-        }
-
-        //function soloNumeros(e) {
-        //    key = e.keyCode || e.which;
-        //    tecla = String.fromCharCode(key).toLowerCase();
-        //    numeros = "0123456789";
-        //    especiales = [8, 37, 39, 46];
-
-        //    tecla_especial = false
-        //    for (var i in especiales) {
-        //        if (key == especiales[i]) {
-        //            tecla_especial = true;
-        //            break;
-        //        }
-    //    }
-        window.addEventListener("load", function() {
-            SoloNumeros.SoloNumeros.addEventListener("keypress", soloNumeros, false);
-        });
-
-        //Solo permite introducir numeros.
-        function soloNumeros(e){
-            var key = window.event ? e.which : e.keyCode;
-            if (key < 48 || key > 57) {
-                e.preventDefault();
-            }
-        
             var keynum = window.event ? window.event.keyCode : e.which;
             if (document.getElementById(thix.id).value.indexOf('.') != -1 && keynum == 46)
                 return false;
@@ -391,5 +374,5 @@
             if (letras.indexOf(tecla) == -1 && !tecla_especial)
                 return false;
         }
-</script>
+    </script>
 }
