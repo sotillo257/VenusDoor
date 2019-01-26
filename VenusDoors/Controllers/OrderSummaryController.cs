@@ -185,7 +185,7 @@ namespace VenusDoors.Controllers
                     string To = use.Email;
                     MailMessage mail = new MailMessage();
                     SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
-                    mail.From = new MailAddress("javier.sotillo13@gmail.com");
+                    mail.From = new MailAddress("user@gmail.com");
                     mail.To.Add(new MailAddress(To));
                     mail.Subject = "New order";
                     mail.Body =
@@ -205,7 +205,7 @@ namespace VenusDoors.Controllers
                     mail.IsBodyHtml = true;
 
                     SmtpServer.Port = 587;
-                    SmtpServer.Credentials = new System.Net.NetworkCredential("javier.sotillo13@gmail.com", "javier123sotillo");
+                    SmtpServer.Credentials = new System.Net.NetworkCredential("user@gmail.com", "password");
                     SmtpServer.EnableSsl = true;
                     SmtpServer.Send(mail);
 
