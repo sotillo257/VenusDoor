@@ -251,6 +251,9 @@ namespace VenusDoors.Controllers
                 var PriceByOptions = xDoorsP.Where(x => x.RailThickness.Id == RailThick.Id && x.Material.Id == pDoorsxUser.Material.Id && x.DoorStyle.Id == pDoorsxUser.DoorStyle.Id).ToList();
                 ViewBag.xDoorPrice = PriceByOptions;
 
+                DoorsPrices t = ViewBag.xDoorPrice;
+
+
                 int userID = (int)Session["UserID"];
                 int idU = userID;
                 var orderList = _LNOrder.GetOrderByUser(idU);

@@ -202,6 +202,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminOrderController.cs" />
     <Compile Include="Controllers\ConfiDoorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -961,7 +962,9 @@
     <Content Include="Models\LoginDataBase.edmx.diagram">
       <DependentUpon>LoginDataBase.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\app.venusdoor.pubxml" />
     <None Include="Properties\PublishProfiles\jesus.pubxml" />
+    <None Include="Properties\PublishProfiles\venusdoorrrrsppppss.pubxml" />
     <None Include="Properties\PublishProfiles\VenusDoors.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -1056,6 +1059,7 @@
     <Content Include="Views\Masters\VerticalDivisions.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Login\sing_up.cshtml" />
+    <Content Include="Views\AdminOrder\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
