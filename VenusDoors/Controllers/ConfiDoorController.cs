@@ -234,7 +234,7 @@ namespace VenusDoors.Controllers
             return Json(_LNUPor.UpdateOrder(item));
         }
 
-        public ActionResult InsertDoorsxUser(DoorsxUser pDoorsxUser)
+        public ActionResult InsertDoorsxUser(DoorsxUser pDoorsxUser, HingePositions pHP, RailThickness RailThick)
         {
             if (Session["UserID"] == null)
             {
@@ -245,6 +245,15 @@ namespace VenusDoors.Controllers
             {
                 BusinessLogic.lnOrder _LNOrder = new BusinessLogic.lnOrder();
                 BusinessLogic.lnHingePositions _LNHP = new BusinessLogic.lnHingePositions();
+                BusinessLogic.lnDoorsPrices _DP = new BusinessLogic.lnDoorsPrices();
+                
+                var xDoorsP = _DP.GetAllDoorsPrices();
+                var PriceByOptions = xDoorsP.Where(x => x.RailThickness.Id == RailThick.Id && x.Material.Id == pDoorsxUser.Material.Id && x.DoorStyle.Id == pDoorsxUser.DoorStyle.Id).ToList();
+                ViewBag.xDoorPrice = PriceByOptions;
+
+                DoorsPrices t = ViewBag.xDoorPrice;
+
+
                 int userID = (int)Session["UserID"];
                 int idU = userID;
                 var orderList = _LNOrder.GetOrderByUser(idU);
@@ -254,6 +263,7 @@ namespace VenusDoors.Controllers
                 {
                     try
                     {
+
                         Order neworder = new Order()
                         {
                             User = new Model.User() { Id = userID },
@@ -273,11 +283,11 @@ namespace VenusDoors.Controllers
                         HingePositions newhp = new HingePositions()
                         {
                             Status = new Model.Status() { Id = 1 },
-                            Position1 = "1",
-                            Position2 = "2",
-                            Position3 = "3",
-                            Position4 = "4",
-                            Position5 = "5",
+                            Position1 = pHP.Position1,
+                            Position2 = pHP.Position2,
+                            Position3 = pHP.Position3,
+                            Position4 = pHP.Position4,
+                            Position5 = pHP.Position5,
                             CreationDate = DateTime.Now,
                             CreatorUser = userID,
                             ModificationDate = DateTime.Now,
@@ -310,11 +320,11 @@ namespace VenusDoors.Controllers
                         HingePositions newhp = new HingePositions()
                         {
                             Status = new Model.Status() { Id = 1 },
-                            Position1 = "1",
-                            Position2 = "2",
-                            Position3 = "3",
-                            Position4 = "4",
-                            Position5 = "5",
+                            Position1 = pHP.Position1,
+                            Position2 = pHP.Position2,
+                            Position3 = pHP.Position3,
+                            Position4 = pHP.Position4,
+                            Position5 = pHP.Position5,
                             CreationDate = DateTime.Now,
                             CreatorUser = userID,
                             ModificationDate = DateTime.Now,

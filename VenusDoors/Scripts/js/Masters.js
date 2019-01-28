@@ -366,7 +366,7 @@ function InsertDoorsPrices() {
     {
         pDoorsPrices: {
             DoorStyle: { Id: $("#inDoorStyle").val() },
-            Material: { Id: $("#inMatarial").val() },
+            Material: { Id: $("#inMaterial").val() },
             RailThickness: { Id: $("#inRailThickness").val() },
             BasePrice: parseFloat($("#inBasePrice").val()),
             AdditionalSFPrice: parseFloat($("#inAdditionalSFPrice").val()),
