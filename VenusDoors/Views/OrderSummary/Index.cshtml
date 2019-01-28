@@ -77,22 +77,26 @@
                     <th>Delete item</th>
                 </tr>
             </thead>
-            <tbody id="id-table">
+            <tbody class="odd" id="id-table">
                 @if (Session["UserID"] == null)
                 {
-
+                    <tr class="odd">
+                        <td valign="top" colspan="10" class="dataTables_empty">No data available in table</td>
+                    </tr>
                 }
                 else
                 {
                     if (ViewBag.xUserDoors == null)
                     {
-
+                        <tr class="odd">
+                            <td valign="top" colspan="10" class="dataTables_empty">No data available in table</td>
+                        </tr>
                     }
                     else
                     {
                         foreach (Model.DoorsxUser i in ViewBag.xUserDoors)
                         {
-                            
+
                             <tr>
                                 <td><img src="@i.Picture"></td>
                                 <td>@i.Material.Description</td>

@@ -312,7 +312,6 @@
     <Content Include="Content\img\-Fingerpull+Reba+flatpanelbeaded.png" />
     <Content Include="Content\img\-Fingerpull+Reba+raisedpanel.png" />
     <Content Include="Content\img\-Fingerpull+Shaker22+flatpanel.png" />
-    <Content Include="Content\img\-Fingerpull+Shaker22+flatpanelbeaded.png" />
     <Content Include="Content\img\Cabinet Vector-01.png" />
     <Content Include="Content\img\Cabinet Vector-02.png" />
     <Content Include="Content\img\Cabinet Vector-03.png" />
@@ -963,6 +962,7 @@
       <DependentUpon>LoginDataBase.edmx</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\jesus.pubxml" />
+    <None Include="Properties\PublishProfiles\Venus.pubxml" />
     <None Include="Properties\PublishProfiles\VenusDoors.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -985,7 +985,6 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="VenusDoors.csproj.vspscc" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
