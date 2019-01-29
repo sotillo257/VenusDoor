@@ -2282,7 +2282,7 @@ fieldset[disabled] a.btn {
   border-color: #17a2b8;
 }
 .btn-outline-info:hover {
-  color: #fff;
+  color: #fff !important;
   background-color: #17a2b8;
   border-color: #17a2b8;
 }
