@@ -1059,7 +1059,7 @@
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Login\sing_up.cshtml" />
     <Content Include="Views\Shared\_Layout -Admin.cshtml" />
-    <Content Include="Views\Masters\BottomRail - Copia.cshtml" />
+    <Content Include="Views\Masters\RailThickness.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
