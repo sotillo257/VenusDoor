@@ -32,20 +32,28 @@ namespace VenusDoors.Controllers
         BusinessLogic.lnPerson _LNPerson = new BusinessLogic.lnPerson();
         BusinessLogic.lnRailThickness _LNRT = new BusinessLogic.lnRailThickness();
 
-
+        #region BottomRail
         public ActionResult BottomRail()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.BottomRail = "active";
-            BusinessLogic.lnBottomRail _LN = new BusinessLogic.lnBottomRail();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.BottomRail = "active";
+                BusinessLogic.lnBottomRail _LN = new BusinessLogic.lnBottomRail();
 
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
+                ViewBag.mStatus = _LNStatus.GetAllStatus();
 
-            var mBottomRail = _LN.GetAllBottomRail();
-            ViewBag.mBottomRail = mBottomRail;
-            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            ViewBag.ListBottomRail = serializar.Serialize(mBottomRail);
-            return View();
+                var mBottomRail = _LN.GetAllBottomRail();
+                ViewBag.mBottomRail = mBottomRail;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListBottomRail = serializar.Serialize(mBottomRail);
+                return View();
+            }
+            else
+            {
+
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         [HttpPost]
@@ -69,13 +77,13 @@ namespace VenusDoors.Controllers
         [HttpPost]
         public ActionResult UpdateBottomRail(BottomRail uBottomRail)
         {
-           try
+            try
             {
 
                 uBottomRail.CreationDate = DateTime.Now;
                 uBottomRail.ModificationDate = DateTime.Now;
                 BusinessLogic.lnBottomRail _LN = new BusinessLogic.lnBottomRail();
-                var  modBR = _LN.UpdateBottomRail(uBottomRail);
+                var modBR = _LN.UpdateBottomRail(uBottomRail);
                 return Json(true, JsonRequestBehavior.AllowGet);
 
             }
@@ -95,35 +103,43 @@ namespace VenusDoors.Controllers
             else
                 return View(dBottomRail);
         }
+        #endregion
 
-
+        #region Doors
         public ActionResult Doors()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.Doors = "active";
-            BusinessLogic.lnDoors _LM = new BusinessLogic.lnDoors();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.Doors = "active";
+                BusinessLogic.lnDoors _LM = new BusinessLogic.lnDoors();
 
-            var mDoors = _LM.GetAllDoors();
-            ViewBag.mDoors = mDoors;
-            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            ViewBag.ListDoors = serializar.Serialize(mDoors);
+                var mDoors = _LM.GetAllDoors();
+                ViewBag.mDoors = mDoors;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListDoors = serializar.Serialize(mDoors);
 
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
-            ViewBag.cbDoorStyle = _LNDoorStile.GetAllDoorStyle();
-            ViewBag.cbMatarial = _LNMaterial.GetAllMaterial();
-            ViewBag.cbTopRail = _LNTopRail.GetAllTopRail();
-            ViewBag.cbBottomRail = _LNBottomRail.GetAllBottomRail();
-            ViewBag.cbPreparation = _LNPreparation.GetAllPreparation();
-            ViewBag.cbJoin = _LNJoin.GetAllJoin();
-            ViewBag.cbInsideEdgeProfile = _LNInsideEdgeProfile.GetAllInsideEdgeProfile();
-            ViewBag.cbOutsideEdgeProfile = _LNOutsideEdgeProfile.GetAllOutsideEdgeProfile();
-            ViewBag.cbVerticalDivisions = _LNVerticalDivisions.GetAllVerticalDivisions();
-            ViewBag.cbHorizontalDivisions = _LNHorizontalDivisions.GetAllHorizontalDivisions();
-            ViewBag.cbHingeDirection = _LNHingeDirection.GetAllHingeDirection();
-            ViewBag.cbHingePositions = _LNHingePositions.GetAllHingePositions();
-            ViewBag.cbPanel = _LNPanel.GetAllPanel();
-            ViewBag.cbPanelMaterial = _LNPanelMaterial.GetAllPanelMaterial();
-            return View();
+                ViewBag.mStatus = _LNStatus.GetAllStatus();
+                ViewBag.cbDoorStyle = _LNDoorStile.GetAllDoorStyle();
+                ViewBag.cbMatarial = _LNMaterial.GetAllMaterial();
+                ViewBag.cbTopRail = _LNTopRail.GetAllTopRail();
+                ViewBag.cbBottomRail = _LNBottomRail.GetAllBottomRail();
+                ViewBag.cbPreparation = _LNPreparation.GetAllPreparation();
+                ViewBag.cbJoin = _LNJoin.GetAllJoin();
+                ViewBag.cbInsideEdgeProfile = _LNInsideEdgeProfile.GetAllInsideEdgeProfile();
+                ViewBag.cbOutsideEdgeProfile = _LNOutsideEdgeProfile.GetAllOutsideEdgeProfile();
+                ViewBag.cbVerticalDivisions = _LNVerticalDivisions.GetAllVerticalDivisions();
+                ViewBag.cbHorizontalDivisions = _LNHorizontalDivisions.GetAllHorizontalDivisions();
+                ViewBag.cbHingeDirection = _LNHingeDirection.GetAllHingeDirection();
+                ViewBag.cbHingePositions = _LNHingePositions.GetAllHingePositions();
+                ViewBag.cbPanel = _LNPanel.GetAllPanel();
+                ViewBag.cbPanelMaterial = _LNPanelMaterial.GetAllPanelMaterial();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         [HttpPost]
@@ -161,23 +177,32 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
+        #endregion
 
+        #region DoorsPrices
         public ActionResult DoorsPrices()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.DoorPrice = "active";
-            BusinessLogic.lnDoorsPrices _LP = new BusinessLogic.lnDoorsPrices();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.DoorPrice = "active";
+                BusinessLogic.lnDoorsPrices _LP = new BusinessLogic.lnDoorsPrices();
 
-            var mDoorsPrices = _LP.GetAllDoorsPrices();
-            ViewBag.mDoorsPrices = mDoorsPrices;
-            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            ViewBag.ListDoorsPrices = serializar.Serialize(mDoorsPrices);
+                var mDoorsPrices = _LP.GetAllDoorsPrices();
+                ViewBag.mDoorsPrices = mDoorsPrices;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListDoorsPrices = serializar.Serialize(mDoorsPrices);
 
-            ViewBag.mRailThickness = _LNRT.GetAllRailThickness();
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
-            ViewBag.cbDoorStyle = _LNDoorStile.GetAllDoorStyle();
-            ViewBag.cbMatarial = _LNMaterial.GetAllMaterial();
-            return View();
+                ViewBag.mRailThickness = _LNRT.GetAllRailThickness();
+                ViewBag.mStatus = _LNStatus.GetAllStatus();
+                ViewBag.cbDoorStyle = _LNDoorStile.GetAllDoorStyle();
+                ViewBag.cbMatarial = _LNMaterial.GetAllMaterial();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         [HttpPost]
@@ -221,20 +246,29 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
-        
+        #endregion
+
+        #region DoorStyle
         public ActionResult Index()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.DoorStyle = "active";
-            BusinessLogic.lnDoorStyle _LA = new BusinessLogic.lnDoorStyle();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.DoorStyle = "active";
+                BusinessLogic.lnDoorStyle _LA = new BusinessLogic.lnDoorStyle();
 
-            var mDoorsStyle = _LA.GetAllDoorStyle();
-            ViewBag.mDoorsStyle = mDoorsStyle;
-            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            ViewBag.ListDoorsStyle = serializar.Serialize(mDoorsStyle);
+                var mDoorsStyle = _LA.GetAllDoorStyle();
+                ViewBag.mDoorsStyle = mDoorsStyle;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListDoorsStyle = serializar.Serialize(mDoorsStyle);
 
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
-            return View();
+                ViewBag.mStatus = _LNStatus.GetAllStatus();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }            
         }
 
         [HttpPost]
@@ -273,41 +307,77 @@ namespace VenusDoors.Controllers
             }
         }
 
+        #endregion
+
+        #region DoorStylexInsideEdgeProfile
         public ActionResult DoorStyleByInsideEdgeProfile()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.DoorStyleByInsideEdgeProfile = "active";
-            return View();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.DoorStyleByInsideEdgeProfile = "active";
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
+        #endregion
 
+        #region DoorStylexOutsideEdgeProfile
         public ActionResult DoorStyleByOutsideEdgeProfile()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.DoorStyleByOutsideEdgeProfile = "active";
-            return View();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.DoorStyleByOutsideEdgeProfile = "active";
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }            
         }
+        #endregion
 
+        #region DoorsxUser
         public ActionResult DoorByUser()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.DoorByUser = "active";
-            BusinessLogic.lnDoorsxUser _LB = new BusinessLogic.lnDoorsxUser();
-            ViewBag.mDoorxUser = _LB.GetAllDoorsxUser();
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
-            return View();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.DoorByUser = "active";
+                BusinessLogic.lnDoorsxUser _LB = new BusinessLogic.lnDoorsxUser();
+                ViewBag.mDoorxUser = _LB.GetAllDoorsxUser();
+                ViewBag.mStatus = _LNStatus.GetAllStatus();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }            
         }
+        #endregion
 
+        #region Group
         public ActionResult Group()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.Group = "active";
-            BusinessLogic.lnGroup _LC = new BusinessLogic.lnGroup();
-
-            var mGroup = _LC.GetAllGroup();
-            ViewBag.mGroup = mGroup;
-            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            ViewBag.ListGroup = serializar.Serialize(mGroup);
-            return View();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.Group = "active";
+                BusinessLogic.lnGroup _LC = new BusinessLogic.lnGroup();
+                var mGroup = _LC.GetAllGroup();
+                ViewBag.mGroup = mGroup;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListGroup = serializar.Serialize(mGroup);
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }            
         }
 
         [HttpPost]
@@ -341,20 +411,28 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
+        #endregion
 
+        #region HingeDirection
         public ActionResult HingeDirection()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.HingeDirection = "active";
-            BusinessLogic.lnHingeDirection _LD = new BusinessLogic.lnHingeDirection();
-
-            var mHingeDirection = _LD.GetAllHingeDirection();
-            ViewBag.mHingeDirection = mHingeDirection;
-            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            ViewBag.ListHingeDirection = serializar.Serialize(mHingeDirection);
-
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
-            return View();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.HingeDirection = "active";
+                BusinessLogic.lnHingeDirection _LD = new BusinessLogic.lnHingeDirection();
+                var mHingeDirection = _LD.GetAllHingeDirection();
+                ViewBag.mHingeDirection = mHingeDirection;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListHingeDirection = serializar.Serialize(mHingeDirection);
+                ViewBag.mStatus = _LNStatus.GetAllStatus();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            
         }
 
         [HttpPost]
@@ -392,20 +470,27 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
+        #endregion
 
+        #region HingePositions
         public ActionResult HingePositions()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.HingePositions = "active";
-            BusinessLogic.lnHingePositions _LE = new BusinessLogic.lnHingePositions();
-
-            var mHingePositions = _LE.GetAllHingePositions();
-            ViewBag.mHingePositions = mHingePositions;
-            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            ViewBag.ListHingePositions = serializar.Serialize(mHingePositions);
-
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
-            return View();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.HingePositions = "active";
+                BusinessLogic.lnHingePositions _LE = new BusinessLogic.lnHingePositions();
+                var mHingePositions = _LE.GetAllHingePositions();
+                ViewBag.mHingePositions = mHingePositions;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListHingePositions = serializar.Serialize(mHingePositions);
+                ViewBag.mStatus = _LNStatus.GetAllStatus();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }            
         }
 
         [HttpPost]
@@ -430,8 +515,7 @@ namespace VenusDoors.Controllers
         public ActionResult UpdateHingePositions(HingePositions uHingePositions)
         {
             try
-            {
-
+            {           
                 uHingePositions.CreationDate = DateTime.Now;
                 uHingePositions.ModificationDate = DateTime.Now;
                 BusinessLogic.lnHingePositions _LE = new BusinessLogic.lnHingePositions();
@@ -443,20 +527,29 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
+        #endregion
 
+        #region HorizontalDivisions
         public ActionResult HorizontalDivisions()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.HorizontalDivisions = "active";
-            BusinessLogic.lnHorizontalDivisions _LF = new BusinessLogic.lnHorizontalDivisions();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.HorizontalDivisions = "active";
+                BusinessLogic.lnHorizontalDivisions _LF = new BusinessLogic.lnHorizontalDivisions();
 
-            var mHorizontalDivisions = _LF.GetAllHorizontalDivisions();
-            ViewBag.mHorizontalDivisions = mHorizontalDivisions;
-            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            ViewBag.ListHorizontalDivisions = serializar.Serialize(mHorizontalDivisions);
+                var mHorizontalDivisions = _LF.GetAllHorizontalDivisions();
+                ViewBag.mHorizontalDivisions = mHorizontalDivisions;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListHorizontalDivisions = serializar.Serialize(mHorizontalDivisions);
 
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
-            return View();
+                ViewBag.mStatus = _LNStatus.GetAllStatus();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }            
         }
 
         [HttpPost]
@@ -494,20 +587,29 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
+        #endregion
 
+        #region InsideEdgeProfile
         public ActionResult InsideEdgeProfile()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.InsideEdgeProfile = "active";
-            BusinessLogic.lnInsideEdgeProfile _LG = new BusinessLogic.lnInsideEdgeProfile();
-            
-            var mInsideEdgeProfile = _LG.GetAllInsideEdgeProfile();
-            ViewBag.mInsideEdgeProfile = mInsideEdgeProfile;
-            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            ViewBag.ListInsideEdgeProfile = serializar.Serialize(mInsideEdgeProfile);
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.InsideEdgeProfile = "active";
+                BusinessLogic.lnInsideEdgeProfile _LG = new BusinessLogic.lnInsideEdgeProfile();
 
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
-            return View();
+                var mInsideEdgeProfile = _LG.GetAllInsideEdgeProfile();
+                ViewBag.mInsideEdgeProfile = mInsideEdgeProfile;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListInsideEdgeProfile = serializar.Serialize(mInsideEdgeProfile);
+
+                ViewBag.mStatus = _LNStatus.GetAllStatus();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }            
         }
 
         [HttpPost]
@@ -545,21 +647,30 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
+        #endregion
 
+        #region Join
         public ActionResult Join()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.Join = "active";
-            BusinessLogic.lnJoin _LH = new BusinessLogic.lnJoin();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.Join = "active";
+                BusinessLogic.lnJoin _LH = new BusinessLogic.lnJoin();
 
-            var mJoin = _LH.GetAllJoin();
-            ViewBag.mJoin = mJoin;
-            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            ViewBag.ListJoin = serializar.Serialize(mJoin);
+                var mJoin = _LH.GetAllJoin();
+                ViewBag.mJoin = mJoin;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListJoin = serializar.Serialize(mJoin);
 
-            ViewBag.mJoin = _LH.GetAllJoin();
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
-            return View();
+                ViewBag.mJoin = _LH.GetAllJoin();
+                ViewBag.mStatus = _LNStatus.GetAllStatus();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         [HttpPost]
@@ -597,20 +708,29 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
+        #endregion
 
+        #region Material
         public ActionResult Material()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.Material = "active";
-            BusinessLogic.lnMaterial _LI = new BusinessLogic.lnMaterial();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.Material = "active";
+                BusinessLogic.lnMaterial _LI = new BusinessLogic.lnMaterial();
 
-            var mMaterial = _LI.GetAllMaterial();
-            ViewBag.mMaterial = mMaterial;
-            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            ViewBag.ListMaterial = serializar.Serialize(mMaterial);
+                var mMaterial = _LI.GetAllMaterial();
+                ViewBag.mMaterial = mMaterial;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListMaterial = serializar.Serialize(mMaterial);
 
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
-            return View();
+                ViewBag.mStatus = _LNStatus.GetAllStatus();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         [HttpPost]
@@ -648,22 +768,31 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
+        #endregion
 
+        #region MaterialxBottomRail
         public ActionResult MaterialxBottomRail()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.MaterialxBottomRail = "active";
-            BusinessLogic.lnMaterialxBottomRail _LJ = new BusinessLogic.lnMaterialxBottomRail();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.MaterialxBottomRail = "active";
+                BusinessLogic.lnMaterialxBottomRail _LJ = new BusinessLogic.lnMaterialxBottomRail();
 
-            var mMaterialxBottomRail = _LJ.GetAllMaterialxBottomRail();
-            ViewBag.mMaterialxBottomRail = mMaterialxBottomRail;
-            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            ViewBag.ListMaterialxBottomRail = serializar.Serialize(mMaterialxBottomRail);
+                var mMaterialxBottomRail = _LJ.GetAllMaterialxBottomRail();
+                ViewBag.mMaterialxBottomRail = mMaterialxBottomRail;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListMaterialxBottomRail = serializar.Serialize(mMaterialxBottomRail);
 
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
-            ViewBag.cbMatarial = _LNMaterial.GetAllMaterial();
-            ViewBag.cbBottomRail = _LNBottomRail.GetAllBottomRail();
-            return View();
+                ViewBag.mStatus = _LNStatus.GetAllStatus();
+                ViewBag.cbMatarial = _LNMaterial.GetAllMaterial();
+                ViewBag.cbBottomRail = _LNBottomRail.GetAllBottomRail();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         [HttpPost]
@@ -701,22 +830,31 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
+        #endregion
 
+        #region Order
         public ActionResult Order()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.Order = "active";
-            BusinessLogic.lnOrder _LK = new BusinessLogic.lnOrder();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.Order = "active";
+                BusinessLogic.lnOrder _LK = new BusinessLogic.lnOrder();
 
-            var mOrder = _LK.GetAllOrder();
-            ViewBag.mOrder = mOrder;
-            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            ViewBag.ListOrder = serializar.Serialize(mOrder);
+                var mOrder = _LK.GetAllOrder();
+                ViewBag.mOrder = mOrder;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListOrder = serializar.Serialize(mOrder);
 
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
-            ViewBag.cbUser = _LNUser.GetAllUser();
-            ViewBag.cbType = _LNType.GetAllType();
-            return View();
+                ViewBag.mStatus = _LNStatus.GetAllStatus();
+                ViewBag.cbUser = _LNUser.GetAllUser();
+                ViewBag.cbType = _LNType.GetAllType();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         [HttpPost]
@@ -754,20 +892,29 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
+        #endregion
 
+        #region OutsideEdgeProfile
         public ActionResult OutsideEdgeProfile()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.OutsideEdgeProfile = "active";
-            BusinessLogic.lnOutsideEdgeProfile _LL = new BusinessLogic.lnOutsideEdgeProfile();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.OutsideEdgeProfile = "active";
+                BusinessLogic.lnOutsideEdgeProfile _LL = new BusinessLogic.lnOutsideEdgeProfile();
 
-            var mOutsideEdgeProfile = _LL.GetAllOutsideEdgeProfile();
-            ViewBag.mOutsideEdgeProfile = mOutsideEdgeProfile;
-            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            ViewBag.ListOutsideEdgeProfile = serializar.Serialize(mOutsideEdgeProfile);
+                var mOutsideEdgeProfile = _LL.GetAllOutsideEdgeProfile();
+                ViewBag.mOutsideEdgeProfile = mOutsideEdgeProfile;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListOutsideEdgeProfile = serializar.Serialize(mOutsideEdgeProfile);
 
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
-            return View();
+                ViewBag.mStatus = _LNStatus.GetAllStatus();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         [HttpPost]
@@ -805,20 +952,29 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
+        #endregion
 
+        #region Panel
         public ActionResult Panel()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.Panel = "active";
-            BusinessLogic.lnPanel _LX = new BusinessLogic.lnPanel();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.Panel = "active";
+                BusinessLogic.lnPanel _LX = new BusinessLogic.lnPanel();
 
-            var mPanel = _LX.GetAllPanel();
-            ViewBag.mPanel = mPanel;
-            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            ViewBag.ListPanel = serializar.Serialize(mPanel);
+                var mPanel = _LX.GetAllPanel();
+                ViewBag.mPanel = mPanel;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListPanel = serializar.Serialize(mPanel);
 
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
-            return View();
+                ViewBag.mStatus = _LNStatus.GetAllStatus();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         [HttpPost]
@@ -856,20 +1012,29 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
+        #endregion
 
+        #region PanelMaterial
         public ActionResult PanelMaterial()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.PanelMaterial = "active";
-            BusinessLogic.lnPanelMaterial _PAC = new BusinessLogic.lnPanelMaterial();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.PanelMaterial = "active";
+                BusinessLogic.lnPanelMaterial _PAC = new BusinessLogic.lnPanelMaterial();
 
-            var mPanelMaterial = _PAC.GetAllPanelMaterial();
-            ViewBag.mPanelMaterial = mPanelMaterial;
-            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            ViewBag.ListPanelMaterial = serializar.Serialize(mPanelMaterial);
+                var mPanelMaterial = _PAC.GetAllPanelMaterial();
+                ViewBag.mPanelMaterial = mPanelMaterial;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListPanelMaterial = serializar.Serialize(mPanelMaterial);
 
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
-            return View();
+                ViewBag.mStatus = _LNStatus.GetAllStatus();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         [HttpPost]
@@ -907,20 +1072,29 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
+        #endregion
 
+        #region Person
         public ActionResult Person()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.Person = "active";
-            BusinessLogic.lnPerson _PAX = new BusinessLogic.lnPerson();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.Person = "active";
+                BusinessLogic.lnPerson _PAX = new BusinessLogic.lnPerson();
 
-            var mPerson = _PAX.GetAllPerson();
-            ViewBag.mPerson = mPerson;
-            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            ViewBag.ListPerson = serializar.Serialize(mPerson);
+                var mPerson = _PAX.GetAllPerson();
+                ViewBag.mPerson = mPerson;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListPerson = serializar.Serialize(mPerson);
 
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
-            return View();
+                ViewBag.mStatus = _LNStatus.GetAllStatus();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         [HttpPost]
@@ -958,20 +1132,29 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
+        #endregion
 
+        #region Preparation
         public ActionResult Preparation()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.Preparation = "active";
-            BusinessLogic.lnPreparation _JFK = new BusinessLogic.lnPreparation();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.Preparation = "active";
+                BusinessLogic.lnPreparation _JFK = new BusinessLogic.lnPreparation();
 
-            var mPreparation = _JFK.GetAllPreparation();
-            ViewBag.mPreparation = mPreparation;
-            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            ViewBag.ListPreparation = serializar.Serialize(mPreparation);
+                var mPreparation = _JFK.GetAllPreparation();
+                ViewBag.mPreparation = mPreparation;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListPreparation = serializar.Serialize(mPreparation);
 
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
-            return View();
+                ViewBag.mStatus = _LNStatus.GetAllStatus();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         [HttpPost]
@@ -1009,24 +1192,33 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
+        #endregion
 
+        #region RailThickness
         public ActionResult RailThickness()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.RailThickness = "active";
-            BusinessLogic.lnRailThickness _LN = new BusinessLogic.lnRailThickness();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.RailThickness = "active";
+                BusinessLogic.lnRailThickness _LN = new BusinessLogic.lnRailThickness();
 
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
+                ViewBag.mStatus = _LNStatus.GetAllStatus();
 
-            var mRailThickness = _LN.GetAllRailThickness();
-            ViewBag.mRailThickness = mRailThickness;
-            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            ViewBag.ListRailThickness = serializar.Serialize(mRailThickness);
-            return View();
+                var mRailThickness = _LN.GetAllRailThickness();
+                ViewBag.mRailThickness = mRailThickness;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListRailThickness = serializar.Serialize(mRailThickness);
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         [HttpPost]
-        public ActionResult RailThickness(RailThickness pRailThickness)
+        public ActionResult InsertRailThickness(RailThickness pRailThickness)
         {
             try
             {
@@ -1071,20 +1263,29 @@ namespace VenusDoors.Controllers
             else
                 return View(dRailThickness);
         }
+        #endregion
 
+        #region Status
         public ActionResult Status()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.Status = "active";
-            BusinessLogic.lnStatus _LNStatus = new BusinessLogic.lnStatus();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.Status = "active";
+                BusinessLogic.lnStatus _LNStatus = new BusinessLogic.lnStatus();
 
-            var mStatus = _LNStatus.GetAllStatus();
-            ViewBag.mStatus = mStatus;
-            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            ViewBag.ListStatus = serializar.Serialize(mStatus);
+                var mStatus = _LNStatus.GetAllStatus();
+                ViewBag.mStatus = mStatus;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListStatus = serializar.Serialize(mStatus);
 
-            ViewBag.cbGroup = _LNGroup.GetAllGroup();
-            return View();
+                ViewBag.cbGroup = _LNGroup.GetAllGroup();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         [HttpPost]
@@ -1118,20 +1319,29 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
+        #endregion
 
+        #region TopRail
         public ActionResult TopRail()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.TopRail = "active";
-            BusinessLogic.lnTopRail _TOP = new BusinessLogic.lnTopRail();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.TopRail = "active";
+                BusinessLogic.lnTopRail _TOP = new BusinessLogic.lnTopRail();
 
-            var mTopRail = _TOP.GetAllTopRail();
-            ViewBag.mTopRail = mTopRail;
-            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            ViewBag.ListTopRail = serializar.Serialize(mTopRail);
+                var mTopRail = _TOP.GetAllTopRail();
+                ViewBag.mTopRail = mTopRail;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListTopRail = serializar.Serialize(mTopRail);
 
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
-            return View();
+                ViewBag.mStatus = _LNStatus.GetAllStatus();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         [HttpPost]
@@ -1169,22 +1379,31 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
+        #endregion
 
+        #region TopRailxHorizontalDivisions
         public ActionResult TopRailByHorizontalDivisions()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.TopRailByHorizontalDivisions = "active";
-            BusinessLogic.lnTopRailxHorizontalDivisions _TAP = new BusinessLogic.lnTopRailxHorizontalDivisions();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.TopRailByHorizontalDivisions = "active";
+                BusinessLogic.lnTopRailxHorizontalDivisions _TAP = new BusinessLogic.lnTopRailxHorizontalDivisions();
 
-            var mTopRailByHorizontalDivisions = _TAP.GetAllTopRailxHorizontalDivisions();
-            ViewBag.mTopRailByHorizontalDivisions = mTopRailByHorizontalDivisions;
-            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            ViewBag.ListTopRailxHorizontal = serializar.Serialize(mTopRailByHorizontalDivisions);
+                var mTopRailByHorizontalDivisions = _TAP.GetAllTopRailxHorizontalDivisions();
+                ViewBag.mTopRailByHorizontalDivisions = mTopRailByHorizontalDivisions;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListTopRailxHorizontal = serializar.Serialize(mTopRailByHorizontalDivisions);
 
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
-            ViewBag.cbTopRail = _LNTopRail.GetAllTopRail();
-            ViewBag.cbHorizontalDivisions = _LNHorizontalDivisions.GetAllHorizontalDivisions();
-            return View();
+                ViewBag.mStatus = _LNStatus.GetAllStatus();
+                ViewBag.cbTopRail = _LNTopRail.GetAllTopRail();
+                ViewBag.cbHorizontalDivisions = _LNHorizontalDivisions.GetAllHorizontalDivisions();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         [HttpPost]
@@ -1222,22 +1441,31 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
+        #endregion
 
+        #region TopRailxJoin
         public ActionResult TopRailByJoin()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.TopRailByJoin = "active";
-            BusinessLogic.lnTopRailxJoin _TEP = new BusinessLogic.lnTopRailxJoin();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.TopRailByJoin = "active";
+                BusinessLogic.lnTopRailxJoin _TEP = new BusinessLogic.lnTopRailxJoin();
 
-            var mTopRailByJoin = _TEP.GetAllTopRailxJoin();
-            ViewBag.mTopRailByJoin = mTopRailByJoin;
-            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            ViewBag.ListTopRailByJoin = serializar.Serialize(mTopRailByJoin);
+                var mTopRailByJoin = _TEP.GetAllTopRailxJoin();
+                ViewBag.mTopRailByJoin = mTopRailByJoin;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListTopRailByJoin = serializar.Serialize(mTopRailByJoin);
 
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
-            ViewBag.cbTopRail = _LNTopRail.GetAllTopRail();
-            ViewBag.cbJoin = _LNJoin.GetAllJoin();
-            return View();
+                ViewBag.mStatus = _LNStatus.GetAllStatus();
+                ViewBag.cbTopRail = _LNTopRail.GetAllTopRail();
+                ViewBag.cbJoin = _LNJoin.GetAllJoin();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         [HttpPost]
@@ -1275,22 +1503,31 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
+        #endregion
 
+        #region TopRailxVerticalDivisions
         public ActionResult TopRailByVerticalDivisions()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.TopRailByVerticalDivisions = "active";
-            BusinessLogic.lnTopRailxVerticalDivisions _TUP = new BusinessLogic.lnTopRailxVerticalDivisions();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.TopRailByVerticalDivisions = "active";
+                BusinessLogic.lnTopRailxVerticalDivisions _TUP = new BusinessLogic.lnTopRailxVerticalDivisions();
 
-            var mTopRailByVerticalDivisions = _TUP.GetAllTopRailxVerticalDivisions();
-            ViewBag.mTopRailByVerticalDivisions = mTopRailByVerticalDivisions;
-            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            ViewBag.ListTopRailxVertical = serializar.Serialize(mTopRailByVerticalDivisions);
+                var mTopRailByVerticalDivisions = _TUP.GetAllTopRailxVerticalDivisions();
+                ViewBag.mTopRailByVerticalDivisions = mTopRailByVerticalDivisions;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListTopRailxVertical = serializar.Serialize(mTopRailByVerticalDivisions);
 
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
-            ViewBag.cbTopRail = _LNTopRail.GetAllTopRail();
-            ViewBag.cbVerticalDivisions = _LNVerticalDivisions.GetAllVerticalDivisions();
-            return View();
+                ViewBag.mStatus = _LNStatus.GetAllStatus();
+                ViewBag.cbTopRail = _LNTopRail.GetAllTopRail();
+                ViewBag.cbVerticalDivisions = _LNVerticalDivisions.GetAllVerticalDivisions();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         [HttpPost]
@@ -1328,21 +1565,30 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
+        #endregion
 
+        #region Type
         public ActionResult Type()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.Type = "active";
-            BusinessLogic.lnType _LBL = new BusinessLogic.lnType();
-            ViewBag.cbGroup = _LNGroup.GetAllGroup();
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.Type = "active";
+                BusinessLogic.lnType _LBL = new BusinessLogic.lnType();
+                ViewBag.cbGroup = _LNGroup.GetAllGroup();
+                ViewBag.mStatus = _LNStatus.GetAllStatus();
 
-            var mType = _LBL.GetAllType();
-            ViewBag.mType = mType;
-            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            ViewBag.ListType = serializar.Serialize(mType);
-            
-            return View();
+                var mType = _LBL.GetAllType();
+                ViewBag.mType = mType;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListType = serializar.Serialize(mType);
+
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         [HttpPost]
@@ -1380,22 +1626,31 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
+        #endregion
 
+        #region User
         public ActionResult Usuario()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.Usuario = "active";
-            BusinessLogic.lnUser _USB = new BusinessLogic.lnUser();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.Usuario = "active";
+                BusinessLogic.lnUser _USB = new BusinessLogic.lnUser();
 
-            var mUsuario = _USB.GetAllUser();
-            ViewBag.mUsuario = mUsuario;
-            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            ViewBag.ListUsuario = serializar.Serialize(mUsuario);
+                var mUsuario = _USB.GetAllUser();
+                ViewBag.mUsuario = mUsuario;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListUsuario = serializar.Serialize(mUsuario);
 
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
-            ViewBag.cbType = _LNType.GetAllType();
-            ViewBag.cbPerson = _LNPerson.GetAllPerson();
-            return View();
+                ViewBag.mStatus = _LNStatus.GetAllStatus();
+                ViewBag.cbType = _LNType.GetAllType();
+                ViewBag.cbPerson = _LNPerson.GetAllPerson();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         [HttpPost]
@@ -1433,20 +1688,29 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
+        #endregion
 
+        #region VerticalDivisions
         public ActionResult VerticalDivisions()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.VerticalDivisions = "active";
-            BusinessLogic.lnVerticalDivisions _UCB = new BusinessLogic.lnVerticalDivisions();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.VerticalDivisions = "active";
+                BusinessLogic.lnVerticalDivisions _UCB = new BusinessLogic.lnVerticalDivisions();
 
-            var mVerticalDivisions = _UCB.GetAllVerticalDivisions();
-            ViewBag.mVerticalDivisions = mVerticalDivisions;
-            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            ViewBag.ListVerticalDivisions = serializar.Serialize(mVerticalDivisions);
+                var mVerticalDivisions = _UCB.GetAllVerticalDivisions();
+                ViewBag.mVerticalDivisions = mVerticalDivisions;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListVerticalDivisions = serializar.Serialize(mVerticalDivisions);
 
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
-            return View();
+                ViewBag.mStatus = _LNStatus.GetAllStatus();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         [HttpPost]
@@ -1484,6 +1748,7 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
+        #endregion
 
         // GET: Masters/Details/5
         public ActionResult Details(int id)

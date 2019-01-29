@@ -1058,7 +1058,6 @@
     <Content Include="Views\Masters\VerticalDivisions.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Login\sing_up.cshtml" />
-    <Content Include="Views\Shared\_Layout -Admin.cshtml" />
     <Content Include="Views\Masters\BottomRail - Copia.cshtml" />
   </ItemGroup>
   <ItemGroup>
