@@ -75,7 +75,8 @@ namespace VenusDoors.Controllers
                 uBottomRail.CreationDate = DateTime.Now;
                 uBottomRail.ModificationDate = DateTime.Now;
                 BusinessLogic.lnBottomRail _LN = new BusinessLogic.lnBottomRail();
-                return Json(_LN.UpdateBottomRail(uBottomRail));
+                var  modBR = _LN.UpdateBottomRail(uBottomRail);
+                return Json(true, JsonRequestBehavior.AllowGet);
 
             }
             catch
