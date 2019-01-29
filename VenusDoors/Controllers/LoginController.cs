@@ -55,6 +55,7 @@ namespace VenusDoors.Controllers
                 {
                     System.Web.HttpContext.Current.Session["UserID"] = userDetails.Id;
                     System.Web.HttpContext.Current.Session["UserName"] = userDetails.IdPerson;
+                    System.Web.HttpContext.Current.Session["UserType"] = userDetails.IdType;
                     return RedirectToAction("Index", "Home");  
                 }
             }         

@@ -373,10 +373,12 @@ function InsertDoorsxUser() {
     var TR = $("#cbTopRail").val();
     var BR = $("#cbBottomRail").val();
     var RT;
-    if (TR == '2.5' && BR == '2.5') {
+    var H = $("#iptHeight").val();
+    var W = $("#iptWidth").val();
+    if (TR == 1 && BR == 1) {
         RT = 1;
     }
-    else if (TR == '3' && BR == '3') {
+    else if (TR == 3 && BR == 3) {
         RT = 2;
     }
     else {
@@ -386,6 +388,7 @@ function InsertDoorsxUser() {
 
     var datos =
          {
+             
              pDoorsxUser: {
                  User: { Id: 1 },
                  Status: {Id: 1},
@@ -404,8 +407,8 @@ function InsertDoorsxUser() {
                  HorizontalDivisions: { Id: $("#cbHorizontalDivisions").val() },
                  Width: $("#iptWidth").val(),
                  Height: $("#iptHeight").val(),
-                 Quantity: 0,
-                 SubTotal: 0,
+                 Quantity: $("#iptQuantity").val(),
+                 SubTotal: ((((H * W)/12)/12)-1.5),
                  Picture: 'PruebaPicture',
                  ProfilePicture: 'PruebaPP',
                  isDrill: $("#cbisDrill").val(),

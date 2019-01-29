@@ -21,7 +21,7 @@ function CreateNewUser() {
             UserData: {
                 Email: $('#inptEmail').val(),
                 Password: $('#inptPassword').val(),
-                Type: { Id: 1 },
+                Type: { Id: 2 },
                 Status: { Id: 1 },
                 CreatorUser: 6,
                 ModificationUser: 6,

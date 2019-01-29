@@ -246,16 +246,20 @@ namespace VenusDoors.Controllers
                 BusinessLogic.lnOrder _LNOrder = new BusinessLogic.lnOrder();
                 BusinessLogic.lnHingePositions _LNHP = new BusinessLogic.lnHingePositions();
                 BusinessLogic.lnDoorsPrices _DP = new BusinessLogic.lnDoorsPrices();
-                
-                var xDoorsP = _DP.GetAllDoorsPrices();
-                var PriceByOptions = xDoorsP.Where(x => x.RailThickness.Id == RailThick.Id && x.Material.Id == pDoorsxUser.Material.Id && x.DoorStyle.Id == pDoorsxUser.DoorStyle.Id).ToList();
-                ViewBag.xDoorPrice = PriceByOptions;
 
-                DoorsPrices t = ViewBag.xDoorPrice;
-
+                List<DoorsPrices> xDoorsP = _DP.GetAllDoorsPrices();
+                List<DoorsPrices> xDP = xDoorsP.Where(x => x.RailThickness.Id == RailThick.Id && x.Material.Id == pDoorsxUser.Material.Id && x.DoorStyle.Id == pDoorsxUser.DoorStyle.Id).ToList();
+                ViewBag.d = xDP;
+                foreach (DoorsPrices i in ViewBag.d)
+                {
+                    
+                    System.Web.HttpContext.Current.Session["BasePrice"] = i.BasePrice;
+                }
 
                 int userID = (int)Session["UserID"];
                 int idU = userID;
+                decimal Baseprice = (decimal)Session["BasePrice"];
+                decimal BP = Baseprice;
                 var orderList = _LNOrder.GetOrderByUser(idU);
                 ViewBag.Listo = orderList;
                 Order item = ViewBag.Listo;
@@ -270,7 +274,7 @@ namespace VenusDoors.Controllers
                             Status = new Model.Status() { Id = 1 },
                             Type = new Model.Type() { Id = 1 },
                             Quantity = pDoorsxUser.Quantity,
-                            Total = pDoorsxUser.SubTotal,
+                            Total = pDoorsxUser.SubTotal * BP,
                             CreationDate = DateTime.Now,
                             CreatorUser = userID,
                             ModificationDate = DateTime.Now,

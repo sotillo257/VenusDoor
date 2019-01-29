@@ -29,7 +29,7 @@ namespace Model
         public decimal Height { get; set; }
         public bool IsOpeningMeasurement { get; set; }
         public int Quantity { get; set; }
-        public int SubTotal { get; set; }
+        public decimal SubTotal { get; set; }
         public User User { get; set; }
         public Status Status { get; set; }
         public DateTime CreationDate { get; set; }
