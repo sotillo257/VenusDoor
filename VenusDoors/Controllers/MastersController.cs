@@ -79,7 +79,6 @@ namespace VenusDoors.Controllers
         {
             try
             {
-
                 uBottomRail.CreationDate = DateTime.Now;
                 uBottomRail.ModificationDate = DateTime.Now;
                 BusinessLogic.lnBottomRail _LN = new BusinessLogic.lnBottomRail();

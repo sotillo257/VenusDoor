@@ -368,8 +368,8 @@ function InsertDoorsPrices() {
             DoorStyle: { Id: $("#inDoorStyle").val() },
             Material: { Id: $("#inMaterial").val() },
             RailThickness: { Id: $("#inRailThickness").val() },
-            BasePrice: ("#inBasePrice").val(),
-            AdditionalSFPrice: ("#inAdditionalSFPrice").val(),
+            BasePrice: $("#inBasePrice").val(),
+            AdditionalSFPrice: $("#inAdditionalSFPrice").val(),
             Status: { Id: $("#inStatus").val() },
             Picture: $("#inPicture").val(),
             ProfilePicture: $("#inProfilePicture").val(),
@@ -379,7 +379,6 @@ function InsertDoorsPrices() {
             HorizontalAdditionalInchPrice: $("#inHorizontalAdditionalInchPrice").val(),
             CreatorUser: 6,
             ModificationUser: 6,
-
         }
     };
     console.log(datos);
