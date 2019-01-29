@@ -43,7 +43,7 @@
                         {
                             <tr role="row" class="odd">
                                 <td tabindex="0" class="">@item.Id</td>
-                                <td class="">@item.Position</td>
+                                <td class="">@item.Position1, @item.Position2, @item.Position3, @item.Position4, @item.Position5</td>
                                 <td class="">@item.Status.Id</td>
                                 <td class="">
                                     <center>
@@ -65,58 +65,6 @@
     </div>
 </div>
 
-@section scripts{
-<script>
-    var urlInserHingePositions = '@Url.Action("InserHingePositions", "Masters")';
-    var urlUpdateHingePositions = '@Url.Action("UpdateHingePositions", "Masters")';
-</script>
-    <script>
-        $(function () {
-            'use strict';
-
-            $('#datatable1').DataTable({
-                responsive: true,
-                language: {
-                    searchPlaceholder: 'Search...',
-                    sSearch: '',
-                    lengthMenu: '_MENU_ items/page',
-                }
-            });
-
-            $('#datatable2').DataTable({
-                bLengthChange: false,
-                searching: false,
-                responsive: true
-            });
-
-            // Select2
-            $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
-
-        });
-    </script>
-    <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
-    <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>
-    <script src="~/Content/lib/select2/js/select2.min.js"></script>
-@Scripts.Render("~/Scripts/js/Masters.js")
-<script type="text/javascript">
-
-        $(document).ready(function () {
-            var listHP = JSON.parse('@Html.Raw(ViewBag.ListHingePositions)');
-            $(document).on('click', '.Modificar', function (event) {
-                for (var i = 0; i < listHP.length; i++) {
-                    if (listHP[i].Id == $(this).attr('value')) {
-                        $('#txtId').val(listHP[i].Id);
-                        $('#txtPosition').val(listHP[i].Position);
-                        $('#IdStatus').val(listHP[i].Status.Id);
-                    }
-                }
-            });
-
-
-        });
-
-</script>
-}
 <div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div>
 
 <div id="modalInsert" class="modal fade effect-scale" aria-hidden="true" style="display: none;">
@@ -272,3 +220,56 @@
         </div><!-- modal-content -->
     </div><!-- modal-dialog -->
 </div>
+
+@section scripts{
+    <script>
+    var urlInserHingePositions = '@Url.Action("InserHingePositions", "Masters")';
+    var urlUpdateHingePositions = '@Url.Action("UpdateHingePositions", "Masters")';
+    </script>
+    <script>
+        $(function () {
+            'use strict';
+
+            $('#datatable1').DataTable({
+                responsive: true,
+                language: {
+                    searchPlaceholder: 'Search...',
+                    sSearch: '',
+                    lengthMenu: '_MENU_ items/page',
+                }
+            });
+
+            $('#datatable2').DataTable({
+                bLengthChange: false,
+                searching: false,
+                responsive: true
+            });
+
+            // Select2
+            $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
+
+        });
+    </script>
+    <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
+    <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>
+    <script src="~/Content/lib/select2/js/select2.min.js"></script>
+    @Scripts.Render("~/Scripts/js/Masters.js")
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            var listHP = JSON.parse('@Html.Raw(ViewBag.ListHingePositions)');
+            $(document).on('click', '.Modificar', function (event) {
+                for (var i = 0; i < listHP.length; i++) {
+                    if (listHP[i].Id == $(this).attr('value')) {
+                        $('#txtId').val(listHP[i].Id);
+                        $('#txtPosition').val(listHP[i].Position);
+                        $('#IdStatus').val(listHP[i].Status.Id);
+                    }
+                }
+            });
+
+
+        });
+
+    </script>
+}

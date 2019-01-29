@@ -65,58 +65,6 @@
     </div>
 </div>
 
-@section scripts{
-    <script>
-         var urlInsertBottomRail = '@Url.Action("InsertBottomRail", "Masters")';
-         var urlUpdateBottomRail = '@Url.Action("UpdateBottomRail", "Masters")';
-    </script>
-    <script>
-        $(function () {
-            'use strict';
-
-            $('#datatable1').DataTable({
-                responsive: true,
-                language: {
-                    searchPlaceholder: 'Search...',
-                    sSearch: '',
-                    lengthMenu: '_MENU_ items/page',
-                }
-            });
-
-            $('#datatable2').DataTable({
-                bLengthChange: false,
-                searching: false,
-                responsive: true
-            });
-
-            // Select2
-            $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
-
-        });
-    </script>
-    <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
-    <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>
-    <script src="~/Content/lib/select2/js/select2.min.js"></script>
-    @Scripts.Render("~/Scripts/js/Masters.js")
-    <script type="text/javascript">
-
-        $(document).ready(function () {
-                        var listBTR = JSON.parse('@Html.Raw(ViewBag.ListBottomRail)');
-                        $(document).on('click', '.Modificar', function (event) {
-                            for (var i = 0; i < listBTR.length; i++) {
-                                if (listBTR[i].Id == $(this).attr('value')) {
-                                    $('#txtId').val(listBTR[i].Id);
-                                    $('#IdStatus').val(listBTR[i].Status.Id);
-                                    $('#txtDescription').val(listBTR[i].Description);
-                                }
-                            }
-                        });
-
-
-                    });
-
-    </script>
-}
 <div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div>
 
 <div id="modalInsert" class="modal fade effect-scale" aria-hidden="true" style="display: none;">
@@ -158,7 +106,7 @@
                                 </div><!-- col-6 -->
                             </div><!-- row -->
                             <div class="modal-footer justify-content-lg-end">
-                                <button type="submit" id="btInsert" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Insert</button>
+                                <button id="btInsertBR" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Insert</button>
                                 <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>
                             </div>
                         </div><!-- modal-body -->
@@ -276,4 +224,55 @@
         </div><!-- modal-content -->
     </div><!-- modal-dialog -->
 </div>
+@section scripts{
+    <script type="text/javascript">
+        var urlInsertBottomRail = '@Url.Action("InsertBottomRail", "Masters")';
+        var urlUpdateBottomRail = '@Url.Action("UpdateBottomRail", "Masters")';
+    </script>
+@Scripts.Render("~/Scripts/js/Masters.js")
+    <script type="text/javascript">
+        $(function () {
+            'use strict';
 
+            $('#datatable1').DataTable({
+                responsive: true,
+                language: {
+                    searchPlaceholder: 'Search...',
+                    sSearch: '',
+                    lengthMenu: '_MENU_ items/page',
+                }
+            });
+
+            $('#datatable2').DataTable({
+                bLengthChange: false,
+                searching: false,
+                responsive: true
+            });
+
+            // Select2
+            $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
+
+        });
+    </script>
+    <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
+    <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>
+    <script src="~/Content/lib/select2/js/select2.min.js"></script>    
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+                        var listBTR = JSON.parse('@Html.Raw(ViewBag.ListBottomRail)');
+                        $(document).on('click', '.Modificar', function (event) {
+                            for (var i = 0; i < listBTR.length; i++) {
+                                if (listBTR[i].Id == $(this).attr('value')) {
+                                    $('#txtId').val(listBTR[i].Id);
+                                    $('#IdStatus').val(listBTR[i].Status.Id);
+                                    $('#txtDescription').val(listBTR[i].Description);
+                                }
+                            }
+                        });
+
+
+                    });
+
+    </script>
+}

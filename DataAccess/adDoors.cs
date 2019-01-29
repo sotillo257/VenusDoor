@@ -46,7 +46,6 @@ namespace DataAccess
                             Width = decimal.Parse(item["Width"].ToString()),
                             Height = decimal.Parse(item["Height"].ToString()),
                             IsOpeningMeasurement = bool.Parse(item["IsOpeningMeasurement"].ToString()),
-                            Quantity = int.Parse(item["Quantity"].ToString()),
                             Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["DescripStatus"].ToString() },
                             CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             ModificationDate = (item["ModificationDate"].ToString() != "") ? DateTime.Parse(item["ModificationDate"].ToString()) : DateTime.Parse("01/01/1900"),
@@ -100,7 +99,6 @@ namespace DataAccess
                             Width = decimal.Parse(item["Width"].ToString()),
                             Height = decimal.Parse(item["Height"].ToString()),
                             IsOpeningMeasurement = bool.Parse(item["IsOpeningMeasurement"].ToString()),
-                            Quantity = int.Parse(item["Quantity"].ToString()),
                             Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["DescripStatus"].ToString() },
                             CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             ModificationDate = (item["ModificationDate"].ToString() != "") ? DateTime.Parse(item["ModificationDate"].ToString()) : DateTime.Parse("01/01/1900"),
@@ -123,11 +121,11 @@ namespace DataAccess
 
         public int InsertDoors(Doors pDoors)
         {
-            string sql = @"[spInsertDoors] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}', '{20}', '{21}', '{22}', '{23}', '{24}', '{25}'";
+            string sql = @"[spInsertDoors] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}', '{20}', '{21}', '{22}', '{23}', '{24}'";
             sql = string.Format(sql, pDoors.DoorStyle.Id, pDoors.Material.Id, pDoors.TopRail.Id,pDoors.BottomRail.Id, 
                 pDoors.Preparation.Id, pDoors.Join.Id, pDoors.OutsideEdgeProfile.Id, 
                 pDoors.InsideEdgeProfile.Id, pDoors.VerticalDivisions.Id, pDoors.HorizontalDivisions.Id, pDoors.HingeDirection.Id, 
-                pDoors.HingePositions.Id, (pDoors.isDrill == true) ? 1 : 0, pDoors.Width, pDoors.Height, (pDoors.IsOpeningMeasurement == true) ? 1 : 0, pDoors.Quantity, 
+                pDoors.HingePositions.Id, (pDoors.isDrill == true) ? 1 : 0, pDoors.Width, pDoors.Height, (pDoors.IsOpeningMeasurement == true) ? 1 : 0, 
                 pDoors.Status.Id, pDoors.CreationDate.ToString("yyyy-MM-dd"), pDoors.CreatorUser, pDoors.ModificationDate.ToString("yyyy-MM-dd"),
                 pDoors.ModificationUser, pDoors.Picture, pDoors.ProfilePicture, pDoors.Panel.Id, pDoors.PanelMaterial.Id);
             try
@@ -142,11 +140,11 @@ namespace DataAccess
 
         public void UpdateDoors(Doors pDoors)
         {
-            string sql = @"[spUpdatetDoors] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}', '{20}', '{21}', '{22}', '{23}'";
+            string sql = @"[spUpdatetDoors] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}', '{20}', '{21}', '{22}'";
             sql = string.Format(sql,pDoors.Id, pDoors.DoorStyle.Id, pDoors.Material.Id, pDoors.TopRail.Id, pDoors.BottomRail.Id,
                 pDoors.Preparation.Id, pDoors.Join.Id, pDoors.OutsideEdgeProfile.Id,
                 pDoors.InsideEdgeProfile.Id, pDoors.VerticalDivisions.Id, pDoors.HorizontalDivisions.Id, pDoors.HingeDirection.Id,
-                pDoors.HingePositions.Id, pDoors.isDrill, pDoors.Width, pDoors.Height, pDoors.IsOpeningMeasurement, pDoors.Quantity,
+                pDoors.HingePositions.Id, pDoors.isDrill, pDoors.Width, pDoors.Height, pDoors.IsOpeningMeasurement,
                 pDoors.Status.Id, pDoors.ModificationDate.ToString("yyyy-MM-dd"),
                 pDoors.ModificationUser, pDoors.Picture, pDoors.ProfilePicture, pDoors.Panel.Id, pDoors.PanelMaterial.Id);
             try

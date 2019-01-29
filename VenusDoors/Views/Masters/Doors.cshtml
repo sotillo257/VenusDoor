@@ -29,7 +29,7 @@
         </div>
         <div class="table-wrapper">
             <div id="datatable1_wrapper" class="dataTables_wrapper no-footer">
-                <table id="datatable1" style="width: 100%;" class="table table-scroll display responsive nowrap dataTable no-footer dtr-inline" role="grid" aria-describedby="datatable1_info">
+                <table id="datatable1" style="width: 100%;" class="table display responsive nowrap dataTable no-footer dtr-inline" role="grid" aria-describedby="datatable1_info">
                     <thead>
                         <tr>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="First name: activate to sort column ascending">Id</th>
@@ -50,8 +50,7 @@
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Drill</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Width</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Height</th>
-                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Opening Measurement</th>
-                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Quantity</th>
+                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Opening Measurement</th>                          
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Picture</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">ProfilePicture</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Status</th>
@@ -83,7 +82,6 @@
                                 <td class="">@item.IsOpeningMeasurement</td>
                                 <td class="">@item.Picture</td>
                                 <td class="">@item.ProfilePicture</td>
-                                <td class="">@item.Quantity</td>
                                 <td class="">@item.Status.Id</td>
                                 <td class="">
                                     <center>
@@ -313,10 +311,6 @@
                                             </div><!-- form-group -->
 
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="Quantity" style="margin-top: 25px;">Quantity: </label>
-                                                <input type="text" name="id" id="inQuantity" class="form-control" placeholder="">
-                                            </div><!-- form-group -->
-                                            <div class="col-xs-4 col-md-3">
                                                 <label for="Template" style="margin-top: 25px;">Status: </label>
                                                 <select style="width:100%" class="form-control select2" id="inStatus" data-placeholder="">
                                                     <option value="0">select</option>
@@ -340,7 +334,7 @@
                                 </div><!-- col-6 -->
                             </div><!-- row -->
                             <div class="modal-footer justify-content-lg-end">
-                                <button type="button" id="btInsertDoors" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Insert</button>
+                                <button type="button" onclick="this.disabled=true;" id="btInsertDoors" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Insert</button>
                                 <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>
                             </div>
                         </div><!-- modal-body -->
@@ -560,10 +554,6 @@
                                             </div><!-- form-group -->
 
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="Quantity" style="margin-top: 25px;">Quantity: </label>
-                                                <input type="text" name="id" id="txtQuantity" class="form-control" placeholder="">
-                                            </div><!-- form-group -->
-                                            <div class="col-xs-4 col-md-3">
                                                 <label for="Template" style="margin-top: 25px;">Status: </label>
                                                 <select style="width:100%" class="form-control select2" id="IdStatus" data-placeholder="">
                                                     <option value="0">select</option>
@@ -587,7 +577,7 @@
                                 </div><!-- col-6 -->
                             </div><!-- row -->
                             <div class="modal-footer justify-content-lg-end">
-                                <button type="button" id="btnUpdateDoors" class="btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Modify</button>
+                                <button type="button" onclick="this.disabled=true;" id="btnUpdateDoors" class="btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Modify</button>
                                 <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>
                             </div>
                         </div><!-- modal-body -->
@@ -597,7 +587,6 @@
         </div><!-- modal-content -->
     </div><!-- modal-dialog -->
 </div>
-<div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div>
 
 <div id="modaldemo2" class="modal fade" aria-hidden="true" style="display: none;">
     <div class="modal-dialog modal-sm" role="document">
@@ -713,11 +702,9 @@
                         $('#isDrill').val(ListDoors[i].isDrill);
                         $('#txtWidth').val(ListDoors[i].Width);
                         $('#txtHeight').val(ListDoors[i].Height);
-                        $('#txtQuantity').val(ListDoors[i].Quantity);
                         $('#isOpeningMeasurement').val(ListDoors[i].IsOpeningMeasurement);
                         $('#txtPicture').val(ListDoors[i].Picture);
                         $('#txtProfilePicture').val(ListDoors[i].ProfilePicture);
-                        $('#txtQuantity').val(ListDoors[i].Quantity);
                         $('#IdStatus').val(ListDoors[i].Status.Id);
                     }
                 }

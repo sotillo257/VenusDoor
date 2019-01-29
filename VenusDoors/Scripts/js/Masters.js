@@ -3,7 +3,7 @@
         InsertBottomRail();
     });
     $("#btnModify").on("click", function () {
-        InsertBottomRail();
+        UpdateBottomRail();
     });
 
     $("#btInsertDoors").on("click", function () {
@@ -76,7 +76,7 @@
         UpdateMaterial();
     });
 
-    $("#btInsertMaterialxBR").on("click", function () {
+    $("#InsertMaterialxBottomRail").on("click", function () {
         InsertMaterialxBottomRail();
     });
     $("#btnUpdateMaterialxBottom").on("click", function () {
@@ -277,7 +277,6 @@ function InsertDoors() {
             Height: $("#inHeight").val(),
             Picture: $("#inPicture").val(),
             ProfilePicture: $("#inProfilePicture").val(),
-            Quantity: $("#inQuantity").val(),
             Status: { Id: $("#inStatus").val() },
             OpeningMeasurement: { Id: $("#inOpeningMeasurement").val() },
             CreatorUser: 6,
@@ -332,12 +331,10 @@ function UpdateDoors() {
             Height: $("#txtHeight").val(),
             Picture: $("#txtPicture").val(),
             ProfilePicture: $("#txtProfilePicture").val(),
-            Quantity: $("#txtQuantity").val(),
             Status: { Id: $("#IdStatus").val() },
             OpeningMeasurement: { Id: $("#isOpeningMeasurement").val() },
             CreatorUser: 6,
             ModificationUser: 6,
-
         }
     };
     console.log(datos);
