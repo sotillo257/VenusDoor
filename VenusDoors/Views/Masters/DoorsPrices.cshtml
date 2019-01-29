@@ -156,12 +156,20 @@
 
                                             <div class="col-xs-4 col-md-3">
                                                 <label for="Picture" style="margin-top: 25px;">Picture: </label>
-                                                <input type="text" name="id" id="inPicture" class="form-control" placeholder="">
+                                                @*<input type="file" name="id" id="inPicture" accept=".pdf,.jpg,.png" placeholder="">*@
+                                                <div style="padding-bottom: 12px;padding-top: 12px;height: 43px;" id="inPicture" class="form-control bd bd-dashed d-flex align-items-center justify-content-center rounded bg-gray-300">
+                                                    <p id="texto">Add file</p>
+                                                    <input type="file" id="btn_enviar">
+                                                </div>
                                             </div><!-- form-group -->
 
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="ProfilePicture" style="margin-top: 25px;">ProfilePicture: </label>
-                                                <input type="text" name="id" id="inProfilePicture" class="form-control" placeholder="">
+                                                <label for="ProfilePicture" style="margin-top: 25px;">Profile Picture: </label>
+                                                @*<input type="file" class="form-control bd bd-dashed d-flex align-items-center justify-content-center rounded bg-gray-300" name="id" id="inProfilePicture" accept=".pdf,.jpg,.png">*@
+                                                <div style="padding-bottom: 12px;padding-top: 12px;height: 43px;" id="inProfilePicture" class="form-control bd bd-dashed d-flex align-items-center justify-content-center rounded bg-gray-300">
+                                                    <p id="texto">Add file</p>
+                                                    <input type="file" id="btn_enviar">
+                                                </div>
                                             </div><!-- form-group -->
 
                                             <div class="col-xs-4 col-md-3">
