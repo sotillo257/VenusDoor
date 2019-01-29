@@ -169,7 +169,8 @@ namespace VenusDoors.Controllers
                 uDoors.CreationDate = DateTime.Now;
                 uDoors.ModificationDate = DateTime.Now;
                 BusinessLogic.lnDoors _LM = new BusinessLogic.lnDoors();
-                return Json(_LM.UpdateDoors(uDoors));
+                var modDoor = _LM.UpdateDoors(uDoors);
+                return Json(true, JsonRequestBehavior.AllowGet);
 
             }
             catch
@@ -238,7 +239,8 @@ namespace VenusDoors.Controllers
                 uDoorPrice.CreationDate = DateTime.Now;
                 uDoorPrice.ModificationDate = DateTime.Now;
                 BusinessLogic.lnDoorsPrices _LP = new BusinessLogic.lnDoorsPrices();
-                return Json(_LP.UpdateDoorsPrices(uDoorPrice));
+                var modDP = _LP.UpdateDoorsPrices(uDoorPrice);
+                return Json(true, JsonRequestBehavior.AllowGet);
 
             }
             catch
@@ -298,7 +300,8 @@ namespace VenusDoors.Controllers
                 uDoorStyle.CreationDate = DateTime.Now;
                 uDoorStyle.ModificationDate = DateTime.Now;
                 BusinessLogic.lnDoorStyle _LA = new BusinessLogic.lnDoorStyle();
-                return Json(_LA.UpdateDoorStyle(uDoorStyle));
+                var modDS = _LA.UpdateDoorStyle(uDoorStyle);
+                return Json(true, JsonRequestBehavior.AllowGet);
 
             }
             catch
@@ -403,7 +406,8 @@ namespace VenusDoors.Controllers
             {
 
                 BusinessLogic.lnGroup _LC = new BusinessLogic.lnGroup();
-                return Json(_LC.UpdateGroup(uGroup));
+                var modGP = _LC.UpdateGroup(uGroup);
+                return Json(true, JsonRequestBehavior.AllowGet);
 
             }
             catch
@@ -462,7 +466,8 @@ namespace VenusDoors.Controllers
                 uHingeDirection.CreationDate = DateTime.Now;
                 uHingeDirection.ModificationDate = DateTime.Now;
                 BusinessLogic.lnHingeDirection _LD = new BusinessLogic.lnHingeDirection();
-                return Json(_LD.UpdateHingeDirection(uHingeDirection));
+                var modHD = _LD.UpdateHingeDirection(uHingeDirection);
+                return Json(true, JsonRequestBehavior.AllowGet);
 
             }
             catch
@@ -519,7 +524,8 @@ namespace VenusDoors.Controllers
                 uHingePositions.CreationDate = DateTime.Now;
                 uHingePositions.ModificationDate = DateTime.Now;
                 BusinessLogic.lnHingePositions _LE = new BusinessLogic.lnHingePositions();
-                return Json(_LE.UpdateHingePositions(uHingePositions));
+                var modHP = _LE.UpdateHingePositions(uHingePositions);
+                return Json(true, JsonRequestBehavior.AllowGet);
 
             }
             catch
@@ -579,7 +585,8 @@ namespace VenusDoors.Controllers
                 uHorizontalDivisions.CreationDate = DateTime.Now;
                 uHorizontalDivisions.ModificationDate = DateTime.Now;
                 BusinessLogic.lnHorizontalDivisions _LF = new BusinessLogic.lnHorizontalDivisions();
-                return Json(_LF.UpdateHorizontalDivisions(uHorizontalDivisions));
+                var modHoDi = _LF.UpdateHorizontalDivisions(uHorizontalDivisions);
+                return Json(true, JsonRequestBehavior.AllowGet);
 
             }
             catch
@@ -639,7 +646,8 @@ namespace VenusDoors.Controllers
                 uInsideEdgeProfile.CreationDate = DateTime.Now;
                 uInsideEdgeProfile.ModificationDate = DateTime.Now;
                 BusinessLogic.lnInsideEdgeProfile _LG = new BusinessLogic.lnInsideEdgeProfile();
-                return Json(_LG.UpdateInsideEdgeProfile(uInsideEdgeProfile));
+                var modIEP = _LG.UpdateInsideEdgeProfile(uInsideEdgeProfile);
+                return Json(true, JsonRequestBehavior.AllowGet);
 
             }
             catch
@@ -700,7 +708,8 @@ namespace VenusDoors.Controllers
                 uJoin.CreationDate = DateTime.Now;
                 uJoin.ModificationDate = DateTime.Now;
                 BusinessLogic.lnJoin _LH = new BusinessLogic.lnJoin();
-                return Json(_LH.UpdateJoin(uJoin));
+                var modJoin = _LH.UpdateJoin(uJoin);
+                return Json(true, JsonRequestBehavior.AllowGet);
 
             }
             catch
@@ -760,7 +769,8 @@ namespace VenusDoors.Controllers
                 uMaterial.CreationDate = DateTime.Now;
                 uMaterial.ModificationDate = DateTime.Now;
                 BusinessLogic.lnMaterial _LI = new BusinessLogic.lnMaterial();
-                return Json(_LI.UpdateMaterial(uMaterial));
+                var modMaterial = _LI.UpdateMaterial(uMaterial);
+                return Json(true, JsonRequestBehavior.AllowGet);
 
             }
             catch
@@ -822,7 +832,8 @@ namespace VenusDoors.Controllers
                 uMaterialxBottomRail.CreationDate = DateTime.Now;
                 uMaterialxBottomRail.ModificationDate = DateTime.Now;
                 BusinessLogic.lnMaterialxBottomRail _LJ = new BusinessLogic.lnMaterialxBottomRail();
-                return Json(_LJ.UpdateMaterialxBottomRail(uMaterialxBottomRail));
+                var modMaterialxBR = _LJ.UpdateMaterialxBottomRail(uMaterialxBottomRail);
+                return Json(true, JsonRequestBehavior.AllowGet);
 
             }
             catch
@@ -884,7 +895,8 @@ namespace VenusDoors.Controllers
                 uOrder.CreationDate = DateTime.Now;
                 uOrder.ModificationDate = DateTime.Now;
                 BusinessLogic.lnOrder _LK = new BusinessLogic.lnOrder();
-                return Json(_LK.UpdateOrder(uOrder));
+                var modOrder = _LK.UpdateOrder(uOrder);
+                return Json(true, JsonRequestBehavior.AllowGet);
 
             }
             catch
@@ -944,7 +956,8 @@ namespace VenusDoors.Controllers
                 uOutsideEdgeProfiler.CreationDate = DateTime.Now;
                 uOutsideEdgeProfiler.ModificationDate = DateTime.Now;
                 BusinessLogic.lnOutsideEdgeProfile _LL = new BusinessLogic.lnOutsideEdgeProfile();
-                return Json(_LL.UpdateOutsideEdgeProfile(uOutsideEdgeProfiler));
+                var modOEP = _LL.UpdateOutsideEdgeProfile(uOutsideEdgeProfiler);
+                return Json(true, JsonRequestBehavior.AllowGet);
 
             }
             catch
@@ -1004,7 +1017,8 @@ namespace VenusDoors.Controllers
                 uPanel.CreationDate = DateTime.Now;
                 uPanel.ModificationDate = DateTime.Now;
                 BusinessLogic.lnPanel _LX = new BusinessLogic.lnPanel();
-                return Json(_LX.UpdatePanel(uPanel));
+                var modPanel = _LX.UpdatePanel(uPanel);
+                return Json(true, JsonRequestBehavior.AllowGet);
 
             }
             catch
@@ -1064,7 +1078,8 @@ namespace VenusDoors.Controllers
                 uPanelMaterial.CreationDate = DateTime.Now;
                 uPanelMaterial.ModificationDate = DateTime.Now;
                 BusinessLogic.lnPanelMaterial _PAC = new BusinessLogic.lnPanelMaterial();
-                return Json(_PAC.UpdatePanelMaterial(uPanelMaterial));
+                var modPanelMaterial = _PAC.UpdatePanelMaterial(uPanelMaterial);
+                return Json(true, JsonRequestBehavior.AllowGet);
 
             }
             catch
@@ -1124,7 +1139,8 @@ namespace VenusDoors.Controllers
                 uPerson.CreationDate = DateTime.Now;
                 uPerson.ModificationDate = DateTime.Now;
                 BusinessLogic.lnPerson _PAX = new BusinessLogic.lnPerson();
-                return Json(_PAX.UpdatePerson(uPerson));
+                var modPerson = _PAX.UpdatePerson(uPerson);
+                return Json(true, JsonRequestBehavior.AllowGet);
 
             }
             catch
@@ -1184,7 +1200,8 @@ namespace VenusDoors.Controllers
                 uPreparation.CreationDate = DateTime.Now;
                 uPreparation.ModificationDate = DateTime.Now;
                 BusinessLogic.lnPreparation _JFK = new BusinessLogic.lnPreparation();
-                return Json(_JFK.UpdatePreparation(uPreparation));
+                var modPerson = _JFK.UpdatePreparation(uPreparation);
+                return Json(true, JsonRequestBehavior.AllowGet);
 
             }
             catch
@@ -1244,7 +1261,8 @@ namespace VenusDoors.Controllers
                 uRailThickness.CreationDate = DateTime.Now;
                 uRailThickness.ModificationDate = DateTime.Now;
                 BusinessLogic.lnRailThickness _LN = new BusinessLogic.lnRailThickness();
-                return Json(_LN.UpdateRailThickness(uRailThickness));
+                var modRT = _LN.UpdateRailThickness(uRailThickness);
+                return Json(true, JsonRequestBehavior.AllowGet);
 
             }
             catch
@@ -1311,7 +1329,8 @@ namespace VenusDoors.Controllers
             {
 
                 BusinessLogic.lnStatus _LNStatus = new BusinessLogic.lnStatus();
-                return Json(_LNStatus.UpdateStatus(uStatus));
+                var modStatus = _LNStatus.UpdateStatus(uStatus);
+                return Json(true, JsonRequestBehavior.AllowGet);
 
             }
             catch
@@ -1371,7 +1390,8 @@ namespace VenusDoors.Controllers
                 uTopRail.CreationDate = DateTime.Now;
                 uTopRail.ModificationDate = DateTime.Now;
                 BusinessLogic.lnTopRail _TOP = new BusinessLogic.lnTopRail();
-                return Json(_TOP.UpdateTopRail(uTopRail));
+                var modTopRail = _TOP.UpdateTopRail(uTopRail);
+                return Json(true, JsonRequestBehavior.AllowGet);
 
             }
             catch
@@ -1433,7 +1453,8 @@ namespace VenusDoors.Controllers
                 uTopRailByHorizontalDivisions.CreationDate = DateTime.Now;
                 uTopRailByHorizontalDivisions.ModificationDate = DateTime.Now;
                 BusinessLogic.lnTopRailxHorizontalDivisions _TAP = new BusinessLogic.lnTopRailxHorizontalDivisions();
-                return Json(_TAP.UpdateTopRailxHorizontalDivisions(uTopRailByHorizontalDivisions));
+                var modTopRailxHD = _TAP.UpdateTopRailxHorizontalDivisions(uTopRailByHorizontalDivisions);
+                return Json(true, JsonRequestBehavior.AllowGet);
 
             }
             catch
@@ -1495,7 +1516,8 @@ namespace VenusDoors.Controllers
                 uTopRailByJoin.CreationDate = DateTime.Now;
                 uTopRailByJoin.ModificationDate = DateTime.Now;
                 BusinessLogic.lnTopRailxJoin _TEP = new BusinessLogic.lnTopRailxJoin();
-                return Json(_TEP.UpdateTopRailxJoin(uTopRailByJoin));
+                var modTopRailxJoin = _TEP.UpdateTopRailxJoin(uTopRailByJoin);
+                return Json(true, JsonRequestBehavior.AllowGet);
 
             }
             catch
@@ -1557,7 +1579,8 @@ namespace VenusDoors.Controllers
                 uTopRailByVerticalDivisions.CreationDate = DateTime.Now;
                 uTopRailByVerticalDivisions.ModificationDate = DateTime.Now;
                 BusinessLogic.lnTopRailxVerticalDivisions _TUP = new BusinessLogic.lnTopRailxVerticalDivisions();
-                return Json(_TUP.UpdateTopRailxVerticalDivisions(uTopRailByVerticalDivisions));
+                var modTopRailxVD = _TUP.UpdateTopRailxVerticalDivisions(uTopRailByVerticalDivisions);
+                return Json(true, JsonRequestBehavior.AllowGet);
 
             }
             catch
@@ -1618,7 +1641,8 @@ namespace VenusDoors.Controllers
                 uTypes.CreationDate = DateTime.Now;
                 uTypes.ModificationDate = DateTime.Now;
                 BusinessLogic.lnType _LBL = new BusinessLogic.lnType();
-                return Json(_LBL.UpdateType(uTypes));
+                var modType = _LBL.UpdateType(uTypes);
+                return Json(true, JsonRequestBehavior.AllowGet);
 
             }
             catch
@@ -1680,7 +1704,8 @@ namespace VenusDoors.Controllers
                 uUsuario.CreationDate = DateTime.Now;
                 uUsuario.ModificationDate = DateTime.Now;
                 BusinessLogic.lnUser _USB = new BusinessLogic.lnUser();
-                return Json(_USB.UpdateUser(uUsuario));
+                var modUser = _USB.UpdateUser(uUsuario);
+                return Json(true, JsonRequestBehavior.AllowGet);
 
             }
             catch
@@ -1740,7 +1765,8 @@ namespace VenusDoors.Controllers
                 uVerticalDivisions.CreationDate = DateTime.Now;
                 uVerticalDivisions.ModificationDate = DateTime.Now;
                 BusinessLogic.lnVerticalDivisions _UCB = new BusinessLogic.lnVerticalDivisions();
-                return Json(_UCB.UpdateVerticalDivisions(uVerticalDivisions));
+                var modVD = _UCB.UpdateVerticalDivisions(uVerticalDivisions);
+                return Json(true, JsonRequestBehavior.AllowGet);
 
             }
             catch
