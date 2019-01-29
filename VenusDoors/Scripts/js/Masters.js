@@ -257,6 +257,7 @@ function InsertDoors() {
     var datos =
     {
         pDoors: {
+            Id: { Id: $("#inputID").val() },
             DoorStyle: { Id: $("#inDoorStyle").val() },
             Matarial: { Id: $("#inMatarial").val() },
             TopRail: { Id: $("#inTopRail").val() },

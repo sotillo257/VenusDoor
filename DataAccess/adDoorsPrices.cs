@@ -120,8 +120,8 @@ namespace DataAccess
 
         public void UpdateDoorsPrices(DoorsPrices pDoorsPrices)
         {
-            string sql = @"[spUpdateDoorsPrices] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}'";
-            sql = string.Format(sql, pDoorsPrices.DoorStyle.Id, pDoorsPrices.Material.Id, pDoorsPrices.RailThickness.Id, pDoorsPrices.BasePrice, pDoorsPrices.AdditionalSFPrice, pDoorsPrices.VerticalBase1FLPrice,
+            string sql = @"[spUpdateDoorsPrices] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}', '{14}'";
+            sql = string.Format(sql,pDoorsPrices.Id, pDoorsPrices.DoorStyle.Id, pDoorsPrices.Material.Id, pDoorsPrices.RailThickness.Id, pDoorsPrices.BasePrice, pDoorsPrices.AdditionalSFPrice, pDoorsPrices.VerticalBase1FLPrice,
                 pDoorsPrices.VerticalAdditionalInchPrice, pDoorsPrices.HorizontalBase1FLPrice, pDoorsPrices.HorizontalAdditionalInchPrice,
                 pDoorsPrices.Status.Id, pDoorsPrices.ModificationDate.ToString("yyyy-MM-dd"), pDoorsPrices.ModificationUser, pDoorsPrices.Picture, pDoorsPrices.ProfilePicture);
             try

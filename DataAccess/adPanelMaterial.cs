@@ -98,8 +98,8 @@ namespace DataAccess
 
         public void UpdatePanelMaterial(PanelMaterial pPanelMaterial)
         {
-            string sql = @"[spUpdatePanelMaterial] '{0}', '{1}', '{2}', '{3}'";
-            sql = string.Format(sql, pPanelMaterial.Description, pPanelMaterial.Status.Id, pPanelMaterial.ModificationDate.ToString("yyyy-MM-dd"),
+            string sql = @"[spUpdatePanelMaterial] '{0}', '{1}', '{2}', '{3}', '{4}'";
+            sql = string.Format(sql,pPanelMaterial.Id, pPanelMaterial.Description, pPanelMaterial.Status.Id, pPanelMaterial.ModificationDate.ToString("yyyy-MM-dd"),
                 pPanelMaterial.ModificationUser);
             try
             {
