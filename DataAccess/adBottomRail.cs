@@ -98,8 +98,8 @@ namespace DataAccess
 
         public void UpdateBottomRail(BottomRail pBottomRail)
         {
-            string sql = @"[spUpdateBottomRail] '{0}', '{1}', '{2}', '{3}'";
-            sql = string.Format(sql, pBottomRail.Description, pBottomRail.Status.Id, pBottomRail.ModificationDate.ToString("yyyy-MM-dd"),
+            string sql = @"[spUpdateBottomRail] '{0}', '{1}', '{2}', '{3}', '{4}'";
+            sql = string.Format(sql,pBottomRail.Id, pBottomRail.Description, pBottomRail.Status.Id, pBottomRail.ModificationDate.ToString("yyyy-MM-dd"),
                 pBottomRail.ModificationUser);
             try
             {
