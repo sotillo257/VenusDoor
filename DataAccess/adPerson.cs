@@ -104,8 +104,8 @@ namespace DataAccess
 
         public void UpdatePerson(Person pPerson)
         {
-            string sql = @"[spUpdatePerson] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}, '{6}";
-            sql = string.Format(sql, pPerson.Name, pPerson.Lastname, pPerson.Telephone, pPerson.Direction, pPerson.Status.Id, pPerson.ModificationDate.ToString("yyyy-MM-dd"),
+            string sql = @"[spUpdatePerson] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}'";
+            sql = string.Format(sql,pPerson.Id, pPerson.Name, pPerson.Lastname, pPerson.Telephone, pPerson.Direction, pPerson.Status.Id, pPerson.ModificationDate.ToString("yyyy-MM-dd"),
                 pPerson.ModificationUser);
             try
             {

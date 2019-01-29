@@ -98,8 +98,8 @@ namespace DataAccess
 
         public void UpdateRailThickness(RailThickness pRailThickness)
         {
-            string sql = @"[spUpdateRailThickness] '{0}', '{1}', '{2}', '{3}'";
-            sql = string.Format(sql, pRailThickness.Description, pRailThickness.Status.Id, pRailThickness.ModificationDate.ToString("yyyy-MM-dd"),
+            string sql = @"[spUpdateRailThickness] '{0}', '{1}', '{2}', '{3}', '{4}'";
+            sql = string.Format(sql,pRailThickness.Id, pRailThickness.Description, pRailThickness.Status.Id, pRailThickness.ModificationDate.ToString("yyyy-MM-dd"),
                 pRailThickness.ModificationUser);
             try
             {

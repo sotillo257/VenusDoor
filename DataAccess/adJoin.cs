@@ -98,8 +98,8 @@ namespace DataAccess
 
         public void UpdateJoin(Join pjo)
         {
-            string sql = @"[spUpdateJoin] '{0}', '{1}', '{2}', '{3}'";
-            sql = string.Format(sql, pjo.Description, pjo.Status.Id, pjo.ModificationDate.ToString("yyyy-MM-dd"),
+            string sql = @"[spUpdateJoin] '{0}', '{1}', '{2}', '{3}', '{4}'";
+            sql = string.Format(sql,pjo.Id, pjo.Description, pjo.Status.Id, pjo.ModificationDate.ToString("yyyy-MM-dd"),
                 pjo.ModificationUser);
             try
             {

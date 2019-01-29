@@ -100,8 +100,8 @@ namespace DataAccess
 
         public void UpdateDoorStylexOutsideEdgeProfile(DoorStylexOutsideEdgeProfile pDoorStylexOutsideEdgeProfile)
         {
-            string sql = @"[spUpdateDoorStylexOutsideEdgeProfile] '{0}', '{1}', '{2}', '{3}', '{4}'";
-            sql = string.Format(sql, pDoorStylexOutsideEdgeProfile.DoorStyle.Id, pDoorStylexOutsideEdgeProfile.OutsideEdgeProfile.Id, pDoorStylexOutsideEdgeProfile.Status.Id, pDoorStylexOutsideEdgeProfile.ModificationDate.ToString("yyyyMMdd"),
+            string sql = @"[spUpdateDoorStylexOutsideEdgeProfile] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}'";
+            sql = string.Format(sql,pDoorStylexOutsideEdgeProfile.Id, pDoorStylexOutsideEdgeProfile.DoorStyle.Id, pDoorStylexOutsideEdgeProfile.OutsideEdgeProfile.Id, pDoorStylexOutsideEdgeProfile.Status.Id, pDoorStylexOutsideEdgeProfile.ModificationDate.ToString("yyyyMMdd"),
                 pDoorStylexOutsideEdgeProfile.ModificationUser);
             try
             {

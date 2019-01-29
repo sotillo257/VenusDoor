@@ -98,8 +98,8 @@ namespace DataAccess
 
         public void UpdateHingeDirection(HingeDirection pHingeDirection)
         {
-            string sql = @"[spUpdateHingeDirection] '{0}', '{1}', '{2}', '{3}'";
-            sql = string.Format(sql, pHingeDirection.Direction, pHingeDirection.Status.Id, pHingeDirection.ModificationDate.ToString("yyyy-MM-dd"),
+            string sql = @"[spUpdateHingeDirection] '{0}', '{1}', '{2}', '{3}', '{4}'";
+            sql = string.Format(sql,pHingeDirection.Id, pHingeDirection.Direction, pHingeDirection.Status.Id, pHingeDirection.ModificationDate.ToString("yyyy-MM-dd"),
                 pHingeDirection.ModificationUser);
             try
             {

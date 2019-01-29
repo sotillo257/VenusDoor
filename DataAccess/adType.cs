@@ -75,7 +75,7 @@ namespace DataAccess
 
         public int InsertType(Model.Type pType)
         {
-            string sql = @"[spInsertType] '{0}', {1}";
+            string sql = @"[spInsertType] '{0}', '{1}'";
             sql = string.Format(sql, pType.Description, pType.Group.Id);
             try
             {
@@ -89,8 +89,8 @@ namespace DataAccess
 
         public void UpdateType(Model.Type pType)
         {
-            string sql = @"[spUpdateType] '{0}', {1}";
-            sql = string.Format(sql, pType.Description, pType.Group.Id);
+            string sql = @"[spUpdateType] '{0}', '{1}', '{2}'";
+            sql = string.Format(sql,pType.Id, pType.Description, pType.Group.Id);
             try
             {
                 _MB.EjecutarSQL(_CN, sql);

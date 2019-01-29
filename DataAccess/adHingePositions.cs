@@ -106,8 +106,8 @@ namespace DataAccess
 
         public void UpdateHingePositions(HingePositions pHingePositions)
         {
-            string sql = @"[spUpdateHingePositions] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}'";
-            sql = string.Format(sql, pHingePositions.Position1, pHingePositions.Position2, pHingePositions.Position3, pHingePositions.Position4, pHingePositions.Position5, pHingePositions.Status.Id, pHingePositions.ModificationDate.ToString("yyyy-MM-dd"),
+            string sql = @"[spUpdateHingePositions] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}'";
+            sql = string.Format(sql,pHingePositions.Id, pHingePositions.Position1, pHingePositions.Position2, pHingePositions.Position3, pHingePositions.Position4, pHingePositions.Position5, pHingePositions.Status.Id, pHingePositions.ModificationDate.ToString("yyyy-MM-dd"),
                 pHingePositions.ModificationUser);
             try
             {

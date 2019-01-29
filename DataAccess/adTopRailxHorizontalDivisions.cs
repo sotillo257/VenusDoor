@@ -100,8 +100,8 @@ namespace DataAccess
 
         public void UpdateTopRailxHorizontalDivisions(TopRailxHorizontalDivisions pTop)
         {
-            string sql = @"[spUpdateTopRailxHorizontalDivisions] '{0}', '{1}', '{2}', '{3}', '{4}'";
-            sql = string.Format(sql, pTop.TopRail.Id, pTop.HorizontalDivisions.Id, pTop.Status.Id, pTop.ModificationDate.ToString("yyyy-MM-dd"),
+            string sql = @"[spUpdateTopRailxHorizontalDivisions] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}'";
+            sql = string.Format(sql, pTop.Id, pTop.TopRail.Id, pTop.HorizontalDivisions.Id, pTop.Status.Id, pTop.ModificationDate.ToString("yyyy-MM-dd"),
                 pTop.ModificationUser);
             try
             {

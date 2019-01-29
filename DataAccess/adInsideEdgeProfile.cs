@@ -98,8 +98,8 @@ namespace DataAccess
 
         public void UpdateInsideEdgeProfile(InsideEdgeProfile pInsideEdgeProfile)
         {
-            string sql = @"[spUpdateInsideEdgeProfile] '{0}', '{1}', '{2}', '{3}'";
-            sql = string.Format(sql, pInsideEdgeProfile.Description, pInsideEdgeProfile.Status.Id, pInsideEdgeProfile.ModificationDate.ToString("yyyy-MM-dd"),
+            string sql = @"[spUpdateInsideEdgeProfile] '{0}', '{1}', '{2}', '{3}', '{4}'";
+            sql = string.Format(sql, pInsideEdgeProfile.Id, pInsideEdgeProfile.Description, pInsideEdgeProfile.Status.Id, pInsideEdgeProfile.ModificationDate.ToString("yyyy-MM-dd"),
                 pInsideEdgeProfile.ModificationUser);
             try
             {

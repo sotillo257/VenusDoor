@@ -75,7 +75,7 @@ namespace DataAccess
 
         public int InsertStatus(Status pStatus)
         {
-            string sql = @"[spInsertStatus] '{0}', {1}";
+            string sql = @"[spInsertStatus] '{0}', '{1}'";
             sql = string.Format(sql, pStatus.Description, pStatus.Group.Id);
             try
             {
@@ -89,8 +89,8 @@ namespace DataAccess
 
         public void UpdateStatus(Status pStatus)
         {
-            string sql = @"[spUpdateStatus] '{0}', {1}";
-            sql = string.Format(sql, pStatus.Description, pStatus.Group.Id);
+            string sql = @"[spUpdateStatus] '{0}', '{1}', '{2}'";
+            sql = string.Format(sql,pStatus.Id, pStatus.Description, pStatus.Group.Id);
             try
             {
                 _MB.EjecutarSQL(_CN, sql);

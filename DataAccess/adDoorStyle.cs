@@ -98,8 +98,8 @@ namespace DataAccess
 
         public void UpdateDoorStyle(DoorStyle pDoorStyle)
         {
-            string sql = @"[spUpdateDoorStyle] '{0}', '{1}', '{2}', '{3}'";
-            sql = string.Format(sql, pDoorStyle.Description, pDoorStyle.Status.Id, pDoorStyle.ModificationDate.ToString("yyyyMMdd"), 
+            string sql = @"[spUpdateDoorStyle] '{0}', '{1}', '{2}', '{3}', '{4}'";
+            sql = string.Format(sql, pDoorStyle.Id, pDoorStyle.Description, pDoorStyle.Status.Id, pDoorStyle.ModificationDate.ToString("yyyyMMdd"), 
                 pDoorStyle.ModificationUser);
             try
             {

@@ -98,8 +98,8 @@ namespace DataAccess
 
         public void UpdatePreparation(Preparation pPreparation)
         {
-            string sql = @"[spUpdatePreparation] '{0}', '{1}', '{2}', '{3}'";
-            sql = string.Format(sql, pPreparation.Description, pPreparation.Status.Id, pPreparation.ModificationDate.ToString("yyyy-MM-dd"),
+            string sql = @"[spUpdatePreparation] '{0}', '{1}', '{2}', '{3}', '{4}'";
+            sql = string.Format(sql,pPreparation.Id, pPreparation.Description, pPreparation.Status.Id, pPreparation.ModificationDate.ToString("yyyy-MM-dd"),
                 pPreparation.ModificationUser);
             try
             {
