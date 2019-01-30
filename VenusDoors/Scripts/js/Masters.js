@@ -1,9 +1,9 @@
 ﻿$(document).ready(function () {
-    $("#btInsertBR").on("click", function () {
+    $("#btInsert").on("click", function () {
         InsertBottomRail();
     });
     $("#btnModify").on("click", function () {
-        InsertBottomRail();
+        UpdateBottomRail();
     });
 
     $("#btInsertDoors").on("click", function () {
@@ -76,7 +76,7 @@
         UpdateMaterial();
     });
 
-    $("#btInsertMaterialxBR").on("click", function () {
+    $("#InsertMaterialxBottomRail").on("click", function () {
         InsertMaterialxBottomRail();
     });
     $("#btnUpdateMaterialxBottom").on("click", function () {
