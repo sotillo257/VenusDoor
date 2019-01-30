@@ -68,12 +68,19 @@
                     <span class="menu-item-label">Order summary</span>
                 </div><!-- menu-item -->
             </a><!-- br-menu-link -->
-            <a href="/OrderStatus/" class="br-menu-link @ViewBag.OrderStatus ">
-                <div class="br-menu-item">
-                    <i class="menu-item-icon ion-ios-pie-outline tx-20"></i>
-                    <span class="menu-item-label">Order status</span>
-                </div><!-- menu-item -->
-            </a><!-- br-menu-link -->
+            @if (Session["UserID"] != null && (int)Session["UserType"] == 2)
+            {
+                <a href="/OrderStatus/" class="br-menu-link @ViewBag.OrderStatus ">
+                    <div class="br-menu-item">
+                        <i class="menu-item-icon ion-ios-pie-outline tx-20"></i>
+                        <span class="menu-item-label">Order status</span>
+                    </div><!-- menu-item -->
+                </a><!-- br-menu-link -->
+            }
+            else
+            {
+
+            }
 
             @if (Session["UserID"] != null && (int)Session["UserType"] == 1)
             {

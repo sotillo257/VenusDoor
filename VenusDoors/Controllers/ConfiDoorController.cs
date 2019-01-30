@@ -227,6 +227,29 @@ namespace VenusDoors.Controllers
         }
 
         [HttpPost]
+        public ActionResult GetPrices(RailThickness RailThick, Material pMaterial, DoorStyle pDoorstyle)
+        {
+            try
+            {
+                BusinessLogic.lnDoorsPrices _DP = new BusinessLogic.lnDoorsPrices();
+                List<DoorsPrices> xDoorsP = _DP.GetAllDoorsPrices();
+                List<DoorsPrices> xDP = xDoorsP.Where(x => x.RailThickness.Id == RailThick.Id && x.Material.Id == pMaterial.Id && x.DoorStyle.Id == pDoorstyle.Id).ToList();
+                ViewBag.d = xDP;
+                //foreach (DoorsPrices i in ViewBag.d)
+                //{
+                //    System.Web.HttpContext.Current.Session["BasePrice"] = i.BasePrice;
+                //    System.Web.HttpContext.Current.Session["AddPrice"] = i.AdditionalSFPrice;
+                //}
+                return Json(xDP);
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+            
+        }
+
+        [HttpPost]
         public ActionResult UpdateOrderExist(Order item, DoorsxUser pDoorsxUser)
         {
             BusinessLogic.lnOrder _LNUPor = new BusinessLogic.lnOrder();
@@ -235,7 +258,7 @@ namespace VenusDoors.Controllers
             return Json(_LNUPor.UpdateOrder(item));
         }
 
-        public ActionResult InsertDoorsxUser(DoorsxUser pDoorsxUser, HingePositions pHP, RailThickness RailThick)
+        public ActionResult InsertDoorsxUser(DoorsxUser pDoorsxUser, HingePositions pHP)
         {
             if (Session["UserID"] == null)
             {
@@ -246,21 +269,9 @@ namespace VenusDoors.Controllers
             {
                 BusinessLogic.lnOrder _LNOrder = new BusinessLogic.lnOrder();
                 BusinessLogic.lnHingePositions _LNHP = new BusinessLogic.lnHingePositions();
-                BusinessLogic.lnDoorsPrices _DP = new BusinessLogic.lnDoorsPrices();
-
-                List<DoorsPrices> xDoorsP = _DP.GetAllDoorsPrices();
-                List<DoorsPrices> xDP = xDoorsP.Where(x => x.RailThickness.Id == RailThick.Id && x.Material.Id == pDoorsxUser.Material.Id && x.DoorStyle.Id == pDoorsxUser.DoorStyle.Id).ToList();
-                ViewBag.d = xDP;
-                foreach (DoorsPrices i in ViewBag.d)
-                {
-                    
-                    System.Web.HttpContext.Current.Session["BasePrice"] = i.BasePrice;
-                }
-
                 int userID = (int)Session["UserID"];
                 int idU = userID;
-                decimal Baseprice = (decimal)Session["BasePrice"];
-                decimal BP = Baseprice;
+               
                 var orderList = _LNOrder.GetOrderByUser(idU);
                 ViewBag.Listo = orderList;
                 Order item = ViewBag.Listo;
@@ -275,7 +286,7 @@ namespace VenusDoors.Controllers
                             Status = new Model.Status() { Id = 1 },
                             Type = new Model.Type() { Id = 1 },
                             Quantity = pDoorsxUser.Quantity,
-                            Total = pDoorsxUser.SubTotal * BP,
+                            Total = pDoorsxUser.SubTotal,
                             CreationDate = DateTime.Now,
                             CreatorUser = userID,
                             ModificationDate = DateTime.Now,

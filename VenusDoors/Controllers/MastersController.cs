@@ -213,12 +213,8 @@ namespace VenusDoors.Controllers
 
                 pDoorsPrices.CreationDate = DateTime.Now;
                 pDoorsPrices.ModificationDate = DateTime.Now;
-                Convert.ToDecimal(pDoorsPrices.BasePrice);
-                Convert.ToDecimal(pDoorsPrices.AdditionalSFPrice);
-                Convert.ToDecimal(pDoorsPrices.HorizontalBase1FLPrice);
-                Convert.ToDecimal(pDoorsPrices.VerticalBase1FLPrice);
-                Convert.ToDecimal(pDoorsPrices.VerticalAdditionalInchPrice);
-                Convert.ToDecimal(pDoorsPrices.HorizontalAdditionalInchPrice);
+                pDoorsPrices.Picture = "Picture";
+                pDoorsPrices.ProfilePicture = "Picture";
                 BusinessLogic.lnDoorsPrices _LP = new BusinessLogic.lnDoorsPrices();
                 var InserDP = _LP.InsertDoorsPrices(pDoorsPrices);
                 return Json(true, JsonRequestBehavior.AllowGet);

@@ -370,22 +370,7 @@ function GetAllHorizontalDivisions() {
 }
 
 function InsertDoorsxUser() {
-    var TR = $("#cbTopRail").val();
-    var BR = $("#cbBottomRail").val();
-    var RT;
-    var H = $("#iptHeight").val();
-    var W = $("#iptWidth").val();
-    if (TR == 1 && BR == 1) {
-        RT = 1;
-    }
-    else if (TR == 3 && BR == 3) {
-        RT = 2;
-    }
-    else {
-        RT = 3;
-    }
-
-
+    
     var datos =
          {
              
@@ -423,10 +408,6 @@ function InsertDoorsxUser() {
                  Position4: $(".hp4").val(),
                  Position5: $(".hp5").val(),                        
              },
-
-             RailThick: {
-                 Id: RT,
-             }
          };
                 console.log(datos);
                 $.ajax({
@@ -470,7 +451,7 @@ $(document).ready(function () {
                 $(".hp3").css('display', 'block');
                 $(".hp4").css('display', 'none');
                 $(".hp5").css('display', 'none');
-                $("#HingePositionsDiv").removeClass("target col-xs-4 col-md-4").addClass("target col-xs-4 col-md-3");
+                $("#HingePositionsDiv").removeClass("target col-xs-4 col-md-3").addClass("target col-xs-4 col-md-4");
             }
         } else if ($(this).val() <= 80) {
             if (e.keyup = true) {
@@ -554,3 +535,64 @@ $(document).ready(function () {
 });
 
 
+$(document).on('change', '#cbMaterial', function () {
+    alert('This action is working');
+    GetPrices();
+});
+
+function GetPrices() {
+    var TR = $("#cbTopRail").val();
+    var BR = $("#cbBottomRail").val();
+    var RT;
+    var H = $("#iptHeight").val();
+    var W = $("#iptWidth").val();
+    if (TR == 1 && BR == 1) {
+        RT = 1;
+    }
+    else if (TR == 3 && BR == 3) {
+        RT = 2;
+    }
+    else {
+        RT = 3;
+    }
+    var datos =
+         {
+             RailThick: {
+                Id : RT,
+             },
+
+             pMaterial: {
+                 Id: $("#cbMaterial").val(),
+             },
+
+             pDoorstyle: {
+                 Id: $("#cbDoorStyle").val(),
+             }
+         };
+    $.ajax({
+        data: JSON.stringify(datos),
+        url: urlGetPrices,
+        dataType: "json",
+        cache: false,
+        type: 'POST',
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        success: function (data) {
+            if (data != null) {
+
+                for (var i = 0; i < data.length; i++) {
+
+                    $("#inputBP").val(data[i].BasePrice);
+                    $("#inputADD").val(data[i].AdditionalSFPrice);
+                   
+                }
+            }
+            else {
+                MensajeModal("Error al obtener precios", 5);
+            }
+        },
+        error: function (err) {
+            MensajeModal(msgErrorinterno, 5);
+        }
+    });
+}
