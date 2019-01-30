@@ -50,7 +50,7 @@
                 <div class="row">
                     <div class="col-xs-4 col-md-3">
                         <label for="txtTemplate" style="margin-top: 25px;">(*) Template / Item Name: </label>
-                        <input class="required form-control" onblur="limpia()" maxlength="20" minlength="4" name="txtTemplate" id="txtTemplate" type="text">
+                        <input required  class="required form-control" onblur="limpia()" maxlength="20" minlength="4" name="txtTemplate" id="txtTemplate" type="text">
                     </div><!-- col -->
 
                     <div class="col-xs-4 col-md-3">
@@ -59,12 +59,12 @@
                     </div><!-- col -->
 
                     <div name="SoloNumeros" class="col-xs-4 col-md-1">
-                        <label for="Width" style="margin-top: 25px;">Width: </label>
-                        <input name="SoloNumeros" class="eventChange iptWidth form-control" data-val="true" value="0" type="number" data-val-required="This field is required" maxlength="6" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="iptWidth">
+                        <label for="Width" style="margin-top: 25px;">(*) Width: </label>
+                        <input name="SoloNumeros" class="required eventChange iptWidth form-control" value="0" type="number"maxlength="6" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="iptWidth">
                     </div><!-- col -->
                     <div name="SoloNumeros" class="col-xs-4 col-md-1">
-                        <label for="Height" style="margin-top: 25px;">Height: </label>
-                        <input name="SoloNumeros" class="eventChange iptHeight form-control" data-val="true" value="0" type="number" data-val-required="This field is required" maxlength="6" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="iptHeight">
+                        <label for="Height" style="margin-top: 25px;">(*) Height: </label>
+                        <input name="SoloNumeros" class="required eventChange iptHeight form-control" value="0" type="number" maxlength="6" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="iptHeight">
                     </div><!-- col -->
                 </div>
             </div>
@@ -161,7 +161,7 @@
                     </div><!-- col -->
 
                     <div class="col-xs-4 col-md-3">
-                        <label for="iptQuantity" style="margin-top: 25px;">Quantity: </label>
+                        <label for="iptQuantity" style="margin-top: 25px;">(*) Quantity: </label>
                         <input name="iptQuantity" class="required number form-control" maxlength="3" minlength="1" onkeypress="return soloNumeros(event);" id="iptQuantity">
                     </div>
 
@@ -317,7 +317,6 @@
     @Scripts.Render("~/Scripts/js/ConfigDoor.Index.js")
     <script src="~/Content/lib/select2/js/select2.min.js"></script>
     <script src="~/Content/lib/select2/js/select2.full.min.js"></script>
-    <script type="text/javascript" src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js"></script>
     <script>
       $(function(){
         'use strict'
@@ -359,17 +358,15 @@
     </script>
     <script type="text/javascript">
            function validarFormulario(){
-               $("#btConfirm").validate();
-               if ($('#txtTemplate').val().trim() === '') {
-                   alert('El campo es requerido');
+               $('#btConfirm').click(function(){
+                   if ($('#iptQuantity').val().trim() === '') {
+                       alert('El campo es requerido');
 
-               } else {
+                   } else {
 
-               }
-           }
-           $(document).ready(function(){
-              validarFormulario();
-           });
+                   }
+               })
+           };
     </script>
     <style type="text/css">
         .error {
