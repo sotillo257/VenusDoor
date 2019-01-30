@@ -393,7 +393,7 @@ function InsertDoorsxUser() {
                  Width: $("#iptWidth").val(),
                  Height: $("#iptHeight").val(),
                  Quantity: $("#iptQuantity").val(),
-                 SubTotal: ((((H * W)/12)/12)-1.5),
+                 SubTotal: parseFloat($("#iptCost").val()) * $("#iptQuantity").val(),
                  Picture: 'PruebaPicture',
                  ProfilePicture: 'PruebaPP',
                  isDrill: $("#cbisDrill").val(),
@@ -479,10 +479,24 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
-    $(".iptHeight").keyup(function (e) {
+    $(document).on('change', '.iptHeight', function () {
         var Height = parseFloat($(this).val())
-        if ($(this).val() <= 36) {
-            if (e.keyup = true) {
+        if ($(this).val() < 11.75) {
+            
+            alert('Minimum Height is 11.75 inches');
+                Height = 11.75;
+                var ip1 = 3.5;
+                var ip2 = Height - 3.5;
+                $('.iptHeight').val(Height);
+                $('.HPinpt1').val(ip1);
+                $('.HPinpt2').val(ip2);
+                $('.HPinpt3').val("No hinge");
+                $('.HPinpt4').val("No hinge");
+                $('.HPinpt5').val("No hinge");
+            
+        }
+        else if ($(this).val() >= 11.75 && $(this).val() < 37) {
+            
                 var ip1 = 3.5;
                 var ip2 = Height - 3.5;
                 $('.HPinpt1').val(ip1);
@@ -490,10 +504,10 @@ $(document).ready(function () {
                 $('.HPinpt3').val("No hinge");
                 $('.HPinpt4').val("No hinge");
                 $('.HPinpt5').val("No hinge");
-            }
+            
         }
-        else if ($(this).val() <= 60) {
-            if (e.keyup = true) {
+        else if ($(this).val() >= 37 && $(this).val() < 61) {
+           
                 var ip1 = 3.5;
                 var ip2 = Height / 2;
                 var ip3 = Height - 3.5;
@@ -502,10 +516,10 @@ $(document).ready(function () {
                 $('.HPinpt3').val(ip3);
                 $('.HPinpt4').val("No hinge");
                 $('.HPinpt5').val("No hinge");
-            }
+            
         }
-        else if ($(this).val() <= 80) {
-            if (e.keyup = true) {
+        else if ($(this).val() >= 61 && $(this).val() < 81) {
+            
                 var ip1 = 3.5;
                 var ip2 = ((Height - 7) / 3) + 3.5;
                 var ip3 = Height - (((Height - 7) / 3) + 3.5);
@@ -515,10 +529,10 @@ $(document).ready(function () {
                 $('.HPinpt3').val(ip3);
                 $('.HPinpt4').val(ip4);
                 $('.HPinpt5').val("No hinge");
-            }
-        }
-        else if ($(this).val() > 80) {
-            if (e.keyup = true) {
+            
+        }        
+        else if ($(this).val() >= 81 && $(this).val() < 97) {
+            
                 var ip1 = 3.5;
                 var ip2 = 3.5 + (((Height / 2) - 3.5) / 2);
                 var ip3 = Height / 2;
@@ -529,23 +543,60 @@ $(document).ready(function () {
                 $('.HPinpt3').val(ip3);
                 $('.HPinpt4').val(ip4);
                 $('.HPinpt5').val(ip5);
-            }
+            
+        }
+        else {
+            
+            alert('Max Height is 96 inches');
+                Height = 96;
+                var ip1 = 3.5;
+                var ip2 = 3.5 + (((Height / 2) - 3.5) / 2);
+                var ip3 = Height / 2;
+                var ip4 = Height - (3.5 + (((Height / 2) - 3.5) / 2));
+                var ip5 = Height - 3.5;
+                $('.iptHeight').val(Height);
+                $('.HPinpt1').val(ip1);
+                $('.HPinpt2').val(ip2);
+                $('.HPinpt3').val(ip3);
+                $('.HPinpt4').val(ip4);
+                $('.HPinpt5').val(ip5);
+   
         }
     });
 });
 
+$(document).ready(function () {
+    $(document).on('change', '.iptWidth', function () {
+        var Width = parseFloat($(this).val())
+        if ($(this).val() < 7.25) {
 
-$(document).on('change', '#cbMaterial', function () {
-    alert('This action is working');
+            alert('Minimum Width is 7.25 inches');
+            Width = 7.25;
+            $('.iptWidth').val(Width);
+        }
+        else if ($(this).val() > 24)
+        {
+
+            alert('Max Width is 24 inches.');
+            Width = 24;
+            $('.iptWidth').val(Width);
+           
+        }
+    });
+});
+
+$(document).on('change', '.eventChange', function () {
+    //alert('This action is working');
     GetPrices();
 });
+
 
 function GetPrices() {
     var TR = $("#cbTopRail").val();
     var BR = $("#cbBottomRail").val();
     var RT;
-    var H = $("#iptHeight").val();
-    var W = $("#iptWidth").val();
+    var H = parseFloat($("#iptHeight").val());
+    var W = parseFloat($("#iptWidth").val());
     if (TR == 1 && BR == 1) {
         RT = 1;
     }
@@ -579,11 +630,19 @@ function GetPrices() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
-
+               
                 for (var i = 0; i < data.length; i++) {
-
-                    $("#inputBP").val(data[i].BasePrice);
-                    $("#inputADD").val(data[i].AdditionalSFPrice);
+                    
+                    var BP = data[i].BasePrice;
+                    $("#inputBP").val(BP);
+                    var ADDP = data[i].AdditionalSFPrice
+                    $("#inputADD").val(ADDP);
+                    var IC = ((((((H * W) / 12) / 12) - 1.5) * ADDP) + BP).toFixed(2);
+                    if (IC < BP) {
+                        $("#iptCost").val(BP);
+                    } else {
+                        $("#iptCost").val(IC);
+                    }
                    
                 }
             }
