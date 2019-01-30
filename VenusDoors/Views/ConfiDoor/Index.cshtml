@@ -49,8 +49,8 @@
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-xs-4 col-md-3">
-                        <label for="Name" style="margin-top: 25px;">Template / Item Name: </label>
-                        <input class="form-control" onblur="limpia()" maxlength="20" minlength="4" data-val="true" data-val-required="This field is required" id="txtTemplate" type="text">
+                        <label for="txtTemplate" style="margin-top: 25px;">(*) Template / Item Name: </label>
+                        <input class="required form-control" onblur="limpia()" maxlength="20" minlength="4" name="txtTemplate" id="txtTemplate" type="text">
                     </div><!-- col -->
 
                     <div class="col-xs-4 col-md-3">
@@ -59,32 +59,16 @@
                     </div><!-- col -->
 
                     <div name="SoloNumeros" class="col-xs-4 col-md-1">
-                        <label for="Width" style="margin-top: 25px;">Width: </label>
-                        <input name="SoloNumeros" class="form-control" data-val="true" value="0" data-val-required="This field is required" maxlength="4" minlength="1" onkeypress="return soloNumeros(event);" id="iptWidth">
+                        <label for="iptWidth" style="margin-top: 25px;">(*) Width: </label>
+                        <input name="iptWidth" class="required number form-control" value="0" maxlength="4" minlength="1" onkeypress="return soloNumeros(event);" id="iptWidth">
                     </div><!-- col -->
                     <div name="SoloNumeros" class="col-xs-4 col-md-1">
-                        <label for="Height" style="margin-top: 25px;">Height: </label>
-                        <input name="SoloNumeros" class="iptHeight form-control" data-val="true" value="0" data-val-required="This field is required" maxlength="4" minlength="1" onkeypress="return soloNumeros(event);" id="iptHeight">
+                        <label for="iptHeight" style="margin-top: 25px;">(*) Height: </label>
+                        <input name="iptHeight" class="required number form-control" value="0" maxlength="4" minlength="1" onkeypress="return soloNumeros(event);" id="iptHeight">
                     </div><!-- col -->
                 </div>
             </div>
         </div>
-
-        @*<table style="margin-left: 25px;">
-                <tbody>
-                <tr>
-                        <td colspan="4">
-                            <img style="height: 100px;width: 400px;margin-top: 20px;" src="~/Content/img/Cabinet_Vector-18.jpg" />
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>
-
-                        </td>
-                    </tr>
-                </tbody>
-            </table>*@
 
         <hr>
         <div class="row">
@@ -177,8 +161,8 @@
                     </div><!-- col -->
 
                     <div class="col-xs-4 col-md-3">
-                        <label for="Quantity" style="margin-top: 25px;">Quantity: </label>
-                        <input class="form-control" maxlength="3" minlength="1" onkeypress="return soloNumeros(event);" data-val="true" data-val-required="This field is required" id="iptQuantity">
+                        <label for="iptQuantity" style="margin-top: 25px;">Quantity: </label>
+                        <input name="iptQuantity" class="required number form-control" maxlength="3" minlength="1" onkeypress="return soloNumeros(event);" id="iptQuantity">
                     </div>
 
                     <div class="col-xs-4 col-md-2">
@@ -216,7 +200,7 @@
 
                 </div>
             </div>
-            
+
             <div class="col-md-2">
                 <div class="row" style="margin-right: 0px;">
                     <center>
@@ -325,6 +309,7 @@
     @Scripts.Render("~/Scripts/js/ConfigDoor.Index.js")
     <script src="~/Content/lib/select2/js/select2.min.js"></script>
     <script src="~/Content/lib/select2/js/select2.full.min.js"></script>
+    <script type="text/javascript" src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js"></script>
     <script>
       $(function(){
         'use strict'
@@ -364,7 +349,25 @@
               }
           })
     </script>
+    <script type="text/javascript">
+           function validarFormulario(){
+               $("#btConfirm").validate();
+               if ($('#txtTemplate').val().trim() === '') {
+                   alert('El campo es requerido');
 
+               } else {
+
+               }
+           }
+           $(document).ready(function(){
+              validarFormulario();
+           });
+    </script>
+    <style type="text/css">
+        .error {
+            color: #f00;
+        }
+    </style>
     <script>
         function soloLetras(e) {
             key = e.keyCode || e.which;

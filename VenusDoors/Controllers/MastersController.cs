@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Model;
+using System.Web.UI;
+using System.IO;
 
 namespace VenusDoors.Controllers
 {
@@ -179,6 +181,7 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
+
         #endregion
 
         #region DoorsPrices
@@ -1796,6 +1799,27 @@ namespace VenusDoors.Controllers
             }
         }
         #endregion
+
+        public class HomeController : Controller
+        {
+            //
+            // GET: /Home/
+
+            public ActionResult Index()
+            {
+                return View();
+            }
+
+            [HttpPost]
+            public void Subir(HttpPostedFileBase file)
+            {
+                if (file == null) return;
+
+                string archivo = (DateTime.Now.ToString("yyyyMMddHHmmss") + "-" + file.FileName).ToLower();
+
+                file.SaveAs(Server.MapPath("~/img/" + archivo));
+            }
+        }
 
         // GET: Masters/Details/5
         public ActionResult Details(int id)
