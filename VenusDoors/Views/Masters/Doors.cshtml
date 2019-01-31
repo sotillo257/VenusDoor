@@ -135,8 +135,8 @@
                                                 </select>
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="cbMatarial" style="margin-top: 25px;">Material: </label>
-                                                <select style="width:100%" class="form-control select2" id="inMatarial" data-placeholder="">
+                                                <label for="Material" style="margin-top: 25px;">Material: </label>
+                                                <select style="width:100%" class="form-control select2" id="inMaterial" data-placeholder="">
                                                     @foreach (Model.Material item in ViewBag.cbMatarial)
                                                     {
                                                         <option value="@item.Id">@item.Description</option>
@@ -369,7 +369,7 @@
                                         <div class="row">
                                             <div class="col-xs-4 col-md-3">
                                                 <label for="Id" style="margin-top: 25px;">Id: </label>
-                                                <input type="text" name="Identificador" value="@ViewBag.IdItem" id="txtId" class="form-control" readonly placeholder="">
+                                                <input type="text" name="Identificador" value="@ViewBag.IdItem" id="utxtId" class="form-control" readonly placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-3">
                                                 <label for="cbDoorStyle" style="margin-top: 25px;">Door Style: </label>
@@ -382,7 +382,7 @@
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-3">
                                                 <label for="cbMatarial" style="margin-top: 25px;">Material: </label>
-                                                <select style="width:100%" class="form-control select2" id="cbMatarial" data-placeholder="">
+                                                <select style="width:100%" class="form-control select2" id="cbMaterial" data-placeholder="">
                                                     @foreach (Model.Material item in ViewBag.cbMatarial)
                                                     {
                                                         <option value="@item.Id">@item.Description</option>
@@ -542,14 +542,17 @@
                                             </div><!-- form-group -->
 
                                             <div class="col-xs-4 col-md-3">
-                                                @using (Html.BeginForm("subir", "home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                                @*@using (Html.BeginForm("subir", "home", FormMethod.Post, new { enctype = "multipart/form-data" }))
                                                 {
                                                     <label for="Picture" style="margin-top: 25px;">Picture: </label>
                                                     <div style="padding-bottom: 12px;padding-top: 12px;height: 43px;" id="inPicture" class="form-control bd bd-dashed d-flex align-items-center justify-content-center rounded bg-gray-300">
                                                         <p id="texto">Add file</p>
                                                         <input id="btn_enviar" name="file" type="file">
                                                     </div>
-                                                }
+                                                }*@
+
+                                                <label>Picture</label>
+                                            <input type="text" id="txtPicture" class="form-control" placeholder="" />
                                             </div><!-- form-group -->
 
 
