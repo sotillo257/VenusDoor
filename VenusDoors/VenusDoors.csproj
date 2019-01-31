@@ -248,7 +248,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ConfiDoorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\LoginsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MastersController.cs" />
     <Compile Include="Controllers\OrderStatusController.cs" />
@@ -258,25 +258,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\LoginDataBase.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LoginDataBase.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\LoginDataBase.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LoginDataBase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\LoginDataBase.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LoginDataBase.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\User.cs">
-      <DependentUpon>LoginDataBase.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -906,16 +888,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\LoginDataBase.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>LoginDataBase.edmx</DependentUpon>
-      <LastGenOutput>LoginDataBase.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\LoginDataBase.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>LoginDataBase.edmx</DependentUpon>
-      <LastGenOutput>LoginDataBase.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -997,13 +969,6 @@
     <Content Include="Content\scss\util\_position.scss" />
     <Content Include="Content\scss\util\_typography.scss" />
     <Content Include="Content\scss\util\_width.scss" />
-    <EntityDeploy Include="Models\LoginDataBase.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>LoginDataBase.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\LoginDataBase.edmx.diagram">
-      <DependentUpon>LoginDataBase.edmx</DependentUpon>
-    </Content>
     <None Include="Properties\PublishProfiles\jesus.pubxml" />
     <None Include="Properties\PublishProfiles\VenusDoors App.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -1096,9 +1061,9 @@
     <Content Include="Views\Masters\Type.cshtml" />
     <Content Include="Views\Masters\Usuario.cshtml" />
     <Content Include="Views\Masters\VerticalDivisions.cshtml" />
-    <Content Include="Views\Login\Index.cshtml" />
-    <Content Include="Views\Login\sing_up.cshtml" />
     <Content Include="Views\Masters\RailThickness.cshtml" />
+    <Content Include="Views\Logins\Index.cshtml" />
+    <Content Include="Views\Logins\sing_up.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

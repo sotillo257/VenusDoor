@@ -3,16 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using VenusDoors.Models;
 using Model;
 
 namespace VenusDoors.Controllers
 {
-    public class LoginController : Controller
+    public class LoginsController : Controller
     {
-        private object item;
 
-        // GET: Login
+        // GET: Logins
         public ActionResult Index()
         {
             if (Session["UserID"] == null)
@@ -41,29 +39,29 @@ namespace VenusDoors.Controllers
         }
 
         [HttpPost]
-        public ActionResult Autherize(VenusDoors.Models.User userModel)
+        public ActionResult Autherize(User userModel)
         {
-            using (DB_A448B1_venusdoorsDBEntities1 db = new DB_A448B1_venusdoorsDBEntities1())
+            BusinessLogic.lnUser _LNU = new BusinessLogic.lnUser();
+            var getU = _LNU.GetAllUser();
+            var userDetails = getU.Where(x => x.Email == userModel.Email && x.Password == userModel.Password).FirstOrDefault();
+            if (userDetails == null)
             {
-                var userDetails = db.Users.Where(x => x.Email == userModel.Email && x.Password == userModel.Password).FirstOrDefault();
-                if(userDetails == null)
-                {
-                    userModel.LoginErrorMessage = "Wrong Email or Password.";
-                    return View("Index", userModel);
-                }
-                else
-                {
-                    System.Web.HttpContext.Current.Session["UserID"] = userDetails.Id;
-                    System.Web.HttpContext.Current.Session["UserName"] = userDetails.IdPerson;
-                    System.Web.HttpContext.Current.Session["UserType"] = userDetails.IdType;
-                    return RedirectToAction("Index", "Home");  
-                }
-            }         
+                //userModel.LoginErrorMessage = "Wrong Email or Password.";
+                return View("Index", userModel);
+            }
+            else
+            {
+                System.Web.HttpContext.Current.Session["UserID"] = userDetails.Id;
+                System.Web.HttpContext.Current.Session["UserName"] = userDetails.Person.Id;
+                System.Web.HttpContext.Current.Session["UserType"] = userDetails.Type.Id;
+                return RedirectToAction("Index", "Home");
+            }
+
         }
 
-      
+
         [HttpPost]
-        public ActionResult InsertUser(Model.Person PersonData, Model.User UserData)
+        public ActionResult InsertUser(Person PersonData, User UserData)
         {
             try
             {
@@ -82,15 +80,15 @@ namespace VenusDoors.Controllers
             catch
             {
                 return Json(false, JsonRequestBehavior.AllowGet);
-            }    
+            }
         }
 
-        
+
 
         public ActionResult LogOut()
         {
             Session.Abandon();
-            return RedirectToAction("Index", "Login");
-        } 
-    }  
+            return RedirectToAction("Index", "Logins");
+        }
+    }
 }
