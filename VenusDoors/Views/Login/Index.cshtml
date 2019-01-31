@@ -3,7 +3,7 @@
     ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@model VenusDoors.Models.User
+@model Model.User
 <div class="br-pagebody">
     <div class="br-section-wrapper" style="margin-top: 100px;margin-left: 50px;margin-right: 50px;">
             <div class="modal-body pd-0">
@@ -65,7 +65,7 @@
                 </div>
             </div>*@<!-- col-6 -->
                                 <div id="login-div" class="col-lg-6 bg-white">
-                                    @using (Html.BeginForm("Autherize", "Login", FormMethod.Post))
+                                    @using (Html.BeginForm("Autherize", "Logins", FormMethod.Post))
                                     {
                                         <div class="pd-30">
                                             <div class="pd-x-30 pd-y-10">
@@ -92,12 +92,12 @@
                                             </div><!-- form-group -->
                                             <div class="form-group mg-b-20">
                                                 @Html.ValidationMessageFor(model => model.Password)
-                                                <label class="field-validation-error">@Html.DisplayFor(model => model.LoginErrorMessage)</label>
+                                                <label class="field-validation-error">@*@Html.DisplayFor(model => model.LoginErrorMessage)*@</label>
                                             </div><!-- form-group -->
 
                                             <input type="submit" value="Sign In" class="Cursor btn btn-primary pd-y-12 btn-block" />
 
-                                            <div class="mg-t-30 mg-b-20 tx-12">Don't have an account yet? @Html.ActionLink("Create one!", "sing_up", "Login")</div>
+                                            <div class="mg-t-30 mg-b-20 tx-12">Don't have an account yet? @Html.ActionLink("Create one!", "sing_up", "Logins")</div>
 
                                             <p class="tx-11 tx-uppercase tx-spacing-2">Or Sign In With</p>
                                             <a href="#" class="btn btn-primary btn-icon">

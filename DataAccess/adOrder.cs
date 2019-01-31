@@ -143,7 +143,7 @@ namespace DataAccess
         public void UpdateOrder(Order pOrder)
         {
             string sql = @"[spUpdateOrder] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}'";
-            sql = string.Format(sql, pOrder.Id, pOrder.User.Id, pOrder.Quantity, pOrder.Total, pOrder.Type.Id, pOrder.Status.Id, pOrder.ModificationDate.ToString("yyyy-MM-dd"),
+            sql = string.Format(sql, pOrder.Id, pOrder.User.Id, pOrder.Quantity, Convert.ToDecimal(pOrder.Total), pOrder.Type.Id, pOrder.Status.Id, pOrder.ModificationDate.ToString("yyyy-MM-dd"),
                 pOrder.ModificationUser);
             try
             {

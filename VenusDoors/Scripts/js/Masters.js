@@ -183,7 +183,7 @@
 
     $("#btInsertRailT").on("click", function () {
         InsertRailThickness();
-    });
+});
     $("#btUpdateRailT").on("click", function () {
         UpdateRailThickness();
     });
@@ -499,7 +499,6 @@ function UpdateDoorStyle() {
             Status: { Id: $("#IdStatus").val() },
             CreatorUser: 6,
             ModificationUser: 6,
-
         }
     };
     console.log(datos);
