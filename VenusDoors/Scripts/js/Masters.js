@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    $("#btInsert").on("click", function () {
+    $("#btInsertBR").on("click", function () {
         InsertBottomRail();
     });
     $("#btnModify").on("click", function () {

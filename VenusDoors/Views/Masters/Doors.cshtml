@@ -292,22 +292,28 @@
                                                 <input disabled type="text" id="HingePositions5" class="form-control" placeholder="">
                                             </div><!-- form-group -->
 
+                                            
                                             <div class="col-xs-4 col-md-3">
+                                                @using (Html.BeginForm("subir", "home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                                {
                                                 <label for="Picture" style="margin-top: 25px;">Picture: </label>
-                                                @*<input type="file" name="id" id="inPicture" accept=".pdf,.jpg,.png" placeholder="">*@
                                                 <div style="padding-bottom: 12px;padding-top: 12px;height: 43px;" id="inPicture" class="form-control bd bd-dashed d-flex align-items-center justify-content-center rounded bg-gray-300">
                                                     <p id="texto">Add file</p>
-                                                    <input type="file" id="btn_enviar">
+                                                    <input id="btn_enviar" name="file" type="file">
                                                 </div>
+                                                }
                                             </div><!-- form-group -->
+                                            
 
                                             <div class="col-xs-4 col-md-3">
+                                                @using (Html.BeginForm("subir", "home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                                {
                                                 <label for="ProfilePicture" style="margin-top: 25px;">Profile Picture: </label>
-                                                @*<input type="file" class="form-control bd bd-dashed d-flex align-items-center justify-content-center rounded bg-gray-300" name="id" id="inProfilePicture" accept=".pdf,.jpg,.png">*@
                                                 <div style="padding-bottom: 12px;padding-top: 12px;height: 43px;" id="inProfilePicture" class="form-control bd bd-dashed d-flex align-items-center justify-content-center rounded bg-gray-300">
                                                     <p id="texto">Add file</p>
-                                                    <input type="file" id="btn_enviar">
+                                                    <input id="btn_enviar" name="file" type="file">
                                                 </div>
+                                                }
                                             </div><!-- form-group -->
 
                                             <div class="col-xs-4 col-md-3">
@@ -334,7 +340,7 @@
                                 </div><!-- col-6 -->
                             </div><!-- row -->
                             <div class="modal-footer justify-content-lg-end">
-                                <button type="button" onclick="this.disabled=true;" id="btInsertDoors" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Insert</button>
+                                <button type="button" onclick="this.disabled = true; SubirArchivo" id="btInsertDoors" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Insert</button>
                                 <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>
                             </div>
                         </div><!-- modal-body -->
@@ -536,21 +542,26 @@
                                             </div><!-- form-group -->
 
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="Picture" style="margin-top: 25px;">Picture: </label>
-                                                @*<input type="file" name="id" id="inPicture" accept=".pdf,.jpg,.png" placeholder="">*@
-                                                <div id="txtPicture" style="padding-bottom: 12px;padding-top: 12px;height: 43px;" class="form-control bd bd-dashed d-flex align-items-center justify-content-center rounded bg-gray-300">
-                                                    <p id="texto">Add file</p>
-                                                    <input type="file" id="btn_enviar">
-                                                </div>
+                                                @using (Html.BeginForm("subir", "home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                                {
+                                                    <label for="Picture" style="margin-top: 25px;">Picture: </label>
+                                                    <div style="padding-bottom: 12px;padding-top: 12px;height: 43px;" id="inPicture" class="form-control bd bd-dashed d-flex align-items-center justify-content-center rounded bg-gray-300">
+                                                        <p id="texto">Add file</p>
+                                                        <input id="btn_enviar" name="file" type="file">
+                                                    </div>
+                                                }
                                             </div><!-- form-group -->
 
+
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="ProfilePicture" style="margin-top: 25px;">Profile Picture: </label>
-                                                @*<input type="file" class="form-control bd bd-dashed d-flex align-items-center justify-content-center rounded bg-gray-300" name="id" id="inProfilePicture" accept=".pdf,.jpg,.png">*@
-                                                <div id="txtProfilePicture" style="padding-bottom: 12px;padding-top: 12px;height: 43px;" class="form-control bd bd-dashed d-flex align-items-center justify-content-center rounded bg-gray-300">
-                                                    <p id="texto">Add file</p>
-                                                    <input type="file" id="btn_enviar">
-                                                </div>
+                                                @using (Html.BeginForm("subir", "home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                                {
+                                                    <label for="ProfilePicture" style="margin-top: 25px;">Profile Picture: </label>
+                                                    <div style="padding-bottom: 12px;padding-top: 12px;height: 43px;" id="inProfilePicture" class="form-control bd bd-dashed d-flex align-items-center justify-content-center rounded bg-gray-300">
+                                                        <p id="texto">Add file</p>
+                                                        <input id="btn_enviar" name="file" type="file">
+                                                    </div>
+                                                }
                                             </div><!-- form-group -->
 
                                             <div class="col-xs-4 col-md-3">
@@ -716,6 +727,3 @@
     </script>
 
 }
-
-
-
