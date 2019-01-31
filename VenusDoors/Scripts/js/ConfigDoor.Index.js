@@ -402,11 +402,11 @@ function InsertDoorsxUser() {
                         
 
              HingeP: {
-                 Position1: $(".hp1").val(),
-                 Position2: $(".hp2").val(),
-                 Position3: $(".hp3").val(),
-                 Position4: $(".hp4").val(),
-                 Position5: $(".hp5").val(),                        
+                 Position1: $("#HP1").val(),
+                 Position2: $("#HP2").val(),
+                 Position3: $("#HP3").val(),
+                 Position4: $("#HP4").val(),
+                 Position5: $("#HP5").val(),
              },
          };
                 console.log(datos);
@@ -481,10 +481,10 @@ $(document).ready(function () {
 $(document).ready(function () {
     $(document).on('change', '.iptHeight', function () {
         var Height = parseFloat($(this).val())
-        if ($(this).val() < 11.75) {
+        if ($(this).val() < 5) {
             
-            alert('Minimum Height is 11.75 inches');
-                Height = 11.75;
+            alert('Minimum Height is 5 inches');
+                Height = 5;
                 var ip1 = 3.5;
                 var ip2 = Height - 3.5;
                 $('.iptHeight').val(Height);
@@ -495,7 +495,7 @@ $(document).ready(function () {
                 $('.HPinpt5').val("No hinge");
             
         }
-        else if ($(this).val() >= 11.75 && $(this).val() < 37) {
+        else if ($(this).val() >= 5 && $(this).val() < 37) {
             
                 var ip1 = 3.5;
                 var ip2 = Height - 3.5;
@@ -568,17 +568,17 @@ $(document).ready(function () {
 $(document).ready(function () {
     $(document).on('change', '.iptWidth', function () {
         var Width = parseFloat($(this).val())
-        if ($(this).val() < 7.25) {
+        if ($(this).val() < 5) {
 
-            alert('Minimum Width is 7.25 inches');
-            Width = 7.25;
+            alert('Minimum Width is 5 inches');
+            Width = 5;
             $('.iptWidth').val(Width);
         }
-        else if ($(this).val() > 24)
+        else if ($(this).val() > 42)
         {
 
-            alert('Max Width is 24 inches.');
-            Width = 24;
+            alert('Max Width is 42 inches.');
+            Width = 42;
             $('.iptWidth').val(Width);
            
         }

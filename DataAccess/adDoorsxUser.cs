@@ -133,7 +133,7 @@ namespace DataAccess
             sql = string.Format(sql, pDoorsxUser.Order.Id, pDoorsxUser.DoorStyle.Id, pDoorsxUser.Material.Id, pDoorsxUser.TopRail.Id, pDoorsxUser.BottomRail.Id, 
                 pDoorsxUser.Preparation.Id, pDoorsxUser.Join.Id, pDoorsxUser.OutsideEdgeProfile.Id, 
                 pDoorsxUser.InsideEdgeProfile.Id, pDoorsxUser.VerticalDivisions.Id, pDoorsxUser.HorizontalDivisions.Id, pDoorsxUser.HingeDirection.Id, 
-                pDoorsxUser.HingePositions.Id, (pDoorsxUser.isDrill == true) ? 1 : 0, pDoorsxUser.Width, pDoorsxUser.Height, (pDoorsxUser.IsOpeningMeasurement == true) ? 1 : 0, pDoorsxUser.Quantity, pDoorsxUser.SubTotal, pDoorsxUser.User.Id, 
+                pDoorsxUser.HingePositions.Id, (pDoorsxUser.isDrill == true) ? 1 : 0, pDoorsxUser.Width, pDoorsxUser.Height, (pDoorsxUser.IsOpeningMeasurement == true) ? 1 : 0, pDoorsxUser.Quantity, Convert.ToDecimal(pDoorsxUser.SubTotal), pDoorsxUser.User.Id, 
                 pDoorsxUser.Status.Id, pDoorsxUser.CreationDate.ToString("yyyy-MM-dd"), pDoorsxUser.CreatorUser, pDoorsxUser.ModificationDate.ToString("yyyy-MM-dd"),
                 pDoorsxUser.ModificationUser, pDoorsxUser.Picture, pDoorsxUser.ProfilePicture, pDoorsxUser.Panel.Id, pDoorsxUser.PanelMaterial.Id);
             try

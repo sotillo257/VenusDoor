@@ -487,7 +487,7 @@ function UpdateDoorStyle() {
     var datos =
     {
         uDoorStyle: {
-            Id: { Id: $("#txtId").val() },
+            Id: $("#txtId").val() ,
             Description: $("#txtDescription").val(),
             Status: { Id: $("#IdStatus").val() },
             CreatorUser: 6,
