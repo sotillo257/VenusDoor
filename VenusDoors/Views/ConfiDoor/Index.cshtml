@@ -219,11 +219,11 @@
             </div>
             @if (Session["UserID"] == null)
             {
-                <button class="btn btn-primary" style="margin-top:15px" id="bt-conf-log">Confirm</button>
+                <button class="Cursor btn btn-primary" style="margin-top:15px" id="bt-conf-log">Confirm</button>
             }
             else
             {
-                <button class="btn btn-primary" @*onclick="this.disabled=true;"*@ style="margin-top:15px" type="submit" id="btConfirm">Confirm</button>
+                <button class="Cursor btn btn-primary" @*onclick="this.disabled=true;"*@ style="margin-top:15px" type="submit" id="btConfirm">Confirm</button>
             }
         </div>
     </div>
@@ -244,7 +244,7 @@
                 <button type="button" onclick="window.location.reload()" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">
                     Build another door
                 </button>
-                <button type="button" onclick="location.href='@Url.Action("Index","OrderSummary")'" class="btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">
+                <button type="button" onclick="location.href='@Url.Action("Index","OrderSummary")'" class="Cursor btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">
                     Go to my order
                 </button>
             </div><!-- modal-body -->
@@ -261,7 +261,7 @@
                 <i class="icon icon ion-ios-close-outline tx-100 tx-danger lh-1 mg-t-20 d-inline-block"></i>
                 <h4 class="tx-danger  tx-semibold mg-b-20">Error: Cannot process your entry!</h4>
                 <p class="mg-b-20 mg-x-20">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration.</p>
-                <button type="button" class="btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="Cursor btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">
                     Continue
                 </button>
             </div><!-- modal-body -->
@@ -298,7 +298,7 @@
                 </button><ion-icon name="alert"></ion-icon>
                 <i id="icon_modal" class="ion-alert tx-100 lh-1 mg-t-20 tx-primary d-inline-block"></i>
                 <h4 style="color:#000" class="tx-semibold mg-b-20">Sign in to your account to process your order!</h4>
-                <button onclick="location.href='@Url.Action("Index","Login")'" id="GoToSign" type="button" class="btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" aria-label="Close">
+                <button onclick="location.href='@Url.Action("Index","Login")'" id="GoToSign" type="button" class="Cursor btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" aria-label="Close">
                     Sign in
                 </button>
             </div><!-- modal-body -->
@@ -377,7 +377,7 @@
     <script type="text/javascript">
            function validarFormulario(){
                $('#btConfirm').click(function(){
-                   if ($('.RequiereLlenar').val(" ")) {
+                   if ($('.RequiereLlenar').val() === '') {
                        $('#modalPrueba').modal('toggle');
 
                    } else {
@@ -385,6 +385,7 @@
                    }
                })
            };
+
     </script>
     <style type="text/css">
         .error {

@@ -108,7 +108,7 @@
                                 <td>8.25%</td>
                                 <td>$</td>
                                 <td id="tddelete">
-                                    <button class="btn btn-danger btn-icon btnn-dele" data-id="@i.Id" style="width: 37px;height: 37px;" type="submit"><i class="fa fa-trash"></i></button>
+                                    <button class="Cursor btn btn-danger btn-icon btnn-dele" data-id="@i.Id" style="width: 37px;height: 37px;" type="submit"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
                         }
@@ -149,7 +149,7 @@
             @if (ViewBag.xUserDoors == null)
             {
                 <div class="col-md-5" style="display:flex; justify-content:flex-end">
-                    <h3 style="color:red">No items</h3><button id="btn_carrito" onclick="location.href='@Url.Action("Index","ConfiDoor")'" style="margin-left: 25px;" type="button" src="#" class="btn btn-success" title="">Build a Door</button>                     
+                    <h3 style="color:red">No items</h3><button id="btn_carrito" onclick="location.href='@Url.Action("Index","ConfiDoor")'" style="margin-left: 25px;" type="button" src="#" class="Cursor btn btn-success" title="">Build a Door</button>                     
                 </div>
             }
             else
@@ -158,8 +158,8 @@
                 <div class="col-md-5">
                     <center>
                         <button id="btn_dropItems" type="submit" class="btn btn-danger" title="">Delete all items</button>
-                        <button id="btn_carrito" style="margin-left: 10px;" type="button" onclick="location.href='@Url.Action("Index","ConfiDoor")'" class="btn btn-success" title="">Build a Door</button>
-                        <button id="btn-continue" style="margin-left: 10px;" onclick="this.disabled = true; ConverExcel('idOrderSummary', 'W3C Example Table')" type="submit" src="#" class="btn btn-primary" title="">Continue</button>
+                        <button id="btn_carrito" style="margin-left: 10px;" type="button" onclick="location.href='@Url.Action("Index","ConfiDoor")'" class="Cursor btn btn-success" title="">Build a Door</button>
+                        <button id="btn-continue" style="margin-left: 10px;" onclick="this.disabled = true; ConverExcel('idOrderSummary', 'W3C Example Table')" type="submit" src="#" class="Cursor btn btn-primary" title="">Continue</button>
                     </center>
                 </div>
             }
@@ -177,7 +177,7 @@
                 <i class="icon ion-ios-checkmark-outline tx-100 tx-success lh-1 mg-t-20 d-inline-block"></i>
                 <h4 class="tx-success tx-semibold mg-b-20">Congratulations!</h4>
                 <p class="mg-b-20 mg-x-20">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration.</p>
-                <button type="button" onclick="window.location.reload()" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">
+                <button type="button" onclick="window.location.reload()" class="Cursor btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">
                     Continue
                 </button>
             </div><!-- modal-body -->
@@ -194,7 +194,7 @@
                 <i class="icon icon ion-ios-close-outline tx-100 tx-danger lh-1 mg-t-20 d-inline-block"></i>
                 <h4 class="tx-danger  tx-semibold mg-b-20">Error: Cannot process your entry!</h4>
                 <p class="mg-b-20 mg-x-20">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration.</p>
-                <button type="button" class="btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="Cursor btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">
                     Continue
                 </button>
             </div><!-- modal-body -->
@@ -214,7 +214,7 @@
                 <button id="cnlDROP" type="button" class="btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">
                     Cancel
                 </button>
-                <button id="confirmDROP"  type="button" class="btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" aria-label="Close">
+                <button id="confirmDROP"  type="button" class="Cursor btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" aria-label="Close">
                     Continue
                 </button>
             </div><!-- modal-body -->
@@ -232,7 +232,7 @@
                 <i class="icon ion-ios-checkmark-outline tx-100 tx-success lh-1 mg-t-20 d-inline-block"></i>
                 <h4 class="tx-success tx-semibold mg-b-20">Congratulations!</h4>
                 <p class="mg-b-20 mg-x-20">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration.</p>
-                <button type="button" onclick="window.location.reload()" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">
+                <button type="button" onclick="window.location.reload()" class="Cursor btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">
                     Continue
                 </button>
             </div><!-- modal-body -->
@@ -249,7 +249,7 @@
                 <i class="icon icon ion-ios-close-outline tx-100 tx-danger lh-1 mg-t-20 d-inline-block"></i>
                 <h4 class="tx-danger  tx-semibold mg-b-20">Error: Cannot process your entry!</h4>
                 <p class="mg-b-20 mg-x-20">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration.</p>
-                <button type="button" class="btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="Cursor btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">
                     Continue
                 </button>
             </div><!-- modal-body -->

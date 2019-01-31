@@ -76,7 +76,7 @@
         UpdateMaterial();
     });
 
-    $("#InsertMaterialxBottomRail").on("click", function () {
+    $("#btInsertMaterialxBR").on("click", function () {
         InsertMaterialxBottomRail();
     });
     $("#btnUpdateMaterialxBottom").on("click", function () {
@@ -180,6 +180,13 @@
     $("#btUpdateVerticalDivision").on("click", function () {
         UpdateVerticalDivisions();
     });
+
+    $("#btInsertRailT").on("click", function () {
+        InsertRailThickness();
+    });
+    $("#btUpdateRailT").on("click", function () {
+        UpdateRailThickness();
+    });
 });
 
 function InsertBottomRail() {
@@ -221,7 +228,7 @@ function UpdateBottomRail() {
     var datos =
     {
         uBottomRail: {
-            Id: { Id: $("#txtId").val() },
+            Id:  $("#txtId").val(),
             Description: $("#txtDescription").val(),
             Status: { Id: $("#IdStatus").val() },
             CreatorUser: 6,
@@ -311,7 +318,7 @@ function UpdateDoors() {
     var datos =
     {
         uDoors: {
-            Id: { Id: $("#txtId").val() },
+            Id: $("#txtId").val(),
             DoorStyle: { Id: $("#cbDoorStyle").val() },
             Matarial: { Id: $("#cbMatarial").val() },
             TopRail: { Id: $("#cbTopRail").val() },
@@ -408,7 +415,7 @@ function UpdateDoorPrice() {
     var datos =
     {
         uDoorPrice: {
-            Id: { Id: $("#txtId").val() },
+            Id: $("#txtId").val(),
             DoorStyle: { Id: $("#cbDoorStyle").val() },
             Matarial: { Id: $("#cbMatarial").val() },
             RailThickness: { Id: $("#cbRailThickness").val() },
@@ -487,7 +494,7 @@ function UpdateDoorStyle() {
     var datos =
     {
         uDoorStyle: {
-            Id: { Id: $("#txtId").val() },
+            Id: $("#txtId").val(),
             Description: $("#txtDescription").val(),
             Status: { Id: $("#IdStatus").val() },
             CreatorUser: 6,
@@ -556,7 +563,7 @@ function UpdateGroup() {
     var datos =
     {
         uGroup: {
-            Id: { Id: $("#txtId").val() },
+            Id: $("#txtId").val(),
             Description: $("#txtDescription").val(),
             CreatorUser: 6,
             ModificationUser: 6,
@@ -625,7 +632,7 @@ function UpdateHingeDirection() {
     var datos =
     {
         uHingeDirection: {
-            Id: { Id: $("#txtId").val() },
+            Id: $("#txtId").val(),
             Direction: $("#txtDirection").val(),
             Status: { Id: $("#IdStatus").val() },
             CreatorUser: 6,
@@ -661,7 +668,11 @@ function InserHingePositions() {
     var datos =
     {
         pHingePositions: {
-            Position: $("#inPosition").val(),
+            Position1: $("#inPosition").val(),
+            Position2: $("#inPosition2").val(),
+            Position3: $("#inPosition3").val(),
+            Position4: $("#inPosition4").val(),
+            Position5: $("#inPosition5").val(),
             Status: { Id: $("#inStatus").val() },
             CreatorUser: 6,
             ModificationUser: 6,
@@ -695,8 +706,12 @@ function UpdateHingePositions() {
     var datos =
     {
         uHingePositions: {
-            Id: { Id: $("#txtId").val() },
-            Position: $("#txtPosition").val(),
+            Id: $("#txtId").val(),
+            Position1: $("#txtPosition").val(),
+            Position2: $("#txtPosition2").val(),
+            Position3: $("#txtPosition3").val(),
+            Position4: $("#txtPosition4").val(),
+            Position5: $("#txtPosition5").val(),
             Status: { Id: $("#IdStatus").val() },
             CreatorUser: 6,
             ModificationUser: 6,
@@ -765,7 +780,7 @@ function UpdateHorizontalDivisions() {
     var datos =
     {
         uHorizontalDivisions: {
-            Id: { Id: $("#txtId").val() },
+            Id: $("#txtId").val(),
             Quantity: $("#txtQuantity").val(),
             Status: { Id: $("#IdStatus").val() },
             CreatorUser: 6,
@@ -835,7 +850,7 @@ function UpdateInsideEdgeProfile() {
     var datos =
     {
         pInsideEdgeProfile: {
-            Id: { Id: $("#txtId").val() },
+            Id: $("#txtId").val(),
             Description: $("#txtDescription").val(),
             Status: { Id: $("#IdStatus").val() },
             CreatorUser: 6,
@@ -905,7 +920,7 @@ function UpdateJoin() {
     var datos =
     {
         uJoin: {
-            Id: { Id: $("#txtId").val() },
+            Id: $("#txtId").val(),
             Description: $("#txtDescription").val(),
             Status: { Id: $("#IdStatus").val() },
             CreatorUser: 6,
@@ -975,7 +990,7 @@ function UpdateMaterial() {
     var datos =
     {
         uMaterial: {
-            Id: { Id: $("#txtId").val() },
+            Id: $("#txtId").val(),
             Description: $("#txtDescription").val(),
             Status: { Id: $("#IdStatus").val() },
             CreatorUser: 6,
@@ -1046,7 +1061,7 @@ function UpdateMaterialxBottomRail() {
     var datos =
     {
         uMaterialxBottomRail: {
-            Id: { Id: $("#txtId").val() },
+            Id: $("#txtId").val(),
             Matarial: { Id: $("#cbMatarial").val() },
             BottomRail: { Id: $("#cbBottomRail").val() },
             Status: { Id: $("#IdStatus").val() },
@@ -1120,7 +1135,7 @@ function UpdateOrder() {
     var datos =
     {
         uOrder: {
-            Id: { Id: $("#txtId").val() },
+            Id: $("#txtId").val(),
             User: { Id: $("#cbUser").val() },
             Quantity: $("#txtQuantity").val(),
             Total: $("#txtTotal").val(),
@@ -1193,7 +1208,7 @@ function UpdateOutsideEdgeProfile() {
     var datos =
     {
         uOutsideEdgeProfiler: {
-            Id: { Id: $("#txtId").val() },
+            Id: $("#txtId").val(),
             Description: $("#txtDescription").val(),
             Status: { Id: $("#IdStatus").val() },
             CreatorUser: 6,
@@ -1263,7 +1278,7 @@ function UpdatePanel() {
     var datos =
     {
         uPanel: {
-            Id: { Id: $("#txtId").val() },
+            Id: $("#txtId").val(),
             Description: $("#txtDescription").val(),
             Status: { Id: $("#IdStatus").val() },
             CreatorUser: 6,
@@ -1333,7 +1348,7 @@ function UpdatePanelMaterial() {
     var datos =
     {
         uPanelMaterial: {
-            Id: { Id: $("#txtId").val() },
+            Id: $("#txtId").val(),
             Description: $("#txtDescription").val(),
             Status: { Id: $("#IdStatus").val() },
             CreatorUser: 6,
@@ -1406,7 +1421,7 @@ function UpdatePerson() {
     var datos =
     {
         uPerson: {
-            Id: { Id: $("#txtId").val() },
+            Id: $("#txtId").val(),
             Name: $("#txtName").val(),
             Lastname: $("#txtLastname").val(),
             Telephone: $("#txtTelephone").val(),
@@ -1479,7 +1494,7 @@ function UpdatePreparation() {
     var datos =
     {
         uPreparation: {
-            Id: { Id: $("#txtId").val() },
+            Id: $("#txtId").val(),
             Description: $("#txtDescription").val(),
             Status: { Id: $("#IdStatus").val() },
             CreatorUser: 6,
@@ -1492,6 +1507,76 @@ function UpdatePreparation() {
         type: 'POST',
         data: JSON.stringify(datos),
         url: urlUpdatePreparation,
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+
+            //Validar data para ver si mostrar error al guardar o exito al guardar
+            if (result == true) {
+                $('#modalCongra').modal('toggle');
+            } else {
+                $('#modalError').modal('toggle');
+            }
+        },
+        error: function (err) {
+            alert("error");
+        },
+
+    });
+}
+
+function InsertRailThickness() {
+
+    var datos =
+    {
+        pRailThickness: {
+            Description: $("#inDescription").val(),
+            Status: { Id: $("#inStatus").val() },
+            CreatorUser: 6,
+            ModificationUser: 6,
+
+        }
+    };
+    console.log(datos);
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(datos),
+        url: urlInsertRailThickness,
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+
+            //Validar data para ver si mostrar error al guardar o exito al guardar
+            if (result == true) {
+                $('#modalCongra').modal('toggle');
+            } else {
+                $('#modalError').modal('toggle');
+            }
+        },
+        error: function (err) {
+            alert("error");
+        },
+
+    });
+}
+function UpdateRailThickness() {
+
+    var datos =
+    {
+        uRailThickness: {
+            Id: $("#txtId").val(),
+            Description: $("#txtDescription").val(),
+            Status: { Id: $("#IdStatus").val() },
+            CreatorUser: 6,
+            ModificationUser: 6,
+
+        }
+    };
+    console.log(datos);
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(datos),
+        url: urlUpdateRailThickness,
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function (result) {
@@ -1549,7 +1634,7 @@ function UpdateStatus() {
     var datos =
     {
         uStatus: {
-            Id: { Id: $("#txtId").val() },
+            Id: $("#txtId").val(),
             Description: $("#txtDescription").val(),
             Group: { Id: $("#IdGroup").val() },
             CreatorUser: 6,
@@ -1619,7 +1704,7 @@ function UpdateTopRail() {
     var datos =
     {
         uTopRail: {
-            Id: { Id: $("#txtId").val() },
+            Id: $("#txtId").val(),
             Description: $("#txtDescription").val(),
             Status: { Id: $("#IdStatus").val() },
             CreatorUser: 6,
@@ -1690,7 +1775,7 @@ function UpdateTopRailxHorizontalDivisions() {
     var datos =
     {
         uTopRailByHorizontalDivisions: {
-            Id: { Id: $("#txtId").val() },
+            Id: $("#txtId").val(),
             TopRail: { Id: $("#cbTopRail").val() },
             HorizontalDivisions: { Id: $("#cbHorizontalDivisions").val() },
             Status: { Id: $("#IdStatus").val() },
@@ -1726,7 +1811,7 @@ function InsertTopRailByJoin() {
 
     var datos =
     {
-        pTopRailByHorizontalDivisions: {
+        pTopRailByJoin: {
             TopRail: { Id: $("#inTopRail").val() },
             Join: { Id: $("#inJoin").val() },
             Status: { Id: $("#inStatus").val() },
@@ -1761,8 +1846,8 @@ function UpdateTopRailByJoin() {
 
     var datos =
     {
-        uTopRailByHorizontalDivisions: {
-            Id: { Id: $("#txtId").val() },
+        uTopRailByJoin: {
+            Id: $("#txtId").val(),
             TopRail: { Id: $("#cbTopRail").val() },
             Join: { Id: $("#cbJoin").val() },
             Status: { Id: $("#IdStatus").val() },
@@ -1798,7 +1883,7 @@ function InsertTopRailByVerticalDivisions() {
 
     var datos =
     {
-        pTopRailByHorizontalDivisions: {
+        pTopRailByVerticalDivisions: {
             TopRail: { Id: $("#inTopRail").val() },
             VerticalDivisions: { Id: $("#inVerticalDivisions").val() },
             Status: { Id: $("#inStatus").val() },
@@ -1833,8 +1918,8 @@ function UpdateTopRailByVerticalDivisions() {
 
     var datos =
     {
-        uTopRailByHorizontalDivisions: {
-            Id: { Id: $("#txtId").val() },
+        uTopRailByVerticalDivisions: {
+            Id: $("#txtId").val(),
             TopRail: { Id: $("#cbTopRail").val() },
             VerticalDivisions: { Id: $("#cbVerticalDivisions").val() },
             Status: { Id: $("#IdStatus").val() },
@@ -1906,7 +1991,7 @@ function UpdateType() {
     var datos =
     {
         uTypes: {
-            Id: { Id: $("#txtId").val() },
+            Id: $("#txtId").val(),
             Description: $("#txtDescription").val(),
             Group: { Id: $("#IdGroup").val() },
             Status: { Id: $("#IdStatus").val() },
@@ -1980,7 +2065,7 @@ function UpdateUsuario() {
     var datos =
     {
         uUsuario: {
-            Id: { Id: $("#txtId").val() },
+            Id: $("#txtId").val(),
             Email: $("#txtEmail").val(),
             Password: $("#txtPassword").val(),
             Type: { Id: $("#IdType").val() },
@@ -2053,7 +2138,7 @@ function UpdateVerticalDivisions() {
     var datos =
     {
         uVerticalDivisions: {
-            Id: { Id: $("#txtId").val() },
+            Id: $("#txtId").val(),
             Quantity: $("#IdStatus").val(),
             Status: { Id: $("#txtQuanty").val() },
             CreatorUser: 6,

@@ -14,7 +14,7 @@
             <div class="col-sm-6 col-lg-4">
                 <div class="bg-white rounded shadow-base overflow-hidden">
                     <div class="pd-x-20 pd-t-20 d-flex align-items-center">
-                        <a data-toggle="modal" data-target="#modaldemo1" class="Door" value="@item.Id"><img  style="width: 130px;" src="@item.Picture" /></a>
+                        <a data-toggle="modal" data-target="#modaldemo1" class="Cursor Door" value="@item.Id"><img  style="width: 130px;" src="@item.Picture" /></a>
                         <input type="hidden" value="@item.Id" id="hdId" />
                         <div class="mg-l-20">
                             <p class="tx-32 tx-inverse tx-lato tx-black mg-b-0 lh-1">@item.Material.Description</p>
@@ -346,7 +346,7 @@
                       "<p class='mg-b-20 d-block'>Flat Panel: " + data[i].PanelMaterial.Description + "</p>" +
                        "<p class='mg-b-20 d-block'>Top Rail: "+data[i].TopRail.Description+"</p>"+
                       "<p class='mg-b-20 d-block'>Bottom Rail: "+data[i].BottomRail.Description+"</p>"+
-                    "  <p class='mg-b-20'><a class='EnviarDoor btn btn-outline-info bd-2 pd-y-12 pd-x-25 tx-uppercase tx-12 tx-semibold tx-spacing-1 ' value='" + data[i].Id+ "'>Build a Door</a></p>";
+                    "  <p class='mg-b-20'><a class='Cursor EnviarDoor btn btn-outline-info bd-2 pd-y-12 pd-x-25 tx-uppercase tx-12 tx-semibold tx-spacing-1 ' value='" + data[i].Id + "'>Build a Door</a></p>";
                     $("#CuerpoModal").html(HTML);
                     var HTMLImage = '<button type="button" class="close mg-t-15 mg-r-20" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>'+
                         '<img class="img-fluid rounded-right" alt="' + data[i].Material.Description + '" src="' + data[i].Picture + '"/>';
