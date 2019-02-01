@@ -44,14 +44,11 @@
                             <tr role="row" class="odd">
                                 <td tabindex="0" class="">@item.Id</td>
                                 <td class="">@item.Description</td>
-                                <td class="">@item.Status.Description</td>
+                                <td class="">@item.Status.Id</td>
                                 <td class="">
                                     <center>
                                         <a href="#" data-toggle="modal" data-target="#modalModify" value="@item.Id" class="Modificar btn btn-primary btn-icon">
                                             <div><i class="fa fa-edit"></i></div>
-                                        </a>
-                                        <a href="#" id="deleteBTR" data-toggle="modal" data-target="#modalDelete" value="@item.Id" class="Eliminar btn btn-danger btn-icon">
-                                            <div><i class="fa fa-trash"></i></div>
                                         </a>
                                     </center>
                                 </td>
@@ -180,10 +177,10 @@
             </div>
             <div class="modal-body pd-20">
                 <p class="mg-b-5">You are about to delete an article. What would you like to do?</p>
-                <input id="iptHdeleBTR" type="hidden" value="" />
+                <input id="iptHdeleBTR" type="hidden" value="@ViewBag.IdItem" />
             </div>
             <div class="modal-footer justify-content-center">
-                <button name="confirmButton" type="submit" value="Delete" id="btndelete" class="btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Remove</button>
+                <button name="confirmButton" type="submit" value="Delete" id="btnDelete" class="btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Remove</button>
                 <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>
             </div>
         </div>
@@ -228,6 +225,7 @@
     <script type="text/javascript">
         var urlInsertBottomRail = '@Url.Action("InsertBottomRail", "Masters")';
         var urlUpdateBottomRail = '@Url.Action("UpdateBottomRail", "Masters")';
+        var urlDeleteBottomRail = '@Url.Action("DeleteBottomRail", "Masters")';
     </script>
 
 

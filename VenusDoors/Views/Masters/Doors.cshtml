@@ -35,24 +35,9 @@
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="First name: activate to sort column ascending">Id</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Door Style</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Material</th>
-                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Top Rail</th>
-                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Bottom Rail</th>
-                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Preparation</th>
-                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Join</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Outside Edge Profile</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Inside Edge Profile</th>
-                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Vertical Divisions</th>
-                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Horizontal Divisions</th>
-                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Hinge Direction</th>
-                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Hinge Positions</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Panel</th>
-                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Panel Material</th>
-                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Drill</th>
-                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Width</th>
-                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Height</th>
-                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Opening Measurement</th>                          
-                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Picture</th>
-                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">ProfilePicture</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Status</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" style="text-align: center" aria-label="Last name: activate to sort column ascending"><i class="fa fa-flash"></i></th>
                         </tr>
@@ -64,32 +49,14 @@
                                 <td tabindex="0" class="">@item.Id</td>
                                 <td class="">@item.DoorStyle.Description</td>
                                 <td class="">@item.Material.Description</td>
-                                <td class="">@item.TopRail.Description</td>
-                                <td class="">@item.BottomRail.Description</td>
-                                <td class="">@item.Preparation.Description</td>
-                                <td class="">@item.Join.Description</td>
                                 <td class="">@item.OutsideEdgeProfile.Description</td>
                                 <td class="">@item.InsideEdgeProfile.Description</td>
-                                <td class="">@item.VerticalDivisions.Quantity</td>
-                                <td class="">@item.HorizontalDivisions.Quantity</td>
-                                <td class="">@item.HingeDirection.Direction</td>
-                                <td class="">@item.HingePositions.Id</td>
                                 <td class="">@item.Panel.Description</td>
-                                <td class="">@item.PanelMaterial.Description</td>
-                                <td class="">@item.isDrill</td>
-                                <td class="">@item.Width</td>
-                                <td class="">@item.Height</td>
-                                <td class="">@item.IsOpeningMeasurement</td>
-                                <td class="">@item.Picture</td>
-                                <td class="">@item.ProfilePicture</td>
                                 <td class="">@item.Status.Description</td>
                                 <td class="">
                                     <center>
                                         <a href="#" data-toggle="modal" data-target="#modalModify" class="Modificar btn btn-primary btn-icon">
                                             <div><i class="fa fa-edit"></i></div>
-                                        </a>
-                                        <a href="#" data-toggle="modal" data-target="#modaldemo2" class="Eliminar btn btn-danger btn-icon">
-                                            <div><i class="fa fa-trash"></i></div>
                                         </a>
                                     </center>
                                 </td>
@@ -316,7 +283,7 @@
                                                 }
                                             </div><!-- form-group -->
 
-                                            <div class="col-xs-4 col-md-3">
+                                            <div class="col-xs-4 col-md-3" style="padding-top: 20px;">
                                                 <label for="Template" style="margin-top: 25px;">Status: </label>
                                                 <select style="width:100%" class="form-control select2" id="inStatus" data-placeholder="">
                                                     <option value="0">select</option>
@@ -564,7 +531,7 @@
                                                 }
                                             </div><!-- form-group -->
 
-                                            <div class="col-xs-4 col-md-3">
+                                            <div class="col-xs-4 col-md-3" style="padding-top: 20px;">
                                                 <label for="Template" style="margin-top: 25px;">Status: </label>
                                                 <select style="width:100%" class="form-control select2" id="IdStatus" data-placeholder="">
                                                     <option value="0">select</option>

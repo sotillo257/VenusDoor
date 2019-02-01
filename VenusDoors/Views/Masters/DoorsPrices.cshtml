@@ -33,16 +33,10 @@
                         <thead>
                             <tr>
                                 <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="First name: activate to sort column ascending">Id</th>
-                                <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Door Style</th>
-                                <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Material</th>
-                                <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">RailThickness</th>
                                 <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Base Price</th>
                                 <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Additional SF Price</th>
                                 <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Vertical Base1 FL Price</th>
                                 <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Horizontal Base1 FL Price</th>
-                                <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Horizontal Additional Inch Price</th>
-                                <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Picture</th>
-                                <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">ProfilePicture</th>
                                 <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Status</th>
                                 <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" style="text-align: center" aria-label="Last name: activate to sort column ascending"><i class="fa fa-flash"></i></th>
                             </tr>
@@ -52,23 +46,14 @@
                             {
                                 <tr role="row" class="odd">
                                     <td tabindex="0" class="">@item.Id</td>
-                                    <td class="">@item.DoorStyle.Description</td>
-                                    <td class="">@item.Material.Description</td>
-                                    <td class="">@item.RailThickness.Description</td>
                                     <td class="">@item.BasePrice</td>
                                     <td class="">@item.AdditionalSFPrice</td>
                                     <td class="">@item.VerticalAdditionalInchPrice</td>
                                     <td class="">@item.HorizontalBase1FLPrice</td>
-                                    <td class="">@item.HorizontalAdditionalInchPrice</td>
-                                    <td class="">@item.Picture</td>
-                                    <td class="">@item.ProfilePicture</td>
                                     <td class="">@item.Status.Description</td>
                                     <td class="">
                                         <a href="#" data-toggle="modal" data-target="#modalModify" value="@item.Id" class="Modificar btn btn-primary btn-icon">
                                             <div><i class="fa fa-edit"></i></div>
-                                        </a>
-                                        <a href="#" data-toggle="modal" data-target="#modaldemo2" value="@item.Id" class="btn btn-danger btn-icon">
-                                            <div><i class="fa fa-trash"></i></div>
                                         </a>
                                     </td>
                                 </tr>
@@ -166,7 +151,7 @@
                                             </div><!-- form-group -->
 
 
-                                            <div class="col-xs-4 col-md-3">
+                                            <div class="col-xs-4 col-md-3" style="padding-top: 20px;">
                                                 @using (Html.BeginForm("subir", "home", FormMethod.Post, new { enctype = "multipart/form-data" }))
                                                 {
                                                     <label for="ProfilePicture" style="margin-top: 25px;">Profile Picture: </label>
@@ -295,7 +280,7 @@
                                             </div><!-- form-group -->
 
 
-                                            <div class="col-xs-4 col-md-3">
+                                            <div class="col-xs-4 col-md-3" style="padding-top: 20px;">
                                                 @using (Html.BeginForm("subir", "home", FormMethod.Post, new { enctype = "multipart/form-data" }))
                                                 {
                                                     <label for="ProfilePicture" style="margin-top: 25px;">Profile Picture: </label>

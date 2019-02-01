@@ -95,15 +95,20 @@ namespace VenusDoors.Controllers
             }
         }
 
-        public ActionResult DeleteBottomRail(int id)
+        public ActionResult DeleteBottomRail(int pId)
         {
 
-            BottomRail dBottomRail = ViewBag.delBottomRail(id);
+            try
+            {
+                BusinessLogic.lnBottomRail _LN = new BusinessLogic.lnBottomRail();
+                var delBR = _LN.DeleteBottomRail(pId);
+                return Json(true, JsonRequestBehavior.AllowGet);
 
-            if (dBottomRail == null)
-                return View("NotFound");
-            else
-                return View(dBottomRail);
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
         }
         #endregion
 

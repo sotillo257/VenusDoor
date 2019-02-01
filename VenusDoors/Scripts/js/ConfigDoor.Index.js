@@ -483,7 +483,7 @@ $(document).ready(function () {
         var Height = parseFloat($(this).val())
         if ($(this).val() < 5) {
             
-            alert('Minimum Height is 5 inches');
+            $('#modalMinimo').modal('toggle');
                 Height = 5;
                 var ip1 = 3.5;
                 var ip2 = Height - 3.5;
@@ -570,14 +570,14 @@ $(document).ready(function () {
         var Width = parseFloat($(this).val())
         if ($(this).val() < 5) {
 
-            alert('Minimum Width is 5 inches');
+            $('#modalMinimo').modal('toggle');
             Width = 5;
             $('.iptWidth').val(Width);
         }
         else if ($(this).val() > 42)
         {
 
-            alert('Max Width is 42 inches.');
+            $('#modalMaximo').modal('toggle');
             Width = 42;
             $('.iptWidth').val(Width);
            

@@ -5,6 +5,9 @@
     $("#btnModify").on("click", function () {
         UpdateBottomRail();
     });
+    $("#btnDelete").on("click", function () {
+        DeleteBottomRail();
+    });
 
     $("#btInsertDoors").on("click", function () {
         InsertDoors();
@@ -241,6 +244,37 @@ function UpdateBottomRail() {
         type: 'POST',
         data: JSON.stringify(datos),
         url: urlUpdateBottomRail,
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+
+            //Validar data para ver si mostrar error al guardar o exito al guardar
+            if (result == true) {
+                $('#modalCongra').modal('toggle');
+            } else {
+                $('#modalError').modal('toggle');
+            }
+        },
+        error: function (err) {
+            alert("error");
+        },
+
+    });
+}
+function DeleteBottomRail() {
+
+    var datos =
+    {
+        pId: {
+            Id: $("#iptHdeleBTR").val(),
+
+        }
+    };
+    console.log(datos);
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(datos),
+        url: urlDeleteBottomRail,
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function (result) {

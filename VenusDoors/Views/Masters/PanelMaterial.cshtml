@@ -50,9 +50,6 @@
                                         <a href="#" data-toggle="modal" data-target="#modalModify" value="@item.Id" class="Modificar btn btn-primary btn-icon">
                                             <div><i class="fa fa-edit"></i></div>
                                         </a>
-                                        <a href="#" data-toggle="modal" data-target="#modaldemo2" value="@item.Id" class="Eliminar btn btn-danger btn-icon">
-                                            <div><i class="fa fa-trash"></i></div>
-                                        </a>
                                     </center>
                                 </td>
                             </tr>
@@ -66,58 +63,6 @@
     </div>
 </div>
 
-@section scripts{
-<script>
-    var urlInsertPanelMaterial = '@Url.Action("InsertPanelMaterial", "Masters")';
-    var urlUpdatePanelMaterial = '@Url.Action("UpdatePanelMaterial", "Masters")';
-</script>
-    <script>
-        $(function () {
-            'use strict';
-
-            $('#datatable1').DataTable({
-                responsive: true,
-                language: {
-                    searchPlaceholder: 'Search...',
-                    sSearch: '',
-                    lengthMenu: '_MENU_ items/page',
-                }
-            });
-
-            $('#datatable2').DataTable({
-                bLengthChange: false,
-                searching: false,
-                responsive: true
-            });
-
-            // Select2
-            $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
-
-        });
-    </script>
-    <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
-    <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>
-    <script src="~/Content/lib/select2/js/select2.min.js"></script>
-@Scripts.Render("~/Scripts/js/Masters.js")
-<script type="text/javascript">
-
-        $(document).ready(function () {
-            var listPMa = JSON.parse('@Html.Raw(ViewBag.ListPanelMaterial)');
-            $(document).on('click', '.Modificar', function (event) {
-                for (var i = 0; i < listPMa.length; i++) {
-                    if (listPMa[i].Id == $(this).attr('value')) {
-                        $('#txtId').val(listPMa[i].Id);
-                        $('#IdStatus').val(listPMa[i].Status.Id);
-                        $('#txtDescription').val(listPMa[i].Description);
-                    }
-                }
-            });
-
-
-        });
-
-</script>
-}
 <div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div>
 
 <div id="modalInsert" class="modal fade effect-scale" aria-hidden="true" style="display: none;">
@@ -276,3 +221,55 @@
 </div>
 
 
+@section scripts{
+    <script>
+    var urlInsertPanelMaterial = '@Url.Action("InsertPanelMaterial", "Masters")';
+    var urlUpdatePanelMaterial = '@Url.Action("UpdatePanelMaterial", "Masters")';
+    </script>
+    <script>
+        $(function () {
+            'use strict';
+
+            $('#datatable1').DataTable({
+                responsive: true,
+                language: {
+                    searchPlaceholder: 'Search...',
+                    sSearch: '',
+                    lengthMenu: '_MENU_ items/page',
+                }
+            });
+
+            $('#datatable2').DataTable({
+                bLengthChange: false,
+                searching: false,
+                responsive: true
+            });
+
+            // Select2
+            $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
+
+        });
+    </script>
+    <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
+    <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>
+    <script src="~/Content/lib/select2/js/select2.min.js"></script>
+    @Scripts.Render("~/Scripts/js/Masters.js")
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            var listPMa = JSON.parse('@Html.Raw(ViewBag.ListPanelMaterial)');
+            $(document).on('click', '.Modificar', function (event) {
+                for (var i = 0; i < listPMa.length; i++) {
+                    if (listPMa[i].Id == $(this).attr('value')) {
+                        $('#txtId').val(listPMa[i].Id);
+                        $('#IdStatus').val(listPMa[i].Status.Id);
+                        $('#txtDescription').val(listPMa[i].Description);
+                    }
+                }
+            });
+
+
+        });
+
+    </script>
+}
