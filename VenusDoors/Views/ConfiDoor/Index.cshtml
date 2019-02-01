@@ -41,7 +41,7 @@
 </div><!-- br-pageheader -->
 
 <div class="br-pagebody">
-    <div class="br-section-wrapper">
+    <div id="validate" class="br-section-wrapper">
         <div class="pd-sm-bottom-30">
             <h4 class="tx-gray-800 mg-b-5">Door Configuration</h4>
             <p class="mg-b-0">Modals are streamlined, but flexible, dialog prompts with the minimum required functionality and smart defaults.</p>
@@ -59,13 +59,13 @@
                         <select style="width:100%" class="eventChange form-control select2" id="cbMaterial" data-placeholder=""></select>
                     </div><!-- col -->
 
-                    <div name="SoloNumeros" class="col-xs-4 col-md-1">
+                    <div name="SoloNumeros" class="col-xs-4 col-md-2">
                         <label for="Width" style="margin-top: 25px;">(*) Width: </label>
-                        <input name="SoloNumeros" class="required RequiereLlenar eventChange iptWidth form-control" value="0" type="number"maxlength="6" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="iptWidth">
+                        <input name="SoloNumeros" class="required RequiereLlenar eventChange iptWidth form-control" type="number" value="0" maxlength="6" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="iptWidth">
                     </div><!-- col -->
-                    <div name="SoloNumeros" class="col-xs-4 col-md-1">
+                    <div name="SoloNumeros" class="col-xs-4 col-md-2">
                         <label for="Height" style="margin-top: 25px;">(*) Height: </label>
-                        <input name="SoloNumeros" class="required RequiereLlenar eventChange iptHeight form-control" value="0" type="number" maxlength="6" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="iptHeight">
+                        <input name="SoloNumeros" class="required RequiereLlenar eventChange iptHeight form-control" type="number" value="0" maxlength="6" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="iptHeight">
                     </div><!-- col -->
                 </div>
             </div>
@@ -382,7 +382,7 @@
     </script>
     <script type="text/javascript">
            function validarFormulario(){
-               $('#btConfirm').click(function(){
+               $('#validate').click(function () {
                    if ($('.RequiereLlenar').val() === '') {
                        $('#modalPrueba').modal('toggle');
 
