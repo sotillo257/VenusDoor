@@ -104,8 +104,8 @@ namespace DataAccess
         public int InsertDoorsPrices(DoorsPrices pDoorsPrices)
         {
             string sql = @"[spInsertDoorsPrices] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}'";
-            sql = string.Format(sql, pDoorsPrices.DoorStyle.Id, pDoorsPrices.Material.Id, pDoorsPrices.RailThickness.Id, pDoorsPrices.BasePrice, pDoorsPrices.AdditionalSFPrice, pDoorsPrices.VerticalBase1FLPrice, 
-                pDoorsPrices.VerticalAdditionalInchPrice, pDoorsPrices.HorizontalBase1FLPrice, pDoorsPrices.HorizontalAdditionalInchPrice,
+            sql = string.Format(sql, pDoorsPrices.DoorStyle.Id, pDoorsPrices.Material.Id, pDoorsPrices.RailThickness.Id, pDoorsPrices.BasePrice.ToString().Replace(',', '.'), pDoorsPrices.AdditionalSFPrice.ToString().Replace(',', '.'), pDoorsPrices.VerticalBase1FLPrice.ToString().Replace(',', '.'), 
+                pDoorsPrices.VerticalAdditionalInchPrice.ToString().Replace(',', '.'), pDoorsPrices.HorizontalBase1FLPrice.ToString().Replace(',', '.'), pDoorsPrices.HorizontalAdditionalInchPrice.ToString().Replace(',', '.'),
                 pDoorsPrices.Status.Id, pDoorsPrices.CreationDate.ToString("yyyy-MM-dd"), pDoorsPrices.CreatorUser, 
                 pDoorsPrices.ModificationDate.ToString("yyyy-MM-dd"), pDoorsPrices.ModificationUser, pDoorsPrices.Picture, pDoorsPrices.ProfilePicture);
             try
@@ -121,8 +121,8 @@ namespace DataAccess
         public void UpdateDoorsPrices(DoorsPrices pDoorsPrices)
         {
             string sql = @"[spUpdateDoorsPrices] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}', '{14}'";
-            sql = string.Format(sql,pDoorsPrices.Id, pDoorsPrices.DoorStyle.Id, pDoorsPrices.Material.Id, pDoorsPrices.RailThickness.Id, pDoorsPrices.BasePrice, pDoorsPrices.AdditionalSFPrice, pDoorsPrices.VerticalBase1FLPrice,
-                pDoorsPrices.VerticalAdditionalInchPrice, pDoorsPrices.HorizontalBase1FLPrice, pDoorsPrices.HorizontalAdditionalInchPrice,
+            sql = string.Format(sql,pDoorsPrices.Id, pDoorsPrices.DoorStyle.Id, pDoorsPrices.Material.Id, pDoorsPrices.RailThickness.Id, pDoorsPrices.BasePrice.ToString().Replace(',', '.'), pDoorsPrices.AdditionalSFPrice.ToString().Replace(',', '.'), pDoorsPrices.VerticalBase1FLPrice.ToString().Replace(',', '.'),
+                pDoorsPrices.VerticalAdditionalInchPrice.ToString().Replace(',', '.'), pDoorsPrices.HorizontalBase1FLPrice.ToString().Replace(',', '.'), pDoorsPrices.HorizontalAdditionalInchPrice.ToString().Replace(',', '.'),
                 pDoorsPrices.Status.Id, pDoorsPrices.ModificationDate.ToString("yyyy-MM-dd"), pDoorsPrices.ModificationUser, pDoorsPrices.Picture, pDoorsPrices.ProfilePicture);
             try
             {
