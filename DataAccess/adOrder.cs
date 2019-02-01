@@ -127,8 +127,9 @@ namespace DataAccess
 
         public int InsertOrder(Order pOrder)
         {
+            decimal total = Convert.ToDecimal(pOrder.Total);
             string sql = @"[spInsertOrder] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}'";
-            sql = string.Format(sql, pOrder.User.Id, pOrder.Quantity, pOrder.Total, pOrder.Type.Id, pOrder.Status.Id, pOrder.CreationDate.ToString("yyyy-MM-dd"),
+            sql = string.Format(sql, pOrder.User.Id, pOrder.Quantity, total.ToString().Replace(',','.'), pOrder.Type.Id, pOrder.Status.Id, pOrder.CreationDate.ToString("yyyy-MM-dd"),
                 pOrder.CreatorUser, pOrder.ModificationDate.ToString("yyyy-MM-dd"), pOrder.ModificationUser);
             try
             {
@@ -142,8 +143,10 @@ namespace DataAccess
 
         public void UpdateOrder(Order pOrder)
         {
+            decimal total = Convert.ToDecimal(pOrder.Total);
             string sql = @"[spUpdateOrder] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}'";
-            sql = string.Format(sql, pOrder.Id, pOrder.User.Id, pOrder.Quantity, Convert.ToDecimal(pOrder.Total), pOrder.Type.Id, pOrder.Status.Id, pOrder.ModificationDate.ToString("yyyy-MM-dd"),
+
+            sql = string.Format(sql, pOrder.Id, pOrder.User.Id, pOrder.Quantity, total.ToString().Replace(',', '.'), pOrder.Type.Id, pOrder.Status.Id, pOrder.ModificationDate.ToString("yyyy-MM-dd"),
                 pOrder.ModificationUser);
             try
             {

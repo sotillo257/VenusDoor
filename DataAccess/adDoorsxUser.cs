@@ -129,11 +129,12 @@ namespace DataAccess
 
         public int InsertDoorsxUser(DoorsxUser pDoorsxUser)
         {
+            decimal subtotal = Convert.ToDecimal(pDoorsxUser.SubTotal);
             string sql = @"[spInsertDoorsxUser] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}', '{20}', '{21}', '{22}', '{23}', '{24}', '{25}', '{26}', '{27}', '{28}'";
             sql = string.Format(sql, pDoorsxUser.Order.Id, pDoorsxUser.DoorStyle.Id, pDoorsxUser.Material.Id, pDoorsxUser.TopRail.Id, pDoorsxUser.BottomRail.Id, 
                 pDoorsxUser.Preparation.Id, pDoorsxUser.Join.Id, pDoorsxUser.OutsideEdgeProfile.Id, 
                 pDoorsxUser.InsideEdgeProfile.Id, pDoorsxUser.VerticalDivisions.Id, pDoorsxUser.HorizontalDivisions.Id, pDoorsxUser.HingeDirection.Id, 
-                pDoorsxUser.HingePositions.Id, (pDoorsxUser.isDrill == true) ? 1 : 0, pDoorsxUser.Width, pDoorsxUser.Height, (pDoorsxUser.IsOpeningMeasurement == true) ? 1 : 0, pDoorsxUser.Quantity, Convert.ToDecimal(pDoorsxUser.SubTotal), pDoorsxUser.User.Id, 
+                pDoorsxUser.HingePositions.Id, (pDoorsxUser.isDrill == true) ? 1 : 0, pDoorsxUser.Width.ToString().Replace(',', '.'), pDoorsxUser.Height.ToString().Replace(',', '.'), (pDoorsxUser.IsOpeningMeasurement == true) ? 1 : 0, pDoorsxUser.Quantity, subtotal.ToString().Replace(',', '.'), pDoorsxUser.User.Id, 
                 pDoorsxUser.Status.Id, pDoorsxUser.CreationDate.ToString("yyyy-MM-dd"), pDoorsxUser.CreatorUser, pDoorsxUser.ModificationDate.ToString("yyyy-MM-dd"),
                 pDoorsxUser.ModificationUser, pDoorsxUser.Picture, pDoorsxUser.ProfilePicture, pDoorsxUser.Panel.Id, pDoorsxUser.PanelMaterial.Id);
             try
@@ -148,11 +149,12 @@ namespace DataAccess
 
         public void UpdateDoorsxUser(DoorsxUser pDoorsxUser)
         {
+            decimal subtotal = Convert.ToDecimal(pDoorsxUser.SubTotal);
             string sql = @"[spUpdateDoorsxUser] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}', '{20}', '{21}', '{22}', '{23}', '{24}', '{25}', '{26}', '{27}'";
             sql = string.Format(sql, pDoorsxUser.Id, pDoorsxUser.Order.Id, pDoorsxUser.DoorStyle.Id, pDoorsxUser.Material.Id, pDoorsxUser.TopRail.Id, pDoorsxUser.BottomRail.Id,
                 pDoorsxUser.Preparation.Id, pDoorsxUser.Join.Id, pDoorsxUser.OutsideEdgeProfile.Id,
                 pDoorsxUser.InsideEdgeProfile.Id, pDoorsxUser.VerticalDivisions.Id, pDoorsxUser.HorizontalDivisions.Id, pDoorsxUser.HingeDirection.Id,
-                pDoorsxUser.HingePositions.Id, (pDoorsxUser.isDrill == true) ? 1 : 0, pDoorsxUser.Width, pDoorsxUser.Height, (pDoorsxUser.IsOpeningMeasurement == true) ? 1 : 0, pDoorsxUser.Quantity, pDoorsxUser.SubTotal, pDoorsxUser.User.Id,
+                pDoorsxUser.HingePositions.Id, (pDoorsxUser.isDrill == true) ? 1 : 0, pDoorsxUser.Width.ToString().Replace(',', '.'), pDoorsxUser.Height.ToString().Replace(',', '.'), (pDoorsxUser.IsOpeningMeasurement == true) ? 1 : 0, pDoorsxUser.Quantity, subtotal.ToString().Replace(',', '.'), pDoorsxUser.User.Id,
                 pDoorsxUser.Status.Id, pDoorsxUser.ModificationDate.ToString("yyyy-MM-dd"), pDoorsxUser.ModificationUser, pDoorsxUser.Picture, pDoorsxUser.ProfilePicture, pDoorsxUser.Panel.Id, pDoorsxUser.PanelMaterial.Id);
             try
             {

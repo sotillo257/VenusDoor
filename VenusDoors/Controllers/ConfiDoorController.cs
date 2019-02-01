@@ -255,7 +255,6 @@ namespace VenusDoors.Controllers
             BusinessLogic.lnOrder _LNUPor = new BusinessLogic.lnOrder();
             item.Quantity = item.Quantity + pDoorsxUser.Quantity;
             item.Total = item.Total + pDoorsxUser.SubTotal;
-            Convert.ToDecimal(item.Total);
             return Json(_LNUPor.UpdateOrder(item));
         }
 

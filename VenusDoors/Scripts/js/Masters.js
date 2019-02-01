@@ -298,9 +298,9 @@ function InsertDoors() {
     var datos =
     {
         pDoors: {
-            Id: { Id: $("#inputID").val() },
+      
             DoorStyle: { Id: $("#inDoorStyle").val() },
-            Matarial: { Id: $("#inMatarial").val() },
+            Material: { Id: $("#inMaterial").val() },
             TopRail: { Id: $("#inTopRail").val() },
             BottomRail: { Id: $("#inBottomRail").val() },
             Preparation: { Id: $("#inPreparation").val() },
@@ -352,9 +352,9 @@ function UpdateDoors() {
     var datos =
     {
         uDoors: {
-            Id: $("#txtId").val(),
+            Id: $("#utxtId").val(),
             DoorStyle: { Id: $("#cbDoorStyle").val() },
-            Matarial: { Id: $("#cbMatarial").val() },
+            Material: { Id: $("#cbMaterial").val() },
             TopRail: { Id: $("#cbTopRail").val() },
             BottomRail: { Id: $("#cbBottomRail").val() },
             Preparation: { Id: $("#cbPreparation").val() },
