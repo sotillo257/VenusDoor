@@ -22,7 +22,7 @@
                         <p class="mg-b-0">Modals are streamlined, but flexible, dialog prompts with the minimum required functionality and smart defaults.</p>
                     </div>
                     <div class="col-md-1">
-                        <button type="button" data-toggle="modal" data-target="#modalInsert" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Insert</button>
+                        <button type="button" data-toggle="modal" data-target="#modalInsert" class="Cursor btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Insert</button>
                     </div>
                 </div>
             </div>
@@ -44,7 +44,7 @@
                             <tr role="row" class="odd">
                                 <td tabindex="0" class="">@item.Id</td>
                                 <td class="">@item.Description</td>
-                                <td class="">@item.Status.Id</td>
+                                <td class="">@item.Status.Description</td>
                                 <td class="">
                                     <center>
                                         <a href="#" data-toggle="modal" data-target="#modalModify" value="@item.Id" class="Modificar btn btn-primary btn-icon">
@@ -65,58 +65,6 @@
     </div>
 </div>
 
-@section scripts{
-<script>
-    var urlInsertInsideEdgeProfile = '@Url.Action("InsertInsideEdgeProfile", "Masters")';
-    var urlUpdateInsideEdgeProfile = '@Url.Action("UpdateInsideEdgeProfile", "Masters")';
-</script>
-    <script>
-        $(function () {
-            'use strict';
-
-            $('#datatable1').DataTable({
-                responsive: true,
-                language: {
-                    searchPlaceholder: 'Search...',
-                    sSearch: '',
-                    lengthMenu: '_MENU_ items/page',
-                }
-            });
-
-            $('#datatable2').DataTable({
-                bLengthChange: false,
-                searching: false,
-                responsive: true
-            });
-
-            // Select2
-            $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
-
-        });
-    </script>
-    <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
-    <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>
-    <script src="~/Content/lib/select2/js/select2.min.js"></script>
-@Scripts.Render("~/Scripts/js/Masters.js")
-<script type="text/javascript">
-
-        $(document).ready(function () {
-            var listIEP = JSON.parse('@Html.Raw(ViewBag.ListInsideEdgeProfile)');
-            $(document).on('click', '.Modificar', function (event) {
-                for (var i = 0; i < listIEP.length; i++) {
-                    if (listIEP[i].Id == $(this).attr('value')) {
-                        $('#txtId').val(listIEP[i].Id);
-                        $('#IdStatus').val(listIEP[i].Status.Id);
-                        $('#txtDescription').val(listIEP[i].Description);
-                    }
-                }
-            });
-
-
-        });
-
-</script>
-}
 <div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div>
 
 <div id="modalInsert" class="modal fade effect-scale" aria-hidden="true" style="display: none;">
@@ -272,3 +220,56 @@
         </div><!-- modal-content -->
     </div><!-- modal-dialog -->
 </div>
+
+@section scripts{
+    <script>
+    var urlInsertInsideEdgeProfile = '@Url.Action("InsertInsideEdgeProfile", "Masters")';
+    var urlInsertInsideEdgeProfile = '@Url.Action("UpdateInsideEdgeProfile", "Masters")';
+    </script>
+    <script>
+        $(function () {
+            'use strict';
+
+            $('#datatable1').DataTable({
+                responsive: true,
+                language: {
+                    searchPlaceholder: 'Search...',
+                    sSearch: '',
+                    lengthMenu: '_MENU_ items/page',
+                }
+            });
+
+            $('#datatable2').DataTable({
+                bLengthChange: false,
+                searching: false,
+                responsive: true
+            });
+
+            // Select2
+            $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
+
+        });
+    </script>
+    <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
+    <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>
+    <script src="~/Content/lib/select2/js/select2.min.js"></script>
+    @Scripts.Render("~/Scripts/js/Masters.js")
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            var listIEP = JSON.parse('@Html.Raw(ViewBag.ListInsideEdgeProfile)');
+            $(document).on('click', '.Modificar', function (event) {
+                for (var i = 0; i < listIEP.length; i++) {
+                    if (listIEP[i].Id == $(this).attr('value')) {
+                        $('#txtId').val(listIEP[i].Id);
+                        $('#IdStatus').val(listIEP[i].Status.Id);
+                        $('#txtDescription').val(listIEP[i].Description);
+                    }
+                }
+            });
+
+
+        });
+
+    </script>
+}

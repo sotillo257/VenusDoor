@@ -20,7 +20,9 @@
     <title>@ViewBag.Title - Venus Doors</title>
     @*@Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")*@
-    
+    <style>
+        .Cursor:hover { cursor:pointer }
+    </style>
 </head>
 <body>
     @*<div class="navbar navbar-inverse navbar-fixed-top">
@@ -43,7 +45,7 @@
                 </div>
             </div>
         </div>*@
-    <div class="br-logo"><a href=""><img src="~/Content/img/Venus_Doors11.png" style="width: 150px;" alt=""></a></div>
+    <div class="br-logo"><a href="/"><img src="~/Content/img/Venus_Doors11.png" style="width: 150px;" alt=""></a></div>
     <div class="br-sideleft overflow-y-auto">
         <label class="sidebar-label pd-x-15 mg-t-20">Navigation</label>
         <div class="br-sideleft-menu">
@@ -113,6 +115,7 @@
                     <li class="nav-item">@Html.ActionLink("Panel Material", "PanelMaterial", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.PanelMaterial })</li>
                     <li class="nav-item">@Html.ActionLink("Person", "Person", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Person })</li>
                     <li class="nav-item">@Html.ActionLink("Preparation", "Preparation", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Preparation })</li>
+                    <li class="nav-item">@Html.ActionLink("Rail Thickness", "RailThickness", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.RailThickness })</li>
                     <li class="nav-item">@Html.ActionLink("Status", "Status", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Status })</li>
                     <li class="nav-item">@Html.ActionLink("TopRail", "TopRail", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.TopRail })</li>
                     <li class="nav-item">@Html.ActionLink("Top Rail by Horizontal Divisions", "TopRailByHorizontalDivisions", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.TopRailByHorizontalDivisions })</li>
@@ -151,9 +154,9 @@
         <div class="col-md-1">
             <div class="br-header-right" style="margin-top: 10px;">
 
-                    <a id="idLogin" title="Log In" value="enviar" class="btn btn-primary btn-icon rounded-circle mg-r-5 mg-b-10" onclick="location.href='@Url.Action("Index","Logins")'"  style="color: #fff !important; margin-right: 10px;"><div><i class="fa fa-user"></i></div></a>
+                    <a id="idLogin" title="Log In" value="enviar" class="Cursor btn btn-primary btn-icon rounded-circle mg-r-5 mg-b-10" onclick="location.href='@Url.Action("Index","Logins")'"  style="color: #fff !important; margin-right: 10px;"><div><i class="fa fa-user"></i></div></a>
                 
-                    <a id="idSignUp" title="Sign Up" class="btn btn-success btn-icon rounded-circle mg-r-5 mg-b-10" onclick="location.href='@Url.Action("sing_up","Logins")'" style="color: #fff !important;"><div><i class="fa fa-user-plus"></i></div></a>
+                    <a id="idSignUp" title="Sign Up" class="Cursor btn btn-success btn-icon rounded-circle mg-r-5 mg-b-10" onclick="location.href='@Url.Action("sing_up","Logins")'" style="color: #fff !important;"><div><i class="fa fa-user-plus"></i></div></a>
             </div>
         </div><!--br-header-right-->
     }

@@ -1622,14 +1622,14 @@ namespace VenusDoors.Controllers
                 ViewBag.Masters = "active show-sub";
                 ViewBag.Type = "active";
                 BusinessLogic.lnType _LBL = new BusinessLogic.lnType();
-                ViewBag.cbGroup = _LNGroup.GetAllGroup();
-                ViewBag.mStatus = _LNStatus.GetAllStatus();
 
                 var mType = _LBL.GetAllType();
                 ViewBag.mType = mType;
                 var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
                 ViewBag.ListType = serializar.Serialize(mType);
 
+                ViewBag.cbGroup = _LNGroup.GetAllGroup();
+                ViewBag.mStatus = _LNStatus.GetAllStatus();
                 return View();
             }
             else

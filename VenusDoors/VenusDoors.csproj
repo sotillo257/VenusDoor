@@ -970,6 +970,7 @@
     <Content Include="Content\scss\util\_typography.scss" />
     <Content Include="Content\scss\util\_width.scss" />
     <None Include="Properties\PublishProfiles\jesus.pubxml" />
+    <None Include="Properties\PublishProfiles\VenusDoorApp Jesus.pubxml" />
     <None Include="Properties\PublishProfiles\VenusDoors App.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

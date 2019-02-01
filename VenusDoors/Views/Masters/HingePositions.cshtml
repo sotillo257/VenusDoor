@@ -22,7 +22,7 @@
                         <p class="mg-b-0">Modals are streamlined, but flexible, dialog prompts with the minimum required functionality and smart defaults.</p>
                     </div>
                     <div class="col-md-1">
-                        <button type="button" data-toggle="modal" data-target="#modalInsert" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Insert</button>
+                        <button type="button" data-toggle="modal" data-target="#modalInsert" class="Cursor btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Insert</button>
                     </div>
                 </div>
             </div>
@@ -33,7 +33,11 @@
                     <thead>
                         <tr>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="First name: activate to sort column ascending">Id</th>
-                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Position</th>
+                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Position 1</th>
+                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Position 2</th>
+                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Position 3</th>
+                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Position 4</th>
+                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Position 5</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Status</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" style="text-align: center" aria-label="Last name: activate to sort column ascending"><i class="fa fa-flash"></i></th>
                         </tr>
@@ -43,8 +47,12 @@
                         {
                             <tr role="row" class="odd">
                                 <td tabindex="0" class="">@item.Id</td>
-                                <td class="">@item.Position1, @item.Position2, @item.Position3, @item.Position4, @item.Position5</td>
-                                <td class="">@item.Status.Id</td>
+                                <td class="">@item.Position1</td>
+                                <td class="">@item.Position2</td>
+                                <td class="">@item.Position3</td>
+                                <td class="">@item.Position4</td>
+                                <td class="">@item.Position5</td>
+                                <td class="">@item.Status.Description</td>
                                 <td class="">
                                     <center>
                                         <a href="#" data-toggle="modal" data-target="#modalModify" value="@item.Id" class="Modificar btn btn-primary btn-icon">
@@ -88,8 +96,24 @@
                                                 <input type="text" id="inId" name="id" class="form-control" readonly placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
-                                                <label for="Template" style="margin-top: 25px;">Position: </label>
+                                                <label for="Template" style="margin-top: 25px;">Position 1: </label>
                                                 <input type="text" name="id" id="inPosition" class="form-control" placeholder="">
+                                            </div><!-- form-group -->
+                                            <div class="col-xs-4 col-md-4">
+                                                <label for="Template" style="margin-top: 25px;">Position 2: </label>
+                                                <input type="text" name="id" id="inPosition2" class="form-control" placeholder="">
+                                            </div><!-- form-group -->
+                                            <div class="col-xs-4 col-md-4">
+                                                <label for="Template" style="margin-top: 25px;">Position 3: </label>
+                                                <input type="text" name="id" id="inPosition3" class="form-control" placeholder="">
+                                            </div><!-- form-group -->
+                                            <div class="col-xs-4 col-md-4">
+                                                <label for="Template" style="margin-top: 25px;">Position 4: </label>
+                                                <input type="text" name="id" id="inPosition4" class="form-control" placeholder="">
+                                            </div><!-- form-group -->
+                                            <div class="col-xs-4 col-md-4">
+                                                <label for="Template" style="margin-top: 25px;">Position 5: </label>
+                                                <input type="text" name="id" id="inPosition5" class="form-control" placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="inStatus" style="margin-top: 25px;">Status: </label>
@@ -138,8 +162,24 @@
                                                 <input type="text" name="Identificador" value="@ViewBag.IdItem" id="txtId" class="form-control" readonly placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
-                                                <label for="Template" style="margin-top: 25px;">Position: </label>
+                                                <label for="Template" style="margin-top: 25px;">Position 1: </label>
                                                 <input type="text" name="id" id="txtPosition" class="form-control" placeholder="">
+                                            </div><!-- form-group -->
+                                            <div class="col-xs-4 col-md-4">
+                                                <label for="Template" style="margin-top: 25px;">Position 2: </label>
+                                                <input type="text" name="id" id="txtPosition2" class="form-control" placeholder="">
+                                            </div><!-- form-group -->
+                                            <div class="col-xs-4 col-md-4">
+                                                <label for="Template" style="margin-top: 25px;">Position 3: </label>
+                                                <input type="text" name="id" id="txtPosition3" class="form-control" placeholder="">
+                                            </div><!-- form-group -->
+                                            <div class="col-xs-4 col-md-4">
+                                                <label for="Template" style="margin-top: 25px;">Position 4: </label>
+                                                <input type="text" name="id" id="txtPosition4" class="form-control" placeholder="">
+                                            </div><!-- form-group -->
+                                            <div class="col-xs-4 col-md-4">
+                                                <label for="Template" style="margin-top: 25px;">Position 5: </label>
+                                                <input type="text" name="id" id="txtPosition5" class="form-control" placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="IdStatus" style="margin-top: 25px;">Status: </label>
@@ -262,7 +302,11 @@
                 for (var i = 0; i < listHP.length; i++) {
                     if (listHP[i].Id == $(this).attr('value')) {
                         $('#txtId').val(listHP[i].Id);
-                        $('#txtPosition').val(listHP[i].Position);
+                        $('#txtPosition').val(listHP[i].Position1);
+                        $('#txtPosition2').val(listHP[i].Position2);
+                        $('#txtPosition3').val(listHP[i].Position3);
+                        $('#txtPosition4').val(listHP[i].Position4);
+                        $('#txtPosition5').val(listHP[i].Position5);
                         $('#IdStatus').val(listHP[i].Status.Id);
                     }
                 }

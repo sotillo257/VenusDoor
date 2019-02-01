@@ -41,7 +41,7 @@
 </div><!-- br-pageheader -->
 
 <div class="br-pagebody">
-    <div class="br-section-wrapper">
+    <div id="validate" class="br-section-wrapper">
         <div class="pd-sm-bottom-30">
             <h4 class="tx-gray-800 mg-b-5">Door Configuration</h4>
             <p class="mg-b-0">Modals are streamlined, but flexible, dialog prompts with the minimum required functionality and smart defaults.</p>
@@ -59,13 +59,13 @@
                         <select style="width:100%" class="eventChange form-control select2" id="cbMaterial" data-placeholder=""></select>
                     </div><!-- col -->
 
-                    <div name="SoloNumeros" class="col-xs-4 col-md-1">
+                    <div name="SoloNumeros" class="col-xs-4 col-md-2">
                         <label for="Width" style="margin-top: 25px;">(*) Width: </label>
-                        <input name="SoloNumeros" class="required RequiereLlenar eventChange iptWidth form-control" value="0" type="number"maxlength="6" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="iptWidth">
+                        <input name="SoloNumeros" class="required RequiereLlenar eventChange iptWidth form-control" type="number" value="0" maxlength="6" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="iptWidth">
                     </div><!-- col -->
-                    <div name="SoloNumeros" class="col-xs-4 col-md-1">
+                    <div name="SoloNumeros" class="col-xs-4 col-md-2">
                         <label for="Height" style="margin-top: 25px;">(*) Height: </label>
-                        <input name="SoloNumeros" class="required RequiereLlenar eventChange iptHeight form-control" value="0" type="number" maxlength="6" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="iptHeight">
+                        <input name="SoloNumeros" class="required RequiereLlenar eventChange iptHeight form-control" type="number" value="0" maxlength="6" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="iptHeight">
                     </div><!-- col -->
                 </div>
             </div>
@@ -220,11 +220,11 @@
             </div>
             @if (Session["UserID"] == null)
             {
-                <button class="btn btn-primary" style="margin-top:15px" id="bt-conf-log">Confirm</button>
+                <button class="Cursor btn btn-primary" style="margin-top:15px" id="bt-conf-log">Confirm</button>
             }
             else
             {
-                <button class="btn btn-primary" @*onclick="this.disabled=true;"*@ style="margin-top:15px" type="submit" id="btConfirm">Confirm</button>
+                <button class="Cursor btn btn-primary" @*onclick="this.disabled=true;"*@ style="margin-top:15px" type="submit" id="btConfirm">Confirm</button>
             }
         </div>
     </div>
@@ -245,7 +245,7 @@
                 <button type="button" onclick="window.location.reload()" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">
                     Build another door
                 </button>
-                <button type="button" onclick="location.href='@Url.Action("Index","OrderSummary")'" class="btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">
+                <button type="button" onclick="location.href='@Url.Action("Index","OrderSummary")'" class="Cursor btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">
                     Go to my order
                 </button>
             </div><!-- modal-body -->
@@ -262,7 +262,7 @@
                 <i class="icon icon ion-ios-close-outline tx-100 tx-danger lh-1 mg-t-20 d-inline-block"></i>
                 <h4 class="tx-danger  tx-semibold mg-b-20">Error: Cannot process your entry!</h4>
                 <p class="mg-b-20 mg-x-20">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration.</p>
-                <button type="button" class="btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="Cursor btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">
                     Continue
                 </button>
             </div><!-- modal-body -->
@@ -382,8 +382,8 @@
     </script>
     <script type="text/javascript">
            function validarFormulario(){
-               $('#btConfirm').click(function(){
-                   if ($('.RequiereLlenar').val(" ")) {
+               $('#validate').click(function () {
+                   if ($('.RequiereLlenar').val() === '') {
                        $('#modalPrueba').modal('toggle');
 
                    } else {
@@ -391,6 +391,7 @@
                    }
                })
            };
+
     </script>
     <style type="text/css">
         .error {

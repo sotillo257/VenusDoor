@@ -18,11 +18,11 @@
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-11 pd-sm-bottom-30">
-                        <h4 class="tx-gray-800 mg-b-5">Door Stylel</h4>
+                        <h4 class="tx-gray-800 mg-b-5">@ViewBag.Title</h4>
                         <p class="mg-b-0">Modals are streamlined, but flexible, dialog prompts with the minimum required functionality and smart defaults.</p>
                     </div>
                     <div class="col-md-1">
-                        <button type="button" data-toggle="modal" data-target="#modalInsert" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Insert</button>
+                        <button type="button" data-toggle="modal" data-target="#modalInsert" class="Cursor btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Insert</button>
                     </div>
                 </div>
             </div>
@@ -44,7 +44,7 @@
                             <tr role="row" class="odd">
                                 <td tabindex="0" class="">@item.Id</td>
                                 <td class="">@item.Description</td>
-                                <td class="">@item.Status.Id</td>
+                                <td class="">@item.Status.Description</td>
                                 <td class="">
                                     <center>
                                         <a href="#" data-toggle="modal" data-target="#modalModify" value="@item.Id" class="Modificar btn btn-primary btn-icon">

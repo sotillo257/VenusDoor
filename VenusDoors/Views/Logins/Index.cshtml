@@ -6,125 +6,125 @@
 @model Model.User
 <div class="br-pagebody">
     <div class="br-section-wrapper" style="margin-top: 100px;margin-left: 50px;margin-right: 50px;">
-        <div class="modal-body pd-0">
-            <div class="row no-gutters">
-                <div id="login-div" class="col-lg-6 bg-white">
-                    <div class="login_slider">
-                        <div id="slider_login" class="carousel slide carousel-fade" data-ride="carousel">
-                            <div id="login_inner" class="carousel-inner">
+            <div class="modal-body pd-0">
+                        <div class="row no-gutters">
+                            <div id="login-div" class="col-lg-6 bg-white">
+                                <div class="login_slider">
+                                    <div id="slider_login" class="carousel slide carousel-fade" data-ride="carousel">
+                                        <div id="login_inner" class="carousel-inner">
 
-                                <div class="login_item1 carousel-item active">
-                                    <div id="fondo_color_s">
-                                        <div class="letras_slider">
-                                            <h5>Buil a Door</h5>
+                                            <div class="login_item1 carousel-item active">
+                                                <div id="fondo_color_s">
+                                                    <div class="letras_slider">
+                                                        <h5>Buil a Door</h5>
                                             <p>
                                                 You can order the cabinet doors of your dreams with the specifications that suit your needs. Venus Doors manufactures both raise panel and flat panel custom style cabinet doors.
                                                 <img style="width:100%" src="~/Content/img/Cabinet Vector-01.png" />
                                             </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="login_item2 carousel-item">
-                                    <div id="fondo_color_s">
-                                        <div class="letras_slider">
-                                            <h5>Record time</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="login_item2 carousel-item">
+                                                <div id="fondo_color_s">
+                                                    <div class="letras_slider">
+                                                        <h5>Record time</h5>
                                             <p>
                                                 We produce shaker style doors any size within a week. Our production level have reached 800 doors a day. We manufacture cabinet doors in many wood styles, including Poplar, Maple, Beech, Knotty Alder and Red Oak.
                                                 <img style="width:100%" src="~/Content/img/Cabinet Vector-02.png" />
                                             </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="login_item3 carousel-item">
-                                    <div id="fondo_color_s">
-                                        <div class="letras_slider">
-                                            <h5>Your Best Option</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="login_item3 carousel-item">
+                                                <div id="fondo_color_s">
+                                                    <div class="letras_slider">
+                                                        <h5>Your Best Option</h5> 
                                             <p>
                                                 We at Venus cabinet doors offer you the best advice and service. We have become into a powerful mill-work processing and manufacturing company offering you always the best quality in cabinet doors.
                                                 <img style="width:100%" src="~/Content/img/Cabinet_Vector-07.jpg" />
                                             </p>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
+
+                                        <a class="carousel-control-prev" href="#slider_login" role="button" data-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+
+                                        <a class="carousel-control-next" href="#slider_login" role="button" data-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
                                     </div>
+
+
                                 </div>
                             </div>
-
-                            <a class="carousel-control-prev" href="#slider_login" role="button" data-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-
-                            <a class="carousel-control-next" href="#slider_login" role="button" data-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                        </div>
-
-
-                    </div>
+                                @*<div class="col-lg-6 bg-primary">
+                <div class="w3-content w3-section">
+                    <img class="mySlides" src="~/Content/img/Cabinet Vector-01.png" style="width:100%">
+                    <img class="mySlides" src="~/Content/img/Cabinet Vector-02.png" style="width:100%">
+                    <img class="mySlides" src="~/Content/img/Cabinet Vector-03.png" style="width:100%">
                 </div>
-                @*<div class="col-lg-6 bg-primary">
-                        <div class="w3-content w3-section">
-                            <img class="mySlides" src="~/Content/img/Cabinet Vector-01.png" style="width:100%">
-                            <img class="mySlides" src="~/Content/img/Cabinet Vector-02.png" style="width:100%">
-                            <img class="mySlides" src="~/Content/img/Cabinet Vector-03.png" style="width:100%">
-                        </div>
-                    </div>*@<!-- col-6 -->
-                <div id="login-div" class="col-lg-6 bg-white">
-                    @using (Html.BeginForm("Autherize", "Logins", FormMethod.Post))
-                    {
-                        <div class="pd-30">
-                            <div class="pd-x-30 pd-y-10">
-                                <h3 class="tx-inverse mg-b-5">Welcome back!</h3>
-                                <p>Sign in to your account to continue</p>
-                                <br>
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.Email)
-                                    @*@Html.EditorFor(model => model.Email)*@
-                                    <input class="form-control" data-val="true" data-val-required="This field is required" id="Email" name="Email" type="text" value="">
-                                </div><!-- form-group -->
-                                <div class="form-group mg-b-20">
-                                    @Html.ValidationMessageFor(model => model.Password)
-                                </div><!-- form-group -->
-                                <div class="form-group mg-b-20">
-                                    @Html.LabelFor(model => model.Password)
-                                    @*@Html.EditorFor(model => model.Password)*@
-                                    <input class="form-control" data-val="true" data-val-required="This field is required" id="Password" name="Password" type="password" value="">
-                                    <a href="" class="tx-12 d-block mg-t-10">Forgot password?</a>
-                                </div><!-- form-group -->
-                                <div class="form-group mg-b-20">
-                                    @Html.ValidationMessageFor(model => model.Password)
-                                </div>
-                            </div><!-- form-group -->
-                            <div class="form-group mg-b-20">
-                                @Html.ValidationMessageFor(model => model.Password)
-                                <label class="field-validation-error">@*@Html.DisplayFor(model => model.LoginErrorMessage)*@</label>
-                            </div><!-- form-group -->
+            </div>*@<!-- col-6 -->
+                                <div id="login-div" class="col-lg-6 bg-white">
+                                    @using (Html.BeginForm("Autherize", "Logins", FormMethod.Post))
+                                    {
+                                        <div class="pd-30">
+                                            <div class="pd-x-30 pd-y-10">
+                                                <h3 class="tx-inverse mg-b-5">Welcome back!</h3>
+                                                <p>Sign in to your account to continue</p>
+                                                <br>
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.Email)
+                                                    @*@Html.EditorFor(model => model.Email)*@
+                                                    <input class="form-control" data-val="true" data-val-required="This field is required" id="Email" name="Email" type="text" value="">
+                                                </div><!-- form-group -->
+                                                <div class="form-group mg-b-20">
+                                                    @Html.ValidationMessageFor(model => model.Password)
+                                                </div><!-- form-group -->
+                                                <div class="form-group mg-b-20">
+                                                    @Html.LabelFor(model => model.Password)
+                                                    @*@Html.EditorFor(model => model.Password)*@
+                                                    <input class="form-control" data-val="true" data-val-required="This field is required" id="Password" name="Password" type="password" value="">
+                                                    <a href="" class="tx-12 d-block mg-t-10">Forgot password?</a>
+                                                </div><!-- form-group -->
+                                                <div class="form-group mg-b-20">
+                                                    @Html.ValidationMessageFor(model => model.Password)
+                                                </div>
+                                            </div><!-- form-group -->
+                                            <div class="form-group mg-b-20">
+                                                @Html.ValidationMessageFor(model => model.Password)
+                                                <label class="field-validation-error">@*@Html.DisplayFor(model => model.LoginErrorMessage)*@</label>
+                                            </div><!-- form-group -->
 
-                            <input type="submit" value="Sign In" class="btn btn-primary pd-y-12 btn-block" />
+                                            <input type="submit" value="Sign In" class="Cursor btn btn-primary pd-y-12 btn-block" />
 
-                            <div class="mg-t-30 mg-b-20 tx-12">Don't have an account yet? @Html.ActionLink("Create one!", "sing_up", "Logins")</div>
+                                            <div class="mg-t-30 mg-b-20 tx-12">Don't have an account yet? @Html.ActionLink("Create one!", "sing_up", "Logins")</div>
 
-                            <p class="tx-11 tx-uppercase tx-spacing-2">Or Sign In With</p>
-                            <a href="#" class="btn btn-primary btn-icon">
-                                <div><i class="fa fa-facebook"></i></div>
-                            </a>
-                            <a href="#" class="btn btn-info btn-icon mg-l-5">
-                                <div><i class="fa fa-twitter"></i></div>
-                            </a>
-                            <a href="#" class="btn btn-danger btn-icon mg-l-5">
-                                <div><i class="fa fa-google-plus"></i></div>
-                            </a>
+                                            <p class="tx-11 tx-uppercase tx-spacing-2">Or Sign In With</p>
+                                            <a href="#" class="btn btn-primary btn-icon">
+                                                <div><i class="fa fa-facebook"></i></div>
+                                            </a>
+                                            <a href="#" class="btn btn-info btn-icon mg-l-5">
+                                                <div><i class="fa fa-twitter"></i></div>
+                                            </a>
+                                            <a href="#" class="btn btn-danger btn-icon mg-l-5">
+                                                <div><i class="fa fa-google-plus"></i></div>
+                                            </a>
 
-                        </div>
+                                        </div>
 
-                    }
-                </div><!-- col-6 -->
-            </div><!-- row -->
+                                    }
+                                </div><!-- col-6 -->
+                            </div><!-- row -->
 
-        </div><!-- modal-body -->
-    </div><!-- modal-content -->
-</div><!-- modal-dialog -->
+                    </div><!-- modal-body -->
+                </div><!-- modal-content -->
+            </div><!-- modal-dialog -->
 @section scripts{
     <script>
 var myIndex = 0;
@@ -134,13 +134,13 @@ function carousel() {
   var i;
   var x = document.getElementsByClassName("mySlides");
   for (i = 0; i < x.length; i++) {
-    x[i].style.display = "none";
+    x[i].style.display = "none";  
   }
   myIndex++;
-  if (myIndex > x.length) {myIndex = 1}
-  x[myIndex-1].style.display = "block";
+  if (myIndex > x.length) {myIndex = 1}    
+  x[myIndex-1].style.display = "block";  
   setTimeout(carousel, 5000); // Change image every 2 seconds
 }
-    </script>
+</script>
 
-}
+    }
