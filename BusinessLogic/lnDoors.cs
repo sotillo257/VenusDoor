@@ -28,7 +28,6 @@ namespace BusinessLogic
             {
                 throw;
             }
-
         }
 
         /// <summary>

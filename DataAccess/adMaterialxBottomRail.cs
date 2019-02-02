@@ -100,8 +100,8 @@ namespace DataAccess
 
         public void UpdateMaterialxBottomRail(MaterialxBottomRail pMaterialxBottomRail)
         {
-            string sql = @"[spUpdateMaterialxBottomRail] '{0}', '{1}', '{2}', '{3}', '{4}'";
-            sql = string.Format(sql, pMaterialxBottomRail.Material.Id, pMaterialxBottomRail.BottomRail.Id, pMaterialxBottomRail.Status.Id, pMaterialxBottomRail.ModificationDate.ToString("yyyy-MM-dd"),
+            string sql = @"[spUpdateMaterialxBottomRail] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}'";
+            sql = string.Format(sql,pMaterialxBottomRail.Id, pMaterialxBottomRail.Material.Id, pMaterialxBottomRail.BottomRail.Id, pMaterialxBottomRail.Status.Id, pMaterialxBottomRail.ModificationDate.ToString("yyyy-MM-dd"),
                 pMaterialxBottomRail.ModificationUser);
             try
             {

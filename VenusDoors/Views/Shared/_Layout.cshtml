@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -15,10 +17,12 @@
     <!-- Bracket CSS -->
     <link rel="stylesheet" href="~/Content/css/bracket.css">
     <link href="~/Content/lib/select2/css/select2.min.css" rel="stylesheet" />
-    
     <title>@ViewBag.Title - Venus Doors</title>
     @*@Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")*@
+    <style>
+        .Cursor:hover { cursor:pointer }
+    </style>
 </head>
 <body>
     @*<div class="navbar navbar-inverse navbar-fixed-top">
@@ -41,7 +45,7 @@
                 </div>
             </div>
         </div>*@
-    <div class="br-logo"><a href=""><img src="~/Content/img/Venus_Doors11.png" style="width: 150px;" alt=""></a></div>
+    <div class="br-logo"><a href="/"><img src="~/Content/img/Venus_Doors11.png" style="width: 150px;" alt=""></a></div>
     <div class="br-sideleft overflow-y-auto">
         <label class="sidebar-label pd-x-15 mg-t-20">Navigation</label>
         <div class="br-sideleft-menu">
@@ -56,7 +60,7 @@
             @* @Html.ActionLink("Build a Door", "Index", "ConfiDoor", new { area = "" }, new { @class = "br-menu-link " + ViewBag.DoorStyle }) *@
             <a href="/ConfiDoor/" class="br-menu-link @ViewBag.ConfiDoor ">
                 <div class="br-menu-item">
-                    <i class="menu-item-icon icon ion-ios-email-outline tx-24"></i>
+                    <i class="menu-item-icon icon ion-ios-gear-outline tx-24"></i>
                     <span class="menu-item-label">Build a Door</span>
                 </div><!-- menu-item -->
             </a><!-- br-menu-link -->
@@ -66,52 +70,66 @@
                     <span class="menu-item-label">Order summary</span>
                 </div><!-- menu-item -->
             </a><!-- br-menu-link -->
-            <a href="/OrderStatus/" class="br-menu-link @ViewBag.OrderStatus ">
-                <div class="br-menu-item">
-                    <i class="menu-item-icon ion-ios-pie-outline tx-20"></i>
-                    <span class="menu-item-label">Order status</span>
-                </div><!-- menu-item -->
-            </a><!-- br-menu-link -->
-            <a href="#" class="br-menu-link  @ViewBag.Masters">
-                <div class="br-menu-item">
-                    <i class="menu-item-icon icon ion-ios-filing-outline tx-24"></i>
-                    <span class="menu-item-label">Masters</span>
-                    <i class="menu-item-arrow fa fa-angle-down"></i>
-                </div><!-- menu-item -->
-            </a><!-- br-menu-link -->
-            <ul class="br-menu-sub nav flex-column">
-                <li class="nav-item">@Html.ActionLink("Bottom Rail", "BottomRail", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.BottomRail })</li>
-                <li class="nav-item">@Html.ActionLink("Doors", "Doors", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Doors })</li>
-                <li class="nav-item">@Html.ActionLink("Doors Prices", "DoorsPrices", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.DoorPrice })</li>
-                <li class="nav-item">@Html.ActionLink("Doors Style", "Index", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.DoorStyle })</li> 
-                <li class="nav-item">@Html.ActionLink("Door Style by Inside Edge Profile", "DoorStyleByInsideEdgeProfile", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.DoorStyleByInsideEdgeProfile })</li> 
-                <li class="nav-item">@Html.ActionLink("Door Style by Outside Edge Profile", "DoorStyleByOutsideEdgeProfile", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.DoorStyleByOutsideEdgeProfile })</li>      
-                <li class="nav-item">@Html.ActionLink("Door by User", "DoorByUser", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.DoorByUser })</li> 
-                <li class="nav-item">@Html.ActionLink("Group", "Group", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Group })</li>
-                <li class="nav-item">@Html.ActionLink("Hinge Direction", "HingeDirection", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.HingeDirection })</li>      
-                <li class="nav-item">@Html.ActionLink("Hinge Positions", "HingePositions", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.HingePositions })</li>   
-                <li class="nav-item">@Html.ActionLink("Horizontal Divisions", "HorizontalDivisions", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.HorizontalDivisions })</li>  
-                <li class="nav-item">@Html.ActionLink("Inside Edge Profile", "InsideEdgeProfile", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.InsideEdgeProfile })</li>
-                <li class="nav-item">@Html.ActionLink("Join", "Join", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Join })</li>      
-                <li class="nav-item">@Html.ActionLink("Material", "Material", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Material })</li> 
-                <li class="nav-item">@Html.ActionLink("Material by Bottom Rail", "MaterialxBottomRail", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.MaterialxBottomRail })</li> 
-                <li class="nav-item">@Html.ActionLink("Order", "Order", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Order })</li>
-                <li class="nav-item">@Html.ActionLink("Outside Edge Profile", "OutsideEdgeProfile", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.OutsideEdgeProfile })</li>  
-                <li class="nav-item">@Html.ActionLink("Panel", "Panel", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Panel })</li> 
-                <li class="nav-item">@Html.ActionLink("Panel Material", "PanelMaterial", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.PanelMaterial })</li>                   
-                <li class="nav-item">@Html.ActionLink("Person", "Person", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Person })</li>
-                <li class="nav-item">@Html.ActionLink("Preparation", "Preparation", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Preparation })</li>
-                <li class="nav-item">@Html.ActionLink("Rail Width", "RailWidth", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.RailWidth })</li>
-                <li class="nav-item">@Html.ActionLink("Status", "Status", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Status })</li>
-                <li class="nav-item">@Html.ActionLink("Stile Width", "StileWidth", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.StileWidth })</li>                 
-                <li class="nav-item">@Html.ActionLink("TopRail", "TopRail", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.TopRail })</li>
-                <li class="nav-item">@Html.ActionLink("Top Rail by Horizontal Divisions", "TopRailByHorizontalDivisions", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.TopRailByHorizontalDivisions })</li>
-                <li class="nav-item">@Html.ActionLink("Top Rail by Join", "TopRailByJoin", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.TopRailByJoin })</li>
-                <li class="nav-item">@Html.ActionLink("Top Rail by Vertical Divisions", "TopRailByVerticalDivisions", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.TopRailByVerticalDivisions })</li>
-                <li class="nav-item">@Html.ActionLink("Type", "Type", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Type })</li>
-                <li class="nav-item">@Html.ActionLink("User", "Usuario", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Usuario })</li>
-                <li class="nav-item">@Html.ActionLink("Vertical Divisions", "VerticalDivisions", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.VerticalDivisions })</li>                                                                                                                                                                                                                                                                                                                                   
-            </ul>
+            @if (Session["UserID"] != null && (int)Session["UserType"] == 2)
+            {
+                <a href="/OrderStatus/" class="br-menu-link @ViewBag.OrderStatus ">
+                    <div class="br-menu-item">
+                        <i class="menu-item-icon ion-ios-pie-outline tx-20"></i>
+                        <span class="menu-item-label">Order status</span>
+                    </div><!-- menu-item -->
+                </a><!-- br-menu-link -->
+            }
+            else
+            {
+
+            }
+
+            @if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                <a href="#" class="br-menu-link  @ViewBag.Masters">
+                    <div class="br-menu-item">
+                        <i class="menu-item-icon icon ion-ios-filing-outline tx-24"></i>
+                        <span class="menu-item-label">Masters</span>
+                        <i class="menu-item-arrow fa fa-angle-down"></i>
+                    </div><!-- menu-item -->
+                </a><!-- br-menu-link -->
+                <ul class="br-menu-sub nav flex-column">
+                    <li class="nav-item">@Html.ActionLink("Bottom Rail", "BottomRail", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.BottomRail })</li>
+                    <li class="nav-item">@Html.ActionLink("Doors", "Doors", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Doors })</li>
+                    <li class="nav-item">@Html.ActionLink("Doors Prices", "DoorsPrices", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.DoorPrice })</li>
+                    <li class="nav-item">@Html.ActionLink("Doors Style", "Index", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.DoorStyle })</li>
+                    <li class="nav-item">@Html.ActionLink("Door Style by Inside Edge P", "DoorStyleByInsideEdgeProfile", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.DoorStyleByInsideEdgeProfile })</li>
+                    <li class="nav-item">@Html.ActionLink("Door Style by Outside Edge P", "DoorStyleByOutsideEdgeProfile", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.DoorStyleByOutsideEdgeProfile })</li>
+                    <li class="nav-item">@Html.ActionLink("Door by User", "DoorByUser", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.DoorByUser })</li>
+                    <li class="nav-item">@Html.ActionLink("Group", "Group", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Group })</li>
+                    <li class="nav-item">@Html.ActionLink("Hinge Direction", "HingeDirection", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.HingeDirection })</li>
+                    <li class="nav-item">@Html.ActionLink("Hinge Positions", "HingePositions", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.HingePositions })</li>
+                    <li class="nav-item">@Html.ActionLink("Horizontal Divisions", "HorizontalDivisions", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.HorizontalDivisions })</li>
+                    <li class="nav-item">@Html.ActionLink("Inside Edge Profile", "InsideEdgeProfile", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.InsideEdgeProfile })</li>
+                    <li class="nav-item">@Html.ActionLink("Join", "Join", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Join })</li>
+                    <li class="nav-item">@Html.ActionLink("Material", "Material", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Material })</li>
+                    <li class="nav-item">@Html.ActionLink("Material by Bottom Rail", "MaterialxBottomRail", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.MaterialxBottomRail })</li>
+                    <li class="nav-item">@Html.ActionLink("Order", "Order", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Order })</li>
+                    <li class="nav-item">@Html.ActionLink("Outside Edge Profile", "OutsideEdgeProfile", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.OutsideEdgeProfile })</li>
+                    <li class="nav-item">@Html.ActionLink("Panel", "Panel", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Panel })</li>
+                    <li class="nav-item">@Html.ActionLink("Panel Material", "PanelMaterial", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.PanelMaterial })</li>
+                    <li class="nav-item">@Html.ActionLink("Person", "Person", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Person })</li>
+                    <li class="nav-item">@Html.ActionLink("Preparation", "Preparation", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Preparation })</li>
+                    <li class="nav-item">@Html.ActionLink("Rail Thickness", "RailThickness", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.RailThickness })</li>
+                    <li class="nav-item">@Html.ActionLink("Status", "Status", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Status })</li>
+                    <li class="nav-item">@Html.ActionLink("TopRail", "TopRail", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.TopRail })</li>
+                    <li class="nav-item">@Html.ActionLink("Top Rail by Horizontal D", "TopRailByHorizontalDivisions", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.TopRailByHorizontalDivisions })</li>
+                    <li class="nav-item">@Html.ActionLink("Top Rail by Join", "TopRailByJoin", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.TopRailByJoin })</li>
+                    <li class="nav-item">@Html.ActionLink("Top Rail by Vertical D", "TopRailByVerticalDivisions", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.TopRailByVerticalDivisions })</li>
+                    <li class="nav-item">@Html.ActionLink("Type", "Type", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Type })</li>
+                    <li class="nav-item">@Html.ActionLink("User", "Usuario", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Usuario })</li>
+                    <li class="nav-item">@Html.ActionLink("Vertical Divisions", "VerticalDivisions", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.VerticalDivisions })</li>
+                </ul>
+            }
+            else
+            {
+
+            }
         </div><!-- br-sideleft-menu -->
 
         <label class="sidebar-label pd-x-15 mg-t-25 mg-b-20 tx-info op-9" style="display: none;">Information Summary</label>
@@ -130,13 +148,27 @@
                 </span>
             </div><!-- input-group -->
         </div><!-- br-header-left -->
-        <div class="br-header-right" style="display: none;">
+
+    @if (Session["UserID"] == null)
+    {
+        <div class="col-md-1">
+            <div class="br-header-right" style="margin-top: 10px;">
+
+                    <a id="idLogin" title="Log In" value="enviar" class="Cursor btn btn-primary btn-icon rounded-circle mg-r-5 mg-b-10" onclick="location.href='@Url.Action("Index","Logins")'"  style="color: #fff !important; margin-right: 10px;"><div><i class="fa fa-user"></i></div></a>
+                
+                    <a id="idSignUp" title="Sign Up" class="Cursor btn btn-success btn-icon rounded-circle mg-r-5 mg-b-10" onclick="location.href='@Url.Action("sing_up","Logins")'" style="color: #fff !important;"><div><i class="fa fa-user-plus"></i></div></a>
+            </div>
+        </div><!--br-header-right-->
+    }
+    else
+    {
+        <div class="br-header-right">
             <nav class="nav">
                 <div class="dropdown">
                     <a href="" class="nav-link pd-x-7 pos-relative" data-toggle="dropdown">
-                        <i class="icon ion-ios-email-outline tx-24"></i>
+                        @*<i class="icon ion-ios-email-outline tx-24"></i>*@
                         <!-- start: if statement -->
-                        <span class="square-8 bg-danger pos-absolute t-15 r-0 rounded-circle"></span>
+                        @*<span class="hidden square-8 bg-danger pos-absolute t-15 r-0 rounded-circle"></span>*@
                         <!-- end: if statement -->
                     </a>
                     <div class="dropdown-menu dropdown-menu-header wd-300 pd-0-force">
@@ -204,9 +236,9 @@
                 </div><!-- dropdown -->
                 <div class="dropdown">
                     <a href="" class="nav-link pd-x-7 pos-relative" data-toggle="dropdown">
-                        <i class="icon ion-ios-bell-outline tx-24"></i>
+                        @*<i class="icon ion-ios-bell-outline tx-24"></i>*@
                         <!-- start: if statement -->
-                        <span class="square-8 bg-danger pos-absolute t-15 r-5 rounded-circle"></span>
+                        @*<span class="square-8 bg-danger pos-absolute t-15 r-5 rounded-circle"></span>*@
                         <!-- end: if statement -->
                     </a>
                     <div class="dropdown-menu dropdown-menu-header wd-300 pd-0-force">
@@ -262,31 +294,49 @@
                 </div><!-- dropdown -->
                 <div class="dropdown">
                     <a href="" class="nav-link nav-link-profile" data-toggle="dropdown">
-                        <span class="logged-name hidden-md-down">Katherine</span>
+                        <span class="logged-name hidden-md-dow">
+                            @if (Session["UserName"] == null)
+                            {
+
+                            }
+                            else
+                            {
+                                int perID = (int)Session["UserName"];
+                                BusinessLogic.lnPerson _LNP = new BusinessLogic.lnPerson();
+                                var perList = _LNP.GetPersonById(perID);
+                                ViewBag.xPerson = perList;
+                                Model.Person item = ViewBag.xPerson;
+                                
+                                @item.Name
+                                
+                            }
+                        </span>
                         <img src="http://via.placeholder.com/64x64" class="wd-32 rounded-circle" alt="">
                         <span class="square-10 bg-success"></span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-header wd-200">
                         <ul class="list-unstyled user-profile-nav">
-                            <li><a href=""><i class="icon ion-ios-person"></i> Edit Profile</a></li>
-                            <li><a href=""><i class="icon ion-ios-gear"></i> Settings</a></li>
+                            @*<li><a href=""><i class="icon ion-ios-person"></i> Edit Profile</a></li>*@
+                            @*<li><a href=""><i class="icon ion-ios-gear"></i> Settings</a></li>
                             <li><a href=""><i class="icon ion-ios-download"></i> Downloads</a></li>
                             <li><a href=""><i class="icon ion-ios-star"></i> Favorites</a></li>
-                            <li><a href=""><i class="icon ion-ios-folder"></i> Collections</a></li>
-                            <li><a href=""><i class="icon ion-power"></i> Sign Out</a></li>
+                            <li><a href=""><i class="icon ion-ios-folder"></i> Collections</a></li>*@
+                            <li><a class="Cursor" onclick="location.href='@Url.Action("LogOut","Logins")'"><i class="icon ion-power"></i> Sign Out</a></li>
                         </ul>
                     </div><!-- dropdown-menu -->
                 </div><!-- dropdown -->
             </nav>
             <div class="navicon-right">
                 <a id="btnRightMenu" href="" class="pos-relative">
-                    <i class="icon ion-ios-chatboxes-outline"></i>
+                    @*<i class="icon ion-ios-chatboxes-outline"></i>*@
                     <!-- start: if statement -->
-                    <span class="square-8 bg-danger pos-absolute t-10 r--5 rounded-circle"></span>
+                    @*<span class="square-8 bg-danger pos-absolute t-10 r--5 rounded-circle"></span>*@
                     <!-- end: if statement -->
                 </a>
             </div><!-- navicon-right -->
         </div><!-- br-header-right -->
+    }
+        
     </div><!-- br-header -->
     <!-- ########## END: HEAD PANEL ########## -->
     <!-- ########## START: RIGHT PANEL ########## -->
@@ -754,6 +804,11 @@
                 }
             });
     </script>
-    @RenderSection("scripts", required: false)
+    <script type="text/javascript">
+        var urlInsertUser = '@Url.Action("InsertUser", "LoginController")';
+        var urlAutherize = '@Url.Action("Autherize", "LoginController")';
+    </script>
+    @RenderSection("scripts", required: false);
+    @Scripts.Render("~/Scripts/js/LogSing.js")
 </body>
 </html>

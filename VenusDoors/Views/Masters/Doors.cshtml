@@ -22,37 +22,22 @@
                         <p class="mg-b-0">Modals are streamlined, but flexible, dialog prompts with the minimum required functionality and smart defaults.</p>
                     </div>
                     <div class="col-md-1">
-                        <button type="button" data-toggle="modal" data-target="#modalInsert" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Insert</button>
+                        <button type="button" data-toggle="modal" data-target="#modalInsert" class="Cursor btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Insert</button>
                     </div>
                 </div>
             </div>
         </div>
         <div class="table-wrapper">
             <div id="datatable1_wrapper" class="dataTables_wrapper no-footer">
-                <table id="datatable1" style="width: 100%;" class="table table-scroll display responsive nowrap dataTable no-footer dtr-inline" role="grid" aria-describedby="datatable1_info">
+                <table id="datatable1" style="width: 100%;" class="table display responsive nowrap dataTable no-footer dtr-inline" role="grid" aria-describedby="datatable1_info">
                     <thead>
                         <tr>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="First name: activate to sort column ascending">Id</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Door Style</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Material</th>
-                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Top Rail</th>
-                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Bottom Rail</th>
-                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Preparation</th>
-                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Join</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Outside Edge Profile</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Inside Edge Profile</th>
-                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Vertical Divisions</th>
-                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Horizontal Divisions</th>
-                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Hinge Direction</th>
-                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Hinge Positions</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Panel</th>
-                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Panel Material</th>
-                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Drill</th>
-                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Width</th>
-                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Height</th>
-                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Opening Measurement</th>
-                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Picture</th>
-                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">ProfilePicture</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Status</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" style="text-align: center" aria-label="Last name: activate to sort column ascending"><i class="fa fa-flash"></i></th>
                         </tr>
@@ -62,40 +47,22 @@
                         {
                             <tr role="row" class="odd">
                                 <td tabindex="0" class="">@item.Id</td>
-                                <td class="">@item.DoorStyle.Id</td>
-                                <td class="">@item.Material.Id</td>
-                                <td class="">@item.TopRail.Id</td>
-                                <td class="">@item.BottomRail.Id</td>
-                                <td class="">@item.Preparation.Id</td>
-                                <td class="">@item.Join.Id</td>
-                                <td class="">@item.OutsideEdgeProfile.Id</td>
-                                <td class="">@item.InsideEdgeProfile.Id</td>
-                                <td class="">@item.VerticalDivisions.Id</td>
-                                <td class="">@item.HorizontalDivisions.Id</td>
-                                <td class="">@item.HingeDirection.Id</td>
-                                <td class="">@item.HingePositions.Id</td>
-                                <td class="">@item.Panel.Id</td>
-                                <td class="">@item.PanelMaterial.Id</td>
-                                <td class="">@item.isDrill</td>
-                                <td class="">@item.Width</td>
-                                <td class="">@item.Height</td>
-                                <td class="">@item.IsOpeningMeasurement</td>
-                                <td class="">@item.Picture</td>
-                                <td class="">@item.ProfilePicture</td>
-                                <td class="">@item.Status.Id</td>
+                                <td class="">@item.DoorStyle.Description</td>
+                                <td class="">@item.Material.Description</td>
+                                <td class="">@item.OutsideEdgeProfile.Description</td>
+                                <td class="">@item.InsideEdgeProfile.Description</td>
+                                <td class="">@item.Panel.Description</td>
+                                <td class="">@item.Status.Description</td>
                                 <td class="">
                                     <center>
-                                        <a href="#" data-toggle="modal" data-target="#modaldemo1" class="Modificar btn btn-primary btn-icon">
+                                        <a href="#" data-toggle="modal" data-target="#modalModify" class="Modificar btn btn-primary btn-icon">
                                             <div><i class="fa fa-edit"></i></div>
-                                        </a>
-                                        <a href="#" data-toggle="modal" data-target="#modaldemo2" class="Eliminar btn btn-danger btn-icon">
-                                            <div><i class="fa fa-trash"></i></div>
                                         </a>
                                     </center>
                                 </td>
                             </tr>
                         }
-                        
+
                     </tbody>
                 </table>
             </div>
@@ -135,8 +102,8 @@
                                                 </select>
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="cbMatarial" style="margin-top: 25px;">Material: </label>
-                                                <select style="width:100%" class="form-control select2" id="inMatarial" data-placeholder="">
+                                                <label for="Material" style="margin-top: 25px;">Material: </label>
+                                                <select style="width:100%" class="form-control select2" id="inMaterial" data-placeholder="">
                                                     @foreach (Model.Material item in ViewBag.cbMatarial)
                                                     {
                                                         <option value="@item.Id">@item.Description</option>
@@ -222,26 +189,6 @@
                                             </div><!-- form-group -->
 
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="cbHingeDirection" style="margin-top: 25px;">Hinge Direction: </label>
-                                                <select style="width:100%" class="form-control select2" id="inHingeDirection" data-placeholder="">
-                                                    @foreach (Model.HingeDirection item in ViewBag.cbHingeDirection)
-                                                    {
-                                                        <option value="@item.Id">@item.Direction</option>
-                                                    }
-                                                </select>
-                                            </div><!-- form-group -->
-
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="cbHingePositions" style="margin-top: 25px;">Hinge Positions: </label>
-                                                <select style="width:100%" class="form-control select2" id="inHingePositions" data-placeholder="">
-                                                    @foreach (Model.HingePositions item in ViewBag.cbHingePositions)
-                                                    {
-                                                        <option value="@item.Id">@item.Position</option>
-                                                    }
-                                                </select>
-                                            </div><!-- form-group -->
-
-                                            <div class="col-xs-4 col-md-3">
                                                 <label for="cbPanel" style="margin-top: 25px;">Panel: </label>
                                                 <select style="width:100%" class="form-control select2" id="inPanel" data-placeholder="">
                                                     @foreach (Model.Panel item in ViewBag.cbPanel)
@@ -262,30 +209,83 @@
                                             </div><!-- form-group -->
 
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="isDrill" style="margin-top: 25px;">Drill: </label>
-                                                <select style="width:100%" class="form-control select2" id="inDrill" data-placeholder="">
-                                                    <option value="true">Drill</option>
-                                                    <option value="false">No Drill</option>
-                                                </select>
-                                            </div><!-- form-group -->
-                                            <div class="col-xs-4 col-md-3">
                                                 <label for="Width" style="margin-top: 25px;">Width: </label>
                                                 <input type="text" id="inWidth" name="Width" class="form-control" placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-3">
                                                 <label for="Height" style="margin-top: 25px;">Height: </label>
-                                                <input type="text" id="inHeight" name="Height" class="form-control" placeholder="">
-                                            </div><!-- form-group -->
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="Picture" style="margin-top: 25px;">Picture: </label>
-                                                <input type="text" name="id" id="inPicture" class="form-control" placeholder="">
+                                                <input type="text" id="inHeight" name="Height" class="txtHeight form-control" placeholder="">
                                             </div><!-- form-group -->
 
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="ProfilePicture" style="margin-top: 25px;">ProfilePicture: </label>
-                                                <input type="text" name="id" id="inProfilePicture" class="form-control" placeholder="">
+                                                <label for="isDrill" style="margin-top: 25px;">Drill: </label>
+                                                <select style="width:100%" class="form-control select2" id="inDrill" data-placeholder="">
+                                                    <option value="false">No Drill</option>
+                                                    <option value="true">Drill</option>
+                                                </select>
                                             </div><!-- form-group -->
+
                                             <div class="col-xs-4 col-md-3">
+                                                <label for="cbHingeDirection" style="margin-top: 25px;">Hinge Direction: </label>
+                                                <select style="width:100%" class="form-control select2" id="inHingeDirection" data-placeholder="">
+                                                    <option hidden selected value="3">No hinge</option>
+                                                    <option value="1">Right</option>
+                                                    <option value="2">Left</option>
+                                                </select>
+                                            </div><!-- form-group -->
+
+                                            <div class="col-xs-4 col-md-3">
+                                                <label for="HingePositions1" style="margin-top: 25px;">Hinge Position 1: </label>
+                                                <input disabled type="text" id="HingePositions1" class="form-control" placeholder="">
+                                            </div><!-- form-group -->
+
+                                            <div class="col-xs-4 col-md-3">
+                                                <label for="HingePositions2" style="margin-top: 25px;">Hinge Position 2: </label>
+                                                <input disabled type="text" id="HingePositions2" class="form-control" placeholder="">
+                                            </div><!-- form-group -->
+
+                                            <div class="col-xs-4 col-md-3">
+                                                <label for="HingePositions3" style="margin-top: 25px;">Hinge Position 3: </label>
+                                                <input disabled type="text" id="HingePositions3" class="form-control" placeholder="">
+                                            </div><!-- form-group -->
+
+                                            <div class="col-xs-4 col-md-3">
+                                                <label for="HingePositions4" style="margin-top: 25px;">Hinge Position 4: </label>
+                                                <input disabled type="text" id="HingePositions4" class="form-control" placeholder="">
+                                            </div><!-- form-group -->
+
+                                            <div class="col-xs-4 col-md-3">
+                                                <label for="HingePositions5" style="margin-top: 25px;">Hinge Position 5: </label>
+                                                <input disabled type="text" id="HingePositions5" class="form-control" placeholder="">
+                                            </div><!-- form-group -->
+
+                                            
+                                            <div class="col-xs-4 col-md-3">
+                                                @*@using (Html.BeginForm("subir", "home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                                {
+                                                <label for="Picture" style="margin-top: 25px;">Picture: </label>
+                                                <div style="padding-bottom: 12px;padding-top: 12px;height: 43px;" id="inPicture" class="form-control bd bd-dashed d-flex align-items-center justify-content-center rounded bg-gray-300">
+                                                    <p id="texto">Add file</p>
+                                                    <input id="btn_enviar" name="file" type="file">
+                                                </div>
+                                                }*@
+                                                <label>Picture</label>
+                                                <input type="text" id="inPicture" class="form-control" placeholder="" />
+                                            </div><!-- form-group -->
+                                            
+
+                                            <div class="col-xs-4 col-md-3">
+                                                @using (Html.BeginForm("subir", "home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                                {
+                                                <label for="ProfilePicture" style="margin-top: 25px;">Profile Picture: </label>
+                                                <div style="padding-bottom: 12px;padding-top: 12px;height: 43px;" id="inProfilePicture" class="form-control bd bd-dashed d-flex align-items-center justify-content-center rounded bg-gray-300">
+                                                    <p id="texto">Add file</p>
+                                                    <input id="btn_enviar" name="file" type="file">
+                                                </div>
+                                                }
+                                            </div><!-- form-group -->
+
+                                            <div class="col-xs-4 col-md-3" style="padding-top: 20px;">
                                                 <label for="Template" style="margin-top: 25px;">Status: </label>
                                                 <select style="width:100%" class="form-control select2" id="inStatus" data-placeholder="">
                                                     <option value="0">select</option>
@@ -309,7 +309,7 @@
                                 </div><!-- col-6 -->
                             </div><!-- row -->
                             <div class="modal-footer justify-content-lg-end">
-                                <button type="button" id="btInsertDoors" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Insert</button>
+                                <button type="button" onclick="this.disabled = true; SubirArchivo" id="btInsertDoors" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Insert</button>
                                 <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>
                             </div>
                         </div><!-- modal-body -->
@@ -320,7 +320,7 @@
     </div><!-- modal-dialog -->
 </div>
 
-<div id="modaldemo1" class="modal fade effect-scale" aria-hidden="true" style="display: none;">
+<div id="modalModify" class="modal fade effect-scale" aria-hidden="true" style="display: none;">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content bd-0 rounded-0">
             <div class="modal-body pd-0">
@@ -338,7 +338,7 @@
                                         <div class="row">
                                             <div class="col-xs-4 col-md-3">
                                                 <label for="Id" style="margin-top: 25px;">Id: </label>
-                                                <input type="text" id="txtId" class="form-control" readonly placeholder="">
+                                                <input type="text" name="Identificador" value="@ViewBag.IdItem" id="utxtId" class="form-control" readonly placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-3">
                                                 <label for="cbDoorStyle" style="margin-top: 25px;">Door Style: </label>
@@ -351,7 +351,7 @@
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-3">
                                                 <label for="cbMatarial" style="margin-top: 25px;">Material: </label>
-                                                <select style="width:100%" class="form-control select2" id="cbMatarial" data-placeholder="">
+                                                <select style="width:100%" class="form-control select2" id="cbMaterial" data-placeholder="">
                                                     @foreach (Model.Material item in ViewBag.cbMatarial)
                                                     {
                                                         <option value="@item.Id">@item.Description</option>
@@ -436,25 +436,6 @@
                                                 </select>
                                             </div><!-- form-group -->
 
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="cbHingeDirection" style="margin-top: 25px;">Hinge Direction: </label>
-                                                <select style="width:100%" class="form-control select2" id="cbHingeDirection" data-placeholder="">
-                                                    @foreach (Model.HingeDirection item in ViewBag.cbHingeDirection)
-                                                    {
-                                                        <option value="@item.Id">@item.Direction</option>
-                                                    }
-                                                </select>
-                                            </div><!-- form-group -->
-
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="cbHingePositions" style="margin-top: 25px;">Hinge Positions: </label>
-                                                <select style="width:100%" class="form-control select2" id="cbHingePositions" data-placeholder="">
-                                                    @foreach (Model.HingePositions item in ViewBag.cbHingePositions)
-                                                    {
-                                                        <option value="@item.Id">@item.Position</option>
-                                                    }
-                                                </select>
-                                            </div><!-- form-group -->
 
                                             <div class="col-xs-4 col-md-3">
                                                 <label for="cbPanel" style="margin-top: 25px;">Panel: </label>
@@ -477,30 +458,85 @@
                                             </div><!-- form-group -->
 
                                             <div class="col-xs-4 col-md-3">
+                                                <label for="Width" style="margin-top: 25px;">Width: </label>
+                                                <input type="text" id="txtWidth" name="Width" class="form-control" placeholder="">
+                                            </div><!-- form-group -->
+                                            <div class="col-xs-4 col-md-3">
+                                                <label for="Height" style="margin-top: 25px;">Height: </label>
+                                                <input type="text" id="txtHeight" name="Height" class="txtHeight form-control" placeholder="">
+                                            </div><!-- form-group -->
+
+
+                                            <div class="col-xs-4 col-md-3">
                                                 <label for="isDrill" style="margin-top: 25px;">Drill: </label>
                                                 <select style="width:100%" class="form-control select2" id="isDrill" data-placeholder="">
                                                     <option value="true">Drill</option>
                                                     <option value="false">No Drill</option>
                                                 </select>
                                             </div><!-- form-group -->
+
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="Width" style="margin-top: 25px;">Width: </label>
-                                                <input type="text" id="txtWidth" name="Width" class="form-control" placeholder="">
-                                            </div><!-- form-group -->
-                                             <div class="col-xs-4 col-md-3">
-                                                <label for="Height" style="margin-top: 25px;">Height: </label>
-                                                <input type="text" id="txtHeight" name="Height" class="form-control" placeholder="">
-                                            </div><!-- form-group -->
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="Picture" style="margin-top: 25px;">Picture: </label>
-                                                <input type="text" name="id" id="txtPicture" class="form-control" placeholder="">
+                                                <label for="cbHingeDirection" style="margin-top: 25px;">Hinge Direction: </label>
+                                                <select style="width:100%" class="form-control select2" id="cbHingeDirection" data-placeholder="">
+                                                    @foreach (Model.HingeDirection item in ViewBag.cbHingeDirection)
+                                                    {
+                                                        <option value="@item.Id">@item.Direction</option>
+                                                    }
+                                                </select>
                                             </div><!-- form-group -->
 
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="ProfilePicture" style="margin-top: 25px;">ProfilePicture: </label>
-                                                <input type="text" name="id" id="txtProfilePicture" class="form-control" placeholder="">
+                                                <label for="HingePositions1" style="margin-top: 25px;">Hinge Position 1: </label>
+                                                <input disabled type="text" id="HingePositions1" class="form-control" placeholder="">
                                             </div><!-- form-group -->
+
                                             <div class="col-xs-4 col-md-3">
+                                                <label for="HingePositions2" style="margin-top: 25px;">Hinge Position 2: </label>
+                                                <input disabled type="text" id="HingePositions2" class="form-control" placeholder="">
+                                            </div><!-- form-group -->
+
+                                            <div class="col-xs-4 col-md-3">
+                                                <label for="HingePositions3" style="margin-top: 25px;">Hinge Position 3: </label>
+                                                <input disabled type="text" id="HingePositions3" class="form-control" placeholder="">
+                                            </div><!-- form-group -->
+
+                                            <div class="col-xs-4 col-md-3">
+                                                <label for="HingePositions4" style="margin-top: 25px;">Hinge Position 4: </label>
+                                                <input disabled type="text" id="HingePositions4" class="form-control" placeholder="">
+                                            </div><!-- form-group -->
+
+                                            <div class="col-xs-4 col-md-3">
+                                                <label for="HingePositions5" style="margin-top: 25px;">Hinge Position 5: </label>
+                                                <input disabled type="text" id="HingePositions5" class="form-control" placeholder="">
+                                            </div><!-- form-group -->
+
+                                            <div class="col-xs-4 col-md-3">
+                                                @*@using (Html.BeginForm("subir", "home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                                {
+                                                    <label for="Picture" style="margin-top: 25px;">Picture: </label>
+                                                    <div style="padding-bottom: 12px;padding-top: 12px;height: 43px;" id="inPicture" class="form-control bd bd-dashed d-flex align-items-center justify-content-center rounded bg-gray-300">
+                                                        <p id="texto">Add file</p>
+                                                        <input id="btn_enviar" name="file" type="file">
+                                                    </div>
+                                                }*@
+
+                                                <label>Picture</label>
+                                            <input type="text" id="txtPicture" class="form-control" placeholder="" />
+                                            </div><!-- form-group -->
+
+
+                                            <div class="col-xs-4 col-md-3">
+                                                @using (Html.BeginForm("subir", "home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                                {
+                                                    <label for="ProfilePicture" style="margin-top: 25px;">Profile Picture: </label>
+                                                    <div style="padding-bottom: 12px;padding-top: 12px;height: 43px;" id="inProfilePicture" class="form-control bd bd-dashed d-flex align-items-center justify-content-center rounded bg-gray-300">
+                                                        <p id="texto">Add file</p>
+                                                        <input id="btn_enviar" name="file" type="file">
+                                                    </div>
+                                                }
+                                            </div><!-- form-group -->
+
+                                            <div class="col-xs-4 col-md-3" style="padding-top: 20px;">
                                                 <label for="Template" style="margin-top: 25px;">Status: </label>
                                                 <select style="width:100%" class="form-control select2" id="IdStatus" data-placeholder="">
                                                     <option value="0">select</option>
@@ -517,14 +553,14 @@
                                                     <option value="false">No Opening</option>
                                                 </select>
                                             </div><!-- form-group -->
-                                            
+
 
                                         </div>
                                     </div><!-- pd-20 -->
                                 </div><!-- col-6 -->
                             </div><!-- row -->
                             <div class="modal-footer justify-content-lg-end">
-                                <button type="button" class="btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Modify</button>
+                                <button type="button" onclick="this.disabled=true;" id="btnUpdateDoors" class="btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Modify</button>
                                 <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>
                             </div>
                         </div><!-- modal-body -->
@@ -534,7 +570,6 @@
         </div><!-- modal-content -->
     </div><!-- modal-dialog -->
 </div>
-<div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div>
 
 <div id="modaldemo2" class="modal fade" aria-hidden="true" style="display: none;">
     <div class="modal-dialog modal-sm" role="document">
@@ -594,6 +629,7 @@
 @section scripts{
     <script>
         var urlInsertDoors = '@Url.Action("InsertDoors", "Masters")';
+        var urlUpdateDoors = '@Url.Action("UpdateDoors", "Masters")';
     </script>
     <script>
         $(function () {
@@ -623,7 +659,7 @@
     <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>
     <script src="~/Content/lib/select2/js/select2.min.js"></script>
     <script src="~/Content/lib/select2/js/select2.full.min.js"></script>
-@Scripts.Render("~/Scripts/js/Masters.js")
+    @Scripts.Render("~/Scripts/js/Masters.js")
     <script type="text/javascript">
 
         $(document).ready(function () {
@@ -649,7 +685,6 @@
                         $('#isDrill').val(ListDoors[i].isDrill);
                         $('#txtWidth').val(ListDoors[i].Width);
                         $('#txtHeight').val(ListDoors[i].Height);
-                        $('#txtQuantity').val(ListDoors[i].Quantity);
                         $('#isOpeningMeasurement').val(ListDoors[i].IsOpeningMeasurement);
                         $('#txtPicture').val(ListDoors[i].Picture);
                         $('#txtProfilePicture').val(ListDoors[i].ProfilePicture);
@@ -664,5 +699,3 @@
     </script>
 
 }
-
-

@@ -87,8 +87,8 @@ namespace DataAccess
 
         public void UpdateGroup(Group pGroup)
         {
-            string sql = @"[spUpdateGroup] '{0}'";
-            sql = string.Format(sql, pGroup.Description);
+            string sql = @"[spUpdateGroup] '{0}', '{1}'";
+            sql = string.Format(sql,pGroup.Id, pGroup.Description);
             try
             {
                 _MB.EjecutarSQL(_CN, sql);

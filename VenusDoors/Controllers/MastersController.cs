@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Model;
+using System.Web.UI;
+using System.IO;
 
 namespace VenusDoors.Controllers
 {
@@ -30,20 +32,30 @@ namespace VenusDoors.Controllers
         BusinessLogic.lnType _LNType = new BusinessLogic.lnType();
         BusinessLogic.lnGroup _LNGroup = new BusinessLogic.lnGroup();
         BusinessLogic.lnPerson _LNPerson = new BusinessLogic.lnPerson();
+        BusinessLogic.lnRailThickness _LNRT = new BusinessLogic.lnRailThickness();
 
+        #region BottomRail
         public ActionResult BottomRail()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.BottomRail = "active";
-            BusinessLogic.lnBottomRail _LN = new BusinessLogic.lnBottomRail();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.BottomRail = "active";
+                BusinessLogic.lnBottomRail _LN = new BusinessLogic.lnBottomRail();
 
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
-            var mBottomRail = _LN.GetAllBottomRail();
-            ViewBag.mBottomRail = mBottomRail;
-            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.mStatus = _LNStatus.GetAllStatus();
 
-            ViewBag.ListBottomRail = serializar.Serialize(mBottomRail);
-            return View();
+                var mBottomRail = _LN.GetAllBottomRail();
+                ViewBag.mBottomRail = mBottomRail;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListBottomRail = serializar.Serialize(mBottomRail);
+                return View();
+            }
+            else
+            {
+
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         [HttpPost]
@@ -55,7 +67,8 @@ namespace VenusDoors.Controllers
                 pBottomRail.CreationDate = DateTime.Now;
                 pBottomRail.ModificationDate = DateTime.Now;
                 BusinessLogic.lnBottomRail _LN = new BusinessLogic.lnBottomRail();
-                return Json(_LN.InsertBottomRail(pBottomRail));
+                var inBR = _LN.InsertBottomRail(pBottomRail);
+                return Json(true, JsonRequestBehavior.AllowGet);
 
             }
             catch
@@ -63,34 +76,77 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
-        
+
+        [HttpPost]
+        public ActionResult UpdateBottomRail(BottomRail uBottomRail)
+        {
+            try
+            {
+                uBottomRail.CreationDate = DateTime.Now;
+                uBottomRail.ModificationDate = DateTime.Now;
+                BusinessLogic.lnBottomRail _LN = new BusinessLogic.lnBottomRail();
+                var modBR = _LN.UpdateBottomRail(uBottomRail);
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public ActionResult DeleteBottomRail(int pId)
+        {
+
+            try
+            {
+                BusinessLogic.lnBottomRail _LN = new BusinessLogic.lnBottomRail();
+                var delBR = _LN.DeleteBottomRail(pId);
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+        #endregion
+
+        #region Doors
         public ActionResult Doors()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.Doors = "active";
-            BusinessLogic.lnDoors _LM = new BusinessLogic.lnDoors();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.Doors = "active";
+                BusinessLogic.lnDoors _LM = new BusinessLogic.lnDoors();
 
-            var mDoors = _LM.GetAllDoors();
-            ViewBag.mDoors = mDoors;
-            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            ViewBag.ListDoors = serializar.Serialize(mDoors);
+                var mDoors = _LM.GetAllDoors();
+                ViewBag.mDoors = mDoors;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListDoors = serializar.Serialize(mDoors);
 
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
-            ViewBag.cbDoorStyle = _LNDoorStile.GetAllDoorStyle();
-            ViewBag.cbMatarial = _LNMaterial.GetAllMaterial();
-            ViewBag.cbTopRail = _LNTopRail.GetAllTopRail();
-            ViewBag.cbBottomRail = _LNBottomRail.GetAllBottomRail();
-            ViewBag.cbPreparation = _LNPreparation.GetAllPreparation();
-            ViewBag.cbJoin = _LNJoin.GetAllJoin();
-            ViewBag.cbInsideEdgeProfile = _LNInsideEdgeProfile.GetAllInsideEdgeProfile();
-            ViewBag.cbOutsideEdgeProfile = _LNOutsideEdgeProfile.GetAllOutsideEdgeProfile();
-            ViewBag.cbVerticalDivisions = _LNVerticalDivisions.GetAllVerticalDivisions();
-            ViewBag.cbHorizontalDivisions = _LNHorizontalDivisions.GetAllHorizontalDivisions();
-            ViewBag.cbHingeDirection = _LNHingeDirection.GetAllHingeDirection();
-            ViewBag.cbHingePositions = _LNHingePositions.GetAllHingePositions();
-            ViewBag.cbPanel = _LNPanel.GetAllPanel();
-            ViewBag.cbPanelMaterial = _LNPanelMaterial.GetAllPanelMaterial();
-            return View();
+                ViewBag.mStatus = _LNStatus.GetAllStatus();
+                ViewBag.cbDoorStyle = _LNDoorStile.GetAllDoorStyle();
+                ViewBag.cbMatarial = _LNMaterial.GetAllMaterial();
+                ViewBag.cbTopRail = _LNTopRail.GetAllTopRail();
+                ViewBag.cbBottomRail = _LNBottomRail.GetAllBottomRail();
+                ViewBag.cbPreparation = _LNPreparation.GetAllPreparation();
+                ViewBag.cbJoin = _LNJoin.GetAllJoin();
+                ViewBag.cbInsideEdgeProfile = _LNInsideEdgeProfile.GetAllInsideEdgeProfile();
+                ViewBag.cbOutsideEdgeProfile = _LNOutsideEdgeProfile.GetAllOutsideEdgeProfile();
+                ViewBag.cbVerticalDivisions = _LNVerticalDivisions.GetAllVerticalDivisions();
+                ViewBag.cbHorizontalDivisions = _LNHorizontalDivisions.GetAllHorizontalDivisions();
+                ViewBag.cbHingeDirection = _LNHingeDirection.GetAllHingeDirection();
+                ViewBag.cbHingePositions = _LNHingePositions.GetAllHingePositions();
+                ViewBag.cbPanel = _LNPanel.GetAllPanel();
+                ViewBag.cbPanelMaterial = _LNPanelMaterial.GetAllPanelMaterial();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         [HttpPost]
@@ -101,8 +157,11 @@ namespace VenusDoors.Controllers
 
                 pDoors.CreationDate = DateTime.Now;
                 pDoors.ModificationDate = DateTime.Now;
+                pDoors.Picture = "Picture";
+                pDoors.ProfilePicture = "empty";
                 BusinessLogic.lnDoors _LM = new BusinessLogic.lnDoors();
-                return Json(_LM.InsertDoors(pDoors));
+                var inDoor = _LM.InsertDoors(pDoors);
+                return Json(true, JsonRequestBehavior.AllowGet);
 
             }
             catch
@@ -111,33 +170,18 @@ namespace VenusDoors.Controllers
             }
         }
 
-        public ActionResult DoorsPrices()
-        {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.DoorPrice = "active";
-            BusinessLogic.lnDoorsPrices _LP = new BusinessLogic.lnDoorsPrices();
-
-            var mDoorsPrices = _LP.GetAllDoorsPrices();
-            ViewBag.mDoorsPrices = mDoorsPrices;
-            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            ViewBag.ListDoorsPrices = serializar.Serialize(mDoorsPrices);
-
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
-            ViewBag.cbDoorStyle = _LNDoorStile.GetAllDoorStyle();
-            ViewBag.cbMatarial = _LNMaterial.GetAllMaterial();
-            return View();
-        }
-
         [HttpPost]
-        public ActionResult InsertDoorPrice(DoorsPrices pDoorPrice)
+        public ActionResult UpdateDoors(Doors uDoors)
         {
             try
             {
 
-                pDoorPrice.CreationDate = DateTime.Now;
-                pDoorPrice.ModificationDate = DateTime.Now;
-                BusinessLogic.lnDoorsPrices _LP = new BusinessLogic.lnDoorsPrices();
-                return Json(_LP.InsertDoorsPrices(pDoorPrice));
+                uDoors.CreationDate = DateTime.Now;
+                uDoors.ModificationDate = DateTime.Now;
+                uDoors.ProfilePicture = "empty";
+                BusinessLogic.lnDoors _LM = new BusinessLogic.lnDoors();
+                var modDoor = _LM.UpdateDoors(uDoors);
+                return Json(true, JsonRequestBehavior.AllowGet);
 
             }
             catch
@@ -146,17 +190,95 @@ namespace VenusDoors.Controllers
             }
         }
 
+        #endregion
+
+        #region DoorsPrices
+        public ActionResult DoorsPrices()
+        {
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.DoorPrice = "active";
+                BusinessLogic.lnDoorsPrices _LP = new BusinessLogic.lnDoorsPrices();
+
+                var mDoorsPrices = _LP.GetAllDoorsPrices();
+                ViewBag.mDoorsPrices = mDoorsPrices;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListDoorsPrices = serializar.Serialize(mDoorsPrices);
+
+                ViewBag.mRailThickness = _LNRT.GetAllRailThickness();
+                ViewBag.mStatus = _LNStatus.GetAllStatus();
+                ViewBag.cbDoorStyle = _LNDoorStile.GetAllDoorStyle();
+                ViewBag.cbMatarial = _LNMaterial.GetAllMaterial();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult InsertDoorsPrices(DoorsPrices pDoorsPrices)
+        {
+            try
+            {
+
+                pDoorsPrices.CreationDate = DateTime.Now;
+                pDoorsPrices.ModificationDate = DateTime.Now;
+                pDoorsPrices.Picture = "Picture";
+                pDoorsPrices.ProfilePicture = "Picture";
+                BusinessLogic.lnDoorsPrices _LP = new BusinessLogic.lnDoorsPrices();
+                var InserDP = _LP.InsertDoorsPrices(pDoorsPrices);
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult UpdateDoorPrice(DoorsPrices uDoorPrice)
+        {
+            try
+            {
+
+                uDoorPrice.CreationDate = DateTime.Now;
+                uDoorPrice.ModificationDate = DateTime.Now;
+                BusinessLogic.lnDoorsPrices _LP = new BusinessLogic.lnDoorsPrices();
+                var modDP = _LP.UpdateDoorsPrices(uDoorPrice);
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+        #endregion
+
+        #region DoorStyle
         public ActionResult Index()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.DoorStyle = "active";
-            BusinessLogic.lnDoorStyle _LA = new BusinessLogic.lnDoorStyle();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.DoorStyle = "active";
+                BusinessLogic.lnDoorStyle _LA = new BusinessLogic.lnDoorStyle();
 
-            var mDoorsStyle = _LA.GetAllDoorStyle();
-            ViewBag.mDoorsStyle = mDoorsStyle;
-            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            ViewBag.ListDoorsStyle = serializar.Serialize(mDoorsStyle);
-            return View();
+                var mDoorsStyle = _LA.GetAllDoorStyle();
+                ViewBag.mDoorsStyle = mDoorsStyle;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListDoorsStyle = serializar.Serialize(mDoorsStyle);
+
+                ViewBag.mStatus = _LNStatus.GetAllStatus();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }            
         }
 
         [HttpPost]
@@ -168,7 +290,8 @@ namespace VenusDoors.Controllers
                 pDoorStyle.CreationDate = DateTime.Now;
                 pDoorStyle.ModificationDate = DateTime.Now;
                 BusinessLogic.lnDoorStyle _LA = new BusinessLogic.lnDoorStyle();
-                return Json(_LA.InsertDoorStyle(pDoorStyle));
+                var InserDS = _LA.InsertDoorStyle(pDoorStyle);
+                return Json(true, JsonRequestBehavior.AllowGet);
 
             }
             catch
@@ -177,370 +300,1533 @@ namespace VenusDoors.Controllers
             }
         }
 
+        [HttpPost]
+        public ActionResult UpdateDoorStyle(DoorStyle uDoorStyle)
+        {
+            try
+            {
+
+                uDoorStyle.CreationDate = DateTime.Now;
+                uDoorStyle.ModificationDate = DateTime.Now;
+                BusinessLogic.lnDoorStyle _LA = new BusinessLogic.lnDoorStyle();
+                var modDS = _LA.UpdateDoorStyle(uDoorStyle);
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        #endregion
+
+        #region DoorStylexInsideEdgeProfile
         public ActionResult DoorStyleByInsideEdgeProfile()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.DoorStyleByInsideEdgeProfile = "active";
-            return View();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.DoorStyleByInsideEdgeProfile = "active";
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
+        #endregion
 
+        #region DoorStylexOutsideEdgeProfile
         public ActionResult DoorStyleByOutsideEdgeProfile()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.DoorStyleByOutsideEdgeProfile = "active";
-            return View();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.DoorStyleByOutsideEdgeProfile = "active";
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }            
         }
+        #endregion
 
+        #region DoorsxUser
         public ActionResult DoorByUser()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.DoorByUser = "active";
-            BusinessLogic.lnDoorsxUser _LB = new BusinessLogic.lnDoorsxUser();
-            ViewBag.mDoorxUser = _LB.GetAllDoorsxUser();
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
-            return View();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.DoorByUser = "active";
+                BusinessLogic.lnDoorsxUser _LB = new BusinessLogic.lnDoorsxUser();
+                ViewBag.mDoorxUser = _LB.GetAllDoorsxUser();
+                ViewBag.mStatus = _LNStatus.GetAllStatus();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }            
         }
+        #endregion
 
+        #region Group
         public ActionResult Group()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.Group = "active";
-            BusinessLogic.lnGroup _LC = new BusinessLogic.lnGroup();
-
-            var mGroup = _LC.GetAllGroup();
-            ViewBag.mGroup = mGroup;
-            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            ViewBag.ListGroup = serializar.Serialize(mGroup);
-            return View();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.Group = "active";
+                BusinessLogic.lnGroup _LC = new BusinessLogic.lnGroup();
+                var mGroup = _LC.GetAllGroup();
+                ViewBag.mGroup = mGroup;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListGroup = serializar.Serialize(mGroup);
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }            
         }
 
+        [HttpPost]
+        public ActionResult InsertGroup(Group pGroup)
+        {
+            try
+            {
+
+                BusinessLogic.lnGroup _LC = new BusinessLogic.lnGroup();
+                var InserGP = _LC.InsertGroup(pGroup);
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult UpdateGroup(Group uGroup)
+        {
+            try
+            {
+
+                BusinessLogic.lnGroup _LC = new BusinessLogic.lnGroup();
+                var modGP = _LC.UpdateGroup(uGroup);
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+        #endregion
+
+        #region HingeDirection
         public ActionResult HingeDirection()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.HingeDirection = "active";
-            BusinessLogic.lnHingeDirection _LD = new BusinessLogic.lnHingeDirection();
-
-            var mHingeDirection = _LD.GetAllHingeDirection();
-            ViewBag.mHingeDirection = mHingeDirection;
-            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            ViewBag.ListHingeDirection = serializar.Serialize(mHingeDirection);
-
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
-            return View();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.HingeDirection = "active";
+                BusinessLogic.lnHingeDirection _LD = new BusinessLogic.lnHingeDirection();
+                var mHingeDirection = _LD.GetAllHingeDirection();
+                ViewBag.mHingeDirection = mHingeDirection;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListHingeDirection = serializar.Serialize(mHingeDirection);
+                ViewBag.mStatus = _LNStatus.GetAllStatus();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            
         }
 
+        [HttpPost]
+        public ActionResult InserHingeDirection(HingeDirection pHingeDirection)
+        {
+            try
+            {
+
+                pHingeDirection.CreationDate = DateTime.Now;
+                pHingeDirection.ModificationDate = DateTime.Now;
+                BusinessLogic.lnHingeDirection _LD = new BusinessLogic.lnHingeDirection();
+                var InserHD = _LD.InsertHingeDirection(pHingeDirection);
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult UpdateHingeDirection(HingeDirection uHingeDirection)
+        {
+            try
+            {
+
+                uHingeDirection.CreationDate = DateTime.Now;
+                uHingeDirection.ModificationDate = DateTime.Now;
+                BusinessLogic.lnHingeDirection _LD = new BusinessLogic.lnHingeDirection();
+                var modHD = _LD.UpdateHingeDirection(uHingeDirection);
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+        #endregion
+
+        #region HingePositions
         public ActionResult HingePositions()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.HingePositions = "active";
-            BusinessLogic.lnHingePositions _LE = new BusinessLogic.lnHingePositions();
-
-            var mHingePositions = _LE.GetAllHingePositions();
-            ViewBag.mHingePositions = mHingePositions;
-            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            ViewBag.ListHingePositions = serializar.Serialize(mHingePositions);
-
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
-            return View();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.HingePositions = "active";
+                BusinessLogic.lnHingePositions _LE = new BusinessLogic.lnHingePositions();
+                var mHingePositions = _LE.GetAllHingePositions();
+                ViewBag.mHingePositions = mHingePositions;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListHingePositions = serializar.Serialize(mHingePositions);
+                ViewBag.mStatus = _LNStatus.GetAllStatus();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }            
         }
 
+        [HttpPost]
+        public ActionResult InserHingePositions(HingePositions pHingePositions)
+        {
+            try
+            {
+
+                pHingePositions.CreationDate = DateTime.Now;
+                pHingePositions.ModificationDate = DateTime.Now;
+                BusinessLogic.lnHingePositions _LE = new BusinessLogic.lnHingePositions();
+                var InserHP = _LE.InsertHingePositions(pHingePositions);
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult UpdateHingePositions(HingePositions uHingePositions)
+        {
+            try
+            {           
+                uHingePositions.CreationDate = DateTime.Now;
+                uHingePositions.ModificationDate = DateTime.Now;
+                BusinessLogic.lnHingePositions _LE = new BusinessLogic.lnHingePositions();
+                var modHP = _LE.UpdateHingePositions(uHingePositions);
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+        #endregion
+
+        #region HorizontalDivisions
         public ActionResult HorizontalDivisions()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.HorizontalDivisions = "active";
-            BusinessLogic.lnHorizontalDivisions _LF = new BusinessLogic.lnHorizontalDivisions();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.HorizontalDivisions = "active";
+                BusinessLogic.lnHorizontalDivisions _LF = new BusinessLogic.lnHorizontalDivisions();
 
-            var mHorizontalDivisions = _LF.GetAllHorizontalDivisions();
-            ViewBag.mHorizontalDivisions = mHorizontalDivisions;
-            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            ViewBag.ListHorizontalDivisions = serializar.Serialize(mHorizontalDivisions);
+                var mHorizontalDivisions = _LF.GetAllHorizontalDivisions();
+                ViewBag.mHorizontalDivisions = mHorizontalDivisions;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListHorizontalDivisions = serializar.Serialize(mHorizontalDivisions);
 
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
-            return View();
+                ViewBag.mStatus = _LNStatus.GetAllStatus();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }            
         }
 
+        [HttpPost]
+        public ActionResult InserHorizontalDivisions(HorizontalDivisions pHorizontalDivisions)
+        {
+            try
+            {
+
+                pHorizontalDivisions.CreationDate = DateTime.Now;
+                pHorizontalDivisions.ModificationDate = DateTime.Now;
+                BusinessLogic.lnHorizontalDivisions _LF = new BusinessLogic.lnHorizontalDivisions();
+                var InserHoDi = _LF.InsertHorizontalDivisions(pHorizontalDivisions);
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult UpdateHorizontalDivisions(HorizontalDivisions uHorizontalDivisions)
+        {
+            try
+            {
+
+                uHorizontalDivisions.CreationDate = DateTime.Now;
+                uHorizontalDivisions.ModificationDate = DateTime.Now;
+                BusinessLogic.lnHorizontalDivisions _LF = new BusinessLogic.lnHorizontalDivisions();
+                var modHoDi = _LF.UpdateHorizontalDivisions(uHorizontalDivisions);
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+        #endregion
+
+        #region InsideEdgeProfile
         public ActionResult InsideEdgeProfile()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.InsideEdgeProfile = "active";
-            BusinessLogic.lnInsideEdgeProfile _LG = new BusinessLogic.lnInsideEdgeProfile();
-            
-            var mInsideEdgeProfile = _LG.GetAllInsideEdgeProfile();
-            ViewBag.mInsideEdgeProfile = mInsideEdgeProfile;
-            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            ViewBag.ListInsideEdgeProfile = serializar.Serialize(mInsideEdgeProfile);
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.InsideEdgeProfile = "active";
+                BusinessLogic.lnInsideEdgeProfile _LG = new BusinessLogic.lnInsideEdgeProfile();
 
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
-            return View();
+                var mInsideEdgeProfile = _LG.GetAllInsideEdgeProfile();
+                ViewBag.mInsideEdgeProfile = mInsideEdgeProfile;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListInsideEdgeProfile = serializar.Serialize(mInsideEdgeProfile);
+
+                ViewBag.mStatus = _LNStatus.GetAllStatus();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }            
         }
 
+        [HttpPost]
+        public ActionResult InsertInsideEdgeProfile(InsideEdgeProfile pInsideEdgeProfile)
+        {
+            try
+            {
+
+                pInsideEdgeProfile.CreationDate = DateTime.Now;
+                pInsideEdgeProfile.ModificationDate = DateTime.Now;
+                BusinessLogic.lnInsideEdgeProfile _LG = new BusinessLogic.lnInsideEdgeProfile();
+                var InserIEP = _LG.InsertInsideEdgeProfile(pInsideEdgeProfile);
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult UpdateInsideEdgeProfile(InsideEdgeProfile uInsideEdgeProfile)
+        {
+            try
+            {
+
+                uInsideEdgeProfile.CreationDate = DateTime.Now;
+                uInsideEdgeProfile.ModificationDate = DateTime.Now;
+                BusinessLogic.lnInsideEdgeProfile _LG = new BusinessLogic.lnInsideEdgeProfile();
+                var modIEP = _LG.UpdateInsideEdgeProfile(uInsideEdgeProfile);
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+        #endregion
+
+        #region Join
         public ActionResult Join()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.Join = "active";
-            BusinessLogic.lnJoin _LH = new BusinessLogic.lnJoin();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.Join = "active";
+                BusinessLogic.lnJoin _LH = new BusinessLogic.lnJoin();
 
-            var mJoin = _LH.GetAllJoin();
-            ViewBag.mJoin = mJoin;
-            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            ViewBag.ListJoin = serializar.Serialize(mJoin);
+                var mJoin = _LH.GetAllJoin();
+                ViewBag.mJoin = mJoin;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListJoin = serializar.Serialize(mJoin);
 
-            ViewBag.mJoin = _LH.GetAllJoin();
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
-            return View();
+                ViewBag.mJoin = _LH.GetAllJoin();
+                ViewBag.mStatus = _LNStatus.GetAllStatus();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
+        [HttpPost]
+        public ActionResult InsertJoin(Join pJoin)
+        {
+            try
+            {
+
+                pJoin.CreationDate = DateTime.Now;
+                pJoin.ModificationDate = DateTime.Now;
+                BusinessLogic.lnJoin _LH = new BusinessLogic.lnJoin();
+                var InserJoin = _LH.InsertJoin(pJoin);
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult UpdateJoin(Join uJoin)
+        {
+            try
+            {
+
+                uJoin.CreationDate = DateTime.Now;
+                uJoin.ModificationDate = DateTime.Now;
+                BusinessLogic.lnJoin _LH = new BusinessLogic.lnJoin();
+                var modJoin = _LH.UpdateJoin(uJoin);
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+        #endregion
+
+        #region Material
         public ActionResult Material()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.Material = "active";
-            BusinessLogic.lnMaterial _LI = new BusinessLogic.lnMaterial();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.Material = "active";
+                BusinessLogic.lnMaterial _LI = new BusinessLogic.lnMaterial();
 
-            var mMaterial = _LI.GetAllMaterial();
-            ViewBag.mMaterial = mMaterial;
-            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            ViewBag.ListMaterial = serializar.Serialize(mMaterial);
+                var mMaterial = _LI.GetAllMaterial();
+                ViewBag.mMaterial = mMaterial;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListMaterial = serializar.Serialize(mMaterial);
 
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
-            return View();
+                ViewBag.mStatus = _LNStatus.GetAllStatus();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
+        [HttpPost]
+        public ActionResult InsertMaterial(Material pMaterial)
+        {
+            try
+            {
+
+                pMaterial.CreationDate = DateTime.Now;
+                pMaterial.ModificationDate = DateTime.Now;
+                BusinessLogic.lnMaterial _LI = new BusinessLogic.lnMaterial();
+                var InserMaterial = _LI.InsertMaterial(pMaterial);
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult UpdateMaterial(Material uMaterial)
+        {
+            try
+            {
+
+                uMaterial.CreationDate = DateTime.Now;
+                uMaterial.ModificationDate = DateTime.Now;
+                BusinessLogic.lnMaterial _LI = new BusinessLogic.lnMaterial();
+                var modMaterial = _LI.UpdateMaterial(uMaterial);
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+        #endregion
+
+        #region MaterialxBottomRail
         public ActionResult MaterialxBottomRail()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.MaterialxBottomRail = "active";
-            BusinessLogic.lnMaterialxBottomRail _LJ = new BusinessLogic.lnMaterialxBottomRail();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.MaterialxBottomRail = "active";
+                BusinessLogic.lnMaterialxBottomRail _LJ = new BusinessLogic.lnMaterialxBottomRail();
 
-            var mMaterialxBottomRail = _LJ.GetAllMaterialxBottomRail();
-            ViewBag.mMaterialxBottomRail = mMaterialxBottomRail;
-            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            ViewBag.ListMaterialxBottomRail = serializar.Serialize(mMaterialxBottomRail);
+                var mMaterialxBottomRail = _LJ.GetAllMaterialxBottomRail();
+                ViewBag.mMaterialxBottomRail = mMaterialxBottomRail;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListMaterialxBottomRail = serializar.Serialize(mMaterialxBottomRail);
 
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
-            ViewBag.cbMatarial = _LNMaterial.GetAllMaterial();
-            ViewBag.cbBottomRail = _LNBottomRail.GetAllBottomRail();
-            return View();
+                ViewBag.mStatus = _LNStatus.GetAllStatus();
+                ViewBag.cbMatarial = _LNMaterial.GetAllMaterial();
+                ViewBag.cbBottomRail = _LNBottomRail.GetAllBottomRail();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
+        [HttpPost]
+        public ActionResult InsertMaterialxBottomRail(MaterialxBottomRail pMaterialxBottomRail)
+        {
+            try
+            {
+
+                pMaterialxBottomRail.CreationDate = DateTime.Now;
+                pMaterialxBottomRail.ModificationDate = DateTime.Now;
+                BusinessLogic.lnMaterialxBottomRail _LJ = new BusinessLogic.lnMaterialxBottomRail();
+                var InserMaterialxBoR = _LJ.InsertMaterialxBottomRail(pMaterialxBottomRail);
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult UpdateMaterialxBottomRail(MaterialxBottomRail uMaterialxBottomRail)
+        {
+            try
+            {
+
+                uMaterialxBottomRail.CreationDate = DateTime.Now;
+                uMaterialxBottomRail.ModificationDate = DateTime.Now;
+                BusinessLogic.lnMaterialxBottomRail _LJ = new BusinessLogic.lnMaterialxBottomRail();
+                var modMaterialxBR = _LJ.UpdateMaterialxBottomRail(uMaterialxBottomRail);
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+        #endregion
+
+        #region Order
         public ActionResult Order()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.Order = "active";
-            BusinessLogic.lnOrder _LK = new BusinessLogic.lnOrder();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.Order = "active";
+                BusinessLogic.lnOrder _LK = new BusinessLogic.lnOrder();
 
-            var mOrder = _LK.GetAllOrder();
-            ViewBag.mOrder = mOrder;
-            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            ViewBag.ListOrder = serializar.Serialize(mOrder);
+                var mOrder = _LK.GetAllOrder();
+                ViewBag.mOrder = mOrder;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListOrder = serializar.Serialize(mOrder);
 
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
-            ViewBag.cbUser = _LNUser.GetAllUser();
-            ViewBag.cbType = _LNType.GetAllType();
-            return View();
+                ViewBag.mStatus = _LNStatus.GetAllStatus();
+                ViewBag.cbUser = _LNUser.GetAllUser();
+                ViewBag.cbType = _LNType.GetAllType();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
+        [HttpPost]
+        public ActionResult InsertOrder(Order pOrder)
+        {
+            try
+            {
+
+                pOrder.CreationDate = DateTime.Now;
+                pOrder.ModificationDate = DateTime.Now;
+                BusinessLogic.lnOrder _LK = new BusinessLogic.lnOrder();
+                var InserOrder = _LK.InsertOrder(pOrder);
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult UpdateOrder(Order uOrder)
+        {
+            try
+            {
+
+                uOrder.CreationDate = DateTime.Now;
+                uOrder.ModificationDate = DateTime.Now;
+                BusinessLogic.lnOrder _LK = new BusinessLogic.lnOrder();
+                var modOrder = _LK.UpdateOrder(uOrder);
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+        #endregion
+
+        #region OutsideEdgeProfile
         public ActionResult OutsideEdgeProfile()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.OutsideEdgeProfile = "active";
-            BusinessLogic.lnOutsideEdgeProfile _LL = new BusinessLogic.lnOutsideEdgeProfile();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.OutsideEdgeProfile = "active";
+                BusinessLogic.lnOutsideEdgeProfile _LL = new BusinessLogic.lnOutsideEdgeProfile();
 
-            var mOutsideEdgeProfile = _LL.GetAllOutsideEdgeProfile();
-            ViewBag.mOutsideEdgeProfile = mOutsideEdgeProfile;
-            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            ViewBag.ListOutsideEdgeProfile = serializar.Serialize(mOutsideEdgeProfile);
+                var mOutsideEdgeProfile = _LL.GetAllOutsideEdgeProfile();
+                ViewBag.mOutsideEdgeProfile = mOutsideEdgeProfile;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListOutsideEdgeProfile = serializar.Serialize(mOutsideEdgeProfile);
 
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
-            return View();
+                ViewBag.mStatus = _LNStatus.GetAllStatus();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
+        [HttpPost]
+        public ActionResult InsertOutsideEdgeProfile(OutsideEdgeProfile pOutsideEdgeProfiler)
+        {
+            try
+            {
+
+                pOutsideEdgeProfiler.CreationDate = DateTime.Now;
+                pOutsideEdgeProfiler.ModificationDate = DateTime.Now;
+                BusinessLogic.lnOutsideEdgeProfile _LL = new BusinessLogic.lnOutsideEdgeProfile();
+                var InserOEP = _LL.InsertOutsideEdgeProfile(pOutsideEdgeProfiler);
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult UpdateOutsideEdgeProfile(OutsideEdgeProfile uOutsideEdgeProfiler)
+        {
+            try
+            {
+
+                uOutsideEdgeProfiler.CreationDate = DateTime.Now;
+                uOutsideEdgeProfiler.ModificationDate = DateTime.Now;
+                BusinessLogic.lnOutsideEdgeProfile _LL = new BusinessLogic.lnOutsideEdgeProfile();
+                var modOEP = _LL.UpdateOutsideEdgeProfile(uOutsideEdgeProfiler);
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+        #endregion
+
+        #region Panel
         public ActionResult Panel()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.Panel = "active";
-            BusinessLogic.lnPanel _LX = new BusinessLogic.lnPanel();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.Panel = "active";
+                BusinessLogic.lnPanel _LX = new BusinessLogic.lnPanel();
 
-            var mPanel = _LX.GetAllPanel();
-            ViewBag.mPanel = mPanel;
-            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            ViewBag.ListPanel = serializar.Serialize(mPanel);
+                var mPanel = _LX.GetAllPanel();
+                ViewBag.mPanel = mPanel;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListPanel = serializar.Serialize(mPanel);
 
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
-            return View();
+                ViewBag.mStatus = _LNStatus.GetAllStatus();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
+
+        [HttpPost]
+        public ActionResult InsertPanel(Panel pPanel)
+        {
+            try
+            {
+
+                pPanel.CreationDate = DateTime.Now;
+                pPanel.ModificationDate = DateTime.Now;
+                BusinessLogic.lnPanel _LX = new BusinessLogic.lnPanel();
+                var InsertPanel = _LX.InsertPanel(pPanel);
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult UpdatePanel(Panel uPanel)
+        {
+            try
+            {
+
+                uPanel.CreationDate = DateTime.Now;
+                uPanel.ModificationDate = DateTime.Now;
+                BusinessLogic.lnPanel _LX = new BusinessLogic.lnPanel();
+                var modPanel = _LX.UpdatePanel(uPanel);
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+        #endregion
+
+        #region PanelMaterial
         public ActionResult PanelMaterial()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.PanelMaterial = "active";
-            BusinessLogic.lnPanelMaterial _PAC = new BusinessLogic.lnPanelMaterial();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.PanelMaterial = "active";
+                BusinessLogic.lnPanelMaterial _PAC = new BusinessLogic.lnPanelMaterial();
 
-            var mPanelMaterial = _PAC.GetAllPanelMaterial();
-            ViewBag.mPanelMaterial = mPanelMaterial;
-            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            ViewBag.ListPanelMaterial = serializar.Serialize(mPanelMaterial);
+                var mPanelMaterial = _PAC.GetAllPanelMaterial();
+                ViewBag.mPanelMaterial = mPanelMaterial;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListPanelMaterial = serializar.Serialize(mPanelMaterial);
 
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
-            return View();
+                ViewBag.mStatus = _LNStatus.GetAllStatus();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
+        [HttpPost]
+        public ActionResult InsertPanelMaterial(PanelMaterial pPanelMaterial)
+        {
+            try
+            {
+
+                pPanelMaterial.CreationDate = DateTime.Now;
+                pPanelMaterial.ModificationDate = DateTime.Now;
+                BusinessLogic.lnPanelMaterial _PAC = new BusinessLogic.lnPanelMaterial();
+                var InsertPanelMaterial = _PAC.InsertPanelMaterial(pPanelMaterial);
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult UpdatePanelMaterial(PanelMaterial uPanelMaterial)
+        {
+            try
+            {
+
+                uPanelMaterial.CreationDate = DateTime.Now;
+                uPanelMaterial.ModificationDate = DateTime.Now;
+                BusinessLogic.lnPanelMaterial _PAC = new BusinessLogic.lnPanelMaterial();
+                var modPanelMaterial = _PAC.UpdatePanelMaterial(uPanelMaterial);
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+        #endregion
+
+        #region Person
         public ActionResult Person()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.Person = "active";
-            BusinessLogic.lnPerson _PAX = new BusinessLogic.lnPerson();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.Person = "active";
+                BusinessLogic.lnPerson _PAX = new BusinessLogic.lnPerson();
 
-            var mPerson = _PAX.GetAllPerson();
-            ViewBag.mPerson = mPerson;
-            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            ViewBag.ListPerson = serializar.Serialize(mPerson);
+                var mPerson = _PAX.GetAllPerson();
+                ViewBag.mPerson = mPerson;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListPerson = serializar.Serialize(mPerson);
 
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
-            return View();
+                ViewBag.mStatus = _LNStatus.GetAllStatus();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
+        [HttpPost]
+        public ActionResult InsertPerson(Person pPerson)
+        {
+            try
+            {
+
+                pPerson.CreationDate = DateTime.Now;
+                pPerson.ModificationDate = DateTime.Now;
+                BusinessLogic.lnPerson _PAX = new BusinessLogic.lnPerson();
+                var InsertPerson = _PAX.InsertPerson(pPerson);
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult UpdatePerson(Person uPerson)
+        {
+            try
+            {
+
+                uPerson.CreationDate = DateTime.Now;
+                uPerson.ModificationDate = DateTime.Now;
+                BusinessLogic.lnPerson _PAX = new BusinessLogic.lnPerson();
+                var modPerson = _PAX.UpdatePerson(uPerson);
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+        #endregion
+
+        #region Preparation
         public ActionResult Preparation()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.Preparation = "active";
-            BusinessLogic.lnPreparation _JFK = new BusinessLogic.lnPreparation();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.Preparation = "active";
+                BusinessLogic.lnPreparation _JFK = new BusinessLogic.lnPreparation();
 
-            var mPreparation = _JFK.GetAllPreparation();
-            ViewBag.mPreparation = mPreparation;
-            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            ViewBag.ListPreparation = serializar.Serialize(mPreparation);
+                var mPreparation = _JFK.GetAllPreparation();
+                ViewBag.mPreparation = mPreparation;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListPreparation = serializar.Serialize(mPreparation);
 
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
-            return View();
+                ViewBag.mStatus = _LNStatus.GetAllStatus();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
-        
 
+        [HttpPost]
+        public ActionResult InsertPreparation(Preparation pPreparation)
+        {
+            try
+            {
+
+                pPreparation.CreationDate = DateTime.Now;
+                pPreparation.ModificationDate = DateTime.Now;
+                BusinessLogic.lnPreparation _JFK = new BusinessLogic.lnPreparation();
+                var InsertPreparation = _JFK.InsertPreparation(pPreparation);
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult UpdatePreparation(Preparation uPreparation)
+        {
+            try
+            {
+
+                uPreparation.CreationDate = DateTime.Now;
+                uPreparation.ModificationDate = DateTime.Now;
+                BusinessLogic.lnPreparation _JFK = new BusinessLogic.lnPreparation();
+                var modPerson = _JFK.UpdatePreparation(uPreparation);
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+        #endregion
+
+        #region RailThickness
+        public ActionResult RailThickness()
+        {
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.RailThickness = "active";
+                BusinessLogic.lnRailThickness _LN = new BusinessLogic.lnRailThickness();
+
+                ViewBag.mStatus = _LNStatus.GetAllStatus();
+
+                var mRailThickness = _LN.GetAllRailThickness();
+                ViewBag.mRailThickness = mRailThickness;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListRailThickness = serializar.Serialize(mRailThickness);
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult InsertRailThickness(RailThickness pRailThickness)
+        {
+            try
+            {
+
+                pRailThickness.CreationDate = DateTime.Now;
+                pRailThickness.ModificationDate = DateTime.Now;
+                BusinessLogic.lnRailThickness _LN = new BusinessLogic.lnRailThickness();
+                var InsertRailThickness = _LN.InsertRailThickness(pRailThickness);
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult UpdateRailThickness(RailThickness uRailThickness)
+        {
+            try
+            {
+
+                uRailThickness.CreationDate = DateTime.Now;
+                uRailThickness.ModificationDate = DateTime.Now;
+                BusinessLogic.lnRailThickness _LN = new BusinessLogic.lnRailThickness();
+                var modRT = _LN.UpdateRailThickness(uRailThickness);
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public ActionResult DeleteRailThickness(int id)
+        {
+
+            RailThickness dRailThickness = ViewBag.delRailThickness(id);
+
+            if (dRailThickness == null)
+                return View("NotFound");
+            else
+                return View(dRailThickness);
+        }
+        #endregion
+
+        #region Status
         public ActionResult Status()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.Status = "active";
-            BusinessLogic.lnStatus _LNStatus = new BusinessLogic.lnStatus();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.Status = "active";
+                BusinessLogic.lnStatus _LNStatus = new BusinessLogic.lnStatus();
 
-            var mStatus = _LNStatus.GetAllStatus();
-            ViewBag.mStatus = mStatus;
-            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            ViewBag.ListStatus = serializar.Serialize(mStatus);
+                var mStatus = _LNStatus.GetAllStatus();
+                ViewBag.mStatus = mStatus;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListStatus = serializar.Serialize(mStatus);
 
-            ViewBag.cbGroup = _LNGroup.GetAllGroup();
-            return View();
+                ViewBag.cbGroup = _LNGroup.GetAllGroup();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
+        [HttpPost]
+        public ActionResult InsertStatus(Status pStatus)
+        {
+            try
+            {
+
+                BusinessLogic.lnStatus _LNStatus = new BusinessLogic.lnStatus();
+                var InsertStatus = _LNStatus.InsertStatus(pStatus);
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult UpdateStatus(Status uStatus)
+        {
+            try
+            {
+
+                BusinessLogic.lnStatus _LNStatus = new BusinessLogic.lnStatus();
+                var modStatus = _LNStatus.UpdateStatus(uStatus);
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+        #endregion
+
+        #region TopRail
         public ActionResult TopRail()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.TopRail = "active";
-            BusinessLogic.lnTopRail _TOP = new BusinessLogic.lnTopRail();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.TopRail = "active";
+                BusinessLogic.lnTopRail _TOP = new BusinessLogic.lnTopRail();
 
-            var mTopRail = _TOP.GetAllTopRail();
-            ViewBag.mTopRail = mTopRail;
-            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            ViewBag.ListTopRail = serializar.Serialize(mTopRail);
+                var mTopRail = _TOP.GetAllTopRail();
+                ViewBag.mTopRail = mTopRail;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListTopRail = serializar.Serialize(mTopRail);
 
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
-            return View();
+                ViewBag.mStatus = _LNStatus.GetAllStatus();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
+        [HttpPost]
+        public ActionResult InsertTopRail(TopRail pTopRail)
+        {
+            try
+            {
+
+                pTopRail.CreationDate = DateTime.Now;
+                pTopRail.ModificationDate = DateTime.Now;
+                BusinessLogic.lnTopRail _TOP = new BusinessLogic.lnTopRail();
+                var InsertTopRail = _TOP.InsertTopRail(pTopRail);
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult UpdateTopRail(TopRail uTopRail)
+        {
+            try
+            {
+
+                uTopRail.CreationDate = DateTime.Now;
+                uTopRail.ModificationDate = DateTime.Now;
+                BusinessLogic.lnTopRail _TOP = new BusinessLogic.lnTopRail();
+                var modTopRail = _TOP.UpdateTopRail(uTopRail);
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+        #endregion
+
+        #region TopRailxHorizontalDivisions
         public ActionResult TopRailByHorizontalDivisions()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.TopRailByHorizontalDivisions = "active";
-            BusinessLogic.lnTopRailxHorizontalDivisions _TAP = new BusinessLogic.lnTopRailxHorizontalDivisions();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.TopRailByHorizontalDivisions = "active";
+                BusinessLogic.lnTopRailxHorizontalDivisions _TAP = new BusinessLogic.lnTopRailxHorizontalDivisions();
 
-            var mTopRailByHorizontalDivisions = _TAP.GetAllTopRailxHorizontalDivisions();
-            ViewBag.mTopRailByHorizontalDivisions = mTopRailByHorizontalDivisions;
-            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            ViewBag.ListTopRailxHorizontal = serializar.Serialize(mTopRailByHorizontalDivisions);
+                var mTopRailByHorizontalDivisions = _TAP.GetAllTopRailxHorizontalDivisions();
+                ViewBag.mTopRailByHorizontalDivisions = mTopRailByHorizontalDivisions;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListTopRailxHorizontal = serializar.Serialize(mTopRailByHorizontalDivisions);
 
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
-            ViewBag.cbTopRail = _LNTopRail.GetAllTopRail();
-            ViewBag.cbHorizontalDivisions = _LNHorizontalDivisions.GetAllHorizontalDivisions();
-            return View();
+                ViewBag.mStatus = _LNStatus.GetAllStatus();
+                ViewBag.cbTopRail = _LNTopRail.GetAllTopRail();
+                ViewBag.cbHorizontalDivisions = _LNHorizontalDivisions.GetAllHorizontalDivisions();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
+        [HttpPost]
+        public ActionResult InsertTopRailxHorizontalDivisions(TopRailxHorizontalDivisions pTopRailByHorizontalDivisions)
+        {
+            try
+            {
+
+                pTopRailByHorizontalDivisions.CreationDate = DateTime.Now;
+                pTopRailByHorizontalDivisions.ModificationDate = DateTime.Now;
+                BusinessLogic.lnTopRailxHorizontalDivisions _TAP = new BusinessLogic.lnTopRailxHorizontalDivisions();
+                var InsertTopRailxHorizontalDivisions = _TAP.InsertTopRailxHorizontalDivisions(pTopRailByHorizontalDivisions);
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult UpdateTopRailxHorizontalDivisions(TopRailxHorizontalDivisions uTopRailByHorizontalDivisions)
+        {
+            try
+            {
+
+                uTopRailByHorizontalDivisions.CreationDate = DateTime.Now;
+                uTopRailByHorizontalDivisions.ModificationDate = DateTime.Now;
+                BusinessLogic.lnTopRailxHorizontalDivisions _TAP = new BusinessLogic.lnTopRailxHorizontalDivisions();
+                var modTopRailxHD = _TAP.UpdateTopRailxHorizontalDivisions(uTopRailByHorizontalDivisions);
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+        #endregion
+
+        #region TopRailxJoin
         public ActionResult TopRailByJoin()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.TopRailByJoin = "active";
-            BusinessLogic.lnTopRailxJoin _TEP = new BusinessLogic.lnTopRailxJoin();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.TopRailByJoin = "active";
+                BusinessLogic.lnTopRailxJoin _TEP = new BusinessLogic.lnTopRailxJoin();
 
-            var mTopRailByJoin = _TEP.GetAllTopRailxJoin();
-            ViewBag.mTopRailByJoin = mTopRailByJoin;
-            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            ViewBag.ListTopRailByJoin = serializar.Serialize(mTopRailByJoin);
+                var mTopRailByJoin = _TEP.GetAllTopRailxJoin();
+                ViewBag.mTopRailByJoin = mTopRailByJoin;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListTopRailByJoin = serializar.Serialize(mTopRailByJoin);
 
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
-            ViewBag.cbTopRail = _LNTopRail.GetAllTopRail();
-            ViewBag.cbJoin = _LNJoin.GetAllJoin();
-            return View();
+                ViewBag.mStatus = _LNStatus.GetAllStatus();
+                ViewBag.cbTopRail = _LNTopRail.GetAllTopRail();
+                ViewBag.cbJoin = _LNJoin.GetAllJoin();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
+        [HttpPost]
+        public ActionResult InsertTopRailByJoin(TopRailxJoin pTopRailByJoin)
+        {
+            try
+            {
+
+                pTopRailByJoin.CreationDate = DateTime.Now;
+                pTopRailByJoin.ModificationDate = DateTime.Now;
+                BusinessLogic.lnTopRailxJoin _TEP = new BusinessLogic.lnTopRailxJoin();
+                var InsertTopRailxJoin = _TEP.InsertTopRailxJoin(pTopRailByJoin);
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult UpdateTopRailByJoin(TopRailxJoin uTopRailByJoin)
+        {
+            try
+            {
+
+                uTopRailByJoin.CreationDate = DateTime.Now;
+                uTopRailByJoin.ModificationDate = DateTime.Now;
+                BusinessLogic.lnTopRailxJoin _TEP = new BusinessLogic.lnTopRailxJoin();
+                var modTopRailxJoin = _TEP.UpdateTopRailxJoin(uTopRailByJoin);
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+        #endregion
+
+        #region TopRailxVerticalDivisions
         public ActionResult TopRailByVerticalDivisions()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.TopRailByVerticalDivisions = "active";
-            BusinessLogic.lnTopRailxVerticalDivisions _TUP = new BusinessLogic.lnTopRailxVerticalDivisions();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.TopRailByVerticalDivisions = "active";
+                BusinessLogic.lnTopRailxVerticalDivisions _TUP = new BusinessLogic.lnTopRailxVerticalDivisions();
 
-            var mTopRailByVerticalDivisions = _TUP.GetAllTopRailxVerticalDivisions();
-            ViewBag.mTopRailByVerticalDivisions = mTopRailByVerticalDivisions;
-            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            ViewBag.ListTopRailxVertical = serializar.Serialize(mTopRailByVerticalDivisions);
+                var mTopRailByVerticalDivisions = _TUP.GetAllTopRailxVerticalDivisions();
+                ViewBag.mTopRailByVerticalDivisions = mTopRailByVerticalDivisions;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListTopRailxVertical = serializar.Serialize(mTopRailByVerticalDivisions);
 
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
-            ViewBag.cbTopRail = _LNTopRail.GetAllTopRail();
-            ViewBag.cbVerticalDivisions = _LNVerticalDivisions.GetAllVerticalDivisions();
-            return View();
+                ViewBag.mStatus = _LNStatus.GetAllStatus();
+                ViewBag.cbTopRail = _LNTopRail.GetAllTopRail();
+                ViewBag.cbVerticalDivisions = _LNVerticalDivisions.GetAllVerticalDivisions();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
+        [HttpPost]
+        public ActionResult InsertTopRailByVerticalDivisions(TopRailxVerticalDivisions pTopRailByVerticalDivisions)
+        {
+            try
+            {
+
+                pTopRailByVerticalDivisions.CreationDate = DateTime.Now;
+                pTopRailByVerticalDivisions.ModificationDate = DateTime.Now;
+                BusinessLogic.lnTopRailxVerticalDivisions _TUP = new BusinessLogic.lnTopRailxVerticalDivisions();
+                var InsertTopRailxVerticalDivisions = _TUP.InsertTopRailxVerticalDivisions(pTopRailByVerticalDivisions);
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult UpdateTopRailByVerticalDivisions(TopRailxVerticalDivisions uTopRailByVerticalDivisions)
+        {
+            try
+            {
+
+                uTopRailByVerticalDivisions.CreationDate = DateTime.Now;
+                uTopRailByVerticalDivisions.ModificationDate = DateTime.Now;
+                BusinessLogic.lnTopRailxVerticalDivisions _TUP = new BusinessLogic.lnTopRailxVerticalDivisions();
+                var modTopRailxVD = _TUP.UpdateTopRailxVerticalDivisions(uTopRailByVerticalDivisions);
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+        #endregion
+
+        #region Type
         public ActionResult Type()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.Type = "active";
-            BusinessLogic.lnType _LBL = new BusinessLogic.lnType();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.Type = "active";
+                BusinessLogic.lnType _LBL = new BusinessLogic.lnType();
 
-            var mType = _LBL.GetAllType();
-            ViewBag.mType = mType;
-            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            ViewBag.ListType = serializar.Serialize(mType);
+                var mType = _LBL.GetAllType();
+                ViewBag.mType = mType;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListType = serializar.Serialize(mType);
 
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
-            ViewBag.cbGroup = _LNGroup.GetAllGroup();
-            return View();
+                ViewBag.cbGroup = _LNGroup.GetAllGroup();
+                ViewBag.mStatus = _LNStatus.GetAllStatus();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
+        [HttpPost]
+        public ActionResult InsertType(Model.Type pTypes)
+        {
+            try
+            {
+
+                pTypes.CreationDate = DateTime.Now;
+                pTypes.ModificationDate = DateTime.Now;
+                BusinessLogic.lnType _LBL = new BusinessLogic.lnType();
+                var InsertType = _LBL.InsertType(pTypes);
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult UpdateType(Model.Type uTypes)
+        {
+            try
+            {
+
+                uTypes.CreationDate = DateTime.Now;
+                uTypes.ModificationDate = DateTime.Now;
+                BusinessLogic.lnType _LBL = new BusinessLogic.lnType();
+                var modType = _LBL.UpdateType(uTypes);
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+        #endregion
+
+        #region User
         public ActionResult Usuario()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.Usuario = "active";
-            BusinessLogic.lnUser _USB = new BusinessLogic.lnUser();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.Usuario = "active";
+                BusinessLogic.lnUser _USB = new BusinessLogic.lnUser();
 
-            var mUsuario = _USB.GetAllUser();
-            ViewBag.mUsuario = mUsuario;
-            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            ViewBag.ListUsuario = serializar.Serialize(mUsuario);
+                var mUsuario = _USB.GetAllUser();
+                ViewBag.mUsuario = mUsuario;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListUsuario = serializar.Serialize(mUsuario);
 
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
-            ViewBag.cbType = _LNType.GetAllType();
-            ViewBag.cbPerson = _LNPerson.GetAllPerson();
-            return View();
+                ViewBag.mStatus = _LNStatus.GetAllStatus();
+                ViewBag.cbType = _LNType.GetAllType();
+                ViewBag.cbPerson = _LNPerson.GetAllPerson();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
+        [HttpPost]
+        public ActionResult InsertUsuario(User pUsuario)
+        {
+            try
+            {
+
+                pUsuario.CreationDate = DateTime.Now;
+                pUsuario.ModificationDate = DateTime.Now;
+                BusinessLogic.lnUser _USB = new BusinessLogic.lnUser();
+                var InsertUser = _USB.InsertUser(pUsuario);
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult UpdateUsuario(User uUsuario)
+        {
+            try
+            {
+
+                uUsuario.CreationDate = DateTime.Now;
+                uUsuario.ModificationDate = DateTime.Now;
+                BusinessLogic.lnUser _USB = new BusinessLogic.lnUser();
+                var modUser = _USB.UpdateUser(uUsuario);
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+        #endregion
+
+        #region VerticalDivisions
         public ActionResult VerticalDivisions()
         {
-            ViewBag.Masters = "active show-sub";
-            ViewBag.VerticalDivisions = "active";
-            BusinessLogic.lnVerticalDivisions _USB = new BusinessLogic.lnVerticalDivisions();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.VerticalDivisions = "active";
+                BusinessLogic.lnVerticalDivisions _UCB = new BusinessLogic.lnVerticalDivisions();
 
-            var mVerticalDivisions = _USB.GetAllVerticalDivisions();
-            ViewBag.mVerticalDivisions = mVerticalDivisions;
-            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            ViewBag.ListVerticalDivisions = serializar.Serialize(mVerticalDivisions);
+                var mVerticalDivisions = _UCB.GetAllVerticalDivisions();
+                ViewBag.mVerticalDivisions = mVerticalDivisions;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListVerticalDivisions = serializar.Serialize(mVerticalDivisions);
 
-            ViewBag.mStatus = _LNStatus.GetAllStatus();
-            return View();
+                ViewBag.mStatus = _LNStatus.GetAllStatus();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult InsertVerticalDivisions(VerticalDivisions pVerticalDivisions)
+        {
+            try
+            {
+
+                pVerticalDivisions.CreationDate = DateTime.Now;
+                pVerticalDivisions.ModificationDate = DateTime.Now;
+                BusinessLogic.lnVerticalDivisions _UCB = new BusinessLogic.lnVerticalDivisions();
+                var InsertVerticalDivisions = _UCB.InsertVerticalDivisions(pVerticalDivisions);
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult UpdateVerticalDivisions(VerticalDivisions uVerticalDivisions)
+        {
+            try
+            {
+
+                uVerticalDivisions.CreationDate = DateTime.Now;
+                uVerticalDivisions.ModificationDate = DateTime.Now;
+                BusinessLogic.lnVerticalDivisions _UCB = new BusinessLogic.lnVerticalDivisions();
+                var modVD = _UCB.UpdateVerticalDivisions(uVerticalDivisions);
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+        #endregion
+
+        public class HomeController : Controller
+        {
+            //
+            // GET: /Home/
+
+            public ActionResult Index()
+            {
+                return View();
+            }
+
+            [HttpPost]
+            public void Subir(HttpPostedFileBase file)
+            {
+                if (file == null) return;
+
+                string archivo = (DateTime.Now.ToString("yyyyMMddHHmmss") + "-" + file.FileName).ToLower();
+
+                file.SaveAs(Server.MapPath("~/img/" + archivo));
+            }
         }
 
         // GET: Masters/Details/5

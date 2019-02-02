@@ -11,6 +11,7 @@ namespace Model
         public int Id { get; set; }
         public DoorStyle DoorStyle { get; set; }
         public Material Material { get; set; }
+        public RailThickness RailThickness { get; set; }
         public decimal BasePrice { get; set; }
         public decimal AdditionalSFPrice { get; set; }
         public decimal VerticalBase1FLPrice { get; set; }

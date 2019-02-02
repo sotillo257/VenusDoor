@@ -4,24 +4,224 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Model;
+using System.Net.Mail;
 
 namespace VenusDoors.Controllers
 {
     public class OrderSummaryController : Controller
     {
+
+        String path;
+        MailMessage mail = new MailMessage();
+
+        public IEnumerable<string> ConverExcel { get; private set; }
+
         // GET: OrderSummary
-        public ActionResult Index(int? Id)
+        public ActionResult Index()
         {
             ViewBag.OrderSummary = "active";
-            BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
-            ViewBag.xDoorsxUser = _LN.GetAllDoorsxUser();
-            //if (Id > 0)
-            //{
-            //    var Door = _LN.GetDoorsxUserById(Id.Value);
-            //    var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            //    ViewBag.Door = serializar.Serialize(Door);
-            //}
-            return View();
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                BusinessLogic.lnOrder _LNOrder = new BusinessLogic.lnOrder();
+                int userID = (int)Session["UserID"];
+                int idU = userID;
+                var orderList = _LNOrder.GetOrderByUser(idU);
+                ViewBag.Listo = orderList;
+                Order item = ViewBag.Listo;
+                if (item.Status == null)
+                {
+                    return View();
+                }
+                else if (item.Status.Id == 1)
+                {
+                    BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
+                    List<DoorsxUser> xDoorsU = _LN.GetAllDoorsxUser();
+                    List<DoorsxUser> doorByOrder = xDoorsU.Where(x => x.Order.Id == item.Id).ToList();
+                    ViewBag.xUserDoors = doorByOrder;
+                    return View();
+                }
+                else
+                {
+                    return View();
+                }
+            }
+        }
+
+        [HttpPost]
+        public ActionResult DeleteItem(int itemID)
+        {
+            if(Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                BusinessLogic.lnOrder _LNOrder = new BusinessLogic.lnOrder();
+                BusinessLogic.lnDoorsxUser _LND = new BusinessLogic.lnDoorsxUser();
+                int userID = (int)Session["UserID"];
+                int idU = userID;
+                var orderList = _LNOrder.GetOrderByUser(idU);
+                ViewBag.Listo = orderList;
+                Order item = ViewBag.Listo;
+                if (item.Status == null)
+                {
+                    return View();
+                }
+                else if (item.Status.Id == 1)
+                {
+                    var xDoor = _LND.GetDoorsxUserById(itemID);
+                    UpdateOrderExist(xDoor, item);
+                    return Json(_LND.DeleteDoorsxUser(itemID));
+                }
+                else
+                {
+                    return View();
+                }
+            }         
+        }
+
+        [HttpPost]
+        public ActionResult UpdateOrderExist(DoorsxUser xDoor, Order item)
+        {
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                BusinessLogic.lnOrder _LNUPor = new BusinessLogic.lnOrder();
+                item.Quantity = item.Quantity - xDoor.Quantity;
+                item.Total = item.Total - xDoor.SubTotal;
+                if (item.Total == 0 && item.Quantity == 0)
+                {
+                    return Json(_LNUPor.DeleteOrder(item.Id));
+                }
+                else
+                {
+                    return Json(_LNUPor.UpdateOrder(item));
+                }
+            }
+        }
+
+        [HttpPost]
+        public ActionResult DropOrder()
+        {
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                BusinessLogic.lnOrder _LNOrder = new BusinessLogic.lnOrder();
+                BusinessLogic.lnDoorsxUser _LND = new BusinessLogic.lnDoorsxUser();
+                int userID = (int)Session["UserID"];
+                int idU = userID;
+                var orderList = _LNOrder.GetOrderByUser(idU);
+                ViewBag.Listo = orderList;
+                Order item = ViewBag.Listo;
+                int IdOrder = item.Id;
+                if (item.Status == null)
+                {
+                    return View();
+                }
+                else if (item.Status.Id == 1)
+                {
+                    var xDeleteAllDoor = _LND.DeleteAllDoorsxUserByOrder(IdOrder);
+                    return Json(_LNOrder.DeleteOrder(IdOrder));
+                }
+                else
+                {
+                    return View();
+                }
+
+            }
+        }
+
+        public ActionResult CloseOrder(Order item)
+        {
+            if(Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                if(item.Status == null)
+                {
+                    return View();
+                }
+                else if (item.Status.Id == 1)
+                {
+                    BusinessLogic.lnOrder _LNUPor = new BusinessLogic.lnOrder();
+                    item.Status.Id = 2;
+                    return Json(_LNUPor.UpdateOrder(item));
+                }
+                else
+                {
+                    return View();
+                }
+                
+            }            
+        }
+
+        [HttpPost]
+        public ActionResult ConfirmOrder (string idOrderSummary)
+        {
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                try
+                {
+                    int userID = (int)Session["UserID"];
+                    int idU = userID;
+                    BusinessLogic.lnUser _LN = new BusinessLogic.lnUser();
+                    User use = _LN.GetUserById(idU);
+                    string To = use.Email;
+                    MailMessage mail = new MailMessage();
+                    SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+                    mail.From = new MailAddress("user@gmail.com");
+                    mail.To.Add(new MailAddress(To));
+                    mail.Subject = "New order";
+                    mail.Body =
+                    "<p>Dear Javier,</p><p>Please review the estimate below.Feel free to contact us if you have any questions.<br>We look forward to working with you.</p><p>Thanks for your business!<br><b>Venus Doors<b></p>  <table width=700 border=0 cellspacing=0 cellpadding=0 style=background:#f7f7f7;font-family:Arial,Helvetica,sans-serif;font-size:12px><tbody><tr><td style = padding:20px><p> ------------------------&nbsp; &nbsp; &nbsp;Estimate & nbsp; Summary & nbsp; &nbsp; --------------------------<br> Estimate & nbsp;#&nbsp;:&nbsp;1010<br>Estimate&nbsp;Date:&nbsp;01/15/2019<br>Total:&nbsp;$4,360.00<br>The&nbsp;complete&nbsp;version&nbsp;has&nbsp;been&nbsp;<wbr>provided&nbsp;as&nbsp;an&nbsp;attachment&nbsp;to&nbsp;<wbr>this&nbsp;email.<br>---------------------------------------------------------------------</p></td></tr></tbody></table> ";
+
+                    if (ConverExcel != null)
+                    {
+                        //agregado de archivo
+                        foreach (string archivo in ConverExcel)
+                        {
+                            //comprobamos si existe el archivo y lo agregamos a los adjuntos
+                            if (System.IO.File.Exists(@archivo))
+                                mail.Attachments.Add(new Attachment(@archivo));
+
+                        }
+                    }
+                    mail.IsBodyHtml = true;
+
+                    SmtpServer.Port = 587;
+                    SmtpServer.Credentials = new System.Net.NetworkCredential("user@gmail.com", "password");
+                    SmtpServer.EnableSsl = true;
+                    SmtpServer.Send(mail);
+
+                    BusinessLogic.lnOrder _LNUPor = new BusinessLogic.lnOrder();
+                    var orderList = _LNUPor.GetOrderByUser(idU);
+                    ViewBag.Listo = orderList;
+                    Order item = ViewBag.Listo;
+                    CloseOrder(item);
+                    return Json(true, JsonRequestBehavior.AllowGet);
+                    
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
         }
 
         #region BottomRail 
@@ -2007,4 +2207,5 @@ namespace VenusDoors.Controllers
         #endregion
 
     }
+
 }

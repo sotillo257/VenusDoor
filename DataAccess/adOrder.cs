@@ -33,9 +33,47 @@ namespace DataAccess
                             Total = decimal.Parse(item["Total"].ToString()),
                             Type = new Model.Type() { Id = int.Parse(item["IdType"].ToString()), Description = item["DescripType"].ToString() },
                             Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["DescripStatus"].ToString() },
-                            CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
-                            ModificationDate = (item["ModificationDate"].ToString() != "") ? DateTime.Parse(item["ModificationDate"].ToString()) : DateTime.Parse("01/01/1900"),
+                            CreationDate = DateTime.Parse(item["CreationDate"].ToString()),
+                            ModificationDate = DateTime.Parse(item["ModificationDate"].ToString()),
                             CreatorUser = int.Parse(item["CreatorUser"].ToString()),
+                            ModificationUser = int.Parse(item["ModificationUser"].ToString()),
+
+                        };
+                    }
+                }
+                return ord;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
+
+        public Order GetOrderByUser(int IdUser)
+        {
+            Order ord = new Order();
+            string sql = @"[spGetOrderByUser] '{0}' ";
+            sql = string.Format(sql, IdUser);
+
+            try
+            {
+                DataSet ds = new DataSet();
+                ds = _MB.CreaDS(ds, "Order", sql, _CN);
+                if (ds.Tables["Order"].Rows.Count > 0)
+                {
+                    foreach (DataRow item in ds.Tables["Order"].Rows)
+                    {
+                        ord = new Order()
+                        {
+                            Id = int.Parse(item["Id"].ToString()),
+                            User = new User() { Id = int.Parse(item["IdUser"].ToString()) },
+                            Quantity = int.Parse(item["Quantity"].ToString()),
+                            Total = decimal.Parse(item["Total"].ToString()),
+                            Type = new Model.Type() { Id = int.Parse(item["IdType"].ToString()), Description = item["DescripType"].ToString() },
+                            Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["DescripStatus"].ToString() },
+                            CreationDate = DateTime.Parse(item["CreationDate"].ToString()),
+                            ModificationDate = DateTime.Parse(item["ModificationDate"].ToString()),
                             ModificationUser = int.Parse(item["ModificationUser"].ToString()),
 
                         };
@@ -70,8 +108,8 @@ namespace DataAccess
                             Total = decimal.Parse(item["Total"].ToString()),
                             Type = new Model.Type() { Id = int.Parse(item["IdType"].ToString()), Description = item["DescripType"].ToString() },
                             Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["DescripStatus"].ToString() },
-                            CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
-                            ModificationDate = (item["ModificationDate"].ToString() != "") ? DateTime.Parse(item["ModificationDate"].ToString()) : DateTime.Parse("01/01/1900"),
+                            CreationDate = DateTime.Parse(item["CreationDate"].ToString()),
+                            ModificationDate = DateTime.Parse(item["ModificationDate"].ToString()),
                             CreatorUser = int.Parse(item["CreatorUser"].ToString()),
                             ModificationUser = int.Parse(item["ModificationUser"].ToString()),
 
@@ -89,8 +127,9 @@ namespace DataAccess
 
         public int InsertOrder(Order pOrder)
         {
+            decimal total = Convert.ToDecimal(pOrder.Total);
             string sql = @"[spInsertOrder] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}'";
-            sql = string.Format(sql, pOrder.User.Id, pOrder.Quantity, pOrder.Total, pOrder.Type.Id, pOrder.Status.Id, pOrder.CreationDate.ToString("yyyy-MM-dd"),
+            sql = string.Format(sql, pOrder.User.Id, pOrder.Quantity, total.ToString().Replace(',','.'), pOrder.Type.Id, pOrder.Status.Id, pOrder.CreationDate.ToString("yyyy-MM-dd"),
                 pOrder.CreatorUser, pOrder.ModificationDate.ToString("yyyy-MM-dd"), pOrder.ModificationUser);
             try
             {
@@ -104,8 +143,10 @@ namespace DataAccess
 
         public void UpdateOrder(Order pOrder)
         {
-            string sql = @"[spUpdateOrder] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}, '{6}";
-            sql = string.Format(sql, pOrder.User.Id, pOrder.Quantity, pOrder.Total, pOrder.Type.Id, pOrder.Status.Id, pOrder.ModificationDate.ToString("yyyy-MM-dd"),
+            decimal total = Convert.ToDecimal(pOrder.Total);
+            string sql = @"[spUpdateOrder] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}'";
+
+            sql = string.Format(sql, pOrder.Id, pOrder.User.Id, pOrder.Quantity, total.ToString().Replace(',', '.'), pOrder.Type.Id, pOrder.Status.Id, pOrder.ModificationDate.ToString("yyyy-MM-dd"),
                 pOrder.ModificationUser);
             try
             {

@@ -91,5 +91,19 @@ namespace BusinessLogic
             }
 
         }
+
+        public bool DeleteAllDoorsxUserByOrder(int pId)
+        {
+            try
+            {
+                _AD.DeleteAllDoorsxUserByOrder(pId);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+        }
     }
 }

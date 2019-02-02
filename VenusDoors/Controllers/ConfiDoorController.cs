@@ -4,22 +4,27 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Model;
+using System.Net.Mail;
 
 namespace VenusDoors.Controllers
 {
     public class ConfiDoorController : Controller
     {
+
+        //String path;
+        //MailMessage mail = new MailMessage();
+
         // GET: ConfiDoor
         public ActionResult Index(int? Id)
         {
             ViewBag.ConfiDoor = "active";
             BusinessLogic.lnDoors _LN = new BusinessLogic.lnDoors();
-            if (Id > 0 )
+            if (Id > 0)
             {
                 var Door = _LN.GetDoorsById(Id.Value);
                 var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
                 ViewBag.Door = serializar.Serialize(Door);
-            }           
+            }
             return View();
         }
 
@@ -36,6 +41,7 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
+
 
 
         [HttpPost]
@@ -221,39 +227,206 @@ namespace VenusDoors.Controllers
         }
 
         [HttpPost]
-        public ActionResult InsertDoorsxUser(DoorsxUser pDoorsxUser)
+        public ActionResult GetPrices(RailThickness RailThick, Material pMaterial, DoorStyle pDoorstyle)
         {
             try
             {
-                Order order = new Order()
-                {
-                    User = new Model.User() { Id = 6 },
-                    Status = new Model.Status() { Id = 1} ,
-                    Type = new Model.Type() { Id = 1 },
-                    Total = 100,
-                    Quantity =  100,
-                    CreationDate = DateTime.Now,
-                    CreatorUser = 6,
-                    ModificationDate = DateTime.Now,
-                    ModificationUser = 6
-
-                };
-
-                BusinessLogic.lnOrder _LNOrder = new BusinessLogic.lnOrder();
-                int IdOrder = _LNOrder.InsertOrder(order);
-                order.Id = IdOrder;
-                pDoorsxUser.CreationDate = DateTime.Now;
-                pDoorsxUser.ModificationDate = DateTime.Now;
-                pDoorsxUser.Order = order;
-                BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
-                return Json(_LN.InsertDoorsxUser(pDoorsxUser));
-                
+                BusinessLogic.lnDoorsPrices _DP = new BusinessLogic.lnDoorsPrices();
+                List<DoorsPrices> xDoorsP = _DP.GetAllDoorsPrices();
+                List<DoorsPrices> xDP = xDoorsP.Where(x => x.RailThickness.Id == RailThick.Id && x.Material.Id == pMaterial.Id && x.DoorStyle.Id == pDoorstyle.Id).ToList();
+                ViewBag.d = xDP;
+                //foreach (DoorsPrices i in ViewBag.d)
+                //{
+                //    System.Web.HttpContext.Current.Session["BasePrice"] = i.BasePrice;
+                //    System.Web.HttpContext.Current.Session["AddPrice"] = i.AdditionalSFPrice;
+                //}
+                return Json(xDP);
             }
             catch
             {
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
+            
+        }
+
+        [HttpPost]
+        public ActionResult UpdateOrderExist(Order item, DoorsxUser pDoorsxUser)
+        {
+            BusinessLogic.lnOrder _LNUPor = new BusinessLogic.lnOrder();
+            item.Quantity = item.Quantity + pDoorsxUser.Quantity;
+            item.Total = item.Total + pDoorsxUser.SubTotal;
+            return Json(_LNUPor.UpdateOrder(item));
+        }
+
+        public ActionResult InsertDoorsxUser(DoorsxUser pDoorsxUser, HingePositions HingeP)
+        {
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                BusinessLogic.lnOrder _LNOrder = new BusinessLogic.lnOrder();
+                BusinessLogic.lnHingePositions _LNHP = new BusinessLogic.lnHingePositions();
+                int userID = (int)Session["UserID"];
+                int idU = userID;
+               
+                var orderList = _LNOrder.GetOrderByUser(idU);
+                ViewBag.Listo = orderList;
+                Order item = ViewBag.Listo;
+                if (item.Status == null)
+                {
+                    try
+                    {
+
+                        Order neworder = new Order()
+                        {
+                            User = new Model.User() { Id = userID },
+                            Status = new Model.Status() { Id = 1 },
+                            Type = new Model.Type() { Id = 1 },
+                            Quantity = pDoorsxUser.Quantity,
+                            Total = pDoorsxUser.SubTotal,
+                            CreationDate = DateTime.Now,
+                            CreatorUser = userID,
+                            ModificationDate = DateTime.Now,
+                            ModificationUser = userID
+                        };
+
+                        int IdOrder = _LNOrder.InsertOrder(neworder);
+                        neworder.Id = IdOrder;
+
+                        HingePositions newhp = new HingePositions()
+                        {
+                            Status = new Model.Status() { Id = 1 },
+                            Position1 = HingeP.Position1,
+                            Position2 = HingeP.Position2,
+                            Position3 = HingeP.Position3,
+                            Position4 = HingeP.Position4,
+                            Position5 = HingeP.Position5,
+                            CreationDate = DateTime.Now,
+                            CreatorUser = userID,
+                            ModificationDate = DateTime.Now,
+                            ModificationUser = userID
+                        };
+
+                        int IdHingeP = _LNHP.InsertHingePositions(newhp);
+                        newhp.Id = IdHingeP;
+
+                        pDoorsxUser.CreatorUser = userID;
+                        pDoorsxUser.ModificationUser = userID;
+                        pDoorsxUser.CreationDate = DateTime.Now;
+                        pDoorsxUser.ModificationDate = DateTime.Now;
+                        pDoorsxUser.Order = neworder;
+                        pDoorsxUser.HingePositions = newhp;
+                        pDoorsxUser.User.Id = idU;
+                        BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
+                        var OrDoor = _LN.InsertDoorsxUser(pDoorsxUser);
+                        return Json(true, JsonRequestBehavior.AllowGet);
+                    }
+                    catch
+                    {
+                        return Json(false, JsonRequestBehavior.AllowGet);
+                    }
+                }
+                else if (item.Status.Id == 1)
+                {
+                    try
+                    {
+                        HingePositions newhp = new HingePositions()
+                        {
+                            Status = new Model.Status() { Id = 1 },
+                            Position1 = HingeP.Position1,
+                            Position2 = HingeP.Position2,
+                            Position3 = HingeP.Position3,
+                            Position4 = HingeP.Position4,
+                            Position5 = HingeP.Position5,
+                            CreationDate = DateTime.Now,
+                            CreatorUser = userID,
+                            ModificationDate = DateTime.Now,
+                            ModificationUser = userID
+                        };
+
+                        int IdHingeP = _LNHP.InsertHingePositions(newhp);
+                        newhp.Id = IdHingeP;
+
+                        UpdateOrderExist(item, pDoorsxUser);
+                        pDoorsxUser.CreatorUser = userID;
+                        pDoorsxUser.ModificationUser = userID;
+                        pDoorsxUser.CreationDate = DateTime.Now;
+                        pDoorsxUser.ModificationDate = DateTime.Now;
+                        pDoorsxUser.HingePositions = newhp;
+                        pDoorsxUser.Order = item;
+                        pDoorsxUser.User.Id = idU;
+
+                        BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
+                        var updaOrDoor = (_LN.InsertDoorsxUser(pDoorsxUser));
+                        return Json(true, JsonRequestBehavior.AllowGet);
+                    }
+                    catch
+                    {
+                        return Json(false, JsonRequestBehavior.AllowGet);
+                    }
+                }
+                else if (item.Status.Id == 2)
+                {
+                    try
+                    {
+                        Order neworder = new Order()
+                        {
+                            User = new Model.User() { Id = userID },
+                            Status = new Model.Status() { Id = 1 },
+                            Type = new Model.Type() { Id = 1 },
+                            Quantity = pDoorsxUser.Quantity,
+                            Total = pDoorsxUser.SubTotal,
+                            CreationDate = DateTime.Now,
+                            CreatorUser = userID,
+                            ModificationDate = DateTime.Now,
+                            ModificationUser = userID
+                        };
+
+                        int IdOrder = _LNOrder.InsertOrder(neworder);
+
+                        HingePositions newhp = new HingePositions()
+                        {
+                            Status = new Model.Status() { Id = 1 },
+                            Position1 = HingeP.Position1,
+                            Position2 = HingeP.Position2,
+                            Position3 = HingeP.Position3,
+                            Position4 = HingeP.Position4,
+                            Position5 = HingeP.Position5,
+                            CreationDate = DateTime.Now,
+                            CreatorUser = userID,
+                            ModificationDate = DateTime.Now,
+                            ModificationUser = userID
+                        };
+
+                        int IdHingeP = _LNHP.InsertHingePositions(newhp);
+                        newhp.Id = IdHingeP;
+                        neworder.Id = IdOrder;
+                        pDoorsxUser.CreatorUser = userID;
+                        pDoorsxUser.ModificationUser = userID;
+                        pDoorsxUser.CreationDate = DateTime.Now;
+                        pDoorsxUser.ModificationDate = DateTime.Now;
+                        pDoorsxUser.Order = neworder;
+                        pDoorsxUser.HingePositions = newhp;
+                        pDoorsxUser.User.Id = idU;
+                        BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
+                        var OrDoor = _LN.InsertDoorsxUser(pDoorsxUser);
+                        return Json(true, JsonRequestBehavior.AllowGet);
+                    }
+                    catch
+                    {
+                        return Json(false, JsonRequestBehavior.AllowGet);
+                    }
+                }
+                else
+                {
+                    return View();
+                }
+
+            }
         }
 
     }
 }
+

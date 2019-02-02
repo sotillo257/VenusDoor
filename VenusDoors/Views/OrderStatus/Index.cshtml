@@ -77,7 +77,25 @@
                                     <img src="~/Content/img/Cabinet Vector-01.png" class="wd-55" alt="Image">
                                 </td>
                                 <td>
-                                    <a href="" class="tx-inverse tx-14 tx-medium d-block">Xavierso</a>
+                                    <a href="" class="tx-inverse tx-14 tx-medium d-block">
+                                    <span class="logged-name hidden-md-dow">
+                                        @if (Session["UserName"] == null)
+                                        {
+
+                                        }
+                                        else
+                                        {
+                                            int perID = (int)Session["UserName"];
+                                            BusinessLogic.lnPerson _LNP = new BusinessLogic.lnPerson();
+                                            var perList = _LNP.GetPersonById(perID);
+                                            ViewBag.xPerson = perList;
+                                            Model.Person item = ViewBag.xPerson;
+
+                                            @item.Name
+
+                                        }
+                                    </span>
+                                    </a>
                                     <span class="square-8 bg-success mg-r-5 rounded-circle"></span>Email verified
                                 </td>
                                 <td class="tx-12">

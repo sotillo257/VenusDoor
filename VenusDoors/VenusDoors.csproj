@@ -80,32 +80,78 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Web.DynamicData" />
-    <Reference Include="System.Web.Entity" />
-    <Reference Include="System.Web.ApplicationServices" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Web.Abstractions" />
-    <Reference Include="System.Web.Routing" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Web.Services" />
-    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.CSharp">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.DynamicData">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Entity">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.ApplicationServices">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Core">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Extensions">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Abstractions">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Routing">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Configuration">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Services">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.EnterpriseServices">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http">
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Net.Http.WebRequest">
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -202,7 +248,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ConfiDoorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\LoginsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MastersController.cs" />
     <Compile Include="Controllers\OrderStatusController.cs" />
@@ -221,6 +267,76 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\bracket.css" />
     <Content Include="Content\css\bracket.min.css" />
+    <Content Include="Content\img\- Finger pull + Shaker 22 + raised panel.png" />
+    <Content Include="Content\img\- Finger pull + shaker goove + flat panel beaded.png" />
+    <Content Include="Content\img\- Finger pull + shaker goove + flat panel.png" />
+    <Content Include="Content\img\- Finger pull + shaker goove + raised panel.png" />
+    <Content Include="Content\img\- Half Reba + ogee + flat panel beaded.png" />
+    <Content Include="Content\img\- Half Reba + ogee + flat panel.png" />
+    <Content Include="Content\img\- Half Reba + ogee + raised panel.png" />
+    <Content Include="Content\img\- Half Reba + Reba + flat panel beaded.png" />
+    <Content Include="Content\img\- Half Reba + Reba + flat panel.png" />
+    <Content Include="Content\img\- Half Reba + Reba + raised panel.png" />
+    <Content Include="Content\img\- Half Reba + Shaker 22 + flat panel beaded.png" />
+    <Content Include="Content\img\- Half Reba + Shaker 22 + flat panel.png" />
+    <Content Include="Content\img\- Half Reba + Shaker 22 + raised panel.png" />
+    <Content Include="Content\img\- Half Reba + shaker goove + flat panel beaded.png" />
+    <Content Include="Content\img\- Half Reba + shaker goove + flat panel.png" />
+    <Content Include="Content\img\- Half Reba + shaker goove + raised panel.png" />
+    <Content Include="Content\img\- Little bone + ogee + flat panel beaded.png" />
+    <Content Include="Content\img\- Little bone + ogee + flat panel.png" />
+    <Content Include="Content\img\- Little bone + ogee + raised panel.png" />
+    <Content Include="Content\img\- Little bone + Reba + flat panel beaded.png" />
+    <Content Include="Content\img\- Little bone + Reba + flat panel.png" />
+    <Content Include="Content\img\- Little bone + Reba + raised panel.png" />
+    <Content Include="Content\img\- Little bone + Shaker 22 + flat panel beaded.png" />
+    <Content Include="Content\img\- Little bone + Shaker 22 + flat panel.png" />
+    <Content Include="Content\img\- Little bone + Shaker 22 + raised panel.png" />
+    <Content Include="Content\img\- Little bone + shaker goove + flat panel beaded.png" />
+    <Content Include="Content\img\- Little bone + shaker goove + flat panel.png" />
+    <Content Include="Content\img\- Little bone + shaker goove + raised panel.png" />
+    <Content Include="Content\img\- Reba + ogee + flat panel beaded.png" />
+    <Content Include="Content\img\- Reba + ogee + flat panel.png" />
+    <Content Include="Content\img\- Reba + ogee + raised panel.png" />
+    <Content Include="Content\img\- Reba + Reba + flat panel beaded.png" />
+    <Content Include="Content\img\- Reba + Reba + flat panel.png" />
+    <Content Include="Content\img\- Reba + Reba + raised panel.png" />
+    <Content Include="Content\img\- Reba + Shaker 22 + flat panel beaded.png" />
+    <Content Include="Content\img\- Reba + Shaker 22 + raised panel.png" />
+    <Content Include="Content\img\- Reba + shaker goove + flat panel beaded.png" />
+    <Content Include="Content\img\- Reba + shaker goove + flat panel.png" />
+    <Content Include="Content\img\- Reba + shaker goove + raised panel.png" />
+    <Content Include="Content\img\- Shaker + ogee + flat panel beaded.png" />
+    <Content Include="Content\img\- Shaker + ogee + flat panel.png" />
+    <Content Include="Content\img\- Shaker + ogee + raised panel.png" />
+    <Content Include="Content\img\- Shaker + Reba + flat panel beaded.png" />
+    <Content Include="Content\img\- Shaker + Reba + flat panel.png" />
+    <Content Include="Content\img\- Shaker + Reba + raised panel.png" />
+    <Content Include="Content\img\- Shaker + Shaker 22 + flat panel beaded.png" />
+    <Content Include="Content\img\- Shaker + Shaker 22 + flat panel.png" />
+    <Content Include="Content\img\- Shaker + Shaker 22 + raised panel.png" />
+    <Content Include="Content\img\- Shaker + shaker goove + flat panel beaded.png" />
+    <Content Include="Content\img\- Shaker + shaker goove + flat panel.png" />
+    <Content Include="Content\img\- Shaker + shaker goove + raised panel.png" />
+    <Content Include="Content\img\-DoubleRomanOgee+ogee+flatpanel.png" />
+    <Content Include="Content\img\-DoubleRomanOgee+ogee+flatpanelbeaded.png" />
+    <Content Include="Content\img\-DoubleRomanOgee+ogee+raisedpanel.png" />
+    <Content Include="Content\img\-DoubleRomanOgee+Reba+flatpanel.png" />
+    <Content Include="Content\img\-DoubleRomanOgee+Reba+flatpanelbeaded.png" />
+    <Content Include="Content\img\-DoubleRomanOgee+Reba+raisedpanel.png" />
+    <Content Include="Content\img\-DoubleRomanOgee+Shaker22+flatpanel.png" />
+    <Content Include="Content\img\-DoubleRomanOgee+Shaker22+flatpanelbeaded.png" />
+    <Content Include="Content\img\-DoubleRomanOgee+Shaker22+raised panel.png" />
+    <Content Include="Content\img\-DoubleRomanOgee+shakergoove+flatpanel.png" />
+    <Content Include="Content\img\-DoubleRomanOgee+shakergoove+flatpanelbeaded.png" />
+    <Content Include="Content\img\-DoubleRomanOgee+shakergoove+raisedpanel.png" />
+    <Content Include="Content\img\-Fingerpull+ogee+flat panel.png" />
+    <Content Include="Content\img\-Fingerpull+ogee+flatpanelbeaded.png" />
+    <Content Include="Content\img\-Fingerpull+ogee+raisedpanel.png" />
+    <Content Include="Content\img\-Fingerpull+Reba+flatpanel.png" />
+    <Content Include="Content\img\-Fingerpull+Reba+flatpanelbeaded.png" />
+    <Content Include="Content\img\-Fingerpull+Reba+raisedpanel.png" />
+    <Content Include="Content\img\-Fingerpull+Shaker22+flatpanel.png" />
     <Content Include="Content\img\Cabinet Vector-01.png" />
     <Content Include="Content\img\Cabinet Vector-02.png" />
     <Content Include="Content\img\Cabinet Vector-03.png" />
@@ -854,7 +970,8 @@
     <Content Include="Content\scss\util\_typography.scss" />
     <Content Include="Content\scss\util\_width.scss" />
     <None Include="Properties\PublishProfiles\jesus.pubxml" />
-    <None Include="Properties\PublishProfiles\VenusDoors.pubxml" />
+    <None Include="Properties\PublishProfiles\VenusDoorApp Jesus.pubxml" />
+    <None Include="Properties\PublishProfiles\VenusDoors App.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -863,13 +980,20 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\js\CargaImg.js" />
     <Content Include="Scripts\js\ComboBox.js" />
+    <Content Include="Scripts\js\ConverExcel.js" />
+    <Content Include="Scripts\js\envio.js" />
+    <Content Include="Scripts\js\HideShow.js" />
+    <Content Include="Scripts\js\LoginSiginUp.js" />
+    <Content Include="Scripts\js\LogSing.js" />
     <Content Include="Scripts\js\Masters.js" />
+    <Content Include="Scripts\js\OrderSumm.js" />
+    <Content Include="Scripts\js\PriceCalc.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="VenusDoors.csproj.vspscc" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -930,9 +1054,7 @@
     <Content Include="Views\Masters\PanelMaterial.cshtml" />
     <Content Include="Views\Masters\Person.cshtml" />
     <Content Include="Views\Masters\Preparation.cshtml" />
-    <Content Include="Views\Masters\RailWidth.cshtml" />
     <Content Include="Views\Masters\Status.cshtml" />
-    <Content Include="Views\Masters\StileWidth.cshtml" />
     <Content Include="Views\Masters\TopRail.cshtml" />
     <Content Include="Views\Masters\TopRailByHorizontalDivisions.cshtml" />
     <Content Include="Views\Masters\TopRailByJoin.cshtml" />
@@ -940,7 +1062,9 @@
     <Content Include="Views\Masters\Type.cshtml" />
     <Content Include="Views\Masters\Usuario.cshtml" />
     <Content Include="Views\Masters\VerticalDivisions.cshtml" />
-    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Masters\RailThickness.cshtml" />
+    <Content Include="Views\Logins\sing_up.cshtml" />
+    <Content Include="Views\Logins\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -962,6 +1086,9 @@
       <Project>{e3163f25-5d72-48e1-b7c3-6ac21966b0c8}</Project>
       <Name>Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

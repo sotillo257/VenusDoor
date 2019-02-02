@@ -1,0 +1,197 @@
+﻿
+@{
+    ViewBag.Title = "Sing Up";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="br-pageheader pd-y-15 pd-l-20">
+    <nav class="breadcrumb pd-0 mg-0 tx-12">
+        <a class="breadcrumb-item" href="#">Login</a>
+        <span class="breadcrumb-item active">@ViewBag.Title</span>
+    </nav>
+</div><!-- br-pageheader -->
+
+<div class="br-pagebody">
+    <div class="br-section-wrapper">
+        <form id="validate">
+            <div method="post" class="form-layout form-layout-1">
+                <div class="row mg-b-25">
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label class="form-control-label">Name: <span data-val="true" class="tx-danger">*</span></label>
+                            <input required onkeypress="return soloLetras(event)" onblur="limpia()" title="Complete this field." class="required RequiereLlenar form-control" type="text" minlength="5" maxlength="30" id="inptName" name="inptName" placeholder="Enter name">
+                        </div>
+                    </div><!-- col-4 -->
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label class="form-control-label">Last name: <span data-val="true" class="tx-danger">*</span></label>
+                            <input required onkeypress="return soloLetras(event)" onblur="limpia()" class="required RequiereLlenar form-control" type="text" maxlength="30" minlength="5" title="Complete this field." id="inptLastName" name="inptLastName" placeholder="Enter last name">
+                        </div>
+                    </div><!-- col-4 -->
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label class="form-control-label">Email address: <span data-val="true" class="tx-danger">*</span></label>
+                            <input required class="required RequiereLlenar form-control" type="email" id="inptEmail" title="Complete this field." name="inptEmail" placeholder="Enter email address">
+                        </div>
+                    </div><!-- col-4 -->
+                    <div class="col-lg-8">
+                        <div class="form-group mg-b-10-force">
+                            <label class="form-control-label">Address: <span data-val="true" class="tx-danger">*</span></label>
+                            <input required class="required RequiereLlenar form-control" onkeypress="return soloAndNumeros(event)" onblur="limpia()" type="text" maxlength="100" minlength="5" title="Complete this field." id="inptDirec" name="inptDirec" placeholder="Enter address">
+                        </div>
+                    </div><!-- col-8 -->
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label class="form-control-label">Country: <span data-val="true" class="tx-danger">*</span></label>
+                            <select class="form-control select2" data-placeholder="Choose country">
+                                <option label="Choose country"></option>
+                                <option value="USA">United States of America</option>
+                                <option value="UK">United Kingdom</option>
+                                <option value="China">China</option>
+                                <option value="Japan">Japan</option>
+                            </select>
+                        </div>
+                    </div><!-- col-4 -->
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label class="form-control-label">Number: <span data-val="true" class="tx-danger">*</span></label>
+                            <input class="required RequiereLlenar form-control" type="number" title="Complete this field." name="inptTelephone" id="inptTelephone" placeholder="Enter telephone number">
+                        </div>
+                    </div><!-- col-4 -->
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label class="form-control-label">Password: <span data-val="true" class="tx-danger">*</span></label>
+                            <input required class="required RequiereLlenar form-control" type="password"
+                                   minlength="8" maxlength="15" title="Use a format that matches the one requested. Minimum 8 characters. Maximum 15 characters." name="password" placeholder="Enter password">
+                        </div>
+                    </div><!-- col-4 -->
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label class="form-control-label">Password: <span data-val="true" class="tx-danger">*</span></label>
+                            <input required class="required RequiereLlenar form-control" type="password"
+                                   minlength="8" maxlength="15" title="Your password must match" id="inptPassword" name="inptPassword" placeholder="Confirm password">
+                        </div>
+                    </div><!-- col-4 -->
+                </div><!-- row -->
+
+                <div class="form-layout-footer">
+                    <button id="btNewUser" @*onclick="this.disabled=true"*@ class="Cursor btn btn-info">Submit Form</button>
+                    <button onclick="location.href='@Url.Action("Index","Logins")'" class="Cursor btn btn-secondary">Back</button>
+                </div><!-- form-layout-footer -->
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="modalCongra" class="modal fade" onclick="location.href='@Url.Action("Index","Logins")'" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content tx-size-sm">
+            <div class="modal-body tx-center pd-y-20 pd-x-20">
+                <button type="button" class="close" data-dismiss="modal" onclick="location.href='@Url.Action("Index","Logins")'" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <i class="icon ion-ios-checkmark-outline tx-100 tx-success lh-1 mg-t-20 d-inline-block"></i>
+                <h4 class="tx-success tx-semibold mg-b-20">Congratulations! The creation of your user has been successful.</h4>
+                <p class="mg-b-20 mg-x-20">A message has been sent to the email supplied with an activation code to complete your registration.</p>
+                <button type="button" onclick="window.location.reload()" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">
+                    Continue
+                </button>
+            </div><!-- modal-body -->
+        </div><!-- modal-content -->
+    </div><!-- modal-dialog -->
+</div>
+
+<div id="modalError" class="modal fade">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content tx-size-sm">
+            <div class="modal-body tx-center pd-y-20 pd-x-20">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <i class="icon icon ion-ios-close-outline tx-100 tx-danger lh-1 mg-t-20 d-inline-block"></i>
+                <h4 class="tx-danger  tx-semibold mg-b-20">Error: Cannot process your entry!</h4>
+                <p class="mg-b-20 mg-x-20">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration.</p>
+                <button type="button" class="btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">
+                    Continue
+                </button>
+            </div><!-- modal-body -->
+        </div><!-- modal-content -->
+    </div><!-- modal-dialog -->
+</div>
+
+@section scripts{
+
+    <script type="text/javascript">
+        var urlInsertUser = '@Url.Action("InsertUser", "Logins")';
+    </script>
+<script type="text/javascript">
+           function validarFormulario(){
+               $("#validate").validate(function() {
+                   if ($('.RequiereLlenar').val() === '') {
+                       $('#modalPrueba').modal('toggle');
+
+                   } else {
+
+                   }
+               })
+           }
+           $(document).ready(function () {
+               validarFormulario();
+           });
+</script>
+<style type="text/number">
+    .error {
+        color: #f00;
+    }
+</style>
+
+    <script>
+function soloLetras(e) {
+    key = e.keyCode || e.which;
+    tecla = String.fromCharCode(key).toLowerCase();
+    letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
+    especiales = [8, 37, 39, 46];
+
+    tecla_especial = false
+    for(var i in especiales) {
+        if(key == especiales[i]) {
+            tecla_especial = true;
+            break;
+        }
+    }
+
+    if(letras.indexOf(tecla) == -1 && !tecla_especial)
+        return false;
+}
+
+function limpia() {
+    var val = document.getElementById("miInput").value;
+    var tam = val.length;
+    for(i = 0; i < tam; i++) {
+        if(!isNaN(val[i]))
+            document.getElementById("miInput").value = '';
+    }
+}
+
+function soloAndNumeros(e) {
+    key = e.keyCode || e.which;
+    tecla = String.fromCharCode(key).toLowerCase();
+    letras = "0123456789 abcdefghijklmnopqrstuvwxyz";
+    especiales = [8, 37, 39, 46];
+
+    tecla_especial = false
+    for (var i in especiales) {
+        if (key == especiales[i]) {
+            tecla_especial = true;
+            break;
+        }
+    }
+
+    if (letras.indexOf(tecla) == -1 && !tecla_especial)
+        return false;
+}
+
+    </script>
+
+    @Scripts.Render("~/Scripts/js/LoginSiginUp.js")
+}
