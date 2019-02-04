@@ -90,7 +90,7 @@
                                                     @Html.LabelFor(model => model.Password)
                                                     @*@Html.EditorFor(model => model.Password)*@
                                                     <input class="form-control" data-val="true" data-val-required="This field is required" id="Password" name="Password" type="password" value="">
-                                                    <a href="" class="tx-12 d-block mg-t-10">Forgot password?</a>
+                                                    <a onclick="location.href='@Url.Action("Recover_Password","Logins")'" class="tx-12 d-block mg-t-10">Forgot password?</a>
                                                 </div><!-- form-group -->
                                                 <div class="form-group mg-b-20">
                                                     @Html.ValidationMessageFor(model => model.Password)
@@ -143,4 +143,9 @@ function carousel() {
 }
 </script>
 
+@Scripts.Render("~/Scripts/js/LoginSiginUp.js")
+
+<script type="text/javascript">
+    var urlAutherize = '@Url.Action("Autherize", "Logins")';
+</script>
     }

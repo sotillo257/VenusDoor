@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Model;
 using System.Net.Mail;
+using System.Text;
 
 namespace VenusDoors.Controllers
 {
@@ -83,46 +84,33 @@ namespace VenusDoors.Controllers
         }
 
         [HttpPost]
-        public ActionResult ConfirmOrder(string idOrderSummary)
+        public ActionResult SendEmailConfirm(User UserData, Person PersonData)
         {
-            if (Session["UserID"] == null)
+            try
             {
-                return View();
+                
+                
+                string To = UserData.Email;
+                MailMessage mail = new MailMessage();
+                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+                mail.From = new MailAddress("azazeldroid@gmail.com");
+                mail.To.Add(new MailAddress(To));
+                mail.Subject = "Verification code";
+                mail.Body =
+                "<p>Dear " + PersonData.Name + "</p><p>Tu codigo de verificacion es:"+ To + "</p>";
+                mail.IsBodyHtml = true;
+
+                SmtpServer.Port = 587;
+                SmtpServer.Credentials = new System.Net.NetworkCredential("azazeldroid@gmail.com", "24766031");
+                SmtpServer.EnableSsl = true;
+                SmtpServer.Send(mail);
+                
+                return Json(true, JsonRequestBehavior.AllowGet);
+
             }
-            else
+            catch
             {
-                try
-                {
-                    int userID = (int)Session["UserID"];
-                    int idU = userID;
-                    BusinessLogic.lnUser _LN = new BusinessLogic.lnUser();
-                    User use = _LN.GetUserById(idU);
-                    string To = use.Email;
-                    MailMessage mail = new MailMessage();
-                    SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
-                    mail.From = new MailAddress("user@gmail.com");
-                    mail.To.Add(new MailAddress(To));
-                    mail.Subject = "New order";
-                    mail.Body =
-                    "<p>Dear Javier,</p><p>Please review the estimate below.Feel free to contact us if you have any questions.<br>We look forward to working with you.</p><p>Thanks for your business!<br><b>Venus Doors<b></p>  <table width=700 border=0 cellspacing=0 cellpadding=0 style=background:#f7f7f7;font-family:Arial,Helvetica,sans-serif;font-size:12px><tbody><tr><td style = padding:20px><p> ------------------------&nbsp; &nbsp; &nbsp;Estimate & nbsp; Summary & nbsp; &nbsp; --------------------------<br> Estimate & nbsp;#&nbsp;:&nbsp;1010<br>Estimate&nbsp;Date:&nbsp;01/15/2019<br>Total:&nbsp;$4,360.00<br>The&nbsp;complete&nbsp;version&nbsp;has&nbsp;been&nbsp;<wbr>provided&nbsp;as&nbsp;an&nbsp;attachment&nbsp;to&nbsp;<wbr>this&nbsp;email.<br>---------------------------------------------------------------------</p></td></tr></tbody></table> ";
-                    mail.IsBodyHtml = true;
-
-                    SmtpServer.Port = 587;
-                    SmtpServer.Credentials = new System.Net.NetworkCredential("user@gmail.com", "password");
-                    SmtpServer.EnableSsl = true;
-                    SmtpServer.Send(mail);
-
-                    BusinessLogic.lnOrder _LNUPor = new BusinessLogic.lnOrder();
-                    var orderList = _LNUPor.GetOrderByUser(idU);
-                    ViewBag.Listo = orderList;
-                    Order item = ViewBag.Listo;
-                    return Json(true, JsonRequestBehavior.AllowGet);
-
-                }
-                catch
-                {
-                    return Json(false, JsonRequestBehavior.AllowGet);
-                }
+                return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
 
@@ -132,19 +120,17 @@ namespace VenusDoors.Controllers
             BusinessLogic.lnUser _LNU = new BusinessLogic.lnUser();
             var getU = _LNU.GetAllUser();
             var userDetails = getU.Where(x => x.Email == userModel.Email && x.Password == userModel.Password).FirstOrDefault();
-            if (userDetails == null)
-            {
-                //userModel.LoginErrorMessage = "Wrong Email or Password.";
-                return View("Index", userModel);
-            }
-            else
+            if (userDetails != null)
             {
                 System.Web.HttpContext.Current.Session["UserID"] = userDetails.Id;
                 System.Web.HttpContext.Current.Session["UserName"] = userDetails.Person.Id;
                 System.Web.HttpContext.Current.Session["UserType"] = userDetails.Type.Id;
-                return RedirectToAction("Index", "Home");
+                return Json(true, JsonRequestBehavior.AllowGet);
             }
-
+            else
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
         }
 
 
@@ -167,6 +153,7 @@ namespace VenusDoors.Controllers
                     UserData.CreationDate = DateTime.Now;
                     UserData.ModificationDate = DateTime.Now;
                     var create = _LNU.InsertUser(UserData);
+                    SendEmailConfirm(UserData, PersonData);
                     return Json(1, JsonRequestBehavior.AllowGet);
                 }
                 else
