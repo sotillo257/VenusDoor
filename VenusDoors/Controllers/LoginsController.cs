@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Model;
+using System.Net.Mail;
 
 namespace VenusDoors.Controllers
 {
@@ -109,7 +110,54 @@ namespace VenusDoors.Controllers
             }
         }
 
+        //[HttpPost]
+        //public bool validar(string correo)
+        //{ 
+        //{
+        //    return Regex.IsMatch(correo, "\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*");
+        //}
+        //    if (validar(correo) == true)
+        //    {
+        //        try
+        //        {
+        //            int userID = (int)Session["UserID"];
+        //            int idU = userID;
+        //            BusinessLogic.lnUser _LN = new BusinessLogic.lnUser();
+        //            User use = _LN.GetUserById(idU);
+        //            string To = use.Email;
+        //            MailMessage mail = new MailMessage();
+        //            SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+        //            mail.From = new MailAddress("user@gmail.com");
+        //            mail.To.Add(new MailAddress(To));
+        //            mail.Subject = "New order";
+        //            mail.Body =
+        //            " ";
+        //            mail.IsBodyHtml = true;
 
+        //            SmtpServer.Port = 587;
+        //            SmtpServer.Credentials = new System.Net.NetworkCredential("user@gmail.com", "password");
+        //            SmtpServer.EnableSsl = true;
+        //            SmtpServer.Send(mail);
+
+        //            BusinessLogic.lnOrder _LNUPor = new BusinessLogic.lnOrder();
+        //            var orderList = _LNUPor.GetOrderByUser(idU);
+        //            ViewBag.Listo = orderList;
+        //            Order item = ViewBag.Listo;
+
+        //        }
+        //        catch
+        //        {
+        //            return Json(false, JsonRequestBehavior.AllowGet);
+        //        }
+
+        //        //MessageBox.Show("Correo valido");
+        //    }
+        //    else
+        //    {
+        //        //si no es valido
+        //        //MessageBox.Show("No valido");
+        //    }
+        //}
 
         public ActionResult LogOut()
         {
