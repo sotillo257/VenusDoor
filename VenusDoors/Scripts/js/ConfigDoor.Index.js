@@ -665,14 +665,9 @@ function ValidateSession() {
         contentType: 'application/json; charset=utf-8',
         success: function (result) {
 
-            if (result == true) {
-
-            } else {
+            if (result == false) {
                 $('#ModalNoSession').modal('toggle');
-            }
-        },
-        error: function (err) {
-            alert("error");
+            } 
         },
     });
 }

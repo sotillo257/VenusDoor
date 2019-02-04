@@ -50,3 +50,37 @@ function CreateNewUser() {
 
     });
 }
+
+function Login() {
+
+    var Datos =
+        {
+            UserData: {
+                Email: $('#inptEmail').val(),
+                Password: $('#inptPassword').val(),
+
+            }
+        };
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(Datos),
+        url: urlAutherize,
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+
+            //Validar data para ver si mostrar error al guardar o exito al guardar
+            if (result == true) {
+                var url = '@Url.Action("Index", "Home")';
+                window.location.href = url;
+            } else{
+                $('#modalError').modal('toggle');
+            }
+        },
+        error: function (err) {
+            $('#modalFAIL').modal('toggle');
+        },
+
+    });
+}
+
