@@ -33,6 +33,9 @@ C:\Users\Lenovo\Source\Repos\VenusDoor\Model\bin\Debug\EntityFramework.dll
 C:\Users\Lenovo\Source\Repos\VenusDoor\Model\bin\Debug\EntityFramework.xml
 C:\Users\Lenovo\Source\Repos\VenusDoor\Model\obj\Debug\Model.dll
 C:\Users\Lenovo\Source\Repos\VenusDoor\Model\obj\Debug\Model.pdb
+C:\Users\Javier Sotillo\Source\Repos\VenusDoor\Model\bin\Debug\Model.dll.config
+C:\Users\Javier Sotillo\Source\Repos\VenusDoor\Model\bin\Debug\EntityFramework.dll
+C:\Users\Javier Sotillo\Source\Repos\VenusDoor\Model\bin\Debug\EntityFramework.xml
 C:\Users\jesus\Source\Repos\VenusDoor3\Model\bin\Debug\Model.dll.config
 C:\Users\jesus\Source\Repos\VenusDoor3\Model\bin\Debug\Model.dll
 C:\Users\jesus\Source\Repos\VenusDoor3\Model\bin\Debug\Model.pdb
@@ -40,6 +43,3 @@ C:\Users\jesus\Source\Repos\VenusDoor3\Model\bin\Debug\EntityFramework.dll
 C:\Users\jesus\Source\Repos\VenusDoor3\Model\bin\Debug\EntityFramework.xml
 C:\Users\jesus\Source\Repos\VenusDoor3\Model\obj\Debug\Model.dll
 C:\Users\jesus\Source\Repos\VenusDoor3\Model\obj\Debug\Model.pdb
-C:\Users\Javier Sotillo\Source\Repos\VenusDoor\Model\bin\Debug\Model.dll.config
-C:\Users\Javier Sotillo\Source\Repos\VenusDoor\Model\bin\Debug\EntityFramework.dll
-C:\Users\Javier Sotillo\Source\Repos\VenusDoor\Model\bin\Debug\EntityFramework.xml
