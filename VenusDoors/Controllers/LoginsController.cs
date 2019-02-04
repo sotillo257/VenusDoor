@@ -68,6 +68,20 @@ namespace VenusDoors.Controllers
 
         }
 
+        public ActionResult Account_Verification()
+        {
+            if (Session["UserID"] == null)
+            {
+                return View();
+
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+        }
+
         [HttpPost]
         public ActionResult ConfirmOrder(string idOrderSummary)
         {

@@ -215,16 +215,33 @@
 
                     </div>
                 </div>
-
-                <div class="col-md-2">
-                    <div class="row" style="margin-right: 0px;">
-                        <center>
-                            <img style="height: 100px;width: 260px;margin-top: 20px;" src="~/Content/img/Cabinet Vector-01.png" />
-                            <img style="width: 230px;height: 230px;" src="~/Content/img/Cabinet Vector-01.png" />
-                            @*<img class="img-fluid rounded-right" alt="" src="" id="ImagenModal" />*@
-                        </center>
+                @if (ViewBag.Door == null)
+                {
+                    <div class="hidden col-md-2">
+                        <div id="Picture" class="row" style="margin-right: 0px;">
+                            <center>
+                                <img style="height: 100px;width: 260px;margin-top: 20px;" src="" />
+                                <img style="width: 230px;height: 230px;" src="">
+                                @*<a class="Cursor Door" value=""><img style="width: 130px;" src="" /></a>*@
+                                @*<img class="img-fluid rounded-right" alt="" src="" id="ImagenModal" />*@
+                            </center>
+                        </div>
                     </div>
-                </div>
+                }
+                else
+                {
+                    <div class="col-md-2">
+                        <div id="Picture" class="row" style="margin-right: 0px;">
+                            <center>
+                                <img style="height: 100px;width: 260px;margin-top: 20px;" src="" />
+                                <img style="width: 230px;height: 230px;" src="">
+                                @*<a class="Cursor Door" value=""><img style="width: 130px;" src="" /></a>*@
+                                @*<img class="img-fluid rounded-right" alt="" src="" id="ImagenModal" />*@
+                            </center>
+                        </div>
+                    </div>
+                }
+                
                 @if (Session["UserID"] == null)
             {
                     <button class="Cursor btn btn-primary" style="margin-top:15px" id="bt-conf-log">Confirm</button>
@@ -414,24 +431,6 @@
               }
           })
     </script>
-@*<script type="text/javascript">
-    function SearchDoor(data, idDoor) {
-        if (data != null) {
-            for (var i = 0; i < data.length; i++) {
-                if (data[i].Id == idDoor) {
-                    console.log(data[i]);
-                    var HTMLImage = '<button type="button" class="close mg-t-15 mg-r-20" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>' +
-                        '<img class="img-fluid rounded-right" alt="' + data[i].Material.Description + '" src="' + data[i].Picture + '"/>';
-                    console.log(data[i].Picture);
-                    $('#ModalImage').html(HTMLImage);
-                }
-            }
-        } else {
-            alert("lista vacia");
-        }
-
-    }
-</script>*@
 
     <script type="text/javascript">
            function validarFormulario(){
@@ -534,5 +533,33 @@
             if (letras.indexOf(tecla) == -1 && !tecla_especial)
                 return false;
         }
+</script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        var listDoors = JSON.parse('@Html.Raw(ViewBag.Door)');
+        $(document).on('click', '.Door', function (event) {
+          SearchDoor(listDoors, $(this).attr('value'));
+        });
+
+    function SearchDoor(data, idDoor) {
+        if (data != null) {
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].Id == idDoor) {
+                    console.log(data[i]);
+                    var HTMLImage =
+                       // '<img class="img-fluid rounded-right" alt="' + data[i].Material.Description + '" src="' + data[i].Picture + '"/>';
+                   ' <center> <img style="height: 100px;width: 260px;margin-top: 20px;" src="' + data[i].ProfilePicture + '" />' +
+                               '<img style="width: 230px;height: 230px;" src="' + data[i].Picture + '"></center>';
+                    console.log(data[i].Picture);
+                    $('#Picture').html(HTMLImage);
+                }
+            }
+        }else{
+            alert("lista vacia");}
+
+    }
+    })
 </script>
 }
