@@ -65,16 +65,42 @@ namespace VenusDoors.Controllers
         {
             try
             {
-                BusinessLogic.lnPerson _LNP = new BusinessLogic.lnPerson();
-                PersonData.CreationDate = DateTime.Now;
-                PersonData.ModificationDate = DateTime.Now;
-                int IdPerson = _LNP.InsertPerson(PersonData);
-                PersonData.Id = IdPerson;
-                UserData.Person = PersonData;
-                UserData.CreationDate = DateTime.Now;
-                UserData.ModificationDate = DateTime.Now;
                 BusinessLogic.lnUser _LNU = new BusinessLogic.lnUser();
-                var create = _LNU.InsertUser(UserData);
+                var getU = _LNU.GetAllUser();
+                var userDetails = getU.Where(x => x.Email == UserData.Email).FirstOrDefault();
+                if (userDetails == null)
+                {
+                    BusinessLogic.lnPerson _LNP = new BusinessLogic.lnPerson();
+                    PersonData.CreationDate = DateTime.Now;
+                    PersonData.ModificationDate = DateTime.Now;
+                    int IdPerson = _LNP.InsertPerson(PersonData);
+                    PersonData.Id = IdPerson;
+                    UserData.Person = PersonData;
+                    UserData.CreationDate = DateTime.Now;
+                    UserData.ModificationDate = DateTime.Now;
+                    var create = _LNU.InsertUser(UserData);
+                    return Json(1, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(2, JsonRequestBehavior.AllowGet);
+                }
+               
+            }
+            catch
+            {
+                return Json(3, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Recovery(User pEmail)
+        {
+            try
+            {
+                BusinessLogic.lnUser _LNU = new BusinessLogic.lnUser();
+                var getU = _LNU.GetAllUser();
+                var userDetails = getU.Where(x => x.Email == pEmail.Email).FirstOrDefault();
                 return Json(true, JsonRequestBehavior.AllowGet);
             }
             catch

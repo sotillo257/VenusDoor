@@ -331,6 +331,23 @@
     </div><!-- modal-dialog -->
 </div>
 
+<div id="ModalNoSession" class="modal fade">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content tx-size-sm">
+            <div class="modal-body tx-center pd-y-20 pd-x-20">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button><ion-icon name="alert"></ion-icon>
+                <i id="icon_modal" class="ion-alert tx-100 lh-1 mg-t-20 tx-primary d-inline-block"></i>
+                <h4 style="color:#000" class="tx-semibold mg-b-20">Sign in to your account to start building doors!</h4>
+                <button onclick="location.href='@Url.Action("Index","Logins")'" id="GoToSign" type="button" class="btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" aria-label="Close">
+                    Sign in
+                </button>
+            </div><!-- modal-body -->
+        </div><!-- modal-content -->
+    </div><!-- modal-dialog -->
+</div>
+
 
 @section scripts{
 
@@ -350,17 +367,10 @@
         var urlGetAllHingePositions = '@Url.Action("GetAllHingePositions", "ConfiDoor")';
         var urlInsertDoorsxUser = '@Url.Action("InsertDoorsxUser", "ConfiDoor")';
         var urlGetPrices = '@Url.Action("GetPrices", "ConfiDoor")';
+        var urlValidateSession = '@Url.Action("ValidateSession", "ConfiDoor")';
     </script>
 
-    @*@if (Session["UserID"] == null)
-        {@
-        <script>
-            $(document).ready(function () {
-                $('#ModalLogin').modal('toggle');
-            });
-        </script>
-        @
-    }@*@
+    
 
     @Scripts.Render("~/Scripts/js/ConfigDoor.Index.js")
     <script src="~/Content/lib/select2/js/select2.min.js"></script>
