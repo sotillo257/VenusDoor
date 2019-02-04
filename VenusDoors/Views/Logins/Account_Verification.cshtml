@@ -1,0 +1,157 @@
+﻿
+@{
+    ViewBag.Title = "Account Verification";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="br-pageheader pd-y-15 pd-l-20">
+    <nav class="breadcrumb pd-0 mg-0 tx-12">
+        <a class="breadcrumb-item" href="#">Login</a>
+        <span class="breadcrumb-item active">@ViewBag.Title</span>
+    </nav>
+</div><!-- br-pageheader -->
+
+<div class="br-pagebody">
+    <div class="br-section-wrapper">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-11 pd-sm-bottom-30">
+                        <h4 class="tx-gray-800 mg-b-5">@ViewBag.Title</h4>
+                        <p class="mg-b-0">We have sent a message to your email, please check your inbox.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div method="post" class="form-layout form-layout-1">
+            <div class="row mg-b-25">
+                <div class="col-lg-5">
+                    <div class="form-group">
+                        <label class="form-control-label">Verification code: </label>
+                        <input required class="required RequiereLlenar form-control" type="email" id="inptEmail" name="inptEmail" placeholder="Enter code a verification">
+                    </div>
+                </div><!-- col-4 -->
+            </div><!-- row -->
+
+            <div class="form-layout-footer">
+                <button id="btSend" @*onclick="this.disabled=true"*@ class="Cursor btn btn-success">Confirm</button>
+                <button onclick="location.href='@Url.Action("Index","Logins")'" class="Cursor btn btn-secondary">Back</button>
+            </div><!-- form-layout-footer -->
+        </div>
+    </div>
+</div>
+
+<div id="modalCongra" class="modal fade" onclick="location.href='@Url.Action("Index","Logins")'" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content tx-size-sm">
+            <div class="modal-body tx-center pd-y-20 pd-x-20">
+                <button type="button" class="close" data-dismiss="modal" onclick="location.href='@Url.Action("Index","Logins")'" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <i class="icon ion-ios-checkmark-outline tx-100 tx-success lh-1 mg-t-20 d-inline-block"></i>
+                <h4 class="tx-success tx-semibold mg-b-20">Congratulations! The creation of your user has been successful.</h4>
+                <p class="mg-b-20 mg-x-20">A message has been sent to the email supplied with an activation code to complete your registration.</p>
+                <button type="button" onclick="window.location.reload()" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">
+                    Continue
+                </button>
+            </div><!-- modal-body -->
+        </div><!-- modal-content -->
+    </div><!-- modal-dialog -->
+</div>
+
+<div id="modalError" class="modal fade">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content tx-size-sm">
+            <div class="modal-body tx-center pd-y-20 pd-x-20">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <i class="icon icon ion-ios-close-outline tx-100 tx-danger lh-1 mg-t-20 d-inline-block"></i>
+                <h4 class="tx-danger  tx-semibold mg-b-20">Error: Cannot process your entry!</h4>
+                <p class="mg-b-20 mg-x-20">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration.</p>
+                <button type="button" class="btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">
+                    Continue
+                </button>
+            </div><!-- modal-body -->
+        </div><!-- modal-content -->
+    </div><!-- modal-dialog -->
+</div>
+
+@section scripts{
+
+    <script type="text/javascript">
+        var urlConfirmOrder = '@Url.Action("ConfirmOrder", "OrderSummary")';
+    </script>
+    <script type="text/javascript">
+           function validarFormulario(){
+               $("#validate").validate(function() {
+                   if ($('.RequiereLlenar').val() === '') {
+                       $('#modalPrueba').modal('toggle');
+
+                   } else {
+
+                   }
+               })
+           }
+           $(document).ready(function () {
+               validarFormulario();
+           });
+    </script>
+    <style type="text/number">
+        .error {
+            color: #f00;
+        }
+    </style>
+
+    <script>
+function soloLetras(e) {
+    key = e.keyCode || e.which;
+    tecla = String.fromCharCode(key).toLowerCase();
+    letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
+    especiales = [8, 37, 39, 46];
+
+    tecla_especial = false
+    for(var i in especiales) {
+        if(key == especiales[i]) {
+            tecla_especial = true;
+            break;
+        }
+    }
+
+    if(letras.indexOf(tecla) == -1 && !tecla_especial)
+        return false;
+}
+
+function limpia() {
+    var val = document.getElementById("miInput").value;
+    var tam = val.length;
+    for(i = 0; i < tam; i++) {
+        if(!isNaN(val[i]))
+            document.getElementById("miInput").value = '';
+    }
+}
+
+function soloAndNumeros(e) {
+    key = e.keyCode || e.which;
+    tecla = String.fromCharCode(key).toLowerCase();
+    letras = "0123456789 abcdefghijklmnopqrstuvwxyz";
+    especiales = [8, 37, 39, 46];
+
+    tecla_especial = false
+    for (var i in especiales) {
+        if (key == especiales[i]) {
+            tecla_especial = true;
+            break;
+        }
+    }
+
+    if (letras.indexOf(tecla) == -1 && !tecla_especial)
+        return false;
+}
+
+    </script>
+
+    @Scripts.Render("~/Scripts/js/LoginSiginUp.js")
+    @Scripts.Render("~/Scripts/js/envio.js")
+}
+

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Model;
 using System.Net.Mail;
+using System.Text;
 
 namespace VenusDoors.Controllers
 {
@@ -39,25 +40,97 @@ namespace VenusDoors.Controllers
             }
         }
 
+        // GET: Logins
+        public ActionResult Recover_Password()
+        {
+            if (Session["UserID"] == null)
+            {
+                return View();
+
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+        }
+
+        public ActionResult New_Password()
+        {
+            if (Session["UserID"] == null)
+            {
+                return View();
+
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+        }
+
+        public ActionResult Account_Verification()
+        {
+            if (Session["UserID"] == null)
+            {
+                return View();
+
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+        }
+
+        [HttpPost]
+        public ActionResult SendEmailConfirm(User UserData, Person PersonData)
+        {
+            try
+            {
+                
+                
+                string To = UserData.Email;
+                MailMessage mail = new MailMessage();
+                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+                mail.From = new MailAddress("azazeldroid@gmail.com");
+                mail.To.Add(new MailAddress(To));
+                mail.Subject = "Verification code";
+                mail.Body =
+                "<p>Dear " + PersonData.Name + "</p><p>Tu codigo de verificacion es:"+ To + "</p>";
+                mail.IsBodyHtml = true;
+
+                SmtpServer.Port = 587;
+                SmtpServer.Credentials = new System.Net.NetworkCredential("azazeldroid@gmail.com", "24766031");
+                SmtpServer.EnableSsl = true;
+                SmtpServer.Send(mail);
+                
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
         [HttpPost]
         public ActionResult Autherize(User userModel)
         {
             BusinessLogic.lnUser _LNU = new BusinessLogic.lnUser();
             var getU = _LNU.GetAllUser();
             var userDetails = getU.Where(x => x.Email == userModel.Email && x.Password == userModel.Password).FirstOrDefault();
-            if (userDetails == null)
-            {
-                //userModel.LoginErrorMessage = "Wrong Email or Password.";
-                return View("Index", userModel);
-            }
-            else
+            if (userDetails != null)
             {
                 System.Web.HttpContext.Current.Session["UserID"] = userDetails.Id;
                 System.Web.HttpContext.Current.Session["UserName"] = userDetails.Person.Id;
                 System.Web.HttpContext.Current.Session["UserType"] = userDetails.Type.Id;
-                return RedirectToAction("Index", "Home");
+                return Json(true, JsonRequestBehavior.AllowGet);
             }
-
+            else
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
         }
 
 
@@ -66,16 +139,43 @@ namespace VenusDoors.Controllers
         {
             try
             {
-                BusinessLogic.lnPerson _LNP = new BusinessLogic.lnPerson();
-                PersonData.CreationDate = DateTime.Now;
-                PersonData.ModificationDate = DateTime.Now;
-                int IdPerson = _LNP.InsertPerson(PersonData);
-                PersonData.Id = IdPerson;
-                UserData.Person = PersonData;
-                UserData.CreationDate = DateTime.Now;
-                UserData.ModificationDate = DateTime.Now;
                 BusinessLogic.lnUser _LNU = new BusinessLogic.lnUser();
-                var create = _LNU.InsertUser(UserData);
+                var getU = _LNU.GetAllUser();
+                var userDetails = getU.Where(x => x.Email == UserData.Email).FirstOrDefault();
+                if (userDetails == null)
+                {
+                    BusinessLogic.lnPerson _LNP = new BusinessLogic.lnPerson();
+                    PersonData.CreationDate = DateTime.Now;
+                    PersonData.ModificationDate = DateTime.Now;
+                    int IdPerson = _LNP.InsertPerson(PersonData);
+                    PersonData.Id = IdPerson;
+                    UserData.Person = PersonData;
+                    UserData.CreationDate = DateTime.Now;
+                    UserData.ModificationDate = DateTime.Now;
+                    var create = _LNU.InsertUser(UserData);
+                    SendEmailConfirm(UserData, PersonData);
+                    return Json(1, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(2, JsonRequestBehavior.AllowGet);
+                }
+               
+            }
+            catch
+            {
+                return Json(3, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Recovery(User pEmail)
+        {
+            try
+            {
+                BusinessLogic.lnUser _LNU = new BusinessLogic.lnUser();
+                var getU = _LNU.GetAllUser();
+                var userDetails = getU.Where(x => x.Email == pEmail.Email).FirstOrDefault();
                 return Json(true, JsonRequestBehavior.AllowGet);
             }
             catch

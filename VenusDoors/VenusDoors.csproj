@@ -1065,6 +1065,9 @@
     <Content Include="Views\Masters\RailThickness.cshtml" />
     <Content Include="Views\Logins\sing_up.cshtml" />
     <Content Include="Views\Logins\Index.cshtml" />
+    <Content Include="Views\Logins\Recover_Password.cshtml" />
+    <Content Include="Views\Logins\New_Password.cshtml" />
+    <Content Include="Views\Logins\Account_Verification.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
