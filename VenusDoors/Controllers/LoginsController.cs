@@ -39,6 +39,79 @@ namespace VenusDoors.Controllers
             }
         }
 
+        // GET: Logins
+        public ActionResult Recover_Password()
+        {
+            if (Session["UserID"] == null)
+            {
+                return View();
+
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+        }
+
+        public ActionResult New_Password()
+        {
+            if (Session["UserID"] == null)
+            {
+                return View();
+
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+        }
+
+        [HttpPost]
+        public ActionResult ConfirmOrder(string idOrderSummary)
+        {
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                try
+                {
+                    int userID = (int)Session["UserID"];
+                    int idU = userID;
+                    BusinessLogic.lnUser _LN = new BusinessLogic.lnUser();
+                    User use = _LN.GetUserById(idU);
+                    string To = use.Email;
+                    MailMessage mail = new MailMessage();
+                    SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+                    mail.From = new MailAddress("user@gmail.com");
+                    mail.To.Add(new MailAddress(To));
+                    mail.Subject = "New order";
+                    mail.Body =
+                    "<p>Dear Javier,</p><p>Please review the estimate below.Feel free to contact us if you have any questions.<br>We look forward to working with you.</p><p>Thanks for your business!<br><b>Venus Doors<b></p>  <table width=700 border=0 cellspacing=0 cellpadding=0 style=background:#f7f7f7;font-family:Arial,Helvetica,sans-serif;font-size:12px><tbody><tr><td style = padding:20px><p> ------------------------&nbsp; &nbsp; &nbsp;Estimate & nbsp; Summary & nbsp; &nbsp; --------------------------<br> Estimate & nbsp;#&nbsp;:&nbsp;1010<br>Estimate&nbsp;Date:&nbsp;01/15/2019<br>Total:&nbsp;$4,360.00<br>The&nbsp;complete&nbsp;version&nbsp;has&nbsp;been&nbsp;<wbr>provided&nbsp;as&nbsp;an&nbsp;attachment&nbsp;to&nbsp;<wbr>this&nbsp;email.<br>---------------------------------------------------------------------</p></td></tr></tbody></table> ";
+                    mail.IsBodyHtml = true;
+
+                    SmtpServer.Port = 587;
+                    SmtpServer.Credentials = new System.Net.NetworkCredential("user@gmail.com", "password");
+                    SmtpServer.EnableSsl = true;
+                    SmtpServer.Send(mail);
+
+                    BusinessLogic.lnOrder _LNUPor = new BusinessLogic.lnOrder();
+                    var orderList = _LNUPor.GetOrderByUser(idU);
+                    ViewBag.Listo = orderList;
+                    Order item = ViewBag.Listo;
+                    return Json(true, JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
+        }
+
         [HttpPost]
         public ActionResult Autherize(User userModel)
         {
