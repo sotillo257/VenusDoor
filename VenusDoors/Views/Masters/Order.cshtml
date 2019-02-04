@@ -56,8 +56,8 @@
                                         <a href="#" data-toggle="modal" data-target="#modalModify" value="@item.Id" class="Modificar btn btn-primary btn-icon">
                                             <div><i class="fa fa-edit"></i></div>
                                         </a>
-                                        <a href="#" data-toggle="modal" data-target="#modaldemo2" value="@item.Id" class="Eliminar btn btn-danger btn-icon">
-                                            <div><i class="fa fa-trash"></i></div>
+                                        <a href="#" data-toggle="modal" data-target="#modaldemo2" value="@item.Id" class="Detalle btn btn-info btn-icon">
+                                            <div><i class="fa fa-list"></i></div>
                                         </a>
                                     </center>
                                 </td>
@@ -71,61 +71,6 @@
     </div>
 </div>
 
-@section scripts{
-<script>
-    var urlInsertOrder = '@Url.Action("InsertOrder", "Masters")';
-    var urlUpdateOrder = '@Url.Action("UpdateOrder", "Masters")';
-</script>
-    <script>
-        $(function () {
-            'use strict';
-
-            $('#datatable1').DataTable({
-                responsive: true,
-                language: {
-                    searchPlaceholder: 'Search...',
-                    sSearch: '',
-                    lengthMenu: '_MENU_ items/page',
-                }
-            });
-
-            $('#datatable2').DataTable({
-                bLengthChange: false,
-                searching: false,
-                responsive: true
-            });
-
-            // Select2
-            $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
-
-        });
-    </script>
-    <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
-    <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>
-    <script src="~/Content/lib/select2/js/select2.min.js"></script>
-@Scripts.Render("~/Scripts/js/Masters.js")
-<script type="text/javascript">
-
-        $(document).ready(function () {
-            var listORDER = JSON.parse('@Html.Raw(ViewBag.ListOrder)');
-            $(document).on('click', '.Modificar', function (event) {
-                for (var i = 0; i < listORDER.length; i++) {
-                    if (listORDER[i].Id == $(this).attr('value')) {
-                        $('#txtId').val(listORDER[i].Id);
-                        $('#cbUser').val(listORDER[i].User.Id);
-                        $('#txtQuantity').val(listORDER[i].Quantity);
-                        $('#txtTotal').val(listORDER[i].Total);
-                        $('#IdType').val(listORDER[i].Type.Id);
-                        $('#IdStatus').val(listORDER[i].Status.Id);
-                    }
-                }
-            });
-
-
-        });
-
-</script>
-}
 <div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div>
 
 <div id="modalInsert" class="modal fade effect-scale" aria-hidden="true" style="display: none;">
@@ -326,3 +271,59 @@
         </div><!-- modal-content -->
     </div><!-- modal-dialog -->
 </div>
+
+@section scripts{
+    <script>
+    var urlInsertOrder = '@Url.Action("InsertOrder", "Masters")';
+    var urlUpdateOrder = '@Url.Action("UpdateOrder", "Masters")';
+    </script>
+    <script>
+        $(function () {
+            'use strict';
+
+            $('#datatable1').DataTable({
+                responsive: true,
+                language: {
+                    searchPlaceholder: 'Search...',
+                    sSearch: '',
+                    lengthMenu: '_MENU_ items/page',
+                }
+            });
+
+            $('#datatable2').DataTable({
+                bLengthChange: false,
+                searching: false,
+                responsive: true
+            });
+
+            // Select2
+            $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
+
+        });
+    </script>
+    <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
+    <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>
+    <script src="~/Content/lib/select2/js/select2.min.js"></script>
+    @Scripts.Render("~/Scripts/js/Masters.js")
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            var listORDER = JSON.parse('@Html.Raw(ViewBag.ListOrder)');
+            $(document).on('click', '.Modificar', function (event) {
+                for (var i = 0; i < listORDER.length; i++) {
+                    if (listORDER[i].Id == $(this).attr('value')) {
+                        $('#txtId').val(listORDER[i].Id);
+                        $('#cbUser').val(listORDER[i].User.Id);
+                        $('#txtQuantity').val(listORDER[i].Quantity);
+                        $('#txtTotal').val(listORDER[i].Total);
+                        $('#IdType').val(listORDER[i].Type.Id);
+                        $('#IdStatus').val(listORDER[i].Status.Id);
+                    }
+                }
+            });
+
+
+        });
+
+    </script>
+}

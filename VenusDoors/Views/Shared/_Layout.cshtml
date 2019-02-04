@@ -98,8 +98,8 @@
                     <li class="nav-item">@Html.ActionLink("Doors", "Doors", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Doors })</li>
                     <li class="nav-item">@Html.ActionLink("Doors Prices", "DoorsPrices", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.DoorPrice })</li>
                     <li class="nav-item">@Html.ActionLink("Doors Style", "Index", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.DoorStyle })</li>
-                    <li class="nav-item">@Html.ActionLink("Door Style by Inside Edge Profile", "DoorStyleByInsideEdgeProfile", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.DoorStyleByInsideEdgeProfile })</li>
-                    <li class="nav-item">@Html.ActionLink("Door Style by Outside Edge Profile", "DoorStyleByOutsideEdgeProfile", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.DoorStyleByOutsideEdgeProfile })</li>
+                    <li class="nav-item">@Html.ActionLink("Door Style by Inside Edge P", "DoorStyleByInsideEdgeProfile", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.DoorStyleByInsideEdgeProfile })</li>
+                    <li class="nav-item">@Html.ActionLink("Door Style by Outside Edge P", "DoorStyleByOutsideEdgeProfile", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.DoorStyleByOutsideEdgeProfile })</li>
                     <li class="nav-item">@Html.ActionLink("Door by User", "DoorByUser", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.DoorByUser })</li>
                     <li class="nav-item">@Html.ActionLink("Group", "Group", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Group })</li>
                     <li class="nav-item">@Html.ActionLink("Hinge Direction", "HingeDirection", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.HingeDirection })</li>
@@ -118,9 +118,9 @@
                     <li class="nav-item">@Html.ActionLink("Rail Thickness", "RailThickness", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.RailThickness })</li>
                     <li class="nav-item">@Html.ActionLink("Status", "Status", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Status })</li>
                     <li class="nav-item">@Html.ActionLink("TopRail", "TopRail", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.TopRail })</li>
-                    <li class="nav-item">@Html.ActionLink("Top Rail by Horizontal Divisions", "TopRailByHorizontalDivisions", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.TopRailByHorizontalDivisions })</li>
+                    <li class="nav-item">@Html.ActionLink("Top Rail by Horizontal D", "TopRailByHorizontalDivisions", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.TopRailByHorizontalDivisions })</li>
                     <li class="nav-item">@Html.ActionLink("Top Rail by Join", "TopRailByJoin", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.TopRailByJoin })</li>
-                    <li class="nav-item">@Html.ActionLink("Top Rail by Vertical Divisions", "TopRailByVerticalDivisions", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.TopRailByVerticalDivisions })</li>
+                    <li class="nav-item">@Html.ActionLink("Top Rail by Vertical D", "TopRailByVerticalDivisions", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.TopRailByVerticalDivisions })</li>
                     <li class="nav-item">@Html.ActionLink("Type", "Type", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Type })</li>
                     <li class="nav-item">@Html.ActionLink("User", "Usuario", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Usuario })</li>
                     <li class="nav-item">@Html.ActionLink("Vertical Divisions", "VerticalDivisions", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.VerticalDivisions })</li>
@@ -321,7 +321,7 @@
                             <li><a href=""><i class="icon ion-ios-download"></i> Downloads</a></li>
                             <li><a href=""><i class="icon ion-ios-star"></i> Favorites</a></li>
                             <li><a href=""><i class="icon ion-ios-folder"></i> Collections</a></li>*@
-                            <li><a onclick="location.href='@Url.Action("LogOut","Logins")'"><i class="icon ion-power"></i> Sign Out</a></li>
+                            <li><a class="Cursor" onclick="location.href='@Url.Action("LogOut","Logins")'"><i class="icon ion-power"></i> Sign Out</a></li>
                         </ul>
                     </div><!-- dropdown-menu -->
                 </div><!-- dropdown -->

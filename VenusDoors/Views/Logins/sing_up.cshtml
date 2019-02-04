@@ -13,71 +13,73 @@
 
 <div class="br-pagebody">
     <div class="br-section-wrapper">
-        <div method="post" class="form-layout form-layout-1">
-            <div class="row mg-b-25">
-                <div class="col-lg-4">
-                    <div class="form-group">
-                        <label class="form-control-label">Name: <span data-val="true" class="tx-danger">*</span></label>
-                        <input required onkeypress="return soloLetras(event)" onblur="limpia()" title="Complete this field." class="form-control" type="text" minlength="5" maxlength="30" id="inptName" name="inptName" placeholder="Enter name">
-                    </div>
-                </div><!-- col-4 -->
-                <div class="col-lg-4">
-                    <div class="form-group">
-                        <label class="form-control-label">Last name: <span data-val="true" class="tx-danger">*</span></label>
-                        <input required onkeypress="return soloLetras(event)" onblur="limpia()" class="form-control" type="text" maxlength="30" minlength="5" title="Complete this field." id="inptLastName" name="inptLastName" placeholder="Enter last name">
-                    </div>
-                </div><!-- col-4 -->
-                <div class="col-lg-4">
-                    <div class="form-group">
-                        <label class="form-control-label">Email address: <span data-val="true" class="tx-danger">*</span></label>
-                        <input required class="form-control" type="email" id="inptEmail" title="Complete this field." name="inptEmail" placeholder="Enter email address">
-                    </div>
-                </div><!-- col-4 -->
-                <div class="col-lg-8">
-                    <div class="form-group mg-b-10-force">
-                        <label class="form-control-label">Address: <span data-val="true" class="tx-danger">*</span></label>
-                        <input required class="form-control" onkeypress="return soloAndNumeros(event)" onblur="limpia()" type="text" maxlength="100" minlength="5" title="Complete this field." id="inptDirec" name="inptDirec" placeholder="Enter address">
-                    </div>
-                </div><!-- col-8 -->
-                <div class="col-lg-4">
-                    <div class="form-group">
-                        <label class="form-control-label">Country: <span data-val="true" class="tx-danger">*</span></label>
-                        <select required class="form-control select2" data-placeholder="Choose country">
-                            <option label="Choose country"></option>
-                            <option value="USA">United States of America</option>
-                            <option value="UK">United Kingdom</option>
-                            <option value="China">China</option>
-                            <option value="Japan">Japan</option>
-                        </select>
-                    </div>
-                </div><!-- col-4 -->
-                <div class="col-lg-4">
-                    <div class="form-group">
-                        <label class="form-control-label">Number: <span data-val="true" class="tx-danger">*</span></label>
-                        <input required class="form-control" type="number" title="Complete this field." name="inptTelephone" id="inptTelephone" placeholder="Enter telephone number">
-                    </div>
-                </div><!-- col-4 -->
-                <div class="col-lg-4">
-                    <div class="form-group">
-                        <label class="form-control-label">Password: <span data-val="true" class="tx-danger">*</span></label>
-                        <input required class="form-control" type="password"
-                               minlength="8" maxlength="15" title="Use a format that matches the one requested. Minimum 8 characters. Maximum 15 characters." name="password" placeholder="Enter password">
-                    </div>
-                </div><!-- col-4 -->
-                <div class="col-lg-4">
-                    <div class="form-group">
-                        <label class="form-control-label">Password: <span data-val="true" class="tx-danger">*</span></label>
-                        <input required class="form-control" type="password"
-                               minlength="8" maxlength="15" title="Your password must match" id="inptPassword" name="inptPassword" placeholder="Confirm password">
-                    </div>
-                </div><!-- col-4 -->
-            </div><!-- row -->
+        <form id="validate">
+            <div method="post" class="form-layout form-layout-1">
+                <div class="row mg-b-25">
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label class="form-control-label">Name: <span data-val="true" class="tx-danger">*</span></label>
+                            <input required onkeypress="return soloLetras(event)" onblur="limpia()" title="Complete this field." class="required RequiereLlenar form-control" type="text" minlength="5" maxlength="30" id="inptName" name="inptName" placeholder="Enter name">
+                        </div>
+                    </div><!-- col-4 -->
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label class="form-control-label">Last name: <span data-val="true" class="tx-danger">*</span></label>
+                            <input required onkeypress="return soloLetras(event)" onblur="limpia()" class="required RequiereLlenar form-control" type="text" maxlength="30" minlength="5" title="Complete this field." id="inptLastName" name="inptLastName" placeholder="Enter last name">
+                        </div>
+                    </div><!-- col-4 -->
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label class="form-control-label">Email address: <span data-val="true" class="tx-danger">*</span></label>
+                            <input required class="required RequiereLlenar form-control" type="email" id="inptEmail" title="Complete this field." name="inptEmail" placeholder="Enter email address">
+                        </div>
+                    </div><!-- col-4 -->
+                    <div class="col-lg-8">
+                        <div class="form-group mg-b-10-force">
+                            <label class="form-control-label">Address: <span data-val="true" class="tx-danger">*</span></label>
+                            <input required class="required RequiereLlenar form-control" onkeypress="return soloAndNumeros(event)" onblur="limpia()" type="text" maxlength="100" minlength="5" title="Complete this field." id="inptDirec" name="inptDirec" placeholder="Enter address">
+                        </div>
+                    </div><!-- col-8 -->
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label class="form-control-label">Country: <span data-val="true" class="tx-danger">*</span></label>
+                            <select class="form-control select2" data-placeholder="Choose country">
+                                <option label="Choose country"></option>
+                                <option value="USA">United States of America</option>
+                                <option value="UK">United Kingdom</option>
+                                <option value="China">China</option>
+                                <option value="Japan">Japan</option>
+                            </select>
+                        </div>
+                    </div><!-- col-4 -->
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label class="form-control-label">Number: <span data-val="true" class="tx-danger">*</span></label>
+                            <input class="required RequiereLlenar form-control" type="number" title="Complete this field." name="inptTelephone" id="inptTelephone" placeholder="Enter telephone number">
+                        </div>
+                    </div><!-- col-4 -->
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label class="form-control-label">Password: <span data-val="true" class="tx-danger">*</span></label>
+                            <input required class="required RequiereLlenar form-control" type="password"
+                                   minlength="8" maxlength="15" title="Use a format that matches the one requested. Minimum 8 characters. Maximum 15 characters." name="password" placeholder="Enter password">
+                        </div>
+                    </div><!-- col-4 -->
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label class="form-control-label">Password: <span data-val="true" class="tx-danger">*</span></label>
+                            <input required class="required RequiereLlenar form-control" type="password"
+                                   minlength="8" maxlength="15" title="Your password must match" id="inptPassword" name="inptPassword" placeholder="Confirm password">
+                        </div>
+                    </div><!-- col-4 -->
+                </div><!-- row -->
 
-            <div class="form-layout-footer">
-                <button id="btNewUser" type="submit" onclick="this.disabled=true" class="btn btn-info">Submit Form</button>
-                <button onclick="location.href='@Url.Action("Index","Login")'" class="btn btn-secondary">Back</button>
-            </div><!-- form-layout-footer -->
-        </div>
+                <div class="form-layout-footer">
+                    <button id="btNewUser" @*onclick="this.disabled=true"*@ class="Cursor btn btn-info">Submit Form</button>
+                    <button onclick="location.href='@Url.Action("Index","Logins")'" class="Cursor btn btn-secondary">Back</button>
+                </div><!-- form-layout-footer -->
+            </div>
+        </form>
     </div>
 </div>
 
@@ -122,6 +124,27 @@
     <script type="text/javascript">
         var urlInsertUser = '@Url.Action("InsertUser", "Logins")';
     </script>
+<script type="text/javascript">
+           function validarFormulario(){
+               $("#validate").validate(function() {
+                   if ($('.RequiereLlenar').val() === '') {
+                       $('#modalPrueba').modal('toggle');
+
+                   } else {
+
+                   }
+               })
+           }
+           $(document).ready(function () {
+               validarFormulario();
+           });
+</script>
+<style type="text/number">
+    .error {
+        color: #f00;
+    }
+</style>
+
     <script>
 function soloLetras(e) {
     key = e.keyCode || e.which;
