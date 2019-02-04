@@ -13,8 +13,7 @@
 
 <div class="br-pagebody">
     <div class="br-section-wrapper">
-        <form id="validate">
-            <div method="post" class="form-layout form-layout-1">
+            <div class="form-layout form-layout-1">
                 <div class="row mg-b-25">
                     <div class="col-lg-4">
                         <div class="form-group">
@@ -78,8 +77,7 @@
                     <button id="btNewUser" @*onclick="this.disabled=true"*@ class="Cursor btn btn-info">Submit Form</button>
                     <button onclick="location.href='@Url.Action("Index","Logins")'" class="Cursor btn btn-secondary">Back</button>
                 </div><!-- form-layout-footer -->
-            </div>
-        </form>
+            </div>        
     </div>
 </div>
 
@@ -119,12 +117,48 @@
     </div><!-- modal-dialog -->
 </div>
 
+<div id="modalExist" class="modal fade">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content tx-size-sm">
+            <div class="modal-body tx-center pd-y-20 pd-x-20">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <i class="icon icon ion-ios-close-outline tx-100 tx-danger lh-1 mg-t-20 d-inline-block"></i>
+                <h4 class="tx-danger  tx-semibold mg-b-20">There is already a registered user with this email!</h4>
+                <p class="mg-b-20 mg-x-20">Did you forget your password?. Click on the button below to recover your password</p>
+                <button onclick="location.href='@Url.Action("Recovery","Logins")'" id="recovery" type="button" class="btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" aria-label="Close">
+                    Continue
+                </button>
+            </div><!-- modal-body -->
+        </div><!-- modal-content -->
+    </div><!-- modal-dialog -->
+</div>
+
+<div id="modalFAIL" class="modal fade">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content tx-size-sm">
+            <div class="modal-body tx-center pd-y-20 pd-x-20">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <i class="icon icon ion-ios-close-outline tx-100 tx-danger lh-1 mg-t-20 d-inline-block"></i>
+                <h4 class="tx-danger  tx-semibold mg-b-20">An error occurred during the process.</h4>
+                <p class="mg-b-20 mg-x-20">Check your internet connection I tried again</p>
+                <button type="button" class="btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">
+                    Continue
+                </button>
+            </div><!-- modal-body -->
+        </div><!-- modal-content -->
+    </div><!-- modal-dialog -->
+</div>
+
 @section scripts{
 
     <script type="text/javascript">
         var urlInsertUser = '@Url.Action("InsertUser", "Logins")';
     </script>
-<script type="text/javascript">
+@*<script type="text/javascript">
            function validarFormulario(){
                $("#validate").validate(function() {
                    if ($('.RequiereLlenar').val() === '') {
@@ -138,7 +172,7 @@
            $(document).ready(function () {
                validarFormulario();
            });
-</script>
+</script>*@
 <style type="text/number">
     .error {
         color: #f00;

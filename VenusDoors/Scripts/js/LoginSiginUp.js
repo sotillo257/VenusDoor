@@ -36,14 +36,16 @@ function CreateNewUser() {
         success: function (result) {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
-            if (result == true) {
+            if (result == 1) {
                 $('#modalCongra').modal('toggle');
+            } else if(result == 2){
+                $('#modalExist').modal('toggle');
             } else {
                 $('#modalError').modal('toggle');
             }
         },
         error: function (err) {
-            alert("error");
+            $('#modalFAIL').modal('toggle');
         },
 
     });

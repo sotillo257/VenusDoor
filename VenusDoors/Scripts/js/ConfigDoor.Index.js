@@ -12,6 +12,7 @@
 	GetAllPanelMaterial();
 	GetAllVerticalDivisions();
 	GetAllHorizontalDivisions();
+	ValidateSession();
 
 	$("#btConfirm").on("click", function () {
 	    InsertDoorsxUser();
@@ -653,5 +654,25 @@ function GetPrices() {
         error: function (err) {
             MensajeModal(msgErrorinterno, 5);
         }
+    });
+}
+
+function ValidateSession() {
+    $.ajax({
+        type: 'POST',
+        url: urlValidateSession,
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+
+            if (result == true) {
+
+            } else {
+                $('#ModalNoSession').modal('toggle');
+            }
+        },
+        error: function (err) {
+            alert("error");
+        },
     });
 }

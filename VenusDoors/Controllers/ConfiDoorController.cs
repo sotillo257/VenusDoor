@@ -427,6 +427,20 @@ namespace VenusDoors.Controllers
             }
         }
 
+        [HttpPost]
+        public ActionResult ValidateSession()
+        {
+            
+            if (Session["UserID"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
     }
 }
 
