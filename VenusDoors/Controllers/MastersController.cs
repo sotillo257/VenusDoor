@@ -157,8 +157,6 @@ namespace VenusDoors.Controllers
 
                 pDoors.CreationDate = DateTime.Now;
                 pDoors.ModificationDate = DateTime.Now;
-                pDoors.Picture = "Picture";
-                pDoors.ProfilePicture = "empty";
                 BusinessLogic.lnDoors _LM = new BusinessLogic.lnDoors();
                 var inDoor = _LM.InsertDoors(pDoors);
                 return Json(true, JsonRequestBehavior.AllowGet);

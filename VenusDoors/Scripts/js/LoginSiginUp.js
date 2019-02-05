@@ -2,6 +2,10 @@
     $("#btNewUser").on("click", function () {
         CreateNewUser();
     });
+
+    $(".ingresar").on("click", function () {
+        Signin();
+    });
 });
 
 function CreateNewUser() {
@@ -51,19 +55,19 @@ function CreateNewUser() {
     });
 }
 
-function Login() {
 
-    var Datos =
+function Signin() {
+
+    var datos =
         {
-            UserData: {
-                Email: $('#inptEmail').val(),
-                Password: $('#inptPassword').val(),
-
+            userData: {
+                Email: $('.userEmail').val(),
+                Password: $('.UserPass').val(),
             }
         };
     $.ajax({
         type: 'POST',
-        data: JSON.stringify(Datos),
+        data: JSON.stringify(datos),
         url: urlAutherize,
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
@@ -71,16 +75,13 @@ function Login() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                var url = '@Url.Action("Index", "Home")';
-                window.location.href = url;
-            } else{
+                window.location.href = '/Home/Index';
+            } else {
                 $('#modalError').modal('toggle');
             }
         },
         error: function (err) {
             $('#modalFAIL').modal('toggle');
         },
-
     });
 }
-
