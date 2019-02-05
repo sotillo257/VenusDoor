@@ -672,3 +672,6 @@ function ValidateSession() {
         },
     });
 }
+function CambiarPerfil() {
+
+}
