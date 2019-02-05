@@ -43,7 +43,7 @@ function GetAllMaterial() {
 
             }
             else {
-                LlammarModal("Danger", "Error obtaining Material", 5);
+                LlammarModal("Danger",  " ", "Error obtaining Material");
             }
         },
         error: function (err) {
@@ -73,7 +73,7 @@ function GetAllDoorStyle() {
 
 			}
 			else {
-			    LlammarModal("Danger", "Error obtaining Door Style", 5);
+			    LlammarModal("Danger", " ",  "Error obtaining Door Style");
 			}
 		},
 		error: function (err) {
@@ -102,7 +102,7 @@ function GetAllInsideEdgeProfile() {
 
             }
             else {
-                LlammarModal("Danger", "Error obtaining Inside Edge Profile", 5);
+                LlammarModal("Danger",  " ", "Error obtaining Inside Edge Profile");
             }
         },
         error: function (err) {
@@ -131,7 +131,7 @@ function GetAllOutsideEdgeProfile() {
 
             }
             else {
-                LlammarModal("Danger", "Error obtaining Outside Edge Profile", 5);
+                LlammarModal("Danger", " ",  "Error obtaining Outside Edge Profile");
             }
         },
         error: function (err) {
@@ -160,7 +160,7 @@ function GetAllBottomRail() {
 
             }
             else {
-                LlammarModal("Danger", "Error obtaining Bottom Rail", 5);
+                LlammarModal("Danger", " ",  "Error obtaining Bottom Rail");
             }
         },
         error: function (err) {
@@ -189,7 +189,7 @@ function GetAllTopRail() {
 
             }
             else {
-                LlammarModal("Danger", "Error obtaining Top Rail", 5);
+                LlammarModal("Danger",  " ", "Error obtaining Top Rail");
             }
         },
         error: function (err) {
@@ -217,7 +217,7 @@ function GetAllJoin() {
 
             }
             else {
-                LlammarModal("Danger", "Error obtaining Join", 5);
+                LlammarModal("Danger",  " ", "Error obtaining Join");
             }
         },
         error: function (err) {
@@ -246,7 +246,7 @@ function GetAllPreparation() {
 
             }
             else {
-                LlammarModal("Danger", "Error obtaining Preparation", 5);
+                LlammarModal("Danger", " ",  "Error obtaining Preparation");
             }
         },
         error: function (err) {
@@ -275,7 +275,7 @@ function GetAllPanel() {
 
             }
             else {
-                LlammarModal("Danger", "Error obtaining Panel", 5);
+                LlammarModal("Danger", " ",  "Error obtaining Panel");
             }
         },
         error: function (err) {
@@ -304,7 +304,7 @@ function GetAllPanelMaterial() {
 
             }
             else {
-                LlammarModal("Danger", "Error obtaining Panel Material", 5);
+                LlammarModal("Danger", " ",  "Error obtaining Panel Material");
             }
         },
         error: function (err) {
@@ -332,7 +332,7 @@ function GetAllVerticalDivisions() {
 
             }
             else {
-                LlammarModal("Danger", "Error obtaining Vertical Divisions", 5);
+                LlammarModal("Danger", " ",  "Error obtaining Vertical Divisions");
             }
         },
         error: function (err) {
@@ -361,7 +361,7 @@ function GetAllHorizontalDivisions() {
 
             }
             else {
-                LlammarModal("Danger", "Error obtaining Horizontal Divisions", 5);
+                LlammarModal("Danger", " ",  "Error obtaining Horizontal Divisions");
             }
         },
         error: function (err) {
@@ -423,7 +423,7 @@ function InsertDoorsxUser() {
                         if (result == true) {
                             LlammarModal("Succes", "Successful door creation!", "You can go to see your order and specify your purchase or, you can create another door.");
                         } else {
-                            LlammarModal("Danger", "Error: Minimum is 5 inches", "Error");
+                            LlammarModal("Danger", "An error occurred during the process.", "Check your internet connection I tried again");
                         }
                     },
                     error: function (err) {
@@ -649,7 +649,7 @@ function GetPrices() {
                 }
             }
             else {
-                MensajeModal("Error al obtener precios", 5);
+                LlammarModal("Danger", " ", "Error obtaining price");
             }
         },
         error: function (err) {
@@ -667,7 +667,7 @@ function ValidateSession() {
         success: function (result) {
 
             if (result == false) {
-                $('#ModalNoSession').modal('toggle');
+                LlammarModal("Login", "Sign in to your account to start building doors!");
             } 
         },
     });
