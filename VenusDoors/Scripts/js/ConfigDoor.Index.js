@@ -19,7 +19,7 @@
 	});
     
 	$("#bt-conf-log").on("click", function () {
-	    LlammarModal("Login", "Sign in to your account to process your order!");
+	    LlammarModal("MLogin", "Error obtaining price");
 	});
 });
 
@@ -43,7 +43,7 @@ function GetAllMaterial() {
 
             }
             else {
-                LlammarModal("Danger",  " ", "Error obtaining Material");
+                LlammarModal("Danger", "Error obtaining Material", " ");
             }
         },
         error: function (err) {
@@ -73,7 +73,7 @@ function GetAllDoorStyle() {
 
 			}
 			else {
-			    LlammarModal("Danger", " ",  "Error obtaining Door Style");
+			    LlammarModal("Danger", "Error obtaining Door Style", " ");
 			}
 		},
 		error: function (err) {
@@ -102,7 +102,7 @@ function GetAllInsideEdgeProfile() {
 
             }
             else {
-                LlammarModal("Danger",  " ", "Error obtaining Inside Edge Profile");
+                LlammarModal("Danger", "Error obtaining Inside Edge Profile", " ");
             }
         },
         error: function (err) {
@@ -131,7 +131,7 @@ function GetAllOutsideEdgeProfile() {
 
             }
             else {
-                LlammarModal("Danger", " ",  "Error obtaining Outside Edge Profile");
+                LlammarModal("Danger", "Error obtaining Outside Edge Profile", " ");
             }
         },
         error: function (err) {
@@ -160,7 +160,7 @@ function GetAllBottomRail() {
 
             }
             else {
-                LlammarModal("Danger", " ",  "Error obtaining Bottom Rail");
+                LlammarModal("Danger", "Error obtaining Bottom Rail", " ");
             }
         },
         error: function (err) {
@@ -189,7 +189,7 @@ function GetAllTopRail() {
 
             }
             else {
-                LlammarModal("Danger",  " ", "Error obtaining Top Rail");
+                LlammarModal("Danger", "Error obtaining Top Rail", " ");
             }
         },
         error: function (err) {
@@ -217,7 +217,7 @@ function GetAllJoin() {
 
             }
             else {
-                LlammarModal("Danger",  " ", "Error obtaining Join");
+                LlammarModal("Danger", "Error obtaining Join", " ");
             }
         },
         error: function (err) {
@@ -246,7 +246,7 @@ function GetAllPreparation() {
 
             }
             else {
-                LlammarModal("Danger", " ",  "Error obtaining Preparation");
+                LlammarModal("Danger", "Error obtaining Preparation", " ");
             }
         },
         error: function (err) {
@@ -275,7 +275,7 @@ function GetAllPanel() {
 
             }
             else {
-                LlammarModal("Danger", " ",  "Error obtaining Panel");
+                LlammarModal("Danger", "Error obtaining Panel", " ");
             }
         },
         error: function (err) {
@@ -304,7 +304,7 @@ function GetAllPanelMaterial() {
 
             }
             else {
-                LlammarModal("Danger", " ",  "Error obtaining Panel Material");
+                LlammarModal("Danger", "Error obtaining Panel Material", " ");
             }
         },
         error: function (err) {
@@ -332,7 +332,7 @@ function GetAllVerticalDivisions() {
 
             }
             else {
-                LlammarModal("Danger", " ",  "Error obtaining Vertical Divisions");
+                LlammarModal("Danger", "Error obtaining Vertical Divisions", " ");
             }
         },
         error: function (err) {
@@ -361,7 +361,7 @@ function GetAllHorizontalDivisions() {
 
             }
             else {
-                LlammarModal("Danger", " ",  "Error obtaining Horizontal Divisions");
+                LlammarModal("Danger", "Error obtaining Horizontal Divisions", " ");
             }
         },
         error: function (err) {
@@ -484,7 +484,7 @@ $(document).ready(function () {
         var Height = parseFloat($(this).val())
         if ($(this).val() < 5) {
             
-            LlammarModal("Danger"," ", "Error: Minimum is 5 inches");
+            LlammarModal("Danger", "Error: Minimum is 5 inches", " ");
                 Height = 5;
                 var ip1 = 3.5;
                 var ip2 = Height - 3.5;
@@ -548,7 +548,7 @@ $(document).ready(function () {
         }
         else {
             
-            LlammarModal("Danger", " ", "Error: Max is 96 inches");
+            LlammarModal("Danger", "Error: Max is 96 inches", " ");
                 Height = 96;
                 var ip1 = 3.5;
                 var ip2 = 3.5 + (((Height / 2) - 3.5) / 2);
@@ -571,7 +571,7 @@ $(document).ready(function () {
         var Width = parseFloat($(this).val())
         if ($(this).val() < 5) {
 
-            LlammarModal("Danger", " ", "Error: Minimum is 5 inches");
+            LlammarModal("Danger", "Error: Minimum is 5 inches", " ");
             Width = 5;
             $('.iptWidth').val(Width);
         }
@@ -579,7 +579,7 @@ $(document).ready(function () {
         {
 
             //$('#modalMaximo').modal('toggle');
-            LlammarModal("Danger", " ", "Error: Max is 42 inches");
+            LlammarModal("Danger", "Error: Max is 42 inches", " ");
             Width = 42;
             $('.iptWidth').val(Width);
            
@@ -649,7 +649,7 @@ function GetPrices() {
                 }
             }
             else {
-                LlammarModal("Danger", " ", "Error obtaining price");
+                LlammarModal("Danger", "Error obtaining price");
             }
         },
         error: function (err) {
@@ -667,7 +667,7 @@ function ValidateSession() {
         success: function (result) {
 
             if (result == false) {
-                LlammarModal("Login", "Sign in to your account to start building doors!");
+                LlammarModal("MLogin", "Error obtaining price", " ");
             } 
         },
     });

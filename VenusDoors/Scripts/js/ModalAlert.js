@@ -5,7 +5,7 @@
     });
 })
 
-function LlammarModal(TipoModal, Mensaje, Titulo) {
+function LlammarModal(TipoModal, Titulo, Mensaje) {
   
       
     if (TipoModal == "Succes") {
@@ -19,9 +19,21 @@ function LlammarModal(TipoModal, Mensaje, Titulo) {
                 $("#modalError").modal("show");
             }
 
-            if (TipoModal == "Login") {
+            if (TipoModal == "MLogin") {
                 $("#TituloLogin").html(Titulo);
                 $("#ModalLogin").modal("show");
+            }
+
+            if (TipoModal == "Sing") {
+                $("#TituloSing").html(Titulo);
+                $("#MensageSing").html(Mensaje);
+                $("#modalCongraSing").modal("show");
+            }
+
+            if (TipoModal == "Congratuletions") {
+                $("#TituloCongratuletions").html(Titulo);
+                $("#MensageCongratuletions").html(Mensaje);
+                $("#modalCongra").modal("show");
             }
 
 }

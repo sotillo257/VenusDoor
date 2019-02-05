@@ -42,9 +42,9 @@ function ConfirmOrder() {
         //Se ejecutó correctamente
         success: function (data) {
             if (data == true) {
-                $('#modalCongra').modal('toggle');
-                            } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Sing", "Congratulations! The creation of your order has been successful.", " ");
+            } else {
+                LlammarModal("Danger", "An error occurred during the process.", "Check your internet connection I tried again");
                             }
         },
         //Configuraciones adicionales internas para ajax
