@@ -19,7 +19,7 @@
 	});
     
 	$("#bt-conf-log").on("click", function () {
-	    $('#ModalLogin').modal('toggle');
+	    LlammarModal("Login", "Sign in to your account to process your order!");
 	});
 });
 
@@ -43,7 +43,7 @@ function GetAllMaterial() {
 
             }
             else {
-                MensajeModal("Error al obtener Material", 5);
+                LlammarModal("Danger", "Error obtaining Material", 5);
             }
         },
         error: function (err) {
@@ -73,7 +73,7 @@ function GetAllDoorStyle() {
 
 			}
 			else {
-				MensajeModal("Error al obtener Door Style", 5);
+			    LlammarModal("Danger", "Error obtaining Door Style", 5);
 			}
 		},
 		error: function (err) {
@@ -102,7 +102,7 @@ function GetAllInsideEdgeProfile() {
 
             }
             else {
-                MensajeModal("Error al obtener Inside Edge Profile", 5);
+                LlammarModal("Danger", "Error obtaining Inside Edge Profile", 5);
             }
         },
         error: function (err) {
@@ -131,7 +131,7 @@ function GetAllOutsideEdgeProfile() {
 
             }
             else {
-                MensajeModal("Error al obtener Outside Edge Profile", 5);
+                LlammarModal("Danger", "Error obtaining Outside Edge Profile", 5);
             }
         },
         error: function (err) {
@@ -160,7 +160,7 @@ function GetAllBottomRail() {
 
             }
             else {
-                MensajeModal("Error al obtener Bottom Rail", 5);
+                LlammarModal("Danger", "Error obtaining Bottom Rail", 5);
             }
         },
         error: function (err) {
@@ -189,7 +189,7 @@ function GetAllTopRail() {
 
             }
             else {
-                MensajeModal("Error al obtener Top Rail", 5);
+                LlammarModal("Danger", "Error obtaining Top Rail", 5);
             }
         },
         error: function (err) {
@@ -217,7 +217,7 @@ function GetAllJoin() {
 
             }
             else {
-                MensajeModal("Error al obtener Join", 5);
+                LlammarModal("Danger", "Error obtaining Join", 5);
             }
         },
         error: function (err) {
@@ -246,7 +246,7 @@ function GetAllPreparation() {
 
             }
             else {
-                MensajeModal("Error al obtener Preparation", 5);
+                LlammarModal("Danger", "Error obtaining Preparation", 5);
             }
         },
         error: function (err) {
@@ -275,7 +275,7 @@ function GetAllPanel() {
 
             }
             else {
-                MensajeModal("Error al obtener Panel", 5);
+                LlammarModal("Danger", "Error obtaining Panel", 5);
             }
         },
         error: function (err) {
@@ -304,7 +304,7 @@ function GetAllPanelMaterial() {
 
             }
             else {
-                MensajeModal("Error al obtener Panel Material", 5);
+                LlammarModal("Danger", "Error obtaining Panel Material", 5);
             }
         },
         error: function (err) {
@@ -332,7 +332,7 @@ function GetAllVerticalDivisions() {
 
             }
             else {
-                MensajeModal("Error al obtener Vertical Divisions", 5);
+                LlammarModal("Danger", "Error obtaining Vertical Divisions", 5);
             }
         },
         error: function (err) {
@@ -361,7 +361,7 @@ function GetAllHorizontalDivisions() {
 
             }
             else {
-                MensajeModal("Error al obtener Horizontal Divisions", 5);
+                LlammarModal("Danger", "Error obtaining Horizontal Divisions", 5);
             }
         },
         error: function (err) {
@@ -421,9 +421,9 @@ function InsertDoorsxUser() {
 
                         //Validar data para ver si mostrar error al guardar o exito al guardar
                         if (result == true) {
-                            $('#ModalSuccess').modal('toggle');
+                            LlammarModal("Succes", "Successful door creation!", "You can go to see your order and specify your purchase or, you can create another door.");
                         } else {
-                            $('#modalFail').modal('toggle');
+                            LlammarModal("Danger", "Error: Minimum is 5 inches", "Error");
                         }
                     },
                     error: function (err) {
@@ -484,7 +484,7 @@ $(document).ready(function () {
         var Height = parseFloat($(this).val())
         if ($(this).val() < 5) {
             
-            $('#modalMinimo').modal('toggle');
+            LlammarModal("Danger"," ", "Error: Minimum is 5 inches");
                 Height = 5;
                 var ip1 = 3.5;
                 var ip2 = Height - 3.5;
@@ -548,7 +548,7 @@ $(document).ready(function () {
         }
         else {
             
-            $('#modalMaximoHeight').modal('toggle');
+            LlammarModal("Danger", " ", "Error: Max is 96 inches");
                 Height = 96;
                 var ip1 = 3.5;
                 var ip2 = 3.5 + (((Height / 2) - 3.5) / 2);
@@ -571,7 +571,7 @@ $(document).ready(function () {
         var Width = parseFloat($(this).val())
         if ($(this).val() < 5) {
 
-            $('#modalMinimo').modal('toggle');
+            LlammarModal("Danger", " ", "Error: Minimum is 5 inches");
             Width = 5;
             $('.iptWidth').val(Width);
         }
@@ -579,7 +579,7 @@ $(document).ready(function () {
         {
 
             //$('#modalMaximo').modal('toggle');
-            LlammarModal("Danger", "Hola Javier");
+            LlammarModal("Danger", " ", "Error: Max is 42 inches");
             Width = 42;
             $('.iptWidth').val(Width);
            

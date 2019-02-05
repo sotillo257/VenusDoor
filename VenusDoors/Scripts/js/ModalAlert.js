@@ -5,18 +5,23 @@
     });
 })
 
-function LlammarModal(TipoModal, Mensaje) {
+function LlammarModal(TipoModal, Mensaje, Titulo) {
   
       
-            if (TipoModal == "Succes") {
+    if (TipoModal == "Succes") {
+                $("#TituloSucces").html(Titulo);
                 $("#MensajeSucces").html(Mensaje);
                 $("#ModalSuccess").modal("show");
             }
             if (TipoModal == "Danger") {
+                $("#TituloDanger").html(Titulo);
                 $("#MensageDanger").html(Mensaje);
-                $("#modalMaximo").modal("show");
+                $("#modalError").modal("show");
             }
-            
-   
+
+            if (TipoModal == "Login") {
+                $("#TituloLogin").html(Titulo);
+                $("#ModalLogin").modal("show");
+            }
 
 }
