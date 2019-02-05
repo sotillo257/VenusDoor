@@ -295,40 +295,52 @@ function DeleteBottomRail() {
 
 function InsertDoors() {
 
+    var Door = new Array();
+    var formData = new FormData();
+    if ($("#inPicture")[0].files.length > 0) {
+        //alert($("#File1")[0].files[0].name);
+        formData.append('Files', $("#inPicture")[0].files[0], "lp");
+    }
     var datos =
-    {
-        pDoors: {
-      
-            DoorStyle: { Id: $("#inDoorStyle").val() },
-            Material: { Id: $("#inMaterial").val() },
-            TopRail: { Id: $("#inTopRail").val() },
-            BottomRail: { Id: $("#inBottomRail").val() },
-            Preparation: { Id: $("#inPreparation").val() },
-            Join: { Id: $("#inJoin").val() },
-            OutsideEdgeProfile: { Id: $("#inOutsideEdgeProfile").val() },
-            InsideEdgeProfile: { Id: $("#inInsideEdgeProfile").val() },
-            VerticalDivisions: { Id: $("#inVerticalDivisions").val() },
-            HorizontalDivisions: { Id: $("#inHorizontalDivisions").val() },
-            HingeDirection: { Id: $("#inHingeDirection").val() },
-            HingePositions: { Id: 1},
-            Panel: { Id: $("#inPanel").val() },
-            PanelMaterial: { Id: $("#inPanelMaterial").val() },
-            Drill: { Id: $("#inDrill").val() },
-            Width: $("#inWidth").val(),
-            Height: $("#inHeight").val(),
-            Picture: $("#inPicture").val(),
-            ProfilePicture: $("#inProfilePicture").val(),
-            Status: { Id: $("#inStatus").val() },
-            OpeningMeasurement: { Id: $("#inOpeningMeasurement").val() },
-            CreatorUser: 6,
-            ModificationUser: 6,
+      {
+          pDoors: {
 
-        }
-    };
+              DoorStyle: { Id: $("#inDoorStyle").val() },
+              Material: { Id: $("#inMaterial").val() },
+              TopRail: { Id: $("#inTopRail").val() },
+              BottomRail: { Id: $("#inBottomRail").val() },
+              Preparation: { Id: $("#inPreparation").val() },
+              Join: { Id: $("#inJoin").val() },
+              OutsideEdgeProfile: { Id: $("#inOutsideEdgeProfile").val() },
+              InsideEdgeProfile: { Id: $("#inInsideEdgeProfile").val() },
+              VerticalDivisions: { Id: $("#inVerticalDivisions").val() },
+              HorizontalDivisions: { Id: $("#inHorizontalDivisions").val() },
+              HingeDirection: { Id: $("#inHingeDirection").val() },
+              HingePositions: { Id: 1 },
+              Panel: { Id: $("#inPanel").val() },
+              PanelMaterial: { Id: $("#inPanelMaterial").val() },
+              Drill: { Id: $("#inDrill").val() },
+              Width: $("#inWidth").val(),
+              Height: $("#inHeight").val(),
+              Picture: $("#inPicture").val(),
+              ProfilePicture: $("#inProfilePicture").val(),
+              Status: { Id: $("#inStatus").val() },
+              OpeningMeasurement: { Id: $("#inOpeningMeasurement").val() },
+              CreatorUser: 6,
+              ModificationUser: 6,
+
+          }
+      };
+    formData.append('pDoors', pDoors);
+   
+
+
+    compania.push(formData);
+  
     console.log(datos);
     $.ajax({
         type: 'POST',
-        data: JSON.stringify(datos),
+        data: compania[0],
         url: urlInsertDoors,
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
