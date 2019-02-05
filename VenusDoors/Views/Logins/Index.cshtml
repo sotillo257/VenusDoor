@@ -3,129 +3,139 @@
     ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@model Model.User
 <div class="br-pagebody">
     <div class="br-section-wrapper" style="margin-top: 100px;margin-left: 50px;margin-right: 50px;">
-            <div class="modal-body pd-0">
-                        <div class="row no-gutters">
-                            <div id="login-div" class="col-lg-6 bg-white">
-                                <div class="login_slider">
-                                    <div id="slider_login" class="carousel slide carousel-fade" data-ride="carousel">
-                                        <div id="login_inner" class="carousel-inner">
+        <div class="modal-body pd-0">
+            <div class="row no-gutters">
+                <div id="login-div" class="col-lg-6 bg-white">
+                    <div class="login_slider">
+                        <div id="slider_login" class="carousel slide carousel-fade" data-ride="carousel">
+                            <div id="login_inner" class="carousel-inner">
 
-                                            <div class="login_item1 carousel-item active">
-                                                <div id="fondo_color_s">
-                                                    <div class="letras_slider">
-                                                        <h5>Buil a Door</h5>
+                                <div class="login_item1 carousel-item active">
+                                    <div id="fondo_color_s">
+                                        <div class="letras_slider">
+                                            <h5>Buil a Door</h5>
                                             <p>
                                                 You can order the cabinet doors of your dreams with the specifications that suit your needs. Venus Doors manufactures both raise panel and flat panel custom style cabinet doors.
                                                 <img style="width:100%" src="~/Content/img/Cabinet Vector-01.png" />
                                             </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="login_item2 carousel-item">
-                                                <div id="fondo_color_s">
-                                                    <div class="letras_slider">
-                                                        <h5>Record time</h5>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="login_item2 carousel-item">
+                                    <div id="fondo_color_s">
+                                        <div class="letras_slider">
+                                            <h5>Record time</h5>
                                             <p>
                                                 We produce shaker style doors any size within a week. Our production level have reached 800 doors a day. We manufacture cabinet doors in many wood styles, including Poplar, Maple, Beech, Knotty Alder and Red Oak.
                                                 <img style="width:100%" src="~/Content/img/Cabinet Vector-02.png" />
                                             </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="login_item3 carousel-item">
-                                                <div id="fondo_color_s">
-                                                    <div class="letras_slider">
-                                                        <h5>Your Best Option</h5> 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="login_item3 carousel-item">
+                                    <div id="fondo_color_s">
+                                        <div class="letras_slider">
+                                            <h5>Your Best Option</h5>
                                             <p>
                                                 We at Venus cabinet doors offer you the best advice and service. We have become into a powerful mill-work processing and manufacturing company offering you always the best quality in cabinet doors.
                                                 <img style="width:100%" src="~/Content/img/Cabinet_Vector-07.jpg" />
                                             </p>
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </div>
-
-                                        <a class="carousel-control-prev" href="#slider_login" role="button" data-slide="prev">
-                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                            <span class="sr-only">Previous</span>
-                                        </a>
-
-                                        <a class="carousel-control-next" href="#slider_login" role="button" data-slide="next">
-                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                            <span class="sr-only">Next</span>
-                                        </a>
                                     </div>
-
-
                                 </div>
                             </div>
-                                @*<div class="col-lg-6 bg-primary">
-                <div class="w3-content w3-section">
-                    <img class="mySlides" src="~/Content/img/Cabinet Vector-01.png" style="width:100%">
-                    <img class="mySlides" src="~/Content/img/Cabinet Vector-02.png" style="width:100%">
-                    <img class="mySlides" src="~/Content/img/Cabinet Vector-03.png" style="width:100%">
+
+                            <a class="carousel-control-prev" href="#slider_login" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+
+                            <a class="carousel-control-next" href="#slider_login" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+
+
+                    </div>
                 </div>
-            </div>*@<!-- col-6 -->
-                                <div id="login-div" class="col-lg-6 bg-white">
-                                    @using (Html.BeginForm("Autherize", "Logins", FormMethod.Post))
-                                    {
-                                        <div class="pd-30">
-                                            <div class="pd-x-30 pd-y-10">
-                                                <h3 class="tx-inverse mg-b-5">Welcome back!</h3>
-                                                <p>Sign in to your account to continue</p>
-                                                <br>
-                                                <div class="form-group">
-                                                    @Html.LabelFor(model => model.Email)
-                                                    @*@Html.EditorFor(model => model.Email)*@
-                                                    <input class="form-control" data-val="true" data-val-required="This field is required" id="Email" name="Email" type="text" value="">
-                                                </div><!-- form-group -->
-                                                <div class="form-group mg-b-20">
-                                                    @Html.ValidationMessageFor(model => model.Password)
-                                                </div><!-- form-group -->
-                                                <div class="form-group mg-b-20">
-                                                    @Html.LabelFor(model => model.Password)
-                                                    @*@Html.EditorFor(model => model.Password)*@
-                                                    <input class="form-control" data-val="true" data-val-required="This field is required" id="Password" name="Password" type="password" value="">
-                                                    <a onclick="location.href='@Url.Action("Recover_Password","Logins")'" class="tx-12 d-block mg-t-10">Forgot password?</a>
-                                                </div><!-- form-group -->
-                                                <div class="form-group mg-b-20">
-                                                    @Html.ValidationMessageFor(model => model.Password)
-                                                </div>
-                                            </div><!-- form-group -->
-                                            <div class="form-group mg-b-20">
-                                                @Html.ValidationMessageFor(model => model.Password)
-                                                <label class="field-validation-error">@*@Html.DisplayFor(model => model.LoginErrorMessage)*@</label>
-                                            </div><!-- form-group -->
+                @*<div class="col-lg-6 bg-primary">
+                        <div class="w3-content w3-section">
+                            <img class="mySlides" src="~/Content/img/Cabinet Vector-01.png" style="width:100%">
+                            <img class="mySlides" src="~/Content/img/Cabinet Vector-02.png" style="width:100%">
+                            <img class="mySlides" src="~/Content/img/Cabinet Vector-03.png" style="width:100%">
+                        </div>
+                    </div>*@<!-- col-6 -->
+                <div class="col-lg-6 bg-white">
 
-                                            <input type="submit" value="Sign In" class="Cursor btn btn-primary pd-y-12 btn-block" />
+                    <div class="pd-30">
+                        <div class="pd-x-30 pd-y-10">
+                            <h3 class="tx-inverse mg-b-5">Welcome back!</h3>
+                            <p>Sign in to your account to continue</p>
+                            <br>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input class="userEmail form-control" id="intEmail" type="text">
+                            </div><!-- form-group -->
+                            <div class="form-group mg-b-20">
+                            </div><!-- form-group -->
+                            <div class="form-group mg-b-20">
+                                <label>Password</label>
+                                <input class="UserPass form-control" id="intPassword" type="password">
 
-                                            <div class="mg-t-30 mg-b-20 tx-12">Don't have an account yet? @Html.ActionLink("Create one!", "sing_up", "Logins")</div>
+                                @Html.ActionLink("Forgot password?", "Recover_Password", "Logins")
+                            </div><!-- form-group -->
+                            <div class="form-group mg-b-20">
+                            </div>
+                        </div><!-- form-group -->
 
-                                            <p class="tx-11 tx-uppercase tx-spacing-2">Or Sign In With</p>
-                                            <a href="#" class="btn btn-primary btn-icon">
-                                                <div><i class="fa fa-facebook"></i></div>
-                                            </a>
-                                            <a href="#" class="btn btn-info btn-icon mg-l-5">
-                                                <div><i class="fa fa-twitter"></i></div>
-                                            </a>
-                                            <a href="#" class="btn btn-danger btn-icon mg-l-5">
-                                                <div><i class="fa fa-google-plus"></i></div>
-                                            </a>
 
-                                        </div>
+                        <button id="ingresarbtn" class="Cursor ingresar btn btn-primary pd-y-12 btn-block">Sign In</button>
 
-                                    }
-                                </div><!-- col-6 -->
-                            </div><!-- row -->
+                        <div class="mg-t-30 mg-b-20 tx-12">Don't have an account yet? @Html.ActionLink("Create one!", "sing_up", "Logins")</div>
 
-                    </div><!-- modal-body -->
-                </div><!-- modal-content -->
-            </div><!-- modal-dialog -->
+                        <p class="tx-11 tx-uppercase tx-spacing-2">Or Sign In With</p>
+                        <a href="#" class="btn btn-primary btn-icon">
+                            <div><i class="fa fa-facebook"></i></div>
+                        </a>
+                        <a href="#" class="btn btn-info btn-icon mg-l-5">
+                            <div><i class="fa fa-twitter"></i></div>
+                        </a>
+                        <a href="#" class="btn btn-danger btn-icon mg-l-5">
+                            <div><i class="fa fa-google-plus"></i></div>
+                        </a>
+
+                    </div>
+                </div><!-- col-6 -->
+            </div><!-- row -->
+
+        </div><!-- modal-body -->
+    </div><!-- modal-content -->
+</div><!-- modal-dialog -->
+
+<div id="modalError" class="modal fade">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content tx-size-sm">
+            <div class="modal-body tx-center pd-y-20 pd-x-20">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <i class="icon icon ion-ios-close-outline tx-100 tx-danger lh-1 mg-t-20 d-inline-block"></i>
+                <h4 class="tx-danger  tx-semibold mg-b-20">Error! Invalid username or password</h4>
+                <p class="mg-b-20 mg-x-20">If you forgot your password you can restore it <a href='@Url.Action("Recover_Password","Logins")'>here</a></p>
+                <button type="button" class="btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">
+                    Continue
+                </button>
+            </div><!-- modal-body -->
+        </div><!-- modal-content -->
+    </div><!-- modal-dialog -->
+</div>
+
 @section scripts{
+    @Scripts.Render("~/Scripts/js/LoginSiginUp.js")
     <script>
 var myIndex = 0;
 carousel();
@@ -134,18 +144,18 @@ function carousel() {
   var i;
   var x = document.getElementsByClassName("mySlides");
   for (i = 0; i < x.length; i++) {
-    x[i].style.display = "none";  
+    x[i].style.display = "none";
   }
   myIndex++;
-  if (myIndex > x.length) {myIndex = 1}    
-  x[myIndex-1].style.display = "block";  
+  if (myIndex > x.length) {myIndex = 1}
+  x[myIndex-1].style.display = "block";
   setTimeout(carousel, 5000); // Change image every 2 seconds
 }
-</script>
+    </script>
 
-@Scripts.Render("~/Scripts/js/LoginSiginUp.js")
 
-<script type="text/javascript">
+
+    <script type="text/javascript">
     var urlAutherize = '@Url.Action("Autherize", "Logins")';
-</script>
-    }
+    </script>
+}
