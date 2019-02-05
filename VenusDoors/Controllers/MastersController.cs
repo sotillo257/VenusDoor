@@ -155,13 +155,36 @@ namespace VenusDoors.Controllers
             try
             {
 
-                pDoors.CreationDate = DateTime.Now;
-                pDoors.ModificationDate = DateTime.Now;
-                pDoors.Picture = "Picture";
-                pDoors.ProfilePicture = "empty";
-                BusinessLogic.lnDoors _LM = new BusinessLogic.lnDoors();
-                var inDoor = _LM.InsertDoors(pDoors);
-                return Json(true, JsonRequestBehavior.AllowGet);
+                if (Request.Files.Count > 0)
+                {
+                    var file = Request.Files[0];
+                    var fileName = Path.GetFileName(file.FileName);
+
+                    //var path = Path.Combine(Server.MapPath("~/"), fileName);
+
+                    BinaryReader binaryReader = new BinaryReader(file.InputStream);
+                    byte[] binData = binaryReader.ReadBytes(Int32.Parse(file.InputStream.Length.ToString()));
+
+                    //System.IO.File.WriteAllBytes("c:\\Prueba\\" + file.FileName, binData);
+                    pDoors.CreationDate = DateTime.Now;
+                    pDoors.ModificationDate = DateTime.Now;
+                    pDoors.Picture = "Picture";
+                    pDoors.ProfilePicture = "empty";
+                    BusinessLogic.lnDoors _LM = new BusinessLogic.lnDoors();
+                    var inDoor = _LM.InsertDoors(pDoors);
+                    return Json(true, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    pDoors.CreationDate = DateTime.Now;
+                    pDoors.ModificationDate = DateTime.Now;
+                    pDoors.Picture = "Picture";
+                    pDoors.ProfilePicture = "empty";
+                    BusinessLogic.lnDoors _LM = new BusinessLogic.lnDoors();
+                    var inDoor = _LM.InsertDoors(pDoors);
+                    return Json(true, JsonRequestBehavior.AllowGet);
+                }
+                
 
             }
             catch

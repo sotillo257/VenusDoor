@@ -49,10 +49,6 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="row">
-                        <div class="col-xs-4 col-md-3">
-                            <label for="txtTemplate" style="margin-top: 25px;">(*) Template / Item Name: </label>
-                            <input required class="required RequiereLlenar form-control" onblur="limpia()" maxlength="20" minlength="4" name="txtTemplate" id="txtTemplate" type="text">
-                        </div><!-- col -->
 
                         <div class="col-xs-4 col-md-3">
                             <label for="Material" style="margin-top: 25px;">Wood Species: </label>
@@ -215,14 +211,11 @@
                     </div>
                 </div>
               
-                
-                    <div class="col-md-2">
+                    <div class="hidden col-md-2">
                         <div id="Picture" class="row" style="margin-right: 0px;">
                             <center>
-                                <img id="ImgProfile" style="height: 100px;width: 260px;margin-top: 20px;" src="" />
-                                <img id="Image" style="width: 230px;height: 230px;" src="">
-                                @*<a class="Cursor Door" value=""><img style="width: 130px;" src="" /></a>*@
-                                @*<img class="img-fluid rounded-right" alt="" src="" id="ImagenModal" />*@
+                                <img style="height: 100px;width: 235px;margin-top: 20px;" src="~/Content/img/img11.jpg" />
+                                <img style="width: 230px;height: 230px;" src="~/Content/img/img11.jpg">
                             </center>
                         </div>
                     </div>
@@ -310,19 +303,19 @@
     </script>
 
     <script type="text/javascript">
-           function validarFormulario(){
-               $("#validate").validate(function() {
-                   if ($('.RequiereLlenar').val() === '') {
-                       $('#modalPrueba').modal('toggle');
+           //function validarFormulario(){
+           //    $("#validate").validate(function() {
+           //        if ($('.RequiereLlenar').val() === '') {
+           //            $('#modalPrueba').modal('toggle');
 
-                   } else {
+           //        } else {
 
-                   }
-               })
-           }
-           $(document).ready(function () {
-               validarFormulario();
-           });
+           //        }
+           //    })
+           //}
+           //$(document).ready(function () {
+           //    validarFormulario();
+           //});
     </script>
     <style type="text/number">
         .error {
@@ -346,15 +339,6 @@
 
             if (letras.indexOf(tecla) == -1 && !tecla_especial)
                 return false;
-        }
-
-        function limpia() {
-            var val = document.getElementById("miInput").value;
-            var tam = val.length;
-            for (i = 0; i < tam; i++) {
-                if (!isNaN(val[i]))
-                    document.getElementById("miInput").value = '';
-            }
         }
 
         function soloNumeros(e) {
@@ -388,9 +372,9 @@
         //            break;
         //        }
     //    }
-        window.addEventListener("load", function() {
-            SoloNumeros.SoloNumeros.addEventListener("keypress", soloNumeros, false);
-        });
+        //window.addEventListener("load", function() {
+        //    SoloNumeros.SoloNumeros.addEventListener("keypress", soloNumeros, false);
+        //});
 
         //Solo permite introducir numeros.
         function soloNumeros(e){
@@ -416,27 +400,43 @@
 
     $(document).ready(function () {
         var listDoors = JSON.parse('@Html.Raw(ViewBag.Door)');
-        $(document).on('click', '.Door', function (event) {
+       
           SearchDoor(listDoors);
         });
 
     function SearchDoor(data) {
         if (data != null) {
-            for (var i = 0; i < data.length; i++) {
-               
-                    console.log(data[i]);
+                     
+                    console.log(data);
                     var HTMLImage =
                        // '<img class="img-fluid rounded-right" alt="' + data[i].Material.Description + '" src="' + data[i].Picture + '"/>';
-                   ' <center> <img style="height: 100px;width: 260px;margin-top: 20px;" src="' + data[i].ProfilePicture + '" />' +
-                               '<img style="width: 230px;height: 230px;" src="' + data[i].Picture + '"></center>';
-                    console.log(data[i].Picture);
+                   ' <center> <img style="height: 100px;width: 235px;margin-top: 20px;" src="' + data.ProfilePicture + '">' +
+                              '<img style="width: 230px;height: 230px;" src="' + data.Picture + '">' +
+                              '</center>';
                     $('#Picture').html(HTMLImage);
-               
-            }
+
+                    $("#cbMaterial").val(data.Material.Id);
+                    $("#cbDoorStyle").val(data.DoorStyle.Id);
+                    $("#cbTopRail").val(data.TopRail.Id);
+                    $("#cbBottomRail").val(data.BottomRail.Id);
+                    $("#cbPreparation").val(data.Preparation.Id);
+                    $("#cbPanel").val(data.Panel.Id);
+                    $("#cbPanelMaterial").val(data.PanelMaterial.Id);
+                    $("#cbIsOpeningMeasurement").val(data.IsOpeningMeasurement);
+                    $("#cbJoin").val(data.Join.Id);
+                    $("#cbOutsideEdgeProfile").val(data.OutsideEdgeProfile.Id);
+                    $("#cbInsideEdgeProfile").val(data.InsideEdgeProfile.Id);
+                    $("#cbVerticalDivisions").val(data.VerticalDivisions.Id);
+                    $("#cbHorizontalDivisions").val(data.HorizontalDivisions.Id);
+                    $("#iptWidth").val(data.Width);
+                    $("#iptHeight").val(data.Height);
+                    $("#iptQuantity").val(1);
+            // $("#iptCost").val();
+             $("#cbisDrill").val(data.isDrill);
+             GetPrices();
         }else{
             alert("lista vacia");}
 
     }
-    })
 </script>
 }
