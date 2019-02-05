@@ -548,7 +548,7 @@ $(document).ready(function () {
         }
         else {
             
-            alert('Max Height is 96 inches');
+            $('#modalMaximoHeight').modal('toggle');
                 Height = 96;
                 var ip1 = 3.5;
                 var ip2 = 3.5 + (((Height / 2) - 3.5) / 2);
@@ -578,7 +578,8 @@ $(document).ready(function () {
         else if ($(this).val() > 42)
         {
 
-            $('#modalMaximo').modal('toggle');
+            //$('#modalMaximo').modal('toggle');
+            LlammarModal("Danger", "Hola Javier");
             Width = 42;
             $('.iptWidth').val(Width);
            

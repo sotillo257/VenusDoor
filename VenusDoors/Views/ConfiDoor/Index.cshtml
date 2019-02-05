@@ -150,10 +150,10 @@
                         <div id="HingeDirectionDiv" style="display:none" class="target col-xs-4 col-md-3">
                             <label for="HingeDirection" style="margin-top: 25px;">Hinge Direction: </label>
                             <select style="width:100%" value="true" class="ocultar select2 form-control" id="cbHingeDirection" data-placeholder="">
-                                <option hidden="hidden" selected value="0" disabled>Select direction</option>
+                                <option hidden selected value="0" disabled>Select direction</option>
                                 <option value="1">Right</option>
                                 <option value="2">Left</option>
-                                <option value="3" hidden="hidden">No Hinge</option>
+                                <option value="3" hidden>No Hinge</option>
                             </select>
                         </div><!-- col -->
 
@@ -214,30 +214,19 @@
                         }
                     </div>
                 </div>
-                @if (ViewBag.Door == null)
-                {
-                    <div class="hidden col-md-2">
-                        <div id="Picture" class="row" style="margin-right: 0px;">
-                            <center>
-                                <img style="height: 100px;width: 260px;margin-top: 20px;" src="~/Content/img/img11.jpg" />
-                                <img style="width: 230px;height: 230px;" src="~/Content/img/img11.jpg">
-                            </center>
-                        </div>
-                    </div>
-                }
-                else
-                {
+              
+                
                     <div class="col-md-2">
                         <div id="Picture" class="row" style="margin-right: 0px;">
                             <center>
-                                <img style="height: 100px;width: 260px;margin-top: 20px;" src="" />
-                                <img style="width: 230px;height: 230px;" src="">
+                                <img id="ImgProfile" style="height: 100px;width: 260px;margin-top: 20px;" src="" />
+                                <img id="Image" style="width: 230px;height: 230px;" src="">
                                 @*<a class="Cursor Door" value=""><img style="width: 130px;" src="" /></a>*@
                                 @*<img class="img-fluid rounded-right" alt="" src="" id="ImagenModal" />*@
                             </center>
                         </div>
                     </div>
-                }
+                
                 
                 @if (Session["UserID"] == null)
             {
@@ -252,115 +241,6 @@
 </div>
 
 <div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div>
-
-<div id="ModalSuccess" class="modal fade" style="display: none;" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content tx-size-sm">
-            <div class="modal-body tx-center pd-y-20 pd-x-20">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-                <i class="icon ion-ios-checkmark-outline tx-100 tx-success lh-1 mg-t-20 d-inline-block"></i>
-                <h4 class="tx-success tx-semibold mg-b-20">Successful door creation!</h4>
-                <p class="mg-b-20 mg-x-20">You can go to see your order and specify your purchase or, you can create another door.</p>
-                <button type="button" onclick="window.location.reload()" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">
-                    Build another door
-                </button>
-                <button type="button" onclick="location.href='@Url.Action("Index","OrderSummary")'" class="Cursor btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">
-                    Go to my order
-                </button>
-            </div><!-- modal-body -->
-        </div><!-- modal-content -->
-    </div><!-- modal-dialog -->
-</div>
-<div id="modalFail" class="modal fade">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content tx-size-sm">
-            <div class="modal-body tx-center pd-y-20 pd-x-20">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-                <i class="icon icon ion-ios-close-outline tx-100 tx-danger lh-1 mg-t-20 d-inline-block"></i>
-                <h4 class="tx-danger  tx-semibold mg-b-20">Error: Cannot process your entry!</h4>
-                <p class="mg-b-20 mg-x-20">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration.</p>
-                <button type="button" class="Cursor btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">
-                    Continue
-                </button>
-            </div><!-- modal-body -->
-        </div><!-- modal-content -->
-    </div><!-- modal-dialog -->
-</div>
-
-<div id="modalMaximo" class="modal fade">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content tx-size-sm">
-            <div class="modal-body tx-center pd-y-20 pd-x-20">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-                <i class="icon icon ion-ios-close-outline tx-100 tx-danger lh-1 mg-t-20 d-inline-block"></i>
-                <h4 class="tx-danger  tx-semibold mg-b-20">Error: Cannot process your entry!</h4>
-                <p class="mg-b-20 mg-x-20">Max is 42 inches</p>
-                <button type="button" class="btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">
-                    Continue
-                </button>
-            </div><!-- modal-body -->
-        </div><!-- modal-content -->
-    </div><!-- modal-dialog -->
-</div>
-
-<div id="modalMinimo" class="modal fade">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content tx-size-sm">
-            <div class="modal-body tx-center pd-y-20 pd-x-20">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-                <i class="icon icon ion-ios-close-outline tx-100 tx-danger lh-1 mg-t-20 d-inline-block"></i>
-                <h4 class="tx-danger  tx-semibold mg-b-20">Error: Cannot process your entry!</h4>
-                <p class="mg-b-20 mg-x-20">Minimum is 5 inches</p>
-                <button type="button" class="btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">
-                    Continue
-                </button>
-            </div><!-- modal-body -->
-        </div><!-- modal-content -->
-    </div><!-- modal-dialog -->
-</div>
-<!-- Modal login-->
-
-<div id="ModalLogin" class="modal fade">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content tx-size-sm">
-            <div class="modal-body tx-center pd-y-20 pd-x-20">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button><ion-icon name="alert"></ion-icon>
-                <i id="icon_modal" class="ion-alert tx-100 lh-1 mg-t-20 tx-primary d-inline-block"></i>
-                <h4 style="color:#000" class="tx-semibold mg-b-20">Sign in to your account to process your order!</h4>
-                <button onclick="location.href='@Url.Action("Index","Logins")'" id="GoToSign" type="button" class="btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" aria-label="Close">
-                    Sign in
-                </button>
-            </div><!-- modal-body -->
-        </div><!-- modal-content -->
-    </div><!-- modal-dialog -->
-</div>
-
-<div id="ModalNoSession" class="modal fade">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content tx-size-sm">
-            <div class="modal-body tx-center pd-y-20 pd-x-20">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button><ion-icon name="alert"></ion-icon>
-                <i id="icon_modal" class="ion-alert tx-100 lh-1 mg-t-20 tx-primary d-inline-block"></i>
-                <h4 style="color:#000" class="tx-semibold mg-b-20">Sign in to your account to start building doors!</h4>
-                <button onclick="location.href='@Url.Action("Index","Logins")'" id="GoToSign" type="button" class="btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" aria-label="Close">
-                    Sign in
-                </button>
-            </div><!-- modal-body -->
-        </div><!-- modal-content -->
-    </div><!-- modal-dialog -->
-</div>
 
 
 @section scripts{
@@ -537,13 +417,13 @@
     $(document).ready(function () {
         var listDoors = JSON.parse('@Html.Raw(ViewBag.Door)');
         $(document).on('click', '.Door', function (event) {
-          SearchDoor(listDoors, $(this).attr('value'));
+          SearchDoor(listDoors);
         });
 
-    function SearchDoor(data, idDoor) {
+    function SearchDoor(data) {
         if (data != null) {
             for (var i = 0; i < data.length; i++) {
-                if (data[i].Id == idDoor) {
+               
                     console.log(data[i]);
                     var HTMLImage =
                        // '<img class="img-fluid rounded-right" alt="' + data[i].Material.Description + '" src="' + data[i].Picture + '"/>';
@@ -551,7 +431,7 @@
                                '<img style="width: 230px;height: 230px;" src="' + data[i].Picture + '"></center>';
                     console.log(data[i].Picture);
                     $('#Picture').html(HTMLImage);
-                }
+               
             }
         }else{
             alert("lista vacia");}
