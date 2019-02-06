@@ -57,7 +57,7 @@
             }
             else
             {
-                <p class="mg-b-0">Modals are streamlined, but flexible, dialog prompts with the minimum required functionality and smart defaults.</p>
+                <p class="mg-b-0">This is your active order. Click on continue to process your purchase.</p>
             }
 
         </div>
@@ -71,10 +71,9 @@
                     <th>Inside profile</th>
                     <th>Flat Panel</th>
                     <th>Quantity</th>
-                    <th>Sub-Total</th>
-                    <th>Tax</th>
+                    <th>Item cost</th>
                     <th>Total</th>
-                    <th>Delete item</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody class="odd" id="id-table">
@@ -96,7 +95,8 @@
                     {
                         foreach (Model.DoorsxUser i in ViewBag.xUserDoors)
                         {
-
+                            decimal itemcost = (i.SubTotal / i.Quantity);
+                            
                             <tr>
                                 <td><img src="@i.Picture"></td>
                                 <td>@i.Material.Description</td>
@@ -104,9 +104,8 @@
                                 <td>@i.InsideEdgeProfile.Description</td>
                                 <td>@i.PanelMaterial.Description</td>
                                 <td>@i.Quantity</td>
-                                <td>@i.SubTotal $</td>
-                                <td>@i.SubTotal * 8.25</td>
-                                <td>$</td>
+                                <td>@itemcost</td>
+                                <td>@i.SubTotal</td>
                                 <td id="tddelete">
                                     <button class="Cursor btn btn-danger btn-icon btnn-dele" data-id="@i.Id" style="width: 37px;height: 37px;" type="submit"><i class="fa fa-trash"></i></button>
                                 </td>
@@ -135,8 +134,14 @@
                 }
                 else if(ord.Status.Id == 1 && ord.Total != 0)
                 {
+                  
+                    <input hidden id="idorder" value="@ord.Id" />
+                    <input hidden id="idtotal" value="@ord.Total" />
+                    <input hidden id="idstatus" value="@ord.Status.Id" />
                     <div class="col-md-7">
-                        <h3 style="color:#000">Total Price: @ord.Total $</h3>
+                        <h5 style="color:#7b7979">Sub-Total: @ord.SubTotal<span>$</span></h5>
+                        <h5 style="color:#7b7979">Tax: @ord.Tax<span>$</span></h5>
+                        <h3 style="color:#000">Total Price: @ord.Total<span>$</span></h3>
                     </div>
                 }
                 else
@@ -156,7 +161,7 @@
             {
                
                 <div class="col-md-5">
-                    <center>
+                    <center style="text-align: right; margin-top: 20px;">
                         <button id="btn_carrito" style="margin-left: 10px;" type="button" onclick="location.href='@Url.Action("Index","ConfiDoor")'" class="Cursor btn btn-success" title="">Build a Door</button>
                         <button id="btn-continue" style="margin-left: 10px;" onclick="this.disabled = true; ConverExcel('idOrderSummary', 'W3C Example Table')" type="submit" src="#" class="Cursor btn btn-primary" title="">Continue</button>
                     </center>
@@ -164,96 +169,6 @@
             }
         </div>
     </div>
-</div>
-
-<div id="modalCongra" class="modal fade" style="display: none;" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content tx-size-sm">
-            <div class="modal-body tx-center pd-y-20 pd-x-20">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-                <i class="icon ion-ios-checkmark-outline tx-100 tx-success lh-1 mg-t-20 d-inline-block"></i>
-                <h4 class="tx-success tx-semibold mg-b-20">Congratulations!</h4>
-                <p class="mg-b-20 mg-x-20">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration.</p>
-                <button type="button" onclick="window.location.reload()" class="Cursor btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">
-                    Continue
-                </button>
-            </div><!-- modal-body -->
-        </div><!-- modal-content -->
-    </div><!-- modal-dialog -->
-</div>
-<div id="modalError" class="modal fade">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content tx-size-sm">
-            <div class="modal-body tx-center pd-y-20 pd-x-20">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-                <i class="icon icon ion-ios-close-outline tx-100 tx-danger lh-1 mg-t-20 d-inline-block"></i>
-                <h4 class="tx-danger  tx-semibold mg-b-20">Error: Cannot process your entry!</h4>
-                <p class="mg-b-20 mg-x-20">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration.</p>
-                <button type="button" class="Cursor btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">
-                    Continue
-                </button>
-            </div><!-- modal-body -->
-        </div><!-- modal-content -->
-    </div><!-- modal-dialog -->
-</div>
-<div id="modalConfirmDeleteAll" class="modal fade">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content tx-size-sm">
-            <div class="modal-body tx-center pd-y-20 pd-x-20">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button><ion-icon name="alert"></ion-icon>
-                <i id="alerticon"style="color:#ff9900" class="ion-alert tx-100 lh-1 mg-t-20 d-inline-block"></i>
-                <h4 id="alertmessage" style="color:#ff9900"class="tx-semibold mg-b-20">This option is going to delete all your items </h4>
-                <p class="mg-b-20 mg-x-20">Are you sure you want that?</p>                
-                <button id="cnlDROP" type="button" class="btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">
-                    Cancel
-                </button>
-                <button id="confirmDROP"  type="button" class="Cursor btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" aria-label="Close">
-                    Continue
-                </button>
-            </div><!-- modal-body -->
-        </div><!-- modal-content -->
-    </div><!-- modal-dialog -->
-</div>
-
-<div id="modalCongra" class="modal fade" style="display: none;" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content tx-size-sm">
-            <div class="modal-body tx-center pd-y-20 pd-x-20">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-                <i class="icon ion-ios-checkmark-outline tx-100 tx-success lh-1 mg-t-20 d-inline-block"></i>
-                <h4 class="tx-success tx-semibold mg-b-20">Congratulations!</h4>
-                <p class="mg-b-20 mg-x-20">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration.</p>
-                <button type="button" onclick="window.location.reload()" class="Cursor btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">
-                    Continue
-                </button>
-            </div><!-- modal-body -->
-        </div><!-- modal-content -->
-    </div><!-- modal-dialog -->
-</div>
-<div id="modalError" class="modal fade">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content tx-size-sm">
-            <div class="modal-body tx-center pd-y-20 pd-x-20">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-                <i class="icon icon ion-ios-close-outline tx-100 tx-danger lh-1 mg-t-20 d-inline-block"></i>
-                <h4 class="tx-danger  tx-semibold mg-b-20">Error: Cannot process your entry!</h4>
-                <p class="mg-b-20 mg-x-20">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration.</p>
-                <button type="button" class="Cursor btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">
-                    Continue
-                </button>
-            </div><!-- modal-body -->
-        </div><!-- modal-content -->
-    </div><!-- modal-dialog -->
 </div>
 
 @section scripts{

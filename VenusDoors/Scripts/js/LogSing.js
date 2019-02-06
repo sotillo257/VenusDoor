@@ -23,7 +23,7 @@ function Login() {
             if (result == true) {
                 $('#idLogin').urlAutherize('toggle');
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "Error! Invalid username or password", "If you forgot your password you can restore it here");
             }
         },
         error: function (err) {
@@ -46,9 +46,9 @@ function SignUp() {
         success: function (result) {
 
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Sing", "Congratulations! The creation of your user has been successful.", "A message has been sent to the email supplied with an activation code to complete your registration.");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "An error occurred during the process.", "Check your internet connection I tried again");
             }
         },
         error: function (err) {

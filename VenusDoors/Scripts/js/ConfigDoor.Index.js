@@ -12,6 +12,7 @@
 	GetAllPanelMaterial();
 	GetAllVerticalDivisions();
 	GetAllHorizontalDivisions();
+	GetAllHingeDirection();
 	ValidateSession();
 
 	$("#btConfirm").on("click", function () {
@@ -19,7 +20,7 @@
 	});
     
 	$("#bt-conf-log").on("click", function () {
-	    $('#ModalLogin').modal('toggle');
+	    LlammarModal("MLogin", "Error obtaining price");
 	});
 });
 
@@ -43,7 +44,7 @@ function GetAllMaterial() {
 
             }
             else {
-                MensajeModal("Error al obtener Material", 5);
+                LlammarModal("Danger", "Error obtaining Material", " ");
             }
         },
         error: function (err) {
@@ -73,7 +74,7 @@ function GetAllDoorStyle() {
 
 			}
 			else {
-				MensajeModal("Error al obtener Door Style", 5);
+			    LlammarModal("Danger", "Error obtaining Door Style", " ");
 			}
 		},
 		error: function (err) {
@@ -102,7 +103,7 @@ function GetAllInsideEdgeProfile() {
 
             }
             else {
-                MensajeModal("Error al obtener Inside Edge Profile", 5);
+                LlammarModal("Danger", "Error obtaining Inside Edge Profile", " ");
             }
         },
         error: function (err) {
@@ -131,7 +132,7 @@ function GetAllOutsideEdgeProfile() {
 
             }
             else {
-                MensajeModal("Error al obtener Outside Edge Profile", 5);
+                LlammarModal("Danger", "Error obtaining Outside Edge Profile", " ");
             }
         },
         error: function (err) {
@@ -160,7 +161,7 @@ function GetAllBottomRail() {
 
             }
             else {
-                MensajeModal("Error al obtener Bottom Rail", 5);
+                LlammarModal("Danger", "Error obtaining Bottom Rail", " ");
             }
         },
         error: function (err) {
@@ -189,7 +190,7 @@ function GetAllTopRail() {
 
             }
             else {
-                MensajeModal("Error al obtener Top Rail", 5);
+                LlammarModal("Danger", "Error obtaining Top Rail", " ");
             }
         },
         error: function (err) {
@@ -217,7 +218,7 @@ function GetAllJoin() {
 
             }
             else {
-                MensajeModal("Error al obtener Join", 5);
+                LlammarModal("Danger", "Error obtaining Join", " ");
             }
         },
         error: function (err) {
@@ -246,7 +247,7 @@ function GetAllPreparation() {
 
             }
             else {
-                MensajeModal("Error al obtener Preparation", 5);
+                LlammarModal("Danger", "Error obtaining Preparation", " ");
             }
         },
         error: function (err) {
@@ -275,7 +276,7 @@ function GetAllPanel() {
 
             }
             else {
-                MensajeModal("Error al obtener Panel", 5);
+                LlammarModal("Danger", "Error obtaining Panel", " ");
             }
         },
         error: function (err) {
@@ -304,7 +305,7 @@ function GetAllPanelMaterial() {
 
             }
             else {
-                MensajeModal("Error al obtener Panel Material", 5);
+                LlammarModal("Danger", "Error obtaining Panel Material", " ");
             }
         },
         error: function (err) {
@@ -332,7 +333,7 @@ function GetAllVerticalDivisions() {
 
             }
             else {
-                MensajeModal("Error al obtener Vertical Divisions", 5);
+                LlammarModal("Danger", "Error obtaining Vertical Divisions", " ");
             }
         },
         error: function (err) {
@@ -361,7 +362,36 @@ function GetAllHorizontalDivisions() {
 
             }
             else {
-                MensajeModal("Error al obtener Horizontal Divisions", 5);
+                LlammarModal("Danger", "Error obtaining Horizontal Divisions", " ");
+            }
+        },
+        error: function (err) {
+            MensajeModal(msgErrorinterno, 5);
+        }
+    });
+}
+
+function GetAllHingeDirection() {
+    $.ajax({
+        url: urlGetAllHingeDirection,
+        cache: false,
+        type: 'POST',
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        success: function (data) {
+            if (data != null) {
+                var option = '';
+                for (var i = 0; i < data.length; i++) {
+    
+                    option += '<option value="' + data[i].Id + '">' + data[i].Direction + '</option>';
+
+
+                }
+                $("#cbHingeDirection").empty().append(option);
+
+            }
+            else {
+                MensajeModal("Error al obtener Hinge Direction", 5);
             }
         },
         error: function (err) {
@@ -371,7 +401,13 @@ function GetAllHorizontalDivisions() {
 }
 
 function InsertDoorsxUser() {
-    
+    var itemCost = parseFloat($("#iptCost").val());
+    var DoorQuantity = $("#iptQuantity").val();
+    var DoorSubTotal = itemCost * DoorQuantity;
+    var OrdSubTotal = DoorSubTotal;
+    var Tx = parseFloat(0.0825);
+    var Taxes = (parseFloat(OrdSubTotal) * Tx).toFixed(2);
+    var OrdTotal = (parseFloat(OrdSubTotal) + parseFloat(Taxes)).toFixed(2);
     var datos =
          {
              
@@ -391,16 +427,22 @@ function InsertDoorsxUser() {
                  InsideEdgeProfile: { Id: $("#cbInsideEdgeProfile").val() },                            
                  VerticalDivisions: { Id: $("#cbVerticalDivisions").val() },
                  HorizontalDivisions: { Id: $("#cbHorizontalDivisions").val() },
-                 Width: $("#iptWidth").val(),
-                 Height: $("#iptHeight").val(),
-                 Quantity: $("#iptQuantity").val(),
-                 SubTotal: parseFloat($("#iptCost").val()) * $("#iptQuantity").val(),
+                 Width: parseFloat($("#iptWidth").val()),
+                 Height: parseFloat($("#iptHeight").val()),
+                 Quantity: DoorQuantity,
+                 ItemCost: itemCost,
+                 SubTotal: DoorSubTotal,
                  Picture: 'PruebaPicture',
                  ProfilePicture: 'PruebaPP',
                  isDrill: $("#cbisDrill").val(),
-                 HingeDirection: { Id: 1},
+                 HingeDirection: { Id: $("#cbHingeDirection").val()},
              },
                         
+             Ord:{
+                 SubTotal: OrdSubTotal,
+                 Tax: parseFloat(Taxes),
+                 Total: parseFloat(OrdTotal),
+             },
 
              HingeP: {
                  Position1: $("#HP1").val(),
@@ -421,9 +463,9 @@ function InsertDoorsxUser() {
 
                         //Validar data para ver si mostrar error al guardar o exito al guardar
                         if (result == true) {
-                            $('#ModalSuccess').modal('toggle');
+                            LlammarModal("Succes", "Successful door creation!", "You can go to see your order and specify your purchase or, you can create another door.");
                         } else {
-                            $('#modalFail').modal('toggle');
+                            LlammarModal("Danger", "An error occurred during the process.", "Check your internet connection I tried again");
                         }
                     },
                     error: function (err) {
@@ -484,11 +526,12 @@ $(document).ready(function () {
         var Height = parseFloat($(this).val())
         if ($(this).val() < 5) {
             
-            $('#modalMinimo').modal('toggle');
+            LlammarModal("Danger", "Error: Minimum is 5 inches", " ");
                 Height = 5;
                 var ip1 = 3.5;
                 var ip2 = Height - 3.5;
                 $('.iptHeight').val(Height);
+                GetPrices();
                 $('.HPinpt1').val(ip1);
                 $('.HPinpt2').val(ip2);
                 $('.HPinpt3').val("No hinge");
@@ -548,7 +591,7 @@ $(document).ready(function () {
         }
         else {
             
-            alert('Max Height is 96 inches');
+            LlammarModal("Danger", "Error: Max is 96 inches", " ");
                 Height = 96;
                 var ip1 = 3.5;
                 var ip2 = 3.5 + (((Height / 2) - 3.5) / 2);
@@ -556,6 +599,7 @@ $(document).ready(function () {
                 var ip4 = Height - (3.5 + (((Height / 2) - 3.5) / 2));
                 var ip5 = Height - 3.5;
                 $('.iptHeight').val(Height);
+                GetPrices();
                 $('.HPinpt1').val(ip1);
                 $('.HPinpt2').val(ip2);
                 $('.HPinpt3').val(ip3);
@@ -571,23 +615,29 @@ $(document).ready(function () {
         var Width = parseFloat($(this).val())
         if ($(this).val() < 5) {
 
-            $('#modalMinimo').modal('toggle');
+            LlammarModal("Danger", "Error: Minimum is 5 inches", " ");
             Width = 5;
             $('.iptWidth').val(Width);
+            GetPrices();
+           
         }
         else if ($(this).val() > 42)
         {
 
-            $('#modalMaximo').modal('toggle');
+            //$('#modalMaximo').modal('toggle');
+            LlammarModal("Danger", "Error: Max is 42 inches", " ");
             Width = 42;
             $('.iptWidth').val(Width);
+            GetPrices();
+           
            
         }
+        GetPrices
     });
 
     $(document).on('change', '.Profile', function () {
         ChangeProfile();
-    });
+});
 });
 
 $(document).on('change', '.eventChange', function () {
@@ -652,7 +702,7 @@ function GetPrices() {
                 }
             }
             else {
-                MensajeModal("Error al obtener precios", 5);
+                LlammarModal("Danger", "Error obtaining price");
             }
         },
         error: function (err) {
@@ -670,7 +720,7 @@ function ValidateSession() {
         success: function (result) {
 
             if (result == false) {
-                $('#ModalNoSession').modal('toggle');
+                LlammarModal("MLogin", "Error obtaining price", " ");
             } 
         },
     });
