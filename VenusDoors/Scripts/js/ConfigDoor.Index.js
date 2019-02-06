@@ -975,19 +975,19 @@ function changeDoorPicture() {
 }
 
 function FlatPanelDoor(Style) {
-   var stile = $('#cbTopRail').val();
-   var rail = $('#cbBottomRail').val();
+    var stile = $('#cbTopRail').val();
+    var rail = $('#cbBottomRail').val();
     var DoorUrl = "img11.jpg";
     var urlFolder = "/Content/img/Doors/";
     if (Style == 1008) {
         DoorUrl = "Cabinet Vector-01.png";
-    
+
         if (Style == 1002) {
-            if ( stile == 3 &&  rail == 3  ) {
+            if (stile == 3 && rail == 3) {
                 DoorUrl = "Cabinet Vector-02.png";
-            } else if ( stile == 1 &&  rail == 1  ){
+            } else if (stile == 1 && rail == 1) {
                 DoorUrl = "Cabinet Vector-14.png";
-            }           
+            }
         }
         if (Style == 1008) {
             DoorUrl = "Cabinet Vector-01.png";
@@ -999,7 +999,8 @@ function FlatPanelDoor(Style) {
             DoorUrl = "Cabinet Vector-01.png";
         }
 
-    $('#DoorPicture').attr('src', urlFolder + ProfileUrl);
+        $('#DoorPicture').attr('src', urlFolder + ProfileUrl);
+    }
 }
 
  
