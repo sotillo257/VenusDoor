@@ -61,11 +61,20 @@ namespace VenusDoors.Controllers
         [HttpPost]
         public ActionResult InsertBottomRail(BottomRail pBottomRail)
         {
-            try
+            if (Session["UserID"] == null)
             {
+                return View();
+            }
+            else
+            {
+                int userID = (int)Session["UserID"];
+                try
+               {
 
                 pBottomRail.CreationDate = DateTime.Now;
+                pBottomRail.CreatorUser = userID;
                 pBottomRail.ModificationDate = DateTime.Now;
+                pBottomRail.ModificationUser = userID;
                 BusinessLogic.lnBottomRail _LN = new BusinessLogic.lnBottomRail();
                 var inBR = _LN.InsertBottomRail(pBottomRail);
                 return Json(true, JsonRequestBehavior.AllowGet);
@@ -76,14 +85,22 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
-
+        }
         [HttpPost]
         public ActionResult UpdateBottomRail(BottomRail uBottomRail)
         {
-            try
+            if (Session["UserID"] == null)
             {
-                uBottomRail.CreationDate = DateTime.Now;
+                return View();
+            }
+            else
+            {
+                int userID = (int)Session["UserID"];
+                try
+            {
+                
                 uBottomRail.ModificationDate = DateTime.Now;
+                uBottomRail.ModificationUser = userID;
                 BusinessLogic.lnBottomRail _LN = new BusinessLogic.lnBottomRail();
                 var modBR = _LN.UpdateBottomRail(uBottomRail);
                 return Json(true, JsonRequestBehavior.AllowGet);
@@ -93,6 +110,7 @@ namespace VenusDoors.Controllers
             {
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
+        }
         }
 
         public ActionResult DeleteBottomRail(int pId)
@@ -152,10 +170,15 @@ namespace VenusDoors.Controllers
         [HttpPost]
         public ActionResult InsertDoors(Doors pDoors, HingePositions HingeP)
         {
-            try
+            if (Session["UserID"] == null)
             {
-                int userID = (int)Session["UserID"];                
-
+                return View();
+            }
+            else
+            {
+                int userID = (int)Session["UserID"];
+                try
+            {    
                 if (Request.Files.Count > 0)
                 {
                     var file = Request.Files[0];
@@ -168,7 +191,9 @@ namespace VenusDoors.Controllers
 
                     //System.IO.File.WriteAllBytes("c:\\Prueba\\" + file.FileName, binData);
                     pDoors.CreationDate = DateTime.Now;
+                    pDoors.CreatorUser = userID;
                     pDoors.ModificationDate = DateTime.Now;
+                    pDoors.ModificationUser = userID;
                     pDoors.Picture = "Picture";
                     pDoors.ProfilePicture = "empty";
                     BusinessLogic.lnDoors _LM = new BusinessLogic.lnDoors();
@@ -179,7 +204,9 @@ namespace VenusDoors.Controllers
                 {
 
                     pDoors.CreationDate = DateTime.Now;
+                    pDoors.CreatorUser = userID;
                     pDoors.ModificationDate = DateTime.Now;
+                    pDoors.ModificationUser = userID;
                     pDoors.Picture = "Picture";
                     pDoors.ProfilePicture = "empty";
                     BusinessLogic.lnDoors _LM = new BusinessLogic.lnDoors();
@@ -213,14 +240,22 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
+        }
 
         [HttpPost]
         public ActionResult UpdateDoors(Doors uDoors)
         {
-            try
+            if (Session["UserID"] == null)
             {
-                uDoors.CreationDate = DateTime.Now;
+                return View();
+            }
+            else
+            {
+                int userID = (int)Session["UserID"];
+                try
+            {
                 uDoors.ModificationDate = DateTime.Now;
+                uDoors.ModificationUser = userID;
                 uDoors.ProfilePicture = "empty";
                 BusinessLogic.lnDoors _LM = new BusinessLogic.lnDoors();
                 var modDoor = _LM.UpdateDoors(uDoors);
@@ -232,7 +267,7 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
-
+        }
         #endregion
 
         #region DoorsPrices
@@ -264,11 +299,20 @@ namespace VenusDoors.Controllers
         [HttpPost]
         public ActionResult InsertDoorsPrices(DoorsPrices pDoorsPrices)
         {
-            try
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                int userID = (int)Session["UserID"];
+                try
             {
 
                 pDoorsPrices.CreationDate = DateTime.Now;
+                pDoorsPrices.CreatorUser = userID;
                 pDoorsPrices.ModificationDate = DateTime.Now;
+                pDoorsPrices.ModificationUser = userID;
                 pDoorsPrices.Picture = "Picture";
                 pDoorsPrices.ProfilePicture = "Picture";
                 BusinessLogic.lnDoorsPrices _LP = new BusinessLogic.lnDoorsPrices();
@@ -280,15 +324,22 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
-
+        }
         [HttpPost]
         public ActionResult UpdateDoorPrice(DoorsPrices uDoorPrice)
         {
-            try
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                int userID = (int)Session["UserID"];
+                try
             {
 
-                uDoorPrice.CreationDate = DateTime.Now;
                 uDoorPrice.ModificationDate = DateTime.Now;
+                uDoorPrice.ModificationUser = userID;
                 BusinessLogic.lnDoorsPrices _LP = new BusinessLogic.lnDoorsPrices();
                 var modDP = _LP.UpdateDoorsPrices(uDoorPrice);
                 return Json(true, JsonRequestBehavior.AllowGet);
@@ -298,6 +349,7 @@ namespace VenusDoors.Controllers
             {
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
+        }
         }
         #endregion
 
@@ -327,11 +379,20 @@ namespace VenusDoors.Controllers
         [HttpPost]
         public ActionResult InsertDoorStyle(DoorStyle pDoorStyle)
         {
-            try
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                int userID = (int)Session["UserID"];
+                try
             {
 
                 pDoorStyle.CreationDate = DateTime.Now;
+                pDoorStyle.CreatorUser = userID;
                 pDoorStyle.ModificationDate = DateTime.Now;
+                pDoorStyle.ModificationUser = userID;
                 BusinessLogic.lnDoorStyle _LA = new BusinessLogic.lnDoorStyle();
                 var InserDS = _LA.InsertDoorStyle(pDoorStyle);
                 return Json(true, JsonRequestBehavior.AllowGet);
@@ -342,15 +403,22 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
-
+        }
         [HttpPost]
         public ActionResult UpdateDoorStyle(DoorStyle uDoorStyle)
         {
-            try
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                int userID = (int)Session["UserID"];
+                try
             {
 
-                uDoorStyle.CreationDate = DateTime.Now;
                 uDoorStyle.ModificationDate = DateTime.Now;
+                uDoorStyle.ModificationUser = userID;
                 BusinessLogic.lnDoorStyle _LA = new BusinessLogic.lnDoorStyle();
                 var modDS = _LA.UpdateDoorStyle(uDoorStyle);
                 return Json(true, JsonRequestBehavior.AllowGet);
@@ -361,7 +429,7 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
-
+        }
         #endregion
 
         #region DoorStylexInsideEdgeProfile
@@ -438,7 +506,14 @@ namespace VenusDoors.Controllers
         [HttpPost]
         public ActionResult InsertGroup(Group pGroup)
         {
-            try
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                int userID = (int)Session["UserID"];
+                try
             {
 
                 BusinessLogic.lnGroup _LC = new BusinessLogic.lnGroup();
@@ -451,11 +526,18 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
-
+        }
         [HttpPost]
         public ActionResult UpdateGroup(Group uGroup)
         {
-            try
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                int userID = (int)Session["UserID"];
+                try
             {
 
                 BusinessLogic.lnGroup _LC = new BusinessLogic.lnGroup();
@@ -467,6 +549,7 @@ namespace VenusDoors.Controllers
             {
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
+        }
         }
         #endregion
 
@@ -495,11 +578,20 @@ namespace VenusDoors.Controllers
         [HttpPost]
         public ActionResult InserHingeDirection(HingeDirection pHingeDirection)
         {
-            try
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                int userID = (int)Session["UserID"];
+                try
             {
 
                 pHingeDirection.CreationDate = DateTime.Now;
+                pHingeDirection.CreatorUser = userID;
                 pHingeDirection.ModificationDate = DateTime.Now;
+                pHingeDirection.ModificationUser = userID;
                 BusinessLogic.lnHingeDirection _LD = new BusinessLogic.lnHingeDirection();
                 var InserHD = _LD.InsertHingeDirection(pHingeDirection);
                 return Json(true, JsonRequestBehavior.AllowGet);
@@ -510,15 +602,23 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
+        }
 
         [HttpPost]
         public ActionResult UpdateHingeDirection(HingeDirection uHingeDirection)
         {
-            try
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                int userID = (int)Session["UserID"];
+                try
             {
 
-                uHingeDirection.CreationDate = DateTime.Now;
                 uHingeDirection.ModificationDate = DateTime.Now;
+                uHingeDirection.ModificationUser = userID;
                 BusinessLogic.lnHingeDirection _LD = new BusinessLogic.lnHingeDirection();
                 var modHD = _LD.UpdateHingeDirection(uHingeDirection);
                 return Json(true, JsonRequestBehavior.AllowGet);
@@ -528,6 +628,7 @@ namespace VenusDoors.Controllers
             {
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
+        }
         }
         #endregion
 
@@ -555,11 +656,20 @@ namespace VenusDoors.Controllers
         [HttpPost]
         public ActionResult InserHingePositions(HingePositions pHingePositions)
         {
-            try
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                int userID = (int)Session["UserID"];
+                try
             {
 
                 pHingePositions.CreationDate = DateTime.Now;
+                pHingePositions.CreatorUser = userID;
                 pHingePositions.ModificationDate = DateTime.Now;
+                pHingePositions.ModificationUser = userID;
                 BusinessLogic.lnHingePositions _LE = new BusinessLogic.lnHingePositions();
                 var InserHP = _LE.InsertHingePositions(pHingePositions);
                 return Json(true, JsonRequestBehavior.AllowGet);
@@ -570,14 +680,22 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
+        }
 
         [HttpPost]
         public ActionResult UpdateHingePositions(HingePositions uHingePositions)
         {
-            try
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                int userID = (int)Session["UserID"];
+                try
             {           
-                uHingePositions.CreationDate = DateTime.Now;
                 uHingePositions.ModificationDate = DateTime.Now;
+                uHingePositions.ModificationUser = userID;
                 BusinessLogic.lnHingePositions _LE = new BusinessLogic.lnHingePositions();
                 var modHP = _LE.UpdateHingePositions(uHingePositions);
                 return Json(true, JsonRequestBehavior.AllowGet);
@@ -587,6 +705,7 @@ namespace VenusDoors.Controllers
             {
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
+        }
         }
         #endregion
 
@@ -616,12 +735,21 @@ namespace VenusDoors.Controllers
         [HttpPost]
         public ActionResult InserHorizontalDivisions(HorizontalDivisions pHorizontalDivisions)
         {
-            try
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                int userID = (int)Session["UserID"];
+                try
             {
 
-                pHorizontalDivisions.CreationDate = DateTime.Now;
-                pHorizontalDivisions.ModificationDate = DateTime.Now;
-                BusinessLogic.lnHorizontalDivisions _LF = new BusinessLogic.lnHorizontalDivisions();
+                    pHorizontalDivisions.CreationDate = DateTime.Now;
+                    pHorizontalDivisions.CreatorUser = userID;
+                    pHorizontalDivisions.ModificationDate = DateTime.Now;
+                    pHorizontalDivisions.ModificationUser = userID;
+                    BusinessLogic.lnHorizontalDivisions _LF = new BusinessLogic.lnHorizontalDivisions();
                 var InserHoDi = _LF.InsertHorizontalDivisions(pHorizontalDivisions);
                 return Json(true, JsonRequestBehavior.AllowGet);
 
@@ -631,16 +759,23 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
-
+        }
         [HttpPost]
         public ActionResult UpdateHorizontalDivisions(HorizontalDivisions uHorizontalDivisions)
         {
-            try
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                int userID = (int)Session["UserID"];
+                try
             {
 
-                uHorizontalDivisions.CreationDate = DateTime.Now;
-                uHorizontalDivisions.ModificationDate = DateTime.Now;
-                BusinessLogic.lnHorizontalDivisions _LF = new BusinessLogic.lnHorizontalDivisions();
+                    uHorizontalDivisions.ModificationDate = DateTime.Now;
+                    uHorizontalDivisions.ModificationUser = userID;
+                    BusinessLogic.lnHorizontalDivisions _LF = new BusinessLogic.lnHorizontalDivisions();
                 var modHoDi = _LF.UpdateHorizontalDivisions(uHorizontalDivisions);
                 return Json(true, JsonRequestBehavior.AllowGet);
 
@@ -649,6 +784,7 @@ namespace VenusDoors.Controllers
             {
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
+        }
         }
         #endregion
 
@@ -678,11 +814,20 @@ namespace VenusDoors.Controllers
         [HttpPost]
         public ActionResult InsertInsideEdgeProfile(InsideEdgeProfile pInsideEdgeProfile)
         {
-            try
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                int userID = (int)Session["UserID"];
+                try
             {
 
-                pInsideEdgeProfile.CreationDate = DateTime.Now;
-                pInsideEdgeProfile.ModificationDate = DateTime.Now;
+                    pInsideEdgeProfile.CreationDate = DateTime.Now;
+                    pInsideEdgeProfile.CreatorUser = userID;
+                    pInsideEdgeProfile.ModificationUser = userID;
+                    pInsideEdgeProfile.ModificationDate = DateTime.Now;
                 BusinessLogic.lnInsideEdgeProfile _LG = new BusinessLogic.lnInsideEdgeProfile();
                 var InserIEP = _LG.InsertInsideEdgeProfile(pInsideEdgeProfile);
                 return Json(true, JsonRequestBehavior.AllowGet);
@@ -693,16 +838,24 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
+        }
 
         [HttpPost]
         public ActionResult UpdateInsideEdgeProfile(InsideEdgeProfile uInsideEdgeProfile)
         {
-            try
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                int userID = (int)Session["UserID"];
+                try
             {
 
-                uInsideEdgeProfile.CreationDate = DateTime.Now;
-                uInsideEdgeProfile.ModificationDate = DateTime.Now;
-                BusinessLogic.lnInsideEdgeProfile _LG = new BusinessLogic.lnInsideEdgeProfile();
+                    uInsideEdgeProfile.ModificationDate = DateTime.Now;
+                    uInsideEdgeProfile.ModificationUser = userID;
+                    BusinessLogic.lnInsideEdgeProfile _LG = new BusinessLogic.lnInsideEdgeProfile();
                 var modIEP = _LG.UpdateInsideEdgeProfile(uInsideEdgeProfile);
                 return Json(true, JsonRequestBehavior.AllowGet);
 
@@ -711,6 +864,7 @@ namespace VenusDoors.Controllers
             {
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
+        }
         }
         #endregion
 
@@ -741,11 +895,20 @@ namespace VenusDoors.Controllers
         [HttpPost]
         public ActionResult InsertJoin(Join pJoin)
         {
-            try
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                int userID = (int)Session["UserID"];
+                try
             {
 
-                pJoin.CreationDate = DateTime.Now;
-                pJoin.ModificationDate = DateTime.Now;
+                    pJoin.CreationDate = DateTime.Now;
+                    pJoin.CreatorUser = userID;
+                    pJoin.ModificationUser = userID;
+                    pJoin.ModificationDate = DateTime.Now;
                 BusinessLogic.lnJoin _LH = new BusinessLogic.lnJoin();
                 var InserJoin = _LH.InsertJoin(pJoin);
                 return Json(true, JsonRequestBehavior.AllowGet);
@@ -756,15 +919,22 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
-
+        }
         [HttpPost]
         public ActionResult UpdateJoin(Join uJoin)
         {
-            try
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                int userID = (int)Session["UserID"];
+                try
             {
 
-                uJoin.CreationDate = DateTime.Now;
-                uJoin.ModificationDate = DateTime.Now;
+                    uJoin.ModificationUser = userID;
+                    uJoin.ModificationDate = DateTime.Now;
                 BusinessLogic.lnJoin _LH = new BusinessLogic.lnJoin();
                 var modJoin = _LH.UpdateJoin(uJoin);
                 return Json(true, JsonRequestBehavior.AllowGet);
@@ -774,6 +944,7 @@ namespace VenusDoors.Controllers
             {
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
+        }
         }
         #endregion
 
@@ -803,11 +974,20 @@ namespace VenusDoors.Controllers
         [HttpPost]
         public ActionResult InsertMaterial(Material pMaterial)
         {
-            try
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                int userID = (int)Session["UserID"];
+                try
             {
 
-                pMaterial.CreationDate = DateTime.Now;
-                pMaterial.ModificationDate = DateTime.Now;
+                    pMaterial.CreationDate = DateTime.Now;
+                    pMaterial.CreatorUser = userID;
+                    pMaterial.ModificationUser = userID;
+                    pMaterial.ModificationDate = DateTime.Now;
                 BusinessLogic.lnMaterial _LI = new BusinessLogic.lnMaterial();
                 var InserMaterial = _LI.InsertMaterial(pMaterial);
                 return Json(true, JsonRequestBehavior.AllowGet);
@@ -818,15 +998,22 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
-
+        }
         [HttpPost]
         public ActionResult UpdateMaterial(Material uMaterial)
         {
-            try
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                int userID = (int)Session["UserID"];
+                try
             {
 
-                uMaterial.CreationDate = DateTime.Now;
-                uMaterial.ModificationDate = DateTime.Now;
+                    uMaterial.ModificationUser = userID;
+                    uMaterial.ModificationDate = DateTime.Now;
                 BusinessLogic.lnMaterial _LI = new BusinessLogic.lnMaterial();
                 var modMaterial = _LI.UpdateMaterial(uMaterial);
                 return Json(true, JsonRequestBehavior.AllowGet);
@@ -836,6 +1023,7 @@ namespace VenusDoors.Controllers
             {
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
+        }
         }
         #endregion
 
@@ -867,11 +1055,20 @@ namespace VenusDoors.Controllers
         [HttpPost]
         public ActionResult InsertMaterialxBottomRail(MaterialxBottomRail pMaterialxBottomRail)
         {
-            try
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                int userID = (int)Session["UserID"];
+                try
             {
 
-                pMaterialxBottomRail.CreationDate = DateTime.Now;
-                pMaterialxBottomRail.ModificationDate = DateTime.Now;
+                    pMaterialxBottomRail.CreationDate = DateTime.Now;
+                    pMaterialxBottomRail.CreatorUser = userID;
+                    pMaterialxBottomRail.ModificationUser = userID;
+                    pMaterialxBottomRail.ModificationDate = DateTime.Now;
                 BusinessLogic.lnMaterialxBottomRail _LJ = new BusinessLogic.lnMaterialxBottomRail();
                 var InserMaterialxBoR = _LJ.InsertMaterialxBottomRail(pMaterialxBottomRail);
                 return Json(true, JsonRequestBehavior.AllowGet);
@@ -882,15 +1079,22 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
-
+        }
         [HttpPost]
         public ActionResult UpdateMaterialxBottomRail(MaterialxBottomRail uMaterialxBottomRail)
         {
-            try
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                int userID = (int)Session["UserID"];
+                try
             {
 
-                uMaterialxBottomRail.CreationDate = DateTime.Now;
-                uMaterialxBottomRail.ModificationDate = DateTime.Now;
+                    uMaterialxBottomRail.ModificationUser = userID;
+                    uMaterialxBottomRail.ModificationDate = DateTime.Now;
                 BusinessLogic.lnMaterialxBottomRail _LJ = new BusinessLogic.lnMaterialxBottomRail();
                 var modMaterialxBR = _LJ.UpdateMaterialxBottomRail(uMaterialxBottomRail);
                 return Json(true, JsonRequestBehavior.AllowGet);
@@ -900,6 +1104,7 @@ namespace VenusDoors.Controllers
             {
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
+        }
         }
         #endregion
 
@@ -931,11 +1136,20 @@ namespace VenusDoors.Controllers
         [HttpPost]
         public ActionResult InsertOrder(Order pOrder)
         {
-            try
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                int userID = (int)Session["UserID"];
+                try
             {
 
-                pOrder.CreationDate = DateTime.Now;
-                pOrder.ModificationDate = DateTime.Now;
+                    pOrder.CreationDate = DateTime.Now;
+                    pOrder.CreatorUser = userID;
+                    pOrder.ModificationUser = userID;
+                    pOrder.ModificationDate = DateTime.Now;
                 BusinessLogic.lnOrder _LK = new BusinessLogic.lnOrder();
                 var InserOrder = _LK.InsertOrder(pOrder);
                 return Json(true, JsonRequestBehavior.AllowGet);
@@ -946,15 +1160,22 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
-
+        }
         [HttpPost]
         public ActionResult UpdateOrder(Order uOrder)
         {
-            try
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                int userID = (int)Session["UserID"];
+                try
             {
 
-                uOrder.CreationDate = DateTime.Now;
-                uOrder.ModificationDate = DateTime.Now;
+                    uOrder.ModificationUser = userID;
+                    uOrder.ModificationDate = DateTime.Now;
                 BusinessLogic.lnOrder _LK = new BusinessLogic.lnOrder();
                 var modOrder = _LK.UpdateOrder(uOrder);
                 return Json(true, JsonRequestBehavior.AllowGet);
@@ -964,6 +1185,7 @@ namespace VenusDoors.Controllers
             {
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
+        }
         }
         #endregion
 
@@ -993,11 +1215,20 @@ namespace VenusDoors.Controllers
         [HttpPost]
         public ActionResult InsertOutsideEdgeProfile(OutsideEdgeProfile pOutsideEdgeProfiler)
         {
-            try
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                int userID = (int)Session["UserID"];
+                try
             {
 
-                pOutsideEdgeProfiler.CreationDate = DateTime.Now;
-                pOutsideEdgeProfiler.ModificationDate = DateTime.Now;
+                    pOutsideEdgeProfiler.CreationDate = DateTime.Now;
+                    pOutsideEdgeProfiler.CreatorUser = userID;
+                    pOutsideEdgeProfiler.ModificationUser = userID;
+                    pOutsideEdgeProfiler.ModificationDate = DateTime.Now;
                 BusinessLogic.lnOutsideEdgeProfile _LL = new BusinessLogic.lnOutsideEdgeProfile();
                 var InserOEP = _LL.InsertOutsideEdgeProfile(pOutsideEdgeProfiler);
                 return Json(true, JsonRequestBehavior.AllowGet);
@@ -1008,15 +1239,23 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
+        }
 
         [HttpPost]
         public ActionResult UpdateOutsideEdgeProfile(OutsideEdgeProfile uOutsideEdgeProfiler)
         {
-            try
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                int userID = (int)Session["UserID"];
+                try
             {
 
-                uOutsideEdgeProfiler.CreationDate = DateTime.Now;
-                uOutsideEdgeProfiler.ModificationDate = DateTime.Now;
+                    uOutsideEdgeProfiler.ModificationUser = userID;
+                    uOutsideEdgeProfiler.ModificationDate = DateTime.Now;
                 BusinessLogic.lnOutsideEdgeProfile _LL = new BusinessLogic.lnOutsideEdgeProfile();
                 var modOEP = _LL.UpdateOutsideEdgeProfile(uOutsideEdgeProfiler);
                 return Json(true, JsonRequestBehavior.AllowGet);
@@ -1026,6 +1265,7 @@ namespace VenusDoors.Controllers
             {
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
+        }
         }
         #endregion
 
@@ -1055,11 +1295,20 @@ namespace VenusDoors.Controllers
         [HttpPost]
         public ActionResult InsertPanel(Panel pPanel)
         {
-            try
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                int userID = (int)Session["UserID"];
+                try
             {
 
-                pPanel.CreationDate = DateTime.Now;
-                pPanel.ModificationDate = DateTime.Now;
+                    pPanel.CreationDate = DateTime.Now;
+                    pPanel.CreatorUser = userID;
+                    pPanel.ModificationUser = userID;
+                    pPanel.ModificationDate = DateTime.Now;
                 BusinessLogic.lnPanel _LX = new BusinessLogic.lnPanel();
                 var InsertPanel = _LX.InsertPanel(pPanel);
                 return Json(true, JsonRequestBehavior.AllowGet);
@@ -1070,14 +1319,21 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
-
+        }
         [HttpPost]
         public ActionResult UpdatePanel(Panel uPanel)
         {
-            try
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                int userID = (int)Session["UserID"];
+                try
             {
 
-                uPanel.CreationDate = DateTime.Now;
+                uPanel.ModificationUser = userID;
                 uPanel.ModificationDate = DateTime.Now;
                 BusinessLogic.lnPanel _LX = new BusinessLogic.lnPanel();
                 var modPanel = _LX.UpdatePanel(uPanel);
@@ -1088,6 +1344,7 @@ namespace VenusDoors.Controllers
             {
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
+        }
         }
         #endregion
 
@@ -1117,11 +1374,20 @@ namespace VenusDoors.Controllers
         [HttpPost]
         public ActionResult InsertPanelMaterial(PanelMaterial pPanelMaterial)
         {
-            try
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                int userID = (int)Session["UserID"];
+                try
             {
 
-                pPanelMaterial.CreationDate = DateTime.Now;
-                pPanelMaterial.ModificationDate = DateTime.Now;
+                    pPanelMaterial.CreationDate = DateTime.Now;
+                    pPanelMaterial.CreatorUser = userID;
+                    pPanelMaterial.ModificationUser = userID;
+                    pPanelMaterial.ModificationDate = DateTime.Now;
                 BusinessLogic.lnPanelMaterial _PAC = new BusinessLogic.lnPanelMaterial();
                 var InsertPanelMaterial = _PAC.InsertPanelMaterial(pPanelMaterial);
                 return Json(true, JsonRequestBehavior.AllowGet);
@@ -1132,15 +1398,22 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
-
+        }
         [HttpPost]
         public ActionResult UpdatePanelMaterial(PanelMaterial uPanelMaterial)
         {
-            try
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                int userID = (int)Session["UserID"];
+                try
             {
 
-                uPanelMaterial.CreationDate = DateTime.Now;
-                uPanelMaterial.ModificationDate = DateTime.Now;
+                    uPanelMaterial.ModificationUser = userID;
+                    uPanelMaterial.ModificationDate = DateTime.Now;
                 BusinessLogic.lnPanelMaterial _PAC = new BusinessLogic.lnPanelMaterial();
                 var modPanelMaterial = _PAC.UpdatePanelMaterial(uPanelMaterial);
                 return Json(true, JsonRequestBehavior.AllowGet);
@@ -1150,6 +1423,7 @@ namespace VenusDoors.Controllers
             {
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
+        }
         }
         #endregion
 
@@ -1179,11 +1453,20 @@ namespace VenusDoors.Controllers
         [HttpPost]
         public ActionResult InsertPerson(Person pPerson)
         {
-            try
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                int userID = (int)Session["UserID"];
+                try
             {
 
-                pPerson.CreationDate = DateTime.Now;
-                pPerson.ModificationDate = DateTime.Now;
+                    pPerson.CreationDate = DateTime.Now;
+                    pPerson.CreatorUser = userID;
+                    pPerson.ModificationUser = userID;
+                    pPerson.ModificationDate = DateTime.Now;
                 BusinessLogic.lnPerson _PAX = new BusinessLogic.lnPerson();
                 var InsertPerson = _PAX.InsertPerson(pPerson);
                 return Json(true, JsonRequestBehavior.AllowGet);
@@ -1194,15 +1477,22 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
-
+        }
         [HttpPost]
         public ActionResult UpdatePerson(Person uPerson)
         {
-            try
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                int userID = (int)Session["UserID"];
+                try
             {
 
-                uPerson.CreationDate = DateTime.Now;
-                uPerson.ModificationDate = DateTime.Now;
+                    uPerson.ModificationUser = userID;
+                    uPerson.ModificationDate = DateTime.Now;
                 BusinessLogic.lnPerson _PAX = new BusinessLogic.lnPerson();
                 var modPerson = _PAX.UpdatePerson(uPerson);
                 return Json(true, JsonRequestBehavior.AllowGet);
@@ -1212,6 +1502,7 @@ namespace VenusDoors.Controllers
             {
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
+        }
         }
         #endregion
 
@@ -1241,11 +1532,20 @@ namespace VenusDoors.Controllers
         [HttpPost]
         public ActionResult InsertPreparation(Preparation pPreparation)
         {
-            try
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                int userID = (int)Session["UserID"];
+                try
             {
 
-                pPreparation.CreationDate = DateTime.Now;
-                pPreparation.ModificationDate = DateTime.Now;
+                    pPreparation.CreationDate = DateTime.Now;
+                    pPreparation.CreatorUser = userID;
+                    pPreparation.ModificationUser = userID;
+                    pPreparation.ModificationDate = DateTime.Now;
                 BusinessLogic.lnPreparation _JFK = new BusinessLogic.lnPreparation();
                 var InsertPreparation = _JFK.InsertPreparation(pPreparation);
                 return Json(true, JsonRequestBehavior.AllowGet);
@@ -1256,15 +1556,22 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
-
+        }
         [HttpPost]
         public ActionResult UpdatePreparation(Preparation uPreparation)
         {
-            try
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                int userID = (int)Session["UserID"];
+                try
             {
 
-                uPreparation.CreationDate = DateTime.Now;
-                uPreparation.ModificationDate = DateTime.Now;
+                    uPreparation.ModificationUser = userID;
+                    uPreparation.ModificationDate = DateTime.Now;
                 BusinessLogic.lnPreparation _JFK = new BusinessLogic.lnPreparation();
                 var modPerson = _JFK.UpdatePreparation(uPreparation);
                 return Json(true, JsonRequestBehavior.AllowGet);
@@ -1274,6 +1581,7 @@ namespace VenusDoors.Controllers
             {
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
+        }
         }
         #endregion
 
@@ -1303,11 +1611,20 @@ namespace VenusDoors.Controllers
         [HttpPost]
         public ActionResult InsertRailThickness(RailThickness pRailThickness)
         {
-            try
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                int userID = (int)Session["UserID"];
+                try
             {
 
-                pRailThickness.CreationDate = DateTime.Now;
-                pRailThickness.ModificationDate = DateTime.Now;
+                    pRailThickness.CreationDate = DateTime.Now;
+                    pRailThickness.CreatorUser = userID;
+                    pRailThickness.ModificationUser = userID;
+                    pRailThickness.ModificationDate = DateTime.Now;
                 BusinessLogic.lnRailThickness _LN = new BusinessLogic.lnRailThickness();
                 var InsertRailThickness = _LN.InsertRailThickness(pRailThickness);
                 return Json(true, JsonRequestBehavior.AllowGet);
@@ -1318,15 +1635,22 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
-
+        }
         [HttpPost]
         public ActionResult UpdateRailThickness(RailThickness uRailThickness)
         {
-            try
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                int userID = (int)Session["UserID"];
+                try
             {
 
-                uRailThickness.CreationDate = DateTime.Now;
-                uRailThickness.ModificationDate = DateTime.Now;
+                    uRailThickness.ModificationUser = userID;
+                    uRailThickness.ModificationDate = DateTime.Now;
                 BusinessLogic.lnRailThickness _LN = new BusinessLogic.lnRailThickness();
                 var modRT = _LN.UpdateRailThickness(uRailThickness);
                 return Json(true, JsonRequestBehavior.AllowGet);
@@ -1337,7 +1661,7 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
-
+        }
         public ActionResult DeleteRailThickness(int id)
         {
 
