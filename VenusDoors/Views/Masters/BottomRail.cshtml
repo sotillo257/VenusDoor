@@ -90,8 +90,8 @@
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="inStatus" style="margin-top: 25px;">Status: </label>
-                                                <select style="width:100%" class="form-control select2" id="inStatus" data-placeholder="">
-                                                    <option value="0">select</option>
+                                                <select style="width:100%" class="form-control select2" id="inStatus" data-placeholder="Select">
+                                                    <option label="Select"></option>
                                                     @foreach (Model.Status item in ViewBag.mStatus)
                                                     {
                                                         <option value="@item.Id">@item.Description</option>

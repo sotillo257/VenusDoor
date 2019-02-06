@@ -47,7 +47,7 @@ function ConfirmOrder() {
         //Se ejecutó correctamente
         success: function (data) {
             if (data == true) {
-                LlammarModal("Sing", "Congratulations! The creation of your order has been successful.", " ");
+                $('#modalCongra').modal('toggle');
                             } else {
                 LlammarModal("Danger", "An error occurred during the process.", "Check your internet connection I tried again");
                             }

@@ -21,6 +21,7 @@ function LlammarModal(TipoModal, Titulo, Mensaje) {
 
             if (TipoModal == "MLogin") {
                 $("#TituloLogin").html(Titulo);
+                $("#MensageLogin").html(Mensaje);
                 $("#ModalLogin").modal("show");
             }
 
