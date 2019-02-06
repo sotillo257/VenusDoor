@@ -215,13 +215,13 @@ function InsertBottomRail() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! It has been inserted correctly.", " ");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "Error: An error occurred while inserting.", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "Error.", " ");
         },
 
     });
@@ -250,13 +250,13 @@ function UpdateBottomRail() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! It has been modified correctly.", " ");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "Error: An error occurred while modifying.", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "Error.", " ");
         },
 
     });
@@ -356,13 +356,13 @@ function InsertDoors() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! It has been inserted correctly.", " ");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "Error: An error occurred while inserting.", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "Error.", " ");
         },
 
     });
@@ -409,13 +409,13 @@ function UpdateDoors() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! It has been modified correctly.", " ");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "Error: An error occurred while modifying.", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "Error.", " ");
         },
 
     });
@@ -453,13 +453,13 @@ function InsertDoorsPrices() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! It has been inserted correctly.", " ");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "Error: An error occurred while inserting.", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "Error.", " ");
         },
 
     });
@@ -497,13 +497,13 @@ function UpdateDoorPrice() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! It has been modified correctly.", " ");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "Error: An error occurred while modifying.", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "Error.", " ");
         },
 
     });
@@ -532,13 +532,13 @@ function InsertDoorStyle() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! It has been inserted correctly.", " ");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "Error: An error occurred while inserting.", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "Error.", " ");
         },
 
     });
@@ -566,13 +566,13 @@ function UpdateDoorStyle() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! It has been modified correctly.", " ");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "Error: An error occurred while modifying.", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "Error.", " ");
         },
 
     });
@@ -600,13 +600,13 @@ function InsertGroup() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! It has been inserted correctly.", " ");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "Error: An error occurred while inserting.", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "Error.", " ");
         },
 
     });
@@ -634,13 +634,13 @@ function UpdateGroup() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! It has been modified correctly.", " ");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "Error: An error occurred while modifying.", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "Error.", " ");
         },
 
     });
@@ -669,13 +669,13 @@ function InserHingeDirection() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! It has been inserted correctly.", " ");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "Error: An error occurred while inserting.", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "Error.", " ");
         },
 
     });
@@ -704,13 +704,13 @@ function UpdateHingeDirection() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! It has been modified correctly.", " ");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "Error: An error occurred while modifying.", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "Error.", " ");
         },
 
     });
@@ -743,13 +743,13 @@ function InserHingePositions() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! It has been inserted correctly.", " ");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "Error: An error occurred while inserting.", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "Error.", " ");
         },
 
     });
@@ -782,13 +782,13 @@ function UpdateHingePositions() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! It has been modified correctly.", " ");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "Error: An error occurred while modifying.", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "Error.", " ");
         },
 
     });
@@ -817,13 +817,13 @@ function InserHorizontalDivisions() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! It has been inserted correctly.", " ");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "Error: An error occurred while inserting.", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "Error.", " ");
         },
 
     });
@@ -852,13 +852,13 @@ function UpdateHorizontalDivisions() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! It has been modified correctly.", " ");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "Error: An error occurred while modifying.", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "Error.", " ");
         },
 
     });
@@ -887,13 +887,13 @@ function InsertInsideEdgeProfile() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! It has been inserted correctly.", " ");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "Error: An error occurred while inserting.", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "Error.", " ");
         },
 
     });
@@ -922,13 +922,13 @@ function UpdateInsideEdgeProfile() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! It has been modified correctly.", " ");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "Error: An error occurred while modifying.", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "Error.", " ");
         },
 
     });
@@ -957,13 +957,13 @@ function InsertJoin() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! It has been inserted correctly.", " ");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "Error: An error occurred while inserting.", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "Error.", " ");
         },
 
     });
@@ -992,13 +992,13 @@ function UpdateJoin() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! It has been modified correctly.", " ");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "Error: An error occurred while modifying.", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "Error.", " ");
         },
 
     });
@@ -1027,13 +1027,13 @@ function InsertMaterial() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! It has been inserted correctly.", " ");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "Error: An error occurred while inserting.", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "Error.", " ");
         },
 
     });
@@ -1062,13 +1062,13 @@ function UpdateMaterial() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! It has been modified correctly.", " ");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "Error: An error occurred while modifying.", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "Error.", " ");
         },
 
     });
@@ -1098,13 +1098,13 @@ function InsertMaterialxBottomRail() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! It has been inserted correctly.", " ");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "Error: An error occurred while inserting.", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "Error.", " ");
         },
 
     });
@@ -1134,13 +1134,13 @@ function UpdateMaterialxBottomRail() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! It has been modified correctly.", " ");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "Error: An error occurred while modifying.", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "Error.", " ");
         },
 
     });
@@ -1172,13 +1172,13 @@ function InsertOrder() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! It has been inserted correctly.", " ");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "Error: An error occurred while inserting.", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "Error.", " ");
         },
 
     });
@@ -1210,13 +1210,13 @@ function UpdateOrder() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! It has been modified correctly.", " ");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "Error: An error occurred while modifying.", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "Error.", " ");
         },
 
     });
@@ -1245,13 +1245,13 @@ function InsertOutsideEdgeProfile() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! It has been inserted correctly.", " ");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "Error: An error occurred while inserting.", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "Error.", " ");
         },
 
     });
@@ -1280,13 +1280,13 @@ function UpdateOutsideEdgeProfile() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! It has been modified correctly.", " ");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "Error: An error occurred while modifying.", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "Error.", " ");
         },
 
     });
@@ -1315,13 +1315,13 @@ function InsertPanel() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! It has been inserted correctly.", " ");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "Error: An error occurred while inserting.", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "Error.", " ");
         },
 
     });
@@ -1350,13 +1350,13 @@ function UpdatePanel() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! It has been modified correctly.", " ");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "Error: An error occurred while modifying.", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "Error.", " ");
         },
 
     });
@@ -1385,13 +1385,13 @@ function InsertPanelMaterial() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! It has been inserted correctly.", " ");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "Error: An error occurred while inserting.", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "Error.", " ");
         },
 
     });
@@ -1420,13 +1420,13 @@ function UpdatePanelMaterial() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! It has been modified correctly.", " ");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "Error: An error occurred while modifying.", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "Error.", " ");
         },
 
     });
@@ -1458,13 +1458,13 @@ function InsertPerson() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! It has been inserted correctly.", " ");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "Error: An error occurred while inserting.", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "Error.", " ");
         },
 
     });
@@ -1496,13 +1496,13 @@ function UpdatePerson() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! It has been modified correctly.", " ");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "Error: An error occurred while modifying.", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "Error.", " ");
         },
 
     });
@@ -1531,13 +1531,13 @@ function InsertPreparation() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! It has been inserted correctly.", " ");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "Error: An error occurred while inserting.", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "Error.", " ");
         },
 
     });
@@ -1566,13 +1566,13 @@ function UpdatePreparation() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! It has been modified correctly.", " ");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "Error: An error occurred while modifying.", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "Error.", " ");
         },
 
     });
@@ -1601,13 +1601,13 @@ function InsertRailThickness() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! It has been inserted correctly.", " ");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "Error: An error occurred while inserting.", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "Error.", " ");
         },
 
     });
@@ -1636,13 +1636,13 @@ function UpdateRailThickness() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! It has been modified correctly.", " ");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "Error: An error occurred while modifying.", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "Error.", " ");
         },
 
     });
@@ -1671,13 +1671,13 @@ function InsertStatus() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! It has been inserted correctly.", " ");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "Error: An error occurred while inserting.", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "Error.", " ");
         },
 
     });
@@ -1706,13 +1706,13 @@ function UpdateStatus() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! It has been modified correctly.", " ");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "Error: An error occurred while modifying.", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "Error.", " ");
         },
 
     });
@@ -1741,13 +1741,13 @@ function InsertTopRail() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! It has been inserted correctly.", " ");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "Error: An error occurred while inserting.", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "Error.", " ");
         },
 
     });
@@ -1776,13 +1776,13 @@ function UpdateTopRail() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! It has been modified correctly.", " ");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "Error: An error occurred while modifying.", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "Error.", " ");
         },
 
     });
@@ -1812,13 +1812,13 @@ function InsertTopRailxHorizontalDivisions() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! It has been inserted correctly.", " ");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "Error: An error occurred while inserting.", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "Error.", " ");
         },
 
     });
@@ -1848,13 +1848,13 @@ function UpdateTopRailxHorizontalDivisions() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! It has been modified correctly.", " ");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "Error: An error occurred while modifying.", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "Error.", " ");
         },
 
     });
@@ -1884,13 +1884,13 @@ function InsertTopRailByJoin() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! It has been inserted correctly.", " ");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "Error: An error occurred while inserting.", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "Error.", " ");
         },
 
     });
@@ -1920,13 +1920,13 @@ function UpdateTopRailByJoin() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! It has been modified correctly.", " ");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "Error: An error occurred while modifying.", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "Error.", " ");
         },
 
     });
@@ -1956,13 +1956,13 @@ function InsertTopRailByVerticalDivisions() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! It has been inserted correctly.", " ");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "Error: An error occurred while inserting.", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "Error.", " ");
         },
 
     });
@@ -1992,13 +1992,13 @@ function UpdateTopRailByVerticalDivisions() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! It has been modified correctly.", " ");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "Error: An error occurred while modifying.", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "Error.", " ");
         },
 
     });
@@ -2028,13 +2028,13 @@ function InsertType() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! It has been inserted correctly.", " ");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "Error: An error occurred while inserting.", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "Error.", " ");
         },
 
     });
@@ -2064,13 +2064,13 @@ function UpdateType() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! It has been modified correctly.", " ");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "Error: An error occurred while modifying.", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "Error.", " ");
         },
 
     });
@@ -2102,13 +2102,13 @@ function InsertUsuario() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! It has been inserted correctly.", " ");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "Error: An error occurred while inserting.", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "Error.", " ");
         },
 
     });
@@ -2140,13 +2140,13 @@ function UpdateUsuario() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! It has been modified correctly.", " ");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "Error: An error occurred while modifying.", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "Error.", " ");
         },
 
     });
@@ -2175,13 +2175,13 @@ function InsertVerticalDivisions() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! It has been inserted correctly.", " ");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "Error: An error occurred while inserting.", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "Error.", " ");
         },
 
     });
@@ -2210,13 +2210,13 @@ function UpdateVerticalDivisions() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! It has been modified correctly.", " ");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "Error: An error occurred while modifying.", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "Error.", " ");
         },
 
     });

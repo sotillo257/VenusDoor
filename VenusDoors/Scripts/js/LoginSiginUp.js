@@ -41,15 +41,15 @@ function CreateNewUser() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == 1) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Sing", "Congratulations! The creation of your user has been successful.", "A message has been sent to the email supplied with an activation code to complete your registration.", '<button>hola</button>');
             } else if(result == 2){
-                $('#modalExist').modal('toggle');
+                LlammarModal("Danger", "There is already a registered user with this email!", "Did you forget your password?. Click on the button below to recover your password");
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "An error occurred during the process.", "Check your internet connection I tried again" );
             }
         },
         error: function (err) {
-            $('#modalFAIL').modal('toggle');
+            LlammarModal("Danger", "An error occurred during the process.", "Error en el metodo al insertar un usuario");
         },
 
     });
@@ -77,11 +77,11 @@ function Signin() {
             if (result == true) {
                 window.location.href = '/Home/Index';
             } else {
-                $('#modalError').modal('toggle');
+                LlammarModal("Danger", "An error occurred during the process.", "Check your internet connection I tried again");
             }
         },
         error: function (err) {
-            $('#modalFAIL').modal('toggle');
+            LlammarModal("Danger", "An error occurred during the process.", "Error en el metodo al insertar un usuario");
         },
     });
 }

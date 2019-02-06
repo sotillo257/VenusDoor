@@ -42,16 +42,15 @@ function ConfirmOrder() {
         type: 'POST',
         data: JSON.stringify(datos),
         url: urlConfirmOrder,
-        dataType: "json",
-        contentType: 'application/json; charset=utf-8',
-        success: function (result) {
-
-            //Validar data para ver si mostrar error al guardar o exito al guardar
-            if (result == true) {
-                $('#modalCongra').modal('toggle');
-            } else {
-                $('#modalError').modal('toggle');
-            }
+        //Envío de parámetros
+        data: data,
+        //Se ejecutó correctamente
+        success: function (data) {
+            if (data == true) {
+                LlammarModal("Sing", "Congratulations! The creation of your order has been successful.", " ");
+                            } else {
+                LlammarModal("Danger", "An error occurred during the process.", "Check your internet connection I tried again");
+                            }
         },
         error: function (err) {
             alert("error");
