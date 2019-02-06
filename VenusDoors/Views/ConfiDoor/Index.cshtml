@@ -79,12 +79,12 @@
 
                         <div class="col-xs-4 col-md-3">
                             <label for="InsideEdgeProfile" style="margin-top: 25px;">Inside Edge Profile: </label>
-                            <select style="width:100%" class="form-control select2" id="cbInsideEdgeProfile" data-placeholder=""></select>
+                            <select style="width:100%" class="form-control select2 Profile" id="cbInsideEdgeProfile" data-placeholder=""></select>
                         </div><!-- col -->
 
                         <div class="col-xs-4 col-md-3">
                             <label for="OutsideEdgeProfile" style="margin-top: 25px;">Outside Edge Profile: </label>
-                            <select style="width:100%" class="form-control select2" id="cbOutsideEdgeProfile" data-placeholder=""></select>
+                            <select style="width:100%" class="form-control select2 Profile" id="cbOutsideEdgeProfile" data-placeholder=""></select>
                         </div><!-- col -->
 
                         <div class="col-xs-4 col-md-3">
@@ -109,11 +109,11 @@
 
                         <div class="col-xs-4 col-md-3">
                             <label for="Panel" style="margin-top: 25px;">Panel Type: </label>
-                            <select style="width:100%" class="form-control select2" id="cbPanel" data-placeholder=""></select>
+                            <select style="width:100%" class="form-control select2 Profile" id="cbPanel" data-placeholder=""></select>
                         </div><!-- col -->
 
                         <div class="col-xs-4 col-md-3">
-                            <label for="PanelMaterial" style="margin-top: 25px;">Panel Profile: </label>
+                            <label for="PanelMaterial" style="margin-top: 25px;">Panel Material: </label>
                             <select style="width:100%" class="form-control select2" id="cbPanelMaterial" data-placeholder=""></select>
                         </div><!-- col -->
 
@@ -214,8 +214,8 @@
                     <div class="hidden col-md-2">
                         <div id="Picture" class="row" style="margin-right: 0px;">
                             <center>
-                                <img style="height: 100px;width: 235px;margin-top: 20px;" src="~/Content/img/img11.jpg" />
-                                <img style="width: 230px;height: 230px;" src="~/Content/img/img11.jpg">
+                                <img style="height: 100px;width: 235px;margin-top: 20px;" id="ProfilePicture" src="~/Content/img/img11.jpg" />
+                                <img style="width: 230px;height: 230px;" id="DoorPicture" src="~/Content/img/img11.jpg">
                             </center>
                         </div>
                     </div>
@@ -519,8 +519,8 @@
                     console.log(data);
                     var HTMLImage =
                        // '<img class="img-fluid rounded-right" alt="' + data[i].Material.Description + '" src="' + data[i].Picture + '"/>';
-                   ' <center> <img style="height: 100px;width: 235px;margin-top: 20px;" src="' + data.ProfilePicture + '">' +
-                              '<img style="width: 230px;height: 230px;" src="' + data.Picture + '">' +
+                   ' <center> <img style="height: 100px;width: 235px;margin-top: 20px;" id="ProfilePicture" src="' + data.ProfilePicture + '">' +
+                              '<img style="width: 230px;height: 230px;" id="DoorPicture" src="' + data.Picture + '">' +
                               '</center>';
                     $('#Picture').html(HTMLImage);
 

@@ -584,6 +584,10 @@ $(document).ready(function () {
            
         }
     });
+
+    $(document).on('change', '.Profile', function () {
+        ChangeProfile();
+    });
 });
 
 $(document).on('change', '.eventChange', function () {
@@ -671,6 +675,240 @@ function ValidateSession() {
         },
     });
 }
-function CambiarPerfil() {
+function ChangeProfile() {
+    var Outside = $('#cbOutsideEdgeProfile').val();
+    var Inside = $('#cbInsideEdgeProfile').val();
+    var Panel = $('#cbPanel').val();
 
+    if (Panel == 5) {
+       FlatPanel(Outside, Inside);
+    }
+    if (Panel == 6) {
+        FlatPanelBeaded(Outside, Inside);
+    }
+    if (Panel == 2) {
+        RaisedPanel(Outside, Inside);
+    }
+   
 }
+
+function FlatPanel(Outside, Inside) {
+    var ProfileUrl = "img11.jpg";
+    var urlFolder = "/Content/img/Profile/";
+    if (Outside == 13) {
+        if (Inside == 4) {
+             ProfileUrl = "-Double_Roman_Ogee_ogee_flat_panel.png";
+        } else if (Inside == 5) {
+             ProfileUrl = "-Double_Roman_Ogee_Reba_flat_panel.png";
+        } else if (Inside == 3) {
+             ProfileUrl = "-Double_Roman_Ogee_Shaker_22_flat_panel.png";
+        }else if (Inside == 7) {
+             ProfileUrl = "-Double_Roman_Ogee_shaker_goove_flatpanel.png";
+        }
+    }
+    if (Outside == 2) {
+        if (Inside == 4) {
+            ProfileUrl = "-Fingerpull_ogee_flat_panel.png";
+        } else if (Inside == 5) {
+            ProfileUrl = "-Fingerpull_Reba_flat_panel.png";
+        } else if (Inside == 3) {
+            ProfileUrl = "-Fingerpull_Shaker22_flat_panel.png";
+        } else if (Inside == 7) {
+            ProfileUrl = "-Finger_pull_shaker_goove_flat_panel.png";
+        }
+    }
+    if (Outside == 17) {
+        if (Inside == 4) {
+            ProfileUrl = "-Half_Reba_ogee_flat_panel.png";
+        } else if (Inside == 5) {
+            ProfileUrl = "-Half_Reba_Reba_flat_panel.png";
+        } else if (Inside == 3) {
+            ProfileUrl = "-Half_Reba_Shaker_22_flat_panel.png";
+        } else if (Inside == 7) {
+            ProfileUrl = "-Half_Reba_shaker_goove_flat_panel.png";
+        }
+    }
+    if (Outside == 4) {
+
+        if (Inside == 4) {
+            ProfileUrl = "-Little_bone_ogee_flat_panel.png";
+        } else if (Inside == 5) {
+            ProfileUrl = "-Little_bone_Reba_flat_panel.png";
+        } else if (Inside == 3) {
+            ProfileUrl = "-Little_bone_Shaker_22_flat_panel.png";
+        } else if (Inside == 7) {
+            ProfileUrl = "-Little_bone_shaker_goove_flat_panel.png";
+        }
+    }
+    if (Outside == 5) {
+        if (Inside == 4) {
+            ProfileUrl = "-Reba_ogee_flat_panel.png";
+        } else if (Inside == 5) {
+            ProfileUrl = "-Reba_Reba_flat_panel.png";
+        } else if (Inside == 3) {
+          //  ProfileUrl = "-Reba_Shaker_22_flat_panel.png";
+        } else if (Inside == 7) {
+            ProfileUrl = "-Reba_shaker_goove_flat_panel.png";
+        }
+    }
+    if (Outside == 6) {
+        if (Inside == 4) {
+            ProfileUrl = "-Shaker_ogee_flat_panel.png";
+        } else if (Inside == 5) {
+            ProfileUrl = "-Shaker_Reba_flat_panel.png";
+        } else if (Inside == 3) {
+            ProfileUrl = "-Shaker_Shaker_22_flat_panel.png";
+        } else if (Inside == 7) {
+            ProfileUrl = "-Shaker_shaker_goove_flat_panel.png";
+        }
+    }
+    $('#ProfilePicture').attr('src', urlFolder + ProfileUrl);
+}
+function FlatPanelBeaded(Outside, Inside) {
+    var ProfileUrl = "img11.jpg";
+    var urlFolder = "/Content/img/Profile/";
+    if (Outside == 13) {
+        if (Inside == 4) {
+            ProfileUrl = "-Double_Roman_Ogee_ogee_flat_panel_beaded.png";
+        } else if (Inside == 5) {
+            ProfileUrl = "-Double_Roman_Ogee_Reba_flat_panel_beaded.png";
+        } else if (Inside == 3) {
+            ProfileUrl = "-Double_Roman_Ogee_Shaker_22_flat_panel_beaded.png";
+        } else if (Inside == 7) {
+            ProfileUrl = "-Double_Roman_Ogee_shaker_goove_flat_panel_beaded.png";
+        }
+    }
+    if (Outside == 2) {
+        if (Inside == 4) {
+            ProfileUrl = "-Fingerpull_ogee_flat_panel_beaded.png";
+        } else if (Inside == 5) {
+            ProfileUrl = "-Fingerpull_Reba_flat_panel_beaded.png";
+        } else if (Inside == 3) {
+            ProfileUrl = "-Fingerpull_Shaker22_flat_panel_beaded.png";
+        } else if (Inside == 7) {
+            ProfileUrl = "-Finger_pull_shaker_goove_flat_panel_beaded.png";
+        }
+    }
+    if (Outside == 17) {
+        if (Inside == 4) {
+            ProfileUrl = "-Half_Reba_ogee_flat_panel_beaded.png";
+        } else if (Inside == 5) {
+            ProfileUrl = "-Half_Reba_Reba_flat_panel_beaded.png";
+        } else if (Inside == 3) {
+            ProfileUrl = "-Half_Reba_Shaker_22_flat_panel_beaded.png";
+        } else if (Inside == 7) {
+            ProfileUrl = "-Half_Reba_shaker_goove_flat_panel_beaded.png";
+        }
+    }
+    if (Outside == 4) {
+
+        if (Inside == 4) {
+            ProfileUrl = "-Little_bone_ogee_flat_panel_beaded.png";
+        } else if (Inside == 5) {
+            ProfileUrl = "-Little_bone_Reba_flat_panel_beaded.png";
+        } else if (Inside == 3) {
+            ProfileUrl = "-Little_bone_Shaker_22_flat_panel_beaded.png";
+        } else if (Inside == 7) {
+            ProfileUrl = "-Little_bone_shaker_goove_flat_panel_beaded.png";
+        }
+    }
+    if (Outside == 5) {
+        if (Inside == 4) {
+            ProfileUrl = "-Reba_ogee_flat_panel_beaded.png";
+        } else if (Inside == 5) {
+            ProfileUrl = "-Reba_Reba_flat_panel_beaded.png";
+        } else if (Inside == 3) {
+            ProfileUrl = "-Reba_Shaker_22_flat_panel_beaded.png";
+        } else if (Inside == 7) {
+            ProfileUrl = "-Reba_shaker_goove_flat_panel_beaded.png";
+        }
+    }
+    if (Outside == 6) {
+        if (Inside == 4) {
+            ProfileUrl = "-Shaker_ogee_flat_panel_beaded.png";
+        } else if (Inside == 5) {
+            ProfileUrl = "-Shaker_Reba_flat_panel_beaded.png";
+        } else if (Inside == 3) {
+            ProfileUrl = "-Shaker_Shaker_22_flat_panel_beaded.png";
+        } else if (Inside == 7) {
+            ProfileUrl = "-Shaker_shaker_goove_flat_panel_beaded.png";
+        }
+    }
+    $('#ProfilePicture').attr('src', urlFolder + ProfileUrl);
+}
+function RaisedPanel(Outside, Inside) {
+    var ProfileUrl = "img11.jpg";
+    var urlFolder = "/Content/img/Profile/";
+    if (Outside == 13) {
+        if (Inside == 4) {
+            ProfileUrl = "-Double_Roman_Ogee_ogee_raised_panel.png";
+        } else if (Inside == 5) {
+            ProfileUrl = "-Double_Roman_Ogee_Reba_raised_panel.png";
+        } else if (Inside == 3) {
+            ProfileUrl = "-Double_Roman_Ogee_Shaker_22_raised_panel.png";
+        } else if (Inside == 7) {
+            ProfileUrl = "-Double_Roman_Ogee_shaker_goove_raised_panel.png";
+        }
+    }
+    if (Outside == 2) {
+        if (Inside == 4) {
+            ProfileUrl = "-Fingerpull_ogee_raised_panel.png";
+        } else if (Inside == 5) {
+            ProfileUrl = "-Fingerpull_Reba_raised_panel.png";
+        } else if (Inside == 3) {
+            ProfileUrl = "-FingerPull-Shaker22-RaisedPanel.png";
+        } else if (Inside == 7) {
+            ProfileUrl = "-Finger-pull-shaker-goove-raised-panel.png";
+        }
+    }
+    if (Outside == 17) {
+        if (Inside == 4) {
+            ProfileUrl = "-Half_Reba_ogee_raised_panel.png";
+        } else if (Inside == 5) {
+            ProfileUrl = "-Half_Reba_Reba_raised_panel.png";
+        } else if (Inside == 3) {
+            ProfileUrl = "-Half_Reba_Shaker_22_raised_panel.png";
+        } else if (Inside == 7) {
+            ProfileUrl = "-Half_Reba_shaker_goove_raised_panel.png";
+        }
+    }
+    if (Outside == 4) {
+
+        if (Inside == 4) {
+            ProfileUrl = "-Little_bone_ogee_raised_panel.png";
+        } else if (Inside == 5) {
+            ProfileUrl = "-Little_bone_Reba_raised_panel.png";
+        } else if (Inside == 3) {
+            ProfileUrl = "-Little_bone_Shaker_22_raised_panel.png";
+        } else if (Inside == 7) {
+            ProfileUrl = "-Little_bone_shaker_goove_raised_panel.png";
+        }
+    }
+    if (Outside == 5) {
+        if (Inside == 4) {
+            ProfileUrl = "-Reba_ogee_raised_panel.png";
+        } else if (Inside == 5) {
+            ProfileUrl = "-Reba_Reba_raised_panel.png";
+        } else if (Inside == 3) {
+            ProfileUrl = "-Reba_Shaker_22_raised_panel.png";
+        } else if (Inside == 7) {
+            ProfileUrl = "-Reba_shaker_goove_raised_panel.png";
+        }
+    }
+    if (Outside == 6) {
+        if (Inside == 4) {
+            ProfileUrl = "-Shaker_ogee_raised_panel.png";
+        } else if (Inside == 5) {
+            ProfileUrl = "-Shaker_Reba_raised_panel.png";
+        } else if (Inside == 3) {
+            ProfileUrl = "-Shaker_Shaker_22_raised_panel.png";
+        } else if (Inside == 7) {
+            ProfileUrl = "-Shaker_shaker_goove_raised_panel.png";
+        }
+    }
+    $('#ProfilePicture').attr('src', urlFolder + ProfileUrl);
+}
+
+
+
+ 
