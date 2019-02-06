@@ -69,8 +69,10 @@ namespace VenusDoors.Controllers
                 }
                 else if (ord.Status.Id == 1)
                 {
+                    BusinessLogic.lnOrder _LNO = new BusinessLogic.lnOrder();
+                    Order upptOrd = _LNO.GetOrderById(ord.Id);
                     var xDoor = _LND.GetDoorsxUserById(itemID);
-                    UpdateOrderExist(xDoor, ord);
+                    UpdateOrderExist(xDoor, upptOrd);
                     return Json(_LND.DeleteDoorsxUser(itemID));
                 }
                 else
@@ -81,7 +83,7 @@ namespace VenusDoors.Controllers
         }
 
         [HttpPost]
-        public ActionResult UpdateOrderExist(DoorsxUser xDoor, Order ord)
+        public ActionResult UpdateOrderExist(DoorsxUser xDoor, Order upptOrd)
         {
             if (Session["UserID"] == null)
             {
@@ -90,17 +92,21 @@ namespace VenusDoors.Controllers
             else
             {
                 BusinessLogic.lnOrder _LNUPor = new BusinessLogic.lnOrder();
-                ord.Quantity = ord.Quantity - xDoor.Quantity;
-                decimal subto = xDoor.ItemCost * xDoor.Quantity;
-                ord.Total = ord.Total - subto;
-                ord.ModificationDate = DateTime.Now;
-                if (ord.Total == 0 && ord.Quantity == 0)
+                upptOrd.Quantity = upptOrd.Quantity - xDoor.Quantity;                
+                upptOrd.SubTotal = upptOrd.SubTotal - xDoor.SubTotal;
+                decimal taxDoor = xDoor.SubTotal * Convert.ToDecimal(0.0825);
+                decimal TaxRound = Math.Round(taxDoor * 100)/ 100;
+                upptOrd.Tax = upptOrd.Tax - TaxRound;
+                decimal TotaltaxDoor = TaxRound + xDoor.SubTotal;
+                upptOrd.Total = upptOrd.Total - TotaltaxDoor;
+                upptOrd.ModificationDate = DateTime.Now;
+                if (upptOrd.Total == 0 && upptOrd.Quantity == 0)
                 {
-                    return Json(_LNUPor.DeleteOrder(ord.Id));
+                    return Json(_LNUPor.DeleteOrder(upptOrd.Id));
                 }
                 else
                 {
-                    return Json(_LNUPor.UpdateOrder(ord));
+                    return Json(_LNUPor.UpdateOrder(upptOrd));
                 }
             }
         }

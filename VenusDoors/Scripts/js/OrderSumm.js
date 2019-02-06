@@ -3,17 +3,22 @@
     $(".btnn-dele").click(function (e) {
         e.preventDefault();
         var id = $(this).parentsUntil('#id-table').find('.btnn-dele').attr('data-id');
-        Id: id
-        DltItem(id);
+        $('#modalDelete').modal('toggle');
+        $('#deleteidhidden').val(id);
     });
+
+    $("#btnDelete").click(function () {
+        DltItem();
+    });  
 });
 
-function DltItem(id) {
+function DltItem() {
     var datos =
                     {
-                        itemID: id,
+                        itemID: $('#deleteidhidden').val(),
                         ord: {
                             Id: $("#idorder").val(),
+                            Status: { Id: $("#idstatus").val() },
                         }
                      }
               
