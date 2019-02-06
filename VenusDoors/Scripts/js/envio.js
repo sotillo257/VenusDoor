@@ -27,15 +27,20 @@
 //}
 
 function ConfirmOrder() {
-    ConverExcel('idOrderSummary', 'W3C Example Table');
-    var OrderSummary = $("#idOrderSummary").val();
 
-    var data = new FormData();
-    data.append("idOrderSummary", idOrderSummary);
+    var datos =
+    {
+        ord: {
+            Id: $("#idorder").val(),
+            Total: $("#idtotal").val(),
+            Status:{Id: $("#idstatus").val()}
 
-    //Llamado ajax
+        }
+    };
+
     $.ajax({
-        //Controlador - Método
+        type: 'POST',
+        data: JSON.stringify(datos),
         url: urlConfirmOrder,
         //Envío de parámetros
         data: data,
@@ -43,19 +48,13 @@ function ConfirmOrder() {
         success: function (data) {
             if (data == true) {
                 LlammarModal("Sing", "Congratulations! The creation of your order has been successful.", " ");
-            } else {
+                            } else {
                 LlammarModal("Danger", "An error occurred during the process.", "Check your internet connection I tried again");
                             }
         },
-        //Configuraciones adicionales internas para ajax
-        processData: false,
-        contentType: false,
-        type: "POST",
-        datatype: "json",
-        error: function (xhr, ajaxOptions, thrownError) {
-            console.log(xhr.status);
-            console.log(thrownError);
-            console.log(xhr.responseText);
-        }
+        error: function (err) {
+            alert("error");
+        },
+
     });
 }

@@ -295,12 +295,12 @@ function DeleteBottomRail() {
 
 function InsertDoors() {
 
-    var Door = new Array();
-    var formData = new FormData();
-    if ($("#inPicture")[0].files.length > 0) {
-        //alert($("#File1")[0].files[0].name);
-        formData.append('Files', $("#inPicture")[0].files[0], "lp");
-    }
+    //var Door = new Array();
+    //var formData = new FormData();
+    //if ($("#inPicture")[0].files.length > 0) {
+    //    //alert($("#File1")[0].files[0].name);
+    //    formData.append('Files', $("#inPicture")[0].files[0], "lp");
+    //}
     var datos =
       {
           pDoors: {
@@ -329,18 +329,26 @@ function InsertDoors() {
               CreatorUser: 6,
               ModificationUser: 6,
 
+          },
+
+          HingeP: {
+              Position1: $("#HingePositions1").val(),
+              Position2: $("#HingePositions2").val(),
+              Position3: $("#HingePositions3").val(),
+              Position4: $("#HingePositions4").val(),
+              Position5: $("#HingePositions5").val(),
           }
       };
-    formData.append('pDoors', pDoors);
+    //formData.append('pDoors', pDoors);
    
 
 
-    compania.push(formData);
+    //compania.push(formData);
   
     console.log(datos);
     $.ajax({
         type: 'POST',
-        data: compania[0],
+        data: JSON.stringify(datos),
         url: urlInsertDoors,
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
@@ -421,8 +429,8 @@ function InsertDoorsPrices() {
             DoorStyle: { Id: $("#inDoorStyle").val() },
             Material: { Id: $("#inMaterial").val() },
             RailThickness: { Id: $("#inRailThickness").val() },
-            BasePrice: $("#inBasePrice").val(),
-            AdditionalSFPrice: $("#inAdditionalSFPrice").val(),
+            BasePrice: parseFloat($("#inBasePrice").val()),
+            AdditionalSFPrice: parseFloat($("#inAdditionalSFPrice").val()),
             Status: { Id: $("#inStatus").val() },
             Picture: $("#inPicture").val(),
             ProfilePicture: $("#inProfilePicture").val(),
@@ -465,8 +473,8 @@ function UpdateDoorPrice() {
             DoorStyle: { Id: $("#cbDoorStyle").val() },
             Matarial: { Id: $("#cbMatarial").val() },
             RailThickness: { Id: $("#cbRailThickness").val() },
-            BasePrice: $("#txtBasePrice").val(),
-            AdditinalSFPrice: $("#txtAdditinalSFPrice").val(),
+            BasePrice: parseFloat($("#txtBasePrice").val()),
+            AdditinalSFPrice: parseFloat($("#txtAdditinalSFPrice").val()),
             Status: { Id: $("#IdStatus").val() },
             Picture: $("#txtPicture").val(),
             ProfilePicture: $("#txtProfilePicture").val(),
