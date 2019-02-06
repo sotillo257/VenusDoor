@@ -303,6 +303,7 @@
     <Content Include="Content\img\Doors\Cabinet_Vector-16.jpg" />
     <Content Include="Content\img\Doors\Cabinet_Vector-17.jpg" />
     <Content Include="Content\img\Doors\Cabinet_Vector-18.jpg" />
+    <Content Include="Content\img\Doors\img11.jpg" />
     <Content Include="Content\img\Profile\FingerPull-Shaker22-RaisedPanel.png" />
     <Content Include="Content\img\- Finger pull + shaker goove + flat panel beaded.png" />
     <Content Include="Content\img\- Finger pull + shaker goove + flat panel.png" />
@@ -1059,6 +1060,7 @@
     <Content Include="Scripts\js\LoginSiginUp.js" />
     <Content Include="Scripts\js\LogSing.js" />
     <Content Include="Scripts\js\Masters.js" />
+    <Content Include="Scripts\js\ModalAlert.js" />
     <Content Include="Scripts\js\OrderSumm.js" />
     <Content Include="Scripts\js\PriceCalc.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
