@@ -250,15 +250,17 @@ namespace VenusDoors.Controllers
         }
 
         [HttpPost]
-        public ActionResult UpdateOrderExist(Order item, DoorsxUser pDoorsxUser)
+        public ActionResult UpdateOrderExist(Order item, DoorsxUser pDoorsxUser, Order Ord)
         {
             BusinessLogic.lnOrder _LNUPor = new BusinessLogic.lnOrder();
             item.Quantity = item.Quantity + pDoorsxUser.Quantity;
-            item.Total = item.Total + pDoorsxUser.SubTotal;
+            item.SubTotal = item.SubTotal + pDoorsxUser.SubTotal;
+            item.Tax = item.Tax + Ord.Tax;
+            item.Total = item.Total + Ord.Total;
             return Json(_LNUPor.UpdateOrder(item));
         }
 
-        public ActionResult InsertDoorsxUser(DoorsxUser pDoorsxUser, HingePositions HingeP)
+        public ActionResult InsertDoorsxUser(DoorsxUser pDoorsxUser, HingePositions HingeP, Order Ord)
         {
             if (Session["UserID"] == null)
             {
@@ -278,14 +280,16 @@ namespace VenusDoors.Controllers
                 {
                     try
                     {
-
+                        
                         Order neworder = new Order()
-                        {
+                        {                            
                             User = new Model.User() { Id = userID },
                             Status = new Model.Status() { Id = 1 },
                             Type = new Model.Type() { Id = 1 },
                             Quantity = pDoorsxUser.Quantity,
-                            Total = pDoorsxUser.SubTotal,
+                            SubTotal = Ord.SubTotal,
+                            Tax = Ord.Tax,
+                            Total = Ord.Total,
                             CreationDate = DateTime.Now,
                             CreatorUser = userID,
                             ModificationDate = DateTime.Now,
@@ -349,7 +353,7 @@ namespace VenusDoors.Controllers
                         int IdHingeP = _LNHP.InsertHingePositions(newhp);
                         newhp.Id = IdHingeP;
 
-                        UpdateOrderExist(item, pDoorsxUser);
+                        UpdateOrderExist(item, pDoorsxUser, Ord);
                         pDoorsxUser.CreatorUser = userID;
                         pDoorsxUser.ModificationUser = userID;
                         pDoorsxUser.CreationDate = DateTime.Now;
@@ -377,7 +381,9 @@ namespace VenusDoors.Controllers
                             Status = new Model.Status() { Id = 1 },
                             Type = new Model.Type() { Id = 1 },
                             Quantity = pDoorsxUser.Quantity,
-                            Total = pDoorsxUser.SubTotal,
+                            SubTotal = Ord.SubTotal,
+                            Tax = Ord.Tax,
+                            Total = Ord.Total,
                             CreationDate = DateTime.Now,
                             CreatorUser = userID,
                             ModificationDate = DateTime.Now,

@@ -150,10 +150,11 @@ namespace VenusDoors.Controllers
         }
 
         [HttpPost]
-        public ActionResult InsertDoors(Doors pDoors)
+        public ActionResult InsertDoors(Doors pDoors, HingePositions HingeP)
         {
             try
             {
+                int userID = (int)Session["UserID"];                
 
                 if (Request.Files.Count > 0)
                 {
@@ -176,11 +177,31 @@ namespace VenusDoors.Controllers
                 }
                 else
                 {
+
                     pDoors.CreationDate = DateTime.Now;
                     pDoors.ModificationDate = DateTime.Now;
                     pDoors.Picture = "Picture";
                     pDoors.ProfilePicture = "empty";
                     BusinessLogic.lnDoors _LM = new BusinessLogic.lnDoors();
+                    BusinessLogic.lnHingePositions _LNHP = new BusinessLogic.lnHingePositions();
+
+                    HingePositions newhp = new HingePositions()
+                    {
+                        Status = new Model.Status() { Id = 1 },
+                        Position1 = HingeP.Position1,
+                        Position2 = HingeP.Position2,
+                        Position3 = HingeP.Position3,
+                        Position4 = HingeP.Position4,
+                        Position5 = HingeP.Position5,
+                        CreationDate = DateTime.Now,
+                        CreatorUser = userID,
+                        ModificationDate = DateTime.Now,
+                        ModificationUser = userID
+                    };
+
+                    int IdHingeP = _LNHP.InsertHingePositions(newhp);
+                    newhp.Id = IdHingeP;
+                    pDoors.HingePositions = newhp;
                     var inDoor = _LM.InsertDoors(pDoors);
                     return Json(true, JsonRequestBehavior.AllowGet);
                 }
@@ -198,7 +219,6 @@ namespace VenusDoors.Controllers
         {
             try
             {
-
                 uDoors.CreationDate = DateTime.Now;
                 uDoors.ModificationDate = DateTime.Now;
                 uDoors.ProfilePicture = "empty";

@@ -27,35 +27,35 @@
 //}
 
 function ConfirmOrder() {
-    ConverExcel('idOrderSummary', 'W3C Example Table');
-    var OrderSummary = $("#idOrderSummary").val();
 
-    var data = new FormData();
-    data.append("idOrderSummary", idOrderSummary);
+    var datos =
+    {
+        ord: {
+            Id: $("#idorder").val(),
+            Total: $("#idtotal").val(),
+            Status:{Id: $("#idstatus").val()}
 
-    //Llamado ajax
-    $.ajax({
-        //Controlador - Método
-        url: urlConfirmOrder,
-        //Envío de parámetros
-        data: data,
-        //Se ejecutó correctamente
-        success: function (data) {
-            if (data == true) {
-                $('#modalCongra').modal('toggle');
-                            } else {
-                $('#modalError').modal('toggle');
-                            }
-        },
-        //Configuraciones adicionales internas para ajax
-        processData: false,
-        contentType: false,
-        type: "POST",
-        datatype: "json",
-        error: function (xhr, ajaxOptions, thrownError) {
-            console.log(xhr.status);
-            console.log(thrownError);
-            console.log(xhr.responseText);
         }
+    };
+
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(datos),
+        url: urlConfirmOrder,
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+
+            //Validar data para ver si mostrar error al guardar o exito al guardar
+            if (result == true) {
+                $('#modalCongra').modal('toggle');
+            } else {
+                $('#modalError').modal('toggle');
+            }
+        },
+        error: function (err) {
+            alert("error");
+        },
+
     });
 }

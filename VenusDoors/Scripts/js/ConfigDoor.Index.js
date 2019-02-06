@@ -12,6 +12,7 @@
 	GetAllPanelMaterial();
 	GetAllVerticalDivisions();
 	GetAllHorizontalDivisions();
+	GetAllHingeDirection();
 	ValidateSession();
 
 	$("#btConfirm").on("click", function () {
@@ -370,8 +371,43 @@ function GetAllHorizontalDivisions() {
     });
 }
 
+function GetAllHingeDirection() {
+    $.ajax({
+        url: urlGetAllHingeDirection,
+        cache: false,
+        type: 'POST',
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        success: function (data) {
+            if (data != null) {
+                var option = '';
+                for (var i = 0; i < data.length; i++) {
+
+                    option += '<option value="' + data[i].Id + '">' + data[i].Direction + '</option>';
+
+
+                }
+                $("#cbHingeDirection").empty().append(option);
+
+            }
+            else {
+                MensajeModal("Error al obtener Hinge Direction", 5);
+            }
+        },
+        error: function (err) {
+            MensajeModal(msgErrorinterno, 5);
+        }
+    });
+}
+
 function InsertDoorsxUser() {
-    
+    var itemCost = parseFloat($("#iptCost").val());
+    var DoorQuantity = $("#iptQuantity").val();
+    var DoorSubTotal = itemCost * DoorQuantity;
+    var OrdSubTotal = DoorSubTotal;
+    var Tx = parseFloat(0.0825);
+    var Taxes = (parseFloat(OrdSubTotal) * Tx).toFixed(2);
+    var OrdTotal = (parseFloat(OrdSubTotal) + parseFloat(Taxes)).toFixed(2);
     var datos =
          {
              
@@ -391,16 +427,22 @@ function InsertDoorsxUser() {
                  InsideEdgeProfile: { Id: $("#cbInsideEdgeProfile").val() },                            
                  VerticalDivisions: { Id: $("#cbVerticalDivisions").val() },
                  HorizontalDivisions: { Id: $("#cbHorizontalDivisions").val() },
-                 Width: $("#iptWidth").val(),
-                 Height: $("#iptHeight").val(),
-                 Quantity: $("#iptQuantity").val(),
-                 SubTotal: parseFloat($("#iptCost").val()) * $("#iptQuantity").val(),
+                 Width: parseFloat($("#iptWidth").val()),
+                 Height: parseFloat($("#iptHeight").val()),
+                 Quantity: DoorQuantity,
+                 ItemCost: itemCost,
+                 SubTotal: DoorSubTotal,
                  Picture: 'PruebaPicture',
                  ProfilePicture: 'PruebaPP',
                  isDrill: $("#cbisDrill").val(),
-                 HingeDirection: { Id: 1},
+                 HingeDirection: { Id: $("#cbHingeDirection").val()},
              },
                         
+             Ord:{
+                 SubTotal: OrdSubTotal,
+                 Tax: parseFloat(Taxes),
+                 Total: parseFloat(OrdTotal),
+             },
 
              HingeP: {
                  Position1: $("#HP1").val(),
@@ -485,10 +527,11 @@ $(document).ready(function () {
         if ($(this).val() < 5) {
             
             $('#modalMinimo').modal('toggle');
-                Height = 5;
+            Height = 5;
                 var ip1 = 3.5;
                 var ip2 = Height - 3.5;
                 $('.iptHeight').val(Height);
+                GetPrices();
                 $('.HPinpt1').val(ip1);
                 $('.HPinpt2').val(ip2);
                 $('.HPinpt3').val("No hinge");
@@ -549,13 +592,14 @@ $(document).ready(function () {
         else {
             
             alert('Max Height is 96 inches');
-                Height = 96;
+            Height = 96;
                 var ip1 = 3.5;
                 var ip2 = 3.5 + (((Height / 2) - 3.5) / 2);
                 var ip3 = Height / 2;
                 var ip4 = Height - (3.5 + (((Height / 2) - 3.5) / 2));
                 var ip5 = Height - 3.5;
                 $('.iptHeight').val(Height);
+                GetPrices();
                 $('.HPinpt1').val(ip1);
                 $('.HPinpt2').val(ip2);
                 $('.HPinpt3').val(ip3);
@@ -574,6 +618,8 @@ $(document).ready(function () {
             $('#modalMinimo').modal('toggle');
             Width = 5;
             $('.iptWidth').val(Width);
+            GetPrices();
+           
         }
         else if ($(this).val() > 42)
         {
@@ -581,8 +627,11 @@ $(document).ready(function () {
             $('#modalMaximo').modal('toggle');
             Width = 42;
             $('.iptWidth').val(Width);
+            GetPrices();
+            
            
         }
+        GetPrices
     });
 });
 
