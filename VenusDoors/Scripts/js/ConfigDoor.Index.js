@@ -20,7 +20,7 @@
 	});
     
 	$("#bt-conf-log").on("click", function () {
-	    LlammarModal("MLogin", "Error obtaining price");
+	    LlammarModal("MLogin", "Sign in to your account to process your order!", " ");
 	});
 });
 
@@ -720,7 +720,7 @@ function ValidateSession() {
         success: function (result) {
 
             if (result == false) {
-                LlammarModal("MLogin", "Error obtaining price", " ");
+                LlammarModal("MLogin", "Sign in to your account to start building doors!", " ");
             } 
         },
     });
