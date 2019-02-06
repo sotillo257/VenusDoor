@@ -33,14 +33,14 @@ function DltItem() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                alert("Delete complete");
+                LlammarModal("Sing", "Success! It has been removed correctly.", " ");
                 location.reload();
             } else {
-                alert("Failed");
+                LlammarModal("Danger", "Error! An error occurred while deleting..", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "An error occurred during the process.", "Check your internet connection I tried again");
         },
 
     });

@@ -1059,6 +1059,7 @@
     <Content Include="Scripts\js\LoginSiginUp.js" />
     <Content Include="Scripts\js\LogSing.js" />
     <Content Include="Scripts\js\Masters.js" />
+    <Content Include="Scripts\js\ModalAlert.js" />
     <Content Include="Scripts\js\OrderSumm.js" />
     <Content Include="Scripts\js\PriceCalc.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
