@@ -11,8 +11,15 @@ namespace VenusDoors.Controllers
         // GET: OrderStatus
         public ActionResult Index()
         {
-            ViewBag.OrderStatus = "active";
-            return View();
+            if (Session["UserID"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                ViewBag.OrderStatus = "active";
+                return View();                         
+            }
         }
     }
 }

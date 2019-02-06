@@ -959,6 +959,48 @@ function RaisedPanel(Outside, Inside) {
     $('#ProfilePicture').attr('src', urlFolder + ProfileUrl);
 }
 
+function changeDoorPicture() {
+    var Style = $('#cbDoorStyle').val();
+    var Panel = $('#cbPanel').val();
 
+    if (Panel == 5) {
+        FlatPanelDoor(Style);
+    }
+    if (Panel == 6) {
+        FlatPanelBeadedDoor(Style);
+    }
+    if (Panel == 2) {
+        RaisedPanelDoor(Style);
+    }
+}
+
+function FlatPanelDoor(Style) {
+    var stile = $('#cbTopRail').val();
+    var rail = $('#cbBottomRail').val();
+    var DoorUrl = "img11.jpg";
+    var urlFolder = "/Content/img/Doors/";
+    if (Style == 1008) {
+        DoorUrl = "Cabinet Vector-01.png";
+
+        if (Style == 1002) {
+            if (stile == 3 && rail == 3) {
+                DoorUrl = "Cabinet Vector-02.png";
+            } else if (stile == 1 && rail == 1) {
+                DoorUrl = "Cabinet Vector-14.png";
+            }
+        }
+        if (Style == 1008) {
+            DoorUrl = "Cabinet Vector-01.png";
+        }
+        if (Style == 1008) {
+            DoorUrl = "Cabinet Vector-01.png";
+        }
+        if (Style == 1008) {
+            DoorUrl = "Cabinet Vector-01.png";
+        }
+
+        $('#DoorPicture').attr('src', urlFolder + ProfileUrl);
+    }
+}
 
  
