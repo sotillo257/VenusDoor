@@ -77,11 +77,12 @@ function Signin() {
             if (result == true) {
                 window.location.href = '/Home/Index';
             } else {
-                LlammarModal("Danger", "An error occurred during the process.", "Check your internet connection I tried again");
+                LlammarModal("Danger", "Error! Invalid username or password", "If you forgot your password you can restore it here");
+                
             }
         },
         error: function (err) {
-            LlammarModal("Danger", "An error occurred during the process.", "Error en el metodo al insertar un usuario");
+            LlammarModal("Danger", "An error occurred during the process.", "Check your internet connection I tried again");
         },
     });
 }

@@ -145,7 +145,7 @@
 
                         <div id="HingeDirectionDiv" style="display:none" class="target col-xs-4 col-md-3">
                             <label for="HingeDirection" style="margin-top: 25px;">Hinge Direction: </label>
-                            <select style="width:100%" value="true" class="ocultar select2 form-control" id="cbHingeDirection" data-placeholder="">
+                            <select style="width:100%" value="true" class="select2 form-control" id="cbHingeDirection" data-placeholder="">
                                 <option hidden selected value="0" disabled>Select direction</option>
                                 <option value="1">Right</option>
                                 <option value="2">Left</option>
@@ -154,7 +154,7 @@
                         </div><!-- col -->
 
                         <div id="HingePositionsDiv" style="display:none" class="target col-xs-4 col-md-3">
-                            <label for="HingePositions" alue="true" style="margin-top: 25px;">Hinge Positions: </label>
+                            <label for="HingePositions" value="true" style="margin-top: 25px;">Hinge Positions: </label>
                             <div style="display:flex"><span class="hp1">1: </span><input id="HP1" disabled class="form-control HPinpt1 hp1" /><span class="hp2">2: </span><input id="HP2" disabled class="form-control HPinpt2 hp2" /><span class="hp3">3: </span><input id="HP3" disabled class="form-control HPinpt3 hp3" /><span class="hp4">4: </span><input id="HP4" disabled class="form-control HPinpt4 hp4" /><span class="hp5">5: </span><input id="HP5" disabled class="form-control HPinpt5 hp5" /></div>
                         </div><!-- col -->
 
@@ -289,18 +289,6 @@
         });
 
       });
-    </script>
-
-    <script type="text/javascript">
-          $("#cbisDrill").change(function () {
-              if (this.value = true) {
-                  $("#HingeDirectionDiv").css('display', 'block');
-                  $("#HingePositionsDiv").css('display', 'block');
-              } else {
-                  $("#HingeDirectionDiv").css('display', 'none');
-                  $("#HingePositionsDiv").css('display', 'none');
-              }
-          })
     </script>
 
     <script type="text/javascript">

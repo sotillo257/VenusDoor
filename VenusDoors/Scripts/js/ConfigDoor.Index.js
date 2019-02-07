@@ -522,6 +522,18 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
+    $(document).on('change', '#cbisDrill', function () {
+              if (this.value = true) {
+                  $("#HingeDirectionDiv").css('display', 'block');
+                  $("#HingePositionsDiv").css('display', 'block');
+              } else if(this.value = false){
+                  $("#HingeDirectionDiv").css('display', 'none');
+                  $("#HingePositionsDiv").css('display', 'none');
+              }       
+    });
+});
+
+$(document).ready(function () {
     $(document).on('change', '.iptHeight', function () {
         var Height = parseFloat($(this).val())
         if ($(this).val() < 5) {
