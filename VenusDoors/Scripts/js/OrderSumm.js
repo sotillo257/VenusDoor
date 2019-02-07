@@ -3,17 +3,22 @@
     $(".btnn-dele").click(function (e) {
         e.preventDefault();
         var id = $(this).parentsUntil('#id-table').find('.btnn-dele').attr('data-id');
-        Id: id
-        DltItem(id);
+        $('#modalDelete').modal('toggle');
+        $('#deleteidhidden').val(id);
     });
+
+    $("#btnDelete").click(function () {
+        DltItem();
+    });  
 });
 
-function DltItem(id) {
+function DltItem() {
     var datos =
                     {
-                        itemID: id,
+                        itemID: $('#deleteidhidden').val(),
                         ord: {
                             Id: $("#idorder").val(),
+                            Status: { Id: $("#idstatus").val() },
                         }
                      }
               
@@ -28,14 +33,14 @@ function DltItem(id) {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                alert("Delete complete");
+                LlammarModal("Sing", "Success! It has been removed correctly.", " ");
                 location.reload();
             } else {
-                alert("Failed");
+                LlammarModal("Danger", "Error! An error occurred while deleting..", " ");
             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "An error occurred during the process.", "Check your internet connection I tried again");
         },
 
     });

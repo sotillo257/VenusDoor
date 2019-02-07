@@ -30,3 +30,14 @@ C:\Users\Lenovo\Source\Repos\VenusDoor\BusinessLogic\bin\Release\MetodosDB.pdb
 C:\Users\Lenovo\Source\Repos\VenusDoor\BusinessLogic\obj\Release\BusinessLogic.csprojResolveAssemblyReference.cache
 C:\Users\Lenovo\Source\Repos\VenusDoor\BusinessLogic\obj\Release\BusinessLogic.dll
 C:\Users\Lenovo\Source\Repos\VenusDoor\BusinessLogic\obj\Release\BusinessLogic.pdb
+C:\Users\jesus\Source\Repos\copia venus 333\BusinessLogic\bin\Release\BusinessLogic.dll
+C:\Users\jesus\Source\Repos\copia venus 333\BusinessLogic\bin\Release\BusinessLogic.pdb
+C:\Users\jesus\Source\Repos\copia venus 333\BusinessLogic\bin\Release\DataAccess.dll
+C:\Users\jesus\Source\Repos\copia venus 333\BusinessLogic\bin\Release\Model.dll
+C:\Users\jesus\Source\Repos\copia venus 333\BusinessLogic\bin\Release\MetodosDB.dll
+C:\Users\jesus\Source\Repos\copia venus 333\BusinessLogic\bin\Release\DataAccess.pdb
+C:\Users\jesus\Source\Repos\copia venus 333\BusinessLogic\bin\Release\Model.pdb
+C:\Users\jesus\Source\Repos\copia venus 333\BusinessLogic\bin\Release\MetodosDB.pdb
+C:\Users\jesus\Source\Repos\copia venus 333\BusinessLogic\obj\Release\BusinessLogic.csprojResolveAssemblyReference.cache
+C:\Users\jesus\Source\Repos\copia venus 333\BusinessLogic\obj\Release\BusinessLogic.dll
+C:\Users\jesus\Source\Repos\copia venus 333\BusinessLogic\obj\Release\BusinessLogic.pdb

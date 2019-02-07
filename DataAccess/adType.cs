@@ -30,7 +30,6 @@ namespace DataAccess
                             Id = int.Parse(item["Id"].ToString()),
                             Description = item["Description"].ToString(),
                             Group = new Group() { Id = int.Parse(item["IdGroup"].ToString()), Description = item["DescripGroup"].ToString() },
-
                         };
                     }
                 }
@@ -60,7 +59,6 @@ namespace DataAccess
                             Id = int.Parse(item["Id"].ToString()),
                             Description = item["Description"].ToString(),
                             Group = new Group() { Id = int.Parse(item["IdGroup"].ToString()), Description = item["DescripGroup"].ToString() },
-
                         });
                     }
                 }
