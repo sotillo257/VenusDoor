@@ -25,7 +25,8 @@ function ConfirmOrder() {
         contentType: 'application/json; charset=utf-8',
         success: function (data) {
             if (data == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! Your order is being processed.", "At this time you will be redirected to the Order Status view");
+                window.location.href = '/OrderStatus/Index';
                             } else {
                 LlammarModal("Danger", "An error occurred during the process.", "Check your internet connection I tried again");
                             }
