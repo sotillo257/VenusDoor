@@ -902,7 +902,7 @@ function UpdateInsideEdgeProfile() {
 
     var datos =
     {
-        pInsideEdgeProfile: {
+        uInsideEdgeProfile: {
             Id: $("#txtId").val(),
             Description: $("#txtDescription").val(),
             Status: { Id: $("#IdStatus").val() },
@@ -1831,7 +1831,7 @@ function UpdateTopRailxHorizontalDivisions() {
             Id: $("#txtId").val(),
             TopRail: { Id: $("#cbTopRail").val() },
             HorizontalDivisions: { Id: $("#cbHorizontalDivisions").val() },
-            Status: { Id: $("#IdStatus").val() },
+            Status: { Id: $("#mStatus").val() },
             CreatorUser: 6,
             ModificationUser: 6,
 
@@ -1903,7 +1903,7 @@ function UpdateTopRailByJoin() {
             Id: $("#txtId").val(),
             TopRail: { Id: $("#cbTopRail").val() },
             Join: { Id: $("#cbJoin").val() },
-            Status: { Id: $("#IdStatus").val() },
+            Status: { Id: $("#mStatus").val() },
             CreatorUser: 6,
             ModificationUser: 6,
 
@@ -2011,7 +2011,6 @@ function InsertType() {
         pTypes: {
             Description: $("#inDescription").val(),
             Group: { Id: $("#inGroup").val() },
-            Status: { Id: $("#inStatus").val() },
             CreatorUser: 6,
             ModificationUser: 6,
 
@@ -2047,7 +2046,6 @@ function UpdateType() {
             Id: $("#txtId").val(),
             Description: $("#txtDescription").val(),
             Group: { Id: $("#IdGroup").val() },
-            Status: { Id: $("#IdStatus").val() },
             CreatorUser: 6,
             ModificationUser: 6,
 
@@ -2192,8 +2190,8 @@ function UpdateVerticalDivisions() {
     {
         uVerticalDivisions: {
             Id: $("#txtId").val(),
-            Quantity: $("#IdStatus").val(),
-            Status: { Id: $("#txtQuanty").val() },
+            Quantity: $("#txtQuanty").val(),
+            Status: { Id: $("#IdStatus").val() },
             CreatorUser: 6,
             ModificationUser: 6,
 

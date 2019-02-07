@@ -82,7 +82,7 @@ function GetAllDoorStyle() {
 		}
 	});
 }
-
+var AllInsideEdgeProfile = "";
 function GetAllInsideEdgeProfile() {
     $.ajax({
         url: urlGetAllInsideEdgeProfile,
@@ -92,6 +92,7 @@ function GetAllInsideEdgeProfile() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
+                AllInsideEdgeProfile = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
                     if (data[i].Status.Id == 1) {
@@ -111,7 +112,7 @@ function GetAllInsideEdgeProfile() {
         }
     });
 }
-
+var AllOutsideEdgeProfile = "";
 function GetAllOutsideEdgeProfile() {
     $.ajax({
         url: urlGetAllOutsideEdgeProfile,
@@ -121,6 +122,7 @@ function GetAllOutsideEdgeProfile() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
+                AllOutsideEdgeProfile = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
                     if (data[i].Status.Id == 1) {
@@ -649,7 +651,10 @@ $(document).ready(function () {
 
     $(document).on('change', '.Profile', function () {
         ChangeProfile();
-});
+    });
+    $(document).on('change', '.Doors', function () {
+        changeDoorPicture();
+    });
 });
 
 $(document).on('change', '.eventChange', function () {
@@ -979,10 +984,10 @@ function changeDoorPicture() {
         FlatPanelDoor(Style);
     }
     if (Panel == 6) {
-        FlatPanelBeadedDoor(Style);
+        $('#DoorPicture').attr('src', "/Content/img/Doors/Cabinet Vector-17.png");
     }
     if (Panel == 2) {
-        RaisedPanelDoor(Style);
+       RaisedPanelDoor(Style);
     }
 }
 
@@ -991,28 +996,155 @@ function FlatPanelDoor(Style) {
     var rail = $('#cbBottomRail').val();
     var DoorUrl = "img11.jpg";
     var urlFolder = "/Content/img/Doors/";
-    if (Style == 1008) {
-        DoorUrl = "Cabinet Vector-01.png";
-
+    if ($('#cbJoin').val() == 1) {
+        if (Style == 1008) {
+            if (stile == 3 && rail == 3) {
+                DoorUrl = "Cabinet Vector-01.png";
+            }
+            TodosLosPerfiles();
+        }
         if (Style == 1002) {
             if (stile == 3 && rail == 3) {
                 DoorUrl = "Cabinet Vector-02.png";
             } else if (stile == 1 && rail == 1) {
                 DoorUrl = "Cabinet Vector-14.png";
             }
+            NoAplicaShaker();
         }
-        if (Style == 1008) {
-            DoorUrl = "Cabinet Vector-01.png";
+        if (Style == 1004) {
+            if (stile == 3 && rail == 3) {
+                DoorUrl = "Cabinet Vector-05.png";
+            } else if (stile == 1 && rail == 1) {
+                DoorUrl = "Cabinet Vector-06.png";
+            }
+            SoloShaker();
         }
-        if (Style == 1008) {
-            DoorUrl = "Cabinet Vector-01.png";
+        if (Style == 1009) {
+            if (stile == 3 && rail == 3) {
+                DoorUrl = "Cabinet Vector-13.png";
+            }
+            TodosLosPerfiles();
         }
-        if (Style == 1008) {
-            DoorUrl = "Cabinet Vector-01.png";
-        }
-
-        $('#DoorPicture').attr('src', urlFolder + ProfileUrl);
+       
+    } else if ($('#cbJoin').val() == 2) {
+        DoorUrl = "Cabinet Vector-08.png";
+        TodosLosPerfiles();
     }
+        $('#DoorPicture').attr('src', urlFolder + DoorUrl);
+   
 }
 
+function RaisedPanelDoor(Style) {
+    var stile = $('#cbTopRail').val();
+    var rail = $('#cbBottomRail').val();
+    var DoorUrl = "img11.jpg";
+    var urlFolder = "/Content/img/Doors/";
+    if ($('#cbJoin').val() == 1) {
+        if (stile == 3 && rail == 3) {
+        if (Style == 1008) {
+           
+                var inside = $("#cbInsideEdgeProfile").val();
+                var outside = $("#cbOutsideEdgeProfile").val();
+                if (outside != 6 && inside != 3 && inside != 7) {
+                    DoorUrl = "Cabinet Vector-09.png";
+                } else if (outside == 6 && ( inside == 3 || inside == 7)) {
+                    DoorUrl = "Cabinet Vector-10.png";
+                }
+                TodosLosPerfiles();
+        } else if (Style == 1009) {
+        
+        } else {
+            DoorUrl = "Cabinet Vector-16.png";
+            NoAplicaShaker();
+        }
+            
+        } else if (stile == 1 && rail == 1) {
+            if (Style == 1009) {
+
+            } else {
+                DoorUrl = "Cabinet Vector-10.png";
+                TodosLosPerfiles();
+            }
+        } 
+       
+
+    } else if ($('#cbJoin').val() == 2) {
+        DoorUrl = "Cabinet Vector-07.png";
+    }
+    $('#DoorPicture').attr('src', urlFolder + DoorUrl);
+
+}
+function NoAplicaShaker() {
+   var inside = $("#cbInsideEdgeProfile").val();
+   var outside = $("#cbOutsideEdgeProfile").val();
+   var option = '<option value="0">Select</option>';
+                    for (var i = 0; i < AllInsideEdgeProfile.length; i++) {
+                        if (AllInsideEdgeProfile[i].Status.Id == 1 &&  AllInsideEdgeProfile[i].Id != 3  &&  AllInsideEdgeProfile[i].Id != 7) {
+                            option += '<option value="' + AllInsideEdgeProfile[i].Id + '">' + AllInsideEdgeProfile[i].Description + '</option>';
+                        }
+                    }
+                    $("#cbInsideEdgeProfile").empty().append(option);
+                    if (inside != 3 && inside != 7) {
+                        $("#cbInsideEdgeProfile").val(inside);
+                    } else {
+                        $("#cbInsideEdgeProfile").val(0);
+                    }
+                    option = '<option value="0">Select</option>';
+                    for (var i = 0; i < AllOutsideEdgeProfile.length; i++) {
+                        if (AllOutsideEdgeProfile[i].Status.Id == 1 && AllOutsideEdgeProfile[i].Id != 6) {
+                            option += '<option value="' + AllOutsideEdgeProfile[i].Id + '">' + AllOutsideEdgeProfile[i].Description + '</option>';
+                        }
+                    }
+                    $("#cbOutsideEdgeProfile").empty().append(option);
+                    if (outside != 6) {
+                        $("#cbOutsideEdgeProfile").val(outside);
+                    } else {
+                        $("#cbOutsideEdgeProfile").val(0);
+                    }
+}
+function SoloShaker() {
+    var inside = $("#cbInsideEdgeProfile").val();
+    var outside = $("#cbOutsideEdgeProfile").val();
+    var option = '<option value="0">Select</option>';
+    for (var i = 0; i < AllInsideEdgeProfile.length; i++) {
+        if (AllInsideEdgeProfile[i].Status.Id == 1 && (AllInsideEdgeProfile[i].Id == 3 || AllInsideEdgeProfile[i].Id == 7)) {
+            option += '<option value="' + AllInsideEdgeProfile[i].Id + '">' + AllInsideEdgeProfile[i].Description + '</option>';
+        }
+    }
+    $("#cbInsideEdgeProfile").empty().append(option);
+    if (inside == 3 || inside == 7) {
+        $("#cbInsideEdgeProfile").val(inside);
+    } else {
+        $("#cbInsideEdgeProfile").val(0);
+    }
+    option = '<option value="0">Select</option>';
+    for (var i = 0; i < AllOutsideEdgeProfile.length; i++) {
+        if (AllOutsideEdgeProfile[i].Status.Id == 1 && AllOutsideEdgeProfile[i].Id == 6) {
+            option += '<option value="' + AllOutsideEdgeProfile[i].Id + '">' + AllOutsideEdgeProfile[i].Description + '</option>';
+        }
+    }
+    $("#cbOutsideEdgeProfile").empty().append(option);
+        $("#cbOutsideEdgeProfile").val(6);
+}
+function TodosLosPerfiles() {
+    var inside = $("#cbInsideEdgeProfile").val();
+    var outside = $("#cbOutsideEdgeProfile").val();
+    var option = '<option value="0">Select</option>';
+    for (var i = 0; i < AllInsideEdgeProfile.length; i++) {
+       
+            option += '<option value="' + AllInsideEdgeProfile[i].Id + '">' + AllInsideEdgeProfile[i].Description + '</option>';
+      
+    }
+    $("#cbInsideEdgeProfile").empty().append(option);
+    
+        $("#cbInsideEdgeProfile").val(inside);
+    option = '<option value="0">Select</option>';
+    for (var i = 0; i < AllOutsideEdgeProfile.length; i++) {
+       
+            option += '<option value="' + AllOutsideEdgeProfile[i].Id + '">' + AllOutsideEdgeProfile[i].Description + '</option>';
+       
+    }
+    $("#cbOutsideEdgeProfile").empty().append(option);
+        $("#cbOutsideEdgeProfile").val(outside);
+}
  

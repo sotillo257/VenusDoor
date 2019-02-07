@@ -41,7 +41,7 @@ function CreateNewUser() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == 1) {
-                LlammarModal("Sing", "Congratulations! The creation of your user has been successful.", "A message has been sent to the email supplied with an activation code to complete your registration.", '<button>hola</button>');
+                LlammarModal("Sing", "Congratulations! The creation of your user has been successful.", "A message has been sent to the email supplied with an activation code to complete your registration.");
             } else if(result == 2){
                 LlammarModal("Danger", "There is already a registered user with this email!", "Did you forget your password?. Click on the button below to recover your password");
             } else {

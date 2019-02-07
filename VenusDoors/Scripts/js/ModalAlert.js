@@ -1,11 +1,4 @@
-﻿$(document).ready(function () {
-    var listDoors = JSON.parse('@Html.Raw(ViewBag.ListDoor)');
-    $(document).on('click', '.Door', function (event) {
-        SearchDoor(listDoors, $(this).attr('value'));
-    });
-})
-
-function LlammarModal(TipoModal, Titulo, Mensaje) {
+﻿function LlammarModal(TipoModal, Titulo, Mensaje) {
   
       
     if (TipoModal == "Succes") {
