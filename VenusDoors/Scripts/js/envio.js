@@ -42,9 +42,8 @@ function ConfirmOrder() {
         type: 'POST',
         data: JSON.stringify(datos),
         url: urlConfirmOrder,
-        //Envío de parámetros
-        data: data,
-        //Se ejecutó correctamente
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
         success: function (data) {
             if (data == true) {
                 $('#modalCongra').modal('toggle');
