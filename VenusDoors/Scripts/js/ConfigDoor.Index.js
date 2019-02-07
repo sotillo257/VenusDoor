@@ -24,6 +24,18 @@
 	});
 });
 
+//function ValidarCamposVacios() {
+//    var aux = true;
+//    if ($('#inptName').val() == "") {
+//        $('#inptName').addClass("is-invalid");
+//        aux = false;
+//    } else {
+//        $('#inptName').removeClass("is-invalid");
+//    }
+
+//    return aux;
+//}
+
 function GetAllMaterial() {
     $.ajax({
         url: urlGetAllMaterial,
