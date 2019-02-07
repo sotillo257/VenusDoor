@@ -39,7 +39,7 @@
                             <input required class="required RequiereLlenar form-control" onkeypress="return soloAndNumeros(event)" type="text" maxlength="100" minlength="5" title="Complete this field." id="inptDirec" name="inptDirec" placeholder="Enter address">
                         </div>
                     </div><!-- col-8 -->
-                    <div class="col-lg-4">
+                    @*<div class="col-lg-4">
                         <div class="form-group">
                             <label class="form-control-label">Country: <span data-val="true" class="tx-danger">*</span></label>
                             <select class="form-control select2" data-placeholder="Choose country">
@@ -50,23 +50,23 @@
                                 <option value="Japan">Japan</option>
                             </select>
                         </div>
-                    </div><!-- col-4 -->
+                    </div>*@<!-- col-4 -->
                     <div class="col-lg-4">
                         <div class="form-group">
                             <label class="form-control-label">Number: <span data-val="true" class="tx-danger">*</span></label>
-                            <input class="required RequiereLlenar form-control" type="number" title="Complete this field." name="inptTelephone" id="inptTelephone" placeholder="Enter telephone number">
+                            <input class="required RequiereLlenar form-control" minlength="12" maxlength="12" type="number" title="Complete this field." name="inptTelephone" id="inptTelephone" placeholder="Enter telephone number">
                         </div>
                     </div><!-- col-4 -->
                     <div class="col-lg-4">
                         <div class="form-group">
                             <label class="form-control-label">Password: <span data-val="true" class="tx-danger">*</span></label>
                             <input required class="required RequiereLlenar form-control" type="password"
-                                   minlength="8" maxlength="15" title="Use a format that matches the one requested. Minimum 8 characters. Maximum 15 characters." name="password" placeholder="Enter password">
+                                   minlength="8" maxlength="15" title="Use a format that matches the one requested. Minimum 8 characters. Maximum 15 characters." name="password" id="Password" placeholder="Enter password">
                         </div>
                     </div><!-- col-4 -->
                     <div class="col-lg-4">
                         <div class="form-group">
-                            <label class="form-control-label">Password: <span data-val="true" class="tx-danger">*</span></label>
+                            <label class="form-control-label">Confirm password: <span data-val="true" class="tx-danger">*</span></label>
                             <input required class="required RequiereLlenar form-control" type="password"
                                    minlength="8" maxlength="15" title="Your password must match" id="inptPassword" name="inptPassword" placeholder="Confirm password">
                         </div>

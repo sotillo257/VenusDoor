@@ -1,13 +1,79 @@
 ﻿$(document).ready(function () {
     $("#btNewUser").on("click", function () {
-        CreateNewUser();
+        if (ValidarCamposVacios()) {
+            if (ValContrasenas()) {
+                CreateNewUser();
+            } else {
+                LlammarModal("Danger", "Passwords do not match.", " ");
+            }
+        } else {
+            LlammarModal("Danger", "You must fill all the fields.", " ");
+        }
+
     });
 
     $(".ingresar").on("click", function () {
         Signin();
     });
 });
+function ValContrasenas() {
+    var aux = true;
+    if ($('#inptPassword').val() != $('#Password').val()) {
+        $('#inptPassword').addClass("is-invalid");
+        $('#inptPassword').val(""); $('#Password').val("");
+        aux = false;
+    } else {
+        $('#inptPassword').removeClass("is-invalid");
+    }
+    return aux;
+}
 
+function ValidarCamposVacios() {
+    var aux = true;
+    if ($('#inptName').val() == "") {
+        $('#inptName').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#inptName').removeClass("is-invalid");
+    }
+
+    if ($('#inptLastName').val() == "") {
+        $('#inptLastName').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#inptLastName').removeClass("is-invalid");
+    }
+
+    if ($('#inptTelephone').val() == "") {
+        $('#inptTelephone').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#inptTelephone').removeClass("is-invalid");
+    }
+
+    if ($('#inptDirec').val() == "") {
+        $('#inptDirec').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#inptDirec').removeClass("is-invalid");
+    }
+
+    if ($('#inptEmail').val() == "") {
+        $('#inptEmail').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#inptEmail').removeClass("is-invalid");
+    }
+
+    if ($('#inptPassword').val() == "") {
+        $('#inptPassword').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#inptPassword').removeClass("is-invalid");
+    }
+
+    return aux;
+}
 function CreateNewUser() {
 
     var NewUserInfo =
