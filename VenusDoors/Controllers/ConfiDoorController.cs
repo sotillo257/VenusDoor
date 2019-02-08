@@ -5,6 +5,9 @@ using System.Web;
 using System.Web.Mvc;
 using Model;
 using System.Net.Mail;
+using System.IO;
+using ExcelDataReader;
+using System.Data;
 
 namespace VenusDoors.Controllers
 {
@@ -258,6 +261,89 @@ namespace VenusDoors.Controllers
             item.Tax = item.Tax + Ord.Tax;
             item.Total = item.Total + Ord.Total;
             return Json(_LNUPor.UpdateOrder(item));
+        }
+
+        [HttpPost]
+        public ActionResult UploadExcel()
+        {
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                if (Request.Files.Count > 0)
+                {
+                    var file = Request.Files[0];
+                    var fileName = Path.GetFileName(file.FileName);
+                    // ExcelDataReader works with the binary Excel file, so it needs a FileStream
+                    // to get started. This is how we avoid dependencies on ACE or Interop:
+                    Stream stream = file.InputStream;
+
+                    // We return the interface, so that
+                    IExcelDataReader reader = null;
+
+
+                    if (file.FileName.EndsWith(".xls"))
+                    {
+                        reader = ExcelReaderFactory.CreateBinaryReader(stream);
+                    }
+                    else if (file.FileName.EndsWith(".xlsx"))
+                    {
+                        reader = ExcelReaderFactory.CreateOpenXmlReader(stream);
+                    }
+                    else
+                    {
+
+                    }
+                    List<DoorsxUser> door = new List<DoorsxUser>();
+                    while (reader.Read())
+                    {
+                        if (reader[0].ToString() != "Select")
+                        {
+                            door.Add(new DoorsxUser()
+                            {
+                                DoorStyle = new DoorStyle() { Id = 0, Description = reader[0].ToString() },
+                                Material = new Material() { Id = 0, Description = reader[1].ToString() },
+                                TopRail = new TopRail() { Id = 0, Description = reader[2].ToString() },
+                                BottomRail = new BottomRail() { Id = 0, Description = reader[3].ToString() },
+                                Panel = new Panel() { Id = 0, Description = reader[4].ToString() },
+                                PanelMaterial = new PanelMaterial() { Id = 0, Description = reader[5].ToString() },
+                                Preparation = new Preparation() { Id = 0, Description = reader[6].ToString() },
+                                Join = new Join() { Id = 0, Description = reader[7].ToString() },
+                                OutsideEdgeProfile = new OutsideEdgeProfile() { Id = 0, Description = reader[8].ToString() },
+                                InsideEdgeProfile = new InsideEdgeProfile() { Id = 0, Description = reader[9].ToString() },
+                                VerticalDivisions = new VerticalDivisions() { Id = 0, Quantity = int.Parse(reader[10].ToString()), },
+                                HorizontalDivisions = new HorizontalDivisions() { Id = 0, Quantity = int.Parse(reader[11].ToString()), },
+                                Width = decimal.Parse(reader[12].ToString()),
+                                Height = decimal.Parse(reader[13].ToString()),
+                                isDrill = bool.Parse(reader[14].ToString()),
+                                HingeDirection = new HingeDirection() { Id = 0, Direction = reader[15].ToString(), },
+                                HingePositions = new HingePositions() { Id = 0, Position1 = reader[16].ToString(), Position2 = reader[17].ToString(), },
+                                IsOpeningMeasurement = bool.Parse(reader[18].ToString()),
+                                Status = new Status() { Id = 1 },
+                                CreationDate = DateTime.Now,
+                                ModificationDate = DateTime.Now,
+                                CreatorUser = (int)Session["UserID"],
+                                ModificationUser = (int)Session["UserID"],
+                                Picture = "",
+                                ProfilePicture = "",
+
+                            });
+                        }
+                       
+                    }
+                    reader.Close();
+                    //reader.IsFirstRowAsColumnNames = true;
+
+
+                    //DataSet result = reader..AsDataSet();
+
+
+                }
+            }
+         
+                return Json(0);
         }
 
         public ActionResult InsertDoorsxUser(DoorsxUser pDoorsxUser, HingePositions HingeP, Order Ord)

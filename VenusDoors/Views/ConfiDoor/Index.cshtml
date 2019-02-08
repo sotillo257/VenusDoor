@@ -64,6 +64,9 @@
                             <label for="Height" style="margin-top: 25px;">(*) Height: </label>
                             <input name="SoloNumeros" required class="required RequiereLlenar eventChange iptHeight form-control" type="text" value="0" maxlength="6" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="iptHeight">
                         </div><!-- col -->
+                        <div  class="col-xs-4 col-md-2">
+                            <button id="btnLogo" class="btn btn-outline-success btn-block"><i class="fa fa-upload mg-r-10"></i> Upload</button>
+                            <input id="File1" name="file" type="file" style="display:none;" />  </div>
                     </div>
                 </div>
             </div>
@@ -256,6 +259,7 @@
         var urlInsertDoorsxUser = '@Url.Action("InsertDoorsxUser", "ConfiDoor")';
         var urlGetPrices = '@Url.Action("GetPrices", "ConfiDoor")';
         var urlValidateSession = '@Url.Action("ValidateSession", "ConfiDoor")';
+        var urlUploadExcel = '@Url.Action("UploadExcel", "ConfiDoor")';
     </script>
 
     
