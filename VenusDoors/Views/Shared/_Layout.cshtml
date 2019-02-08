@@ -755,8 +755,7 @@
         </footer>
     </div><!-- br-mainpanel -->
     <!-- ########## END: MAIN PANEL ########## -->
-    @*@Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")*@
+ 
     <script src="~/Content/lib/jquery/jquery.js"></script>
     <script src="~/Content/lib/popper.js/popper.js"></script>
     <script src="~/Content/lib/bootstrap/bootstrap.js"></script>
@@ -809,7 +808,7 @@
         var urlAutherize = '@Url.Action("Autherize", "LoginController")';
     </script>
     @RenderSection("scripts", required: false);
-    @Scripts.Render("~/Scripts/js/LogSing.js")
+    
     @Scripts.Render("~/Scripts/js/ModalAlert.js")
 </body>
 </html>

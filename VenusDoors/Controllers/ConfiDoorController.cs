@@ -370,7 +370,7 @@ namespace VenusDoors.Controllers
                         Order neworder = new Order()
                         {                            
                             User = new Model.User() { Id = userID },
-                            Status = new Model.Status() { Id = 1 },
+                            Status = new Model.Status() { Id = 7 },
                             Type = new Model.Type() { Id = 1 },
                             Quantity = pDoorsxUser.Quantity,
                             SubTotal = Ord.SubTotal,
@@ -418,7 +418,7 @@ namespace VenusDoors.Controllers
                         return Json(false, JsonRequestBehavior.AllowGet);
                     }
                 }
-                else if (item.Status.Id == 1)
+                else if (item.Status.Id == 7)
                 {
                     try
                     {
@@ -457,14 +457,14 @@ namespace VenusDoors.Controllers
                         return Json(false, JsonRequestBehavior.AllowGet);
                     }
                 }
-                else if (item.Status.Id == 2)
+                else
                 {
                     try
                     {
                         Order neworder = new Order()
                         {
                             User = new Model.User() { Id = userID },
-                            Status = new Model.Status() { Id = 1 },
+                            Status = new Model.Status() { Id = 7 },
                             Type = new Model.Type() { Id = 1 },
                             Quantity = pDoorsxUser.Quantity,
                             SubTotal = Ord.SubTotal,
@@ -510,11 +510,7 @@ namespace VenusDoors.Controllers
                     {
                         return Json(false, JsonRequestBehavior.AllowGet);
                     }
-                }
-                else
-                {
-                    return View();
-                }
+                }                
 
             }
         }

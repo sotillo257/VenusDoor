@@ -38,6 +38,10 @@
             border-color:#c74000;
             cursor:pointer;
         }
+
+    .table th, .table td {
+        vertical-align:middle!important;
+    }
     </style>
 
 <div class="br-pageheader pd-y-15 pd-l-20">
@@ -98,7 +102,7 @@
                             decimal itemcost = (i.SubTotal / i.Quantity);
                             
                             <tr>
-                                <td><img src="@i.Picture"></td>
+                                <td><img style="width: 80px;" src="@i.Picture"></td>
                                 <td>@i.Material.Description</td>
                                 <td>@i.OutsideEdgeProfile.Description</td>
                                 <td>@i.InsideEdgeProfile.Description</td>
@@ -132,7 +136,7 @@
                         
                     </div>
                 }
-                else if(ord.Status.Id == 1 && ord.Total != 0)
+                else if(ord.Status.Id == 7 && ord.Total != 0)
                 {
                   
                     <input hidden id="idorder" value="@ord.Id" />

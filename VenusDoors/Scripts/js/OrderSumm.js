@@ -33,8 +33,7 @@ function DltItem() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                LlammarModal("Sing", "Success! It has been removed correctly.", " ");
-                location.reload();
+                LlammarModal("Congratuletions", "Success! It has been removed correctly.", " ");
             } else {
                 LlammarModal("Danger", "Error! An error occurred while deleting..", " ");
             }

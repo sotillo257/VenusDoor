@@ -43,7 +43,7 @@ namespace VenusDoors.Controllers
                 ViewBag.BottomRail = "active";
                 BusinessLogic.lnBottomRail _LN = new BusinessLogic.lnBottomRail();
 
-                ViewBag.mStatus = _LNStatus.GetAllStatus();
+                
 
                 var mBottomRail = _LN.GetAllBottomRail();
                 ViewBag.mBottomRail = mBottomRail;
@@ -122,6 +122,20 @@ namespace VenusDoors.Controllers
                 var delBR = _LN.DeleteBottomRail(pId);
                 return Json(true, JsonRequestBehavior.AllowGet);
 
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult GetStatus()
+        {
+            try
+            {
+               
+                return Json(_LNStatus.GetAllStatus());
             }
             catch
             {

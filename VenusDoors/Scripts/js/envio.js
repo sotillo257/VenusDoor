@@ -5,49 +5,28 @@
     });
 });
 
-//function Continuar() {
-//    var OrderSummary = $("#idOrderSummary").val();
-//    console.log(datos);
-//    $.ajax({
-//        type: 'POST',
-//        url: urlConfirmOrder,
-//        success: function (result) {
-
-//            if (result == true) {
-//                $('#modalCongra').modal('toggle');
-//            } else {
-//                $('#modalError').modal('toggle');
-//            }
-//        },
-//        error: function (err) {
-//            alert("error");
-//        },
-
-//    });
-//}
-
 function ConfirmOrder() {
-
+    
     var datos =
     {
         ord: {
             Id: $("#idorder").val(),
             Total: $("#idtotal").val(),
             Status:{Id: $("#idstatus").val()}
+        },
 
-        }
     };
 
     $.ajax({
         type: 'POST',
         data: JSON.stringify(datos),
         url: urlConfirmOrder,
-        //Envío de parámetros
-        data: data,
-        //Se ejecutó correctamente
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
         success: function (data) {
             if (data == true) {
-                $('#modalCongra').modal('toggle');
+                LlammarModal("Congratuletions", "Congratulations! Your order is being processed.", "At this time you will be redirected to the Order Status view");
+                window.location.href = '/OrderStatus/Index';
                             } else {
                 LlammarModal("Danger", "An error occurred during the process.", "Check your internet connection I tried again");
                             }

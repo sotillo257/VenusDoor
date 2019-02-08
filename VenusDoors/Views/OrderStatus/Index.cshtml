@@ -2,6 +2,8 @@
 @{
     ViewBag.Title = "Order Status";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    Model.DoorsxUser LastDoor = ViewBag.xUserDoors;
+    Model.Order ord = ViewBag.ActiveOrder;
 }
 
 <div class="br-pageheader pd-y-15 pd-l-20">
@@ -13,108 +15,215 @@
 
 <div class="pd-x-20 pd-sm-x-30 pd-t-20 pd-sm-t-30">
     <h4 class="tx-gray-800 mg-b-5">Order Status</h4>
-    <p class="mg-b-0">Modals are streamlined, but flexible, dialog prompts with the minimum required functionality and smart defaults.</p>
+    <p class="mg-b-0">Here you can see the status of your orders and your shopping list.</p>
 </div>
-
-<div class="br-pagebody pd-x-20 pd-sm-x-30">
-    <div class="row row-sm mg-t-20">
-        <div class="col-lg-6">
-            <div class="card shadow-base card-body pd-25 bd-0">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <h6 class="card-title tx-uppercase tx-12">Order Status</h6>
-                        <p class="display-4 tx-medium tx-inverse mg-b-5 tx-lato">25%</p>
-                        <div class="progress mg-b-10">
-                            <div class="progress-bar bg-primary progress-bar-xs wd-30p" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div><!-- progress -->
-                        <p class="tx-12">You have an active order. Confirm your purchase to continue and proceed to the next step.</p>
-                        @*<p class="tx-11 lh-3 mg-b-0">Estimated time to complete your order: <a href="#" target="blank">5 days</a>.</p>*@
-                    </div><!-- col-6 -->
-                    <div class="col-sm-6 mg-t-20 mg-sm-t-0 d-flex align-items-center justify-content-center">
-                        <span class="peity-donut" data-peity="{ &quot;fill&quot;: [&quot;#0866C6&quot;, &quot;#E9ECEF&quot;],  &quot;innerRadius&quot;: 60, &quot;radius&quot;: 90 }" style="display: none;">30/100</span>
-                    </div>
-                </div><!-- row -->
-            </div><!-- card -->
+@if (ViewBag.ActiveOrder == null)
+{<div class="br-pagebody pd-x-20 pd-sm-x-30">
+        <div class="pd-x-20 pd-sm-x-30 pd-t-20">
+            <h5 class="tx-gray-800 mg-b-5" style="color: #ff1a00;">Currently you do not have an order in process</h5><p class="mg-b-0">Haz click <a href="#">aqui </a>para iniciar una nueva orden</p>
         </div>
-        <div class="col-lg-6 mg-t-30 mg-lg-t-0">
-            <div class="card shadow-base card-body pd-25 bd-0">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <h6 class="card-title tx-uppercase tx-12 tx-inverse">Order Summary</h6>
-                        <p class="display-4 tx-medium tx-inverse mg-b-5 tx-lato" style="font-size: 2.5rem;">Poplar</p><br>
-                        <p>
-                            Outside profile: Finger pull<br>
-                            Inside profile: Ogee<br>
-                            Flat Panel - MDF <br>
-                        </p>
-                    </div><!-- col-6 -->
-                    <div style="padding-left: 60px; padding-right: 0px;" class="col-sm-6 mg-t-20 mg-sm-t-0 d-flex align-items-end justify-content-center">
-                        <img style="width: 190px;" src="~/Content/img/Cabinet Vector-01.png" />
-                    </div><!-- col-6 -->
-                </div><!-- row -->
-            </div><!-- card -->
-        </div><!-- col-6 -->
+        <div class="br-pagebody pd-x-20 pd-sm-x-30">
+
+            <div class="row row-sm mg-t-20">
+                <div class="col-lg-12">
+                    <div class="card shadow-base bd-0">
+                        <div class="card-header bg-transparent pd-20">
+                            <h6 class="card-title tx-uppercase tx-12 mg-b-0">Order status</h6>
+                        </div><!-- card-header -->
+                        <table class="table table-responsive mg-b-0 tx-12">
+                            <thead>
+                                <tr class="tx-10">
+                                    <th class="pd-y-5">Reference number</th>
+                                    <th class="pd-y-5">Number of items</th>
+                                    <th class="pd-y-5">Total</th>
+                                    <th class="pd-y-5">Status</th>
+                                    <th class="pd-y-5">Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (ViewBag.ListO == null)
+                                {
+                                    <tr class="odd">
+                                        <td valign="top" colspan="10" class="dataTables_empty">There is no record of orders.</td>
+                                    </tr>
+                                }
+                                else {
+                                    foreach (Model.Order ordenes in ViewBag.ListO)
+                                    {
+                                        if (ordenes.Status.Id != 6)
+                                        {
+                                            <tr>
+                                                <td class="pd-l-20">
+                                                    <a href="#" title="Click here for more details of your order"><span>#</span>@ordenes.Id</a>
+                                                </td>
+                                                <td>@ordenes.Quantity</td>
+                                                <td class="tx-12">
+                                                    @ordenes.Total<span> $</span>
+                                                </td>
+                                                <td class="tx-12">
+                                                    @if (ordenes.Status.Id == 7)
+                                                    { <span class="square-8 bg-success mg-r-5 rounded-circle"></span> }
+                                                    else if (ordenes.Status.Id == 5)
+                                                    { <span class="square-8 bg-teal mg-r-5 rounded-circle"></span> }
+                                                    else if (ordenes.Status.Id == 6)
+                                                    { <span class="square-8 bg-primary mg-r-5 rounded-circle"></span> }
+                                                    else
+                                                    { <span class="square-8 bg-warning mg-r-5 rounded-circle"></span> }
+                                                    @ordenes.Status.Description
+                                                </td>
+                                                <td>@ordenes.ModificationDate</td>
+                                            </tr>
+                                        }
+
+                                    }
+                                }
+                                
+                            </tbody>
+                        </table>
+                        <div class="card-footer tx-12 pd-y-15 bg-transparent">
+                            <a href=""><i class="fa fa-angle-down mg-r-5"></i>View All Transaction History</a>
+                        </div><!-- card-footer -->
+                    </div><!-- card -->
+                </div><!-- col-6 -->
+            </div>
+
+        </div>
     </div>
+}
+else
+{
+    <div class="br-pagebody pd-x-20 pd-sm-x-30">
         <div class="row row-sm mg-t-20">
-            <div class="col-lg-12">
-                <div class="card shadow-base bd-0">
-                    <div class="card-header bg-transparent pd-20">
-                        <h6 class="card-title tx-uppercase tx-12 mg-b-0">Shipping status</h6>
-                    </div><!-- card-header -->
-                    <table class="table table-responsive mg-b-0 tx-12">
-                        <thead>
-                            <tr class="tx-10">
-                                <th class="wd-10p pd-y-5">&nbsp;</th>
-                                <th class="pd-y-5">User</th>
-                                <th class="pd-y-5">Type</th>
-                                <th class="pd-y-5">Status</th>
-                                <th class="pd-y-5">Date</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="pd-l-20">
-                                    <img src="~/Content/img/Cabinet Vector-01.png" class="wd-55" alt="Image">
-                                </td>
-                                <td>
-                                    <a href="" class="tx-inverse tx-14 tx-medium d-block">
-                                    <span class="logged-name hidden-md-dow">
-                                        @if (Session["UserName"] == null)
-                                        {
+            <div class="col-lg-5">
+                <div class="card shadow-base card-body pd-25 bd-0">
+                    <div class="row">
+                        <div class="col-sm-7">
+                            <h6 class="card-title tx-uppercase tx-12">Progress</h6>
+                            <p class="display-4 tx-medium tx-inverse mg-b-5 tx-lato">25%</p>
+                            <div class="progress mg-b-10">
+                                <div class="progress-bar bg-primary progress-bar-xs wd-30p" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div><!-- progress -->
+                            <p class="tx-12">You have an active order. Confirm your purchase to continue and proceed to the next step.</p>
+                        </div><!-- col-6 -->
+                        <div class="col-sm-6 mg-t-20 mg-sm-t-0 d-flex align-items-center justify-content-center">
+                            <span class="peity-donut" data-peity="{ &quot;fill&quot;: [&quot;#0866C6&quot;, &quot;#E9ECEF&quot;],  &quot;innerRadius&quot;: 60, &quot;radius&quot;: 90 }" style="display: none;">30/100</span>
+                        </div>
+                    </div><!-- row -->
+                </div><!-- card -->
+            </div>
+            <div class="col-lg-7 mg-t-30 mg-lg-t-0">
+                <div class="card shadow-base card-body pd-25 bd-0">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h6 class="card-title tx-uppercase tx-12 tx-inverse">Last door added</h6>
 
-                                        }
-                                        else
-                                        {
-                                            int perID = (int)Session["UserName"];
-                                            BusinessLogic.lnPerson _LNP = new BusinessLogic.lnPerson();
-                                            var perList = _LNP.GetPersonById(perID);
-                                            ViewBag.xPerson = perList;
-                                            Model.Person item = ViewBag.xPerson;
+                            <p class="display-4 tx-medium tx-inverse mg-b-5 tx-lato" style="font-size: 2.5rem;">@LastDoor.Material.Description</p><br>
+                            <p>
+                                Outside profile: @LastDoor.OutsideEdgeProfile.Description<br>
+                                Inside profile: @LastDoor.InsideEdgeProfile.Description<br>
+                                @LastDoor.DoorStyle.Description - @LastDoor.PanelMaterial.Description <br>
+                            </p>
+                        </div><!-- col-6 -->
+                        <div style="padding-left: 60px; padding-right: 0px;" class="col-sm-6 mg-t-20 mg-sm-t-0 d-flex align-items-end justify-content-center">
+                            <img style="width: 185px;" src="@LastDoor.Picture" />
+                        </div><!-- col-6 -->
 
-                                            @item.Name
-
-                                        }
-                                    </span>
-                                    </a>
-                                    <span class="square-8 bg-success mg-r-5 rounded-circle"></span>Email verified
-                                </td>
-                                <td class="tx-12">
-                                    <span class="square-8 bg-danger mg-r-5 rounded-circle"></span> Missing register location
-                                </td>
-                                <td class="tx-12">
-                                    <span class="square-8 bg-warning mg-r-5 rounded-circle"></span> In factory
-                                </td>
-                                <td>Just Now</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="card-footer tx-12 pd-y-15 bg-transparent">
-                        <a href=""><i class="fa fa-angle-down mg-r-5"></i>View All Transaction History</a>
-                    </div><!-- card-footer -->
+                    </div><!-- row -->
                 </div><!-- card -->
             </div><!-- col-6 -->
         </div>
+        <div class="br-pagebody pd-x-20 pd-sm-x-30">
 
-    </div>
+            <div class="row row-sm mg-t-20">
+                <div class="col-lg-12">
+                    <div class="card shadow-base bd-0">
+                        <div class="card-header bg-transparent pd-20">
+                            <h6 class="card-title tx-uppercase tx-12 mg-b-0">Order status</h6>
+                        </div><!-- card-header -->
+                        <table class="table table-responsive mg-b-0 tx-12">
+                            <thead>
+                                <tr class="tx-10">
+                                    <th class="pd-y-5">Reference number</th>
+                                    <th class="pd-y-5">Number of items</th>
+                                    <th class="pd-y-5">Total</th>
+                                    <th class="pd-y-5">Status</th>
+                                    <th class="pd-y-5">Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (ViewBag.ListO == null)
+                                {
+                                    <tr class="odd">
+                                        <td valign="top" colspan="10" class="dataTables_empty">There is no record of orders.</td>
+                                    </tr>
+                                }
+                                else {
+                                    foreach (Model.Order ordenes in ViewBag.ListO)
+                                    {
+                                        if (ordenes.Status.Id != 6)
+                                        {
+                                            <tr>
+                                                <td class="pd-l-20">
+                                                    <a href="#" title="Click here for more details of your order"><span>#</span>@ordenes.Id</a>
+                                                </td>
+                                                <td>@ordenes.Quantity</td>
+                                                <td class="tx-12">
+                                                    @ordenes.Total<span> $</span>
+                                                </td>
+                                                <td class="tx-12">
+                                                    @if (ordenes.Status.Id == 7)
+                                                    { <span class="square-8 bg-success mg-r-5 rounded-circle"></span> }
+                                                    else if (ordenes.Status.Id == 5)
+                                                    { <span class="square-8 bg-teal mg-r-5 rounded-circle"></span> }
+                                                    else if (ordenes.Status.Id == 6)
+                                                    { <span class="square-8 bg-primary mg-r-5 rounded-circle"></span> }
+                                                    else
+                                                    { <span class="square-8 bg-warning mg-r-5 rounded-circle"></span> }
+                                                    @ordenes.Status.Description
+                                                </td>
+                                                <td>@ordenes.ModificationDate</td>
+                                            </tr>
+                                        }
+
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                        <div class="card-footer tx-12 pd-y-15 bg-transparent">
+                            <a href=""><i class="fa fa-angle-down mg-r-5"></i>View All Transaction History</a>
+                        </div><!-- card-footer -->
+                    </div><!-- card -->
+                </div><!-- col-6 -->
+            </div>
+        </div>
+        </div>
+        }
 
 
+        <div id="modaldemo1" class="modal fade animated fadeInLeftBig" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content bd-0">
+                    <div class="modal-body pd-0">
+                        <div class="row flex-row-reverse no-gutters">
+                            <div class="col-lg-6" id="ModalImage">
+                                <button type="button" class="close mg-t-15 mg-r-20" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                                <img class="img-fluid rounded-right" alt="" src="" id="ImagenModal" />
+                            </div><!-- col-6 -->
+                            <div class="col-lg-6 rounded-left">
+                                <div class="pd-40" id="CuerpoModal">
+
+                                </div>
+                            </div><!-- col-6 -->
+                        </div><!-- row -->
+
+                    </div><!-- modal-body -->
+                </div><!-- modal-content -->
+            </div><!-- modal-dialog -->
+        </div>
+
+
+        @section scripts{
+
+        }

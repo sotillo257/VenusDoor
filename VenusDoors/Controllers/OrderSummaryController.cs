@@ -36,7 +36,7 @@ namespace VenusDoors.Controllers
                 {
                     return View();
                 }
-                else if (item.Status.Id == 1)
+                else if (item.Status.Id == 7)
                 {
                     BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
                     List<DoorsxUser> xDoorsU = _LN.GetAllDoorsxUser();
@@ -67,7 +67,7 @@ namespace VenusDoors.Controllers
                 {
                     return View();
                 }
-                else if (ord.Status.Id == 1)
+                else if (ord.Status.Id == 7)
                 {
                     BusinessLogic.lnOrder _LNO = new BusinessLogic.lnOrder();
                     Order upptOrd = _LNO.GetOrderById(ord.Id);
@@ -123,13 +123,13 @@ namespace VenusDoors.Controllers
                 {
                     return View();
                 }
-                else if (CompleteOrder.Status.Id == 1)
+                else if (CompleteOrder.Status.Id == 7)
                 {
                     int userID = (int)Session["UserID"];
                     BusinessLogic.lnOrder _LNUPor = new BusinessLogic.lnOrder();
                     CompleteOrder.ModificationDate = DateTime.Now;
                     CompleteOrder.ModificationUser = userID;
-                    CompleteOrder.Status.Id = 2;
+                    CompleteOrder.Status.Id = 3;
                     return Json(_LNUPor.UpdateOrder(CompleteOrder));
                 }
                 else
