@@ -47,8 +47,14 @@ namespace VenusDoors.Controllers
                 {
                     ViewBag.ListO = OrdersByU;
                 }
-                
-                
+
+
+
+                //List<Order> OrdenesModal = _LNO.GetAllOrder();
+                //List<Order> OrdenesModalList = OrdenesModal.Where(x => x.User.Id == userID).OrderByDescending(x => x.Status.Id == 7).ToList();
+                //var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                //ViewBag.ListaModal = serializar.Serialize(OrdenesModalList);
+
                 return View();                         
             }
         }
