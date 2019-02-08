@@ -46,6 +46,9 @@
                 </div>
             </div>
         </div>*@
+    <div id="loading" style="position: fixed; z-index: 1000; top: 0px; left: 0px; height: 100%; width: 100%; background: url(/Content/img/Spinner.gif) 50% 50% no-repeat rgba(255, 255, 255, 0.8); display: none;">
+
+    </div>
     <div class="br-logo"><a href="/"><img src="~/Content/img/Venus_Doors11.png" style="width: 150px;" alt=""></a></div>
     <div class="br-sideleft overflow-y-auto">
         <label class="sidebar-label pd-x-15 mg-t-20">Navigation</label>
@@ -777,7 +780,11 @@
    @* <script src="~/Content/js/dashboard.js"></script>*@
     <script>
 
-        
+        $(document).ajaxStart(function () {
+            $("#loading").show();
+        }).ajaxStop(function () {
+            $("#loading").hide();
+        });
             $(function () {
                 'use strict'
 
@@ -902,7 +909,7 @@
                 <i class="icon ion-ios-checkmark-outline tx-100 tx-success lh-1 mg-t-20 d-inline-block"></i>
                 <h4 class="tx-success tx-semibold mg-b-20" id="TituloCongratuletions"></h4>
                 <p class="mg-b-20 mg-x-20" id="MensageCongratuletions"></p>
-                <button type="button" onclick="window.location.reload()" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">
+                <button type="button" onclick="window.location.reload()" class="Cursor btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">
                     Continue
                 </button>
             </div><!-- modal-body -->

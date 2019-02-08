@@ -27,6 +27,10 @@
 	$("#bt-conf-log").on("click", function () {
 	    LlammarModal("MLogin", "Sign in to your account to process your order!", " ");
 	});
+
+	$("#btnLogo").on('click', function () {
+	    $("#File1").trigger('click');
+	});
 });
 
 $(window).on('load', function () {
@@ -656,10 +660,10 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     $(document).on('change', '#cbisDrill', function () {
-              if (this.value = true) {
+        if ($("#cbisDrill").val() == "true") {
                   $("#HingeDirectionDiv").css('display', 'block');
                   $("#HingePositionsDiv").css('display', 'block');
-              } else if(this.value = false){
+        } else if ($("#cbisDrill").val() == "false") {
                   $("#HingeDirectionDiv").css('display', 'none');
                   $("#HingePositionsDiv").css('display', 'none');
               }       
@@ -806,7 +810,7 @@ $(document).ready(function () {
                
             },
             error: function (err) {
-                MensajeModal(msgErrorinterno, 5);
+               
             },
             complete: function (data) {
                 $("#btnCerrarModalCompania").prop("disabled", false);
@@ -1234,32 +1238,32 @@ function RaisedPanelDoor(Style) {
 
 }
 function NoAplicaShaker() {
-   var inside = $("#cbInsideEdgeProfile").val();
-   var outside = $("#cbOutsideEdgeProfile").val();
-   var option = '<option value="0">Select</option>';
-                    for (var i = 0; i < AllInsideEdgeProfile.length; i++) {
-                        if (AllInsideEdgeProfile[i].Status.Id == 1 &&  AllInsideEdgeProfile[i].Id != 3  &&  AllInsideEdgeProfile[i].Id != 7) {
-                            option += '<option value="' + AllInsideEdgeProfile[i].Id + '">' + AllInsideEdgeProfile[i].Description + '</option>';
-                        }
-                    }
-                    $("#cbInsideEdgeProfile").empty().append(option);
-                    if (inside != 3 && inside != 7) {
-                        $("#cbInsideEdgeProfile").val(inside);
-                    } else {
-                        $("#cbInsideEdgeProfile").val(0);
-                    }
-                    option = '<option value="0">Select</option>';
-                    for (var i = 0; i < AllOutsideEdgeProfile.length; i++) {
-                        if (AllOutsideEdgeProfile[i].Status.Id == 1 && AllOutsideEdgeProfile[i].Id != 6) {
-                            option += '<option value="' + AllOutsideEdgeProfile[i].Id + '">' + AllOutsideEdgeProfile[i].Description + '</option>';
-                        }
-                    }
-                    $("#cbOutsideEdgeProfile").empty().append(option);
-                    if (outside != 6) {
-                        $("#cbOutsideEdgeProfile").val(outside);
-                    } else {
-                        $("#cbOutsideEdgeProfile").val(0);
-                    }
+    var inside = $("#cbInsideEdgeProfile").val();
+    var outside = $("#cbOutsideEdgeProfile").val();
+    var option = '<option value="0">Select</option>';
+    for (var i = 0; i < AllInsideEdgeProfile.length; i++) {
+        if (AllInsideEdgeProfile[i].Status.Id == 1 &&  AllInsideEdgeProfile[i].Id != 3  &&  AllInsideEdgeProfile[i].Id != 7) {
+            option += '<option value="' + AllInsideEdgeProfile[i].Id + '">' + AllInsideEdgeProfile[i].Description + '</option>';
+        }
+    }
+    $("#cbInsideEdgeProfile").empty().append(option);
+    if (inside != 3 && inside != 7) {
+        $("#cbInsideEdgeProfile").val(inside);
+    } else {
+        $("#cbInsideEdgeProfile").val(0);
+    }
+    option = '<option value="0">Select</option>';
+    for (var i = 0; i < AllOutsideEdgeProfile.length; i++) {
+        if (AllOutsideEdgeProfile[i].Status.Id == 1 && AllOutsideEdgeProfile[i].Id != 6) {
+            option += '<option value="' + AllOutsideEdgeProfile[i].Id + '">' + AllOutsideEdgeProfile[i].Description + '</option>';
+        }
+    }
+    $("#cbOutsideEdgeProfile").empty().append(option);
+    if (outside != 6) {
+        $("#cbOutsideEdgeProfile").val(outside);
+    } else {
+        $("#cbOutsideEdgeProfile").val(0);
+    }
 }
 function SoloShaker() {
     var inside = $("#cbInsideEdgeProfile").val();
@@ -1299,9 +1303,9 @@ function TodosLosPerfiles() {
         $("#cbInsideEdgeProfile").val(inside);
     option = '<option value="0">Select</option>';
     for (var i = 0; i < AllOutsideEdgeProfile.length; i++) {
-        if (AllOutsideEdgeProfile[i].Status.Id == 1 ) {
+        if (AllOutsideEdgeProfile[i].Status.Id == 1) {
             option += '<option value="' + AllOutsideEdgeProfile[i].Id + '">' + AllOutsideEdgeProfile[i].Description + '</option>';
-       )
+        }
     }
     $("#cbOutsideEdgeProfile").empty().append(option);
         $("#cbOutsideEdgeProfile").val(outside);

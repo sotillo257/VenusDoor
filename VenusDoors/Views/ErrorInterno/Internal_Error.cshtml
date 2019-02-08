@@ -4,16 +4,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="br-pagebody">
+<div class="br-pagebody" style="margin-top: 80px;">
     <div class="br-section-wrapper">
         <div class="row">
             <div class="col-md-12">
                 <div class="row">
-                    <div class="col-md-11 pd-sm-bottom-30">
-                        <h4 class="tx-gray-800 mg-b-5">@ViewBag.Title</h4>
-                        <p class="mg-b-0">Modals are streamlined, but flexible, dialog prompts with the minimum required functionality and smart defaults.</p>
-                    </div>
+                    <img style="width:100%;height: 100%;" src="~/Content/img/Error.png" />
                 </div>
+                <center>
+                    <button type="button" onclick="location.href='@Url.Action("Index","Home")'" class="Cursor btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Return to the Dashboard</button>
+                </center>
             </div>
         </div>
     </div>

@@ -9,7 +9,7 @@ namespace VenusDoors.Controllers
     public class ErrorInternoController : Controller
     {
         // GET: ErrorInterno
-        public ActionResult Index()
+        public ActionResult Internal_Error()
         {
             return View();
         }
