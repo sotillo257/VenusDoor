@@ -17,7 +17,7 @@
 
 	$("#btConfirm").on("click", function () {
 	    if (ValidarCamposVacios()) {
-	        InsertDoorsxUser();
+	    InsertDoorsxUser();
 	    } else {
 	        LlammarModal("Danger", "You must fill all the fields.", " ");
 	    }
@@ -786,6 +786,34 @@ $(document).ready(function () {
     $(document).on('change', '.Doors', function () {
         changeDoorPicture();
     });
+    $(document).on('change', '#File1', function () {
+        console.log("activo");
+        var compania = new Array();
+        var formData = new FormData();
+        if ($("#File1")[0].files.length > 0) {
+            //alert($("#File1")[0].files[0].name);
+            formData.append('Files', $("#File1")[0].files[0], $("#File1")[0].files[0].name);
+        }
+        compania.push(formData);
+        $.ajax({
+            url: urlUploadExcel,
+            type: 'POST',
+            data: compania[0],
+            contentType: false,
+            processData: false,
+            success: function (data) {
+
+               
+            },
+            error: function (err) {
+                MensajeModal(msgErrorinterno, 5);
+            },
+            complete: function (data) {
+                $("#btnCerrarModalCompania").prop("disabled", false);
+                $("#btnAgregarComapania").button('reset');
+            }
+        });
+    });
 });
 
 $(document).on('change', '.eventChange', function () {
@@ -1262,18 +1290,18 @@ function TodosLosPerfiles() {
     var outside = $("#cbOutsideEdgeProfile").val();
     var option = '<option value="0">Select</option>';
     for (var i = 0; i < AllInsideEdgeProfile.length; i++) {
-       
+        if (AllInsideEdgeProfile[i].Status.Id == 1 ) {
             option += '<option value="' + AllInsideEdgeProfile[i].Id + '">' + AllInsideEdgeProfile[i].Description + '</option>';
-      
+        }
     }
     $("#cbInsideEdgeProfile").empty().append(option);
     
         $("#cbInsideEdgeProfile").val(inside);
     option = '<option value="0">Select</option>';
     for (var i = 0; i < AllOutsideEdgeProfile.length; i++) {
-       
+        if (AllOutsideEdgeProfile[i].Status.Id == 1 ) {
             option += '<option value="' + AllOutsideEdgeProfile[i].Id + '">' + AllOutsideEdgeProfile[i].Description + '</option>';
-       
+       )
     }
     $("#cbOutsideEdgeProfile").empty().append(option);
         $("#cbOutsideEdgeProfile").val(outside);
