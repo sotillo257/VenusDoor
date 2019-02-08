@@ -247,6 +247,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ConfiDoorController.cs" />
+    <Compile Include="Controllers\ErrorInternoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -1079,6 +1080,7 @@
     <Content Include="Scripts\js\envio.js" />
     <Content Include="Scripts\js\LoginSiginUp.js" />
     <Content Include="Scripts\js\Master.BottomRail.js" />
+    <Content Include="Scripts\js\Master.Doors.js" />
     <Content Include="Scripts\js\Masters.js" />
     <Content Include="Scripts\js\ModalAlert.js" />
     <Content Include="Scripts\js\OrderSumm.js" />
@@ -1161,6 +1163,7 @@
     <Content Include="Views\Logins\Recover_Password.cshtml" />
     <Content Include="Views\Logins\New_Password.cshtml" />
     <Content Include="Views\Logins\Account_Verification.cshtml" />
+    <Content Include="Views\ErrorInterno\Internal_Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
