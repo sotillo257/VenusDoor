@@ -4,20 +4,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="br-pageheader pd-y-15 pd-l-20">
-    <nav class="breadcrumb pd-0 mg-0 tx-12">
-        <a class="breadcrumb-item" href="/">Venus Doors</a>
-        <span class="breadcrumb-item active">@ViewBag.Title</span>
-    </nav>
-</div><!-- br-pageheader -->
-
-<div class="br-pagebody">
+<div class="br-pagebody" style="margin-top: 80px;">
     <div class="br-section-wrapper">
         <div class="row">
             <div class="col-md-12">
                 <div class="row">
                     <img style="width:100%;height: 100%;" src="~/Content/img/Error.png" />
                 </div>
+                <center>
+                    <button type="button" onclick="location.href='@Url.Action("Index","Home")'" class="Cursor btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Return to the Dashboard</button>
+                </center>
             </div>
         </div>
     </div>
