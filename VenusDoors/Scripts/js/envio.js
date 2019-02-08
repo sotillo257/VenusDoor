@@ -28,11 +28,11 @@ function ConfirmOrder() {
                 LlammarModal("Congratuletions", "Congratulations! Your order is being processed.", "At this time you will be redirected to the Order Status view");
                 window.location.href = '/OrderStatus/Index';
                             } else {
-                LlammarModal("Danger", "An error occurred during the process.", "Check your internet connection I tried again");
+                LlammarModal("Danger", "An error occurred during the process.", " ");
                             }
         },
         error: function (err) {
-            alert("error");
+            LlammarModal("Danger", "An error occurred during the process.", "Check your internet connection I tried again");
         },
 
     });

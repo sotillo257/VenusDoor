@@ -140,7 +140,7 @@ namespace VenusDoors.Controllers
             }            
         }
 
-        public void SendOrderToUser(Order ord)
+        public void SendOrderToUser(Order CompleteOrder)
         {
             int userID = (int)Session["UserID"];
             int idU = userID;
@@ -153,22 +153,35 @@ namespace VenusDoors.Controllers
             string NameUser = per.Name;
             string To = use.Email;
             MailMessage mail = new MailMessage();
-            SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
-            mail.From = new MailAddress("azazeldroid@gmail.com");
+            SmtpClient SmtpServer = new SmtpClient("smtp.ionos.com");
+            mail.From = new MailAddress("orders@venuscabinetdoors.com", "Venus Cabinet Doors");
             mail.Bcc.Add(new MailAddress(To));
 
             mail.Subject = "Order summary";
-            mail.Body =
-            "<p>Dear " + NameUser + ",</p><p>Please review the estimate below.Feel free to contact us if you have any questions.<br>We look forward to working with you.</p><p>Thanks for your business!<br><b>Venus Doors<b></p>  <table width=700 border=0 cellspacing=0 cellpadding=0 style=background:#f7f7f7;font-family:Arial,Helvetica,sans-serif;font-size:12px><tbody><tr><td style = padding:20px><p> ------------------------&nbsp; &nbsp; &nbsp;Order Summary &nbsp; &nbsp; --------------------------<br> Order id &nbsp;#:" + ord.Id + "<br>Estimate&nbsp;Date:&nbsp;" + date + "<br>Total:&nbsp;$" + ord.Total + "<br>The&nbsp;complete&nbsp;version&nbsp;has&nbsp;been&nbsp;<wbr>provided&nbsp;as&nbsp;an&nbsp;attachment&nbsp;to&nbsp;<wbr>this&nbsp;email.<br>---------------------------------------------------------------------</p></td></tr></tbody></table> ";
+   
+            BusinessLogic.lnDoorsxUser _LNDU = new BusinessLogic.lnDoorsxUser();
+            List<DoorsxUser> allD = _LNDU.GetAllDoorsxUser();
+            List<DoorsxUser> puertas = allD.Where(x => x.Order.Id == CompleteOrder.Id).ToList();
+            ViewBag.TusPuertas = puertas;
+
+            string cuerpo = "<p>Dear " + NameUser + ",</p><p>Please review the estimate below.Feel free to contact us if you have any questions.<br>We look forward to working with you.</p><p>Thanks for your business!<br><b>Venus Doors<b></p>  <div style='padding: 20px;border: solid 1px;width: 25 %;background: #f1f1f1;border - radius: 7px;'><div style='text-align:center'><h4> ------------------Order ref: #" + CompleteOrder.Id +" ------------------</h4></div><div><p>Estimate date: "+ date + "</p><p>Quantity of products: " + CompleteOrder.Quantity +"</p><p>Total: "+ CompleteOrder.Total +"</p></div><div style='text-align:center'><h4>--Venus Cabinet Doors --</h4></div></div>";
+            cuerpo += "<table><thead><tr><th>Door Style</th><th>Material</th><th>Stile Width</th><th>Rail Width</th><th>Preparation</th><th>Join</th><th>Outside Edge Profile</th><th>Inside Edge Profile</th><th>Vertical Divisions</th><th>Horizontal Divisions</th><th>Hinge Direction</th><th>Drill</th><th>Opening Measurement</th><th>Quantity</th><th>Item Cost</th><th>SubTotal</th></tr></thead><tbody>";
+            foreach (DoorsxUser item in ViewBag.TusPuertas)
+            {
+                cuerpo += "<tr><td>" + item.DoorStyle.Description + "</td><td>" + item.Material.Description + "</td><td>" + item.TopRail.Description + "</td><td>" + item.BottomRail.Description + "</td><td>" + item.Preparation.Description + "</td><td>" + item.Join.Description + "</td><td>" + item.OutsideEdgeProfile.Description + "</td><td>" + item.InsideEdgeProfile.Description + "</td><td>" + item.VerticalDivisions.Quantity + "</td><td>" + item.HorizontalDivisions.Quantity + "</td><td>" + item.HingeDirection.Direction + "</td><td>" + item.isDrill + "</td><td>" + item.Width + "</td><td>" + item.Height + "</td><td>" + item.IsOpeningMeasurement + "</td><td>" + item.Quantity + "</td><td>$" + item.ItemCost + "</td><td>$" + item.SubTotal + "</td></tr>";
+            }
+            cuerpo += "<t/body></table>";
+            cuerpo += "<div><p>SubTotal: $"+ CompleteOrder.SubTotal +"</p><p>Tax: $"+ CompleteOrder.Tax +"</p><p>Total: $"+ CompleteOrder.Total +"</p></div>";
+            mail.Body = cuerpo;
 
             mail.IsBodyHtml = true;
-            SmtpServer.Port = 587;
-            SmtpServer.Credentials = new System.Net.NetworkCredential("azazeldroid@gmail.com", "24766031");
+            SmtpServer.Port = 25;
+            SmtpServer.Credentials = new System.Net.NetworkCredential("orders@venuscabinetdoors.com", "venusCD2019*");
             SmtpServer.EnableSsl = true;
             SmtpServer.Send(mail);
         }
 
-        public void SendOrderToManage(Order ord)
+        public void SendOrderToManage(Order CompleteOrder)
         {
             int userID = (int)Session["UserID"];
             int idU = userID;
@@ -182,15 +195,29 @@ namespace VenusDoors.Controllers
             string Lastuser = per.Lastname;
             string To = use.Email;
             MailMessage mail = new MailMessage();
-            SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
-            mail.From = new MailAddress("azazeldroid@gmail.com");
+            SmtpClient SmtpServer = new SmtpClient("smtp.ionos.com");
+            mail.From = new MailAddress("orders@venuscabinetdoors.com", "A new order has been received");
             mail.To.Add(new MailAddress("orders@venuscabinetdoors.com"));
             mail.Subject = "New order by "+ NameUser + " " + Lastuser;
-            mail.Body =
-            "<table width=700 border=0 cellspacing=0 cellpadding=0 style=background:#f7f7f7;font-family:Arial,Helvetica,sans-serif;font-size:12px><tbody><tr><td style = padding:20px><p> ------------------------&nbsp; &nbsp; &nbsp;Order Summary &nbsp; &nbsp; --------------------------<br> Order id &nbsp;#:" + ord.Id + "<br>Estimate&nbsp;Date:&nbsp;" + date + "<br>Total:&nbsp;$" + ord.Total + "<br>The&nbsp;complete&nbsp;version&nbsp;has&nbsp;been&nbsp;<wbr>provided&nbsp;as&nbsp;an&nbsp;attachment&nbsp;to&nbsp;<wbr>this&nbsp;email.<br>---------------------------------------------------------------------</p></td></tr></tbody></table> ";
+
+            BusinessLogic.lnDoorsxUser _LNDU = new BusinessLogic.lnDoorsxUser();
+            List<DoorsxUser> allD = _LNDU.GetAllDoorsxUser();
+            List<DoorsxUser> puertas = allD.Where(x => x.Order.Id == CompleteOrder.Id).ToList();
+            ViewBag.TusPuertas = puertas;
+
+            string cuerpo = "<p>Please review the estimate below.Feel free to contact us if you have any questions.<br>We look forward to working with you.</p><p>Thanks for your business!<br><b>Venus Doors<b></p>  <div style='padding: 20px;border: solid 1px;width: 25 %;background: #f1f1f1;border - radius: 7px;'><div style='text-align:center'><h4> ------------------Order ref: #" + CompleteOrder.Id + " ------------------</h4></div><div><p>Name: " + per.Name + " " + per.Lastname + "</p><p>Phone number:" + per.Telephone + "</p><p>Email: " + use.Email + "</p><p>Address: " + per.Direction + "</p><p>Estimate date: " + date + "</p><p>Quantity of products: " + CompleteOrder.Quantity + "</p><p>Total: " + CompleteOrder.Total + "</p></div><div style='text-align:center'><h4>--Venus Cabinet Doors --</h4></div></div>";
+            cuerpo += "<table width=100% ><thead><tr><th>Door Style</th><th>Material</th><th>Stile Width</th><th>Rail Width</th><th>Preparation</th><th>Join</th><th>Outside Edge Profile</th><th>Inside Edge Profile</th><th>Vertical Divisions</th><th>Horizontal Divisions</th><th>Hinge Direction</th><th>Drill</th><th>Opening Measurement</th><th>Quantity</th><th>Item Cost</th><th>SubTotal</th></tr></thead><tbody>";
+            foreach (DoorsxUser item in ViewBag.TusPuertas)
+            {
+                cuerpo += "<tr><td>"+ item.DoorStyle.Description + "</td><td>" + item.Material.Description + "</td><td>" + item.TopRail.Description + "</td><td>" + item.BottomRail.Description + "</td><td>" + item.Preparation.Description + "</td><td>" + item.Join.Description + "</td><td>" + item.OutsideEdgeProfile.Description + "</td><td>" + item.InsideEdgeProfile.Description + "</td><td>" + item.VerticalDivisions.Quantity + "</td><td>" + item.HorizontalDivisions.Quantity + "</td><td>" + item.HingeDirection.Direction + "</td><td>" + item.isDrill + "</td><td>" + item.Width + "</td><td>" + item.Height + "</td><td>" + item.IsOpeningMeasurement + "</td><td>" + item.Quantity + "</td><td>$" + item.ItemCost + "</td><td>$" + item.SubTotal + "</td></tr>";
+            }
+            cuerpo += "<t/body></table>";
+            cuerpo += "<div><p>SubTotal: $" + CompleteOrder.SubTotal + "</p><p>Tax: $" + CompleteOrder.Tax + "</p><p>Total: $" + CompleteOrder.Total + "</p></div>";
+            mail.Body = cuerpo;
+            
             mail.IsBodyHtml = true;
-            SmtpServer.Port = 587;
-            SmtpServer.Credentials = new System.Net.NetworkCredential("azazeldroid@gmail.com", "24766031");
+            SmtpServer.Port = 25;
+            SmtpServer.Credentials = new System.Net.NetworkCredential("orders@venuscabinetdoors.com", "venusCD2019*");
             SmtpServer.EnableSsl = true;
             SmtpServer.Send(mail);
             
@@ -207,11 +234,10 @@ namespace VenusDoors.Controllers
             {
                 try
                 {
-
-                    SendOrderToUser(ord);
-                    SendOrderToManage(ord);
                     BusinessLogic.lnOrder _LNO = new BusinessLogic.lnOrder();
                     Order CompleteOrder = _LNO.GetOrderById(ord.Id);
+                    SendOrderToUser(CompleteOrder);
+                    SendOrderToManage(CompleteOrder);                    
                     CloseOrder(CompleteOrder);
                     return Json(true, JsonRequestBehavior.AllowGet);
                     

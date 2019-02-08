@@ -22,7 +22,7 @@
                         <p class="mg-b-0">Modals are streamlined, but flexible, dialog prompts with the minimum required functionality and smart defaults.</p>
                     </div>
                     <div class="col-md-1">
-                        <button type="button" data-toggle="modal" data-target="#modalInsert" class="Cursor btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Insert</button>
+                        <button type="button" data-toggle="modal" data-target="#modalInsert"id="btInsert" class="Cursor btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Insert</button>
                     </div>
                 </div>
             </div>
@@ -608,71 +608,10 @@
         var urlInsertDoors = '@Url.Action("InsertDoors", "Masters")';
         var urlUpdateDoors = '@Url.Action("UpdateDoors", "Masters")';
     </script>
-    <script>
-        $(function () {
-            'use strict';
-
-            $('#datatable1').DataTable({
-                responsive: true,
-                language: {
-                    searchPlaceholder: 'Search...',
-                    sSearch: '',
-                    lengthMenu: '_MENU_ items/page',
-                }
-            });
-
-            $('#datatable2').DataTable({
-                bLengthChange: false,
-                searching: false,
-                responsive: true
-            });
-
-            // Select2
-            $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
-
-        });
-    </script>
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>
     <script src="~/Content/lib/select2/js/select2.min.js"></script>
     <script src="~/Content/lib/select2/js/select2.full.min.js"></script>
-    @Scripts.Render("~/Scripts/js/Masters.js")
-    <script type="text/javascript">
-
-        $(document).ready(function () {
-            var ListDoors = JSON.parse('@Html.Raw(ViewBag.ListDoors)');
-            $(document).on('click', '.Modificar', function (event) {
-                for (var i = 0; i < ListDoors.length; i++) {
-                    if (ListDoors[i].Id == $(this).attr('value')) {
-                        $('#txtId').val(ListDoors[i].Id);
-                        $('#cbDoorStyle').val(ListDoors[i].DoorStyle.Id);
-                        $('#cbMatarial').val(ListDoors[i].Material.Id);
-                        $('#cbTopRail').val(ListDoors[i].TopRail.Id);
-                        $('#cbBottomRail').val(ListDoors[i].BottomRail.Id);
-                        $('#cbPreparation').val(ListDoors[i].Preparation.Id);
-                        $('#cbJoin').val(ListDoors[i].Join.Id);
-                        $('#cbOutsideEdgeProfile').val(ListDoors[i].OutsideEdgeProfile.Id);
-                        $('#cbInsideEdgeProfile').val(ListDoors[i].InsideEdgeProfile.Id);
-                        $('#cbVerticalDivisions').val(ListDoors[i].VerticalDivisions.Id);
-                        $('#cbHorizontalDivisions').val(ListDoors[i].HorizontalDivisions.Id);
-                        $('#cbHingeDirection').val(ListDoors[i].HingeDirection.Id);
-                        $('#cbHingePositions').val(ListDoors[i].HingePositions.Id);
-                        $('#cbPanel').val(ListDoors[i].Panel.Id);
-                        $('#cbPanelMaterial').val(ListDoors[i].PanelMaterial.Id);
-                        $('#isDrill').val(ListDoors[i].isDrill);
-                        $('#txtWidth').val(ListDoors[i].Width);
-                        $('#txtHeight').val(ListDoors[i].Height);
-                        $('#isOpeningMeasurement').val(ListDoors[i].IsOpeningMeasurement);
-                        $('#txtPicture').val(ListDoors[i].Picture);
-                        $('#txtProfilePicture').val(ListDoors[i].ProfilePicture);
-                        $('#IdStatus').val(ListDoors[i].Status.Id);
-                    }
-                }
-            });
-
-
-        });
-
-    </script>
-
+    @Scripts.Render("~/Scripts/js/Master.Doors.js")
+    
 }

@@ -22,6 +22,7 @@
         @Scripts.Render("~/bundles/modernizr")*@
     <style>
         .Cursor:hover { cursor:pointer }
+
     </style>
 </head>
 <body>
@@ -70,7 +71,7 @@
                     <span class="menu-item-label">Order summary</span>
                 </div><!-- menu-item -->
             </a><!-- br-menu-link -->
-            @if (Session["UserID"] != null && (int)Session["UserType"] == 2)
+            @if (Session["UserID"] != null)
             {
                 <a href="/OrderStatus/" class="br-menu-link @ViewBag.OrderStatus ">
                     <div class="br-menu-item">
@@ -776,6 +777,7 @@
    @* <script src="~/Content/js/dashboard.js"></script>*@
     <script>
 
+        
             $(function () {
                 'use strict'
 
