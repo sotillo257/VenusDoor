@@ -1078,6 +1078,7 @@
     <Content Include="Scripts\js\ConverExcel.js" />
     <Content Include="Scripts\js\envio.js" />
     <Content Include="Scripts\js\LoginSiginUp.js" />
+    <Content Include="Scripts\js\Master.BottomRail.js" />
     <Content Include="Scripts\js\Masters.js" />
     <Content Include="Scripts\js\ModalAlert.js" />
     <Content Include="Scripts\js\OrderSumm.js" />
