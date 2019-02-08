@@ -5,27 +5,6 @@
     });
 });
 
-//function Continuar() {
-//    var OrderSummary = $("#idOrderSummary").val();
-//    console.log(datos);
-//    $.ajax({
-//        type: 'POST',
-//        url: urlConfirmOrder,
-//        success: function (result) {
-
-//            if (result == true) {
-//                $('#modalCongra').modal('toggle');
-//            } else {
-//                $('#modalError').modal('toggle');
-//            }
-//        },
-//        error: function (err) {
-//            alert("error");
-//        },
-
-//    });
-//}
-
 function ConfirmOrder() {
     
     var datos =
@@ -34,8 +13,8 @@ function ConfirmOrder() {
             Id: $("#idorder").val(),
             Total: $("#idtotal").val(),
             Status:{Id: $("#idstatus").val()}
+        },
 
-        }
     };
 
     $.ajax({
