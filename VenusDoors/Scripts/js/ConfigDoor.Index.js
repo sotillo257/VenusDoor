@@ -660,10 +660,10 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     $(document).on('change', '#cbisDrill', function () {
-              if (this.value = true) {
+        if ($("#cbisDrill").val() == "true") {
                   $("#HingeDirectionDiv").css('display', 'block');
                   $("#HingePositionsDiv").css('display', 'block');
-              } else if(this.value = false){
+        } else if ($("#cbisDrill").val() == "false") {
                   $("#HingeDirectionDiv").css('display', 'none');
                   $("#HingePositionsDiv").css('display', 'none');
               }       
