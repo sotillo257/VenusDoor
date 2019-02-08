@@ -48,6 +48,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ExcelDataReader, Version=3.4.2.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelDataReader.3.4.2\lib\net45\ExcelDataReader.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.0.1011, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -92,6 +96,7 @@
     <Reference Include="System.Drawing">
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.IO.Compression" />
     <Reference Include="System.Runtime.Serialization">
       <Private>True</Private>
     </Reference>
@@ -247,6 +252,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ConfiDoorController.cs" />
+    <Compile Include="Controllers\ErrorInternoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -1078,6 +1084,8 @@
     <Content Include="Scripts\js\ConverExcel.js" />
     <Content Include="Scripts\js\envio.js" />
     <Content Include="Scripts\js\LoginSiginUp.js" />
+    <Content Include="Scripts\js\Master.BottomRail.js" />
+    <Content Include="Scripts\js\Master.Doors.js" />
     <Content Include="Scripts\js\Masters.js" />
     <Content Include="Scripts\js\ModalAlert.js" />
     <Content Include="Scripts\js\OrderSumm.js" />
@@ -1160,6 +1168,7 @@
     <Content Include="Views\Logins\Recover_Password.cshtml" />
     <Content Include="Views\Logins\New_Password.cshtml" />
     <Content Include="Views\Logins\Account_Verification.cshtml" />
+    <Content Include="Views\ErrorInterno\Internal_Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -16,7 +16,12 @@
 	ValidateSession();
 
 	$("#btConfirm").on("click", function () {
+	    if (ValidarCamposVacios()) {
 	    InsertDoorsxUser();
+	    } else {
+	        LlammarModal("Danger", "You must fill all the fields.", " ");
+	    }
+
 	});
     
 	$("#bt-conf-log").on("click", function () {
@@ -24,17 +29,132 @@
 	});
 });
 
-//function ValidarCamposVacios() {
-//    var aux = true;
-//    if ($('#inptName').val() == "") {
-//        $('#inptName').addClass("is-invalid");
-//        aux = false;
-//    } else {
-//        $('#inptName').removeClass("is-invalid");
-//    }
+$(window).on('load', function () {
+        $(".loader-page").css({ visibility: "hidden", opacity: "0" })
+});
 
-//    return aux;
-//}
+function ValidarCamposVacios() {
+    var aux = true;
+    if ($('#cbMaterial').val() == 0) {
+        $('#cbMaterial').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#cbMaterial').removeClass("is-invalid");
+    }
+
+    if ($('#iptQuantity').val() == "") {
+        $('#iptQuantity').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#iptQuantity').removeClass("is-invalid");
+    }
+
+    if ($('#cbDoorStyle').val() == 0) {
+        $('#cbDoorStyle').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#cbDoorStyle').removeClass("is-invalid");
+    }
+
+    if ($('#cbTopRail').val() == 0) {
+        $('#cbTopRail').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#cbTopRail').removeClass("is-invalid");
+    }
+
+    if ($('#cbBottomRail').val() == 0) {
+        $('#cbBottomRail').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#cbBottomRail').removeClass("is-invalid");
+    }
+
+    if ($('#cbPreparation').val() == 0) {
+        $('#cbPreparation').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#cbPreparation').removeClass("is-invalid");
+    }
+
+    if ($('#cbPanel').val() == 0) {
+        $('#cbPanel').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#cbPanel').removeClass("is-invalid");
+    }
+
+    if ($('#cbPanelMaterial').val() == 0) {
+        $('#cbPanelMaterial').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#cbPanelMaterial').removeClass("is-invalid");
+    }
+
+    if ($('#cbIsOpeningMeasurement').val() == 0) {
+        $('#cbIsOpeningMeasurement').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#cbIsOpeningMeasurement').removeClass("is-invalid");
+    }
+
+    if ($('#cbJoin').val() == 0) {
+        $('#cbJoin').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#cbJoin').removeClass("is-invalid");
+    }
+
+    if ($('#cbOutsideEdgeProfile').val() == 0) {
+        $('#cbOutsideEdgeProfile').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#cbOutsideEdgeProfile').removeClass("is-invalid");
+    }
+
+    if ($('#cbInsideEdgeProfile').val() == 0) {
+        $('#cbInsideEdgeProfile').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#cbInsideEdgeProfile').removeClass("is-invalid");
+    }
+
+    if ($('#cbVerticalDivisions').val() == 0) {
+        $('#cbVerticalDivisions').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#cbVerticalDivisions').removeClass("is-invalid");
+    }
+
+    if ($('#cbHorizontalDivisions').val() == 0) {
+        $('#cbHorizontalDivisions').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#cbHorizontalDivisions').removeClass("is-invalid");
+    }
+
+    if ($('#iptWidth').val() == "") {
+        $('#iptWidth').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#iptWidth').removeClass("is-invalid");
+    }
+
+    if ($('#iptHeight').val() == "") {
+        $('#iptHeight').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#iptHeight').removeClass("is-invalid");
+    }
+
+    if ($('#cbisDrill').val() == "") {
+        $('#cbisDrill').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#cbisDrill').removeClass("is-invalid");
+    }
+    return aux;
+}
 
 function GetAllMaterial() {
     $.ajax({
@@ -64,7 +184,6 @@ function GetAllMaterial() {
         }
     });
 }
-
 
 function GetAllDoorStyle() {
 	$.ajax({
@@ -667,6 +786,34 @@ $(document).ready(function () {
     $(document).on('change', '.Doors', function () {
         changeDoorPicture();
     });
+    $(document).on('change', '#File1', function () {
+        console.log("activo");
+        var compania = new Array();
+        var formData = new FormData();
+        if ($("#File1")[0].files.length > 0) {
+            //alert($("#File1")[0].files[0].name);
+            formData.append('Files', $("#File1")[0].files[0], $("#File1")[0].files[0].name);
+        }
+        compania.push(formData);
+        $.ajax({
+            url: urlUploadExcel,
+            type: 'POST',
+            data: compania[0],
+            contentType: false,
+            processData: false,
+            success: function (data) {
+
+               
+            },
+            error: function (err) {
+                MensajeModal(msgErrorinterno, 5);
+            },
+            complete: function (data) {
+                $("#btnCerrarModalCompania").prop("disabled", false);
+                $("#btnAgregarComapania").button('reset');
+            }
+        });
+    });
 });
 
 $(document).on('change', '.eventChange', function () {
@@ -1143,18 +1290,18 @@ function TodosLosPerfiles() {
     var outside = $("#cbOutsideEdgeProfile").val();
     var option = '<option value="0">Select</option>';
     for (var i = 0; i < AllInsideEdgeProfile.length; i++) {
-       
+        if (AllInsideEdgeProfile[i].Status.Id == 1 ) {
             option += '<option value="' + AllInsideEdgeProfile[i].Id + '">' + AllInsideEdgeProfile[i].Description + '</option>';
-      
+        }
     }
     $("#cbInsideEdgeProfile").empty().append(option);
     
         $("#cbInsideEdgeProfile").val(inside);
     option = '<option value="0">Select</option>';
     for (var i = 0; i < AllOutsideEdgeProfile.length; i++) {
-       
+        if (AllOutsideEdgeProfile[i].Status.Id == 1 ) {
             option += '<option value="' + AllOutsideEdgeProfile[i].Id + '">' + AllOutsideEdgeProfile[i].Description + '</option>';
-       
+       )
     }
     $("#cbOutsideEdgeProfile").empty().append(option);
         $("#cbOutsideEdgeProfile").val(outside);
