@@ -958,7 +958,7 @@ function FlatPanel(Outside, Inside) {
             ProfileUrl = "-Half_Reba_shaker_goove_flat_panel.png";
         }
     }
-    if (Outside == 4) {
+    if (Outside == 11) {
 
         if (Inside == 4) {
             ProfileUrl = "-Little_bone_ogee_flat_panel.png";
