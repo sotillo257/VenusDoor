@@ -223,26 +223,7 @@ namespace VenusDoors.Controllers
                     pDoors.ModificationUser = userID;
                     pDoors.Picture = "Picture";
                     pDoors.ProfilePicture = "empty";
-                    BusinessLogic.lnDoors _LM = new BusinessLogic.lnDoors();
-                    BusinessLogic.lnHingePositions _LNHP = new BusinessLogic.lnHingePositions();
-
-                    HingePositions newhp = new HingePositions()
-                    {
-                        Status = new Model.Status() { Id = 1 },
-                        Position1 = HingeP.Position1,
-                        Position2 = HingeP.Position2,
-                        Position3 = HingeP.Position3,
-                        Position4 = HingeP.Position4,
-                        Position5 = HingeP.Position5,
-                        CreationDate = DateTime.Now,
-                        CreatorUser = userID,
-                        ModificationDate = DateTime.Now,
-                        ModificationUser = userID
-                    };
-
-                    int IdHingeP = _LNHP.InsertHingePositions(newhp);
-                    newhp.Id = IdHingeP;
-                    pDoors.HingePositions = newhp;
+                    BusinessLogic.lnDoors _LM = new BusinessLogic.lnDoors();                    
                     var inDoor = _LM.InsertDoors(pDoors);
                     return Json(true, JsonRequestBehavior.AllowGet);
                 }

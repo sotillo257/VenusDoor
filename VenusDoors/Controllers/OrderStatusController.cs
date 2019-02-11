@@ -38,7 +38,7 @@ namespace VenusDoors.Controllers
 
                 //Get List Order
                 List<Order> ListOrders = _LNO.GetAllOrder();
-                List<Order> OrdersByU = ListOrders.Where(x => x.User.Id == userID).OrderByDescending(x => x.Status.Id == 7).ToList();
+                List<Order> OrdersByU = ListOrders.Where(x => x.User.Id == userID).OrderByDescending(x => x.CreationDate).ToList();
                 if (OrdersByU.Count == 0)
                 {
                     ViewBag.ListO = null;
@@ -48,15 +48,18 @@ namespace VenusDoors.Controllers
                     ViewBag.ListO = OrdersByU;
                 }
 
-
-
-                //List<Order> OrdenesModal = _LNO.GetAllOrder();
-                //List<Order> OrdenesModalList = OrdenesModal.Where(x => x.User.Id == userID).OrderByDescending(x => x.Status.Id == 7).ToList();
-                //var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-                //ViewBag.ListaModal = serializar.Serialize(OrdenesModalList);
-
                 return View();                         
             }
+        }
+
+        [HttpPost]
+        public ActionResult GetDoorsByOrder(int idOrder)
+        {        
+            BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
+            List<DoorsxUser> xDoors = _LN.GetAllDoorsxUser();
+            List<DoorsxUser> doorsByOrder = xDoors.Where(x => x.Order.Id == idOrder).ToList();
+            ViewBag.DoorsOrder = doorsByOrder;
+            return Json(doorsByOrder);
         }
     }
 } 

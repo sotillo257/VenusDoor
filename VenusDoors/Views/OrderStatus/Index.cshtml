@@ -40,7 +40,7 @@
                         <div class="card-header bg-transparent pd-20">
                             <h6 class="card-title tx-uppercase tx-12 mg-b-0">Order status</h6>
                         </div><!-- card-header -->
-                        <table class="table table-responsive mg-b-0 tx-12">
+                        <table class="table table-responsive mg-b-0 tx-12" id="ordenestable">
                             <thead>
                                 <tr class="tx-10">
                                     <th class="pd-y-5">Reference number</th>
@@ -64,7 +64,8 @@
                                         {
                                             <tr>
                                                 <td class="pd-l-20">
-                                                    <a data-toggle="modal" data-target="#modaldemo1" class="orderreff" value="@ordenes.Id" title="Click here for more details of your order"><span>#</span>@ordenes.Id</a>
+                                                    
+                                                    <a href="" type="submit" class="orderreff" data-id="@ordenes.Id" title="Click here for more details of your order"><span>#</span>@ordenes.Id</a>
                                                 </td>
                                                 <td>@ordenes.Quantity</td>
                                                 <td class="tx-12">
@@ -150,7 +151,7 @@ else
                         <div class="card-header bg-transparent pd-20">
                             <h6 class="card-title tx-uppercase tx-12 mg-b-0">Order status</h6>
                         </div><!-- card-header -->
-                        <table class="table table-responsive mg-b-0 tx-12">
+                        <table class="table table-responsive mg-b-0 tx-12" id="ordenestable">
                             <thead>
                                 <tr class="tx-10">
                                     <th class="pd-y-5">Reference number</th>
@@ -174,7 +175,7 @@ else
                                         {
                                             <tr>
                                                 <td class="pd-l-20">
-                                                    <a data-toggle="modal" data-target="#modaldemo1" class="orderreff" value="@ordenes.Id" title="Click here for more details of your order"><span>#</span>@ordenes.Id</a>
+                                                    <a class="orderreff" data-id="@ordenes.Id" title="Click here for more details of your order"><span>#</span>@ordenes.Id</a>
                                                 </td>
                                                 <td>@ordenes.Quantity</td>
                                                 <td class="tx-12">
@@ -209,109 +210,31 @@ else
         </div>
         }
 
-@*<!-- Modal -->
-<div id="modaldemo1" class="modal fade animated fadeInLeftBig" aria-hidden="true" style="display: none;">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content bd-0">
-            <div class="modal-body pd-0">
-                <div class="row flex-row-reverse no-gutters">
-                    <div class="col-lg-6" id="ModalImage">
-                        <button type="button" class="close mg-t-15 mg-r-20" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div><!-- col-6 -->
-                    <div class="col-lg-6 rounded-left">
-                        <div class="pd-40">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Door style</th>
-                                        <th>Material</th>
-                                        <th>Stile width</th>
-                                        <th>Rail width</th>
-                                        <th>Preparation</th>
-                                        <th>Join</th>
-                                        <th>Outside edge profile</th>
-                                        <th>Inside edge profile</th>
-                                        <th>Vertical divisions</th>
-                                        <th>Horizontal divisions</th>
-                                        <th>Hinge direction</th>
-                                        <th>Hinge position 1</th>
-                                        <th>Hinge position 2</th>
-                                        <th>Hinge position 3</th>
-                                        <th>Hinge position 4</th>
-                                        <th>Hinge position 5</th>
-                                        <th>Drill</th>
-                                        <th>Width</th>
-                                        <th>Height</th>
-                                        <th>Opening measurement</th>
-                                        <th>Quantity</th>
-                                        <th>Item cost</th>
-                                        <th>Subtotal</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="tbody">
-                                    
-                                </tbody>
-
-                            </table>
-                        </div>
-                    </div><!-- col-6 -->
-                </div><!-- row -->
-
-            </div><!-- modal-body -->
-        </div><!-- modal-content -->
-    </div><!-- modal-dialog -->
-</div>*@
-
-
-
-        @section scripts{
-            @*<script type="text/javascript">
-                $(document).ready(function () {
-                    var Busor = JSON.parse('@Html.Raw(ViewBag.ListaModal)');
-                    $(document).on('click', '.orderreff', function (event) {
-                        SearchOrder(Busor, $(this).attr('value'));
-                    });
-                });
-
-                function SearchOrder(data, idOrder) {
-                    if (data != null) {
+<div class="modal fade" id="ModalOrderInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" id="orderhead">
                
-                        @foreach(Model.Order oritem in ViewBag.ListaModal) {
-                                console.log(data[i]);
-                                var HTML = "<tr>" +
-                                        "<td>" + oritem.DoorStyle.Description + "</td>" +
-                                        "<td>" + oritem.Material.Description + "</td>" +
-                                        "<td>" + oritem.TopRail.Description + "</td>" +
-                                        "<td>" + oritem.BottomRail.Description + "</td>" +
-                                        "<td>" + oritem.Preparation.Description + "</td>" +
-                                        "<td>" + oritem.Join.Description + "</td>" +
-                                        "<td>" + oritem.OutsideEdgeProfile.Description + "</td>" +
-                                        "<td>" + oritem.InsideEdgeProfile.Description + "</td>" +
-                                        "<td>" + oritem.VerticalDivisions.Quantity + "</td>" +
-                                        "<td>" + oritem.HorizontalDivisions.Quantity + "</td>" +
-                                        "<td>" + oritem.HingeDirection.Direction + "</td>" +
-                                        "<td>" + oritem.HingePositions.Position1 + "</td>" +
-                                        "<td>" + oritem.HingePositions.Position2 + "</td>" +
-                                        "<td>" + oritem.HingePositions.Position3 + "</td>" +
-                                        "<td>" + oritem.HingePositions.Position4 + "</td>" +
-                                        "<td>" + oritem.HingePositions.Position5 + "</td>" +
-                                        "<td>" + oritem.isDrill + "</td>" +
-                                        "<td>" + oritem.Width + "</td>" +
-                                        "<td>" + oritem.Height + "</td>" +
-                                        "<td>" + oritem.isOpeningMeasurement + "</td>" +
-                                        "<td>" + oritem.Quantity + "</td>" +
-                                        "<td>" + oritem.ItemCost + "</td>" +
-                                        "<td>" + oritem.SubTotal + "</td>" +
-                                             "</tr>";
-                                $("#tbody").html(HTML);
-                            }
-                        
-                    } else {
-                        alert("Error al optener orden");
-                    }
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="ordertable">
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-                }
-            </script>*@
-        }
+@section scripts{
+<script type="text/javascript">
+    var urlGetDoorsByOrder = '@Url.Action("GetDoorsByOrder", "OrderStatus")';       
+</script>
+
+@Scripts.Render("~/Scripts/js/OrderStatus.Index.js")
+
+}
