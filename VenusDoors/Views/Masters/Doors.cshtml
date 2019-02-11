@@ -98,7 +98,10 @@
                                                     <option label="Select"></option>
                                                     @foreach (Model.DoorStyle item in ViewBag.cbDoorStyle)
                                                     {
-                                                        <option value="@item.Id">@item.Description</option>
+                                                        if (item.Status.Id == 1)
+                                                        {
+                                                            <option value="@item.Id">@item.Description</option>
+                                                        }
                                                     }
                                                 </select>
                                             </div><!-- form-group -->
@@ -108,7 +111,10 @@
                                                     <option label="Select"></option>
                                                     @foreach (Model.Material item in ViewBag.cbMatarial)
                                                     {
-                                                        <option value="@item.Id">@item.Description</option>
+                                                        if (item.Status.Id == 1)
+                                                        {
+                                                            <option value="@item.Id">@item.Description</option>
+                                                        }
                                                     }
                                                 </select>
                                             </div><!-- form-group -->
@@ -118,7 +124,10 @@
                                                     <option label="Select"></option>
                                                     @foreach (Model.TopRail item in ViewBag.cbTopRail)
                                                     {
-                                                        <option value="@item.Id">@item.Description</option>
+                                                        if (item.Status.Id == 1)
+                                                        {
+                                                            <option value="@item.Id">@item.Description</option>
+                                                        }
                                                     }
                                                 </select>
                                             </div><!-- form-group -->
@@ -128,18 +137,24 @@
                                                     <option label="Select"></option>
                                                     @foreach (Model.BottomRail item in ViewBag.cbBottomRail)
                                                     {
-                                                        <option value="@item.Id">@item.Description</option>
+                                                        if (item.Status.Id == 1)
+                                                        {
+                                                            <option value="@item.Id">@item.Description</option>
+                                                        }
                                                     }
                                                 </select>
                                             </div><!-- form-group -->
 
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="cbPreparation" style="margin-top: 25px;">Preparation: </label>
+                                                <label for="cbPreparation" style="margin-top: 25px;">Grade: </label>
                                                 <select style="width:100%" class="form-control select2" id="inPreparation" data-placeholder="Select">
                                                     <option label="Select"></option>
                                                     @foreach (Model.Preparation item in ViewBag.cbPreparation)
                                                     {
-                                                        <option value="@item.Id">@item.Description</option>
+                                                        if (item.Status.Id == 1)
+                                                        {
+                                                            <option value="@item.Id">@item.Description</option>
+                                                        }
                                                     }
                                                 </select>
                                             </div><!-- form-group -->
@@ -150,7 +165,10 @@
                                                     <option label="Select"></option>
                                                     @foreach (Model.Join item in ViewBag.cbJoin)
                                                     {
-                                                        <option value="@item.Id">@item.Description</option>
+                                                        if (item.Status.Id == 1)
+                                                        {
+                                                            <option value="@item.Id">@item.Description</option>
+                                                        }
                                                     }
                                                 </select>
                                             </div><!-- form-group -->
@@ -160,7 +178,10 @@
                                                     <option label="Select"></option>
                                                     @foreach (Model.OutsideEdgeProfile item in ViewBag.cbOutsideEdgeProfile)
                                                     {
-                                                        <option value="@item.Id">@item.Description</option>
+                                                        if (item.Status.Id == 1)
+                                                        {
+                                                            <option value="@item.Id">@item.Description</option>
+                                                        }
                                                     }
                                                 </select>
                                             </div><!-- form-group -->
@@ -171,7 +192,10 @@
                                                     <option label="Select"></option>
                                                     @foreach (Model.InsideEdgeProfile item in ViewBag.cbInsideEdgeProfile)
                                                     {
-                                                        <option value="@item.Id">@item.Description</option>
+                                                        if (item.Status.Id == 1)
+                                                        {
+                                                            <option value="@item.Id">@item.Description</option>
+                                                        }
                                                     }
                                                 </select>
                                             </div><!-- form-group -->
@@ -182,7 +206,10 @@
                                                     <option label="Select"></option>
                                                     @foreach (Model.VerticalDivisions item in ViewBag.cbVerticalDivisions)
                                                     {
-                                                        <option value="@item.Id">@item.Quantity</option>
+                                                        if (item.Status.Id == 1)
+                                                        {
+                                                            <option value="@item.Id">@item.Quantity</option>
+                                                        }
                                                     }
                                                 </select>
                                             </div><!-- form-group -->
@@ -193,7 +220,10 @@
                                                     <option label="Select"></option>
                                                     @foreach (Model.HorizontalDivisions item in ViewBag.cbHorizontalDivisions)
                                                     {
-                                                        <option value="@item.Id">@item.Quantity</option>
+                                                        if (item.Status.Id == 1)
+                                                        {
+                                                            <option value="@item.Id">@item.Quantity</option>
+                                                        }
                                                     }
                                                 </select>
                                             </div><!-- form-group -->
@@ -204,7 +234,10 @@
                                                     <option label="Select"></option>
                                                     @foreach (Model.Panel item in ViewBag.cbPanel)
                                                     {
-                                                        <option value="@item.Id">@item.Description</option>
+                                                        if (item.Status.Id == 1)
+                                                        {
+                                                            <option value="@item.Id">@item.Description</option>
+                                                        }
                                                     }
                                                 </select>
                                             </div><!-- form-group -->
@@ -215,7 +248,10 @@
                                                     <option label="Select"></option>
                                                     @foreach (Model.PanelMaterial item in ViewBag.cbPanelMaterial)
                                                     {
-                                                        <option value="@item.Id">@item.Description</option>
+                                                        if (item.Status.Id == 1)
+                                                        {
+                                                            <option value="@item.Id">@item.Description</option>
+                                                        }
                                                     }
                                                 </select>
                                             </div><!-- form-group -->
@@ -229,7 +265,7 @@
                                                 <input type="number" id="inHeight" name="Height" class="txtHeight form-control" placeholder="Select">
                                             </div><!-- form-group -->
 
-                                            <div class="col-xs-4 col-md-3">
+                                            @*<div class="col-xs-4 col-md-3">
                                                 <label for="isDrill" style="margin-top: 25px;">Drill: </label>
                                                 <select style="width:100%" class="form-control select2" id="inDrill" data-placeholder="Select">
                                                     <option label="Select"></option>
@@ -271,7 +307,7 @@
                                             <div class="col-xs-4 col-md-3">
                                                 <label for="HingePositions5" style="margin-top: 25px;">Hinge Position 5: </label>
                                                 <input disabled type="text" id="HingePositions5" class="form-control" placeholder="">
-                                            </div><!-- form-group -->
+                                            </div><!-- form-group -->*@
 
                                             
                                             <div class="col-xs-4 col-md-3">
@@ -307,7 +343,10 @@
                                                     <option label="Select"></option>
                                                     @foreach (Model.Status item in ViewBag.mStatus)
                                                     {
-                                                        <option value="@item.Id">@item.Description</option>
+                                                        if (item.Group.Id == 1)
+                                                        {
+                                                            <option value="@item.Id">@item.Description</option>
+                                                        }
                                                     }
                                                 </select>
                                             </div><!-- form-group -->
@@ -496,7 +535,7 @@
                                             </div><!-- form-group -->
 
 
-                                            <div class="col-xs-4 col-md-3">
+                                            @*<div class="col-xs-4 col-md-3">
                                                 <label for="isDrill" style="margin-top: 25px;">Drill: </label>
                                                 <select style="width:100%" class="form-control select2" id="isDrill" data-placeholder="Select">
                                                     <option label="Select"></option>
@@ -539,7 +578,7 @@
                                             <div class="col-xs-4 col-md-3">
                                                 <label for="HingePositions5" style="margin-top: 25px;">Hinge Position 5: </label>
                                                 <input disabled type="text" id="HingePositions5" class="form-control" placeholder="">
-                                            </div><!-- form-group -->
+                                            </div><!-- form-group -->*@
 
                                             <div class="col-xs-4 col-md-3">
                                                 @*@using (Html.BeginForm("subir", "home", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -551,20 +590,22 @@
                                                     </div>
                                                 }*@
 
-                                                <label>Picture</label>
+                                              <label>Picture</label>
                                             <input type="text" id="txtPicture" class="form-control" placeholder="" />
                                             </div><!-- form-group -->
 
 
                                             <div class="col-xs-4 col-md-3">
-                                                @using (Html.BeginForm("subir", "home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                                @*@using (Html.BeginForm("subir", "home", FormMethod.Post, new { enctype = "multipart/form-data" }))
                                                 {
                                                     <label for="ProfilePicture" style="margin-top: 25px;">Profile Picture: </label>
                                                     <div style="padding-bottom: 12px;padding-top: 12px;height: 43px;" id="inProfilePicture" class="form-control bd bd-dashed d-flex align-items-center justify-content-center rounded bg-gray-300">
                                                         <p id="texto">Add file</p>
                                                         <input id="btn_enviar" name="file" type="file">
                                                     </div>
-                                                }
+                                                }*@
+                                                <label>Profile picture</label>
+                                                <input type="text" id="inProfilePicture" class="form-control" placeholder="" />
                                             </div><!-- form-group -->
 
                                             <div class="col-xs-4 col-md-3" style="padding-top: 20px;">
