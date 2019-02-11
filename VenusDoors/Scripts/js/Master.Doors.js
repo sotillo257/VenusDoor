@@ -267,28 +267,20 @@ function InsertDoors() {
               InsideEdgeProfile: { Id: $("#inInsideEdgeProfile").val() },
               VerticalDivisions: { Id: $("#inVerticalDivisions").val() },
               HorizontalDivisions: { Id: $("#inHorizontalDivisions").val() },
-              HingeDirection: { Id: $("#inHingeDirection").val() },
-              HingePositions: { Id: 1 },
+              HingeDirection: { Id: 3 },
+              HingePositions: { Id: 2 },
               Panel: { Id: $("#inPanel").val() },
               PanelMaterial: { Id: $("#inPanelMaterial").val() },
-              Drill: { Id: $("#inDrill").val() },
+              Drill: { Id: false },
               Width: $("#inWidth").val(),
               Height: $("#inHeight").val(),
               Picture: $("#inPicture").val(),
               ProfilePicture: $("#inProfilePicture").val(),
               Status: { Id: $("#inStatus").val() },
-              OpeningMeasurement: { Id: $("#inOpeningMeasurement").val() },
+              OpeningMeasurement: { Id: false},
               CreatorUser: 6,
               ModificationUser: 6,
 
-          },
-
-          HingeP: {
-              Position1: $("#HingePositions1").val(),
-              Position2: $("#HingePositions2").val(),
-              Position3: $("#HingePositions3").val(),
-              Position4: $("#HingePositions4").val(),
-              Position5: $("#HingePositions5").val(),
           }
       };
     //formData.append('pDoors', pDoors);
