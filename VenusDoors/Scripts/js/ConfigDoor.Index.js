@@ -923,7 +923,7 @@ function ChangeProfile() {
 }
 
 function FlatPanel(Outside, Inside) {
-    var ProfileUrl = "img11.jpg";
+    var ProfileUrl = "img11.png";
     var urlFolder = "/Content/img/Profile/";
     if (Outside == 13) {
         if (Inside == 4) {
@@ -958,7 +958,7 @@ function FlatPanel(Outside, Inside) {
             ProfileUrl = "-Half_Reba_shaker_goove_flat_panel.png";
         }
     }
-    if (Outside == 4) {
+    if (Outside == 11) {
 
         if (Inside == 4) {
             ProfileUrl = "-Little_bone_ogee_flat_panel.png";
@@ -995,7 +995,7 @@ function FlatPanel(Outside, Inside) {
     $('#ProfilePicture').attr('src', urlFolder + ProfileUrl);
 }
 function FlatPanelBeaded(Outside, Inside) {
-    var ProfileUrl = "img11.jpg";
+    var ProfileUrl = "img11.png";
     var urlFolder = "/Content/img/Profile/";
     if (Outside == 13) {
         if (Inside == 4) {
@@ -1067,7 +1067,7 @@ function FlatPanelBeaded(Outside, Inside) {
     $('#ProfilePicture').attr('src', urlFolder + ProfileUrl);
 }
 function RaisedPanel(Outside, Inside) {
-    var ProfileUrl = "img11.jpg";
+    var ProfileUrl = "img11.png";
     var urlFolder = "/Content/img/Profile/";
     if (Outside == 13) {
         if (Inside == 4) {
@@ -1157,7 +1157,7 @@ function changeDoorPicture() {
 function FlatPanelDoor(Style) {
     var stile = $('#cbTopRail').val();
     var rail = $('#cbBottomRail').val();
-    var DoorUrl = "img11.jpg";
+    var DoorUrl = "img11.png";
     var urlFolder = "/Content/img/Doors/";
     if ($('#cbJoin').val() == 1) {
         if (Style == 1008) {
@@ -1200,7 +1200,7 @@ function FlatPanelDoor(Style) {
 function RaisedPanelDoor(Style) {
     var stile = $('#cbTopRail').val();
     var rail = $('#cbBottomRail').val();
-    var DoorUrl = "img11.jpg";
+    var DoorUrl = "img11.png";
     var urlFolder = "/Content/img/Doors/";
     if ($('#cbJoin').val() == 1) {
         if (stile == 3 && rail == 3) {

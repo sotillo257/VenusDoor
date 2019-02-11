@@ -401,6 +401,7 @@
     <Content Include="Content\img\Doors\Cabinet Vector-17.png" />
     <Content Include="Content\img\Doors\Cabinet Vector-18.png" />
     <Content Include="Content\img\Doors\img11.jpg" />
+    <Content Include="Content\img\Doors\img11.png" />
     <Content Include="Content\img\Error.png" />
     <Content Include="Content\img\Error500.png" />
     <Content Include="Content\img\Fingerpull_Shaker22_flatpanel_beaded.png" />
@@ -484,6 +485,7 @@
     <Content Include="Content\img\Profile\-Shaker_shaker_goove_raised_panel.png" />
     <Content Include="Content\img\Profile\FingerPull-Shaker22-RaisedPanel.png" />
     <Content Include="Content\img\Profile\img11.jpg" />
+    <Content Include="Content\img\Profile\img11.png" />
     <Content Include="Content\img\screen.png" />
     <Content Include="Content\img\screen1.png" />
     <Content Include="Content\img\screen12.png" />
@@ -496,6 +498,7 @@
     <Content Include="Content\img\screen5.png" />
     <Content Include="Content\img\screen7.png" />
     <Content Include="Content\img\screen8.png" />
+    <Content Include="Content\img\Spinner.gif" />
     <Content Include="Content\img\Venus_Doors11.png" />
     <Content Include="Content\js\bracket.js" />
     <Content Include="Content\js\chart.chartist.js" />

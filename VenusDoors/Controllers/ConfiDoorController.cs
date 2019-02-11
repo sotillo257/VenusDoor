@@ -532,7 +532,7 @@ namespace VenusDoors.Controllers
             
             if (Session["UserID"] != null)
             {
-                return View();
+                return Json(true, JsonRequestBehavior.AllowGet);
             }
             else
             {
