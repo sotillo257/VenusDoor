@@ -142,6 +142,8 @@ namespace VenusDoors.Controllers
 
         public void SendOrderToUser(Order CompleteOrder)
         {
+            try
+            {           
             int userID = (int)Session["UserID"];
             int idU = userID;
             var date = DateTime.Now;
@@ -179,6 +181,12 @@ namespace VenusDoors.Controllers
             SmtpServer.Credentials = new System.Net.NetworkCredential("orders@venuscabinetdoors.com", "venusCD2019*");
             SmtpServer.EnableSsl = true;
             SmtpServer.Send(mail);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
 
         public void SendOrderToManage(Order CompleteOrder)
