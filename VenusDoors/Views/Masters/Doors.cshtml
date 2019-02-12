@@ -258,11 +258,11 @@
 
                                             <div class="col-xs-4 col-md-3">
                                                 <label for="Width" style="margin-top: 25px;">Width: </label>
-                                                <input type="number" id="inWidth" name="Width" class="form-control" placeholder="Select">
+                                                <input type="text" id="inWidth" name="Width" class="form-control" placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-3">
                                                 <label for="Height" style="margin-top: 25px;">Height: </label>
-                                                <input type="number" id="inHeight" name="Height" class="txtHeight form-control" placeholder="Select">
+                                                <input type="text" id="inHeight" name="Height" class="txtHeight form-control" placeholder="">
                                             </div><!-- form-group -->
 
                                             @*<div class="col-xs-4 col-md-3">
@@ -310,7 +310,7 @@
                                             </div><!-- form-group -->*@
 
                                             
-                                            <div class="col-xs-4 col-md-3" style="margin-top: 25px;">
+                                            <div class="col-xs-4 col-md-3">
                                                 @*@using (Html.BeginForm("subir", "home", FormMethod.Post, new { enctype = "multipart/form-data" }))
                                                 {
                                                 <label for="Picture" style="margin-top: 25px;">Picture: </label>
@@ -319,12 +319,12 @@
                                                     <input id="btn_enviar" name="file" type="file">
                                                 </div>
                                                 }*@
-                                                <label>Picture</label>
+                                                <label for="Picture" style="margin-top: 25px;">Picture</label>
                                                 <input type="text" id="inPicture" class="form-control" placeholder="" />
                                             </div><!-- form-group -->
                                             
 
-                                            <div class="col-xs-4 col-md-3" style="margin-top: 25px;">
+                                            <div class="col-xs-4 col-md-3" style="padding-top: 20px;">
                                                 @*@using (Html.BeginForm("subir", "home", FormMethod.Post, new { enctype = "multipart/form-data" }))
                                                 {
                                                 <label for="ProfilePicture" style="margin-top: 25px;">Profile Picture: </label>
@@ -333,7 +333,7 @@
                                                     <input id="btn_enviar" name="file" type="file">
                                                 </div>
                                                 }*@
-                                                <label>Profile picture</label>
+                                                <label for="ProfilePicture" style="margin-top: 25px;">Profile picture</label>
                                                 <input type="text" id="inProfilePicture" class="form-control" placeholder="" />
                                             </div><!-- form-group -->
 
@@ -580,7 +580,7 @@
                                                 <input disabled type="text" id="HingePositions5" class="form-control" placeholder="">
                                             </div><!-- form-group -->*@
 
-                                            <div class="col-xs-4 col-md-3" style="margin-top: 25px;">
+                                            <div class="col-xs-4 col-md-3">
                                                 @*@using (Html.BeginForm("subir", "home", FormMethod.Post, new { enctype = "multipart/form-data" }))
                                                 {
                                                     <label for="Picture" style="margin-top: 25px;">Picture: </label>
@@ -590,12 +590,12 @@
                                                     </div>
                                                 }*@
 
-                                              <label>Picture</label>
+                                              <label for="Picture" style="margin-top: 25px;">Picture</label>
                                             <input type="text" id="txtPicture" class="form-control" placeholder="" />
                                             </div><!-- form-group -->
 
 
-                                            <div class="col-xs-4 col-md-3">
+                                            <div class="col-xs-4 col-md-3"  style="padding-top: 20px;">
                                                 @*@using (Html.BeginForm("subir", "home", FormMethod.Post, new { enctype = "multipart/form-data" }))
                                                 {
                                                     <label for="ProfilePicture" style="margin-top: 25px;">Profile Picture: </label>
@@ -604,7 +604,7 @@
                                                         <input id="btn_enviar" name="file" type="file">
                                                     </div>
                                                 }*@
-                                                <label>Profile picture</label>
+                                                <label for="ProfilePicture" style="margin-top: 25px;">Profile picture</label>
                                                 <input type="text" id="inProfilePicture" class="form-control" placeholder="" />
                                             </div><!-- form-group -->
 

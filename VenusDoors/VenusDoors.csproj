@@ -1093,6 +1093,7 @@
     <Content Include="Scripts\js\LoginSiginUp.js" />
     <Content Include="Scripts\js\Master.BottomRail.js" />
     <Content Include="Scripts\js\Master.Doors.js" />
+    <Content Include="Scripts\js\Master.DoorsPrice.js" />
     <Content Include="Scripts\js\Masters.js" />
     <Content Include="Scripts\js\ModalAlert.js" />
     <Content Include="Scripts\js\OrderStatus.Index.js" />

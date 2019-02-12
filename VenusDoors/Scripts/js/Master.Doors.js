@@ -118,6 +118,64 @@
 
         $('#inHeight').removeClass("is-invalid");
         $('#inHeight').val("");
+
+        $('#inStatus').removeClass("is-invalid");
+        $('#inStatus').val("");
+
+        $('#inTopRail').removeClass("is-invalid");
+        $('#inTopRail').val("");
+
+
+        $('#cbDoorStyle').removeClass("is-invalid");
+        $('#cbDoorStyle').val(0);
+
+        $('#cbMaterial').removeClass("is-invalid");
+        $('#cbMaterial').val(0);
+
+        $('#cbBottomRail').removeClass("is-invalid");
+        $('#cbBottomRail').val(0);
+
+        $('#cbPreparation').removeClass("is-invalid");
+        $('#cbPreparation').val(0);
+
+        $('#cbJoin').removeClass("is-invalid");
+        $('#cbJoin').val(0);
+
+        $('#cbOutsideEdgeProfile').removeClass("is-invalid");
+        $('#cbOutsideEdgeProfile').val(0);
+
+        $('#cbInsideEdgeProfile').removeClass("is-invalid");
+        $('#cbInsideEdgeProfile').val(0);
+
+        $('#cbVerticalDivisions').removeClass("is-invalid");
+        $('#cbVerticalDivisions').val(0);
+
+        $('#cbHorizontalDivisions').removeClass("is-invalid");
+        $('#cbHorizontalDivisions').val(0);
+
+        $('#cbHingeDirection').removeClass("is-invalid");
+        $('#cbHingeDirection').val(0);
+
+        $('#cbPanel').removeClass("is-invalid");
+        $('#cbPanel').val(0);
+
+        $('#cbPanelMaterial').removeClass("is-invalid");
+        $('#cbPanelMaterial').val(0);
+
+        $('#isDrill').removeClass("is-invalid");
+        $('#isDrill').val(0);
+
+        $('#txtWidth').removeClass("is-invalid");
+        $('#txtWidth').val("");
+
+        $('#txtHeight').removeClass("is-invalid");
+        $('#txtHeight').val("");
+
+        $('#IdStatus').removeClass("is-invalid");
+        $('#IdStatus').val("");
+
+        $('#cbTopRail').removeClass("is-invalid");
+        $('#cbTopRail').val("");
     }
 
 function ValidarCamposVacios() {
@@ -134,6 +192,13 @@ function ValidarCamposVacios() {
         aux = false;
     } else {
         $('#inMaterial').removeClass("is-invalid");
+    }
+
+    if ($('#inTopRail').val() == 0) {
+        $('#inTopRail').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#inTopRail').removeClass("is-invalid");
     }
 
     if ($('#inBottomRail').val() == 0) {
@@ -239,6 +304,133 @@ function ValidarCamposVacios() {
         aux = false;
     } else {
         $('#inOpeningMeasurement').removeClass("is-invalid");
+    }
+
+    var aux = true;
+    if ($('#cbDoorStyle').val() == 0) {
+        $('#cbDoorStyle').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#cbDoorStyle').removeClass("is-invalid");
+    }
+
+    if ($('#cbMaterial').val() == 0) {
+        $('#cbMaterial').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#cbMaterial').removeClass("is-invalid");
+    }
+
+    if ($('#inTopRail').val() == 0) {
+        $('#inTopRail').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#inTopRail').removeClass("is-invalid");
+    }
+
+    if ($('#cbBottomRail').val() == 0) {
+        $('#cbBottomRail').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#cbBottomRail').removeClass("is-invalid");
+    }
+
+    if ($('#cbPreparation').val() == 0) {
+        $('#cbPreparation').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#cbPreparation').removeClass("is-invalid");
+    }
+
+    if ($('#cbJoin').val() == 0) {
+        $('#cbJoin').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#cbJoin').removeClass("is-invalid");
+    }
+
+    if ($('#cbOutsideEdgeProfile').val() == 0) {
+        $('#cbOutsideEdgeProfile').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#cbOutsideEdgeProfile').removeClass("is-invalid");
+    }
+
+    if ($('#cbInsideEdgeProfile').val() == 0) {
+        $('#cbInsideEdgeProfile').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#cbInsideEdgeProfile').removeClass("is-invalid");
+    }
+
+    if ($('#cbVerticalDivisions').val() == 0) {
+        $('#cbVerticalDivisions').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#cbVerticalDivisions').removeClass("is-invalid");
+    }
+
+    if ($('#cbHorizontalDivisions').val() == 0) {
+        $('#cbHorizontalDivisions').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#cbHorizontalDivisions').removeClass("is-invalid");
+    }
+
+    if ($('#cbHingeDirection').val() == 0) {
+        $('#cbHingeDirection').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#cbHingeDirection').removeClass("is-invalid");
+    }
+
+    if ($('#cbPanel').val() == 0) {
+        $('#cbPanel').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#cbPanel').removeClass("is-invalid");
+    }
+
+    if ($('#cbPanelMaterial').val() == 0) {
+        $('#cbPanelMaterial').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#cbPanelMaterial').removeClass("is-invalid");
+    }
+
+    if ($('#isDrill').val() == 0) {
+        $('#isDrill').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#isDrill').removeClass("is-invalid");
+    }
+
+    if ($('#txtWidth').val() == "") {
+        $('#txtWidth').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#txtWidth').removeClass("is-invalid");
+    }
+
+    if ($('#txtHeight').val() == "") {
+        $('#txtHeight').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#txtHeight').removeClass("is-invalid");
+    }
+
+    if ($('#IdStatus').val() == 0) {
+        $('#IdStatus').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#IdStatus').removeClass("is-invalid");
+    }
+
+    if ($('#isOpeningMeasurement').val() == 0) {
+        $('#isOpeningMeasurement').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#isOpeningMeasurement').removeClass("is-invalid");
     }
 
     
