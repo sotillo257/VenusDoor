@@ -335,23 +335,23 @@
                 return false;
         }
 
-        function soloNumeros(e) {
-            key = e.keyCode || e.which;
-            tecla = String.fromCharCode(key).toLowerCase();
-            letras = " 0123456789";
-            especiales = [8, 37, 39, 46];
+        //function soloNumeros(e) {
+        //    key = e.keyCode || e.which;
+        //    tecla = String.fromCharCode(key).toLowerCase();
+        //    letras = " 0123456789";
+        //    especiales = [8, 37, 39, 46];
 
-            tecla_especial = false
-            for (var i in especiales) {
-                if (key == especiales[i]) {
-                    tecla_especial = true;
-                    break;
-                }
-            }
+        //    tecla_especial = false
+        //    for (var i in especiales) {
+        //        if (key == especiales[i]) {
+        //            tecla_especial = true;
+        //            break;
+        //        }
+        //    }
 
-            if (letras.indexOf(tecla) == -1 && !tecla_especial)
-                return false;
-        }
+        //    if (letras.indexOf(tecla) == -1 && !tecla_especial)
+        //        return false;
+        //}
 
         //function soloNumeros(e) {
         //    key = e.keyCode || e.which;
@@ -365,29 +365,29 @@
         //            tecla_especial = true;
         //            break;
         //        }
-    //    }
+        //}
         //window.addEventListener("load", function() {
         //    SoloNumeros.SoloNumeros.addEventListener("keypress", soloNumeros, false);
         //});
 
         //Solo permite introducir numeros.
-        function soloNumeros(e){
-            var key = window.event ? e.which : e.keyCode;
-            if (key < 48 || key > 57) {
-                e.preventDefault();
-            }
+        //function soloNumeros(e){
+        //    var key = window.event ? e.which : e.keyCode;
+        //    if (key < 48 || key > 57) {
+        //        e.preventDefault();
+        //    }
 
-            var keynum = window.event ? window.event.keyCode : e.which;
-            if (document.getElementById(thix.id).value.indexOf('.') != -1 && keynum == 46)
-                return false;
-            if ((keynum == 8 || keynum == 48 || keynum == 46))
-                return true;
-            if (keynum <= 47 || keynum >= 58) return false;
-            return /\d/.test(String.fromCharCode(keynum));
+        //    var keynum = window.event ? window.event.keyCode : e.which;
+        //    if (document.getElementById(thix.id).value.indexOf('.') != -1 && keynum == 46)
+        //        return false;
+        //    if ((keynum == 8 || keynum == 48 || keynum == 46))
+        //        return true;
+        //    if (keynum <= 47 || keynum >= 58) return false;
+        //    return /\d/.test(String.fromCharCode(keynum));
 
-            if (letras.indexOf(tecla) == -1 && !tecla_especial)
-                return false;
-        }
+        //    if (letras.indexOf(tecla) == -1 && !tecla_especial)
+        //        return false;
+        //}
 </script>
 
 <script type="text/javascript">

@@ -22,7 +22,7 @@
                         <p class="mg-b-0">Modals are streamlined, but flexible, dialog prompts with the minimum required functionality and smart defaults.</p>
                     </div>
                     <div class="col-md-1">
-                        <button type="button" data-toggle="modal" data-target="#modalInsert" class="Cursor btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Insert</button>
+                        <button type="button" id="btInsert" data-toggle="modal" data-target="#modalInsert" class="Cursor btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Insert</button>
                     </div>
                 </div>
             </div>
@@ -172,7 +172,7 @@
                                             </div><!-- form-group -->
                                             <div class="col-xs-3 col-md-4">
                                                 <label for="mStatus" style="margin-top: 25px;">Status: </label>
-                                                <select style="width:100%" class="form-control select2" id="mStatus" data-placeholder="">
+                                                <select style="width:100%" class="form-control select2" id="IdStatus" data-placeholder="">
                                                     @foreach (Model.Status item in ViewBag.mStatus)
                                                     {
                                                         <option value="@item.Id">@item.Description</option>
@@ -201,53 +201,8 @@
     var urlInsertPerson = '@Url.Action("InsertPerson", "Masters")';
     var urlUpdatePerson = '@Url.Action("UpdatePerson", "Masters")';
     </script>
-    <script>
-        $(function () {
-            'use strict';
-
-            $('#datatable1').DataTable({
-                responsive: true,
-                language: {
-                    searchPlaceholder: 'Search...',
-                    sSearch: '',
-                    lengthMenu: '_MENU_ items/page',
-                }
-            });
-
-            $('#datatable2').DataTable({
-                bLengthChange: false,
-                searching: false,
-                responsive: true
-            });
-
-            // Select2
-            $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
-
-        });
-    </script>
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>
     <script src="~/Content/lib/select2/js/select2.min.js"></script>
-    @Scripts.Render("~/Scripts/js/Masters.js")
-    <script type="text/javascript">
-
-        $(document).ready(function () {
-            var listPer = JSON.parse('@Html.Raw(ViewBag.ListPerson)');
-            $(document).on('click', '.Modificar', function (event) {
-                for (var i = 0; i < listPer.length; i++) {
-                    if (listPer[i].Id == $(this).attr('value')) {
-                        $('#txtId').val(listPer[i].Id);
-                        $('#txtName').val(listPer[i].Name);
-                        $('#txtLastname').val(listPer[i].Lastname);
-                        $('#txtTelephone').val(listPer[i].Telephone);
-                        $('#txtDirection').val(listPer[i].Direction);
-                        $('#IdStatus').val(listPer[i].Status.Id);
-                    }
-                }
-            });
-
-
-        });
-
-    </script>
+    @Scripts.Render("~/Scripts/js/Master.Person.js")
 }
