@@ -21,10 +21,10 @@ namespace VenusDoors.Controllers
                 ViewBag.OrderStatus = "active";
                 int userID = (int)Session["UserID"];
 
-                //Get Active Order
+                //Get last Order 
                 BusinessLogic.lnOrder _LNO = new BusinessLogic.lnOrder();
                 var getOr = _LNO.GetAllOrder();
-                var LastOrder = getOr.Where(x => x.Status.Id != 9 && x.User.Id == userID).FirstOrDefault();
+                var LastOrder = getOr.Where(x => x.Status.Id != 9 && x.User.Id == userID).OrderByDescending(x => x.ModificationDate).FirstOrDefault();
                 ViewBag.LastOrder = LastOrder;
 
                 if (LastOrder != null)
@@ -38,7 +38,7 @@ namespace VenusDoors.Controllers
 
                 //Get List Order
                 List<Order> ListOrders = _LNO.GetAllOrder();
-                List<Order> OrdersByU = ListOrders.Where(x => x.User.Id == userID).OrderByDescending(x => x.CreationDate).ToList();
+                List<Order> OrdersByU = ListOrders.Where(x => x.User.Id == userID).OrderByDescending(x => x.ModificationDate).ToList();
                 if (OrdersByU.Count == 0)
                 {
                     ViewBag.ListO = null;

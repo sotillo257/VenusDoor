@@ -166,14 +166,74 @@ namespace VenusDoors.Controllers
             List<DoorsxUser> puertas = allD.Where(x => x.Order.Id == CompleteOrder.Id).ToList();
             ViewBag.TusPuertas = puertas;
 
-            string cuerpo = "<p>Dear " + NameUser + ",</p><p>Please review the estimate below.Feel free to contact us if you have any questions.<br>We look forward to working with you.</p><p>Thanks for your business!<br><b>Venus Doors<b></p>  <div style='padding: 20px;border: solid 1px;width: 400px;background: #f1f1f1;border - radius: 7px;'><div style='text-align:center'><h4> ------------------Order ref: #" + CompleteOrder.Id +" ------------------</h4></div><div><p>Estimate date: "+ date + "</p><p>Quantity of products: " + CompleteOrder.Quantity +"</p><p>Total: $"+ CompleteOrder.Total +"</p></div><div style='text-align:center'><h4>--Venus Cabinet Doors --</h4></div></div>";
-            cuerpo += "<table><thead><tr><th>Door Style</th><th>Material</th><th>Stile Width</th><th>Rail Width</th><th>Preparation</th><th>Join</th><th>Outside Edge Profile</th><th>Inside Edge Profile</th><th>Vertical Divisions</th><th>Horizontal Divisions</th><th>Hinge Direction</th><th>Hinge 1</th><th>Hinge 2</th><th>Hinge 3</th><th>Hinge 4</th><th>Hinge 5</th><th>Drill</th><th>Width</th><th>Height</th><th>Opening Measurement</th><th>Quantity</th><th>Item Cost</th><th>SubTotal</th></tr></thead><tbody>";
+            string cuerpo = "<p>Dear " + NameUser + ",</p>"+
+            "<p>Please review the estimate below.Feel free to contact us if you have any questions.<br>"+
+            "We look forward to working with you.</p>"+
+            "<p>Thanks for your business!"+
+            "<br><b>Venus Doors<b></p>"+
+            "<table width='400px' style='border: solid 1px;border-radius: 16px;padding: 15px;background: #e6e0c0; '>" +
+                "<thead>"+
+                "<tr style='text-align:center'>" +
+                    "<p>------ Order ref: #" + CompleteOrder.Id + " ------</p>" +
+                "</tr>" +
+                "<tr style='text-align:left'>" +
+                    "<p>Estimate date: "+ date + "</p>"+
+                "</tr>"+
+                "<tr style='text-align:left'>" +                    
+                    "<p>Quantity of products: " + CompleteOrder.Quantity + "</p>" +                    
+                "</tr>" +
+                "<tr style='text-align:left'>" +
+                    "<p>SubTotal: $" + CompleteOrder.SubTotal + "</p>" +
+                "</tr>" +
+                "<tr style='text-align:left'>" +
+                    "<p>Tax: $" + CompleteOrder.Tax + "</p>" +
+                "</tr>" +
+                "<tr style='text-align:left'>" +
+                    "<p>Total: $" + CompleteOrder.Total + "</p>" +
+                "</tr>" +
+                "<tr style='text-align:center'>" +
+                    "<p>---------------------------</p>" +
+                "</tr>" +
+                "</thead>" +
+            "</table>";
+            cuerpo += "<table>"+
+                    "<thead>"+
+                        "<tr>"+
+                            "<th>Door Style</th>"+
+                            "<th>Material</th>"+
+                            "<th>Rails</th>"+
+                            "<th>Stiles Width</th>"+
+                            "<th>Grade</th>"+
+                            "<th>Join</th>"+
+                            "<th>Outside Profile</th>"+
+                            "<th>Inside Profile</th>"+
+                            "<th>Width</th>"+
+                            "<th>Height</th>"+
+                            "<th>Quantity</th>"+
+                            "<th>Item Cost</th>"+
+                            "<th>SubTotal</th>"+
+                        "</tr>"+
+                    "</thead>"+
+            "<tbody>";
             foreach (DoorsxUser item in ViewBag.TusPuertas)
             {
-                cuerpo += "<tr><td>" + item.DoorStyle.Description + "</td><td>" + item.Material.Description + "</td><td>" + item.TopRail.Description + "</td><td>" + item.BottomRail.Description + "</td><td>" + item.Preparation.Description + "</td><td>" + item.Join.Description + "</td><td>" + item.OutsideEdgeProfile.Description + "</td><td>" + item.InsideEdgeProfile.Description + "</td><td>" + item.VerticalDivisions.Quantity + "</td><td>" + item.HorizontalDivisions.Quantity + "</td><td>" + item.HingeDirection.Direction + "</td><td>"+ item.HingePositions.Position1 + "</td><td>" + item.HingePositions.Position2 + "</td><td>" + item.HingePositions.Position3 + "</td><td>" + item.HingePositions.Position4 + "</td><td>" + item.HingePositions.Position5 + "</td><td>" + item.isDrill + "</td><td>" + item.Width + "</td><td>" + item.Height + "</td><td>" + item.IsOpeningMeasurement + "</td><td>" + item.Quantity + "</td><td>$" + item.ItemCost + "</td><td>$" + item.SubTotal + "</td></tr>";
+                cuerpo += "<tr>"+
+                        "<td>" + item.DoorStyle.Description + "</td>"+
+                        "<td>" + item.Material.Description + "</td>"+
+                        "<td>" + item.TopRail.Description + "</td>"+
+                        "<td>" + item.BottomRail.Description + "</td>"+
+                        "<td>" + item.Preparation.Description + "</td>"+
+                        "<td>" + item.Join.Description + "</td>"+
+                        "<td>" + item.OutsideEdgeProfile.Description + "</td>"+
+                        "<td>" + item.InsideEdgeProfile.Description + "</td>"+
+                        "<td>" + item.Width + "</td>" +
+                        "<td>" + item.Height + "</td>"+
+                        "<td>" + item.Quantity + "</td>"+
+                        "<td>$" + item.ItemCost + "</td>"+
+                        "<td>$" + item.SubTotal + "</td>"+
+                "</tr>";
             }
-            cuerpo += "<t/body></table>";
-            cuerpo += "<div><p>SubTotal: $"+ CompleteOrder.SubTotal +"</p><p>Tax: $"+ CompleteOrder.Tax +"</p><p>Total: $"+ CompleteOrder.Total +"</p></div>";
+            cuerpo += "</tbody></table>";            
             mail.Body = cuerpo;
 
             mail.IsBodyHtml = true;
@@ -213,14 +273,94 @@ namespace VenusDoors.Controllers
             List<DoorsxUser> puertas = allD.Where(x => x.Order.Id == CompleteOrder.Id).ToList();
             ViewBag.TusPuertas = puertas;
 
-            string cuerpo = "<p>Please review the estimate below.Feel free to contact us if you have any questions.<br>We look forward to working with you.</p><p>Thanks for your business!<br><b>Venus Doors<b></p>  <div style='padding: 20px;border: solid 1px;width: 400px;background: #f1f1f1;border - radius: 7px;'><div style='text-align:center'><h4> ------------------Order ref: #" + CompleteOrder.Id + " ------------------</h4></div><div><p>Name: " + per.Name + " " + per.Lastname + "</p><p>Phone number:" + per.Telephone + "</p><p>Email: " + use.Email + "</p><p>Address: " + per.Direction + "</p><p>Estimate date: " + date + "</p><p>Quantity of products: " + CompleteOrder.Quantity + "</p><p>Total: $" + CompleteOrder.Total + "</p></div><div style='text-align:center'><h4>--Venus Cabinet Doors --</h4></div></div>";
-            cuerpo += "<table><thead><tr><th>Door Style</th><th>Material</th><th>Stile Width</th><th>Rail Width</th><th>Preparation</th><th>Join</th><th>Outside Edge Profile</th><th>Inside Edge Profile</th><th>Vertical Divisions</th><th>Horizontal Divisions</th><th>Hinge Direction</th><th>Hinge 1</th><th>Hinge 2</th><th>Hinge 3</th><th>Hinge 4</th><th>Hinge 5</th><th>Drill</th><th>Width</th><th>Height</th><th>Opening Measurement</th><th>Quantity</th><th>Item Cost</th><th>SubTotal</th></tr></thead><tbody>";
+            string cuerpo = "<p>Please review the estimate below.Feel free to contact us if you have any questions."+
+                "<br>We look forward to working with you.</p>"+
+                "<p>Thanks for your business!<br><b>Venus Doors<b></p>"+
+                "<table width='400px' style='border: solid 1px;border-radius: 16px;padding: 15px;background: #e6e0c0; '>" +
+                "<thead>" +
+                "<tr style='text-align:center'>" +
+                    "<p>------ Order ref: #" + CompleteOrder.Id + " ------</p>" +
+                "</tr>" +
+                "<tr style='text-align:left'>" +
+                    "<p>Name : " + per.Name + " "+ per.Lastname +"</p>" +
+                "</tr>" +
+                "<tr style='text-align:left'>" +
+                    "<p>Phone number: " + per.Telephone + "</p>" +
+                "</tr>" +
+                "<tr style='text-align:left'>" +
+                    "<p>Email: " + use.Email + "</p>" +
+                "</tr>" +
+                "<tr style='text-align:left'>" +
+                    "<p>Address: " + per.Direction + "</p>" +
+                "</tr>" +
+                "<tr style='text-align:left'>" +
+                    "<p>Estimate date: " + date + "</p>" +
+                "</tr>" +
+                "<tr style='text-align:left'>" +
+                    "<p>Quantity of products: " + CompleteOrder.Quantity + "</p>" +
+                "</tr>" +
+                "<tr style='text-align:left'>" +
+                    "<p>SubTotal: $" + CompleteOrder.SubTotal + "</p>" +
+                "</tr>" +
+                "<tr style='text-align:left'>" +
+                    "<p>Tax: $" + CompleteOrder.Tax + "</p>" +
+                "</tr>" +
+                "<tr style='text-align:left'>" +
+                    "<p>Total: $" + CompleteOrder.Total + "</p>" +
+                "</tr>" +
+                "<tr style='text-align:center'>" +
+                    "<p>---------------------------</p>" +
+                "</tr>" +
+                "</thead>" +
+            "</table>";
+            cuerpo += "<table>"+
+                    "<thead>"+
+                        "<tr>"+
+                            "<th>Door Style</th>"+
+                            "<th>Material</th>"+
+                            "<th>Rails</th>"+
+                            "<th>Stiles Width</th>"+
+                            "<th>Grade</th>"+
+                            "<th>Join</th>"+
+                            "<th>Outside Profile</th>"+
+                            "<th>Inside Profile</th>"+
+                            "<th>Vertical Divisions</th>"+
+                            "<th>Horizontal Divisions</th>"+
+                            "<th>Hinge Direction</th>"+
+                            "<th>Drill</th>"+
+                            "<th>Width</th>"+
+                            "<th>Height</th>"+
+                            "<th>Opening Measurement</th>"+
+                            "<th>Quantity</th>"+
+                            "<th>Item Cost</th>"+
+                            "<th>SubTotal</th>"+
+                        "</tr>"+
+                    "</thead>"+
+            "<tbody>";
             foreach (DoorsxUser item in ViewBag.TusPuertas)
             {
-                cuerpo += "<tr><td>" + item.DoorStyle.Description + "</td><td>" + item.Material.Description + "</td><td>" + item.TopRail.Description + "</td><td>" + item.BottomRail.Description + "</td><td>" + item.Preparation.Description + "</td><td>" + item.Join.Description + "</td><td>" + item.OutsideEdgeProfile.Description + "</td><td>" + item.InsideEdgeProfile.Description + "</td><td>" + item.VerticalDivisions.Quantity + "</td><td>" + item.HorizontalDivisions.Quantity + "</td><td>" + item.HingeDirection.Direction + "</td><td>" + item.HingePositions.Position1 + "</td><td>" + item.HingePositions.Position2 + "</td><td>" + item.HingePositions.Position3 + "</td><td>" + item.HingePositions.Position4 + "</td><td>" + item.HingePositions.Position5 + "</td><td>" + item.isDrill + "</td><td>" + item.Width + "</td><td>" + item.Height + "</td><td>" + item.IsOpeningMeasurement + "</td><td>" + item.Quantity + "</td><td>$" + item.ItemCost + "</td><td>$" + item.SubTotal + "</td></tr>";
+                cuerpo += "<tr>"+
+                    "<td>" + item.DoorStyle.Description + "</td>"+
+                    "<td>" + item.Material.Description + "</td>"+
+                    "<td>" + item.TopRail.Description + "</td>"+
+                    "<td>" + item.BottomRail.Description + "</td>"+
+                    "<td>" + item.Preparation.Description + "</td>"+
+                    "<td>" + item.Join.Description + "</td>"+
+                    "<td>" + item.OutsideEdgeProfile.Description + "</td>"+
+                    "<td>" + item.InsideEdgeProfile.Description + "</td>"+
+                    "<td>" + item.VerticalDivisions.Quantity + "</td>"+
+                    "<td>" + item.HorizontalDivisions.Quantity + "</td>"+
+                    "<td>" + item.HingeDirection.Direction + "</td>"+                    
+                    "<td>" + item.isDrill + "</td>"+
+                    "<td>" + item.Width + "</td>"+
+                    "<td>" + item.Height + "</td>"+
+                    "<td>" + item.IsOpeningMeasurement + "</td>"+
+                    "<td>" + item.Quantity + "</td>"+
+                    "<td>$" + item.ItemCost + "</td>"+
+                    "<td>$" + item.SubTotal + "</td>"+
+               "</tr>";
             }
-            cuerpo += "<t/body></table>";
-            cuerpo += "<div><p>SubTotal: $" + CompleteOrder.SubTotal + "</p><p>Tax: $" + CompleteOrder.Tax + "</p><p>Total: $" + CompleteOrder.Total + "</p></div>";
+            cuerpo += "</tbody></table>";
             mail.Body = cuerpo;
             
             mail.IsBodyHtml = true;
