@@ -24,15 +24,15 @@ namespace VenusDoors.Controllers
                 //Get Active Order
                 BusinessLogic.lnOrder _LNO = new BusinessLogic.lnOrder();
                 var getOr = _LNO.GetAllOrder();
-                var OrderActive = getOr.Where(x => x.Status.Id == 7 && x.User.Id == userID).FirstOrDefault();
-                ViewBag.ActiveOrder = OrderActive;
+                var LastOrder = getOr.Where(x => x.Status.Id != 9 && x.User.Id == userID).FirstOrDefault();
+                ViewBag.LastOrder = LastOrder;
 
-                if (OrderActive != null)
+                if (LastOrder != null)
                 {
-                    //Get Doors in the active Order
+                    //Get Doors in the last Order
                     BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
                     var xDoorsU = _LN.GetAllDoorsxUser();
-                    DoorsxUser doorByOrder = xDoorsU.Where(x => x.Order.Id == OrderActive.Id).OrderByDescending(x => x.CreationDate).FirstOrDefault();
+                    DoorsxUser doorByOrder = xDoorsU.Where(x => x.Order.Id == LastOrder.Id).OrderByDescending(x => x.CreationDate).FirstOrDefault();
                     ViewBag.xUserDoors = doorByOrder;
                 }
 
