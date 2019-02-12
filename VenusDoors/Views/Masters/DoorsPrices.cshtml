@@ -22,7 +22,7 @@
                         <p class="mg-b-0">Modals are streamlined, but flexible, dialog prompts with the minimum required functionality and smart defaults.</p>
                     </div>
                     <div class="col-md-1">
-                        <button type="button" data-toggle="modal" data-target="#modalInsert" class="Cursor btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Insert</button>
+                        <button type="button" id="btInsert" data-toggle="modal" data-target="#modalInsert" class="Cursor btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Insert</button>
                     </div>
                 </div>
             </div>
@@ -186,7 +186,7 @@
                                 </div><!-- col-6 -->
                             </div><!-- row -->
                             <div class="modal-footer justify-content-lg-end">
-                                <button type="submit" id="btnInsertDP" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Insert</button>
+                                <button id="btnInsertDP" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Insert</button>
                                 <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>
                             </div>
                         </div><!-- modal-body -->
@@ -230,7 +230,7 @@
 
                                             <div class="col-xs-4 col-md-3">
                                                 <label for="cbMatarial" style="margin-top: 25px;">Material: </label>
-                                                <select style="width:100%" class="form-control select2" id="cbMatarial" data-placeholder="">
+                                                <select style="width:100%" class="form-control select2" id="cbMaterial" data-placeholder="">
                                                     @foreach (Model.Material item in ViewBag.cbMatarial)
                                                     {
                                                         <option value="@item.Id">@item.Description</option>
@@ -239,7 +239,7 @@
                                             </div><!-- form-group -->
 
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="RailThickness" style="margin-top: 25px;">Material: </label>
+                                                <label for="RailThickness" style="margin-top: 25px;">Rail Thickness: </label>
                                                 <select style="width:100%" class="form-control select2" id="cbRailThickness" data-placeholder="">
                                                     @foreach (Model.RailThickness item in ViewBag.mRailThickness)
                                                     {
@@ -297,6 +297,11 @@
                                             </div><!-- form-group -->
 
                                             <div class="col-xs-4 col-md-3">
+                                                <label for="VerticalAdditionalInchPrice" style="margin-top: 25px;">Vertical Additional Inch Price: </label>
+                                                <input type="text" name="id" id="txtVerticalAdditionalInchPrice" class="form-control" placeholder="">
+                                            </div><!-- form-group -->
+
+                                            <div class="col-xs-4 col-md-3">
                                                 <label for="Template" style="margin-top: 25px;">Horizontal Base1 FL Price: </label>
                                                 <input type="text" name="id" id="txtHorizontalBase1FLPrice" class="form-control" placeholder="">
                                             </div><!-- form-group -->
@@ -326,63 +331,11 @@
     var urlInsertDoorsPrices = '@Url.Action("InsertDoorsPrices", "Masters")';
     var urlUpdateDoorPrice = '@Url.Action("UpdateDoorPrice", "Masters")';
     </script>
-    <script>
-        $(function () {
-            'use strict';
-
-            $('#datatable1').DataTable({
-                responsive: true,
-                language: {
-                    searchPlaceholder: 'Search...',
-                    sSearch: '',
-                    lengthMenu: '_MENU_ items/page',
-                }
-            });
-
-            $('#datatable2').DataTable({
-                bLengthChange: false,
-                searching: false,
-                responsive: true
-            });
-
-            // Select2
-            $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
-
-        });
-    </script>
+@Scripts.Render("~/Scripts/js/Master.DoorsPrice.js")
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>
     <script src="~/Content/lib/select2/js/select2.min.js"></script>
     <script src="~/Content/lib/select2/js/select2.full.min.js"></script>
-    @Scripts.Render("~/Scripts/js/Masters.js")
-
-    <script type="text/javascript">
-
-        $(document).ready(function () {
-            var listDoorP = JSON.parse('@Html.Raw(ViewBag.ListDoorsPrices)');
-            $(document).on('click', '.Modificar', function (event) {
-                for (var i = 0; i < listDoorP.length; i++) {
-                    if (listDoorP[i].Id == $(this).attr('value')) {
-                        $('#txtId').val(listDoorP[i].Id);
-                        $('#cbDoorStyle').val(listDoorP[i].DoorStyle.Id);
-                        $('#cbMatarial').val(listDoorP[i].Material.Id);
-                        $('#txtBasePrice').val(listDoorP[i].BasePrice);
-                        $('#txtAdditinalSFPrice').val(listDoorP[i].AdditionalSFPrice);
-                        $('#IdStatus').val(listDoorP[i].Status.Id);
-                        $('#txtVerticalBase1FLPrice').val(listDoorP[i].VerticalAdditionalInchPrice);
-                        $('#txtHorizontalBase1FLPrice').val(listDoorP[i].HorizontalBase1FLPrice);
-                        $('#txtPicture').val(listDoorP[i].Picture);
-                        $('#txtProfilePicture').val(listDoorP[i].ProfilePicture);
-                        $('#txtHorizontalAdditionalInchPrice').val(listDoorP[i].HorizontalAdditionalInchPrice);
-                    }
-                }
-            });
-
-
-        });
-
-    </script>
-
 }
 
 

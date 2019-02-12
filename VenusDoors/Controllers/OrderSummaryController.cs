@@ -36,7 +36,7 @@ namespace VenusDoors.Controllers
                 {
                     return View();
                 }
-                else if (item.Status.Id == 7)
+                else if (item.Status.Id == 4)
                 {
                     BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
                     List<DoorsxUser> xDoorsU = _LN.GetAllDoorsxUser();
@@ -67,7 +67,7 @@ namespace VenusDoors.Controllers
                 {
                     return View();
                 }
-                else if (ord.Status.Id == 7)
+                else if (ord.Status.Id == 4)
                 {
                     BusinessLogic.lnOrder _LNO = new BusinessLogic.lnOrder();
                     Order upptOrd = _LNO.GetOrderById(ord.Id);
@@ -123,13 +123,13 @@ namespace VenusDoors.Controllers
                 {
                     return View();
                 }
-                else if (CompleteOrder.Status.Id == 7)
+                else if (CompleteOrder.Status.Id == 4)
                 {
                     int userID = (int)Session["UserID"];
                     BusinessLogic.lnOrder _LNUPor = new BusinessLogic.lnOrder();
                     CompleteOrder.ModificationDate = DateTime.Now;
                     CompleteOrder.ModificationUser = userID;
-                    CompleteOrder.Status.Id = 3;
+                    CompleteOrder.Status.Id = 5;
                     return Json(_LNUPor.UpdateOrder(CompleteOrder));
                 }
                 else
@@ -166,7 +166,7 @@ namespace VenusDoors.Controllers
             List<DoorsxUser> puertas = allD.Where(x => x.Order.Id == CompleteOrder.Id).ToList();
             ViewBag.TusPuertas = puertas;
 
-            string cuerpo = "<p>Dear " + NameUser + ",</p><p>Please review the estimate below.Feel free to contact us if you have any questions.<br>We look forward to working with you.</p><p>Thanks for your business!<br><b>Venus Doors<b></p>  <div style='padding: 20px;border: solid 1px;width: 400px;background: #f1f1f1;border - radius: 7px;'><div style='text-align:center'><h4> ------------------Order ref: #" + CompleteOrder.Id +" ------------------</h4></div><div><p>Estimate date: "+ date + "</p><p>Quantity of products: " + CompleteOrder.Quantity +"</p><p>Total: "+ CompleteOrder.Total +"</p></div><div style='text-align:center'><h4>--Venus Cabinet Doors --</h4></div></div>";
+            string cuerpo = "<p>Dear " + NameUser + ",</p><p>Please review the estimate below.Feel free to contact us if you have any questions.<br>We look forward to working with you.</p><p>Thanks for your business!<br><b>Venus Doors<b></p>  <div style='padding: 20px;border: solid 1px;width: 400px;background: #f1f1f1;border - radius: 7px;'><div style='text-align:center'><h4> ------------------Order ref: #" + CompleteOrder.Id +" ------------------</h4></div><div><p>Estimate date: "+ date + "</p><p>Quantity of products: " + CompleteOrder.Quantity +"</p><p>Total: $"+ CompleteOrder.Total +"</p></div><div style='text-align:center'><h4>--Venus Cabinet Doors --</h4></div></div>";
             cuerpo += "<table><thead><tr><th>Door Style</th><th>Material</th><th>Stile Width</th><th>Rail Width</th><th>Preparation</th><th>Join</th><th>Outside Edge Profile</th><th>Inside Edge Profile</th><th>Vertical Divisions</th><th>Horizontal Divisions</th><th>Hinge Direction</th><th>Hinge 1</th><th>Hinge 2</th><th>Hinge 3</th><th>Hinge 4</th><th>Hinge 5</th><th>Drill</th><th>Width</th><th>Height</th><th>Opening Measurement</th><th>Quantity</th><th>Item Cost</th><th>SubTotal</th></tr></thead><tbody>";
             foreach (DoorsxUser item in ViewBag.TusPuertas)
             {
@@ -177,7 +177,7 @@ namespace VenusDoors.Controllers
             mail.Body = cuerpo;
 
             mail.IsBodyHtml = true;
-            SmtpServer.Port = 25;
+            SmtpServer.Port = 587;
             SmtpServer.Credentials = new System.Net.NetworkCredential("orders@venuscabinetdoors.com", "venusCD2019*");
             SmtpServer.EnableSsl = true;
             SmtpServer.Send(mail);
@@ -213,7 +213,7 @@ namespace VenusDoors.Controllers
             List<DoorsxUser> puertas = allD.Where(x => x.Order.Id == CompleteOrder.Id).ToList();
             ViewBag.TusPuertas = puertas;
 
-            string cuerpo = "<p>Please review the estimate below.Feel free to contact us if you have any questions.<br>We look forward to working with you.</p><p>Thanks for your business!<br><b>Venus Doors<b></p>  <div style='padding: 20px;border: solid 1px;width: 400px;background: #f1f1f1;border - radius: 7px;'><div style='text-align:center'><h4> ------------------Order ref: #" + CompleteOrder.Id + " ------------------</h4></div><div><p>Name: " + per.Name + " " + per.Lastname + "</p><p>Phone number:" + per.Telephone + "</p><p>Email: " + use.Email + "</p><p>Address: " + per.Direction + "</p><p>Estimate date: " + date + "</p><p>Quantity of products: " + CompleteOrder.Quantity + "</p><p>Total: " + CompleteOrder.Total + "</p></div><div style='text-align:center'><h4>--Venus Cabinet Doors --</h4></div></div>";
+            string cuerpo = "<p>Please review the estimate below.Feel free to contact us if you have any questions.<br>We look forward to working with you.</p><p>Thanks for your business!<br><b>Venus Doors<b></p>  <div style='padding: 20px;border: solid 1px;width: 400px;background: #f1f1f1;border - radius: 7px;'><div style='text-align:center'><h4> ------------------Order ref: #" + CompleteOrder.Id + " ------------------</h4></div><div><p>Name: " + per.Name + " " + per.Lastname + "</p><p>Phone number:" + per.Telephone + "</p><p>Email: " + use.Email + "</p><p>Address: " + per.Direction + "</p><p>Estimate date: " + date + "</p><p>Quantity of products: " + CompleteOrder.Quantity + "</p><p>Total: $" + CompleteOrder.Total + "</p></div><div style='text-align:center'><h4>--Venus Cabinet Doors --</h4></div></div>";
             cuerpo += "<table><thead><tr><th>Door Style</th><th>Material</th><th>Stile Width</th><th>Rail Width</th><th>Preparation</th><th>Join</th><th>Outside Edge Profile</th><th>Inside Edge Profile</th><th>Vertical Divisions</th><th>Horizontal Divisions</th><th>Hinge Direction</th><th>Hinge 1</th><th>Hinge 2</th><th>Hinge 3</th><th>Hinge 4</th><th>Hinge 5</th><th>Drill</th><th>Width</th><th>Height</th><th>Opening Measurement</th><th>Quantity</th><th>Item Cost</th><th>SubTotal</th></tr></thead><tbody>";
             foreach (DoorsxUser item in ViewBag.TusPuertas)
             {
@@ -224,7 +224,7 @@ namespace VenusDoors.Controllers
             mail.Body = cuerpo;
             
             mail.IsBodyHtml = true;
-            SmtpServer.Port = 25;
+            SmtpServer.Port = 587;
             SmtpServer.Credentials = new System.Net.NetworkCredential("orders@venuscabinetdoors.com", "venusCD2019*");
             SmtpServer.EnableSsl = true;
             SmtpServer.Send(mail);
