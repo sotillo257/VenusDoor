@@ -381,7 +381,7 @@ namespace VenusDoors.Controllers
                         Order neworder = new Order()
                         {                            
                             User = new Model.User() { Id = userID },
-                            Status = new Model.Status() { Id = 7 },
+                            Status = new Model.Status() { Id = 4 },
                             Type = new Model.Type() { Id = 1 },
                             Quantity = pDoorsxUser.Quantity,
                             SubTotal = Ord.SubTotal,
@@ -429,7 +429,7 @@ namespace VenusDoors.Controllers
                         return Json(false, JsonRequestBehavior.AllowGet);
                     }
                 }
-                else if (item.Status.Id == 7)
+                else if (item.Status.Id == 4)
                 {
                     try
                     {
@@ -475,7 +475,7 @@ namespace VenusDoors.Controllers
                         Order neworder = new Order()
                         {
                             User = new Model.User() { Id = userID },
-                            Status = new Model.Status() { Id = 7 },
+                            Status = new Model.Status() { Id = 4 },
                             Type = new Model.Type() { Id = 1 },
                             Quantity = pDoorsxUser.Quantity,
                             SubTotal = Ord.SubTotal,
