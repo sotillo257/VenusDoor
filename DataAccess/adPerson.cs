@@ -90,8 +90,8 @@ namespace DataAccess
         public int InsertPerson(Person pPerson)
         {
             string sql = @"[spInsertPerson] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}'";
-            sql = string.Format(sql, pPerson.Name, pPerson.Lastname, pPerson.Telephone, pPerson.Direction, pPerson.Status.Id, pPerson.CreationDate.ToString("yyyy-MM-dd"),
-                pPerson.CreatorUser, pPerson.ModificationDate.ToString("yyyy-MM-dd"), pPerson.ModificationUser);
+            sql = string.Format(sql, pPerson.Name, pPerson.Lastname, pPerson.Telephone, pPerson.Direction, pPerson.Status.Id, pPerson.CreationDate.ToString("yyyyMMdd"),
+                pPerson.CreatorUser, pPerson.ModificationDate.ToString("yyyyMMdd"), pPerson.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -105,7 +105,7 @@ namespace DataAccess
         public void UpdatePerson(Person pPerson)
         {
             string sql = @"[spUpdatePerson] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}'";
-            sql = string.Format(sql,pPerson.Id, pPerson.Name, pPerson.Lastname, pPerson.Telephone, pPerson.Direction, pPerson.Status.Id, pPerson.ModificationDate.ToString("yyyy-MM-dd"),
+            sql = string.Format(sql,pPerson.Id, pPerson.Name, pPerson.Lastname, pPerson.Telephone, pPerson.Direction, pPerson.Status.Id, pPerson.ModificationDate.ToString("yyyyMMdd"),
                 pPerson.ModificationUser);
             try
             {

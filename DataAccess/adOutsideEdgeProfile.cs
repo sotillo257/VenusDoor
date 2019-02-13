@@ -84,8 +84,8 @@ namespace DataAccess
         public int InsertOutsideEdgeProfile(OutsideEdgeProfile pOutsideEdgeProfile)
         {
             string sql = @"[spInsertOutsideEdgeProfile] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}'";
-            sql = string.Format(sql, pOutsideEdgeProfile.Description, pOutsideEdgeProfile.Status.Id, pOutsideEdgeProfile.CreationDate.ToString("yyyy-MM-dd"),
-                pOutsideEdgeProfile.CreatorUser, pOutsideEdgeProfile.ModificationDate.ToString("yyyy-MM-dd"), pOutsideEdgeProfile.ModificationUser);
+            sql = string.Format(sql, pOutsideEdgeProfile.Description, pOutsideEdgeProfile.Status.Id, pOutsideEdgeProfile.CreationDate.ToString("yyyyMMdd"),
+                pOutsideEdgeProfile.CreatorUser, pOutsideEdgeProfile.ModificationDate.ToString("yyyyMMdd"), pOutsideEdgeProfile.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -99,7 +99,7 @@ namespace DataAccess
         public void UpdateOutsideEdgeProfile(OutsideEdgeProfile pOutsideEdgeProfile)
         {
             string sql = @"[spUpdateOutsideEdgeProfile] '{0}', '{1}', '{2}', '{3}', '{4}'";
-            sql = string.Format(sql,pOutsideEdgeProfile.Id, pOutsideEdgeProfile.Description, pOutsideEdgeProfile.Status.Id, pOutsideEdgeProfile.ModificationDate.ToString("yyyy-MM-dd"),
+            sql = string.Format(sql,pOutsideEdgeProfile.Id, pOutsideEdgeProfile.Description, pOutsideEdgeProfile.Status.Id, pOutsideEdgeProfile.ModificationDate.ToString("yyyyMMdd"),
                 pOutsideEdgeProfile.ModificationUser);
             try
             {

@@ -87,7 +87,7 @@ namespace DataAccess
         {
             string sql = @"[spInsertDoorStylexInsideEdgeProfile] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}','{6}'";
             sql = string.Format(sql, pDoorStylexInsideEdgeProfile.DoorStyle.Id, pDoorStylexInsideEdgeProfile.InsideEdgeProfile.Id, pDoorStylexInsideEdgeProfile.Status.Id, pDoorStylexInsideEdgeProfile.CreationDate.ToString("yyyy-MM-dd"),
-                pDoorStylexInsideEdgeProfile.CreatorUser, pDoorStylexInsideEdgeProfile.ModificationDate.ToString("yyyy-MM-dd"), pDoorStylexInsideEdgeProfile.ModificationUser);
+                pDoorStylexInsideEdgeProfile.CreatorUser, pDoorStylexInsideEdgeProfile.ModificationDate.ToString("yyyyMMdd"), pDoorStylexInsideEdgeProfile.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
