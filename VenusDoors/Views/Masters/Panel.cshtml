@@ -22,7 +22,7 @@
                         <p class="mg-b-0">Modals are streamlined, but flexible, dialog prompts with the minimum required functionality and smart defaults.</p>
                     </div>
                     <div class="col-md-1">
-                        <button type="button" data-toggle="modal" data-target="#modalInsert" class="Cursor btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Insert</button>
+                        <button type="button" data-toggle="modal" id="btInsert" data-target="#modalInsert" class="Cursor btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Insert</button>
                     </div>
                 </div>
             </div>
@@ -169,51 +169,9 @@
     var urlInsertPanel = '@Url.Action("InsertPanel", "Masters")';
     var urlUpdatePanel = '@Url.Action("UpdatePanel", "Masters")';
     </script>
-    <script>
-        $(function () {
-            'use strict';
-
-            $('#datatable1').DataTable({
-                responsive: true,
-                language: {
-                    searchPlaceholder: 'Search...',
-                    sSearch: '',
-                    lengthMenu: '_MENU_ items/page',
-                }
-            });
-
-            $('#datatable2').DataTable({
-                bLengthChange: false,
-                searching: false,
-                responsive: true
-            });
-
-            // Select2
-            $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
-
-        });
-    </script>
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>
     <script src="~/Content/lib/select2/js/select2.min.js"></script>
-    @Scripts.Render("~/Scripts/js/Masters.js")
-    <script type="text/javascript">
-
-        $(document).ready(function () {
-            var listPal = JSON.parse('@Html.Raw(ViewBag.ListPanel)');
-            $(document).on('click', '.Modificar', function (event) {
-                for (var i = 0; i < listPal.length; i++) {
-                    if (listPal[i].Id == $(this).attr('value')) {
-                        $('#txtId').val(listPal[i].Id);
-                        $('#IdStatus').val(listPal[i].Status.Id);
-                        $('#txtDescription').val(listPal[i].Description);
-                    }
-                }
-            });
-
-
-        });
-
-    </script>
+    @Scripts.Render("~/Scripts/js/Master.Panel.js")
 }
 

@@ -1,25 +1,25 @@
 ﻿$(document).ready(function () {
+
     $("#btnInsertDP").on("click", function () {
         if (ValidarCamposVacios()) {
             InsertDoorsPrices();
         } else {
             LlammarModal("Danger", "You must fill all the fields.", " ");
         }
-
     });
     $("#btUpdateDoorPrice").on("click", function () {
         if (ValidarCamposVacios()) {
             UpdateDoorPrice();
         } else {
             LlammarModal("Danger", "You must fill all the fields.", " ");
-        }
-        
+        }       
     });
     $("#btInsert").on("click", function () {
         Limpiar();
     });
 
     $(document).on('click', '.Modificar', function (event) {
+        Limpiar();
         for (var i = 0; i < listDoorP.length; i++) {
             if (listDoorP[i].Id == $(this).attr('value')) {
                 var aux = listDoorP[i].Id;
@@ -254,28 +254,28 @@ function ValidarCamposVacios() {
         $('#IdStatus').removeClass("is-invalid");
     }
 
-    if ($('#txtVerticalBase1FLPrice').val() == "") {
+    if ($('#txtVerticalBase1FLPrice').val() == " ") {
         $('#txtVerticalBase1FLPrice').addClass("is-invalid");
         aux = false;
     } else {
         $('#txtVerticalBase1FLPrice').removeClass("is-invalid");
     }
 
-    if ($('#txtVerticalAdditionalInchPrice').val() == "") {
+    if ($('#txtVerticalAdditionalInchPrice').val() == " ") {
         $('#txtVerticalAdditionalInchPrice').addClass("is-invalid");
         aux = false;
     } else {
         $('#txtVerticalAdditionalInchPrice').removeClass("is-invalid");
     }
 
-    if ($('#txtHorizontalBase1FLPrice').val() == "") {
+    if ($('#txtHorizontalBase1FLPrice').val() == " ") {
         $('#txtHorizontalBase1FLPrice').addClass("is-invalid");
         aux = false;
     } else {
         $('#txtHorizontalBase1FLPrice').removeClass("is-invalid");
     }
 
-    if ($('#txtHorizontalAdditionalInchPrice').val() == "") {
+    if ($('#txtHorizontalAdditionalInchPrice').val() == " ") {
         $('#txtHorizontalAdditionalInchPrice').addClass("is-invalid");
         aux = false;
     } else {

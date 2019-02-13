@@ -254,6 +254,30 @@ namespace VenusDoors.Controllers
         }
 
         [HttpPost]
+        public ActionResult GetPricesDoor(RailThickness RailThick, Material pMaterial, Panel pPanel)
+        {
+            try
+            {
+                BusinessLogic.lnDoorsPrices _DP = new BusinessLogic.lnDoorsPrices();
+                List<DoorsPrices> xDoorsP = _DP.GetAllDoorsPrices();
+                List<DoorsPrices> xDP = xDoorsP.Where(x => x.RailThickness.Id == RailThick.Id && x.Material.Id == pMaterial.Id && x.DoorStyle.Id == pPanel.Id).ToList();
+                ViewBag.d = xDP;
+                //foreach (DoorsPrices i in ViewBag.d)
+                //{
+                //    System.Web.HttpContext.Current.Session["BasePrice"] = i.BasePrice;
+                //    System.Web.HttpContext.Current.Session["AddPrice"] = i.AdditionalSFPrice;
+                //}
+                return Json(xDP);
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+
+        }
+
+
+        [HttpPost]
         public ActionResult UpdateOrderExist(Order item, DoorsxUser pDoorsxUser, Order Ord)
         {
             BusinessLogic.lnOrder _LNUPor = new BusinessLogic.lnOrder();
