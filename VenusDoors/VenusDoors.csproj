@@ -1111,6 +1111,13 @@
     <Content Include="Scripts\js\Master.Preparation.js" />
     <Content Include="Scripts\js\Master.RailThickness.js" />
     <Content Include="Scripts\js\Master.Status.js" />
+    <Content Include="Scripts\js\Master.TopRail.js" />
+    <Content Include="Scripts\js\Master.TopRailXHD.js" />
+    <Content Include="Scripts\js\Master.TopRailxJoin.js" />
+    <Content Include="Scripts\js\Master.TopRailxVD.js" />
+    <Content Include="Scripts\js\Master.Type.js" />
+    <Content Include="Scripts\js\Master.User.js" />
+    <Content Include="Scripts\js\Master.VerticalD.js" />
     <Content Include="Scripts\js\Masters.js" />
     <Content Include="Scripts\js\ModalAlert.js" />
     <Content Include="Scripts\js\OrderStatus.Index.js" />
