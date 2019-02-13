@@ -446,6 +446,7 @@ namespace VenusDoors.Controllers
                             }
 
                             item.HingePositions = CalcularPosicionHing(item);
+                            item.ProfilePicture = BuscarProfilePicture(item.OutsideEdgeProfile.Id,item.InsideEdgeProfile.Id,item.Panel.Id);
 
 
 
@@ -472,6 +473,508 @@ namespace VenusDoors.Controllers
 
         }
 
+        #region Pictures
+        public string BuscarProfilePicture(int pOutsideEdgeProfile,int pInsideEdgeProfile,int pPanel) {
+            string respuesta = "/Content/img/Profile/img11.png";
+            if (pPanel == 5)
+            {
+                respuesta = FlatPanel(pOutsideEdgeProfile, pInsideEdgeProfile);
+            }
+            if (pPanel == 6)
+            {
+                respuesta = FlatPanelBeaded(pOutsideEdgeProfile, pInsideEdgeProfile);
+            }
+            if (pPanel == 2)
+            {
+                respuesta = RaisedPanel(pOutsideEdgeProfile, pInsideEdgeProfile);
+            }
+            return respuesta;
+        }
+        public string FlatPanel(int Outside, int Inside) {
+            string ProfileUrl = "img11.png";
+            string urlFolder = "/Content/img/Profile/";
+            if (Outside == 13)
+            {
+                if (Inside == 4)
+                {
+                    ProfileUrl = "-Double_Roman_Ogee_ogee_flat_panel.png";
+                }
+                else if (Inside == 5)
+                {
+                    ProfileUrl = "-Double_Roman_Ogee_Reba_flat_panel.png";
+                }
+                else if (Inside == 3)
+                {
+                    ProfileUrl = "-Double_Roman_Ogee_Shaker_22_flat_panel.png";
+                }
+                else if (Inside == 7)
+                {
+                    ProfileUrl = "-Double_Roman_Ogee_shaker_goove_flatpanel.png";
+                }
+            }
+            if (Outside == 2)
+            {
+                if (Inside == 4)
+                {
+                    ProfileUrl = "-Fingerpull_ogee_flat_panel.png";
+                }
+                else if (Inside == 5)
+                {
+                    ProfileUrl = "-Fingerpull_Reba_flat_panel.png";
+                }
+                else if (Inside == 3)
+                {
+                    ProfileUrl = "-Fingerpull_Shaker22_flat_panel.png";
+                }
+                else if (Inside == 7)
+                {
+                    ProfileUrl = "-Finger_pull_shaker_goove_flat_panel.png";
+                }
+            }
+            if (Outside == 17)
+            {
+                if (Inside == 4)
+                {
+                    ProfileUrl = "-Half_Reba_ogee_flat_panel.png";
+                }
+                else if (Inside == 5)
+                {
+                    ProfileUrl = "-Half_Reba_Reba_flat_panel.png";
+                }
+                else if (Inside == 3)
+                {
+                    ProfileUrl = "-Half_Reba_Shaker_22_flat_panel.png";
+                }
+                else if (Inside == 7)
+                {
+                    ProfileUrl = "-Half_Reba_shaker_goove_flat_panel.png";
+                }
+            }
+            if (Outside == 11)
+            {
+
+                if (Inside == 4)
+                {
+                    ProfileUrl = "-Little_bone_ogee_flat_panel.png";
+                }
+                else if (Inside == 5)
+                {
+                    ProfileUrl = "-Little_bone_Reba_flat_panel.png";
+                }
+                else if (Inside == 3)
+                {
+                    ProfileUrl = "-Little_bone_Shaker_22_flat_panel.png";
+                }
+                else if (Inside == 7)
+                {
+                    ProfileUrl = "-Little_bone_shaker_goove_flat_panel.png";
+                }
+            }
+            if (Outside == 5)
+            {
+                if (Inside == 4)
+                {
+                    ProfileUrl = "-Reba_ogee_flat_panel.png";
+                }
+                else if (Inside == 5)
+                {
+                    ProfileUrl = "-Reba_Reba_flat_panel.png";
+                }
+                else if (Inside == 3)
+                {
+                    //  ProfileUrl = "-Reba_Shaker_22_flat_panel.png";
+                }
+                else if (Inside == 7)
+                {
+                    ProfileUrl = "-Reba_shaker_goove_flat_panel.png";
+                }
+            }
+            if (Outside == 6)
+            {
+                if (Inside == 4)
+                {
+                    ProfileUrl = "-Shaker_ogee_flat_panel.png";
+                }
+                else if (Inside == 5)
+                {
+                    ProfileUrl = "-Shaker_Reba_flat_panel.png";
+                }
+                else if (Inside == 3)
+                {
+                    ProfileUrl = "-Shaker_Shaker_22_flat_panel.png";
+                }
+                else if (Inside == 7)
+                {
+                    ProfileUrl = "-Shaker_shaker_goove_flat_panel.png";
+                }
+            }
+            return urlFolder + ProfileUrl;
+        }
+        public string FlatPanelBeaded(int Outside, int Inside) {
+            string ProfileUrl = "img11.png";
+            string urlFolder = "/Content/img/Profile/";
+            if (Outside == 13)
+            {
+                if (Inside == 4)
+                {
+                    ProfileUrl = "-Double_Roman_Ogee_ogee_flat_panel_beaded.png";
+                }
+                else if (Inside == 5)
+                {
+                    ProfileUrl = "-Double_Roman_Ogee_Reba_flat_panel_beaded.png";
+                }
+                else if (Inside == 3)
+                {
+                    ProfileUrl = "-Double_Roman_Ogee_Shaker_22_flat_panel_beaded.png";
+                }
+                else if (Inside == 7)
+                {
+                    ProfileUrl = "-Double_Roman_Ogee_shaker_goove_flat_panel_beaded.png";
+                }
+            }
+            if (Outside == 2)
+            {
+                if (Inside == 4)
+                {
+                    ProfileUrl = "-Fingerpull_ogee_flat_panel_beaded.png";
+                }
+                else if (Inside == 5)
+                {
+                    ProfileUrl = "-Fingerpull_Reba_flat_panel_beaded.png";
+                }
+                else if (Inside == 3)
+                {
+                    ProfileUrl = "-Fingerpull_Shaker22_flat_panel_beaded.png";
+                }
+                else if (Inside == 7)
+                {
+                    ProfileUrl = "-Finger_pull_shaker_goove_flat_panel_beaded.png";
+                }
+            }
+            if (Outside == 17)
+            {
+                if (Inside == 4)
+                {
+                    ProfileUrl = "-Half_Reba_ogee_flat_panel_beaded.png";
+                }
+                else if (Inside == 5)
+                {
+                    ProfileUrl = "-Half_Reba_Reba_flat_panel_beaded.png";
+                }
+                else if (Inside == 3)
+                {
+                    ProfileUrl = "-Half_Reba_Shaker_22_flat_panel_beaded.png";
+                }
+                else if (Inside == 7)
+                {
+                    ProfileUrl = "-Half_Reba_shaker_goove_flat_panel_beaded.png";
+                }
+            }
+            if (Outside == 4)
+            {
+
+                if (Inside == 4)
+                {
+                    ProfileUrl = "-Little_bone_ogee_flat_panel_beaded.png";
+                }
+                else if (Inside == 5)
+                {
+                    ProfileUrl = "-Little_bone_Reba_flat_panel_beaded.png";
+                }
+                else if (Inside == 3)
+                {
+                    ProfileUrl = "-Little_bone_Shaker_22_flat_panel_beaded.png";
+                }
+                else if (Inside == 7)
+                {
+                    ProfileUrl = "-Little_bone_shaker_goove_flat_panel_beaded.png";
+                }
+            }
+            if (Outside == 5)
+            {
+                if (Inside == 4)
+                {
+                    ProfileUrl = "-Reba_ogee_flat_panel_beaded.png";
+                }
+                else if (Inside == 5)
+                {
+                    ProfileUrl = "-Reba_Reba_flat_panel_beaded.png";
+                }
+                else if (Inside == 3)
+                {
+                    ProfileUrl = "-Reba_Shaker_22_flat_panel_beaded.png";
+                }
+                else if (Inside == 7)
+                {
+                    ProfileUrl = "-Reba_shaker_goove_flat_panel_beaded.png";
+                }
+            }
+            if (Outside == 6)
+            {
+                if (Inside == 4)
+                {
+                    ProfileUrl = "-Shaker_ogee_flat_panel_beaded.png";
+                }
+                else if (Inside == 5)
+                {
+                    ProfileUrl = "-Shaker_Reba_flat_panel_beaded.png";
+                }
+                else if (Inside == 3)
+                {
+                    ProfileUrl = "-Shaker_Shaker_22_flat_panel_beaded.png";
+                }
+                else if (Inside == 7)
+                {
+                    ProfileUrl = "-Shaker_shaker_goove_flat_panel_beaded.png";
+                }
+            }
+            return urlFolder + ProfileUrl;
+        }
+        public string RaisedPanel(int Outside,int Inside)
+        {
+            string ProfileUrl = "img11.png";
+            string urlFolder = "/Content/img/Profile/";
+            if (Outside == 13)
+            {
+                if (Inside == 4)
+                {
+                    ProfileUrl = "-Double_Roman_Ogee_ogee_raised_panel.png";
+                }
+                else if (Inside == 5)
+                {
+                    ProfileUrl = "-Double_Roman_Ogee_Reba_raised_panel.png";
+                }
+                else if (Inside == 3)
+                {
+                    ProfileUrl = "-Double_Roman_Ogee_Shaker_22_raised_panel.png";
+                }
+                else if (Inside == 7)
+                {
+                    ProfileUrl = "-Double_Roman_Ogee_shaker_goove_raised_panel.png";
+                }
+            }
+            if (Outside == 2)
+            {
+                if (Inside == 4)
+                {
+                    ProfileUrl = "-Fingerpull_ogee_raised_panel.png";
+                }
+                else if (Inside == 5)
+                {
+                    ProfileUrl = "-Fingerpull_Reba_raised_panel.png";
+                }
+                else if (Inside == 3)
+                {
+                    ProfileUrl = "-FingerPull-Shaker22-RaisedPanel.png";
+                }
+                else if (Inside == 7)
+                {
+                    ProfileUrl = "-Finger-pull-shaker-goove-raised-panel.png";
+                }
+            }
+            if (Outside == 17)
+            {
+                if (Inside == 4)
+                {
+                    ProfileUrl = "-Half_Reba_ogee_raised_panel.png";
+                }
+                else if (Inside == 5)
+                {
+                    ProfileUrl = "-Half_Reba_Reba_raised_panel.png";
+                }
+                else if (Inside == 3)
+                {
+                    ProfileUrl = "-Half_Reba_Shaker_22_raised_panel.png";
+                }
+                else if (Inside == 7)
+                {
+                    ProfileUrl = "-Half_Reba_shaker_goove_raised_panel.png";
+                }
+            }
+            if (Outside == 4)
+            {
+
+                if (Inside == 4)
+                {
+                    ProfileUrl = "-Little_bone_ogee_raised_panel.png";
+                }
+                else if (Inside == 5)
+                {
+                    ProfileUrl = "-Little_bone_Reba_raised_panel.png";
+                }
+                else if (Inside == 3)
+                {
+                    ProfileUrl = "-Little_bone_Shaker_22_raised_panel.png";
+                }
+                else if (Inside == 7)
+                {
+                    ProfileUrl = "-Little_bone_shaker_goove_raised_panel.png";
+                }
+            }
+            if (Outside == 5)
+            {
+                if (Inside == 4)
+                {
+                    ProfileUrl = "-Reba_ogee_raised_panel.png";
+                }
+                else if (Inside == 5)
+                {
+                    ProfileUrl = "-Reba_Reba_raised_panel.png";
+                }
+                else if (Inside == 3)
+                {
+                    ProfileUrl = "-Reba_Shaker_22_raised_panel.png";
+                }
+                else if (Inside == 7)
+                {
+                    ProfileUrl = "-Reba_shaker_goove_raised_panel.png";
+                }
+            }
+            if (Outside == 6)
+            {
+                if (Inside == 4)
+                {
+                    ProfileUrl = "-Shaker_ogee_raised_panel.png";
+                }
+                else if (Inside == 5)
+                {
+                    ProfileUrl = "-Shaker_Reba_raised_panel.png";
+                }
+                else if (Inside == 3)
+                {
+                    ProfileUrl = "-Shaker_Shaker_22_raised_panel.png";
+                }
+                else if (Inside == 7)
+                {
+                    ProfileUrl = "-Shaker_shaker_goove_raised_panel.png";
+                }
+            }
+            return urlFolder + ProfileUrl;
+        }
+
+        public string BuscarDoorPicture(DoorsxUser pDoorxUser)
+        {
+            string respuesta = "/Content/img/Profile/img11.png";
+            if (pDoorxUser.Panel.Id == 5)
+            {
+                respuesta = FlatPanelDoor(pDoorxUser);
+            }
+            if (pDoorxUser.Panel.Id == 6)
+            {
+                respuesta = "/Content/img/Doors/Cabinet Vector-17.png";
+            }
+            if (pDoorxUser.Panel.Id == 2)
+            {
+                respuesta = RaisedPanelDoor(pDoorxUser);
+            }
+            return respuesta;
+        }
+
+        public string FlatPanelDoor(DoorsxUser pDoorxUser)
+        {
+            var stile = pDoorxUser.TopRail.Id;
+            var rail = pDoorxUser.BottomRail.Id;
+            string DoorUrl = "img11.png";
+            string urlFolder = "/Content/img/Doors/";
+            if (pDoorxUser.Join.Id == 1) {
+                if (pDoorxUser.DoorStyle.Id == 1008)
+                {
+                    if (stile == 3 && rail == 3)
+                    {
+                        DoorUrl = "Cabinet Vector-01.png";
+                    }
+                    
+                }
+                if (pDoorxUser.DoorStyle.Id == 1002)
+                {
+                    if (stile == 3 && rail == 3)
+                    {
+                        DoorUrl = "Cabinet Vector-02.png";
+                    }
+                    else if (stile == 1 && rail == 1)
+                    {
+                        DoorUrl = "Cabinet Vector-14.png";
+                    }
+                     
+                }
+                if (pDoorxUser.DoorStyle.Id == 1004)
+                {
+                    if (stile == 3 && rail == 3)
+                    {
+                        DoorUrl = "Cabinet Vector-05.png";
+                    }
+                    else if (stile == 1 && rail == 1)
+                    {
+                        DoorUrl = "Cabinet Vector-06.png";
+                    }
+                     
+                }
+                if (pDoorxUser.DoorStyle.Id == 1009)
+                {
+                    if (stile == 3 && rail == 3)
+                    {
+                        DoorUrl = "Cabinet Vector-13.png";
+                    }
+                    
+                }
+
+            } else if (pDoorxUser.Join.Id == 2) {
+                DoorUrl = "Cabinet Vector-08.png";
+                
+            }
+            return urlFolder + DoorUrl;
+        }
+        public string RaisedPanelDoor(DoorsxUser pDoorxUser)
+        {
+            var stile = pDoorxUser.TopRail.Id;
+            var rail = pDoorxUser.BottomRail.Id;
+            string DoorUrl = "img11.png";
+            string urlFolder = "/Content/img/Doors/";
+            if (pDoorxUser.Join.Id == 1) {
+                if (stile == 3 && rail == 3)
+                {
+                    if (pDoorxUser.DoorStyle.Id == 1008)
+                    {
+
+                        var inside = pDoorxUser.InsideEdgeProfile.Id;
+                        var outside = pDoorxUser.OutsideEdgeProfile.Id;
+                        if (outside != 6 && inside != 3 && inside != 7)
+                        {
+                            DoorUrl = "Cabinet Vector-09.png";
+                        }
+                        else if (outside == 6 && (inside == 3 || inside == 7))
+                        {
+                            DoorUrl = "Cabinet Vector-10.png";
+                        }
+                    }
+                    else if (pDoorxUser.DoorStyle.Id == 1009)
+                    {
+
+                    }
+                    else {
+                        DoorUrl = "Cabinet Vector-16.png";
+                    }
+
+                }
+                else if (stile == 1 && rail == 1)
+                {
+                    if (pDoorxUser.Panel.Id == 1009)
+                    {
+
+                    }
+                    else {
+                        DoorUrl = "Cabinet Vector-10.png";
+                    }
+                }
+
+
+            } else if (pDoorxUser.Join.Id == 2) {
+                DoorUrl = "Cabinet Vector-07.png";
+            }
+            return urlFolder + DoorUrl;
+        }
+
+        #endregion Pictures
         public HingePositions CalcularPosicionHing(DoorsxUser pDoorsxUser) {
 
             pDoorsxUser.HingePositions = new HingePositions();
