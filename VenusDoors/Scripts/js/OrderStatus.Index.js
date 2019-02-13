@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
     $(".orderreff").click(function (e) {
-        e.preventDefault();
-        var id = $(this).parentsUntil('#ordenestable').find('.orderreff').attr('data-id');
+        //e.preventDefault();
+        var id = $(this).attr('data-id');
         GetDoorsByOrder(id);
     });
 });
