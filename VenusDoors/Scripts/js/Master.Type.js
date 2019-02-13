@@ -21,6 +21,9 @@
         Limpiar();
         for (var i = 0; i < listTy.length; i++) {
             if (listTy[i].Id == $(this).attr('value')) {
+                var aux = listTy[i].Id;
+                var aux1 = listTy[i].Description;
+                var aux2 = listTy[i].Group.Id;
                 $('#txtId').val(listTy[i].Id);
                 $('#txtDescription').val(listTy[i].Description);
                 $('#IdGroup').val(listTy[i].Group.Id);

@@ -164,7 +164,8 @@
 @section scripts{
     <script>
     var urlInsertType = '@Url.Action("InsertType", "Masters")';
-    var urlUpdateType = '@Url.Action("UpdateType", "Masters")';
+        var urlUpdateType = '@Url.Action("UpdateType", "Masters")';
+        var listTy = JSON.parse('@Html.Raw(ViewBag.ListType)');
     </script>
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>

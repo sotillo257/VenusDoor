@@ -169,7 +169,8 @@
 @section scripts{
     <script>
     var urlInsertTopRail = '@Url.Action("InsertTopRail", "Masters")';
-    var urlUpdateTopRail = '@Url.Action("UpdateTopRail", "Masters")';
+        var urlUpdateTopRail = '@Url.Action("UpdateTopRail", "Masters")';
+        var listTR = JSON.parse('@Html.Raw(ViewBag.ListTopRail)');
     </script>
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>

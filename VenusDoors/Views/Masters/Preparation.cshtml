@@ -168,7 +168,8 @@
 @section scripts{
     <script>
     var urlInsertPreparation = '@Url.Action("InsertPreparation", "Masters")';
-    var urlUpdatePreparation = '@Url.Action("UpdatePreparation", "Masters")';
+        var urlUpdatePreparation = '@Url.Action("UpdatePreparation", "Masters")';
+        var listPrepa = JSON.parse('@Html.Raw(ViewBag.ListPreparation)');
     </script>
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>
