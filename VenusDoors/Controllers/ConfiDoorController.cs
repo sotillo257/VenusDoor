@@ -18,6 +18,7 @@ namespace VenusDoors.Controllers
         //MailMessage mail = new MailMessage();
 
         // GET: ConfiDoor
+
         public ActionResult Index(int? Id)
         {
             ViewBag.ConfiDoor = "active";
@@ -253,6 +254,30 @@ namespace VenusDoors.Controllers
         }
 
         [HttpPost]
+        public ActionResult GetPricesDoor(RailThickness RailThick, Material pMaterial, Panel pPanel)
+        {
+            try
+            {
+                BusinessLogic.lnDoorsPrices _DP = new BusinessLogic.lnDoorsPrices();
+                List<DoorsPrices> xDoorsP = _DP.GetAllDoorsPrices();
+                List<DoorsPrices> xDP = xDoorsP.Where(x => x.RailThickness.Id == RailThick.Id && x.Material.Id == pMaterial.Id && x.DoorStyle.Id == pPanel.Id).ToList();
+                ViewBag.d = xDP;
+                //foreach (DoorsPrices i in ViewBag.d)
+                //{
+                //    System.Web.HttpContext.Current.Session["BasePrice"] = i.BasePrice;
+                //    System.Web.HttpContext.Current.Session["AddPrice"] = i.AdditionalSFPrice;
+                //}
+                return Json(xDP);
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+
+        }
+
+
+        [HttpPost]
         public ActionResult UpdateOrderExist(Order item, DoorsxUser pDoorsxUser, Order Ord)
         {
             BusinessLogic.lnOrder _LNUPor = new BusinessLogic.lnOrder();
@@ -269,7 +294,8 @@ namespace VenusDoors.Controllers
 
             try
             {
-                if (Session["UserID"] == null)
+
+                if (Session["UserID"] == null)                
                 {
                     return Json(0);
                 }
@@ -322,9 +348,8 @@ namespace VenusDoors.Controllers
                                     Width = decimal.Parse(reader[12].ToString()),
                                     Height = decimal.Parse(reader[13].ToString()),
                                     isDrill = (reader[14].ToString() == "Drill")? true :false,
-                                    HingeDirection = new HingeDirection() { Id = 0, Direction = reader[15].ToString(), },
-                                    HingePositions = new HingePositions() { Id = 0, Position1 = reader[16].ToString(), Position2 = reader[17].ToString(), },
-                                    IsOpeningMeasurement = (reader[18].ToString() == "Opening") ? true : false,
+                                    HingeDirection = new HingeDirection() { Id = 0, Direction = reader[15].ToString(), },                                  
+                                    IsOpeningMeasurement = (reader[16].ToString() == "Opening") ? true : false,
                                     Status = new Status() { Id = 1 },
                                     CreationDate = DateTime.Now,
                                     ModificationDate = DateTime.Now,
@@ -335,6 +360,96 @@ namespace VenusDoors.Controllers
 
                                 });
                             }
+
+                        }
+                        
+                        foreach (var item in door)
+                        {
+                            BusinessLogic.lnDoorStyle _LN = new BusinessLogic.lnDoorStyle();
+                            var _listDoorStyle = _LN.GetAllDoorStyle().Where(x => x.Description.Trim() == item.DoorStyle.Description.Trim()).FirstOrDefault();
+                            if (_listDoorStyle != null)
+                            {
+                                item.DoorStyle.Id = _listDoorStyle.Id;
+                            }
+
+                            BusinessLogic.lnMaterial _LNMaterial = new BusinessLogic.lnMaterial();
+                            var _listMateriale = _LNMaterial.GetAllMaterial().Where(x => x.Description.Trim() == item.Material.Description.Trim()).FirstOrDefault();
+                            if (_listMateriale != null)
+                            {
+                                item.Material.Id = _listMateriale.Id;
+                            }
+                            BusinessLogic.lnTopRail _LNTopRail = new BusinessLogic.lnTopRail();
+                            var _listTopRail = _LNTopRail.GetAllTopRail().Where(x => x.Description.Trim() == item.TopRail.Description.Trim()).FirstOrDefault();
+                            if (_listTopRail != null)
+                            {
+                                item.TopRail.Id = _listTopRail.Id;
+                            }
+                            BusinessLogic.lnBottomRail _LNBottomRail = new BusinessLogic.lnBottomRail();
+                            var _listBottomRail = _LNBottomRail.GetAllBottomRail().Where(x => x.Description.Trim() == item.BottomRail.Description.Trim()).FirstOrDefault();
+                            if (_listBottomRail != null)
+                            {
+                                item.BottomRail.Id = _listBottomRail.Id;
+                            }
+                            BusinessLogic.lnPanel _LNPanel = new BusinessLogic.lnPanel();
+                            var _listPanel = _LNPanel.GetAllPanel().Where(x => x.Description.Trim() == item.Panel.Description.Trim()).FirstOrDefault();
+                            if (_listPanel != null)
+                            {
+                                item.Panel.Id = _listPanel.Id;
+                            }
+                            BusinessLogic.lnPanelMaterial _LNPanelMaterial = new BusinessLogic.lnPanelMaterial();
+                            var _listPanelMaterial = _LNPanelMaterial.GetAllPanelMaterial().Where(x => x.Description.Trim() == item.Panel.Description.Trim()).FirstOrDefault();
+                            if (_listPanelMaterial != null)
+                            {
+                                item.PanelMaterial.Id = _listPanelMaterial.Id;
+                            }
+                            BusinessLogic.lnPreparation _LNPreparation = new BusinessLogic.lnPreparation();
+                            var _listPreparation = _LNPreparation.GetAllPreparation().Where(x => x.Description.Trim() == item.Preparation.Description.Trim()).FirstOrDefault();
+                            if (_listPreparation != null)
+                            {
+                                item.Preparation.Id = _listPreparation.Id;
+                            }
+                            BusinessLogic.lnJoin _LNJoin = new BusinessLogic.lnJoin();
+                            var _listJoin = _LNJoin.GetAllJoin().Where(x => x.Description.Trim() == item.Join.Description.Trim()).FirstOrDefault();
+                            if (_listJoin != null)
+                            {
+                                item.Join.Id = _listJoin.Id;
+                            }
+                            BusinessLogic.lnOutsideEdgeProfile _LNOutsideEdgeProfile = new BusinessLogic.lnOutsideEdgeProfile();
+                            var _listOutsideEdgeProfile = _LNOutsideEdgeProfile.GetAllOutsideEdgeProfile().Where(x => x.Description.Trim() == item.OutsideEdgeProfile.Description.Trim()).FirstOrDefault();
+                            if (_listOutsideEdgeProfile != null)
+                            {
+                                item.OutsideEdgeProfile.Id = _listOutsideEdgeProfile.Id;
+                            }
+                            BusinessLogic.lnInsideEdgeProfile _LNInsideEdgeProfile = new BusinessLogic.lnInsideEdgeProfile();
+                            var _listInsideEdgeProfile = _LNInsideEdgeProfile.GetAllInsideEdgeProfile().Where(x => x.Description.Trim() == item.InsideEdgeProfile.Description.Trim()).FirstOrDefault();
+                            if (_listInsideEdgeProfile != null)
+                            {
+                                item.InsideEdgeProfile.Id = _listInsideEdgeProfile.Id;
+                            }
+                            BusinessLogic.lnVerticalDivisions _LNVerticalDivisions = new BusinessLogic.lnVerticalDivisions();
+                            var _listVerticalDivisions = _LNVerticalDivisions.GetAllVerticalDivisions().Where(x => x.Quantity == item.VerticalDivisions.Quantity).FirstOrDefault();
+                            if (_listVerticalDivisions != null)
+                            {
+                                item.VerticalDivisions.Id = _listVerticalDivisions.Id;
+                            }
+                            BusinessLogic.lnHorizontalDivisions _LNHorizontalDivisions = new BusinessLogic.lnHorizontalDivisions();
+                            var _listHorizontalDivisions = _LNHorizontalDivisions.GetAllHorizontalDivisions().Where(x => x.Quantity == item.VerticalDivisions.Quantity).FirstOrDefault();
+                            if (_listHorizontalDivisions != null)
+                            {
+                                item.HorizontalDivisions.Id = _listHorizontalDivisions.Id;
+                            }
+                            BusinessLogic.lnHingeDirection _LNHingeDirection = new BusinessLogic.lnHingeDirection();
+                            var _listHingeDirection = _LNHingeDirection.GetAllHingeDirection().Where(x => x.Direction == item.HingeDirection.Direction).FirstOrDefault();
+                            if (_listHingeDirection != null)
+                            {
+                                item.HingeDirection.Id = _listHingeDirection.Id;
+                            }
+
+                            item.HingePositions = CalcularPosicionHing(item);
+
+
+
+
 
                         }
                         reader.Close();
@@ -348,13 +463,75 @@ namespace VenusDoors.Controllers
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return Json(0);
             }
 
             return Json(1);
 
+        }
+
+        public HingePositions CalcularPosicionHing(DoorsxUser pDoorsxUser) {
+
+            pDoorsxUser.HingePositions = new HingePositions();
+            pDoorsxUser.HingePositions.Position1 = "3.5";
+            if (pDoorsxUser.Height < 5) {
+
+                pDoorsxUser.Height = 5;
+                decimal P2 = decimal.Parse(pDoorsxUser.Height.ToString()) - decimal.Parse("3,5");
+                pDoorsxUser.HingePositions.Position2 = P2.ToString().Replace(',','.');
+            }
+            else if (pDoorsxUser.Height >= 5 && pDoorsxUser.Height < 37) {
+                decimal P2 = decimal.Parse(pDoorsxUser.Height.ToString()) - decimal.Parse("3,5");
+                pDoorsxUser.HingePositions.Position2 = P2.ToString().Replace(',','.');
+
+            }
+            else if (pDoorsxUser.Height >= 37 && pDoorsxUser.Height < 61) {
+                decimal P2 = decimal.Parse(pDoorsxUser.Height.ToString()) / 2;
+                pDoorsxUser.HingePositions.Position2 = P2.ToString().Replace(',','.');
+                decimal P3 = decimal.Parse(pDoorsxUser.Height.ToString()) - decimal.Parse("3,5");
+                pDoorsxUser.HingePositions.Position3 = P3.ToString().Replace(',','.');
+
+            }
+            else if (pDoorsxUser.Height >= 61 && pDoorsxUser.Height < 81) {
+                decimal P2 = ((decimal.Parse(pDoorsxUser.Height.ToString()) - 7) / 3) + decimal.Parse("3,5");
+                pDoorsxUser.HingePositions.Position2 = P2.ToString().Replace(',','.');
+                decimal P3 = decimal.Parse(pDoorsxUser.Height.ToString()) / 2;
+                pDoorsxUser.HingePositions.Position3 = P3.ToString().Replace(',', '.');
+                decimal P4 = decimal.Parse(pDoorsxUser.Height.ToString()) - decimal.Parse("3,5");
+                pDoorsxUser.HingePositions.Position4 = P4.ToString().Replace(',','.');
+            }
+            else if (pDoorsxUser.Height >= 81 && pDoorsxUser.Height < 97) {
+
+                decimal P2 = (((decimal.Parse(pDoorsxUser.Height.ToString()) / 2) - decimal.Parse("3,5")) / 2) + decimal.Parse("3,5");
+                pDoorsxUser.HingePositions.Position2 = P2.ToString().Replace(',', '.');
+                decimal P3 = decimal.Parse(pDoorsxUser.Height.ToString()) / 2;
+                pDoorsxUser.HingePositions.Position3 = P3.ToString().Replace(',','.');
+
+                decimal P4 = ((((decimal.Parse(pDoorsxUser.Height.ToString()) / 2) - decimal.Parse("3,5")) / 2) + decimal.Parse("3,5")) - decimal.Parse(pDoorsxUser.Height.ToString());
+
+                pDoorsxUser.HingePositions.Position4 = P4.ToString().Replace(',', '.');
+                decimal P5 = decimal.Parse(pDoorsxUser.Height.ToString()) - decimal.Parse("3,5");
+                pDoorsxUser.HingePositions.Position5 = P5.ToString().Replace(',', '.');
+
+            }
+            else { 
+                pDoorsxUser.Height = 96;
+                decimal P2 = (((decimal.Parse(pDoorsxUser.Height.ToString()) / 2) - decimal.Parse("3,5")) / 2) + decimal.Parse("3,5");
+                pDoorsxUser.HingePositions.Position2 = P2.ToString().Replace(',', '.');
+                decimal P3 = decimal.Parse(pDoorsxUser.Height.ToString()) / 2;
+                pDoorsxUser.HingePositions.Position3 = P3.ToString().Replace(',', '.');
+
+                decimal P4 = ((((decimal.Parse(pDoorsxUser.Height.ToString()) / 2) - decimal.Parse("3,5")) / 2) + decimal.Parse("3,5")) - decimal.Parse(pDoorsxUser.Height.ToString());
+
+                pDoorsxUser.HingePositions.Position4 = P4.ToString().Replace(',', '.');
+                decimal P5 = decimal.Parse(pDoorsxUser.Height.ToString()) - decimal.Parse("3,5");
+                pDoorsxUser.HingePositions.Position5 = P5.ToString().Replace(',', '.');
+
+            }
+              
+                   return pDoorsxUser.HingePositions;
         }
 
         public ActionResult InsertDoorsxUser(DoorsxUser pDoorsxUser, HingePositions HingeP, Order Ord)
