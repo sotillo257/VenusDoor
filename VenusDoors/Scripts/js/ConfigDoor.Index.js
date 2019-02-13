@@ -777,11 +777,8 @@ $(document).ready(function () {
             LlammarModal("Danger", "Error: Max is 42 inches", " ");
             Width = 42;
             $('.iptWidth').val(Width);
-            GetPrices();
-           
-           
+            GetPrices();        
         }
-        GetPrices
     });
 
     $(document).on('change', '.Profile', function () {
@@ -1164,7 +1161,7 @@ function FlatPanelDoor(Style) {
             if (stile == 3 && rail == 3) {
                 DoorUrl = "Cabinet Vector-01.png";
             }
-            TodosLosPerfiles();
+
         }
         if (Style == 1002) {
             if (stile == 3 && rail == 3) {
@@ -1172,7 +1169,6 @@ function FlatPanelDoor(Style) {
             } else if (stile == 1 && rail == 1) {
                 DoorUrl = "Cabinet Vector-14.png";
             }
-            NoAplicaShaker();
         }
         if (Style == 1004) {
             if (stile == 3 && rail == 3) {
@@ -1180,18 +1176,15 @@ function FlatPanelDoor(Style) {
             } else if (stile == 1 && rail == 1) {
                 DoorUrl = "Cabinet Vector-06.png";
             }
-            SoloShaker();
         }
         if (Style == 1009) {
             if (stile == 3 && rail == 3) {
                 DoorUrl = "Cabinet Vector-13.png";
             }
-            TodosLosPerfiles();
         }
        
     } else if ($('#cbJoin').val() == 2) {
         DoorUrl = "Cabinet Vector-08.png";
-        TodosLosPerfiles();
     }
         $('#DoorPicture').attr('src', urlFolder + DoorUrl);
    
@@ -1213,12 +1206,11 @@ function RaisedPanelDoor(Style) {
                 } else if (outside == 6 && ( inside == 3 || inside == 7)) {
                     DoorUrl = "Cabinet Vector-10.png";
                 }
-                TodosLosPerfiles();
+           
         } else if (Style == 1009) {
         
         } else {
             DoorUrl = "Cabinet Vector-16.png";
-            NoAplicaShaker();
         }
             
         } else if (stile == 1 && rail == 1) {
@@ -1226,7 +1218,6 @@ function RaisedPanelDoor(Style) {
 
             } else {
                 DoorUrl = "Cabinet Vector-10.png";
-                TodosLosPerfiles();
             }
         } 
        
@@ -1236,78 +1227,5 @@ function RaisedPanelDoor(Style) {
     }
     $('#DoorPicture').attr('src', urlFolder + DoorUrl);
 
-}
-function NoAplicaShaker() {
-    var inside = $("#cbInsideEdgeProfile").val();
-    var outside = $("#cbOutsideEdgeProfile").val();
-    var option = '<option value="0">Select</option>';
-    for (var i = 0; i < AllInsideEdgeProfile.length; i++) {
-        if (AllInsideEdgeProfile[i].Status.Id == 1 &&  AllInsideEdgeProfile[i].Id != 3  &&  AllInsideEdgeProfile[i].Id != 7) {
-            option += '<option value="' + AllInsideEdgeProfile[i].Id + '">' + AllInsideEdgeProfile[i].Description + '</option>';
-        }
-    }
-    $("#cbInsideEdgeProfile").empty().append(option);
-    if (inside != 3 && inside != 7) {
-        $("#cbInsideEdgeProfile").val(inside);
-    } else {
-        $("#cbInsideEdgeProfile").val(0);
-    }
-    option = '<option value="0">Select</option>';
-    for (var i = 0; i < AllOutsideEdgeProfile.length; i++) {
-        if (AllOutsideEdgeProfile[i].Status.Id == 1 && AllOutsideEdgeProfile[i].Id != 6) {
-            option += '<option value="' + AllOutsideEdgeProfile[i].Id + '">' + AllOutsideEdgeProfile[i].Description + '</option>';
-        }
-    }
-    $("#cbOutsideEdgeProfile").empty().append(option);
-    if (outside != 6) {
-        $("#cbOutsideEdgeProfile").val(outside);
-    } else {
-        $("#cbOutsideEdgeProfile").val(0);
-    }
-}
-function SoloShaker() {
-    var inside = $("#cbInsideEdgeProfile").val();
-    var outside = $("#cbOutsideEdgeProfile").val();
-    var option = '<option value="0">Select</option>';
-    for (var i = 0; i < AllInsideEdgeProfile.length; i++) {
-        if (AllInsideEdgeProfile[i].Status.Id == 1 && (AllInsideEdgeProfile[i].Id == 3 || AllInsideEdgeProfile[i].Id == 7)) {
-            option += '<option value="' + AllInsideEdgeProfile[i].Id + '">' + AllInsideEdgeProfile[i].Description + '</option>';
-        }
-    }
-    $("#cbInsideEdgeProfile").empty().append(option);
-    if (inside == 3 || inside == 7) {
-        $("#cbInsideEdgeProfile").val(inside);
-    } else {
-        $("#cbInsideEdgeProfile").val(0);
-    }
-    option = '<option value="0">Select</option>';
-    for (var i = 0; i < AllOutsideEdgeProfile.length; i++) {
-        if (AllOutsideEdgeProfile[i].Status.Id == 1 && AllOutsideEdgeProfile[i].Id == 6) {
-            option += '<option value="' + AllOutsideEdgeProfile[i].Id + '">' + AllOutsideEdgeProfile[i].Description + '</option>';
-        }
-    }
-    $("#cbOutsideEdgeProfile").empty().append(option);
-        $("#cbOutsideEdgeProfile").val(6);
-}
-function TodosLosPerfiles() {
-    var inside = $("#cbInsideEdgeProfile").val();
-    var outside = $("#cbOutsideEdgeProfile").val();
-    var option = '<option value="0">Select</option>';
-    for (var i = 0; i < AllInsideEdgeProfile.length; i++) {
-        if (AllInsideEdgeProfile[i].Status.Id == 1 ) {
-            option += '<option value="' + AllInsideEdgeProfile[i].Id + '">' + AllInsideEdgeProfile[i].Description + '</option>';
-        }
-    }
-    $("#cbInsideEdgeProfile").empty().append(option);
-    
-        $("#cbInsideEdgeProfile").val(inside);
-    option = '<option value="0">Select</option>';
-    for (var i = 0; i < AllOutsideEdgeProfile.length; i++) {
-        if (AllOutsideEdgeProfile[i].Status.Id == 1) {
-            option += '<option value="' + AllOutsideEdgeProfile[i].Id + '">' + AllOutsideEdgeProfile[i].Description + '</option>';
-        }
-    }
-    $("#cbOutsideEdgeProfile").empty().append(option);
-        $("#cbOutsideEdgeProfile").val(outside);
 }
  

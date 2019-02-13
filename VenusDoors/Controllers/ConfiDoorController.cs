@@ -18,6 +18,7 @@ namespace VenusDoors.Controllers
         //MailMessage mail = new MailMessage();
 
         // GET: ConfiDoor
+
         public ActionResult Index(int? Id)
         {
             ViewBag.ConfiDoor = "active";
@@ -253,6 +254,30 @@ namespace VenusDoors.Controllers
         }
 
         [HttpPost]
+        public ActionResult GetPricesDoor(RailThickness RailThick, Material pMaterial, Panel pPanel)
+        {
+            try
+            {
+                BusinessLogic.lnDoorsPrices _DP = new BusinessLogic.lnDoorsPrices();
+                List<DoorsPrices> xDoorsP = _DP.GetAllDoorsPrices();
+                List<DoorsPrices> xDP = xDoorsP.Where(x => x.RailThickness.Id == RailThick.Id && x.Material.Id == pMaterial.Id && x.DoorStyle.Id == pPanel.Id).ToList();
+                ViewBag.d = xDP;
+                //foreach (DoorsPrices i in ViewBag.d)
+                //{
+                //    System.Web.HttpContext.Current.Session["BasePrice"] = i.BasePrice;
+                //    System.Web.HttpContext.Current.Session["AddPrice"] = i.AdditionalSFPrice;
+                //}
+                return Json(xDP);
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+
+        }
+
+
+        [HttpPost]
         public ActionResult UpdateOrderExist(Order item, DoorsxUser pDoorsxUser, Order Ord)
         {
             BusinessLogic.lnOrder _LNUPor = new BusinessLogic.lnOrder();
@@ -269,7 +294,8 @@ namespace VenusDoors.Controllers
 
             try
             {
-                if (Session["UserID"] == null)
+
+                if (Session["UserID"] == null)                
                 {
                     return Json(0);
                 }
@@ -322,9 +348,8 @@ namespace VenusDoors.Controllers
                                     Width = decimal.Parse(reader[12].ToString()),
                                     Height = decimal.Parse(reader[13].ToString()),
                                     isDrill = (reader[14].ToString() == "Drill")? true :false,
-                                    HingeDirection = new HingeDirection() { Id = 0, Direction = reader[15].ToString(), },
-                                    HingePositions = new HingePositions() { Id = 0, Position1 = reader[16].ToString(), Position2 = reader[17].ToString(), },
-                                    IsOpeningMeasurement = (reader[18].ToString() == "Opening") ? true : false,
+                                    HingeDirection = new HingeDirection() { Id = 0, Direction = reader[15].ToString(), },                                  
+                                    IsOpeningMeasurement = (reader[16].ToString() == "Opening") ? true : false,
                                     Status = new Status() { Id = 1 },
                                     CreationDate = DateTime.Now,
                                     ModificationDate = DateTime.Now,
@@ -335,6 +360,97 @@ namespace VenusDoors.Controllers
 
                                 });
                             }
+
+                        }
+                        
+                        foreach (var item in door)
+                        {
+                            BusinessLogic.lnDoorStyle _LN = new BusinessLogic.lnDoorStyle();
+                            var _listDoorStyle = _LN.GetAllDoorStyle().Where(x => x.Description.Trim() == item.DoorStyle.Description.Trim()).FirstOrDefault();
+                            if (_listDoorStyle != null)
+                            {
+                                item.DoorStyle.Id = _listDoorStyle.Id;
+                            }
+
+                            BusinessLogic.lnMaterial _LNMaterial = new BusinessLogic.lnMaterial();
+                            var _listMateriale = _LNMaterial.GetAllMaterial().Where(x => x.Description.Trim() == item.Material.Description.Trim()).FirstOrDefault();
+                            if (_listMateriale != null)
+                            {
+                                item.Material.Id = _listMateriale.Id;
+                            }
+                            BusinessLogic.lnTopRail _LNTopRail = new BusinessLogic.lnTopRail();
+                            var _listTopRail = _LNTopRail.GetAllTopRail().Where(x => x.Description.Trim() == item.TopRail.Description.Trim()).FirstOrDefault();
+                            if (_listTopRail != null)
+                            {
+                                item.TopRail.Id = _listTopRail.Id;
+                            }
+                            BusinessLogic.lnBottomRail _LNBottomRail = new BusinessLogic.lnBottomRail();
+                            var _listBottomRail = _LNBottomRail.GetAllBottomRail().Where(x => x.Description.Trim() == item.BottomRail.Description.Trim()).FirstOrDefault();
+                            if (_listBottomRail != null)
+                            {
+                                item.BottomRail.Id = _listBottomRail.Id;
+                            }
+                            BusinessLogic.lnPanel _LNPanel = new BusinessLogic.lnPanel();
+                            var _listPanel = _LNPanel.GetAllPanel().Where(x => x.Description.Trim() == item.Panel.Description.Trim()).FirstOrDefault();
+                            if (_listPanel != null)
+                            {
+                                item.Panel.Id = _listPanel.Id;
+                            }
+                            BusinessLogic.lnPanelMaterial _LNPanelMaterial = new BusinessLogic.lnPanelMaterial();
+                            var _listPanelMaterial = _LNPanelMaterial.GetAllPanelMaterial().Where(x => x.Description.Trim() == item.Panel.Description.Trim()).FirstOrDefault();
+                            if (_listPanelMaterial != null)
+                            {
+                                item.PanelMaterial.Id = _listPanelMaterial.Id;
+                            }
+                            BusinessLogic.lnPreparation _LNPreparation = new BusinessLogic.lnPreparation();
+                            var _listPreparation = _LNPreparation.GetAllPreparation().Where(x => x.Description.Trim() == item.Preparation.Description.Trim()).FirstOrDefault();
+                            if (_listPreparation != null)
+                            {
+                                item.Preparation.Id = _listPreparation.Id;
+                            }
+                            BusinessLogic.lnJoin _LNJoin = new BusinessLogic.lnJoin();
+                            var _listJoin = _LNJoin.GetAllJoin().Where(x => x.Description.Trim() == item.Join.Description.Trim()).FirstOrDefault();
+                            if (_listJoin != null)
+                            {
+                                item.Join.Id = _listJoin.Id;
+                            }
+                            BusinessLogic.lnOutsideEdgeProfile _LNOutsideEdgeProfile = new BusinessLogic.lnOutsideEdgeProfile();
+                            var _listOutsideEdgeProfile = _LNOutsideEdgeProfile.GetAllOutsideEdgeProfile().Where(x => x.Description.Trim() == item.OutsideEdgeProfile.Description.Trim()).FirstOrDefault();
+                            if (_listOutsideEdgeProfile != null)
+                            {
+                                item.OutsideEdgeProfile.Id = _listOutsideEdgeProfile.Id;
+                            }
+                            BusinessLogic.lnInsideEdgeProfile _LNInsideEdgeProfile = new BusinessLogic.lnInsideEdgeProfile();
+                            var _listInsideEdgeProfile = _LNInsideEdgeProfile.GetAllInsideEdgeProfile().Where(x => x.Description.Trim() == item.InsideEdgeProfile.Description.Trim()).FirstOrDefault();
+                            if (_listInsideEdgeProfile != null)
+                            {
+                                item.InsideEdgeProfile.Id = _listInsideEdgeProfile.Id;
+                            }
+                            BusinessLogic.lnVerticalDivisions _LNVerticalDivisions = new BusinessLogic.lnVerticalDivisions();
+                            var _listVerticalDivisions = _LNVerticalDivisions.GetAllVerticalDivisions().Where(x => x.Quantity == item.VerticalDivisions.Quantity).FirstOrDefault();
+                            if (_listVerticalDivisions != null)
+                            {
+                                item.VerticalDivisions.Id = _listVerticalDivisions.Id;
+                            }
+                            BusinessLogic.lnHorizontalDivisions _LNHorizontalDivisions = new BusinessLogic.lnHorizontalDivisions();
+                            var _listHorizontalDivisions = _LNHorizontalDivisions.GetAllHorizontalDivisions().Where(x => x.Quantity == item.VerticalDivisions.Quantity).FirstOrDefault();
+                            if (_listHorizontalDivisions != null)
+                            {
+                                item.HorizontalDivisions.Id = _listHorizontalDivisions.Id;
+                            }
+                            BusinessLogic.lnHingeDirection _LNHingeDirection = new BusinessLogic.lnHingeDirection();
+                            var _listHingeDirection = _LNHingeDirection.GetAllHingeDirection().Where(x => x.Direction == item.HingeDirection.Direction).FirstOrDefault();
+                            if (_listHingeDirection != null)
+                            {
+                                item.HingeDirection.Id = _listHingeDirection.Id;
+                            }
+
+                            item.HingePositions = CalcularPosicionHing(item);
+                            item.ProfilePicture = BuscarProfilePicture(item.OutsideEdgeProfile.Id,item.InsideEdgeProfile.Id,item.Panel.Id);
+
+
+
+
 
                         }
                         reader.Close();
@@ -348,13 +464,577 @@ namespace VenusDoors.Controllers
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return Json(0);
             }
 
             return Json(1);
 
+        }
+
+        #region Pictures
+        public string BuscarProfilePicture(int pOutsideEdgeProfile,int pInsideEdgeProfile,int pPanel) {
+            string respuesta = "/Content/img/Profile/img11.png";
+            if (pPanel == 5)
+            {
+                respuesta = FlatPanel(pOutsideEdgeProfile, pInsideEdgeProfile);
+            }
+            if (pPanel == 6)
+            {
+                respuesta = FlatPanelBeaded(pOutsideEdgeProfile, pInsideEdgeProfile);
+            }
+            if (pPanel == 2)
+            {
+                respuesta = RaisedPanel(pOutsideEdgeProfile, pInsideEdgeProfile);
+            }
+            return respuesta;
+        }
+        public string FlatPanel(int Outside, int Inside) {
+            string ProfileUrl = "img11.png";
+            string urlFolder = "/Content/img/Profile/";
+            if (Outside == 13)
+            {
+                if (Inside == 4)
+                {
+                    ProfileUrl = "-Double_Roman_Ogee_ogee_flat_panel.png";
+                }
+                else if (Inside == 5)
+                {
+                    ProfileUrl = "-Double_Roman_Ogee_Reba_flat_panel.png";
+                }
+                else if (Inside == 3)
+                {
+                    ProfileUrl = "-Double_Roman_Ogee_Shaker_22_flat_panel.png";
+                }
+                else if (Inside == 7)
+                {
+                    ProfileUrl = "-Double_Roman_Ogee_shaker_goove_flatpanel.png";
+                }
+            }
+            if (Outside == 2)
+            {
+                if (Inside == 4)
+                {
+                    ProfileUrl = "-Fingerpull_ogee_flat_panel.png";
+                }
+                else if (Inside == 5)
+                {
+                    ProfileUrl = "-Fingerpull_Reba_flat_panel.png";
+                }
+                else if (Inside == 3)
+                {
+                    ProfileUrl = "-Fingerpull_Shaker22_flat_panel.png";
+                }
+                else if (Inside == 7)
+                {
+                    ProfileUrl = "-Finger_pull_shaker_goove_flat_panel.png";
+                }
+            }
+            if (Outside == 17)
+            {
+                if (Inside == 4)
+                {
+                    ProfileUrl = "-Half_Reba_ogee_flat_panel.png";
+                }
+                else if (Inside == 5)
+                {
+                    ProfileUrl = "-Half_Reba_Reba_flat_panel.png";
+                }
+                else if (Inside == 3)
+                {
+                    ProfileUrl = "-Half_Reba_Shaker_22_flat_panel.png";
+                }
+                else if (Inside == 7)
+                {
+                    ProfileUrl = "-Half_Reba_shaker_goove_flat_panel.png";
+                }
+            }
+            if (Outside == 11)
+            {
+
+                if (Inside == 4)
+                {
+                    ProfileUrl = "-Little_bone_ogee_flat_panel.png";
+                }
+                else if (Inside == 5)
+                {
+                    ProfileUrl = "-Little_bone_Reba_flat_panel.png";
+                }
+                else if (Inside == 3)
+                {
+                    ProfileUrl = "-Little_bone_Shaker_22_flat_panel.png";
+                }
+                else if (Inside == 7)
+                {
+                    ProfileUrl = "-Little_bone_shaker_goove_flat_panel.png";
+                }
+            }
+            if (Outside == 5)
+            {
+                if (Inside == 4)
+                {
+                    ProfileUrl = "-Reba_ogee_flat_panel.png";
+                }
+                else if (Inside == 5)
+                {
+                    ProfileUrl = "-Reba_Reba_flat_panel.png";
+                }
+                else if (Inside == 3)
+                {
+                    //  ProfileUrl = "-Reba_Shaker_22_flat_panel.png";
+                }
+                else if (Inside == 7)
+                {
+                    ProfileUrl = "-Reba_shaker_goove_flat_panel.png";
+                }
+            }
+            if (Outside == 6)
+            {
+                if (Inside == 4)
+                {
+                    ProfileUrl = "-Shaker_ogee_flat_panel.png";
+                }
+                else if (Inside == 5)
+                {
+                    ProfileUrl = "-Shaker_Reba_flat_panel.png";
+                }
+                else if (Inside == 3)
+                {
+                    ProfileUrl = "-Shaker_Shaker_22_flat_panel.png";
+                }
+                else if (Inside == 7)
+                {
+                    ProfileUrl = "-Shaker_shaker_goove_flat_panel.png";
+                }
+            }
+            return urlFolder + ProfileUrl;
+        }
+        public string FlatPanelBeaded(int Outside, int Inside) {
+            string ProfileUrl = "img11.png";
+            string urlFolder = "/Content/img/Profile/";
+            if (Outside == 13)
+            {
+                if (Inside == 4)
+                {
+                    ProfileUrl = "-Double_Roman_Ogee_ogee_flat_panel_beaded.png";
+                }
+                else if (Inside == 5)
+                {
+                    ProfileUrl = "-Double_Roman_Ogee_Reba_flat_panel_beaded.png";
+                }
+                else if (Inside == 3)
+                {
+                    ProfileUrl = "-Double_Roman_Ogee_Shaker_22_flat_panel_beaded.png";
+                }
+                else if (Inside == 7)
+                {
+                    ProfileUrl = "-Double_Roman_Ogee_shaker_goove_flat_panel_beaded.png";
+                }
+            }
+            if (Outside == 2)
+            {
+                if (Inside == 4)
+                {
+                    ProfileUrl = "-Fingerpull_ogee_flat_panel_beaded.png";
+                }
+                else if (Inside == 5)
+                {
+                    ProfileUrl = "-Fingerpull_Reba_flat_panel_beaded.png";
+                }
+                else if (Inside == 3)
+                {
+                    ProfileUrl = "-Fingerpull_Shaker22_flat_panel_beaded.png";
+                }
+                else if (Inside == 7)
+                {
+                    ProfileUrl = "-Finger_pull_shaker_goove_flat_panel_beaded.png";
+                }
+            }
+            if (Outside == 17)
+            {
+                if (Inside == 4)
+                {
+                    ProfileUrl = "-Half_Reba_ogee_flat_panel_beaded.png";
+                }
+                else if (Inside == 5)
+                {
+                    ProfileUrl = "-Half_Reba_Reba_flat_panel_beaded.png";
+                }
+                else if (Inside == 3)
+                {
+                    ProfileUrl = "-Half_Reba_Shaker_22_flat_panel_beaded.png";
+                }
+                else if (Inside == 7)
+                {
+                    ProfileUrl = "-Half_Reba_shaker_goove_flat_panel_beaded.png";
+                }
+            }
+            if (Outside == 4)
+            {
+
+                if (Inside == 4)
+                {
+                    ProfileUrl = "-Little_bone_ogee_flat_panel_beaded.png";
+                }
+                else if (Inside == 5)
+                {
+                    ProfileUrl = "-Little_bone_Reba_flat_panel_beaded.png";
+                }
+                else if (Inside == 3)
+                {
+                    ProfileUrl = "-Little_bone_Shaker_22_flat_panel_beaded.png";
+                }
+                else if (Inside == 7)
+                {
+                    ProfileUrl = "-Little_bone_shaker_goove_flat_panel_beaded.png";
+                }
+            }
+            if (Outside == 5)
+            {
+                if (Inside == 4)
+                {
+                    ProfileUrl = "-Reba_ogee_flat_panel_beaded.png";
+                }
+                else if (Inside == 5)
+                {
+                    ProfileUrl = "-Reba_Reba_flat_panel_beaded.png";
+                }
+                else if (Inside == 3)
+                {
+                    ProfileUrl = "-Reba_Shaker_22_flat_panel_beaded.png";
+                }
+                else if (Inside == 7)
+                {
+                    ProfileUrl = "-Reba_shaker_goove_flat_panel_beaded.png";
+                }
+            }
+            if (Outside == 6)
+            {
+                if (Inside == 4)
+                {
+                    ProfileUrl = "-Shaker_ogee_flat_panel_beaded.png";
+                }
+                else if (Inside == 5)
+                {
+                    ProfileUrl = "-Shaker_Reba_flat_panel_beaded.png";
+                }
+                else if (Inside == 3)
+                {
+                    ProfileUrl = "-Shaker_Shaker_22_flat_panel_beaded.png";
+                }
+                else if (Inside == 7)
+                {
+                    ProfileUrl = "-Shaker_shaker_goove_flat_panel_beaded.png";
+                }
+            }
+            return urlFolder + ProfileUrl;
+        }
+        public string RaisedPanel(int Outside,int Inside)
+        {
+            string ProfileUrl = "img11.png";
+            string urlFolder = "/Content/img/Profile/";
+            if (Outside == 13)
+            {
+                if (Inside == 4)
+                {
+                    ProfileUrl = "-Double_Roman_Ogee_ogee_raised_panel.png";
+                }
+                else if (Inside == 5)
+                {
+                    ProfileUrl = "-Double_Roman_Ogee_Reba_raised_panel.png";
+                }
+                else if (Inside == 3)
+                {
+                    ProfileUrl = "-Double_Roman_Ogee_Shaker_22_raised_panel.png";
+                }
+                else if (Inside == 7)
+                {
+                    ProfileUrl = "-Double_Roman_Ogee_shaker_goove_raised_panel.png";
+                }
+            }
+            if (Outside == 2)
+            {
+                if (Inside == 4)
+                {
+                    ProfileUrl = "-Fingerpull_ogee_raised_panel.png";
+                }
+                else if (Inside == 5)
+                {
+                    ProfileUrl = "-Fingerpull_Reba_raised_panel.png";
+                }
+                else if (Inside == 3)
+                {
+                    ProfileUrl = "-FingerPull-Shaker22-RaisedPanel.png";
+                }
+                else if (Inside == 7)
+                {
+                    ProfileUrl = "-Finger-pull-shaker-goove-raised-panel.png";
+                }
+            }
+            if (Outside == 17)
+            {
+                if (Inside == 4)
+                {
+                    ProfileUrl = "-Half_Reba_ogee_raised_panel.png";
+                }
+                else if (Inside == 5)
+                {
+                    ProfileUrl = "-Half_Reba_Reba_raised_panel.png";
+                }
+                else if (Inside == 3)
+                {
+                    ProfileUrl = "-Half_Reba_Shaker_22_raised_panel.png";
+                }
+                else if (Inside == 7)
+                {
+                    ProfileUrl = "-Half_Reba_shaker_goove_raised_panel.png";
+                }
+            }
+            if (Outside == 4)
+            {
+
+                if (Inside == 4)
+                {
+                    ProfileUrl = "-Little_bone_ogee_raised_panel.png";
+                }
+                else if (Inside == 5)
+                {
+                    ProfileUrl = "-Little_bone_Reba_raised_panel.png";
+                }
+                else if (Inside == 3)
+                {
+                    ProfileUrl = "-Little_bone_Shaker_22_raised_panel.png";
+                }
+                else if (Inside == 7)
+                {
+                    ProfileUrl = "-Little_bone_shaker_goove_raised_panel.png";
+                }
+            }
+            if (Outside == 5)
+            {
+                if (Inside == 4)
+                {
+                    ProfileUrl = "-Reba_ogee_raised_panel.png";
+                }
+                else if (Inside == 5)
+                {
+                    ProfileUrl = "-Reba_Reba_raised_panel.png";
+                }
+                else if (Inside == 3)
+                {
+                    ProfileUrl = "-Reba_Shaker_22_raised_panel.png";
+                }
+                else if (Inside == 7)
+                {
+                    ProfileUrl = "-Reba_shaker_goove_raised_panel.png";
+                }
+            }
+            if (Outside == 6)
+            {
+                if (Inside == 4)
+                {
+                    ProfileUrl = "-Shaker_ogee_raised_panel.png";
+                }
+                else if (Inside == 5)
+                {
+                    ProfileUrl = "-Shaker_Reba_raised_panel.png";
+                }
+                else if (Inside == 3)
+                {
+                    ProfileUrl = "-Shaker_Shaker_22_raised_panel.png";
+                }
+                else if (Inside == 7)
+                {
+                    ProfileUrl = "-Shaker_shaker_goove_raised_panel.png";
+                }
+            }
+            return urlFolder + ProfileUrl;
+        }
+
+        public string BuscarDoorPicture(DoorsxUser pDoorxUser)
+        {
+            string respuesta = "/Content/img/Profile/img11.png";
+            if (pDoorxUser.Panel.Id == 5)
+            {
+                respuesta = FlatPanelDoor(pDoorxUser);
+            }
+            if (pDoorxUser.Panel.Id == 6)
+            {
+                respuesta = "/Content/img/Doors/Cabinet Vector-17.png";
+            }
+            if (pDoorxUser.Panel.Id == 2)
+            {
+                respuesta = RaisedPanelDoor(pDoorxUser);
+            }
+            return respuesta;
+        }
+
+        public string FlatPanelDoor(DoorsxUser pDoorxUser)
+        {
+            var stile = pDoorxUser.TopRail.Id;
+            var rail = pDoorxUser.BottomRail.Id;
+            string DoorUrl = "img11.png";
+            string urlFolder = "/Content/img/Doors/";
+            if (pDoorxUser.Join.Id == 1) {
+                if (pDoorxUser.DoorStyle.Id == 1008)
+                {
+                    if (stile == 3 && rail == 3)
+                    {
+                        DoorUrl = "Cabinet Vector-01.png";
+                    }
+                    
+                }
+                if (pDoorxUser.DoorStyle.Id == 1002)
+                {
+                    if (stile == 3 && rail == 3)
+                    {
+                        DoorUrl = "Cabinet Vector-02.png";
+                    }
+                    else if (stile == 1 && rail == 1)
+                    {
+                        DoorUrl = "Cabinet Vector-14.png";
+                    }
+                     
+                }
+                if (pDoorxUser.DoorStyle.Id == 1004)
+                {
+                    if (stile == 3 && rail == 3)
+                    {
+                        DoorUrl = "Cabinet Vector-05.png";
+                    }
+                    else if (stile == 1 && rail == 1)
+                    {
+                        DoorUrl = "Cabinet Vector-06.png";
+                    }
+                     
+                }
+                if (pDoorxUser.DoorStyle.Id == 1009)
+                {
+                    if (stile == 3 && rail == 3)
+                    {
+                        DoorUrl = "Cabinet Vector-13.png";
+                    }
+                    
+                }
+
+            } else if (pDoorxUser.Join.Id == 2) {
+                DoorUrl = "Cabinet Vector-08.png";
+                
+            }
+            return urlFolder + DoorUrl;
+        }
+        public string RaisedPanelDoor(DoorsxUser pDoorxUser)
+        {
+            var stile = pDoorxUser.TopRail.Id;
+            var rail = pDoorxUser.BottomRail.Id;
+            string DoorUrl = "img11.png";
+            string urlFolder = "/Content/img/Doors/";
+            if (pDoorxUser.Join.Id == 1) {
+                if (stile == 3 && rail == 3)
+                {
+                    if (pDoorxUser.DoorStyle.Id == 1008)
+                    {
+
+                        var inside = pDoorxUser.InsideEdgeProfile.Id;
+                        var outside = pDoorxUser.OutsideEdgeProfile.Id;
+                        if (outside != 6 && inside != 3 && inside != 7)
+                        {
+                            DoorUrl = "Cabinet Vector-09.png";
+                        }
+                        else if (outside == 6 && (inside == 3 || inside == 7))
+                        {
+                            DoorUrl = "Cabinet Vector-10.png";
+                        }
+                    }
+                    else if (pDoorxUser.DoorStyle.Id == 1009)
+                    {
+
+                    }
+                    else {
+                        DoorUrl = "Cabinet Vector-16.png";
+                    }
+
+                }
+                else if (stile == 1 && rail == 1)
+                {
+                    if (pDoorxUser.Panel.Id == 1009)
+                    {
+
+                    }
+                    else {
+                        DoorUrl = "Cabinet Vector-10.png";
+                    }
+                }
+
+
+            } else if (pDoorxUser.Join.Id == 2) {
+                DoorUrl = "Cabinet Vector-07.png";
+            }
+            return urlFolder + DoorUrl;
+        }
+
+        #endregion Pictures
+        public HingePositions CalcularPosicionHing(DoorsxUser pDoorsxUser) {
+
+            pDoorsxUser.HingePositions = new HingePositions();
+            pDoorsxUser.HingePositions.Position1 = "3.5";
+            if (pDoorsxUser.Height < 5) {
+
+                pDoorsxUser.Height = 5;
+                decimal P2 = decimal.Parse(pDoorsxUser.Height.ToString()) - decimal.Parse("3,5");
+                pDoorsxUser.HingePositions.Position2 = P2.ToString().Replace(',','.');
+            }
+            else if (pDoorsxUser.Height >= 5 && pDoorsxUser.Height < 37) {
+                decimal P2 = decimal.Parse(pDoorsxUser.Height.ToString()) - decimal.Parse("3,5");
+                pDoorsxUser.HingePositions.Position2 = P2.ToString().Replace(',','.');
+
+            }
+            else if (pDoorsxUser.Height >= 37 && pDoorsxUser.Height < 61) {
+                decimal P2 = decimal.Parse(pDoorsxUser.Height.ToString()) / 2;
+                pDoorsxUser.HingePositions.Position2 = P2.ToString().Replace(',','.');
+                decimal P3 = decimal.Parse(pDoorsxUser.Height.ToString()) - decimal.Parse("3,5");
+                pDoorsxUser.HingePositions.Position3 = P3.ToString().Replace(',','.');
+
+            }
+            else if (pDoorsxUser.Height >= 61 && pDoorsxUser.Height < 81) {
+                decimal P2 = ((decimal.Parse(pDoorsxUser.Height.ToString()) - 7) / 3) + decimal.Parse("3,5");
+                pDoorsxUser.HingePositions.Position2 = P2.ToString().Replace(',','.');
+                decimal P3 = decimal.Parse(pDoorsxUser.Height.ToString()) / 2;
+                pDoorsxUser.HingePositions.Position3 = P3.ToString().Replace(',', '.');
+                decimal P4 = decimal.Parse(pDoorsxUser.Height.ToString()) - decimal.Parse("3,5");
+                pDoorsxUser.HingePositions.Position4 = P4.ToString().Replace(',','.');
+            }
+            else if (pDoorsxUser.Height >= 81 && pDoorsxUser.Height < 97) {
+
+                decimal P2 = (((decimal.Parse(pDoorsxUser.Height.ToString()) / 2) - decimal.Parse("3,5")) / 2) + decimal.Parse("3,5");
+                pDoorsxUser.HingePositions.Position2 = P2.ToString().Replace(',', '.');
+                decimal P3 = decimal.Parse(pDoorsxUser.Height.ToString()) / 2;
+                pDoorsxUser.HingePositions.Position3 = P3.ToString().Replace(',','.');
+
+                decimal P4 = ((((decimal.Parse(pDoorsxUser.Height.ToString()) / 2) - decimal.Parse("3,5")) / 2) + decimal.Parse("3,5")) - decimal.Parse(pDoorsxUser.Height.ToString());
+
+                pDoorsxUser.HingePositions.Position4 = P4.ToString().Replace(',', '.');
+                decimal P5 = decimal.Parse(pDoorsxUser.Height.ToString()) - decimal.Parse("3,5");
+                pDoorsxUser.HingePositions.Position5 = P5.ToString().Replace(',', '.');
+
+            }
+            else { 
+                pDoorsxUser.Height = 96;
+                decimal P2 = (((decimal.Parse(pDoorsxUser.Height.ToString()) / 2) - decimal.Parse("3,5")) / 2) + decimal.Parse("3,5");
+                pDoorsxUser.HingePositions.Position2 = P2.ToString().Replace(',', '.');
+                decimal P3 = decimal.Parse(pDoorsxUser.Height.ToString()) / 2;
+                pDoorsxUser.HingePositions.Position3 = P3.ToString().Replace(',', '.');
+
+                decimal P4 = ((((decimal.Parse(pDoorsxUser.Height.ToString()) / 2) - decimal.Parse("3,5")) / 2) + decimal.Parse("3,5")) - decimal.Parse(pDoorsxUser.Height.ToString());
+
+                pDoorsxUser.HingePositions.Position4 = P4.ToString().Replace(',', '.');
+                decimal P5 = decimal.Parse(pDoorsxUser.Height.ToString()) - decimal.Parse("3,5");
+                pDoorsxUser.HingePositions.Position5 = P5.ToString().Replace(',', '.');
+
+            }
+              
+                   return pDoorsxUser.HingePositions;
         }
 
         public ActionResult InsertDoorsxUser(DoorsxUser pDoorsxUser, HingePositions HingeP, Order Ord)
@@ -453,7 +1133,6 @@ namespace VenusDoors.Controllers
                         UpdateOrderExist(item, pDoorsxUser, Ord);
                         pDoorsxUser.CreatorUser = userID;
                         pDoorsxUser.ModificationUser = userID;
-                        pDoorsxUser.CreationDate = DateTime.Now;
                         pDoorsxUser.ModificationDate = DateTime.Now;
                         pDoorsxUser.HingePositions = newhp;
                         pDoorsxUser.Order = item;

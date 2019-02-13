@@ -92,8 +92,8 @@ namespace DataAccess
         public int InsertHingePositions(HingePositions pHingePositions)
         {
             string sql = @"[spInsertHingePositions] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}'";
-            sql = string.Format(sql, pHingePositions.Position1, pHingePositions.Position2, pHingePositions.Position3, pHingePositions.Position4, pHingePositions.Position5, pHingePositions.Status.Id, pHingePositions.CreationDate.ToString("yyyy-MM-dd"),
-                pHingePositions.CreatorUser, pHingePositions.ModificationDate.ToString("yyyy-MM-dd"), pHingePositions.ModificationUser);
+            sql = string.Format(sql, pHingePositions.Position1, pHingePositions.Position2, pHingePositions.Position3, pHingePositions.Position4, pHingePositions.Position5, pHingePositions.Status.Id, pHingePositions.CreationDate.ToString("yyyy-MM-dd HH:mm:ss"),
+                pHingePositions.CreatorUser, pHingePositions.ModificationDate.ToString("yyyy-MM-dd HH:mm:ss"), pHingePositions.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
