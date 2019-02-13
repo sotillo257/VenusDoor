@@ -166,7 +166,8 @@
 @section scripts{
     <script>
     var urlInsertInsertVerticalDivisions = '@Url.Action("InsertVerticalDivisions", "Masters")';
-    var urlUpdateVerticalDivisions = '@Url.Action("UpdateVerticalDivisions", "Masters")';
+        var urlUpdateVerticalDivisions = '@Url.Action("UpdateVerticalDivisions", "Masters")';
+        var listVD = JSON.parse('@Html.Raw(ViewBag.ListVerticalDivisions)');
     </script>
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>

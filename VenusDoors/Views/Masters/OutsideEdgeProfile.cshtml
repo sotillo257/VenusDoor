@@ -168,7 +168,8 @@
 @section scripts{
     <script>
     var urlInsertOutsideEdgeProfile = '@Url.Action("InsertOutsideEdgeProfile", "Masters")';
-    var urlUpdateOutsideEdgeProfile = '@Url.Action("UpdateOutsideEdgeProfile", "Masters")';
+        var urlUpdateOutsideEdgeProfile = '@Url.Action("UpdateOutsideEdgeProfile", "Masters")';
+        var listOEP = JSON.parse('@Html.Raw(ViewBag.ListOutsideEdgeProfile)');
     </script>
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>

@@ -220,7 +220,8 @@
 @section scripts{
     <script>
     var urlInsertOrder = '@Url.Action("InsertOrder", "Masters")';
-    var urlUpdateOrder = '@Url.Action("UpdateOrder", "Masters")';
+        var urlUpdateOrder = '@Url.Action("UpdateOrder", "Masters")';
+        var listORDER = JSON.parse('@Html.Raw(ViewBag.ListOrder)');
     </script>
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>

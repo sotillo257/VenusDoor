@@ -329,7 +329,8 @@
 @section scripts{
     <script type="text/javascript">
     var urlInsertDoorsPrices = '@Url.Action("InsertDoorsPrices", "Masters")';
-    var urlUpdateDoorPrice = '@Url.Action("UpdateDoorPrice", "Masters")';
+        var urlUpdateDoorPrice = '@Url.Action("UpdateDoorPrice", "Masters")';
+        var listDoorP = JSON.parse('@Html.Raw(ViewBag.ListDoorsPrices)');
     </script>
 @Scripts.Render("~/Scripts/js/Master.DoorsPrice.js")
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
