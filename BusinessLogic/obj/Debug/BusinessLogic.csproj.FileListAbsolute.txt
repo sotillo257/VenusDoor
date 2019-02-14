@@ -75,3 +75,5 @@ C:\Users\jesus\Source\Repos\copia venus 333\BusinessLogic\bin\Debug\MetodosDB.pd
 C:\Users\jesus\Source\Repos\copia venus 333\BusinessLogic\obj\Debug\BusinessLogic.csprojResolveAssemblyReference.cache
 C:\Users\jesus\Source\Repos\copia venus 333\BusinessLogic\obj\Debug\BusinessLogic.dll
 C:\Users\jesus\Source\Repos\copia venus 333\BusinessLogic\obj\Debug\BusinessLogic.pdb
+C:\Users\Lenovo\Source\Repos\VenusDoor\BusinessLogic\bin\Debug\ExcelDataReader.dll
+C:\Users\Lenovo\Source\Repos\VenusDoor\BusinessLogic\bin\Debug\ExcelDataReader.xml
