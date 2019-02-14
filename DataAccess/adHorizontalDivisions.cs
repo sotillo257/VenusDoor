@@ -84,8 +84,8 @@ namespace DataAccess
         public int InsertHorizontalDivisions(HorizontalDivisions pHorizontalDivisions)
         {
             string sql = @"[spInsertHorizontalDivisions] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}'";
-            sql = string.Format(sql, pHorizontalDivisions.Quantity, pHorizontalDivisions.Status.Id, pHorizontalDivisions.CreationDate.ToString("yyyy-MM-dd"),
-                pHorizontalDivisions.CreatorUser, pHorizontalDivisions.ModificationDate.ToString("yyyy-MM-dd"), pHorizontalDivisions.ModificationUser);
+            sql = string.Format(sql, pHorizontalDivisions.Quantity, pHorizontalDivisions.Status.Id, pHorizontalDivisions.CreationDate.ToString("yyyyMMdd"),
+                pHorizontalDivisions.CreatorUser, pHorizontalDivisions.ModificationDate.ToString("yyyyMMdd"), pHorizontalDivisions.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -99,7 +99,7 @@ namespace DataAccess
         public void UpdateHorizontalDivisions(HorizontalDivisions pHorizontalDivisions)
         {
             string sql = @"[spUpdateInsideEdgeProfile] '{0}', '{1}', '{2}', '{3}', '{4}'";
-            sql = string.Format(sql, pHorizontalDivisions.Id, pHorizontalDivisions.Quantity, pHorizontalDivisions.Status.Id, pHorizontalDivisions.ModificationDate.ToString("yyyy-MM-dd"),
+            sql = string.Format(sql, pHorizontalDivisions.Id, pHorizontalDivisions.Quantity, pHorizontalDivisions.Status.Id, pHorizontalDivisions.ModificationDate.ToString("yyyyMMdd"),
                 pHorizontalDivisions.ModificationUser);
             try
             {

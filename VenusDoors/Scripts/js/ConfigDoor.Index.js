@@ -777,11 +777,8 @@ $(document).ready(function () {
             LlammarModal("Danger", "Error: Max is 42 inches", " ");
             Width = 42;
             $('.iptWidth').val(Width);
-            GetPrices();
-           
-           
+            GetPrices();        
         }
-        GetPrices
     });
 
     $(document).on('change', '.Profile', function () {

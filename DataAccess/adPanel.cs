@@ -84,8 +84,8 @@ namespace DataAccess
         public int InsertPanel(Panel pPanel)
         {
             string sql = @"[spInsertPanel] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}'";
-            sql = string.Format(sql, pPanel.Description, pPanel.Status.Id, pPanel.CreationDate.ToString("yyyy-MM-dd"),
-                pPanel.CreatorUser, pPanel.ModificationDate.ToString("yyyy-MM-dd"), pPanel.ModificationUser);
+            sql = string.Format(sql, pPanel.Description, pPanel.Status.Id, pPanel.CreationDate.ToString("yyyyMMdd"),
+                pPanel.CreatorUser, pPanel.ModificationDate.ToString("yyyyMMdd"), pPanel.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -99,7 +99,7 @@ namespace DataAccess
         public void UpdatePanel(Panel pPanel)
         {
             string sql = @"[spUpdatePanel] '{0}', '{1}', '{2}', '{3}', '{4}'";
-            sql = string.Format(sql,pPanel.Id, pPanel.Description, pPanel.Status.Id, pPanel.ModificationDate.ToString("yyyy-MM-dd"),
+            sql = string.Format(sql,pPanel.Id, pPanel.Description, pPanel.Status.Id, pPanel.ModificationDate.ToString("yyyyMMdd"),
                 pPanel.ModificationUser);
             try
             {

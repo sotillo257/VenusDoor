@@ -167,7 +167,8 @@
 @section scripts{
     <script>
     var urlInsertPanel = '@Url.Action("InsertPanel", "Masters")';
-    var urlUpdatePanel = '@Url.Action("UpdatePanel", "Masters")';
+        var urlUpdatePanel = '@Url.Action("UpdatePanel", "Masters")';
+        var listPal = JSON.parse('@Html.Raw(ViewBag.ListPanel)');
     </script>
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>

@@ -138,8 +138,8 @@ namespace DataAccess
             decimal tax = Convert.ToDecimal(pOrder.Tax);
             decimal total = Convert.ToDecimal(pOrder.Total);
             string sql = @"[spInsertOrder] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}'";
-            sql = string.Format(sql, pOrder.User.Id, pOrder.Quantity, subtotal.ToString().Replace(',', '.'), tax.ToString().Replace(',', '.'), total.ToString().Replace(',', '.'), pOrder.Type.Id, pOrder.Status.Id, pOrder.CreationDate.ToString("yyyy-MM-dd HH:mm:ss"),
-                pOrder.CreatorUser, pOrder.ModificationDate.ToString("yyyy-MM-dd HH:mm:ss"), pOrder.ModificationUser);
+            sql = string.Format(sql, pOrder.User.Id, pOrder.Quantity, subtotal.ToString().Replace(',', '.'), tax.ToString().Replace(',', '.'), total.ToString().Replace(',', '.'), pOrder.Type.Id, pOrder.Status.Id, pOrder.CreationDate.ToString("yyyyMMdd HH:mm:ss"),
+                pOrder.CreatorUser, pOrder.ModificationDate.ToString("yyyyMMdd HH:mm:ss"), pOrder.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -157,7 +157,7 @@ namespace DataAccess
             decimal total = Convert.ToDecimal(pOrder.Total);
             string sql = @"[spUpdateOrder] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}'";
 
-            sql = string.Format(sql, pOrder.Id, pOrder.User.Id, pOrder.Quantity, subtotal.ToString().Replace(',', '.'), tax.ToString().Replace(',', '.'), total.ToString().Replace(',', '.'), pOrder.Type.Id, pOrder.Status.Id, pOrder.ModificationDate.ToString("yyyy-MM-dd HH:mm:ss"),
+            sql = string.Format(sql, pOrder.Id, pOrder.User.Id, pOrder.Quantity, subtotal.ToString().Replace(',', '.'), tax.ToString().Replace(',', '.'), total.ToString().Replace(',', '.'), pOrder.Type.Id, pOrder.Status.Id, pOrder.ModificationDate.ToString("yyyyMMdd HH:mm:ss"),
                 pOrder.ModificationUser);
             try
             {

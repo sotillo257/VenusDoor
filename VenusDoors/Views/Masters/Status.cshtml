@@ -166,20 +166,11 @@
 @section scripts{
     <script>
     var urlInsertStatus = '@Url.Action("InsertStatus", "Masters")';
-    var urlUpdateStatus = '@Url.Action("UpdateStatus", "Masters")';
+        var urlUpdateStatus = '@Url.Action("UpdateStatus", "Masters")';
+        var listSTS = JSON.parse('@Html.Raw(ViewBag.ListStatus)');
     </script>
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>
     <script src="~/Content/lib/select2/js/select2.min.js"></script>
     @Scripts.Render("~/Scripts/js/Master.Status.js")
-    <script type="text/javascript">
-
-        $(document).ready(function () {
-            var listSTS = JSON.parse('@Html.Raw(ViewBag.ListStatus)');
-            
-
-
-        });
-
-    </script>
 }

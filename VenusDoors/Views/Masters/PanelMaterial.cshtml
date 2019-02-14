@@ -169,7 +169,8 @@
 @section scripts{
     <script>
     var urlInsertPanelMaterial = '@Url.Action("InsertPanelMaterial", "Masters")';
-    var urlUpdatePanelMaterial = '@Url.Action("UpdatePanelMaterial", "Masters")';
+        var urlUpdatePanelMaterial = '@Url.Action("UpdatePanelMaterial", "Masters")';
+        var listPMa = JSON.parse('@Html.Raw(ViewBag.ListPanelMaterial)');
     </script>
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>

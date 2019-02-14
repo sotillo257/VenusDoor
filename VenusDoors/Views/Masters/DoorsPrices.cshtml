@@ -29,7 +29,7 @@
         </div>
         <div class="table-wrapper">
             <div id="datatable1_wrapper" class="dataTables_wrapper no-footer">
-                <table style="width: 100%;" id="datatable1" class="table display responsive nowrap dataTable no-footer dtr-inline" role="grid" aria-describedby="datatable1_info">
+                <table style="width: 100%;" id="datatable1" class="datatable1 table display responsive nowrap dataTable no-footer dtr-inline" role="grid" aria-describedby="datatable1_info">
                         <thead>
                             <tr>
                                 <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="First name: activate to sort column ascending">Id</th>
@@ -329,7 +329,8 @@
 @section scripts{
     <script type="text/javascript">
     var urlInsertDoorsPrices = '@Url.Action("InsertDoorsPrices", "Masters")';
-    var urlUpdateDoorPrice = '@Url.Action("UpdateDoorPrice", "Masters")';
+        var urlUpdateDoorPrice = '@Url.Action("UpdateDoorPrice", "Masters")';
+        var listDoorP = JSON.parse('@Html.Raw(ViewBag.ListDoorsPrices)');
     </script>
 @Scripts.Render("~/Scripts/js/Master.DoorsPrice.js")
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>

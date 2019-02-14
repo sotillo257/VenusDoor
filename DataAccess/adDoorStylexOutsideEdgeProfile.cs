@@ -86,8 +86,8 @@ namespace DataAccess
         public int InsertDoorStylexOutsideEdgeProfile(DoorStylexOutsideEdgeProfile pDoorStylexOutsideEdgeProfile)
         {
             string sql = @"[spInsertDoorStylexOutsideEdgeProfile] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}','{6}'";
-            sql = string.Format(sql, pDoorStylexOutsideEdgeProfile.DoorStyle.Id, pDoorStylexOutsideEdgeProfile.OutsideEdgeProfile.Id, pDoorStylexOutsideEdgeProfile.Status.Id, pDoorStylexOutsideEdgeProfile.CreationDate.ToString("yyyy-MM-dd"),
-                pDoorStylexOutsideEdgeProfile.CreatorUser, pDoorStylexOutsideEdgeProfile.ModificationDate.ToString("yyyy-MM-dd"), pDoorStylexOutsideEdgeProfile.ModificationUser);
+            sql = string.Format(sql, pDoorStylexOutsideEdgeProfile.DoorStyle.Id, pDoorStylexOutsideEdgeProfile.OutsideEdgeProfile.Id, pDoorStylexOutsideEdgeProfile.Status.Id, pDoorStylexOutsideEdgeProfile.CreationDate.ToString("yyyyMMdd"),
+                pDoorStylexOutsideEdgeProfile.CreatorUser, pDoorStylexOutsideEdgeProfile.ModificationDate.ToString("yyyyMMdd"), pDoorStylexOutsideEdgeProfile.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);

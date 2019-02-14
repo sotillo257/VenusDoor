@@ -6,6 +6,21 @@
     Model.Order ord = ViewBag.LastOrder;
 }
 
+<style>
+
+    .orderreff{
+    background: #007d69;
+    color: #fff!important;
+    border-radius: 2px;
+    border: solid 1px #01483d;
+    padding: 5px;
+    }
+
+    .orderreff:hover{
+        cursor:pointer;
+        background:#014d41;
+    }
+</style>
 
 <div class="br-pageheader pd-y-15 pd-l-20">
     <nav class="breadcrumb pd-0 mg-0 tx-12">
@@ -32,14 +47,15 @@
                         <div class="card-header bg-transparent pd-20">
                             <h6 class="card-title tx-uppercase tx-12 mg-b-0">Status of recent orders</h6>
                         </div><!-- card-header -->
-                        <table class="table table-responsive mg-b-0 tx-12" id="ordenestable">
+                        <table style="width: 100%;" id="datatable1" class="table display responsive nowrap dataTable no-footer dtr-inline" role="grid" aria-describedby="datatable1_info">
                             <thead>
-                                <tr class="tx-10">
+                                <tr>
                                     <th class="pd-y-5">Reference number</th>
                                     <th class="pd-y-5">Number of items</th>
                                     <th class="pd-y-5">Total</th>
                                     <th class="pd-y-5">Status</th>
                                     <th class="pd-y-5">Date</th>
+                                    <th style="text-align:center" class="pd-y-5"><i class="fa fa-flash"></i></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -51,37 +67,37 @@
                                 }
                                 else {
                                     foreach (Model.Order ordenes in ViewBag.ListO)
-                                    {                                        
-                                            <tr>
-                                                <td class="pd-l-20">
-                                                    
-                                                    <a class="orderreff" data-id="@ordenes.Id" title="Click here for more details of your order"><span>#</span>@ordenes.Id</a>
-                                                </td>
-                                                <td>@ordenes.Quantity</td>
-                                                <td class="tx-12">
-                                                    <span>$</span>@ordenes.Total
-                                                </td>
-                                                <td class="tx-12">
-                                                    @if (ordenes.Status.Id == 4)
-                                                    { <span class="square-8 bg-success mg-r-5 rounded-circle"></span> }
-                                                    else if (ordenes.Status.Id == 8)
-                                                    { <span class="square-8 bg-teal mg-r-5 rounded-circle"></span> }
-                                                    else if (ordenes.Status.Id == 9)
-                                                    { <span class="square-8 bg-primary mg-r-5 rounded-circle"></span> }
-                                                    else
-                                                    { <span class="square-8 bg-warning mg-r-5 rounded-circle"></span> }
-                                                    @ordenes.Status.Description
-                                                </td>
-                                                <td>@ordenes.ModificationDate</td>
-                                            </tr>                                        
+                                    {
+                                        <tr>
+                                            <td class="pd-l-20">@ordenes.Id</td>
+                                            <td>@ordenes.Quantity</td>
+                                            <td class="tx-12">
+                                                <span>$</span>@ordenes.Total
+                                            </td>
+                                            <td class="tx-12">
+                                                @if (ordenes.Status.Id == 4)
+                                                { <span class="square-8 bg-success mg-r-5 rounded-circle"></span> }
+                                                else if (ordenes.Status.Id == 8)
+                                                { <span class="square-8 bg-teal mg-r-5 rounded-circle"></span> }
+                                                else if (ordenes.Status.Id == 9)
+                                                { <span class="square-8 bg-primary mg-r-5 rounded-circle"></span> }
+                                                else
+                                                { <span class="square-8 bg-warning mg-r-5 rounded-circle"></span> }
+                                                @ordenes.Status.Description
+                                            </td>
+                                            <td>@ordenes.ModificationDate</td>
+                                            <td class="">
+                                                <center>
+                                                    <a class="orderreff" data-id="@ordenes.Id" title="Click here for more details of your order">
+                                                        <i class="fa fa-list"></i>
+                                                    </a>
+                                                </center>
+                                            </td>
+                                        </tr>
                                     }
                                 }
-                                
                             </tbody>
                         </table>
-                        <div class="card-footer tx-12 pd-y-15 bg-transparent">
-                            <a href=""><i class="fa fa-angle-down mg-r-5"></i>View All Transaction History</a>
-                        </div><!-- card-footer -->
                     </div><!-- card -->
                 </div><!-- col-6 -->
             </div>
@@ -172,64 +188,62 @@ else
         <div class="br-pagebody pd-x-20 pd-sm-x-30">
             <div class="row row-sm mg-t-20">
                 <div class="col-lg-12">
-                    <div class="table-wrapper">
-                        <div id="datatable1_wrapper" class="dataTables_wrapper no-footer">
-                            <div class="card-header bg-transparent pd-20">
-                                <h6 class="card-title tx-uppercase tx-12 mg-b-0">Status of recent orders</h6>
-                            </div><!-- card-header -->
-                            <table style="width: 100%;" id="datatable1" class="table display responsive nowrap dataTable no-footer dtr-inline" role="grid" aria-describedby="datatable1_info">
-                                <thead>
-                                    <tr>
-                                        <th class="pd-y-5">Reference number</th>
-                                        <th class="pd-y-5">Number of items</th>
-                                        <th class="pd-y-5">Total</th>
-                                        <th class="pd-y-5">Status</th>
-                                        <th class="pd-y-5">Date</th>
-                                        <th class="pd-y-5"><i class="fa fa-flash"></i></th>
+                    <div class="card shadow-base bd-0">
+                        <div class="card-header bg-transparent pd-20">
+                            <h6 class="card-title tx-uppercase tx-12 mg-b-0">Status of recent orders</h6>
+                        </div><!-- card-header -->
+                        <table style="width: 100%;" id="datatable1" data-page-length="5" class="table display responsive nowrap dataTable no-footer dtr-inline" role="grid" aria-describedby="datatable1_info">
+                            <thead>
+                                <tr>
+                                    <th class="pd-y-5">Reference number</th>
+                                    <th class="pd-y-5">Number of items</th>
+                                    <th class="pd-y-5">Total</th>
+                                    <th class="pd-y-5">Status</th>
+                                    <th class="pd-y-5">Date</th>
+                                    <th style="text-align:center" class="pd-y-5"><i class="fa fa-flash"></i></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (ViewBag.ListO == null)
+                                {
+                                    <tr class="odd">
+                                        <td valign="top" colspan="10" class="dataTables_empty">There is no record of orders.</td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    @if (ViewBag.ListO == null)
+                                }
+                                else {
+                                    foreach (Model.Order ordenes in ViewBag.ListO)
                                     {
-                                        <tr class="odd">
-                                            <td valign="top" colspan="10" class="dataTables_empty">There is no record of orders.</td>
+                                        <tr>
+                                            <td class="pd-l-20">@ordenes.Id</td>
+                                            <td>@ordenes.Quantity</td>
+                                            <td class="tx-12">
+                                                <span>$</span>@ordenes.Total
+                                            </td>
+                                            <td class="tx-12">
+                                                @if (ordenes.Status.Id == 4)
+                                                { <span class="square-8 bg-success mg-r-5 rounded-circle"></span> }
+                                                else if (ordenes.Status.Id == 8)
+                                                { <span class="square-8 bg-teal mg-r-5 rounded-circle"></span> }
+                                                else if (ordenes.Status.Id == 9)
+                                                { <span class="square-8 bg-primary mg-r-5 rounded-circle"></span> }
+                                                else
+                                                { <span class="square-8 bg-warning mg-r-5 rounded-circle"></span> }
+                                                @ordenes.Status.Description
+                                            </td>
+                                            <td>@ordenes.ModificationDate</td>
+                                            <td class="">
+                                                <center>
+                                                    <a class="orderreff" data-id="@ordenes.Id" title="Click here for more details of your order">
+                                                        <i class="fa fa-list"></i>
+                                                    </a>
+                                                </center>
+                                            </td>
                                         </tr>
                                     }
-                                    else {
-                                        foreach (Model.Order ordenes in ViewBag.ListO)
-                                        {
-                                            <tr>
-                                                <td class="pd-l-20">@ordenes.Id</td>
-                                                <td>@ordenes.Quantity</td>
-                                                <td class="tx-12">
-                                                    <span>$</span>@ordenes.Total
-                                                </td>
-                                                <td class="tx-12">
-                                                    @if (ordenes.Status.Id == 4)
-                                                    { <span class="square-8 bg-success mg-r-5 rounded-circle"></span> }
-                                                    else if (ordenes.Status.Id == 8)
-                                                    { <span class="square-8 bg-teal mg-r-5 rounded-circle"></span> }
-                                                    else if (ordenes.Status.Id == 9)
-                                                    { <span class="square-8 bg-primary mg-r-5 rounded-circle"></span> }
-                                                    else
-                                                    { <span class="square-8 bg-warning mg-r-5 rounded-circle"></span> }
-                                                    @ordenes.Status.Description
-                                                </td>
-                                                <td>@ordenes.ModificationDate</td>
-                                                <td class="">
-                                                    <center>
-                                                        <a class="orderreff" data-id="@ordenes.Id" title="Click here for more details of your order" class="Modificar btn btn-primary btn-icon">
-                                                            <div><i class="fa fa-edit"></i></div>
-                                                        </a>
-                                                    </center>
-                                                </td>
-                                            </tr>
-                                        }
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
-                    </div><!-- table-wrapper -->
+                                }
+                            </tbody>
+                        </table>
+                    </div><!-- card -->
                 </div><!-- col-6 -->
             </div>
         </div>
@@ -261,6 +275,7 @@ else
         'use strict';
 
         $('#datatable1').DataTable({
+            ordering: false,
             responsive: true,
             language: {
                 searchPlaceholder: 'Search...',
@@ -278,15 +293,6 @@ else
         // Select2
         $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
 
-    });
-
-    $(document).ready(function () {
-        $('#developers').pageMe({
-            pagerSelector: '#developer_page',
-            showPrevNext: true,
-            hidePageNumbers: false,
-            perPage: 3
-        });
     });
 
 </script>

@@ -126,7 +126,7 @@ namespace DataAccess
                 pDoors.Preparation.Id, pDoors.Join.Id, pDoors.OutsideEdgeProfile.Id, 
                 pDoors.InsideEdgeProfile.Id, pDoors.VerticalDivisions.Id, pDoors.HorizontalDivisions.Id, pDoors.HingeDirection.Id, 
                 pDoors.HingePositions.Id, (pDoors.isDrill == true) ? 1 : 0, pDoors.Width.ToString().Replace(',', '.'), pDoors.Height.ToString().Replace(',', '.'), (pDoors.IsOpeningMeasurement == true) ? 1 : 0, 
-                pDoors.Status.Id, pDoors.CreationDate.ToString("yyyy-MM-dd"), pDoors.CreatorUser, pDoors.ModificationDate.ToString("yyyy-MM-dd"),
+                pDoors.Status.Id, pDoors.CreationDate.ToString("yyyyMMdd"), pDoors.CreatorUser, pDoors.ModificationDate.ToString("yyyyMMdd"),
                 pDoors.ModificationUser, pDoors.Picture, pDoors.ProfilePicture, pDoors.Panel.Id, pDoors.PanelMaterial.Id);
             try
             {
@@ -145,7 +145,7 @@ namespace DataAccess
                 pDoors.Preparation.Id, pDoors.Join.Id, pDoors.OutsideEdgeProfile.Id,
                 pDoors.InsideEdgeProfile.Id, pDoors.VerticalDivisions.Id, pDoors.HorizontalDivisions.Id, pDoors.HingeDirection.Id,
                 pDoors.HingePositions.Id, pDoors.isDrill, pDoors.Width.ToString().Replace(',', '.'), pDoors.Height.ToString().Replace(',', '.'), pDoors.IsOpeningMeasurement,
-                pDoors.Status.Id, pDoors.ModificationDate.ToString("yyyy-MM-dd"),
+                pDoors.Status.Id, pDoors.ModificationDate.ToString("yyyyMMdd"),
                 pDoors.ModificationUser, pDoors.Picture, pDoors.ProfilePicture, pDoors.Panel.Id, pDoors.PanelMaterial.Id);
             try
             {

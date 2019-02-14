@@ -84,8 +84,8 @@ namespace DataAccess
         public int InsertMaterial(Material pMaterial)
         {
             string sql = @"[spInsertMaterial] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}'";
-            sql = string.Format(sql, pMaterial.Description, pMaterial.Status.Id, pMaterial.CreationDate.ToString("yyyy-MM-dd"),
-                pMaterial.CreatorUser, pMaterial.ModificationDate.ToString("yyyy-MM-dd"), pMaterial.ModificationUser);
+            sql = string.Format(sql, pMaterial.Description, pMaterial.Status.Id, pMaterial.CreationDate.ToString("yyyyMMdd"),
+                pMaterial.CreatorUser, pMaterial.ModificationDate.ToString("yyyyMMdd"), pMaterial.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -99,7 +99,7 @@ namespace DataAccess
         public void UpdateMaterial(Material pMaterial)
         {
             string sql = @"[spUpdateMaterial] '{0}', '{1}', '{2}', '{3}', '{4}'";
-            sql = string.Format(sql,pMaterial.Id, pMaterial.Description, pMaterial.Status.Id, pMaterial.ModificationDate.ToString("yyyy-MM-dd"),
+            sql = string.Format(sql,pMaterial.Id, pMaterial.Description, pMaterial.Status.Id, pMaterial.ModificationDate.ToString("yyyyMMdd"),
                 pMaterial.ModificationUser);
             try
             {
