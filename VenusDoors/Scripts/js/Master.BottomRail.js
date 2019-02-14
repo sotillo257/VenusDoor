@@ -17,21 +17,30 @@
         
     });
     $("#btInsert").on("click", function () {
+        $("#lblTitulo").text("Insert new");
+        $("#lblSubTitulo").text("You can create a new article below");
+        $("#btnModify").hide();
+        $("#inId").hide();
+        $("#btInsertBR").show();
         Limpiar();
     });
 
        
-        $(document).on('click', '.Modificar', function (event) {
+    $(document).on('click', '.Modificar', function (event) {
+        $("#btnModify").show();
+        $("#btInsertBR").hide();
+        $("#inId").show();
             Limpiar();
             for (var i = 0; i < listBTR.length; i++) {
                 if (listBTR[i].Id == $(this).attr('value')) {
-
+                    $("#lblTitulo").text("Modify");
+                    $("#lblSubTitulo").text("You can modify a new article below");
                     var aux = listBTR[i].Id;
                     var aux1 =listBTR[i].Status.Id;
                     var aux2 =listBTR[i].Description;
-                    $('#txtId').val(listBTR[i].Id);
-                    $('#IdStatus').val(listBTR[i].Status.Id);
-                    $('#txtDescription').val(listBTR[i].Description);
+                    $('#inId').val(listBTR[i].Id);
+                    $('#inStatus').val(listBTR[i].Status.Id);
+                    $('#inDescription').val(listBTR[i].Description);
                 }
             }
         });
@@ -65,10 +74,7 @@ function Limpiar() {
     $('#inDescription').removeClass("is-invalid");
     $('#inStatus').val(0);
     $('#inDescription').val("");
-    $('#IdStatus').removeClass("is-invalid");
-    $('#txtDescription').removeClass("is-invalid");
-    $('#IdStatus').val(0);
-    $('#txtDescription').val("");
+    $('#inId').val(0);
 
 }
 
@@ -81,12 +87,7 @@ function ValidarCamposVacios() {
         $('#inStatus').removeClass("is-invalid");
     }
 
-    if ($('#IdStatus').val() == 0) {
-        $('#IdStatus').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#IdStatus').removeClass("is-invalid");
-    }
+   
 
     if ($('#inDescription').val() == "") {
         $('#inDescription').addClass("is-invalid");
@@ -95,12 +96,7 @@ function ValidarCamposVacios() {
         $('#inDescription').removeClass("is-invalid");
     }
 
-    if ($('#txtDescription').val() == "") {
-        $('#txtDescription').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#txtDescription').removeClass("is-invalid");
-    }
+    
 
     return aux;
 }
@@ -111,9 +107,7 @@ function InsertBottomRail() {
     {
         pBottomRail: {
             Description: $("#inDescription").val(),
-            Status: { Id: $("#inStatus").val() },
-            CreatorUser: 6,
-            ModificationUser: 6,
+            Status: { Id: $("#inStatus").val() }
 
         }
     };
@@ -144,11 +138,9 @@ function UpdateBottomRail() {
     var datos =
     {
         uBottomRail: {
-            Id: $("#txtId").val(),
-            Description: $("#txtDescription").val(),
-            Status: { Id: $("#IdStatus").val() },
-            CreatorUser: 6,
-            ModificationUser: 6,
+            Id: $("#inId").val(),
+            Description: $("#inDescription").val(),
+            Status: { Id: $("#inStatus").val() }
 
         }
     };
@@ -191,7 +183,6 @@ function GetStatus() {
                 
                 }
                 $("#inStatus").empty().append(option);
-                $("#IdStatus").empty().append(option);
 
             }
             else {
