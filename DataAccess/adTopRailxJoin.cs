@@ -86,7 +86,7 @@ namespace DataAccess
         public int InsertTopRailxJoin(TopRailxJoin pTop)
         {
             string sql = @"[spInsertTopRailxJoin] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}','{6}'";
-            sql = string.Format(sql, pTop.TopRail.Id, pTop.Join.Id, pTop.Status.Id, pTop.CreationDate.ToString("yyyy-MM-dd"),
+            sql = string.Format(sql, pTop.TopRail.Id, pTop.Join.Id, pTop.Status.Id, pTop.CreationDate.ToString("yyyyMMdd"),
                 pTop.CreatorUser, pTop.ModificationDate.ToString("yyyy-MM-dd"), pTop.ModificationUser);
             try
             {
@@ -101,7 +101,7 @@ namespace DataAccess
         public void UpdateTopRailxJoin(TopRailxJoin pTop)
         {
             string sql = @"[spUpdateTopRailxJoin] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}'";
-            sql = string.Format(sql,pTop.Id, pTop.TopRail.Id, pTop.Join.Id, pTop.Status.Id, pTop.ModificationDate.ToString("yyyy-MM-dd"),
+            sql = string.Format(sql,pTop.Id, pTop.TopRail.Id, pTop.Join.Id, pTop.Status.Id, pTop.ModificationDate.ToString("yyyyMMdd"),
                 pTop.ModificationUser);
             try
             {

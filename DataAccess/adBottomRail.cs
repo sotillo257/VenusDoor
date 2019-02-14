@@ -84,8 +84,8 @@ namespace DataAccess
         public int InsertBottomRail(BottomRail pBottomRail)
         {
             string sql = @"[spInsertBottomRail] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}'";
-            sql = string.Format(sql, pBottomRail.Description, pBottomRail.Status.Id, pBottomRail.CreationDate.ToString("yyyy-MM-dd"),
-                pBottomRail.CreatorUser, pBottomRail.ModificationDate.ToString("yyyy-MM-dd"), pBottomRail.ModificationUser);
+            sql = string.Format(sql, pBottomRail.Description, pBottomRail.Status.Id, pBottomRail.CreationDate.ToString("yyyyMMdd"),
+                pBottomRail.CreatorUser, pBottomRail.ModificationDate.ToString("yyyyMMdd"), pBottomRail.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -99,7 +99,7 @@ namespace DataAccess
         public void UpdateBottomRail(BottomRail pBottomRail)
         {
             string sql = @"[spUpdateBottomRail] '{0}', '{1}', '{2}', '{3}', '{4}'";
-            sql = string.Format(sql,pBottomRail.Id, pBottomRail.Description, pBottomRail.Status.Id, pBottomRail.ModificationDate.ToString("yyyy-MM-dd"),
+            sql = string.Format(sql,pBottomRail.Id, pBottomRail.Description, pBottomRail.Status.Id, pBottomRail.ModificationDate.ToString("yyyyMMdd"),
                 pBottomRail.ModificationUser);
             try
             {

@@ -84,8 +84,8 @@ namespace DataAccess
         public int InsertVerticalDivisions(VerticalDivisions pVerticalDivisions)
         {
             string sql = @"[spInsertVerticalDivisions] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}'";
-            sql = string.Format(sql, pVerticalDivisions.Quantity, pVerticalDivisions.Status.Id, pVerticalDivisions.CreationDate.ToString("yyyy-MM-dd"),
-                pVerticalDivisions.CreatorUser, pVerticalDivisions.ModificationDate.ToString("yyyy-MM-dd"), pVerticalDivisions.ModificationUser);
+            sql = string.Format(sql, pVerticalDivisions.Quantity, pVerticalDivisions.Status.Id, pVerticalDivisions.CreationDate.ToString("yyyyMMdd"),
+                pVerticalDivisions.CreatorUser, pVerticalDivisions.ModificationDate.ToString("yyyyMMdd"), pVerticalDivisions.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -99,7 +99,7 @@ namespace DataAccess
         public void UpdateVerticalDivisions(VerticalDivisions pVerticalDivisions)
         {
             string sql = @"[spUpdateInsideEdgeProfile] '{0}', '{1}', '{2}', '{3}', '{4}'";
-            sql = string.Format(sql,pVerticalDivisions.Id, pVerticalDivisions.Quantity, pVerticalDivisions.Status.Id, pVerticalDivisions.ModificationDate.ToString("yyyy-MM-dd"),
+            sql = string.Format(sql,pVerticalDivisions.Id, pVerticalDivisions.Quantity, pVerticalDivisions.Status.Id, pVerticalDivisions.ModificationDate.ToString("yyyyMMdd"),
                 pVerticalDivisions.ModificationUser);
             try
             {

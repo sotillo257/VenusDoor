@@ -86,8 +86,8 @@ namespace DataAccess
         public int InsertTopRailxHorizontalDivisions(TopRailxHorizontalDivisions pTop)
         {
             string sql = @"[spInsertTopRailxHorizontalDivisions] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}','{6}'";
-            sql = string.Format(sql, pTop.TopRail.Id, pTop.HorizontalDivisions.Id, pTop.Status.Id, pTop.CreationDate.ToString("yyyy-MM-dd"),
-                pTop.CreatorUser, pTop.ModificationDate.ToString("yyyy-MM-dd"), pTop.ModificationUser);
+            sql = string.Format(sql, pTop.TopRail.Id, pTop.HorizontalDivisions.Id, pTop.Status.Id, pTop.CreationDate.ToString("yyyyMMdd"),
+                pTop.CreatorUser, pTop.ModificationDate.ToString("yyyyMMdd"), pTop.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -101,7 +101,7 @@ namespace DataAccess
         public void UpdateTopRailxHorizontalDivisions(TopRailxHorizontalDivisions pTop)
         {
             string sql = @"[spUpdateTopRailxHorizontalDivisions] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}'";
-            sql = string.Format(sql, pTop.Id, pTop.TopRail.Id, pTop.HorizontalDivisions.Id, pTop.Status.Id, pTop.ModificationDate.ToString("yyyy-MM-dd"),
+            sql = string.Format(sql, pTop.Id, pTop.TopRail.Id, pTop.HorizontalDivisions.Id, pTop.Status.Id, pTop.ModificationDate.ToString("yyyyMMdd"),
                 pTop.ModificationUser);
             try
             {

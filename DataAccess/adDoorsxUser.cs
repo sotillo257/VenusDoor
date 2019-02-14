@@ -138,7 +138,7 @@ namespace DataAccess
                 pDoorsxUser.Preparation.Id, pDoorsxUser.Join.Id, pDoorsxUser.OutsideEdgeProfile.Id, 
                 pDoorsxUser.InsideEdgeProfile.Id, pDoorsxUser.VerticalDivisions.Id, pDoorsxUser.HorizontalDivisions.Id, pDoorsxUser.HingeDirection.Id, 
                 pDoorsxUser.HingePositions.Id, (pDoorsxUser.isDrill == true) ? 1 : 0, pDoorsxUser.Width.ToString().Replace(',', '.'), pDoorsxUser.Height.ToString().Replace(',', '.'), (pDoorsxUser.IsOpeningMeasurement == true) ? 1 : 0, pDoorsxUser.Quantity, total.ToString().Replace(',', '.'), subto.ToString().Replace(',', '.'), pDoorsxUser.User.Id, 
-                pDoorsxUser.Status.Id, pDoorsxUser.CreationDate.ToString("yyyy-MM-dd HH:mm:ss"), pDoorsxUser.CreatorUser, pDoorsxUser.ModificationDate.ToString("yyyy-MM-dd HH:mm:ss"),
+                pDoorsxUser.Status.Id, pDoorsxUser.CreationDate.ToString("yyyyMMdd HH:mm:ss"), pDoorsxUser.CreatorUser, pDoorsxUser.ModificationDate.ToString("yyyyMMdd HH:mm:ss"),
                 pDoorsxUser.ModificationUser, pDoorsxUser.Picture, pDoorsxUser.ProfilePicture, pDoorsxUser.Panel.Id, pDoorsxUser.PanelMaterial.Id);
             try
             {
@@ -159,7 +159,7 @@ namespace DataAccess
                 pDoorsxUser.Preparation.Id, pDoorsxUser.Join.Id, pDoorsxUser.OutsideEdgeProfile.Id,
                 pDoorsxUser.InsideEdgeProfile.Id, pDoorsxUser.VerticalDivisions.Id, pDoorsxUser.HorizontalDivisions.Id, pDoorsxUser.HingeDirection.Id,
                 pDoorsxUser.HingePositions.Id, (pDoorsxUser.isDrill == true) ? 1 : 0, pDoorsxUser.Width.ToString().Replace(',', '.'), pDoorsxUser.Height.ToString().Replace(',', '.'), (pDoorsxUser.IsOpeningMeasurement == true) ? 1 : 0, pDoorsxUser.Quantity, total.ToString().Replace(',', '.'), subto.ToString().Replace(',', '.'), pDoorsxUser.User.Id,
-                pDoorsxUser.Status.Id, pDoorsxUser.ModificationDate.ToString("yyyy-MM-dd HH:mm:ss"), pDoorsxUser.ModificationUser, pDoorsxUser.Picture, pDoorsxUser.ProfilePicture, pDoorsxUser.Panel.Id, pDoorsxUser.PanelMaterial.Id);
+                pDoorsxUser.Status.Id, pDoorsxUser.ModificationDate.ToString("yyyyMMdd HH:mm:ss"), pDoorsxUser.ModificationUser, pDoorsxUser.Picture, pDoorsxUser.ProfilePicture, pDoorsxUser.Panel.Id, pDoorsxUser.PanelMaterial.Id);
             try
             {
                 _MB.EjecutarSQL(_CN, sql);
