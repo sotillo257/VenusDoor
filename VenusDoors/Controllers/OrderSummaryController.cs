@@ -361,8 +361,7 @@ namespace VenusDoors.Controllers
                "</tr>";
             }
             cuerpo += "</tbody></table>";
-            mail.Body = cuerpo;
-            
+            mail.Body = cuerpo;   
             mail.IsBodyHtml = true;
             SmtpServer.Port = 587;
             SmtpServer.Credentials = new System.Net.NetworkCredential("orders@venuscabinetdoors.com", "venusCD2019*");
