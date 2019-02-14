@@ -1133,6 +1133,7 @@ namespace VenusDoors.Controllers
                         UpdateOrderExist(item, pDoorsxUser, Ord);
                         pDoorsxUser.CreatorUser = userID;
                         pDoorsxUser.ModificationUser = userID;
+                        pDoorsxUser.CreationDate = DateTime.Now;
                         pDoorsxUser.ModificationDate = DateTime.Now;
                         pDoorsxUser.HingePositions = newhp;
                         pDoorsxUser.Order = item;
