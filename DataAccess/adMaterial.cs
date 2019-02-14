@@ -30,6 +30,8 @@ namespace DataAccess
                             Id = int.Parse(item["Id"].ToString()),
                             Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["DescripStatus"].ToString() },
                             Description = item["Description"].ToString(),
+                            PriceFlatPanel = decimal.Parse(item["PriceFlatPanel"].ToString()),
+                            PriceRaisedPanel = decimal.Parse(item["PriceRaisedPanel"].ToString()),
                             CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             ModificationDate = (item["ModificationDate"].ToString() != "") ? DateTime.Parse(item["ModificationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             CreatorUser = int.Parse(item["CreatorUser"].ToString()),
@@ -64,6 +66,8 @@ namespace DataAccess
                             Id = int.Parse(item["Id"].ToString()),
                             Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["DescripStatus"].ToString() },
                             Description = item["Description"].ToString(),
+                            PriceFlatPanel = decimal.Parse(item["PriceFlatPanel"].ToString()),
+                            PriceRaisedPanel = decimal.Parse(item["PriceRaisedPanel"].ToString()),
                             CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             ModificationDate = (item["ModificationDate"].ToString() != "") ? DateTime.Parse(item["ModificationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             CreatorUser = int.Parse(item["CreatorUser"].ToString()),
@@ -83,8 +87,8 @@ namespace DataAccess
 
         public int InsertMaterial(Material pMaterial)
         {
-            string sql = @"[spInsertMaterial] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}'";
-            sql = string.Format(sql, pMaterial.Description, pMaterial.Status.Id, pMaterial.CreationDate.ToString("yyyyMMdd"),
+            string sql = @"[spInsertMaterial] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}'";
+            sql = string.Format(sql, pMaterial.Description,pMaterial.PriceFlatPanel.ToString().Replace(',', '.'), pMaterial.PriceRaisedPanel.ToString().Replace(',', '.'), pMaterial.Status.Id, pMaterial.CreationDate.ToString("yyyyMMdd"),
                 pMaterial.CreatorUser, pMaterial.ModificationDate.ToString("yyyyMMdd"), pMaterial.ModificationUser);
             try
             {
@@ -98,8 +102,8 @@ namespace DataAccess
 
         public void UpdateMaterial(Material pMaterial)
         {
-            string sql = @"[spUpdateMaterial] '{0}', '{1}', '{2}', '{3}', '{4}'";
-            sql = string.Format(sql,pMaterial.Id, pMaterial.Description, pMaterial.Status.Id, pMaterial.ModificationDate.ToString("yyyyMMdd"),
+            string sql = @"[spUpdateMaterial] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}'";
+            sql = string.Format(sql,pMaterial.Id, pMaterial.Description, pMaterial.PriceFlatPanel.ToString().Replace(',', '.'), pMaterial.PriceRaisedPanel.ToString().Replace(',', '.'), pMaterial.Status.Id, pMaterial.ModificationDate.ToString("yyyyMMdd"),
                 pMaterial.ModificationUser);
             try
             {

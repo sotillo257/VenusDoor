@@ -34,6 +34,8 @@
                         <tr>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="First name: activate to sort column ascending">Id</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Description</th>
+                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Price flat panel</th>
+                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Price raised panel</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Status</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" style="text-align: center" aria-label="Last name: activate to sort column ascending"><i class="fa fa-flash"></i></th>
                         </tr>
@@ -44,6 +46,8 @@
                             <tr role="row" class="odd">
                                 <td tabindex="0" class="">@item.Id</td>
                                 <td class="">@item.Description</td>
+                                <td class="">@item.PriceFlatPanel</td>
+                                <td class="">@item.PriceRaisedPanel</td>
                                 <td class="">@item.Status.Description</td>
                                 <td class="">
                                     <center>
@@ -87,6 +91,14 @@
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="inDescription" style="margin-top: 25px;">Description: </label>
                                                 <input type="text" id="inDescription" name="Description" class="form-control" placeholder="">
+                                            </div><!-- form-group -->
+                                            <div class="col-xs-4 col-md-4">
+                                                <label for="inPriceFlatPanel" style="margin-top: 25px;">Price flat panel: </label>
+                                                <input type="text" id="inPriceFlatPanel" name="inPriceFlatPanel" class="form-control" placeholder="">
+                                            </div><!-- form-group -->
+                                            <div class="col-xs-4 col-md-4">
+                                                <label for="inPriceRaisedPanel" style="margin-top: 25px;">Price raised panel: </label>
+                                                <input type="text" id="inPriceRaisedPanel" name="inPriceRaisedPanel" class="form-control" placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="inStatus" style="margin-top: 25px;">Status: </label>
@@ -138,6 +150,14 @@
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="Template" style="margin-top: 25px;">Description: </label>
                                                 <input type="text" name="id" id="txtDescription" class="form-control" placeholder="">
+                                            </div><!-- form-group -->
+                                            <div class="col-xs-4 col-md-4">
+                                                <label for="txtPriceFlatPanel" style="margin-top: 25px;">Price flat panel: </label>
+                                                <input type="text" id="txtPriceFlatPanel" name="txtPriceFlatPanel" class="form-control" placeholder="">
+                                            </div><!-- form-group -->
+                                            <div class="col-xs-4 col-md-4">
+                                                <label for="txtPriceRaisedPanel" style="margin-top: 25px;">Price raised panel: </label>
+                                                <input type="text" id="txtPriceRaisedPanel" name="txtPriceRaisedPanel" class="form-control" placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="Template" style="margin-top: 25px;">Status: </label>
