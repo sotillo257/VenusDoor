@@ -1,10 +1,18 @@
 ﻿$(document).ready(function () {
 
     $("#btnInsertIEP").on("click", function () {
-        InsertInsideEdgeProfile();
+        if (ValidarCamposVacios()) {
+            InsertInsideEdgeProfile();
+        } else {
+            LlammarModal("Danger", "You must fill all the fields.", " ");
+        }
     });
     $("#btUpdateInsideEdgeProfile").on("click", function () {
-        UpdateInsideEdgeProfile();
+        if (ValidarCamposVacios()) {
+            UpdateInsideEdgeProfile();
+        } else {
+            LlammarModal("Danger", "You must fill all the fields.", " ");
+        }
     });
     $("#btInsert").on("click", function () {
         Limpiar();

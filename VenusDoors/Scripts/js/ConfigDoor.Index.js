@@ -803,7 +803,11 @@ $(document).ready(function () {
             contentType: false,
             processData: false,
             success: function (data) {
-
+                if (data == true) {
+                    LlammarModal("Succes", "Successful door creation!", "You can go to see your order and specify your purchase or, you can create another door.");
+                } else {
+                    LlammarModal("Danger", "An error occurred during the process.", "Check your internet connection I tried again");
+                }
                
             },
             error: function (err) {
