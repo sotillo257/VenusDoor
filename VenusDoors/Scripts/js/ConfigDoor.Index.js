@@ -828,68 +828,13 @@ $(document).on('change', '.eventChange', function () {
 
 
 function GetPrices() {
+
     var TR = $("#cbTopRail").val();
     var BR = $("#cbBottomRail").val();
     var RT;
     var H = parseFloat($("#iptHeight").val());
     var W = parseFloat($("#iptWidth").val());
-    if (TR == 1 && BR == 1) {
-        RT = 1;
-    }
-    else if (TR == 3 && BR == 3) {
-        RT = 2;
-    }
-    else {
-        RT = 3;
-    }
-    var datos =
-         {
-             RailThick: {
-                Id : RT,
-             },
-
-             pMaterial: {
-                 Id: $("#cbMaterial").val(),
-             },
-
-             pDoorstyle: {
-                 Id: $("#cbDoorStyle").val(),
-             }
-         };
-    $.ajax({
-        data: JSON.stringify(datos),
-        url: urlGetPrices,
-        dataType: "json",
-        cache: false,
-        type: 'POST',
-        async: false,
-        contentType: "application/json; charset=utf-8",
-        success: function (data) {
-            if (data != null) {
-               
-                for (var i = 0; i < data.length; i++) {
-                    
-                    var BP = data[i].BasePrice;
-                    $("#inputBP").val(BP);
-                    var ADDP = data[i].AdditionalSFPrice
-                    $("#inputADD").val(ADDP);
-                    var IC = ((((((H * W) / 12) / 12) - 1.5) * ADDP) + BP).toFixed(2);
-                    if (IC < BP) {
-                        $("#iptCost").val(BP);
-                    } else {
-                        $("#iptCost").val(IC);
-                    }
-                   
-                }
-            }
-            else {
-                LlammarModal("Danger", "Error obtaining price");
-            }
-        },
-        error: function (err) {
-            MensajeModal(msgErrorinterno, 5);
-        }
-    });
+    $("#iptCost").val(getPriceDoor($("#cbMaterial").val(), $("#cbPanel").val(), H, W, TR, BR));
 }
 
 function ValidateSession() {
@@ -1233,3 +1178,62 @@ function RaisedPanelDoor(Style) {
 
 }
  
+function getPriceDoor(pMaterial, pPanel, Height, width, pTopRail, pBottomRail) {
+    var precio = 0;
+    if (pPanel == 2)
+    {
+        if (pMaterial == 1)
+        {
+            precio = 11.83;
+        }
+        else if (pMaterial == 7)
+        {
+            precio = 10.04;
+        }
+        else if (pMaterial == 6)
+        {
+            precio = 9.51;
+        }
+        else if (pMaterial == 4 || pMaterial == 13)
+        {
+            precio = 10.49;
+        }
+    }
+    else if (pPanel == 5 || pPanel == 6)
+    {
+        if (pMaterial == 1)
+        {
+            precio = 10.89;
+        }
+        else if (pMaterial == 7)
+        {
+            precio = 9.31;
+        }
+        else if (pMaterial == 6)
+        {
+            precio = 8.93;
+        }
+        else if (pMaterial == 4 || pMaterial == 13)
+        {
+            precio = 9.66;
+        }
+    }
+
+    if (pTopRail == 3 || pBottomRail == 3)
+    {
+        precio = precio / 0.95;
+    }
+
+    var CostoPuerta = (((Height * width) / 12) / 12) * (precio * 2);
+    var CostoPuertaBase = precio * 2;
+    var Resultado = 0;
+    if (CostoPuerta < CostoPuertaBase)
+    {
+        Resultado = CostoPuertaBase;
+    }
+    else
+    {
+        Resultado = CostoPuerta;
+    }
+    return Resultado;
+}
