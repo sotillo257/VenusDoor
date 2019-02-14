@@ -254,24 +254,71 @@ namespace VenusDoors.Controllers
         }
 
         [HttpPost]
-        public ActionResult GetPricesDoor(RailThickness RailThick, Material pMaterial, Panel pPanel)
+        public decimal GetPricesDoor(Material pMaterial, Panel pPanel, decimal Height, decimal width, TopRail pTopRail, BottomRail pBottomRail)
         {
             try
             {
-                BusinessLogic.lnDoorsPrices _DP = new BusinessLogic.lnDoorsPrices();
-                List<DoorsPrices> xDoorsP = _DP.GetAllDoorsPrices();
-                List<DoorsPrices> xDP = xDoorsP.Where(x => x.RailThickness.Id == RailThick.Id && x.Material.Id == pMaterial.Id && x.DoorStyle.Id == pPanel.Id).ToList();
-                ViewBag.d = xDP;
-                //foreach (DoorsPrices i in ViewBag.d)
-                //{
-                //    System.Web.HttpContext.Current.Session["BasePrice"] = i.BasePrice;
-                //    System.Web.HttpContext.Current.Session["AddPrice"] = i.AdditionalSFPrice;
-                //}
-                return Json(xDP);
+                decimal precio = 0m;
+                if (pPanel.Id == 2)
+                {
+                    if (pMaterial.Id == 1)
+                    {
+                        precio = 11.83m;
+                    }
+                    else if (pMaterial.Id == 7)
+                    {
+                        precio = 10.04m;
+                    }
+                    else if (pMaterial.Id == 6)
+                    {
+                        precio = 9.51m;
+                    }
+                    else if (pMaterial.Id == 4 || pMaterial.Id == 13)
+                    {
+                        precio = 10.49m;
+                    }
+                }
+                else if (pPanel.Id == 5 || pPanel.Id == 6)
+                {
+                    if (pMaterial.Id == 1)
+                    {
+                        precio = 10.89m;
+                    }
+                    else if (pMaterial.Id == 7)
+                    {
+                        precio = 9.31m;
+                    }
+                    else if (pMaterial.Id == 6)
+                    {
+                        precio = 8.93m;
+                    }
+                    else if (pMaterial.Id == 4 || pMaterial.Id == 13)
+                    {
+                        precio = 9.66m;
+                    }
+                }
+
+                if (pTopRail.Id == 3 || pBottomRail.Id == 3)
+                {
+                    precio = precio / 0.95m;
+                }
+
+                decimal CostoPuerta = (((Height * width) / 12) / 12) * (precio * 2);
+                decimal CostoPuertaBase = precio * 2;
+                decimal Resultado = 0m;
+                if (CostoPuerta < CostoPuertaBase)
+                {
+                    Resultado = CostoPuertaBase;
+                }
+                else
+                {
+                    Resultado = CostoPuerta;
+                }
+                return Resultado;
             }
             catch
             {
-                return Json(false, JsonRequestBehavior.AllowGet);
+                throw;
             }
 
         }
@@ -297,7 +344,7 @@ namespace VenusDoors.Controllers
 
                 if (Session["UserID"] == null)                
                 {
-                    return Json(0);
+                    return Json(false);
                 }
                 else
                 {
@@ -350,6 +397,7 @@ namespace VenusDoors.Controllers
                                     isDrill = (reader[14].ToString() == "Drill")? true :false,
                                     HingeDirection = new HingeDirection() { Id = 0, Direction = reader[15].ToString(), },                                  
                                     IsOpeningMeasurement = (reader[16].ToString() == "Opening") ? true : false,
+                                    Quantity = int.Parse(reader[17].ToString()),
                                     Status = new Status() { Id = 1 },
                                     CreationDate = DateTime.Now,
                                     ModificationDate = DateTime.Now,
@@ -357,6 +405,7 @@ namespace VenusDoors.Controllers
                                     ModificationUser = (int)Session["UserID"],
                                     Picture = "",
                                     ProfilePicture = "",
+                                    User = new User() { Id = (int)Session["UserID"] }
 
                                 });
                             }
@@ -379,13 +428,13 @@ namespace VenusDoors.Controllers
                                 item.Material.Id = _listMateriale.Id;
                             }
                             BusinessLogic.lnTopRail _LNTopRail = new BusinessLogic.lnTopRail();
-                            var _listTopRail = _LNTopRail.GetAllTopRail().Where(x => x.Description.Trim() == item.TopRail.Description.Trim()).FirstOrDefault();
+                            var _listTopRail = _LNTopRail.GetAllTopRail().Where(x => x.Description.Trim() == item.TopRail.Description.Trim().Replace(',', '.')).FirstOrDefault();
                             if (_listTopRail != null)
                             {
                                 item.TopRail.Id = _listTopRail.Id;
                             }
                             BusinessLogic.lnBottomRail _LNBottomRail = new BusinessLogic.lnBottomRail();
-                            var _listBottomRail = _LNBottomRail.GetAllBottomRail().Where(x => x.Description.Trim() == item.BottomRail.Description.Trim()).FirstOrDefault();
+                            var _listBottomRail = _LNBottomRail.GetAllBottomRail().Where(x => x.Description.Trim() == item.BottomRail.Description.Trim().Replace(',','.')).FirstOrDefault();
                             if (_listBottomRail != null)
                             {
                                 item.BottomRail.Id = _listBottomRail.Id;
@@ -397,7 +446,7 @@ namespace VenusDoors.Controllers
                                 item.Panel.Id = _listPanel.Id;
                             }
                             BusinessLogic.lnPanelMaterial _LNPanelMaterial = new BusinessLogic.lnPanelMaterial();
-                            var _listPanelMaterial = _LNPanelMaterial.GetAllPanelMaterial().Where(x => x.Description.Trim() == item.Panel.Description.Trim()).FirstOrDefault();
+                            var _listPanelMaterial = _LNPanelMaterial.GetAllPanelMaterial().Where(x => x.Description.Trim() == item.PanelMaterial.Description.Trim()).FirstOrDefault();
                             if (_listPanelMaterial != null)
                             {
                                 item.PanelMaterial.Id = _listPanelMaterial.Id;
@@ -447,13 +496,20 @@ namespace VenusDoors.Controllers
 
                             item.HingePositions = CalcularPosicionHing(item);
                             item.ProfilePicture = BuscarProfilePicture(item.OutsideEdgeProfile.Id,item.InsideEdgeProfile.Id,item.Panel.Id);
+                            item.ItemCost = GetPricesDoor(item.Material, item.Panel, item.Height, item.Width, item.TopRail, item.BottomRail);
+                            item.Picture = BuscarDoorPicture(item);
 
-
-
-
+                            Order newOrder = new Order();
+                            newOrder.SubTotal = item.ItemCost * item.Quantity;
+                            item.SubTotal = newOrder.SubTotal;
+                             decimal Tx = 0.0825m;
+                            newOrder.Tax = newOrder.SubTotal * Tx;
+                            newOrder.Total = newOrder.SubTotal + newOrder.Tax;
+                          InsertarDoors(item,item.HingePositions, newOrder);
 
                         }
                         reader.Close();
+
                         
                         //reader.IsFirstRowAsColumnNames = true;
 
@@ -466,10 +522,10 @@ namespace VenusDoors.Controllers
             }
             catch (Exception ex)
             {
-                return Json(0);
+                return Json(false);
             }
 
-            return Json(1);
+            return Json(true);
 
         }
 
@@ -1037,29 +1093,21 @@ namespace VenusDoors.Controllers
                    return pDoorsxUser.HingePositions;
         }
 
-        public ActionResult InsertDoorsxUser(DoorsxUser pDoorsxUser, HingePositions HingeP, Order Ord)
-        {
-            if (Session["UserID"] == null)
-            {
-                return View();
-            }
-            else
+        public bool InsertarDoors(DoorsxUser pDoorsxUser, HingePositions HingeP, Order Ord) {
+            try
             {
                 BusinessLogic.lnOrder _LNOrder = new BusinessLogic.lnOrder();
                 BusinessLogic.lnHingePositions _LNHP = new BusinessLogic.lnHingePositions();
                 int userID = (int)Session["UserID"];
                 int idU = userID;
-               
+
                 var orderList = _LNOrder.GetOrderByUser(idU);
                 ViewBag.Listo = orderList;
                 Order item = ViewBag.Listo;
                 if (item.Status == null)
                 {
-                    try
-                    {
-                        
                         Order neworder = new Order()
-                        {                            
+                        {
                             User = new Model.User() { Id = userID },
                             Status = new Model.Status() { Id = 4 },
                             Type = new Model.Type() { Id = 1 },
@@ -1102,17 +1150,11 @@ namespace VenusDoors.Controllers
                         pDoorsxUser.User.Id = idU;
                         BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
                         var OrDoor = _LN.InsertDoorsxUser(pDoorsxUser);
-                        return Json(true, JsonRequestBehavior.AllowGet);
-                    }
-                    catch
-                    {
-                        return Json(false, JsonRequestBehavior.AllowGet);
-                    }
+                        return true;
+                    
                 }
                 else if (item.Status.Id == 4)
                 {
-                    try
-                    {
                         HingePositions newhp = new HingePositions()
                         {
                             Status = new Model.Status() { Id = 1 },
@@ -1141,17 +1183,10 @@ namespace VenusDoors.Controllers
 
                         BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
                         var updaOrDoor = (_LN.InsertDoorsxUser(pDoorsxUser));
-                        return Json(true, JsonRequestBehavior.AllowGet);
-                    }
-                    catch
-                    {
-                        return Json(false, JsonRequestBehavior.AllowGet);
-                    }
+                        return true;                    
                 }
                 else
                 {
-                    try
-                    {
                         Order neworder = new Order()
                         {
                             User = new Model.User() { Id = userID },
@@ -1195,14 +1230,27 @@ namespace VenusDoors.Controllers
                         pDoorsxUser.User.Id = idU;
                         BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
                         var OrDoor = _LN.InsertDoorsxUser(pDoorsxUser);
-                        return Json(true, JsonRequestBehavior.AllowGet);
-                    }
-                    catch
-                    {
-                        return Json(false, JsonRequestBehavior.AllowGet);
-                    }
-                }                
+                    return true;
 
+                }
+
+                
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public ActionResult InsertDoorsxUser(DoorsxUser pDoorsxUser, HingePositions HingeP, Order Ord)
+        {
+            if (Session["UserID"] == null)
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(InsertarDoors(pDoorsxUser, HingeP, Ord), JsonRequestBehavior.AllowGet);
             }
         }
 
