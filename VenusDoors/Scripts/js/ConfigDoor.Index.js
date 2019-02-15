@@ -1235,5 +1235,5 @@ function getPriceDoor(pMaterial, pPanel, Height, width, pTopRail, pBottomRail) {
     {
         Resultado = CostoPuerta;
     }
-    return Resultado;
+    return Resultado.toFixed(2);
 }

@@ -41,3 +41,5 @@ C:\Users\jesus\Source\Repos\copia venus 333\BusinessLogic\bin\Release\MetodosDB.
 C:\Users\jesus\Source\Repos\copia venus 333\BusinessLogic\obj\Release\BusinessLogic.csprojResolveAssemblyReference.cache
 C:\Users\jesus\Source\Repos\copia venus 333\BusinessLogic\obj\Release\BusinessLogic.dll
 C:\Users\jesus\Source\Repos\copia venus 333\BusinessLogic\obj\Release\BusinessLogic.pdb
+C:\Users\jesus\Source\Repos\copia venus 333\BusinessLogic\bin\Release\ExcelDataReader.dll
+C:\Users\jesus\Source\Repos\copia venus 333\BusinessLogic\bin\Release\ExcelDataReader.xml

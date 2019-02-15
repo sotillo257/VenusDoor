@@ -59,25 +59,33 @@ namespace VenusDoors.Controllers
                 return View();
             }
             else
-            {               
-                BusinessLogic.lnDoorsxUser _LND = new BusinessLogic.lnDoorsxUser();
-                int userID = (int)Session["UserID"];
-                int idU = userID;
-                if (ord.Status == null)
+            {
+                try
                 {
-                    return View();
+                    BusinessLogic.lnDoorsxUser _LND = new BusinessLogic.lnDoorsxUser();
+                    int userID = (int)Session["UserID"];
+                    int idU = userID;
+                    if (ord.Status == null)
+                    {
+                        return View();
+                    }
+                    else if (ord.Status.Id == 4)
+                    {
+                        BusinessLogic.lnOrder _LNO = new BusinessLogic.lnOrder();
+                        Order upptOrd = _LNO.GetOrderById(ord.Id);
+                        var xDoor = _LND.GetDoorsxUserById(itemID);
+                        var delete = _LND.DeleteDoorsxUser(itemID);
+                        UpdateOrderExist(xDoor, upptOrd);
+                        return Json(true, JsonRequestBehavior.AllowGet);
+                    }
+                    else
+                    {
+                        return View();
+                    }
                 }
-                else if (ord.Status.Id == 4)
+                catch
                 {
-                    BusinessLogic.lnOrder _LNO = new BusinessLogic.lnOrder();
-                    Order upptOrd = _LNO.GetOrderById(ord.Id);
-                    var xDoor = _LND.GetDoorsxUserById(itemID);
-                    UpdateOrderExist(xDoor, upptOrd);
-                    return Json(_LND.DeleteDoorsxUser(itemID));
-                }
-                else
-                {
-                    return View();
+                    return Json(false, JsonRequestBehavior.AllowGet);
                 }
             }         
         }
@@ -100,7 +108,12 @@ namespace VenusDoors.Controllers
                 decimal TotaltaxDoor = TaxRound + xDoor.SubTotal;
                 upptOrd.Total = upptOrd.Total - TotaltaxDoor;
                 upptOrd.ModificationDate = DateTime.Now;
-                if (upptOrd.Total == 0 && upptOrd.Quantity == 0)
+                BusinessLogic.lnDoorsxUser _LNDoorx = new BusinessLogic.lnDoorsxUser();
+                var searchDoors = _LNDoorx.GetAllDoorsxUser();
+                var DoorsByOrder = searchDoors.Where(x => x.Order.Id == upptOrd.Id).FirstOrDefault();
+                ViewBag.DoorsxOrder = DoorsByOrder;
+
+                if (ViewBag.DoorsxOrder == "" || ViewBag.DoorsxOrder == null)
                 {
                     return Json(_LNUPor.DeleteOrder(upptOrd.Id));
                 }
