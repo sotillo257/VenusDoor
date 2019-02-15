@@ -16,19 +16,27 @@
     });
 
     $("#btInsert").on("click", function () {
+        $("#lblTitulo").text("Insert new");
+        $("#lblSubTitulo").text("You can create a new article below");
+        $("#btUpdateHingeDirec").hide();
+        $("#btInsertHingeDirection").show();
         Limpiar();
     });
 
     $(document).on('click', '.Modificar', function (event) {
+        $("#btUpdateHingeDirec").show();
+        $("#btInsertHingeDirection").hide();
+        $("#lblTitulo").text("Modify");
+        $("#lblSubTitulo").text("You can modify a new article below");
         Limpiar();
         for (var i = 0; i < listHD.length; i++) {
             if (listHD[i].Id == $(this).attr('value')) {
                 var aux = listHD[i].Id;
                 var aux1 = listHD[i].Status.Id;
                 var aux2 = listHD[i].Direction;
-                $('#txtId').val(listHD[i].Id);
-                $('#txtDirection').val(listHD[i].Direction);
-                $('#IdStatus').val(listHD[i].Status.Id);
+                $('#inId').val(listHD[i].Id);
+                $('#inDirection').val(listHD[i].Direction);
+                $('#inStatus').val(listHD[i].Status.Id);
             }
         }
     });
@@ -56,17 +64,12 @@ $(function () {
 
 });
 function Limpiar() {
+    $('#inId').val(0);
     $('#inDirection').removeClass("is-invalid");
     $('#inDirection').val("");
 
     $('#inStatus').removeClass("is-invalid");
     $('#inStatus').val(0);
-
-    $('#txtDirection').removeClass("is-invalid");
-    $('#txtDirection').val("");
-
-    $('#IdStatus').removeClass("is-invalid");
-    $('#IdStatus').val(0);
 
 }
 
@@ -79,25 +82,11 @@ function ValidarCamposVacios() {
         $('#inStatus').removeClass("is-invalid");
     }
 
-    if ($('#IdStatus').val() == 0) {
-        $('#IdStatus').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#IdStatus').removeClass("is-invalid");
-    }
-
     if ($('#inDirection').val() == "") {
         $('#inDirection').addClass("is-invalid");
         aux = false;
     } else {
         $('#inDirection').removeClass("is-invalid");
-    }
-
-    if ($('#txtDirection').val() == "") {
-        $('#txtDirection').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#txtDirection').removeClass("is-invalid");
     }
 
     return aux;
@@ -110,8 +99,6 @@ function InserHingeDirection() {
         pHingeDirection: {
             Direction: $("#inDirection").val(),
             Status: { Id: $("#inStatus").val() },
-            CreatorUser: 6,
-            ModificationUser: 6,
 
         }
     };
@@ -142,11 +129,9 @@ function UpdateHingeDirection() {
     var datos =
     {
         uHingeDirection: {
-            Id: $("#txtId").val(),
-            Direction: $("#txtDirection").val(),
-            Status: { Id: $("#IdStatus").val() },
-            CreatorUser: 6,
-            ModificationUser: 6,
+            Id: $("#inId").val(),
+            Direction: $("#inDirection").val(),
+            Status: { Id: $("#inStatus").val() },
 
         }
     };

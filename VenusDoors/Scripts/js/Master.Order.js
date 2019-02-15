@@ -15,9 +15,17 @@
         }
     });
     $("#btInsert").on("click", function () {
+        $("#lblTitulo").text("Insert new");
+        $("#lblSubTitulo").text("You can create a new article below");
+        $("#btnUpdateOrder").hide();
+        $("#btInsertOrder").show();
         Limpiar();
     });
     $(document).on('click', '.Modificar', function (event) {
+        $("#btnUpdateOrder").show();
+        $("#btInsertOrder").hide();
+        $("#lblTitulo").text("Modify");
+        $("#lblSubTitulo").text("You can modify a new article below");
         Limpiar();
         for (var i = 0; i < listORDER.length; i++) {
             if (listORDER[i].Id == $(this).attr('value')) {
@@ -29,12 +37,12 @@
                 var aux4 = listORDER[i].Type.Id;
                 var aux5 = listORDER[i].Status.Id;
 
-                $('#txtId').val(listORDER[i].Id);
-                $('#cbUser').val(listORDER[i].User.Id);
-                $('#txtQuantity').val(listORDER[i].Quantity);
-                $('#txtTotal').val(listORDER[i].Total);
-                $('#IdType').val(listORDER[i].Type.Id);
-                $('#IdStatus').val(listORDER[i].Status.Id);
+                $('#inId').val(listORDER[i].Id);
+                $('#inUser').val(listORDER[i].User.Id);
+                $('#inQuantity').val(listORDER[i].Quantity);
+                $('#inTotal').val(listORDER[i].Total);
+                $('#inType').val(listORDER[i].Type.Id);
+                $('#inStatus').val(listORDER[i].Status.Id);
             }
         }
     });
@@ -63,7 +71,7 @@ $(function () {
 });
 
 function Limpiar() {
-    
+    $('#inId').val(0);
     $('#inUser').removeClass("is-invalid");
     $('#inUser').val(0);
 
@@ -79,22 +87,6 @@ function Limpiar() {
     $('#inStatus').removeClass("is-invalid");
     $('#inStatus').val(0);
 
-
-    $('#cbUser').removeClass("is-invalid");
-    $('#cbUser').val(0);
-
-    $('#txtQuantity').removeClass("is-invalid");
-    $('#txtQuantity').val("");
-
-    $('#txtTotal').removeClass("is-invalid");
-    $('#txtTotal').val("");
-
-    $('#IdType').removeClass("is-invalid");
-    $('#IdType').val(0);
-
-    $('#IdStatus').removeClass("is-invalid");
-    $('#IdStatus').val(0);
-
 }
 
 function ValidarCamposVacios() {
@@ -106,25 +98,11 @@ function ValidarCamposVacios() {
         $('#inUser').removeClass("is-invalid");
     }
 
-    if ($('#cbUser').val() == 0) {
-        $('#cbUser').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#cbUser').removeClass("is-invalid");
-    }
-
     if ($('#inQuantity').val() == "") {
         $('#inQuantity').addClass("is-invalid");
         aux = false;
     } else {
         $('#inQuantity').removeClass("is-invalid");
-    }
-
-    if ($('#txtQuantity').val() == "") {
-        $('#txtQuantity').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#txtQuantity').removeClass("is-invalid");
     }
 
     if ($('#inTotal').val() == "") {
@@ -134,13 +112,6 @@ function ValidarCamposVacios() {
         $('#inTotal').removeClass("is-invalid");
     }
 
-    if ($('#txtTotal').val() == "") {
-        $('#txtTotal').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#txtTotal').removeClass("is-invalid");
-    }
-
     if ($('#inType').val() == 0) {
         $('#inType').addClass("is-invalid");
         aux = false;
@@ -148,25 +119,11 @@ function ValidarCamposVacios() {
         $('#inType').removeClass("is-invalid");
     }
 
-    if ($('#IdType').val() == 0) {
-        $('#IdType').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#IdType').removeClass("is-invalid");
-    }
-
     if ($('#inStatus').val() == 0) {
         $('#inStatus').addClass("is-invalid");
         aux = false;
     } else {
         $('#inStatus').removeClass("is-invalid");
-    }
-
-    if ($('#IdStatus').val() == 0) {
-        $('#IdStatus').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#IdStatus').removeClass("is-invalid");
     }
 
     return aux;
@@ -182,8 +139,6 @@ function InsertOrder() {
             Total: $("#inTotal").val(),
             Type: { Id: $("#inType").val() },
             Status: { Id: $("#inStatus").val() },
-            CreatorUser: 6,
-            ModificationUser: 6,
 
         }
     };
@@ -214,14 +169,12 @@ function UpdateOrder() {
     var datos =
     {
         uOrder: {
-            Id: $("#txtId").val(),
-            User: { Id: $("#cbUser").val() },
-            Quantity: $("#txtQuantity").val(),
-            Total: $("#txtTotal").val(),
-            Type: { Id: $("#IdType").val() },
-            Status: { Id: $("#IdStatus").val() },
-            CreatorUser: 6,
-            ModificationUser: 6,
+            Id: $("#inId").val(),
+            User: { Id: $("#inUser").val() },
+            Quantity: $("#inQuantity").val(),
+            Total: $("#inTotal").val(),
+            Type: { Id: $("#inType").val() },
+            Status: { Id: $("#inStatus").val() },
 
         }
     };

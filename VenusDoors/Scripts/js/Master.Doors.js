@@ -16,35 +16,66 @@
         
     });
     $("#btInsert").on("click", function () {
+        $("#lblTitulo").text("Insert new");
+        $("#lblSubTitulo").text("You can create a new article below");
+        $("#btnUpdateDoors").hide();
+        $("#btInsertDoors").show();
         Limpiar();
     });
 
-        $(document).on('click', '.Modificar', function (event) {
+    $(document).on('click', '.Modificar', function (event) {
+        $("#btnUpdateDoors").show();
+        $("#btInsertDoors").hide();
+        $("#lblTitulo").text("Modify");
+        $("#lblSubTitulo").text("You can modify a new article below");
+        Limpiar();
             for (var i = 0; i < ListDoors.length; i++) {
-                Limpiar();
                 if (ListDoors[i].Id == $(this).attr('value')) {
-                    $('#txtId').val(ListDoors[i].Id);
-                    $('#cbDoorStyle').val(ListDoors[i].DoorStyle.Id);
-                    $('#cbMatarial').val(ListDoors[i].Material.Id);
-                    $('#cbTopRail').val(ListDoors[i].TopRail.Id);
-                    $('#cbBottomRail').val(ListDoors[i].BottomRail.Id);
-                    $('#cbPreparation').val(ListDoors[i].Preparation.Id);
-                    $('#cbJoin').val(ListDoors[i].Join.Id);
-                    $('#cbOutsideEdgeProfile').val(ListDoors[i].OutsideEdgeProfile.Id);
-                    $('#cbInsideEdgeProfile').val(ListDoors[i].InsideEdgeProfile.Id);
-                    $('#cbVerticalDivisions').val(ListDoors[i].VerticalDivisions.Id);
-                    $('#cbHorizontalDivisions').val(ListDoors[i].HorizontalDivisions.Id);
-                    $('#cbHingeDirection').val(ListDoors[i].HingeDirection.Id);
-                    $('#cbHingePositions').val(ListDoors[i].HingePositions.Id);
-                    $('#cbPanel').val(ListDoors[i].Panel.Id);
-                    $('#cbPanelMaterial').val(ListDoors[i].PanelMaterial.Id);
-                    $('#isDrill').val(ListDoors[i].isDrill);
-                    $('#txtWidth').val(ListDoors[i].Width);
-                    $('#txtHeight').val(ListDoors[i].Height);
-                    $('#isOpeningMeasurement').val(ListDoors[i].IsOpeningMeasurement);
-                    $('#txtPicture').val(ListDoors[i].Picture);
-                    $('#txtProfilePicture').val(ListDoors[i].ProfilePicture);
-                    $('#IdStatus').val(ListDoors[i].Status.Id);
+                   
+                    var aux = ListDoors[i].Id;
+                    var aux1 = ListDoors[i].DoorStyle.Id;
+                    var aux2 = ListDoors[i].Material.Id;
+                    var aux3 = ListDoors[i].TopRail.Id;
+                    var aux4 = ListDoors[i].BottomRail.Id;
+                    var aux5 = ListDoors[i].Preparation.Id;
+                    var aux6 = ListDoors[i].Join.Id;
+                    var aux7 = ListDoors[i].OutsideEdgeProfile.Id;
+                    var aux8 = ListDoors[i].InsideEdgeProfile.Id;
+                    var aux9 = ListDoors[i].VerticalDivisions.Id;
+                    var aux10 = ListDoors[i].HorizontalDivisions.Id;
+                    var aux11 = ListDoors[i].HingeDirection.Id;
+                    var aux12 = ListDoors[i].HingePositions.Id;
+                    var aux13 = ListDoors[i].Panel.Id;
+                    var aux14 = ListDoors[i].PanelMaterial.Id;
+                    var aux15 = ListDoors[i].isDrill.Id;
+                    var aux16 = ListDoors[i].Width.Id;
+                    var aux17 = ListDoors[i].Height.Id;
+                    var aux18 = ListDoors[i].IsOpeningMeasurement.Id;
+                    var aux19 = ListDoors[i].Picture.Id;
+                    var aux20 = ListDoors[i].ProfilePicture.Id;
+                    var aux21 = ListDoors[i].Status.Id;
+                    $('#inId').val(ListDoors[i].Id);
+                    $('#inDoorStyle').val(ListDoors[i].DoorStyle.Id);
+                    $('#inMaterial').val(ListDoors[i].Material.Id);
+                    $('#inTopRail').val(ListDoors[i].TopRail.Id);
+                    $('#inBottomRail').val(ListDoors[i].BottomRail.Id);
+                    $('#inPreparation').val(ListDoors[i].Preparation.Id);
+                    $('#inJoin').val(ListDoors[i].Join.Id);
+                    $('#inOutsideEdgeProfile').val(ListDoors[i].OutsideEdgeProfile.Id);
+                    $('#inInsideEdgeProfile').val(ListDoors[i].InsideEdgeProfile.Id);
+                    $('#inVerticalDivisions').val(ListDoors[i].VerticalDivisions.Id);
+                    $('#inHorizontalDivisions').val(ListDoors[i].HorizontalDivisions.Id);
+                    $('#inHingeDirection').val(ListDoors[i].HingeDirection.Id);
+                    $('#inHingePositions').val(ListDoors[i].HingePositions.Id);
+                    $('#inPanel').val(ListDoors[i].Panel.Id);
+                    $('#inPanelMaterial').val(ListDoors[i].PanelMaterial.Id);
+                    $('#inDrill').val(ListDoors[i].isDrill);
+                    $('#inWidth').val(ListDoors[i].Width);
+                    $('#inHeight').val(ListDoors[i].Height);
+                    $('#inOpeningMeasurement').val(ListDoors[i].IsOpeningMeasurement);
+                    $('#inPicture').val(ListDoors[i].Picture);
+                    $('#inProfilePicture').val(ListDoors[i].ProfilePicture);
+                    $('#inStatus').val(ListDoors[i].Status.Id);
                 }
             }
         });
@@ -74,6 +105,8 @@
     });
 
     function Limpiar() {
+
+        $('#inId').val(0);
         $('#inDoorStyle').removeClass("is-invalid");
         $('#inDoorStyle').val(0);
 
@@ -125,57 +158,6 @@
         $('#inTopRail').removeClass("is-invalid");
         $('#inTopRail').val("");
 
-
-        $('#cbDoorStyle').removeClass("is-invalid");
-        $('#cbDoorStyle').val(0);
-
-        $('#cbMaterial').removeClass("is-invalid");
-        $('#cbMaterial').val(0);
-
-        $('#cbBottomRail').removeClass("is-invalid");
-        $('#cbBottomRail').val(0);
-
-        $('#cbPreparation').removeClass("is-invalid");
-        $('#cbPreparation').val(0);
-
-        $('#cbJoin').removeClass("is-invalid");
-        $('#cbJoin').val(0);
-
-        $('#cbOutsideEdgeProfile').removeClass("is-invalid");
-        $('#cbOutsideEdgeProfile').val(0);
-
-        $('#cbInsideEdgeProfile').removeClass("is-invalid");
-        $('#cbInsideEdgeProfile').val(0);
-
-        $('#cbVerticalDivisions').removeClass("is-invalid");
-        $('#cbVerticalDivisions').val(0);
-
-        $('#cbHorizontalDivisions').removeClass("is-invalid");
-        $('#cbHorizontalDivisions').val(0);
-
-        $('#cbHingeDirection').removeClass("is-invalid");
-        $('#cbHingeDirection').val(0);
-
-        $('#cbPanel').removeClass("is-invalid");
-        $('#cbPanel').val(0);
-
-        $('#cbPanelMaterial').removeClass("is-invalid");
-        $('#cbPanelMaterial').val(0);
-
-        $('#isDrill').removeClass("is-invalid");
-        $('#isDrill').val(0);
-
-        $('#txtWidth').removeClass("is-invalid");
-        $('#txtWidth').val("");
-
-        $('#txtHeight').removeClass("is-invalid");
-        $('#txtHeight').val("");
-
-        $('#IdStatus').removeClass("is-invalid");
-        $('#IdStatus').val("");
-
-        $('#cbTopRail').removeClass("is-invalid");
-        $('#cbTopRail').val("");
     }
 
 function ValidarCamposVacios() {
@@ -305,135 +287,7 @@ function ValidarCamposVacios() {
     } else {
         $('#inOpeningMeasurement').removeClass("is-invalid");
     }
-
-    var aux = true;
-    if ($('#cbDoorStyle').val() == 0) {
-        $('#cbDoorStyle').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#cbDoorStyle').removeClass("is-invalid");
-    }
-
-    if ($('#cbMaterial').val() == 0) {
-        $('#cbMaterial').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#cbMaterial').removeClass("is-invalid");
-    }
-
-    if ($('#inTopRail').val() == 0) {
-        $('#inTopRail').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#inTopRail').removeClass("is-invalid");
-    }
-
-    if ($('#cbBottomRail').val() == 0) {
-        $('#cbBottomRail').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#cbBottomRail').removeClass("is-invalid");
-    }
-
-    if ($('#cbPreparation').val() == 0) {
-        $('#cbPreparation').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#cbPreparation').removeClass("is-invalid");
-    }
-
-    if ($('#cbJoin').val() == 0) {
-        $('#cbJoin').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#cbJoin').removeClass("is-invalid");
-    }
-
-    if ($('#cbOutsideEdgeProfile').val() == 0) {
-        $('#cbOutsideEdgeProfile').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#cbOutsideEdgeProfile').removeClass("is-invalid");
-    }
-
-    if ($('#cbInsideEdgeProfile').val() == 0) {
-        $('#cbInsideEdgeProfile').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#cbInsideEdgeProfile').removeClass("is-invalid");
-    }
-
-    if ($('#cbVerticalDivisions').val() == 0) {
-        $('#cbVerticalDivisions').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#cbVerticalDivisions').removeClass("is-invalid");
-    }
-
-    if ($('#cbHorizontalDivisions').val() == 0) {
-        $('#cbHorizontalDivisions').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#cbHorizontalDivisions').removeClass("is-invalid");
-    }
-
-    if ($('#cbHingeDirection').val() == 0) {
-        $('#cbHingeDirection').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#cbHingeDirection').removeClass("is-invalid");
-    }
-
-    if ($('#cbPanel').val() == 0) {
-        $('#cbPanel').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#cbPanel').removeClass("is-invalid");
-    }
-
-    if ($('#cbPanelMaterial').val() == 0) {
-        $('#cbPanelMaterial').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#cbPanelMaterial').removeClass("is-invalid");
-    }
-
-    if ($('#isDrill').val() == 0) {
-        $('#isDrill').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#isDrill').removeClass("is-invalid");
-    }
-
-    if ($('#txtWidth').val() == "") {
-        $('#txtWidth').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#txtWidth').removeClass("is-invalid");
-    }
-
-    if ($('#txtHeight').val() == "") {
-        $('#txtHeight').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#txtHeight').removeClass("is-invalid");
-    }
-
-    if ($('#IdStatus').val() == 0) {
-        $('#IdStatus').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#IdStatus').removeClass("is-invalid");
-    }
-
-    if ($('#isOpeningMeasurement').val() == 0) {
-        $('#isOpeningMeasurement').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#isOpeningMeasurement').removeClass("is-invalid");
-    }
-
-    
+   
     return aux;
 }
 
@@ -470,8 +324,6 @@ function InsertDoors() {
               ProfilePicture: $("#inProfilePicture").val(),
               Status: { Id: $("#inStatus").val() },
               OpeningMeasurement: { Id: false},
-              CreatorUser: 6,
-              ModificationUser: 6,
 
           }
       };
@@ -508,30 +360,28 @@ function UpdateDoors() {
     var datos =
     {
         uDoors: {
-            Id: $("#utxtId").val(),
-            DoorStyle: { Id: $("#cbDoorStyle").val() },
-            Material: { Id: $("#cbMaterial").val() },
-            TopRail: { Id: $("#cbTopRail").val() },
-            BottomRail: { Id: $("#cbBottomRail").val() },
-            Preparation: { Id: $("#cbPreparation").val() },
-            Join: { Id: $("#cbJoin").val() },
-            OutsideEdgeProfile: { Id: $("#cbOutsideEdgeProfile").val() },
-            InsideEdgeProfile: { Id: $("#cbInsideEdgeProfile").val() },
-            VerticalDivisions: { Id: $("#cbVerticalDivisions").val() },
-            HorizontalDivisions: { Id: $("#cbHorizontalDivisions").val() },
-            HingeDirection: { Id: $("#cbHingeDirection").val() },
+            Id: $("#inId").val(),
+            DoorStyle: { Id: $("#inDoorStyle").val() },
+            Material: { Id: $("#inMaterial").val() },
+            TopRail: { Id: $("#inTopRail").val() },
+            BottomRail: { Id: $("#inBottomRail").val() },
+            Preparation: { Id: $("#inPreparation").val() },
+            Join: { Id: $("#inJoin").val() },
+            OutsideEdgeProfile: { Id: $("#inOutsideEdgeProfile").val() },
+            InsideEdgeProfile: { Id: $("#inInsideEdgeProfile").val() },
+            VerticalDivisions: { Id: $("#inVerticalDivisions").val() },
+            HorizontalDivisions: { Id: $("#inHorizontalDivisions").val() },
+            HingeDirection: { Id: $("#inHingeDirection").val() },
             HingePositions: { Id: 1 },
-            Panel: { Id: $("#cbPanel").val() },
-            PanelMaterial: { Id: $("#cbPanelMaterial").val() },
-            Drill: { Id: $("#isDrill").val() },
-            Width: $("#txtWidth").val(),
-            Height: $("#txtHeight").val(),
-            Picture: $("#txtPicture").val(),
-            ProfilePicture: $("#txtProfilePicture").val(),
-            Status: { Id: $("#IdStatus").val() },
-            OpeningMeasurement: { Id: $("#isOpeningMeasurement").val() },
-            CreatorUser: 6,
-            ModificationUser: 6,
+            Panel: { Id: $("#inPanel").val() },
+            PanelMaterial: { Id: $("#inPanelMaterial").val() },
+            Drill: { Id: $("#inDrill").val() },
+            Width: $("#inWidth").val(),
+            Height: $("#inHeight").val(),
+            Picture: $("#inPicture").val(),
+            ProfilePicture: $("#inProfilePicture").val(),
+            Status: { Id: $("#inStatus").val() },
+            OpeningMeasurement: { Id: $("#inOpeningMeasurement").val() },
         }
     };
     console.log(datos);

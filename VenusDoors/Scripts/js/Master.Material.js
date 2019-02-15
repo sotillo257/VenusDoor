@@ -16,18 +16,26 @@
     });
 
     $("#btInsert").on("click", function () {
+        $("#lblTitulo").text("Insert new");
+        $("#lblSubTitulo").text("You can create a new article below");
+        $("#btnUpdateMaterial").hide();
+        $("#btInsertMaterial").show();
         Limpiar();
     });
     $(document).on('click', '.Modificar', function (event) {
+        $("#btnUpdateMaterial").show();
+        $("#btInsertMaterial").hide();
+        $("#lblTitulo").text("Modify");
+        $("#lblSubTitulo").text("You can modify a new article below");
         Limpiar();
             for (var i = 0; i < listMaterial.length; i++) {
                 if (listMaterial[i].Id == $(this).attr('value')) {
                     var aux = listMaterial[i].Id;
                     var aux1 = listMaterial[i].Status.Id;
                     var aux2 = listMaterial[i].Description;
-                    $('#txtId').val(listMaterial[i].Id);
-                    $('#IdStatus').val(listMaterial[i].Status.Id);
-                    $('#txtDescription').val(listMaterial[i].Description);
+                    $('#inId').val(listMaterial[i].Id);
+                    $('#inStatus').val(listMaterial[i].Status.Id);
+                    $('#inDescription').val(listMaterial[i].Description);
                 }
             }
         });
@@ -57,18 +65,12 @@ $(function () {
 });
 
 function Limpiar() {
+    $('#inId').val(0);
     $('#inDescription').removeClass("is-invalid");
     $('#inDescription').val("");
 
     $('#inStatus').removeClass("is-invalid");
     $('#inStatus').val(0);
-
-    $('#txtDescription').removeClass("is-invalid");
-    $('#txtDescription').val("");
-
-    $('#IdStatus').removeClass("is-invalid");
-    $('#IdStatus').val(0);
-
 }
 
 function ValidarCamposVacios() {
@@ -80,25 +82,11 @@ function ValidarCamposVacios() {
         $('#inStatus').removeClass("is-invalid");
     }
 
-    if ($('#IdStatus').val() == 0) {
-        $('#IdStatus').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#IdStatus').removeClass("is-invalid");
-    }
-
     if ($('#inDescription').val() == "") {
         $('#inDescription').addClass("is-invalid");
         aux = false;
     } else {
         $('#inDescription').removeClass("is-invalid");
-    }
-
-    if ($('#txtDescription').val() == "") {
-        $('#txtDescription').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#txtDescription').removeClass("is-invalid");
     }
 
     return aux;
@@ -111,8 +99,6 @@ function InsertMaterial() {
         pMaterial: {
             Description: $("#inDescription").val(),
             Status: { Id: $("#inStatus").val() },
-            CreatorUser: 6,
-            ModificationUser: 6,
 
         }
     };
@@ -143,11 +129,9 @@ function UpdateMaterial() {
     var datos =
     {
         uMaterial: {
-            Id: $("#txtId").val(),
-            Description: $("#txtDescription").val(),
-            Status: { Id: $("#IdStatus").val() },
-            CreatorUser: 6,
-            ModificationUser: 6,
+            Id: $("#inId").val(),
+            Description: $("#inDescription").val(),
+            Status: { Id: $("#inStatus").val() },
 
         }
     };
