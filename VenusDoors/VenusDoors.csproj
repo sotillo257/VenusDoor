@@ -1073,6 +1073,7 @@
     <Content Include="Content\scss\util\_position.scss" />
     <Content Include="Content\scss\util\_typography.scss" />
     <Content Include="Content\scss\util\_width.scss" />
+    <Content Include="Content\Template.xlsx" />
     <None Include="Properties\PublishProfiles\jesus.pubxml" />
     <None Include="Properties\PublishProfiles\VenusDoorApp Jesus.pubxml" />
     <None Include="Properties\PublishProfiles\VenusDoors App.pubxml" />

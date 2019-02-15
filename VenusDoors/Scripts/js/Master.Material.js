@@ -33,9 +33,13 @@
                     var aux = listMaterial[i].Id;
                     var aux1 = listMaterial[i].Status.Id;
                     var aux2 = listMaterial[i].Description;
-                    $('#inId').val(listMaterial[i].Id);
-                    $('#inStatus').val(listMaterial[i].Status.Id);
-                    $('#inDescription').val(listMaterial[i].Description);
+                    var aux3 = listMaterial[i].PriceFlatPanel;
+                    var aux4 = listMaterial[i].PriceRaisedPanel;
+                    $('#txtId').val(listMaterial[i].Id);
+                    $('#IdStatus').val(listMaterial[i].Status.Id);
+                    $('#txtDescription').val(listMaterial[i].Description);
+                    $('#txtPriceFlatPanel').val(listMaterial[i].PriceFlatPanel);
+                    $('#txtPriceRaisedPanel').val(listMaterial[i].PriceRaisedPanel);
                 }
             }
         });
@@ -69,6 +73,12 @@ function Limpiar() {
     $('#inDescription').removeClass("is-invalid");
     $('#inDescription').val("");
 
+    $('#inPriceFLatPanel').removeClass("is-invalid");
+    $('#inPriceFLatPanel').val("");
+
+    $('#inRaisedFLatPanel').removeClass("is-invalid");
+    $('#inRaisedFLatPanel').val("");
+
     $('#inStatus').removeClass("is-invalid");
     $('#inStatus').val(0);
 }
@@ -89,6 +99,41 @@ function ValidarCamposVacios() {
         $('#inDescription').removeClass("is-invalid");
     }
 
+    if ($('#txtDescription').val() == "") {
+        $('#txtDescription').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#txtDescription').removeClass("is-invalid");
+    }
+
+    if ($('#inPriceFLatPanel').val() == "") {
+        $('#inPriceFLatPanel').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#inPriceFLatPanel').removeClass("is-invalid");
+    }
+
+    if ($('#inRaisedFLatPanel').val() == "") {
+        $('#inRaisedFLatPanel').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#inRaisedFLatPanel').removeClass("is-invalid");
+    }
+
+    if ($('#txtPriceFLatPanel').val() == "") {
+        $('#txtPriceFLatPanel').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#txtPriceFLatPanel').removeClass("is-invalid");
+    }
+
+    if ($('#txtPriceRaisedPanel').val() == "") {
+        $('#txtPriceRaisedPanel').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#txtPriceRaisedPanel').removeClass("is-invalid");
+    }
+
     return aux;
 }
 
@@ -98,6 +143,8 @@ function InsertMaterial() {
     {
         pMaterial: {
             Description: $("#inDescription").val(),
+            PriceFlatPanel: parseFloat($("#inPriceFLatPanel").val()),
+            PriceRaisedPanel: parseFloat($("#inPriceRaisedPanel").val()),
             Status: { Id: $("#inStatus").val() },
 
         }
@@ -129,9 +176,13 @@ function UpdateMaterial() {
     var datos =
     {
         uMaterial: {
-            Id: $("#inId").val(),
-            Description: $("#inDescription").val(),
-            Status: { Id: $("#inStatus").val() },
+            Id: $("#txtId").val(),
+            Description: $("#txtDescription").val(),
+            PriceFlatPanel: parseFloat($("#txtPriceFLatPanel").val()),
+            PriceRaisedPanel: parseFloat($("#txtPriceRaisedPanel").val()),
+            Status: { Id: $("#IdStatus").val() },
+            CreatorUser: 6,
+            ModificationUser: 6,
 
         }
     };

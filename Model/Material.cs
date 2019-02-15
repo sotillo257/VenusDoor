@@ -10,6 +10,8 @@ namespace Model
     {
         public int Id { get; set; }
         public string Description { get; set; }
+        public decimal PriceFlatPanel { get; set; }
+        public decimal PriceRaisedPanel { get; set; }
         public Status Status { get; set; }
         public DateTime CreationDate { get; set; }
         public int CreatorUser { get; set; }
