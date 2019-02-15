@@ -15,9 +15,17 @@
         }
     });
     $("#btInsert").on("click", function () {
+        $("#lblTitulo").text("Insert new");
+        $("#lblSubTitulo").text("You can create a new article below");
+        $("#btnUpdateStatus").hide();
+        $("#btnInsertStatus").show();
         Limpiar();
     });
     $(document).on('click', '.Modificar', function (event) {
+        $("#btnUpdateStatus").show();
+        $("#btnInsertStatus").hide();
+        $("#lblTitulo").text("Modify");
+        $("#lblSubTitulo").text("You can modify a new article below");
         Limpiar();
         for (var i = 0; i < listSTS.length; i++) {
             if (listSTS[i].Id == $(this).attr('value')) {
@@ -26,9 +34,9 @@
                 var aux1 = listSTS[i].Group.Id;
                 var aux2 = listSTS[i].Description;
 
-                $('#txtId').val(listSTS[i].Id);
-                $('#IdGroup').val(listSTS[i].Group.Id);
-                $('#txtDescription').val(listSTS[i].Description);
+                $('#inId').val(listSTS[i].Id);
+                $('#inGroup').val(listSTS[i].Group.Id);
+                $('#inDescription').val(listSTS[i].Description);
             }
         }
     });
@@ -57,17 +65,12 @@ $(function () {
 });
 
 function Limpiar() {
+    $('#inId').val(0);
     $('#inDescription').removeClass("is-invalid");
     $('#inDescription').val("");
 
     $('#inGroup').removeClass("is-invalid");
     $('#inGroup').val(0);
-
-    $('#txtDescription').removeClass("is-invalid");
-    $('#txtDescription').val("");
-
-    $('#IdGroup').removeClass("is-invalid");
-    $('#IdGroup').val(0);
 
 }
 
@@ -80,25 +83,11 @@ function ValidarCamposVacios() {
         $('#inGroup').removeClass("is-invalid");
     }
 
-    if ($('#IdGroup').val() == 0) {
-        $('#IdGroup').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#IdGroup').removeClass("is-invalid");
-    }
-
     if ($('#inDescription').val() == "") {
         $('#inDescription').addClass("is-invalid");
         aux = false;
     } else {
         $('#inDescription').removeClass("is-invalid");
-    }
-
-    if ($('#txtDescription').val() == "") {
-        $('#txtDescription').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#txtDescription').removeClass("is-invalid");
     }
 
     return aux;
@@ -111,8 +100,6 @@ function InsertStatus() {
         pStatus: {
             Description: $("#inDescription").val(),
             Group: { Id: $("#inGroup").val() },
-            CreatorUser: 6,
-            ModificationUser: 6,
 
         }
     };
@@ -143,11 +130,9 @@ function UpdateStatus() {
     var datos =
     {
         uStatus: {
-            Id: $("#txtId").val(),
-            Description: $("#txtDescription").val(),
-            Group: { Id: $("#IdGroup").val() },
-            CreatorUser: 6,
-            ModificationUser: 6,
+            Id: $("#inId").val(),
+            Description: $("#inDescription").val(),
+            Group: { Id: $("#inGroup").val() },
 
         }
     };

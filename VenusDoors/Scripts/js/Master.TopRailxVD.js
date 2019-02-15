@@ -15,9 +15,17 @@
         }
     });
     $("#btInsert").on("click", function () {
+        $("#lblTitulo").text("Insert new");
+        $("#lblSubTitulo").text("You can create a new article below");
+        $("#btUpdateTRVDivi").hide();
+        $("#btnInsertTopVD").show();
         Limpiar();
     });
     $(document).on('click', '.Modificar', function (event) {
+        $("#btUpdateTRVDivi").show();
+        $("#btnInsertTopVD").hide();
+        $("#lblTitulo").text("Modify");
+        $("#lblSubTitulo").text("You can modify a new article below");
         Limpiar();
         for (var i = 0; i < listTRV.length; i++) {
             if (listTRV[i].Id == $(this).attr('value')) {
@@ -25,10 +33,10 @@
                 var aux1 = listTRV[i].TopRail.Id;
                 var aux2 = listTRV[i].VerticalDivisions.Id;
                 var aux3 = listTRV[i].Status.Id;
-                $('#txtId').val(listTRV[i].Id);
-                $('#cbTopRail').val(listTRV[i].TopRail.Id);
-                $('#cbVerticalDivisions').val(listTRV[i].VerticalDivisions.Id);
-                $('#IdStatus').val(listTRV[i].Status.Id);
+                $('#intId').val(listTRV[i].Id);
+                $('#inTopRail').val(listTRV[i].TopRail.Id);
+                $('#inVerticalDivisions').val(listTRV[i].VerticalDivisions.Id);
+                $('#inStatus').val(listTRV[i].Status.Id);
             }
         }
     });
@@ -57,6 +65,7 @@ $(function () {
 });
 
 function Limpiar() {
+    $('#intId').val(0);
     $('#inTopRail').removeClass("is-invalid");
     $('#inTopRail').val(0);
 
@@ -65,15 +74,6 @@ function Limpiar() {
 
     $('#inStatus').removeClass("is-invalid");
     $('#inStatus').val(0);
-
-    $('#cbTopRail').removeClass("is-invalid");
-    $('#cbTopRail').val(0);
-
-    $('#cbVerticalDivisions').removeClass("is-invalid");
-    $('#cbVerticalDivisions').val(0);
-
-    $('#IdStatus').removeClass("is-invalid");
-    $('#IdStatus').val(0);
 
 }
 
@@ -86,14 +86,6 @@ function ValidarCamposVacios() {
         $('#inStatus').removeClass("is-invalid");
     }
 
-    if ($('#IdStatus').val() == 0) {
-        $('#IdStatus').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#IdStatus').removeClass("is-invalid");
-    }
-
-
     if ($('#inTopRail').val() == 0) {
         $('#inTopRail').addClass("is-invalid");
         aux = false;
@@ -101,26 +93,11 @@ function ValidarCamposVacios() {
         $('#inTopRail').removeClass("is-invalid");
     }
 
-    if ($('#cbTopRail').val() == 0) {
-        $('#cbTopRail').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#cbTopRail').removeClass("is-invalid");
-    }
-
-
     if ($('#inVerticalDivisions').val() == 0) {
         $('#inVerticalDivisions').addClass("is-invalid");
         aux = false;
     } else {
         $('#inVerticalDivisions').removeClass("is-invalid");
-    }
-
-    if ($('#cbVerticalDivisions').val() == 0) {
-        $('#cbVerticalDivisions').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#cbVerticalDivisions').removeClass("is-invalid");
     }
 
     return aux;
@@ -134,8 +111,6 @@ function InsertTopRailByVerticalDivisions() {
             TopRail: { Id: $("#inTopRail").val() },
             VerticalDivisions: { Id: $("#inVerticalDivisions").val() },
             Status: { Id: $("#inStatus").val() },
-            CreatorUser: 6,
-            ModificationUser: 6,
 
         }
     };
@@ -166,12 +141,10 @@ function UpdateTopRailByVerticalDivisions() {
     var datos =
     {
         uTopRailByVerticalDivisions: {
-            Id: $("#txtId").val(),
-            TopRail: { Id: $("#cbTopRail").val() },
-            VerticalDivisions: { Id: $("#cbVerticalDivisions").val() },
-            Status: { Id: $("#IdStatus").val() },
-            CreatorUser: 6,
-            ModificationUser: 6,
+            Id: $("#intId").val(),
+            TopRail: { Id: $("#inTopRail").val() },
+            VerticalDivisions: { Id: $("#inVerticalDivisions").val() },
+            Status: { Id: $("#inStatus").val() },
 
         }
     };

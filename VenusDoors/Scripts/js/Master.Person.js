@@ -15,9 +15,17 @@
         }
     });
     $("#btInsert").on("click", function () {
+        $("#lblTitulo").text("Insert new");
+        $("#lblSubTitulo").text("You can create a new article below");
+        $("#btnUpdatePerson").hide();
+        $("#btnInsertPerson").show();
         Limpiar();
     });
     $(document).on('click', '.Modificar', function (event) {
+        $("#btnUpdatePerson").show();
+        $("#btnInsertPerson").hide();
+        $("#lblTitulo").text("Modify");
+        $("#lblSubTitulo").text("You can modify a new article below");
         Limpiar();
         for (var i = 0; i < listPer.length; i++) {
             if (listPer[i].Id == $(this).attr('value')) {
@@ -29,12 +37,12 @@
                 var aux4 = listPer[i].Direction;
                 var aux5 = listPer[i].Status.Id;
 
-                $('#txtId').val(listPer[i].Id);
-                $('#txtName').val(listPer[i].Name);
-                $('#txtLastname').val(listPer[i].Lastname);
-                $('#txtTelephone').val(listPer[i].Telephone);
-                $('#txtDirection').val(listPer[i].Direction);
-                $('#IdStatus').val(listPer[i].Status.Id);
+                $('#inId').val(listPer[i].Id);
+                $('#inName').val(listPer[i].Name);
+                $('#inLastname').val(listPer[i].Lastname);
+                $('#inTelephone').val(listPer[i].Telephone);
+                $('#inDirection').val(listPer[i].Direction);
+                $('#inStatus').val(listPer[i].Status.Id);
             }
         }
     });
@@ -63,6 +71,7 @@ $(function () {
 });
 
 function Limpiar() {
+    $('#inId').val(0);
     $('#inName').removeClass("is-invalid");
     $('#inName').val("");
 
@@ -78,22 +87,6 @@ function Limpiar() {
     $('#inStatus').removeClass("is-invalid");
     $('#inStatus').val(0);
 
-
-    $('#txtName').removeClass("is-invalid");
-    $('#txtName').val("");
-
-    $('#txtLastname').removeClass("is-invalid");
-    $('#txtLastname').val("");
-
-    $('#txtTelephone').removeClass("is-invalid");
-    $('#txtTelephone').val("");
-
-    $('#txtDirection').removeClass("is-invalid");
-    $('#txtDirection').val("");
-
-    $('#IdStatus').removeClass("is-invalid");
-    $('#IdStatus').val(0);
-
 }
 
 function ValidarCamposVacios() {
@@ -105,25 +98,11 @@ function ValidarCamposVacios() {
         $('#inStatus').removeClass("is-invalid");
     }
 
-    if ($('#IdStatus').val() == 0) {
-        $('#IdStatus').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#IdStatus').removeClass("is-invalid");
-    }
-
     if ($('#inName').val() == "") {
         $('#inName').addClass("is-invalid");
         aux = false;
     } else {
         $('#inName').removeClass("is-invalid");
-    }
-
-    if ($('#txtName').val() == "") {
-        $('#txtName').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#txtName').removeClass("is-invalid");
     }
 
     if ($('#inLastname').val() == "") {
@@ -133,26 +112,11 @@ function ValidarCamposVacios() {
         $('#inLastname').removeClass("is-invalid");
     }
 
-    if ($('#txtLastname').val() == "") {
-        $('#txtLastname').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#txtLastname').removeClass("is-invalid");
-    }
-
-
     if ($('#inTelephone').val() == "") {
         $('#inTelephone').addClass("is-invalid");
         aux = false;
     } else {
         $('#inTelephone').removeClass("is-invalid");
-    }
-
-    if ($('#txtTelephone').val() == "") {
-        $('#txtTelephone').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#txtTelephone').removeClass("is-invalid");
     }
 
     if ($('#inDirection').val() == "") {
@@ -162,12 +126,6 @@ function ValidarCamposVacios() {
         $('#inDirection').removeClass("is-invalid");
     }
 
-    if ($('#txtDirection').val() == "") {
-        $('#txtDirection').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#txtDirection').removeClass("is-invalid");
-    }
     return aux;
 }
 
@@ -181,8 +139,6 @@ function InsertPerson() {
             Telephone: $("#inTelephone").val(),
             Direction: $("#inDirection").val(),
             Status: { Id: $("#inStatus").val() },
-            CreatorUser: 6,
-            ModificationUser: 6,
 
         }
     };
@@ -213,14 +169,12 @@ function UpdatePerson() {
     var datos =
     {
         uPerson: {
-            Id: $("#txtId").val(),
-            Name: $("#txtName").val(),
-            Lastname: $("#txtLastname").val(),
-            Telephone: $("#txtTelephone").val(),
-            Direction: $("#txtDirection").val(),
-            Status: { Id: $("#IdStatus").val() },
-            CreatorUser: 6,
-            ModificationUser: 6,
+            Id: $("#inId").val(),
+            Name: $("#inName").val(),
+            Lastname: $("#inLastname").val(),
+            Telephone: $("#inTelephone").val(),
+            Direction: $("#inDirection").val(),
+            Status: { Id: $("#inStatus").val() },
 
         }
     };
