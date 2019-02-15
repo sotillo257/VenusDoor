@@ -22,7 +22,7 @@
                         <p class="mg-b-0">Modals are streamlined, but flexible, dialog prompts with the minimum required functionality and smart defaults.</p>
                     </div>
                     <div class="col-md-1">
-                        <button type="button" data-toggle="modal" data-target="#modalInsert"id="btInsert" class="Cursor btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Insert</button>
+                        <button type="button" data-toggle="modal" data-target="#modalInsert" id="btInsert" class="Cursor btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Insert</button>
                     </div>
                 </div>
             </div>
@@ -55,7 +55,7 @@
                                 <td class="">@item.Status.Description</td>
                                 <td class="">
                                     <center>
-                                        <a href="#" data-toggle="modal" data-target="#modalModify" class="Modificar btn btn-primary btn-icon">
+                                        <a href="#" data-toggle="modal" data-target="#modalInsert" class="Modificar btn btn-primary btn-icon">
                                             <div><i class="fa fa-edit"></i></div>
                                         </a>
                                     </center>
@@ -83,8 +83,8 @@
                                 <span aria-hidden="true">×</span>
                             </button>
                             <div class="pd-xs-x-15 pd-y-10">
-                                <h3 class="tx-inverse  mg-b-5">Insert new</h3>
-                                <p>You can create a new article below</p>
+                                <h3 id="lblTitulo" class="tx-inverse  mg-b-5">Insert new</h3>
+                                <p id="lblSubTitulo">You can create a new article below</p>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="row">
@@ -365,275 +365,8 @@
                                 </div><!-- col-6 -->
                             </div><!-- row -->
                             <div class="modal-footer justify-content-lg-end">
-                                <button type="button" onclick="this.disabled = true" @*onclick="this.disabled = true; SubirArchivo"*@ id="btInsertDoors" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Insert</button>
-                                <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>
-                            </div>
-                        </div><!-- modal-body -->
-                    </div><!-- modal-content -->
-                </div><!-- modal-dialog -->
-            </div>
-        </div><!-- modal-content -->
-    </div><!-- modal-dialog -->
-</div>
-
-<div id="modalModify" class="modal fade effect-scale" aria-hidden="true" style="display: none;">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content bd-0 rounded-0">
-            <div class="modal-body pd-0">
-                <div class="row flex-row-reverse no-gutters">
-                    <div class="col-lg-12">
-                        <div class="pd-30">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                            <div class="pd-xs-x-15 pd-y-10">
-                                <h3 class="tx-inverse  mg-b-5">Modify</h3>
-                                <p>You can modify a new article below</p>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="row">
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="Id" style="margin-top: 25px;">Id: </label>
-                                                <input type="text" name="Identificador" value="@ViewBag.IdItem" id="utxtId" class="form-control" readonly placeholder="">
-                                            </div><!-- form-group -->
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="cbDoorStyle" style="margin-top: 25px;">Door Style: </label>
-                                                <select style="width:100%" class="form-control select2" id="cbDoorStyle" data-placeholder="Select">
-                                                    <option label="Select"></option>
-                                                    @foreach (Model.DoorStyle item in ViewBag.cbDoorStyle)
-                                                    {
-                                                        <option value="@item.Id">@item.Description</option>
-                                                    }
-                                                </select>
-                                            </div><!-- form-group -->
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="cbMatarial" style="margin-top: 25px;">Material: </label>
-                                                <select style="width:100%" class="form-control select2" id="cbMaterial" data-placeholder="Select">
-                                                    <option label="Select"></option>
-                                                    @foreach (Model.Material item in ViewBag.cbMatarial)
-                                                    {
-                                                        <option value="@item.Id">@item.Description</option>
-                                                    }
-                                                </select>
-                                            </div><!-- form-group -->
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="cbTopRail" style="margin-top: 25px;">Top Rail: </label>
-                                                <select style="width:100%" class="form-control select2" id="cbTopRail" data-placeholder="Select">
-                                                    <option label="Select"></option>
-                                                    @foreach (Model.TopRail item in ViewBag.cbTopRail)
-                                                    {
-                                                        <option value="@item.Id">@item.Description</option>
-                                                    }
-                                                </select>
-                                            </div><!-- form-group -->
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="cbBottomRail" style="margin-top: 25px;">Bottom Rail: </label>
-                                                <select style="width:100%" class="form-control select2" id="cbBottomRail" data-placeholder="Select">
-                                                    <option label="Select"></option>
-                                                    @foreach (Model.BottomRail item in ViewBag.cbBottomRail)
-                                                    {
-                                                        <option value="@item.Id">@item.Description</option>
-                                                    }
-                                                </select>
-                                            </div><!-- form-group -->
-
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="cbPreparation" style="margin-top: 25px;">Preparation: </label>
-                                                <select style="width:100%" class="form-control select2" id="cbPreparation" data-placeholder="Select">
-                                                    <option label="Select"></option>
-                                                    @foreach (Model.Preparation item in ViewBag.cbPreparation)
-                                                    {
-                                                        <option value="@item.Id">@item.Description</option>
-                                                    }
-                                                </select>
-                                            </div><!-- form-group -->
-
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="cbJoin" style="margin-top: 25px;">Join: </label>
-                                                <select style="width:100%" class="form-control select2" id="cbJoin" data-placeholder="Select">
-                                                    <option label="Select"></option>
-                                                    @foreach (Model.Join item in ViewBag.cbJoin)
-                                                    {
-                                                        <option value="@item.Id">@item.Description</option>
-                                                    }
-                                                </select>
-                                            </div><!-- form-group -->
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="cbOutsideEdgeProfile" style="margin-top: 25px;">Outside Edge Profile: </label>
-                                                <select style="width:100%" class="form-control select2" id="cbOutsideEdgeProfile" data-placeholder="Select">
-                                                    <option label="Select"></option>
-                                                    @foreach (Model.OutsideEdgeProfile item in ViewBag.cbOutsideEdgeProfile)
-                                                    {
-                                                        <option value="@item.Id">@item.Description</option>
-                                                    }
-                                                </select>
-                                            </div><!-- form-group -->
-
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="cbInsideEdgeProfile" style="margin-top: 25px;">Inside Edge Profile: </label>
-                                                <select style="width:100%" class="form-control select2" id="cbInsideEdgeProfile" data-placeholder="Select">
-                                                    <option label="Select"></option>
-                                                    @foreach (Model.InsideEdgeProfile item in ViewBag.cbInsideEdgeProfile)
-                                                    {
-                                                        <option value="@item.Id">@item.Description</option>
-                                                    }
-                                                </select>
-                                            </div><!-- form-group -->
-
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="cbVerticalDivisions" style="margin-top: 25px;">Vertical Divisions: </label>
-                                                <select style="width:100%" class="form-control select2" id="cbVerticalDivisions" data-placeholder="Select">
-                                                    <option label="Select"></option>
-                                                    @foreach (Model.VerticalDivisions item in ViewBag.cbVerticalDivisions)
-                                                    {
-                                                        <option value="@item.Id">@item.Quantity</option>
-                                                    }
-                                                </select>
-                                            </div><!-- form-group -->
-
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="cbHorizontalDivisions" style="margin-top: 25px;">Horizontal Divisions: </label>
-                                                <select style="width:100%" class="form-control select2" id="cbHorizontalDivisions" data-placeholder="Select">
-                                                    <option label="Select"></option>
-                                                    @foreach (Model.HorizontalDivisions item in ViewBag.cbHorizontalDivisions)
-                                                    {
-                                                        <option value="@item.Id">@item.Quantity</option>
-                                                    }
-                                                </select>
-                                            </div><!-- form-group -->
-
-
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="cbPanel" style="margin-top: 25px;">Panel: </label>
-                                                <select style="width:100%" class="form-control select2" id="cbPanel" data-placeholder="Select">
-                                                    <option label="Select"></option>
-                                                    @foreach (Model.Panel item in ViewBag.cbPanel)
-                                                    {
-                                                        <option value="@item.Id">@item.Description</option>
-                                                    }
-                                                </select>
-                                            </div><!-- form-group -->
-
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="cbPanelMaterial" style="margin-top: 25px;">Panel Material: </label>
-                                                <select style="width:100%" class="form-control select2" id="cbPanelMaterial" data-placeholder="Select">
-                                                    <option label="Select"></option>
-                                                    @foreach (Model.PanelMaterial item in ViewBag.cbPanelMaterial)
-                                                    {
-                                                        <option value="@item.Id">@item.Description</option>
-                                                    }
-                                                </select>
-                                            </div><!-- form-group -->
-
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="Width" style="margin-top: 25px;">Width: </label>
-                                                <input type="text" id="txtWidth" name="Width" class="form-control" placeholder="">
-                                            </div><!-- form-group -->
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="Height" style="margin-top: 25px;">Height: </label>
-                                                <input type="text" id="txtHeight" name="Height" class="txtHeight form-control" placeholder="">
-                                            </div><!-- form-group -->
-
-
-                                            @*<div class="col-xs-4 col-md-3">
-                                                <label for="isDrill" style="margin-top: 25px;">Drill: </label>
-                                                <select style="width:100%" class="form-control select2" id="isDrill" data-placeholder="Select">
-                                                    <option label="Select"></option>
-                                                    <option value="true">Drill</option>
-                                                    <option value="false">No Drill</option>
-                                                </select>
-                                            </div><!-- form-group -->
-
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="cbHingeDirection" style="margin-top: 25px;">Hinge Direction: </label>
-                                                <select style="width:100%" class="form-control select2" id="cbHingeDirection" data-placeholder="Select">
-                                                    <option label="Select"></option>
-                                                    @foreach (Model.HingeDirection item in ViewBag.cbHingeDirection)
-                                                    {
-                                                        <option value="@item.Id">@item.Direction</option>
-                                                    }
-                                                </select>
-                                            </div><!-- form-group -->
-
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="HingePositions1" style="margin-top: 25px;">Hinge Position 1: </label>
-                                                <input disabled type="text" id="HingePositions1" class="form-control" placeholder="">
-                                            </div><!-- form-group -->
-
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="HingePositions2" style="margin-top: 25px;">Hinge Position 2: </label>
-                                                <input disabled type="text" id="HingePositions2" class="form-control" placeholder="">
-                                            </div><!-- form-group -->
-
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="HingePositions3" style="margin-top: 25px;">Hinge Position 3: </label>
-                                                <input disabled type="text" id="HingePositions3" class="form-control" placeholder="">
-                                            </div><!-- form-group -->
-
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="HingePositions4" style="margin-top: 25px;">Hinge Position 4: </label>
-                                                <input disabled type="text" id="HingePositions4" class="form-control" placeholder="">
-                                            </div><!-- form-group -->
-
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="HingePositions5" style="margin-top: 25px;">Hinge Position 5: </label>
-                                                <input disabled type="text" id="HingePositions5" class="form-control" placeholder="">
-                                            </div><!-- form-group -->*@
-
-                                            <div class="col-xs-4 col-md-3">
-                                                @*@using (Html.BeginForm("subir", "home", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                                                {
-                                                    <label for="Picture" style="margin-top: 25px;">Picture: </label>
-                                                    <div style="padding-bottom: 12px;padding-top: 12px;height: 43px;" id="inPicture" class="form-control bd bd-dashed d-flex align-items-center justify-content-center rounded bg-gray-300">
-                                                        <p id="texto">Add file</p>
-                                                        <input id="btn_enviar" name="file" type="file">
-                                                    </div>
-                                                }*@
-
-                                              <label for="Picture" style="margin-top: 25px;">Picture</label>
-                                            <input type="text" id="txtPicture" class="form-control" placeholder="" />
-                                            </div><!-- form-group -->
-
-
-                                            <div class="col-xs-4 col-md-3"  style="padding-top: 20px;">
-                                                @*@using (Html.BeginForm("subir", "home", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                                                {
-                                                    <label for="ProfilePicture" style="margin-top: 25px;">Profile Picture: </label>
-                                                    <div style="padding-bottom: 12px;padding-top: 12px;height: 43px;" id="inProfilePicture" class="form-control bd bd-dashed d-flex align-items-center justify-content-center rounded bg-gray-300">
-                                                        <p id="texto">Add file</p>
-                                                        <input id="btn_enviar" name="file" type="file">
-                                                    </div>
-                                                }*@
-                                                <label for="ProfilePicture" style="margin-top: 25px;">Profile picture</label>
-                                                <input type="text" id="inProfilePicture" class="form-control" placeholder="" />
-                                            </div><!-- form-group -->
-
-                                            <div class="col-xs-4 col-md-3" style="padding-top: 20px;">
-                                                <label for="Template" style="margin-top: 25px;">Status: </label>
-                                                <select style="width:100%" class="form-control select2" id="IdStatus" data-placeholder="Select">
-                                                    <option label="Select"></option>
-                                                    @foreach (Model.Status item in ViewBag.mStatus)
-                                                    {
-                                                        <option value="@item.Id">@item.Description</option>
-                                                    }
-                                                </select>
-                                            </div><!-- form-group -->
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="isOpeningMeasurement" style="margin-top: 25px;">Opening Measurement: </label>
-                                                <select style="width:100%" class="form-control select2" id="isOpeningMeasurement" data-placeholder="Select">
-                                                    <option label="Select"></option>
-                                                    <option value="true">Opening</option>
-                                                    <option value="false">No Opening</option>
-                                                </select>
-                                            </div><!-- form-group -->
-
-
-                                        </div>
-                                    </div><!-- pd-20 -->
-                                </div><!-- col-6 -->
-                            </div><!-- row -->
-                            <div class="modal-footer justify-content-lg-end">
                                 <button type="button" onclick="this.disabled=true;" id="btnUpdateDoors" class="btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Modify</button>
+                                <button type="button" onclick="this.disabled = true" @*onclick="this.disabled = true; SubirArchivo"*@ id="btInsertDoors" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Insert</button>
                                 <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>
                             </div>
                         </div><!-- modal-body -->

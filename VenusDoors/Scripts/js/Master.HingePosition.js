@@ -15,9 +15,17 @@
         }
     });
     $("#btInsert").on("click", function () {
+        $("#lblTitulo").text("Insert new");
+        $("#lblSubTitulo").text("You can create a new article below");
+        $("#btnUpdateHingePosi").hide();
+        $("#btnInsertHP").show();
         Limpiar();
     });
     $(document).on('click', '.Modificar', function (event) {
+        $("#btnUpdateHingePosi").show();
+        $("#btnInsertHP").hide();
+        $("#lblTitulo").text("Modify");
+        $("#lblSubTitulo").text("You can modify a new article below");
         Limpiar();
         for (var i = 0; i < listHP.length; i++) {
             if (listHP[i].Id == $(this).attr('value')) {
@@ -28,13 +36,13 @@
                 var aux4 = listHP[i].Position4;
                 var aux5 = listHP[i].Position5;
                 var aux6 = listHP[i].Status.Id;
-                $('#txtId').val(listHP[i].Id);
-                $('#txtPosition').val(listHP[i].Position1);
-                $('#txtPosition2').val(listHP[i].Position2);
-                $('#txtPosition3').val(listHP[i].Position3);
-                $('#txtPosition4').val(listHP[i].Position4);
-                $('#txtPosition5').val(listHP[i].Position5);
-                $('#IdStatus').val(listHP[i].Status.Id);
+                $('#inId').val(listHP[i].Id);
+                $('#inPosition').val(listHP[i].Position1);
+                $('#inPosition2').val(listHP[i].Position2);
+                $('#inPosition3').val(listHP[i].Position3);
+                $('#inPosition4').val(listHP[i].Position4);
+                $('#inPosition5').val(listHP[i].Position5);
+                $('#inStatus').val(listHP[i].Status.Id);
             }
         }
     });
@@ -64,6 +72,7 @@
     });
 
     function Limpiar() {
+        $('#inId').val(0);
         $('#inPosition').removeClass("is-invalid");
         $('#inPosition').val("");
 
@@ -81,25 +90,6 @@
 
         $('#inStatus').removeClass("is-invalid");
         $('#inStatus').val(0);
-
-
-        $('#txtPosition').removeClass("is-invalid");
-        $('#txtPosition').val("");
-
-        $('#txtPosition2').removeClass("is-invalid");
-        $('#txtPosition2').val("");
-
-        $('#txtPosition3').removeClass("is-invalid");
-        $('#txtPosition3').val("");
-
-        $('#txtPosition4').removeClass("is-invalid");
-        $('#txtPosition4').val("");
-
-        $('#txtPosition5').removeClass("is-invalid");
-        $('#txtPosition5').val("");
-
-        $('#IdStatus').removeClass("is-invalid");
-        $('#IdStatus').val(0);
 
     }
 
@@ -154,41 +144,6 @@
             $('#inPosition5').removeClass("is-invalid");
         }
 
-        if ($('#txtPosition').val() == "") {
-            $('#txtPosition').addClass("is-invalid");
-            aux = false;
-        } else {
-            $('#txtPosition').removeClass("is-invalid");
-        }
-
-        if ($('#txtPosition2').val() == "") {
-            $('#txtPosition2').addClass("is-invalid");
-            aux = false;
-        } else {
-            $('#txtPosition2').removeClass("is-invalid");
-        }
-
-        if ($('#txtPosition3').val() == "") {
-            $('#txtPosition3').addClass("is-invalid");
-            aux = false;
-        } else {
-            $('#txtPosition3').removeClass("is-invalid");
-        }
-
-        if ($('#txtPosition4').val() == "") {
-            $('#txtPosition4').addClass("is-invalid");
-            aux = false;
-        } else {
-            $('#txtPosition4').removeClass("is-invalid");
-        }
-
-        if ($('#txtPosition5').val() == "") {
-            $('#txtPosition5').addClass("is-invalid");
-            aux = false;
-        } else {
-            $('#txtPosition5').removeClass("is-invalid");
-        }
-
         return aux;
     }
 
@@ -203,8 +158,6 @@
                 Position4: $("#inPosition4").val(),
                 Position5: $("#inPosition5").val(),
                 Status: { Id: $("#inStatus").val() },
-                CreatorUser: 6,
-                ModificationUser: 6,
 
             }
         };
@@ -235,15 +188,13 @@
         var datos =
         {
             uHingePositions: {
-                Id: $("#txtId").val(),
-                Position1: $("#txtPosition").val(),
-                Position2: $("#txtPosition2").val(),
-                Position3: $("#txtPosition3").val(),
-                Position4: $("#txtPosition4").val(),
-                Position5: $("#txtPosition5").val(),
-                Status: { Id: $("#IdStatus").val() },
-                CreatorUser: 6,
-                ModificationUser: 6,
+                Id: $("#inId").val(),
+                Position1: $("#inPosition").val(),
+                Position2: $("#inPosition2").val(),
+                Position3: $("#inPosition3").val(),
+                Position4: $("#inPosition4").val(),
+                Position5: $("#inPosition5").val(),
+                Status: { Id: $("#inStatus").val() },
 
             }
         };

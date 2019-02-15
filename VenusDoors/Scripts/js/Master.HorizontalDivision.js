@@ -15,10 +15,18 @@
         }
     });
     $("#btInsert").on("click", function () {
+        $("#lblTitulo").text("Insert new");
+        $("#lblSubTitulo").text("You can create a new article below");
+        $("#btnUpdateHorizontalDivi").hide();
+        $("#btnInsertHD").show();
         Limpiar();
     });
 
     $(document).on('click', '.Modificar', function (event) {
+        $("#btnUpdateHorizontalDivi").show();
+        $("#btnInsertHD").hide();
+        $("#lblTitulo").text("Modify");
+        $("#lblSubTitulo").text("You can modify a new article below");
         Limpiar();
         for (var i = 0; i < listHoDi.length; i++) {
             if (listHoDi[i].Id == $(this).attr('value')) {
@@ -26,9 +34,9 @@
                 var aux = listHoDi[i].Id;
                 var aux1 = listHoDi[i].Status.Id;
                 var aux2 = listHoDi[i].Quantity;
-                $('#txtId').val(listHoDi[i].Id);
-                $('#IdStatus').val(listHoDi[i].Status.Id);
-                $('#txtQuantity').val(listHoDi[i].Quantity);
+                $('#inId').val(listHoDi[i].Id);
+                $('#inStatus').val(listHoDi[i].Status.Id);
+                $('#inQuantity').val(listHoDi[i].Quantity);
             }
         }
     });
@@ -56,17 +64,12 @@ $(function () {
 
 });
 function Limpiar() {
+    $('#inId').val(0);
     $('#inQuantity').removeClass("is-invalid");
     $('#inQuantity').val("");
 
     $('#inStatus').removeClass("is-invalid");
     $('#inStatus').val(0);
-
-    $('#txtQuantity').removeClass("is-invalid");
-    $('#txtQuantity').val("");
-
-    $('#IdStatus').removeClass("is-invalid");
-    $('#IdStatus').val(0);
 
 }
 
@@ -79,25 +82,11 @@ function ValidarCamposVacios() {
         $('#inStatus').removeClass("is-invalid");
     }
 
-    if ($('#IdStatus').val() == 0) {
-        $('#IdStatus').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#IdStatus').removeClass("is-invalid");
-    }
-
     if ($('#inQuantity').val() == "") {
         $('#inQuantity').addClass("is-invalid");
         aux = false;
     } else {
         $('#inQuantity').removeClass("is-invalid");
-    }
-
-    if ($('#txtQuantity').val() == "") {
-        $('#txtQuantity').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#txtQuantity').removeClass("is-invalid");
     }
 
     return aux;
@@ -142,9 +131,9 @@ function UpdateHorizontalDivisions() {
     var datos =
     {
         uHorizontalDivisions: {
-            Id: $("#txtId").val(),
-            Quantity: $("#txtQuantity").val(),
-            Status: { Id: $("#IdStatus").val() },
+            Id: $("#inId").val(),
+            Quantity: $("#inQuantity").val(),
+            Status: { Id: $("#inStatus").val() },
             CreatorUser: 6,
             ModificationUser: 6,
 

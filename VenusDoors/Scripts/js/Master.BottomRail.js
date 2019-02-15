@@ -20,7 +20,6 @@
         $("#lblTitulo").text("Insert new");
         $("#lblSubTitulo").text("You can create a new article below");
         $("#btnModify").hide();
-        $("#inId").hide();
         $("#btInsertBR").show();
         Limpiar();
     });
@@ -29,12 +28,12 @@
     $(document).on('click', '.Modificar', function (event) {
         $("#btnModify").show();
         $("#btInsertBR").hide();
-        $("#inId").show();
+        $("#lblTitulo").text("Modify");
+        $("#lblSubTitulo").text("You can modify a new article below");
             Limpiar();
             for (var i = 0; i < listBTR.length; i++) {
                 if (listBTR[i].Id == $(this).attr('value')) {
-                    $("#lblTitulo").text("Modify");
-                    $("#lblSubTitulo").text("You can modify a new article below");
+                   
                     var aux = listBTR[i].Id;
                     var aux1 =listBTR[i].Status.Id;
                     var aux2 =listBTR[i].Description;

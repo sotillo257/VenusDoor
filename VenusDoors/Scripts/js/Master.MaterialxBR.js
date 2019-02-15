@@ -15,10 +15,18 @@
         }
     });
     $("#btInsert").on("click", function () {
+        $("#lblTitulo").text("Insert new");
+        $("#lblSubTitulo").text("You can create a new article below");
+        $("#btnUpdateMaterialxBottom").hide();
+        $("#btInsertMaterialxBR").show();
         Limpiar();
     });
 
     $(document).on('click', '.Modificar', function (event) {
+        $("#btnUpdateMaterialxBottom").show();
+        $("#btInsertMaterialxBR").hide();
+        $("#lblTitulo").text("Modify");
+        $("#lblSubTitulo").text("You can modify a new article below");
         Limpiar();
         for (var i = 0; i < listMBR.length; i++) {
             if (listMBR[i].Id == $(this).attr('value')) {
@@ -26,10 +34,10 @@
                 var aux1 = listMBR[i].Status.Id;
                 var aux2 = listMBR[i].BottomRail.Id;
                 var aux3 = listMBR[i].Material.Id;
-                $('#txtId').val(listMBR[i].Id);
-                $('#cbMatarial').val(listMBR[i].Material.Id);
-                $('#cbBottomRail').val(listMBR[i].BottomRail.Id);
-                $('#IdStatus').val(listMBR[i].Status.Id);
+                $('#inId').val(listMBR[i].Id);
+                $('#inMatarial').val(listMBR[i].Material.Id);
+                $('#inBottomRail').val(listMBR[i].BottomRail.Id);
+                $('#inStatus').val(listMBR[i].Status.Id);
             }
         }
     });
@@ -59,6 +67,7 @@ $(function () {
 
 
 function Limpiar() {
+    $('#inId').val(0);
     $('#inMatarial').removeClass("is-invalid");
     $('#inMatarial').val(0);
 
@@ -67,15 +76,6 @@ function Limpiar() {
 
     $('#inStatus').removeClass("is-invalid");
     $('#inStatus').val(0);
-
-    $('#cbMatarial').removeClass("is-invalid");
-    $('#cbMatarial').val("");
-
-    $('#cbBottomRail').removeClass("is-invalid");
-    $('#cbBottomRail').val(0);
-
-    $('#IdStatus').removeClass("is-invalid");
-    $('#IdStatus').val(0);
 
 }
 
@@ -88,13 +88,6 @@ function ValidarCamposVacios() {
         $('#inStatus').removeClass("is-invalid");
     }
 
-    if ($('#IdStatus').val() == 0) {
-        $('#IdStatus').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#IdStatus').removeClass("is-invalid");
-    }
-
     if ($('#inMatarial').val() == 0) {
         $('#inMatarial').addClass("is-invalid");
         aux = false;
@@ -102,25 +95,11 @@ function ValidarCamposVacios() {
         $('#inMatarial').removeClass("is-invalid");
     }
 
-    if ($('#cbMatarial').val() == 0) {
-        $('#cbMatarial').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#cbMatarial').removeClass("is-invalid");
-    }
-
     if ($('#inBottomRail').val() == 0) {
         $('#inBottomRail').addClass("is-invalid");
         aux = false;
     } else {
         $('#inBottomRail').removeClass("is-invalid");
-    }
-
-    if ($('#cbBottomRail').val() == 0) {
-        $('#cbBottomRail').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#cbBottomRail').removeClass("is-invalid");
     }
 
     return aux;
@@ -134,8 +113,6 @@ function InsertMaterialxBottomRail() {
             Matarial: { Id: $("#inMatarial").val() },
             BottomRail: { Id: $("#inBottomRail").val() },
             Status: { Id: $("#inStatus").val() },
-            CreatorUser: 6,
-            ModificationUser: 6,
 
         }
     };
@@ -166,12 +143,10 @@ function UpdateMaterialxBottomRail() {
     var datos =
     {
         uMaterialxBottomRail: {
-            Id: $("#txtId").val(),
-            Matarial: { Id: $("#cbMatarial").val() },
-            BottomRail: { Id: $("#cbBottomRail").val() },
-            Status: { Id: $("#IdStatus").val() },
-            CreatorUser: 6,
-            ModificationUser: 6,
+            Id: $("#inId").val(),
+            Matarial: { Id: $("#inMatarial").val() },
+            BottomRail: { Id: $("#inBottomRail").val() },
+            Status: { Id: $("#inStatus").val() },
 
         }
     };

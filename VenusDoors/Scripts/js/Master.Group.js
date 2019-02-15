@@ -15,16 +15,24 @@
         }
     });
     $("#btInsert").on("click", function () {
+        $("#lblTitulo").text("Insert new");
+        $("#lblSubTitulo").text("You can create a new article below");
+        $("#btUpdateGroup").hide();
+        $("#btInsertGroup").show();
         Limpiar();
     });
     $(document).on('click', '.Modificar', function (event) {
+        $("#btUpdateGroup").show();
+        $("#btInsertGroup").hide();
+        $("#lblTitulo").text("Modify");
+        $("#lblSubTitulo").text("You can modify a new article below");
         Limpiar()
         for (var i = 0; i < listGroup.length; i++) {
             if (listGroup[i].Id == $(this).attr('value')) {
                 var aux = listGroup[i].Id;
                 var aux1 = listGroup[i].Description;
-                $('#txtId').val(listGroup[i].Id);
-                $('#txtDescription').val(listGroup[i].Description);
+                $('#inId').val(listGroup[i].Id);
+                $('#inDescription').val(listGroup[i].Description);
             }
         }
     });
@@ -54,11 +62,10 @@ $(function () {
 });
 
 function Limpiar() {
+    $('#inId').val(0);
     $('#inDescription').removeClass("is-invalid");
     $('#inDescription').val("");
 
-    $('#txtDescription').removeClass("is-invalid");
-    $('#txtDescription').val("");
 }
 function ValidarCamposVacios() {
     var aux = true;
@@ -67,13 +74,6 @@ function ValidarCamposVacios() {
         aux = false;
     } else {
         $('#inDescription').removeClass("is-invalid");
-    }
-
-    if ($('#txtDescription').val() == "") {
-        $('#txtDescription').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#txtDescription').removeClass("is-invalid");
     }
 
     return aux;
@@ -85,8 +85,6 @@ function InsertGroup() {
     {
         pGroup: {
             Description: $("#inDescription").val(),
-            CreatorUser: 6,
-            ModificationUser: 6,
 
         }
     };
@@ -117,10 +115,8 @@ function UpdateGroup() {
     var datos =
     {
         uGroup: {
-            Id: $("#txtId").val(),
-            Description: $("#txtDescription").val(),
-            CreatorUser: 6,
-            ModificationUser: 6,
+            Id: $("#inId").val(),
+            Description: $("#inDescription").val(),
 
         }
     };
