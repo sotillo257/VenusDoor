@@ -15,9 +15,17 @@
         }
     });
     $("#btInsert").on("click", function () {
+        $("#lblTitulo").text("Insert new");
+        $("#lblSubTitulo").text("You can create a new article below");
+        $("#btbUpdateTRHorizonatlDivi").hide();
+        $("#btInserTRHD").show();
         Limpiar();
     });
     $(document).on('click', '.Modificar', function (event) {
+        $("#btbUpdateTRHorizonatlDivi").show();
+        $("#btInserTRHD").hide();
+        $("#lblTitulo").text("Modify");
+        $("#lblSubTitulo").text("You can modify a new article below");
         Limpiar();
         for (var i = 0; i < listTRH.length; i++) {
             if (listTRH[i].Id == $(this).attr('value')) {
@@ -25,10 +33,10 @@
                 var aux1 = listTRH[i].TopRail.Id;
                 var aux2 = listTRH[i].HorizontalDivisions.Id;
                 var aux3 = listTRH[i].Status.Id;
-                $('#txtId').val(listTRH[i].Id);
-                $('#cbTopRail').val(listTRH[i].TopRail.Id);
-                $('#cbHorizontalDivisions').val(listTRH[i].HorizontalDivisions.Id);
-                $('#IdStatus').val(listTRH[i].Status.Id);
+                $('#inId').val(listTRH[i].Id);
+                $('#inTopRail').val(listTRH[i].TopRail.Id);
+                $('#inHorizontalDivisions').val(listTRH[i].HorizontalDivisions.Id);
+                $('#inStatus').val(listTRH[i].Status.Id);
             }
         }
     });
@@ -57,6 +65,7 @@ $(function () {
 });
 
 function Limpiar() {
+    $('#inId').val(0);
     $('#inTopRail').removeClass("is-invalid");
     $('#inTopRail').val(0);
 
@@ -65,15 +74,6 @@ function Limpiar() {
 
     $('#inStatus').removeClass("is-invalid");
     $('#inStatus').val(0);
-
-    $('#cbTopRail').removeClass("is-invalid");
-    $('#cbTopRail').val(0);
-
-    $('#cbHorizontalDivisions').removeClass("is-invalid");
-    $('#cbHorizontalDivisions').val(0);
-
-    $('#IdStatus').removeClass("is-invalid");
-    $('#IdStatus').val(0);
 
 }
 
@@ -86,14 +86,6 @@ function ValidarCamposVacios() {
         $('#inStatus').removeClass("is-invalid");
     }
 
-    if ($('#IdStatus').val() == 0) {
-        $('#IdStatus').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#IdStatus').removeClass("is-invalid");
-    }
-
-
     if ($('#inTopRail').val() == 0) {
         $('#inTopRail').addClass("is-invalid");
         aux = false;
@@ -101,26 +93,11 @@ function ValidarCamposVacios() {
         $('#inTopRail').removeClass("is-invalid");
     }
 
-    if ($('#cbTopRail').val() == 0) {
-        $('#cbTopRail').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#cbTopRail').removeClass("is-invalid");
-    }
-
-
     if ($('#inHorizontalDivisions').val() == 0) {
         $('#inHorizontalDivisions').addClass("is-invalid");
         aux = false;
     } else {
         $('#inHorizontalDivisions').removeClass("is-invalid");
-    }
-
-    if ($('#cbHorizontalDivisions').val() == 0) {
-        $('#cbHorizontalDivisions').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#cbHorizontalDivisions').removeClass("is-invalid");
     }
 
     return aux;
@@ -134,8 +111,6 @@ function InsertTopRailxHorizontalDivisions() {
             TopRail: { Id: $("#inTopRail").val() },
             HorizontalDivisions: { Id: $("#inHorizontalDivisions").val() },
             Status: { Id: $("#inStatus").val() },
-            CreatorUser: 6,
-            ModificationUser: 6,
 
         }
     };
@@ -166,12 +141,10 @@ function UpdateTopRailxHorizontalDivisions() {
     var datos =
     {
         uTopRailByHorizontalDivisions: {
-            Id: $("#txtId").val(),
-            TopRail: { Id: $("#cbTopRail").val() },
-            HorizontalDivisions: { Id: $("#cbHorizontalDivisions").val() },
-            Status: { Id: $("#IdStatus").val() },
-            CreatorUser: 6,
-            ModificationUser: 6,
+            Id: $("#inId").val(),
+            TopRail: { Id: $("#inTopRail").val() },
+            HorizontalDivisions: { Id: $("#inHorizontalDivisions").val() },
+            Status: { Id: $("#inStatus").val() },
 
         }
     };
