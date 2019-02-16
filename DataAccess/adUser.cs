@@ -34,8 +34,8 @@ namespace DataAccess
                             Person = new Model.Person() { Id = int.Parse(item["IdPerson"].ToString()) },
                             Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["DescripStatus"].ToString() },
                             VerificationCode = item["VerificationCode"].ToString(),
-                            CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
-                            ModificationDate = (item["ModificationDate"].ToString() != "") ? DateTime.Parse(item["ModificationDate"].ToString()) : DateTime.Parse("01/01/1900"),
+                            CreationDate = DateTime.Parse(item["CreationDate"].ToString()),
+                            ModificationDate = DateTime.Parse(item["ModificationDate"].ToString()),
                             CreatorUser = int.Parse(item["CreatorUser"].ToString()),
                             ModificationUser = int.Parse(item["ModificationUser"].ToString()),
 
@@ -72,8 +72,8 @@ namespace DataAccess
                             Person = new Model.Person() { Id = int.Parse(item["IdPerson"].ToString()) },
                             Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["DescripStatus"].ToString() },
                             VerificationCode = item["VerificationCode"].ToString(),
-                            CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
-                            ModificationDate = (item["ModificationDate"].ToString() != "") ? DateTime.Parse(item["ModificationDate"].ToString()) : DateTime.Parse("01/01/1900"),
+                            CreationDate = DateTime.Parse(item["CreationDate"].ToString()),
+                            ModificationDate = DateTime.Parse(item["ModificationDate"].ToString()),
                             CreatorUser = int.Parse(item["CreatorUser"].ToString()),
                             ModificationUser = int.Parse(item["ModificationUser"].ToString()),
 
@@ -106,7 +106,7 @@ namespace DataAccess
 
         public void UpdateUser(User pUser)
         {
-            string sql = @"[spUpdateUser] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}, '{6}', '{7}', '{8}'";
+            string sql = @"[spUpdateUser] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}'";
             sql = string.Format(sql,pUser.Id, pUser.Email, pUser.Password, pUser.Type.Id, pUser.Person.Id, pUser.Status.Id, pUser.VerificationCode, pUser.ModificationDate.ToString("yyyyMMdd"),
                 pUser.ModificationUser);
             try
