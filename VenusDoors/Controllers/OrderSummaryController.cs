@@ -110,10 +110,10 @@ namespace VenusDoors.Controllers
                 upptOrd.ModificationDate = DateTime.Now;
                 BusinessLogic.lnDoorsxUser _LNDoorx = new BusinessLogic.lnDoorsxUser();
                 var searchDoors = _LNDoorx.GetAllDoorsxUser();
-                var DoorsByOrder = searchDoors.Where(x => x.Order.Id == upptOrd.Id).FirstOrDefault();
+                var DoorsByOrder = searchDoors.Where(x => x.Order.Id == upptOrd.Id).ToList();
                 ViewBag.DoorsxOrder = DoorsByOrder;
 
-                if (ViewBag.DoorsxOrder == "" || ViewBag.DoorsxOrder == null)
+                if (ViewBag.DoorsxOrder == null || ViewBag.DoorsxOrder.Count == 0) 
                 {
                     return Json(_LNUPor.DeleteOrder(upptOrd.Id));
                 }
@@ -248,7 +248,7 @@ namespace VenusDoors.Controllers
             }
             cuerpo += "</tbody></table>";            
             mail.Body = cuerpo;
-
+            //mail.Attachments.Add(new Attachment("C:/Users/jesus/Source/Repos/ordersummary.pdf"));
             mail.IsBodyHtml = true;
             SmtpServer.Port = 587;
             SmtpServer.Credentials = new System.Net.NetworkCredential("orders@venuscabinetdoors.com", "venusCD2019*");
