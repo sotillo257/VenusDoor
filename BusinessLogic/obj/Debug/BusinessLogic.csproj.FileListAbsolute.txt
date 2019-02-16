@@ -79,3 +79,5 @@ C:\Users\Lenovo\Source\Repos\VenusDoor\BusinessLogic\bin\Debug\ExcelDataReader.d
 C:\Users\Lenovo\Source\Repos\VenusDoor\BusinessLogic\bin\Debug\ExcelDataReader.xml
 C:\Users\jesus\Source\Repos\copia venus 333\BusinessLogic\bin\Debug\ExcelDataReader.dll
 C:\Users\jesus\Source\Repos\copia venus 333\BusinessLogic\bin\Debug\ExcelDataReader.xml
+C:\Users\Javier Sotillo\Source\Repos\VenusDoor\BusinessLogic\bin\Debug\ExcelDataReader.dll
+C:\Users\Javier Sotillo\Source\Repos\VenusDoor\BusinessLogic\bin\Debug\ExcelDataReader.xml
