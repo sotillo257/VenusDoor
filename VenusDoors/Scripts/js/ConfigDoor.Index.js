@@ -31,11 +31,398 @@
 	$("#btnLogo").on('click', function () {
 	    $("#File1").trigger('click');
 	});
+
+    $(".iptHeight").keyup(function (e) {
+        if ($(this).val() <= 36) {
+            if (e.keyup = true) {
+                $(".hp1").css('display', 'block');
+                $(".hp2").css('display', 'block');
+                $(".hp3").css('display', 'none');
+                $(".hp4").css('display', 'none');
+                $(".hp5").css('display', 'none');
+                $("#HingePositionsDiv").removeClass("target col-xs-4 col-md-4").addClass("target col-xs-4 col-md-3");
+            }
+        }
+        else if ($(this).val() <= 60) {
+            if (e.keyup = true) {
+                $(".hp1").css('display', 'block');
+                $(".hp2").css('display', 'block');
+                $(".hp3").css('display', 'block');
+                $(".hp4").css('display', 'none');
+                $(".hp5").css('display', 'none');
+                $("#HingePositionsDiv").removeClass("target col-xs-4 col-md-3").addClass("target col-xs-4 col-md-4");
+            }
+        } else if ($(this).val() <= 80) {
+            if (e.keyup = true) {
+                $(".hp1").css('display', 'block');
+                $(".hp2").css('display', 'block');
+                $(".hp3").css('display', 'block');
+                $(".hp4").css('display', 'block');
+                $(".hp5").css('display', 'none');
+                $("#HingePositionsDiv").removeClass("target col-xs-4 col-md-3").addClass("target col-xs-4 col-md-4");
+            }
+        } else if ($(this).val() > 80) {
+            if (e.keyup = true) {
+                $(".hp1").css('display', 'block');
+                $(".hp2").css('display', 'block');
+                $(".hp3").css('display', 'block');
+                $(".hp4").css('display', 'block');
+                $(".hp5").css('display', 'block');
+                $("#HingePositionsDiv").removeClass("target col-xs-4 col-md-3").addClass("target col-xs-4 col-md-4");
+            }
+        }
+        else {
+
+        }
+    });
+
+    $(document).on('change', '#cbisDrill', function () {
+        if ($("#cbisDrill").val() == "true") {
+            $("#HingeDirectionDiv").css('display', 'block');
+            $("#HingePositionsDiv").css('display', 'block');
+        } else if ($("#cbisDrill").val() == "false") {
+            $("#HingeDirectionDiv").css('display', 'none');
+            $("#HingePositionsDiv").css('display', 'none');
+        }
+    });
+
+    $(document).on('change', '#cbMaterial', function () {
+        var pMaterial = $("#cbMaterial").val()
+        llenarComboPanelMaterial(pMaterial)
+    });
+
+    $(document).on('change', '.iptHeight', function () {
+        var Height = parseFloat($(this).val())
+        if ($(this).val() < 5) {
+
+            LlammarModal("Danger", "Error: Minimum is 5 inches", " ");
+            Height = 5;
+            var ip1 = 3.5;
+            var ip2 = Height - 3.5;
+            $('.iptHeight').val(Height);
+            GetPrices();
+            $('.HPinpt1').val(ip1);
+            $('.HPinpt2').val(ip2);
+            $('.HPinpt3').val("No hinge");
+            $('.HPinpt4').val("No hinge");
+            $('.HPinpt5').val("No hinge");
+
+        }
+        else if ($(this).val() >= 5 && $(this).val() < 37) {
+
+            var ip1 = 3.5;
+            var ip2 = Height - 3.5;
+            $('.HPinpt1').val(ip1);
+            $('.HPinpt2').val(ip2);
+            $('.HPinpt3').val("No hinge");
+            $('.HPinpt4').val("No hinge");
+            $('.HPinpt5').val("No hinge");
+
+        }
+        else if ($(this).val() >= 37 && $(this).val() < 61) {
+
+            var ip1 = 3.5;
+            var ip2 = Height / 2;
+            var ip3 = Height - 3.5;
+            $('.HPinpt1').val(ip1);
+            $('.HPinpt2').val(ip2);
+            $('.HPinpt3').val(ip3);
+            $('.HPinpt4').val("No hinge");
+            $('.HPinpt5').val("No hinge");
+
+        }
+        else if ($(this).val() >= 61 && $(this).val() < 81) {
+
+            var ip1 = 3.5;
+            var ip2 = ((Height - 7) / 3) + 3.5;
+            var ip3 = Height - (((Height - 7) / 3) + 3.5);
+            var ip4 = Height - 3.5;
+            $('.HPinpt1').val(ip1);
+            $('.HPinpt2').val(ip2);
+            $('.HPinpt3').val(ip3);
+            $('.HPinpt4').val(ip4);
+            $('.HPinpt5').val("No hinge");
+
+        }
+        else if ($(this).val() >= 81 && $(this).val() < 97) {
+
+            var ip1 = 3.5;
+            var ip2 = 3.5 + (((Height / 2) - 3.5) / 2);
+            var ip3 = Height / 2;
+            var ip4 = Height - (3.5 + (((Height / 2) - 3.5) / 2));
+            var ip5 = Height - 3.5;
+            $('.HPinpt1').val(ip1);
+            $('.HPinpt2').val(ip2);
+            $('.HPinpt3').val(ip3);
+            $('.HPinpt4').val(ip4);
+            $('.HPinpt5').val(ip5);
+
+        }
+        else {
+
+            LlammarModal("Danger", "Error: Max is 96 inches", " ");
+            Height = 96;
+            var ip1 = 3.5;
+            var ip2 = 3.5 + (((Height / 2) - 3.5) / 2);
+            var ip3 = Height / 2;
+            var ip4 = Height - (3.5 + (((Height / 2) - 3.5) / 2));
+            var ip5 = Height - 3.5;
+            $('.iptHeight').val(Height);
+            GetPrices();
+            $('.HPinpt1').val(ip1);
+            $('.HPinpt2').val(ip2);
+            $('.HPinpt3').val(ip3);
+            $('.HPinpt4').val(ip4);
+            $('.HPinpt5').val(ip5);
+
+        }
+    });
+
+    $(document).on('change', '.iptWidth', function () {
+        var Width = parseFloat($(this).val())
+        if ($(this).val() < 5) {
+
+            LlammarModal("Danger", "Error: Minimum is 5 inches", " ");
+            Width = 5;
+            $('.iptWidth').val(Width);
+            GetPrices();
+
+        }
+        else if ($(this).val() > 42) {
+
+            //$('#modalMaximo').modal('toggle');
+            LlammarModal("Danger", "Error: Max is 42 inches", " ");
+            Width = 42;
+            $('.iptWidth').val(Width);
+            GetPrices();
+        }
+    });
+
+    $(document).on('change', '.Profile', function () {
+        ChangeProfile();
+    });
+    $(document).on('change', '.Doors', function () {
+        changeDoorPicture();
+    });
+    $(document).on('change', '#File1', function () {
+        console.log("activo");
+        var compania = new Array();
+        var formData = new FormData();
+        if ($("#File1")[0].files.length > 0) {
+            //alert($("#File1")[0].files[0].name);
+            formData.append('Files', $("#File1")[0].files[0], $("#File1")[0].files[0].name);
+        }
+        compania.push(formData);
+        $.ajax({
+            url: urlUploadExcel,
+            type: 'POST',
+            data: compania[0],
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                if (data == true) {
+                    LlammarModal("Succes", "Successful door creation!", "You can go to see your order and specify your purchase or, you can create another door.");
+                } else {
+                    LlammarModal("Danger", "An error occurred during the process.", "Check your internet connection I tried again");
+                }
+
+            },
+            error: function (err) {
+
+            },
+            complete: function (data) {
+                $("#btnCerrarModalCompania").prop("disabled", false);
+                $("#btnAgregarComapania").button('reset');
+            }
+        });
+    });
+
+    $(document).on('change', '#cbDoorStyle', function () {
+        
+        if ($("#cbDoorStyle").val() == 1002) {
+          var panelType =  $("#cbPanel").val();
+          option = '<option value="0">Select</option>';
+                 for (var i = 0; i < AllPanelType.length; i++) {
+                     if (AllPanelType[i].Status.Id == 1 && AllPanelType[i].Id != 2) {
+                        option += '<option value="' + AllPanelType[i].Id + '">' + AllPanelType[i].Description + '</option>';
+                    }
+
+                }
+                 $("#cbPanel").empty().append(option);
+
+                 if (panelType != 2) {
+                     $("#cbPanel").val(panelType);
+                 } else {
+                     $("#cbPanel").val(0);
+                 }
+                
+                 llenarComboInsideAndOutside();
+        } else if ($("#cbDoorStyle").val() == 1003) {
+
+            var panelType = $("#cbPanel").val();
+            var option = '';
+            for (var i = 0; i < AllPanelType.length; i++) {
+                if (AllPanelType[i].Status.Id == 1 && AllPanelType[i].Id == 2) {
+                    option += '<option value="' + AllPanelType[i].Id + '">' + AllPanelType[i].Description + '</option>';
+                }
+            }
+            $("#cbPanel").empty().append(option);
+            $("#cbPanel").val(2);
+            llenarComboInsideAndOutside();
+        } else if ($("#cbDoorStyle").val() == 1004) {
+            var inside = $("#cbInsideEdgeProfile").val();
+            var outside = $("#cbOutsideEdgeProfile").val();
+            var option = '<option value="0">Select</option>';
+            for (var i = 0; i < AllInsideEdgeProfile.length; i++) {
+                if (AllInsideEdgeProfile[i].Status.Id == 1 && (AllInsideEdgeProfile[i].Id == 3 || AllInsideEdgeProfile[i].Id == 7)) {
+                    option += '<option value="' + AllInsideEdgeProfile[i].Id + '">' + AllInsideEdgeProfile[i].Description + '</option>';
+                }
+            }
+            $("#cbInsideEdgeProfile").empty().append(option);
+            if (inside == 3 || inside == 7) {
+                $("#cbInsideEdgeProfile").val(inside);
+            } else {
+                $("#cbInsideEdgeProfile").val(0);
+            }
+            option = '<option value="0">Select</option>';
+            for (var i = 0; i < AllOutsideEdgeProfile.length; i++) {
+                if (AllOutsideEdgeProfile[i].Status.Id == 1 && AllOutsideEdgeProfile[i].Id == 6) {
+                    option += '<option value="' + AllOutsideEdgeProfile[i].Id + '">' + AllOutsideEdgeProfile[i].Description + '</option>';
+                    break;
+                }
+            }
+            $("#cbOutsideEdgeProfile").empty().append(option);
+            $("#cbOutsideEdgeProfile").val(6);
+            llenarComboPanel();
+        } else if ($("#cbDoorStyle").val() == 1005) {
+            llenarInsideAndOutsideEspecificos(3, 6);
+            llenarComboPanel();
+        }
+        else if ($("#cbDoorStyle").val() == 1006) {
+            llenarInsideAndOutsideEspecificos(5, 5);
+            llenarComboPanel();
+        } else if ($("#cbDoorStyle").val() == 1007) {
+            llenarInsideAndOutsideEspecificos(4, 11);
+            llenarComboPanel();
+        } else if ($("#cbDoorStyle").val() == 1008) {
+             llenarComboInsideAndOutside();
+            llenarComboPanel();
+        } else if ($("#cbDoorStyle").val() == 1009) {
+            llenarComboInsideAndOutside();
+            var option = '';
+            for (var i = 0; i < AllPanelType.length; i++) {
+                if (AllPanelType[i].Status.Id == 1 && AllPanelType[i].Id == 5) {
+                    option += '<option value="' + AllPanelType[i].Id + '">' + AllPanelType[i].Description + '</option>';
+                }
+            }
+            $("#cbPanel").empty().append(option);
+            $("#cbPanel").val(5);
+        }
+        changeDoorPicture();
+        ChangeProfile();
+    });
 });
 
 $(window).on('load', function () {
         $(".loader-page").css({ visibility: "hidden", opacity: "0" })
 });
+function llenarComboPanel() {
+
+    var panelType = $("#cbPanel").val();
+    var option = '<option value="0">Select</option>';
+    for (var i = 0; i < AllPanelType.length; i++) {
+        if (AllPanelType[i].Status.Id == 1) {
+            option += '<option value="' + AllPanelType[i].Id + '">' + AllPanelType[i].Description + '</option>';
+        }
+
+    }
+    $("#cbPanel").empty().append(option);
+    $("#cbPanel").val(panelType);
+}
+
+function llenarComboPanelMaterial(pMaterial) {
+    var pPanelMaterial = 0;
+    if (pMaterial == 1) {
+        //knotty Alder
+        pPanelMaterial = 6;
+
+    } else if (pMaterial == 4) {
+        //Maple
+        pPanelMaterial = 7;
+    }
+    else if (pMaterial == 6) {
+        //Poplar
+        pPanelMaterial = 9;
+    }
+    else if (pMaterial == 7) {
+        //Red oak
+        pPanelMaterial = 11;
+    }
+    else if (pMaterial == 13) {
+        //Beech
+        pPanelMaterial = 3;
+    }
+    var option = '';
+    for (var i = 0; i < AllPanelMaterial.length; i++) {
+        if (AllPanelMaterial[i].Status.Id == 1 && AllPanelMaterial[i].Id == pPanelMaterial) {
+            option += '<option value="' + AllPanelMaterial[i].Id + '">' + AllPanelMaterial[i].Description + '</option>';
+            
+        }
+        if (pMaterial == 6) {
+            if (AllPanelMaterial[i].Status.Id == 1 && AllPanelMaterial[i].Id == 1) {
+                option += '<option value="' + AllPanelMaterial[i].Id + '">' + AllPanelMaterial[i].Description + '</option>';
+
+            }
+        }
+    }
+    $("#cbPanelMaterial").empty().append(option);
+    $("#cbPanelMaterial").val(pPanelMaterial);
+}
+function llenarInsideAndOutsideEspecificos(pInside, pOutside) {
+    var inside = $("#cbInsideEdgeProfile").val();
+    var outside = $("#cbOutsideEdgeProfile").val();
+    var option = '';
+    for (var i = 0; i < AllInsideEdgeProfile.length; i++) {
+        if (AllInsideEdgeProfile[i].Status.Id == 1 && AllInsideEdgeProfile[i].Id == pInside) {
+            option += '<option value="' + AllInsideEdgeProfile[i].Id + '">' + AllInsideEdgeProfile[i].Description + '</option>';
+            break;
+        }
+    }
+    $("#cbInsideEdgeProfile").empty().append(option);
+        $("#cbInsideEdgeProfile").val(pInside);
+    option = '';
+    for (var i = 0; i < AllOutsideEdgeProfile.length; i++) {
+        if (AllOutsideEdgeProfile[i].Status.Id == 1 && AllOutsideEdgeProfile[i].Id == pOutside) {
+            option += '<option value="' + AllOutsideEdgeProfile[i].Id + '">' + AllOutsideEdgeProfile[i].Description + '</option>';
+            break;
+        }
+    }
+    $("#cbOutsideEdgeProfile").empty().append(option);
+    $("#cbOutsideEdgeProfile").val(pOutside);
+}
+function llenarComboInsideAndOutside() {
+
+    var inside = $("#cbInsideEdgeProfile").val();
+    var outside = $("#cbOutsideEdgeProfile").val();
+    var option = '<option value="0">Select</option>';
+    for (var i = 0; i < AllInsideEdgeProfile.length; i++) {
+        if (AllInsideEdgeProfile[i].Status.Id == 1) {
+            option += '<option value="' + AllInsideEdgeProfile[i].Id + '">' + AllInsideEdgeProfile[i].Description + '</option>';
+        }
+    }
+    $("#cbInsideEdgeProfile").empty().append(option);
+ 
+        $("#cbInsideEdgeProfile").val(inside);
+ 
+    option = '<option value="0">Select</option>';
+    for (var i = 0; i < AllOutsideEdgeProfile.length; i++) {
+        if (AllOutsideEdgeProfile[i].Status.Id == 1) {
+            option += '<option value="' + AllOutsideEdgeProfile[i].Id + '">' + AllOutsideEdgeProfile[i].Description + '</option>';
+        }
+    }
+    $("#cbOutsideEdgeProfile").empty().append(option);
+    $("#cbOutsideEdgeProfile").val(outside);
+}
 
 function ValidarCamposVacios() {
     var aux = true;
@@ -393,6 +780,7 @@ function GetAllPreparation() {
     });
 }
 
+var AllPanelType = "";
 function GetAllPanel() {
     $.ajax({
         url: urlGetAllPanel,
@@ -402,6 +790,7 @@ function GetAllPanel() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
+                AllPanelType = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
                     if (data[i].Status.Id == 1) {
@@ -421,7 +810,7 @@ function GetAllPanel() {
         }
     });
 }
-
+var AllPanelMaterial = '';
 function GetAllPanelMaterial() {
     $.ajax({
         url: urlGetAllPanelMaterial,
@@ -431,6 +820,7 @@ function GetAllPanelMaterial() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
+                AllPanelMaterial = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
                     if (data[i].Status.Id == 1) {
@@ -612,214 +1002,7 @@ function InsertDoorsxUser() {
                 });
 }
 
-$(document).ready(function () {
-    $(".iptHeight").keyup(function (e) {
-        if ($(this).val() <= 36) {
-            if (e.keyup = true) {
-                $(".hp1").css('display', 'block');
-                $(".hp2").css('display', 'block');
-                $(".hp3").css('display', 'none');
-                $(".hp4").css('display', 'none');
-                $(".hp5").css('display', 'none');
-                $("#HingePositionsDiv").removeClass("target col-xs-4 col-md-4").addClass("target col-xs-4 col-md-3");
-            }
-        }
-        else if ($(this).val() <= 60) {
-            if (e.keyup = true) {
-                $(".hp1").css('display', 'block');
-                $(".hp2").css('display', 'block');
-                $(".hp3").css('display', 'block');
-                $(".hp4").css('display', 'none');
-                $(".hp5").css('display', 'none');
-                $("#HingePositionsDiv").removeClass("target col-xs-4 col-md-3").addClass("target col-xs-4 col-md-4");
-            }
-        } else if ($(this).val() <= 80) {
-            if (e.keyup = true) {
-                $(".hp1").css('display', 'block');
-                $(".hp2").css('display', 'block');
-                $(".hp3").css('display', 'block');
-                $(".hp4").css('display', 'block');
-                $(".hp5").css('display', 'none');
-                $("#HingePositionsDiv").removeClass("target col-xs-4 col-md-3").addClass("target col-xs-4 col-md-4");
-            }
-        } else if ($(this).val() > 80) {
-            if (e.keyup = true) {
-                $(".hp1").css('display', 'block');
-                $(".hp2").css('display', 'block');
-                $(".hp3").css('display', 'block');
-                $(".hp4").css('display', 'block');
-                $(".hp5").css('display', 'block');
-                $("#HingePositionsDiv").removeClass("target col-xs-4 col-md-3").addClass("target col-xs-4 col-md-4");
-            }
-        }
-        else{
 
-        }
-    });
-});
-
-$(document).ready(function () {
-    $(document).on('change', '#cbisDrill', function () {
-        if ($("#cbisDrill").val() == "true") {
-                  $("#HingeDirectionDiv").css('display', 'block');
-                  $("#HingePositionsDiv").css('display', 'block');
-        } else if ($("#cbisDrill").val() == "false") {
-                  $("#HingeDirectionDiv").css('display', 'none');
-                  $("#HingePositionsDiv").css('display', 'none');
-              }       
-    });
-});
-
-$(document).ready(function () {
-    $(document).on('change', '.iptHeight', function () {
-        var Height = parseFloat($(this).val())
-        if ($(this).val() < 5) {
-            
-            LlammarModal("Danger", "Error: Minimum is 5 inches", " ");
-                Height = 5;
-                var ip1 = 3.5;
-                var ip2 = Height - 3.5;
-                $('.iptHeight').val(Height);
-                GetPrices();
-                $('.HPinpt1').val(ip1);
-                $('.HPinpt2').val(ip2);
-                $('.HPinpt3').val("No hinge");
-                $('.HPinpt4').val("No hinge");
-                $('.HPinpt5').val("No hinge");
-            
-        }
-        else if ($(this).val() >= 5 && $(this).val() < 37) {
-            
-                var ip1 = 3.5;
-                var ip2 = Height - 3.5;
-                $('.HPinpt1').val(ip1);
-                $('.HPinpt2').val(ip2);
-                $('.HPinpt3').val("No hinge");
-                $('.HPinpt4').val("No hinge");
-                $('.HPinpt5').val("No hinge");
-            
-        }
-        else if ($(this).val() >= 37 && $(this).val() < 61) {
-           
-                var ip1 = 3.5;
-                var ip2 = Height / 2;
-                var ip3 = Height - 3.5;
-                $('.HPinpt1').val(ip1);
-                $('.HPinpt2').val(ip2);
-                $('.HPinpt3').val(ip3);
-                $('.HPinpt4').val("No hinge");
-                $('.HPinpt5').val("No hinge");
-            
-        }
-        else if ($(this).val() >= 61 && $(this).val() < 81) {
-            
-                var ip1 = 3.5;
-                var ip2 = ((Height - 7) / 3) + 3.5;
-                var ip3 = Height - (((Height - 7) / 3) + 3.5);
-                var ip4 = Height - 3.5;
-                $('.HPinpt1').val(ip1);
-                $('.HPinpt2').val(ip2);
-                $('.HPinpt3').val(ip3);
-                $('.HPinpt4').val(ip4);
-                $('.HPinpt5').val("No hinge");
-            
-        }        
-        else if ($(this).val() >= 81 && $(this).val() < 97) {
-            
-                var ip1 = 3.5;
-                var ip2 = 3.5 + (((Height / 2) - 3.5) / 2);
-                var ip3 = Height / 2;
-                var ip4 = Height - (3.5 + (((Height / 2) - 3.5) / 2));
-                var ip5 = Height - 3.5;
-                $('.HPinpt1').val(ip1);
-                $('.HPinpt2').val(ip2);
-                $('.HPinpt3').val(ip3);
-                $('.HPinpt4').val(ip4);
-                $('.HPinpt5').val(ip5);
-            
-        }
-        else {
-            
-            LlammarModal("Danger", "Error: Max is 96 inches", " ");
-                Height = 96;
-                var ip1 = 3.5;
-                var ip2 = 3.5 + (((Height / 2) - 3.5) / 2);
-                var ip3 = Height / 2;
-                var ip4 = Height - (3.5 + (((Height / 2) - 3.5) / 2));
-                var ip5 = Height - 3.5;
-                $('.iptHeight').val(Height);
-                GetPrices();
-                $('.HPinpt1').val(ip1);
-                $('.HPinpt2').val(ip2);
-                $('.HPinpt3').val(ip3);
-                $('.HPinpt4').val(ip4);
-                $('.HPinpt5').val(ip5);
-   
-        }
-    });
-});
-
-$(document).ready(function () {
-    $(document).on('change', '.iptWidth', function () {
-        var Width = parseFloat($(this).val())
-        if ($(this).val() < 5) {
-
-            LlammarModal("Danger", "Error: Minimum is 5 inches", " ");
-            Width = 5;
-            $('.iptWidth').val(Width);
-            GetPrices();
-           
-        }
-        else if ($(this).val() > 42)
-        {
-
-            //$('#modalMaximo').modal('toggle');
-            LlammarModal("Danger", "Error: Max is 42 inches", " ");
-            Width = 42;
-            $('.iptWidth').val(Width);
-            GetPrices();        
-        }
-    });
-
-    $(document).on('change', '.Profile', function () {
-        ChangeProfile();
-    });
-    $(document).on('change', '.Doors', function () {
-        changeDoorPicture();
-    });
-    $(document).on('change', '#File1', function () {
-        console.log("activo");
-        var compania = new Array();
-        var formData = new FormData();
-        if ($("#File1")[0].files.length > 0) {
-            //alert($("#File1")[0].files[0].name);
-            formData.append('Files', $("#File1")[0].files[0], $("#File1")[0].files[0].name);
-        }
-        compania.push(formData);
-        $.ajax({
-            url: urlUploadExcel,
-            type: 'POST',
-            data: compania[0],
-            contentType: false,
-            processData: false,
-            success: function (data) {
-                if (data == true) {
-                    LlammarModal("Succes", "Successful door creation!", "You can go to see your order and specify your purchase or, you can create another door.");
-                } else {
-                    LlammarModal("Danger", "An error occurred during the process.", "Check your internet connection I tried again");
-                }
-               
-            },
-            error: function (err) {
-               
-            },
-            complete: function (data) {
-                $("#btnCerrarModalCompania").prop("disabled", false);
-                $("#btnAgregarComapania").button('reset');
-            }
-        });
-    });
-});
 
 $(document).on('change', '.eventChange', function () {
     //alert('This action is working');
@@ -1048,7 +1231,7 @@ function RaisedPanel(Outside, Inside) {
             ProfileUrl = "-Half_Reba_shaker_goove_raised_panel.png";
         }
     }
-    if (Outside == 4) {
+    if (Outside == 11) {
 
         if (Inside == 4) {
             ProfileUrl = "-Little_bone_ogee_raised_panel.png";
@@ -1091,12 +1274,13 @@ function changeDoorPicture() {
 
     if (Panel == 5) {
         FlatPanelDoor(Style);
-    }
-    if (Panel == 6) {
+    }else if (Panel == 6) {
         $('#DoorPicture').attr('src', "/Content/img/Doors/Cabinet Vector-17.png");
-    }
+    }else
     if (Panel == 2) {
        RaisedPanelDoor(Style);
+    } else {
+        $('#DoorPicture').attr('src', "/Content/img/Doors/img11.png");
     }
 }
 
@@ -1105,11 +1289,11 @@ function FlatPanelDoor(Style) {
     var rail = $('#cbBottomRail').val();
     var DoorUrl = "img11.png";
     var urlFolder = "/Content/img/Doors/";
-    if ($('#cbJoin').val() == 1) {
+   
         if (Style == 1008) {
-            if (stile == 3 && rail == 3) {
+           
                 DoorUrl = "Cabinet Vector-01.png";
-            }
+          
 
         }
         if (Style == 1002) {
@@ -1127,13 +1311,22 @@ function FlatPanelDoor(Style) {
             }
         }
         if (Style == 1009) {
-            if (stile == 3 && rail == 3) {
+           
                 DoorUrl = "Cabinet Vector-13.png";
-            }
+           
         }
        
-    } else if ($('#cbJoin').val() == 2) {
-        DoorUrl = "Cabinet Vector-08.png";
+        if ($('#cbJoin').val() == 2) {
+            if (Style == 1009) {
+
+                DoorUrl = "Cabinet Vector-13.png";
+
+            } else if (Style == 1008) {
+
+
+            } else {
+                DoorUrl = "Cabinet Vector-08.png";
+            }
     }
         $('#DoorPicture').attr('src', urlFolder + DoorUrl);
    
@@ -1144,7 +1337,7 @@ function RaisedPanelDoor(Style) {
     var rail = $('#cbBottomRail').val();
     var DoorUrl = "img11.png";
     var urlFolder = "/Content/img/Doors/";
-    if ($('#cbJoin').val() == 1) {
+    
         if (stile == 3 && rail == 3) {
         if (Style == 1008) {
            
@@ -1157,7 +1350,7 @@ function RaisedPanelDoor(Style) {
                 }
            
         } else if (Style == 1009) {
-        
+            DoorUrl = "Cabinet Vector-13.png";
         } else {
             DoorUrl = "Cabinet Vector-16.png";
         }
@@ -1165,14 +1358,31 @@ function RaisedPanelDoor(Style) {
         } else if (stile == 1 && rail == 1) {
             if (Style == 1009) {
 
+            } else if (Style == 1008) {
+
+                var inside = $("#cbInsideEdgeProfile").val();
+                var outside = $("#cbOutsideEdgeProfile").val();
+                if (outside != 6 && inside != 3 && inside != 7) {
+                    DoorUrl = "Cabinet Vector-09.png";
+                } else if (outside == 6 && (inside == 3 || inside == 7)) {
+                    DoorUrl = "Cabinet Vector-10.png";
+                }
+
             } else {
                 DoorUrl = "Cabinet Vector-10.png";
             }
         } 
        
 
-    } else if ($('#cbJoin').val() == 2) {
-        DoorUrl = "Cabinet Vector-07.png";
+        if ($('#cbJoin').val() == 2) {
+            if (Style == 1009) {
+
+            } else if (Style == 1008) {
+
+            } else {
+                DoorUrl = "Cabinet Vector-07.png";
+            }
+        
     }
     $('#DoorPicture').attr('src', urlFolder + DoorUrl);
 

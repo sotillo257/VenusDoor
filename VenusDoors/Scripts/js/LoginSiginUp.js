@@ -83,9 +83,10 @@ function CreateNewUser() {
                 Lastname: $('#inptLastName').val(),
                 Telephone: $('#inptTelephone').val(),
                 Direction: $('#inptDirec').val(),
-                Status: { Id: 1 },
+                Status: { Id: 2 },
                 CreatorUser: 6,
                 ModificationUser: 6,
+                VerificationCode: "Inactive",
             },
 
             UserData: {
@@ -107,7 +108,7 @@ function CreateNewUser() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == 1) {
-                LlammarModal("Sing", "Congratulations! The creation of your user has been successful.", "A message has been sent to the email supplied with an activation code to complete your registration.");
+                LlammarModal("Sing", "Congratulations! Your user has been created successfully.", "However, you should expect one of our administrators to activate your account. An email will be sent to you when the process has finished.");
             } else if(result == 2){
                 LlammarModal("Danger", "There is already a registered user with this email!", "Did you forget your password?. Click on the button below to recover your password");
             } else {
@@ -140,11 +141,14 @@ function Signin() {
         success: function (result) {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
-            if (result == true) {
+            if (result == 1) {
                 window.location.href = '/Home/Index';
+            } else if (result == 2) {
+                LlammarModal("Danger", "Error! Your account has not been activated.", "If it is an error or we have delayed the activation of your account, please contact us to solve the problem.");                
+            } else if(result == 3){
+                LlammarModal("Danger", "Invalid password", "If you forgot your password you can restore it here");             
             } else {
-                LlammarModal("Danger", "Error! Invalid username or password", "If you forgot your password you can restore it here");
-                
+                LlammarModal("Danger", "That email is not associated with any account in our records.", "Do you want to create one?");
             }
         },
         error: function (err) {

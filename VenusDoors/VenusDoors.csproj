@@ -1121,6 +1121,7 @@
     <Content Include="Scripts\js\ModalAlert.js" />
     <Content Include="Scripts\js\OrderStatus.Index.js" />
     <Content Include="Scripts\js\OrderSumm.js" />
+    <Content Include="Scripts\js\PasswordRecovery.Logins.js" />
     <Content Include="Scripts\js\PriceCalc.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />

@@ -26,8 +26,7 @@ function ConfirmOrder() {
         contentType: 'application/json; charset=utf-8',
         success: function (data) {
             if (data == true) {
-                LlammarModal("Congratuletions", "Congratulations! Your order is being processed.", "At this time you will be redirected to the Order Status view. Check your email to see your order details.");
-                window.location.href = '/OrderStatus/Index';
+                LlammarModal("Congratuletions", "Congratulations! Your order is being processed.", "At this time you will be redirected to the Order Status view. Check your email to see your order details.");               
                             } else {
                 LlammarModal("Danger", "An error occurred during the process.", " ");
                             }
