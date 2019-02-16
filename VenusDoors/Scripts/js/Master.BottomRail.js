@@ -30,22 +30,24 @@
         $("#btInsertBR").hide();
         $("#lblTitulo").text("Modify");
         $("#lblSubTitulo").text("You can modify a new article below");
-            Limpiar();
-            for (var i = 0; i < listBTR.length; i++) {
-                if (listBTR[i].Id == $(this).attr('value')) {
-                   
-                    var aux = listBTR[i].Id;
-                    var aux1 =listBTR[i].Status.Id;
-                    var aux2 =listBTR[i].Description;
-                    $('#inId').val(listBTR[i].Id);
-                    $('#inStatus').val(listBTR[i].Status.Id);
-                    $('#inDescription').val(listBTR[i].Description);
-                }
+        // Limpiar();
+        for (var i = 0; i < listBTR.length; i++) {
+            if (listBTR[i].Id == $(this).attr('value')) {
+
+                var aux = listBTR[i].Id;
+                var aux1 = listBTR[i].Status.Id;
+                var aux2 = listBTR[i].Description;
+                $('#inId').val(listBTR[i].Id);
+                llenarComboEstatus(listBTR[i].Status.Id);
+                $('#inDescription').val(listBTR[i].Description);
+                break;
             }
-        });
-
-
+        }
     });
+
+
+});
+
 $(function () {
     'use strict';
 
@@ -69,11 +71,12 @@ $(function () {
 
 });
 function Limpiar() {
-    $('#inStatus').removeClass("is-invalid");
+  //  $('#inStatus').removeClass("is-invalid");
     $('#inDescription').removeClass("is-invalid");
-    $('#inStatus').val(0);
     $('#inDescription').val("");
     $('#inId').val(0);
+    llenarComboEstatus(0);
+  
 
 }
 
@@ -165,7 +168,19 @@ function UpdateBottomRail() {
 
     });
 }
+var allEstatus = '';
+function llenarComboEstatus(pStatus) {
+    var option = '<option id="0">Select</option>';
+    for (var i = 0; i < allEstatus.length; i++) {
+        if (allEstatus[i].Group.Id == 1) {
+            option += '<option value="' + allEstatus[i].Id + '">' + allEstatus[i].Description + '</option>';
+        }
+       
 
+    }
+    $("#inStatus").empty().append(option);
+    $("#inStatus").val(pStatus);
+}
 function GetStatus() {
     $.ajax({
         url: urlGetStatus,
@@ -175,10 +190,13 @@ function GetStatus() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
+                allEstatus = data;
                 var option = '<option id="0">Select</option>';
                 for (var i = 0; i < data.length; i++) {
                     
+                    if (allEstatus[i].Group.Id == 1) {
                         option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
+                    }
                 
                 }
                 $("#inStatus").empty().append(option);

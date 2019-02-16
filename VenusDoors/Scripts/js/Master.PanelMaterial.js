@@ -35,10 +35,12 @@
                 $('#inId').val(listPMa[i].Id);
                 $('#inStatus').val(listPMa[i].Status.Id);
                 $('#inDescription').val(listPMa[i].Description);
+               
             }
         }
     });
 });
+
 $(function () {
     'use strict';
 
