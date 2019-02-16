@@ -175,11 +175,9 @@ function GetStatus() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
-                var option = '<option id="0">Select</option>';
+                var option = '';
                 for (var i = 0; i < data.length; i++) {
-                    
-                        option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
-                
+                    option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
                 }
                 $("#inStatus").empty().append(option);
 
@@ -189,7 +187,7 @@ function GetStatus() {
             }
         },
         error: function (err) {
-            MensajeModal(msgErrorinterno, 5);
+            LlammarModal("Danger", "Error.", " ");
         }
     });
 }

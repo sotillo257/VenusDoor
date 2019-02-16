@@ -95,27 +95,14 @@
                                             <div class="col-xs-4 col-md-3">
                                                 <label for="cbDoorStyle" style="margin-top: 25px;">Door Style: </label>
                                                 <select style="width:100%" class="form-control select2" id="inDoorStyle" data-placeholder="Select">
-                                                    <option label="Select"></option>
-                                                    @foreach (Model.DoorStyle item in ViewBag.cbDoorStyle)
-                                                    {
-                                                        if (item.Status.Id == 1)
-                                                        {
-                                                            <option value="@item.Id">@item.Description</option>
-                                                        }
-                                                    }
+                                                    
                                                 </select>
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-3">
                                                 <label for="Material" style="margin-top: 25px;">Material: </label>
                                                 <select style="width:100%" class="form-control select2" id="inMaterial" data-placeholder="Select">
                                                     <option label="Select"></option>
-                                                    @foreach (Model.Material item in ViewBag.cbMatarial)
-                                                    {
-                                                        if (item.Status.Id == 1)
-                                                        {
-                                                            <option value="@item.Id">@item.Description</option>
-                                                        }
-                                                    }
+                                                    
                                                 </select>
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-3">
@@ -379,6 +366,8 @@
 
 @section scripts{
     <script>
+        var urlGetAllDoorStyle = '@Url.Action("GetDoorStyle", "Masters")';
+        var urlGetAllMaterial = '@Url.Action("GetMaterial", "Masters")';
         var urlInsertDoors = '@Url.Action("InsertDoors", "Masters")';
         var urlUpdateDoors = '@Url.Action("UpdateDoors", "Masters")';
         var ListDoors = JSON.parse('@Html.Raw(ViewBag.ListDoors)');

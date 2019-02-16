@@ -184,7 +184,7 @@ function GetAllMaterial() {
             }
         },
         error: function (err) {
-            MensajeModal(msgErrorinterno, 5);
+            LlammarModal("Danger", "Error.", " ");
         }
     });
 }
@@ -213,7 +213,7 @@ function GetAllDoorStyle() {
 			}
 		},
 		error: function (err) {
-			MensajeModal(msgErrorinterno, 5);
+			LlammarModal("Danger", "Error.", " ");
 		}
 	});
 }
@@ -243,7 +243,7 @@ function GetAllInsideEdgeProfile() {
             }
         },
         error: function (err) {
-            MensajeModal(msgErrorinterno, 5);
+            LlammarModal("Danger", "Error.", " ");
         }
     });
 }
@@ -273,7 +273,7 @@ function GetAllOutsideEdgeProfile() {
             }
         },
         error: function (err) {
-            MensajeModal(msgErrorinterno, 5);
+            LlammarModal("Danger", "Error.", " ");
         }
     });
 }
@@ -302,7 +302,7 @@ function GetAllBottomRail() {
             }
         },
         error: function (err) {
-            MensajeModal(msgErrorinterno, 5);
+            LlammarModal("Danger", "Error.", " ");
         }
     });
 }
@@ -331,7 +331,7 @@ function GetAllTopRail() {
             }
         },
         error: function (err) {
-            MensajeModal(msgErrorinterno, 5);
+            LlammarModal("Danger", "Error.", " ");
         }
     });
 }
@@ -359,7 +359,7 @@ function GetAllJoin() {
             }
         },
         error: function (err) {
-            MensajeModal(msgErrorinterno, 5);
+            LlammarModal("Danger", "Error.", " ");
         }
     });
 }
@@ -388,7 +388,7 @@ function GetAllPreparation() {
             }
         },
         error: function (err) {
-            MensajeModal(msgErrorinterno, 5);
+            LlammarModal("Danger", "Error.", " ");
         }
     });
 }
@@ -417,7 +417,7 @@ function GetAllPanel() {
             }
         },
         error: function (err) {
-            MensajeModal(msgErrorinterno, 5);
+            LlammarModal("Danger", "Error.", " ");
         }
     });
 }
@@ -446,7 +446,7 @@ function GetAllPanelMaterial() {
             }
         },
         error: function (err) {
-            MensajeModal(msgErrorinterno, 5);
+            LlammarModal("Danger", "Error.", " ");
         }
     });
 }
@@ -474,7 +474,7 @@ function GetAllVerticalDivisions() {
             }
         },
         error: function (err) {
-            MensajeModal(msgErrorinterno, 5);
+            LlammarModal("Danger", "Error.", " ");
         }
     });
 }
@@ -503,7 +503,7 @@ function GetAllHorizontalDivisions() {
             }
         },
         error: function (err) {
-            MensajeModal(msgErrorinterno, 5);
+            LlammarModal("Danger", "Error.", " ");
         }
     });
 }
@@ -532,7 +532,7 @@ function GetAllHingeDirection() {
             }
         },
         error: function (err) {
-            MensajeModal(msgErrorinterno, 5);
+            LlammarModal("Danger", "Error.", " ");
         }
     });
 }

@@ -128,20 +128,7 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
-
-        [HttpPost]
-        public ActionResult GetStatus()
-        {
-            try
-            {
-               
-                return Json(_LNStatus.GetAllStatus());
-            }
-            catch
-            {
-                return Json(false, JsonRequestBehavior.AllowGet);
-            }
-        }
+        
         #endregion
 
         #region Doors
@@ -263,6 +250,7 @@ namespace VenusDoors.Controllers
             }
         }
         }
+        
         #endregion
 
         #region DoorsPrices
@@ -2304,6 +2292,48 @@ namespace VenusDoors.Controllers
         }
         }
         #endregion
+
+        [HttpPost]
+        public ActionResult GetStatus()
+        {
+            try
+            {
+
+                return Json(_LNStatus.GetAllStatus());
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult GetDoorStyle()
+        {
+            try
+            {
+
+                return Json(_LNDoorStile.GetAllDoorStyle());
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult GetMaterial()
+        {
+            try
+            {
+
+                return Json(_LNMaterial.GetAllMaterial());
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
 
         public class HomeController : Controller
         {
