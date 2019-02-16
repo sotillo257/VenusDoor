@@ -83,7 +83,7 @@ function CreateNewUser() {
                 Lastname: $('#inptLastName').val(),
                 Telephone: $('#inptTelephone').val(),
                 Direction: $('#inptDirec').val(),
-                Status: { Id: 2 },
+                Status: { Id: 1 },
                 CreatorUser: 6,
                 ModificationUser: 6,
                 VerificationCode: "Inactive",
@@ -93,7 +93,7 @@ function CreateNewUser() {
                 Email: $('#inptEmail').val(),
                 Password: $('#inptPassword').val(),
                 Type: { Id: 2 },
-                Status: { Id: 1 },
+                Status: { Id: 2 },
                 CreatorUser: 6,
                 ModificationUser: 6,
             }
@@ -108,7 +108,7 @@ function CreateNewUser() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == 1) {
-                LlammarModal("Sing", "Congratulations! Your user has been created successfully.", "However, you should expect one of our administrators to activate your account. An email will be sent to you when the process has finished.");
+                LlammarModal("Sing", "Congratulations! Your user has been created successfully.", "Your account will be activated by one of our administrators. An email will be sent to you when the process has finished.");
             } else if(result == 2){
                 LlammarModal("Danger", "There is already a registered user with this email!", "Did you forget your password?. Click on the button below to recover your password");
             } else {
