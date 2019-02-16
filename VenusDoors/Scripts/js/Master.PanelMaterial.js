@@ -32,9 +32,9 @@
                 var aux = listPMa[i].Id;
                 var aux1 = listPMa[i].Status.Id;
                 var aux2 = listPMa[i].Description;
-                $('#txtId').val(listPMa[i].Id);
-                $('#IdStatus').val(listPMa[i].Status.Id);
-                $('#txtDescription').val(listPMa[i].Description);
+                $('#inId').val(listPMa[i].Id);
+                $('#inStatus').val(listPMa[i].Status.Id);
+                $('#inDescription').val(listPMa[i].Description);
             }
         }
     });

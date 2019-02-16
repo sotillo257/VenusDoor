@@ -15,18 +15,26 @@
         }
     });
     $("#btInsert").on("click", function () {
+        $("#lblTitulo").text("Insert new");
+        $("#lblSubTitulo").text("You can create a new article below");
+        $("#btUpdateVerticalDivision").hide();
+        $("#btInsertVerticalDivi").show();
         Limpiar();
     });
     $(document).on('click', '.Modificar', function (event) {
+        $("#btUpdateVerticalDivision").show();
+        $("#btInsertVerticalDivi").hide();
+        $("#lblTitulo").text("Modify");
+        $("#lblSubTitulo").text("You can modify a new article below");
         Limpiar();
         for (var i = 0; i < listVD.length; i++) {
             if (listVD[i].Id == $(this).attr('value')) {
                 var aux = listVD[i].Id;
                 var aux1 = listVD[i].Status.Id;
                 var aux2 = listVD[i].Quantity;
-                $('#txtId').val(listVD[i].Id);
-                $('#IdStatus').val(listVD[i].Status.Id);
-                $('#txtQuanty').val(listVD[i].Quantity);
+                $('#inId').val(listVD[i].Id);
+                $('#inStatus').val(listVD[i].Status.Id);
+                $('#inQuantity').val(listVD[i].Quantity);
             }
         }
     });
@@ -56,17 +64,12 @@ $(function () {
 });
 
 function Limpiar() {
+    $('#inId').val(0);
     $('#inQuantity').removeClass("is-invalid");
     $('#inQuantity').val("");
 
     $('#inStatus').removeClass("is-invalid");
     $('#inStatus').val(0);
-
-    $('#txtQuanty').removeClass("is-invalid");
-    $('#txtQuanty').val("");
-
-    $('#IdStatus').removeClass("is-invalid");
-    $('#IdStatus').val(0);
 
 }
 
@@ -79,25 +82,11 @@ function ValidarCamposVacios() {
         $('#inStatus').removeClass("is-invalid");
     }
 
-    if ($('#IdStatus').val() == 0) {
-        $('#IdStatus').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#IdStatus').removeClass("is-invalid");
-    }
-
     if ($('#inQuantity').val() == "") {
         $('#inQuantity').addClass("is-invalid");
         aux = false;
     } else {
         $('#inQuantity').removeClass("is-invalid");
-    }
-
-    if ($('#txtQuanty').val() == "") {
-        $('#txtQuanty').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#txtQuanty').removeClass("is-invalid");
     }
 
     return aux;
@@ -110,8 +99,6 @@ function InsertVerticalDivisions() {
         pVerticalDivisions: {
             Quantity: $("#inQuantity").val(),
             Status: { Id: $("#inStatus").val() },
-            CreatorUser: 6,
-            ModificationUser: 6,
 
         }
     };
@@ -142,11 +129,9 @@ function UpdateVerticalDivisions() {
     var datos =
     {
         uVerticalDivisions: {
-            Id: $("#txtId").val(),
-            Quantity: $("#txtQuanty").val(),
-            Status: { Id: $("#IdStatus").val() },
-            CreatorUser: 6,
-            ModificationUser: 6,
+            Id: $("#inId").val(),
+            Quantity: $("#inQuantity").val(),
+            Status: { Id: $("#inStatus").val() },
 
         }
     };
