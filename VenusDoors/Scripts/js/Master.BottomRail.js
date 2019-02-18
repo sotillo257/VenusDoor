@@ -170,7 +170,8 @@ function UpdateBottomRail() {
 }
 var allEstatus = '';
 function llenarComboEstatus(pStatus) {
-    var option = '<option id="0">Select</option>';
+
+    var option = '<option id="">Select</option>';
     for (var i = 0; i < allEstatus.length; i++) {
         if (allEstatus[i].Group.Id == 1) {
             option += '<option value="' + allEstatus[i].Id + '">' + allEstatus[i].Description + '</option>';
@@ -179,7 +180,9 @@ function llenarComboEstatus(pStatus) {
 
     }
     $("#inStatus").empty().append(option);
-    $("#inStatus").val(pStatus);
+    if (pStatus != 0) {
+        $("#inStatus").val(pStatus);
+    }
 }
 function GetStatus() {
     $.ajax({
