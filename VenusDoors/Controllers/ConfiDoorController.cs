@@ -21,15 +21,23 @@ namespace VenusDoors.Controllers
 
         public ActionResult Index(int? Id)
         {
-            ViewBag.ConfiDoor = "active";
-            BusinessLogic.lnDoors _LN = new BusinessLogic.lnDoors();
-            if (Id > 0)
+            try
             {
-                var Door = _LN.GetDoorsById(Id.Value);
-                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-                ViewBag.Door = serializar.Serialize(Door);
+                ViewBag.ConfiDoor = "active";
+                BusinessLogic.lnDoors _LN = new BusinessLogic.lnDoors();
+                if (Id > 0)
+                {
+                    var Door = _LN.GetDoorsById(Id.Value);
+                    var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                    ViewBag.Door = serializar.Serialize(Door);
+                }
+                return View();
             }
-            return View();
+            catch (Exception)
+            {
+                return View("Error");
+            }
+           
         }
 
         [HttpPost]
@@ -42,7 +50,7 @@ namespace VenusDoors.Controllers
             }
             catch
             {
-                return Json(false, JsonRequestBehavior.AllowGet);
+               return View("Error");
             }
         }
 
@@ -58,7 +66,7 @@ namespace VenusDoors.Controllers
             }
             catch
             {
-                return Json(false, JsonRequestBehavior.AllowGet);
+               return View("Error");
             }
         }
 
@@ -72,7 +80,7 @@ namespace VenusDoors.Controllers
             }
             catch
             {
-                return Json(false, JsonRequestBehavior.AllowGet);
+               return View("Error");
             }
         }
 
@@ -86,7 +94,7 @@ namespace VenusDoors.Controllers
             }
             catch
             {
-                return Json(false, JsonRequestBehavior.AllowGet);
+               return View("Error");
             }
         }
 
@@ -100,7 +108,7 @@ namespace VenusDoors.Controllers
             }
             catch
             {
-                return Json(false, JsonRequestBehavior.AllowGet);
+               return View("Error");
             }
         }
 
@@ -114,7 +122,7 @@ namespace VenusDoors.Controllers
             }
             catch
             {
-                return Json(false, JsonRequestBehavior.AllowGet);
+               return View("Error");
             }
         }
 
@@ -128,7 +136,7 @@ namespace VenusDoors.Controllers
             }
             catch
             {
-                return Json(false, JsonRequestBehavior.AllowGet);
+               return View("Error");
             }
         }
 
@@ -142,7 +150,7 @@ namespace VenusDoors.Controllers
             }
             catch
             {
-                return Json(false, JsonRequestBehavior.AllowGet);
+               return View("Error");
             }
         }
 
@@ -156,7 +164,7 @@ namespace VenusDoors.Controllers
             }
             catch
             {
-                return Json(false, JsonRequestBehavior.AllowGet);
+               return View("Error");
             }
         }
 
@@ -170,7 +178,7 @@ namespace VenusDoors.Controllers
             }
             catch
             {
-                return Json(false, JsonRequestBehavior.AllowGet);
+               return View("Error");
             }
         }
 
@@ -184,7 +192,7 @@ namespace VenusDoors.Controllers
             }
             catch
             {
-                return Json(false, JsonRequestBehavior.AllowGet);
+               return View("Error");
             }
         }
 
@@ -198,7 +206,7 @@ namespace VenusDoors.Controllers
             }
             catch
             {
-                return Json(false, JsonRequestBehavior.AllowGet);
+               return View("Error");
             }
         }
 
@@ -212,7 +220,7 @@ namespace VenusDoors.Controllers
             }
             catch
             {
-                return Json(false, JsonRequestBehavior.AllowGet);
+               return View("Error");
             }
         }
 
@@ -226,7 +234,7 @@ namespace VenusDoors.Controllers
             }
             catch
             {
-                return Json(false, JsonRequestBehavior.AllowGet);
+               return View("Error");
             }
         }
 
@@ -243,7 +251,7 @@ namespace VenusDoors.Controllers
             }
             catch
             {
-                return Json(false, JsonRequestBehavior.AllowGet);
+               return View("Error");
             }
             
         }
@@ -290,7 +298,7 @@ namespace VenusDoors.Controllers
             }
             catch (Exception ex)
             {
-                return Json(false);
+                return View("Error");
             }
 
             return Json(true);
@@ -300,18 +308,26 @@ namespace VenusDoors.Controllers
 
         public ActionResult InsertDoorsxUser(DoorsxUser pDoorsxUser, HingePositions HingeP, Order Ord)
         {
-            if (Session["UserID"] == null)
+            try
             {
+                if (Session["UserID"] == null)
+                {
 
-                return Json(false, JsonRequestBehavior.AllowGet);
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    BusinessLogic.lnDoorsxUser ln = new BusinessLogic.lnDoorsxUser();
+
+                    return Json(ln.InsertarDoors(pDoorsxUser, HingeP, Ord, (int)Session["UserID"]), JsonRequestBehavior.AllowGet);
+                }
+
             }
-            else
+            catch (Exception ex)
             {
-        BusinessLogic.lnDoorsxUser ln = new BusinessLogic.lnDoorsxUser();
-        
-        return Json(ln.InsertarDoors(pDoorsxUser, HingeP, Ord,(int)Session["UserID"]), JsonRequestBehavior.AllowGet);
+                return View("Error");
             }
-        }
+               }
 
         [HttpPost]
         public ActionResult ValidateSession()

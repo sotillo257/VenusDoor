@@ -133,14 +133,7 @@ namespace VenusDoors.Controllers
             else
             {
                 try
-                {
-                    //string EmailActive = (string)Session["ActivePasswordRecovery"];
-                    //BusinessLogic.lnUser _LNUSER = new BusinessLogic.lnUser();
-                    //var getUser = _LNUSER.GetAllUser();
-                    //var userDetails = getUser.Where(x => x.Email == EmailActive).FirstOrDefault();
-                    //userDetails.Password = userMod.Password;
-                    //var ModfyContra = _LNUSER.UpdateUser(userDetails);
-
+                {                    
                     string EmailActive = (string)Session["ActivePasswordRecovery"];
                     BusinessLogic.lnUser _LNUSER = new BusinessLogic.lnUser();
                     var getUser = _LNUSER.GetAllUser();
@@ -163,7 +156,7 @@ namespace VenusDoors.Controllers
         }
 
         [HttpPost]
-        public ActionResult ModifyPassword(User pusernew)
+        public ActionResult ModifyPassword(User pusernew, string verificationC)
         {
             if (Session["ActivePasswordRecovery"] == null)
             {
@@ -177,15 +170,22 @@ namespace VenusDoors.Controllers
                     BusinessLogic.lnUser _LNUSER = new BusinessLogic.lnUser();
                     var getUser = _LNUSER.GetAllUser();
                     var userDetails = getUser.Where(x => x.Email == EmailActive).FirstOrDefault();
-                    userDetails.Password = pusernew.Password;
-                    userDetails.VerificationCode = "Verified";
-                    var ModfyContra = _LNUSER.UpdateUser(userDetails);
-                    Session.Abandon();
-                    return Json(true, JsonRequestBehavior.AllowGet);
+                    if (userDetails.VerificationCode == verificationC)
+                    {                                                                                                
+                        userDetails.Password = pusernew.Password;
+                        userDetails.VerificationCode = "Verified";
+                        var ModfyContra = _LNUSER.UpdateUser(userDetails);
+                        Session.Abandon();
+                        return Json(1, JsonRequestBehavior.AllowGet);
+                    }
+                    else
+                    {
+                        return Json(2, JsonRequestBehavior.AllowGet);
+                    }                   
                 }
                 catch
                 {
-                    return Json(false, JsonRequestBehavior.AllowGet);
+                    return Json(3, JsonRequestBehavior.AllowGet);
                 }
             }
         }
