@@ -11,13 +11,21 @@ namespace VenusDoors.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Dashboard = "active";
-            BusinessLogic.lnDoors _LN = new BusinessLogic.lnDoors();
-            List<Doors> Door = _LN.GetAllDoors();
-            ViewBag.ListDoors = Door;
-            var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-            ViewBag.ListDoor = serializar.Serialize(Door);
-            return View();
+            try
+            {
+                ViewBag.Dashboard = "active";
+                BusinessLogic.lnDoors _LN = new BusinessLogic.lnDoors();
+                List<Doors> Door = _LN.GetAllDoors();
+                ViewBag.ListDoors = Door;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListDoor = serializar.Serialize(Door);
+                return View();
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
+           
         }
 
         public ActionResult About()
