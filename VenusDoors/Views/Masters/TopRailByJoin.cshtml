@@ -33,7 +33,7 @@
                     <thead>
                         <tr>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="First name: activate to sort column ascending">Id</th>
-                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Top Rail</th>
+                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Stile Width</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Join</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Status</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" style="text-align: center" aria-label="Last name: activate to sort column ascending"><i class="fa fa-flash"></i></th>
@@ -88,30 +88,18 @@
                                                 <input type="text" name="id" id="inId" class="form-control" readonly placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
-                                                <label for="inTopRail" style="margin-top: 25px;">Top Rail: </label>
+                                                <label for="inTopRail" style="margin-top: 25px;">Stile Width: </label>
                                                 <select style="width:100%" class="form-control select2" id="inTopRail" data-placeholder="">
-                                                    @foreach (Model.TopRail item in ViewBag.cbTopRail)
-                                                    {
-                                                        <option value="@item.Id">@item.Description</option>
-                                                    }
                                                 </select>
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="inJoin" style="margin-top: 25px;">Join: </label>
                                                 <select style="width:100%" class="form-control select2" id="inJoin" data-placeholder="">
-                                                    @foreach (Model.Join item in ViewBag.cbJoin)
-                                                    {
-                                                        <option value="@item.Id">@item.Description</option>
-                                                    }
                                                 </select>
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="inStatus" style="margin-top: 25px;">Status: </label>
                                                 <select style="width:100%" class="form-control select2" id="inStatus" data-placeholder="">
-                                                    @foreach (Model.Status item in ViewBag.mStatus)
-                                                    {
-                                                        <option value="@item.Id">@item.Description</option>
-                                                    }
                                                 </select>
                                             </div><!-- form-group -->
                                         </div>
@@ -133,6 +121,9 @@
 
 @section scripts{
     <script>
+        var urlGetAllJoin = '@Url.Action("GetJoin", "Masters")';
+        var urlGetAllTopRail = '@Url.Action("GetTopRail", "Masters")';
+        var urlGetAllStatus = '@Url.Action("GetStatus", "Masters")';
         var urlInsertTopRailByJoin = '@Url.Action("InsertTopRailByJoin", "Masters")';
         var urlUpdateTopRailByJoin = '@Url.Action("UpdateTopRailByJoin", "Masters")';
         var listTRJ = JSON.parse('@Html.Raw(ViewBag.ListTopRailByJoin)');

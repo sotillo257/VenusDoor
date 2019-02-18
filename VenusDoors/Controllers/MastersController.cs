@@ -759,7 +759,7 @@ namespace VenusDoors.Controllers
                     uHorizontalDivisions.ModificationDate = DateTime.Now;
                     uHorizontalDivisions.ModificationUser = userID;
                     BusinessLogic.lnHorizontalDivisions _LF = new BusinessLogic.lnHorizontalDivisions();
-                var modHoDi = _LF.UpdateHorizontalDivisions(uHorizontalDivisions);
+                    var modHoDi = _LF.UpdateHorizontalDivisions(uHorizontalDivisions);
                 return Json(true, JsonRequestBehavior.AllowGet);
 
             }
@@ -2328,6 +2328,216 @@ namespace VenusDoors.Controllers
             {
 
                 return Json(_LNMaterial.GetAllMaterial());
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult GetTopRail()
+        {
+            try
+            {
+
+                return Json(_LNTopRail.GetAllTopRail());
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult GetBottomRail()
+        {
+            try
+            {
+
+                return Json(_LNBottomRail.GetAllBottomRail());
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult GetPreparation()
+        {
+            try
+            {
+
+                return Json(_LNPreparation.GetAllPreparation());
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult GetJoin()
+        {
+            try
+            {
+
+                return Json(_LNJoin.GetAllJoin());
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult GetOutsideEdgeProfile()
+        {
+            try
+            {
+
+                return Json(_LNOutsideEdgeProfile.GetAllOutsideEdgeProfile());
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult GetInsideEdgeProfile()
+        {
+            try
+            {
+
+                return Json(_LNInsideEdgeProfile.GetAllInsideEdgeProfile());
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult GetVerticalDivisions()
+        {
+            try
+            {
+
+                return Json(_LNVerticalDivisions.GetAllVerticalDivisions());
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult GetHorizontalDivisions()
+        {
+            try
+            {
+
+                return Json(_LNHorizontalDivisions.GetAllHorizontalDivisions());
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult GetPanel()
+        {
+            try
+            {
+
+                return Json(_LNPanel.GetAllPanel());
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult GetPanelMaterial()
+        {
+            try
+            {
+
+                return Json(_LNPanelMaterial.GetAllPanelMaterial());
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult GetRailThickness()
+        {
+            try
+            {
+
+                return Json(_LNRT.GetAllRailThickness());
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult GetUser()
+        {
+            try
+            {
+
+                return Json(_LNUser.GetAllUser());
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult GetAllType()
+        {
+            try
+            {
+
+                return Json(_LNType.GetAllType());
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult GetGroup()
+        {
+            try
+            {
+
+                return Json(_LNGroup.GetAllGroup());
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult GetPerson()
+        {
+            try
+            {
+
+                return Json(_LNPerson.GetAllPerson());
             }
             catch
             {

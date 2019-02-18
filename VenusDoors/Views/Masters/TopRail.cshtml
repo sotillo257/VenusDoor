@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Top Rail";
+    ViewBag.Title = "Stile Width";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -92,11 +92,6 @@
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="inStatus" style="margin-top: 25px;">Status: </label>
                                                 <select style="width:100%" class="form-control select2" id="inStatus" data-placeholder="">
-                                                    <option value="0">select</option>
-                                                    @foreach (Model.Status item in ViewBag.mStatus)
-                                                    {
-                                                        <option value="@item.Id">@item.Description</option>
-                                                    }
                                                 </select>
                                             </div><!-- form-group -->
                                         </div>
@@ -119,7 +114,8 @@
 
 @section scripts{
     <script>
-    var urlInsertTopRail = '@Url.Action("InsertTopRail", "Masters")';
+        var urlInsertTopRail = '@Url.Action("InsertTopRail", "Masters")';
+        var urlGetAllStatus = '@Url.Action("GetStatus", "Masters")';
         var urlUpdateTopRail = '@Url.Action("UpdateTopRail", "Masters")';
         var listTR = JSON.parse('@Html.Raw(ViewBag.ListTopRail)');
     </script>
