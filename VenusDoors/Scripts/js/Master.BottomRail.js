@@ -180,7 +180,6 @@ function llenarComboEstatus(pStatus) {
 
     }
     $("#inStatus").empty().append(option);
-    console.log(pStatus);
     if (pStatus != 0) {
         $("#inStatus").val(pStatus);
     }
