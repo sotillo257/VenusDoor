@@ -135,7 +135,8 @@ namespace DataAccess
         public Totales GetAllTotales()
         {
             Totales ord = new Totales();
-            string sql = @"[spGetTotales]";
+            string sql = @"[spGetTotalesDashboard]  '{0}', '{1}'";
+            sql = string.Format(sql, DateTime.Now.Month, DateTime.Today.AddMonths(-1).Month);
             try
             {
                 DataSet ds = new DataSet();
@@ -147,6 +148,8 @@ namespace DataAccess
                         ord = new Totales()
                         {
                             TotalHistorico = decimal.Parse((item["TotalHistorico"].ToString() == "")?"0": item["TotalHistorico"].ToString()),
+                            TotalMes = decimal.Parse((item["Total"].ToString() == "") ? "0" : item["Total"].ToString()),
+                            TotalMesAnterior = decimal.Parse((item["TotalMesAnterior"].ToString() == "") ? "0" : item["TotalMesAnterior"].ToString()),
                             Enero = decimal.Parse((item["TotalEnero"].ToString() == "")?"0": item["TotalEnero"].ToString()),
                             Febrero = decimal.Parse((item["TotalFebrero"].ToString() == "")?"0":item["TotalFebrero"].ToString()),
                             Marzo = decimal.Parse((item["TotalMarzo"].ToString() == "")?"0":item["TotalMarzo"].ToString()),

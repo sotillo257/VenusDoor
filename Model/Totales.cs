@@ -21,6 +21,9 @@ namespace Model
         public decimal Noviembre { get; set; }
         public decimal Diciembre { get; set; }
         public decimal TotalHistorico { get; set; }
+        public decimal TotalMes { get; set; }
+        public decimal TotalMesAnterior { get; set; }
+
 
     }
 }
