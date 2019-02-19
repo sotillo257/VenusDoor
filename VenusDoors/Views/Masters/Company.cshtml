@@ -1,0 +1,161 @@
+﻿
+@{
+    ViewBag.Title = "Company";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="br-pageheader pd-y-15 pd-l-20">
+    <nav class="breadcrumb pd-0 mg-0 tx-12">
+        <a class="breadcrumb-item" href="/">Venus Doors</a>
+        <a class="breadcrumb-item" href="#">Masters</a>
+        <span class="breadcrumb-item active">@ViewBag.Title</span>
+    </nav>
+</div><!-- br-pageheader -->
+
+<div class="br-pagebody">
+    <div class="br-section-wrapper">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-11 pd-sm-bottom-30">
+                        <h4 class="tx-gray-800 mg-b-5">@ViewBag.Title</h4>
+                        <p class="mg-b-0">Modals are streamlined, but flexible, dialog prompts with the minimum required functionality and smart defaults.</p>
+                    </div>
+                    <div class="col-md-1">
+                        <button type="button" id="btInsert" data-toggle="modal" data-target="#modalInsert" class="Cursor btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Insert</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="table-wrapper">
+            <div id="datatable1_wrapper" class="dataTables_wrapper no-footer">
+                <table id="datatable1" style="width: 100%;" class="table display responsive nowrap dataTable no-footer dtr-inline" role="grid" aria-describedby="datatable1_info">
+                    <thead>
+                        <tr>
+                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="First name: activate to sort column ascending">Id</th>
+                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Name</th>
+                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Email</th>
+                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Direction</th>
+                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Telephone</th>
+                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Logo</th>
+                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Type</th>
+                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Status</th>
+                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" style="text-align: center" aria-label="Last name: activate to sort column ascending"><i class="fa fa-flash"></i></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (Model.Company item in ViewBag.mCompany)
+                        {
+                            <tr role="row" class="odd">
+                                <td tabindex="0" class="">@item.Id</td>
+                                <td class="">@item.Name</td>
+                                <td class="">@item.Email</td>
+                                <td class="">@item.Direction</td>                                
+                                <td class="">@item.Telephone</td>  
+                                <td class="">@item.Logo</td>                                
+                                <td class="">@item.Type.Description</td> 
+                                <td class="">@item.Status.Description</td> 
+                                <td class="">
+                                    <center>
+                                        <a href="#" data-toggle="modal" data-target="#modalInsert" value="@item.Id" class="Modificar btn btn-primary btn-icon">
+                                            <div><i class="fa fa-edit"></i></div>
+                                        </a>
+                                    </center>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div><!-- table-wrapper -->
+    </div>
+</div>
+
+<div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div>
+
+<div id="modalInsert" class="modal fade effect-scale" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content bd-0 rounded-0">
+            <div class="modal-body pd-0">
+                <div class="row flex-row-reverse no-gutters">
+                    <div class="col-lg-12">
+                        <div class="pd-30">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            <div class="pd-xs-x-15 pd-y-10">
+                                <h3 id="lblTitulo" class="tx-inverse  mg-b-5">Insert new</h3>
+                                <p id="lblSubTitulo">You can add a new company below</p>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-xs-4 col-md-4">
+                                                <label for="inId" style="margin-top: 25px;">Id: </label>
+                                                <input type="text" name="id" id="inId" class="form-control" readonly placeholder="">
+                                            </div><!-- form-group -->
+                                            <div class="col-xs-4 col-md-4">
+                                                <label for="inName" style="margin-top: 25px;">Name: </label>
+                                                <input type="text" name="id" id="inName" class="form-control" placeholder="">
+                                            </div><!-- form-group -->
+                                            <div class="col-xs-4 col-md-4">
+                                                <label for="inEmail" style="margin-top: 25px;">Email: </label>
+                                                <input type="text" name="id" id="inEmail" class="form-control" placeholder="">
+                                            </div><!-- form-group -->
+                                            <div class="col-xs-3 col-md-4">
+                                                <label for="inDirection" style="margin-top: 25px;">Direction: </label>
+                                                <input type="text" class="form-control" id="inDirection" data-placeholder="">
+                                            </div><!-- form-group -->
+                                            <div class="col-xs-4 col-md-4">
+                                                <label for="inTelephone" style="margin-top: 25px;">Telephone: </label>
+                                                <input type="text" class="form-control" id="inTelephone" data-placeholder="">
+                                            </div><!-- form-group -->
+                                            <div class="col-xs-4 col-md-4">
+                                                <label for="inLogo" style="margin-top: 25px;">Logo: </label>
+                                                <input type="text" class="form-control" id="inLogo" data-placeholder="">
+                                            </div><!-- form-group -->
+                                            <div class="col-xs-4 col-md-4">
+                                                <label for="inType" style="margin-top: 25px;">Type: </label>
+                                                <select style="width:100%" class="form-control select2" id="inType" data-placeholder=""></select>
+                                            </div><!-- form-group -->
+                                            <div class="col-xs-4 col-md-4">
+                                                <label for="inStatus" style="margin-top: 25px;">Status: </label>
+                                                <select style="width:100%" class="form-control select2" id="inStatus" data-placeholder=""></select>
+                                            </div><!-- form-group -->
+                                        </div>
+                                    </div><!-- pd-20 -->
+                                </div><!-- col-6 -->
+                            </div><!-- row -->
+                            <div class="modal-footer justify-content-lg-end">
+                                <button type="button" id="btUpdateCompany" class="btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Modify</button>
+                                <button type="button" id="btnInsertCompany" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Insert</button>
+                                <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>
+                            </div>
+                        </div><!-- modal-body -->
+                    </div><!-- modal-content -->
+                </div><!-- modal-dialog -->
+            </div>
+        </div><!-- modal-content -->
+    </div><!-- modal-dialog -->
+</div>
+
+@section scripts{
+    <script>
+        var urlGetAllStatus = '@Url.Action("GetStatus", "Masters")';
+        var urlGetAllType = '@Url.Action("GetAllType", "Masters")';        
+        var urlInsertCompany = '@Url.Action("InsertCompany", "Masters")';
+        var urlUpdateCompany = '@Url.Action("UpdateCompany", "Masters")';
+        var listComp = JSON.parse('@Html.Raw(ViewBag.ListCompany)');
+
+        $(document).ready(function () {
+            $("#button-cnt").click(function () {
+                location.reload();
+            });
+        });
+    </script>
+    <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
+    <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>
+    <script src="~/Content/lib/select2/js/select2.min.js"></script>
+    @Scripts.Render("~/Scripts/js/Master.Company.js")
+}
+
