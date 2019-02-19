@@ -98,7 +98,7 @@ namespace DataAccess
 
         public void UpdateHorizontalDivisions(HorizontalDivisions pHorizontalDivisions)
         {
-            string sql = @"[spUpdateInsideEdgeProfile] '{0}', '{1}', '{2}', '{3}', '{4}'";
+            string sql = @"[spUpdateHorizontalDivisions] '{0}', '{1}', '{2}', '{3}', '{4}'";
             sql = string.Format(sql, pHorizontalDivisions.Id, pHorizontalDivisions.Quantity, pHorizontalDivisions.Status.Id, pHorizontalDivisions.ModificationDate.ToString("yyyyMMdd"),
                 pHorizontalDivisions.ModificationUser);
             try

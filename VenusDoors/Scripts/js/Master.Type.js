@@ -129,9 +129,9 @@ function UpdateType() {
     var datos =
     {
         uTypes: {
-            Id: $("#txtId").val(),
-            Description: $("#txtDescription").val(),
-            Group: { Id: $("#IdGroup").val() },
+            Id: $("#intId").val(),
+            Description: $("#inDescription").val(),
+            Group: { Id: $("#inGroup").val() },
 
         }
     };
