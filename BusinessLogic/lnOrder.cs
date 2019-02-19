@@ -31,6 +31,19 @@ namespace BusinessLogic
 
         }
 
+        public Totales GetAllTotales()
+        {
+            try
+            {
+                return _AD.GetAllTotales();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+        }
+
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018

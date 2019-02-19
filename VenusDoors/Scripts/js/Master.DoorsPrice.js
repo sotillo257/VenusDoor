@@ -49,12 +49,12 @@
                 var aux12 = listDoorP[i].HorizontalAdditionalInchPrice;
 
                 $('#inId').val(listDoorP[i].Id);
-                $('#inDoorStyle').val(listDoorP[i].DoorStyle.Id);
-                $('#inMaterial').val(listDoorP[i].Material.Id);
-                $('#inRailThickness').val(listDoorP[i].RailThickness);
+                llenarComboDoorStyle(listDoorP[i].DoorStyle.Id);
+                llenarCombolMaterial(listDoorP[i].Material.Id);
+                llenarCombRailThickness(listDoorP[i].RailThickness);
                 $('#inBasePrice').val(listDoorP[i].BasePrice);
                 $('#inAdditionalSFPrice').val(listDoorP[i].AdditionalSFPrice);
-                $('#inStatus').val(listDoorP[i].Status.Id);
+                llenarComboEstatus(listDoorP[i].Status.Id);
                 $('#inVerticalBase1FLPrice').val(listDoorP[i].VerticalBase1FLPrice);
                 $('#inVerticalAdditionalInchPrice').val(listDoorP[i].VerticalAdditionalInchPrice);
                 $('#inHorizontalBase1FLPrice').val(listDoorP[i].HorizontalBase1FLPrice);
@@ -92,34 +92,34 @@ function Limpiar() {
 
     $('#inId').val(0);
     $('#inDoorStyle').removeClass("is-invalid");
-    $('#inDoorStyle').val(0);
+    llenarComboDoorStyle(0);
 
     $('#inMaterial').removeClass("is-invalid");
-    $('#inMaterial').val(0);
+    llenarCombolMaterial(0);
 
     $('#inRailThickness').removeClass("is-invalid");
-    $('#inRailThickness').val(0);
+    llenarCombRailThickness(0);
 
     $('#inBasePrice').removeClass("is-invalid");
-    $('#inBasePrice').val(0);
+    $('#inBasePrice').val("");
 
     $('#inAdditionalSFPrice').removeClass("is-invalid");
-    $('#inAdditionalSFPrice').val(0);
+    $('#inAdditionalSFPrice').val("");
 
     $('#inStatus').removeClass("is-invalid");
-    $('#inStatus').val("");
+    llenarComboEstatus(0);
 
     $('#inVerticalBase1FLPrice').removeClass("is-invalid");
-    $('#inVerticalBase1FLPrice').val(0);
+    $('#inVerticalBase1FLPrice').val("");
 
     $('#inVerticalAdditionalInchPrice').removeClass("is-invalid");
-    $('#inVerticalAdditionalInchPrice').val(0);
+    $('#inVerticalAdditionalInchPrice').val("");
 
     $('#inHorizontalBase1FLPrice').removeClass("is-invalid");
-    $('#inHorizontalBase1FLPrice').val(0);
+    $('#inHorizontalBase1FLPrice').val("");
 
     $('#inHorizontalAdditionalInchPrice').removeClass("is-invalid");
-    $('#inHorizontalAdditionalInchPrice').val(0);
+    $('#inHorizontalAdditionalInchPrice').val("");
 
 }
 
@@ -283,6 +283,22 @@ function UpdateDoorPrice() {
     });
 }
 
+var allDoorStyle = '';
+function llenarComboDoorStyle(pDoorStyle) {
+
+    var option = '<option id="">Select</option>';
+    for (var i = 0; i < allDoorStyle.length; i++) {
+        if (allDoorStyle[i].Status.Id == 1) {
+            option += '<option value="' + allDoorStyle[i].Id + '">' + allDoorStyle[i].Description + '</option>';
+        }
+
+
+    }
+    $("#inDoorStyle").empty().append(option);
+    if (pDoorStyle != 0) {
+        $("#inDoorStyle").val(pDoorStyle);
+    }
+}
 function GetAllDoorStyle() {
     $.ajax({
         url: urlGetAllDoorStyle,
@@ -292,6 +308,7 @@ function GetAllDoorStyle() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
+                allDoorStyle = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
                     option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
@@ -308,6 +325,23 @@ function GetAllDoorStyle() {
         }
     });
 }
+
+var allMaterial = '';
+function llenarCombolMaterial(pMaterial) {
+
+    var option = '<option id="">Select</option>';
+    for (var i = 0; i < allMaterial.length; i++) {
+        if (allMaterial[i].Status.Id == 1) {
+            option += '<option value="' + allMaterial[i].Id + '">' + allMaterial[i].Description + '</option>';
+        }
+
+
+    }
+    $("#inMaterial").empty().append(option);
+    if (pMaterial != 0) {
+        $("#inMaterial").val(pMaterial);
+    }
+}
 function GetAllMaterial() {
     $.ajax({
         url: urlGetAllMaterial,
@@ -317,6 +351,7 @@ function GetAllMaterial() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
+                allMaterial = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
                     option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
@@ -333,6 +368,23 @@ function GetAllMaterial() {
         }
     });
 }
+
+var allEstatus = '';
+function llenarComboEstatus(pStatus) {
+
+    var option = '<option id="">Select</option>';
+    for (var i = 0; i < allEstatus.length; i++) {
+        if (allEstatus[i].Group.Id == 1) {
+            option += '<option value="' + allEstatus[i].Id + '">' + allEstatus[i].Description + '</option>';
+        }
+
+
+    }
+    $("#inStatus").empty().append(option);
+    if (pStatus != 0) {
+        $("#inStatus").val(pStatus);
+    }
+}
 function GetAllStatus() {
     $.ajax({
         url: urlGetAllStatus,
@@ -342,6 +394,7 @@ function GetAllStatus() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
+                allEstatus = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
                     option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
@@ -358,6 +411,23 @@ function GetAllStatus() {
         }
     });
 }
+
+var allRailThickness = '';
+function llenarCombRailThickness(pRailThickness) {
+
+    var option = '<option id="">Select</option>';
+    for (var i = 0; i < allRailThickness.length; i++) {
+        if (allRailThickness[i].Status.Id == 1) {
+            option += '<option value="' + allRailThickness[i].Id + '">' + allRailThickness[i].Description + '</option>';
+        }
+
+
+    }
+    $("#inRailThickness").empty().append(option);
+    if (pRailThickness != 0) {
+        $("#inRailThickness").val(pRailThickness);
+    }
+}
 function GetAllRailThickness() {
     $.ajax({
         url: urlGetAllRailThickness,
@@ -367,6 +437,7 @@ function GetAllRailThickness() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
+                allRailThickness = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
                     option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';

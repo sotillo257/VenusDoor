@@ -12,6 +12,7 @@
     GetAllPanel();
     GetAllPanelMaterial();
     GetAllStatus();
+    GetAllHingeDirection();
     $("#btInsertDoors").on("click", function () {
         if (ValidarCamposVacios()) {
             InsertDoors();
@@ -424,7 +425,7 @@ function llenarComboDoorStyle(pDoorStyle) {
 
     var option = '<option id="">Select</option>';
     for (var i = 0; i < allDoorStyle.length; i++) {
-        if (allDoorStyle[i].Group.Id == 1) {
+        if (allDoorStyle[i].Status.Id == 1) {
             option += '<option value="' + allDoorStyle[i].Id + '">' + allDoorStyle[i].Description + '</option>';
         }
 
@@ -467,7 +468,7 @@ function llenarCombolMaterial(pMaterial) {
 
     var option = '<option id="">Select</option>';
     for (var i = 0; i < allMaterial.length; i++) {
-        if (allMaterial[i].Group.Id == 1) {
+        if (allMaterial[i].Status.Id == 1) {
             option += '<option value="' + allMaterial[i].Id + '">' + allMaterial[i].Description + '</option>';
         }
 
@@ -510,7 +511,7 @@ function llenarComboTopRail(pTopRail) {
 
     var option = '<option id="">Select</option>';
     for (var i = 0; i < allTopRail.length; i++) {
-        if (allTopRail[i].Group.Id == 1) {
+        if (allTopRail[i].Status.Id == 1) {
             option += '<option value="' + allTopRail[i].Id + '">' + allTopRail[i].Description + '</option>';
         }
 
@@ -553,7 +554,7 @@ function llenarComboBottomRail(pBottomRail) {
 
     var option = '<option id="">Select</option>';
     for (var i = 0; i < allBottomRail.length; i++) {
-        if (allBottomRail[i].Group.Id == 1) {
+        if (allBottomRail[i].Status.Id == 1) {
             option += '<option value="' + allBottomRail[i].Id + '">' + allBottomRail[i].Description + '</option>';
         }
 
@@ -596,7 +597,7 @@ function llenarComboPreparation(pPreparation) {
 
     var option = '<option id="">Select</option>';
     for (var i = 0; i < allPreparation.length; i++) {
-        if (allPreparation[i].Group.Id == 1) {
+        if (allPreparation[i].Status.Id == 1) {
             option += '<option value="' + allPreparation[i].Id + '">' + allPreparation[i].Description + '</option>';
         }
 
@@ -639,7 +640,7 @@ function llenarComboJoin(pJoin) {
 
     var option = '<option id="">Select</option>';
     for (var i = 0; i < allJoin.length; i++) {
-        if (allJoin[i].Group.Id == 1) {
+        if (allJoin[i].Status.Id == 1) {
             option += '<option value="' + allJoin[i].Id + '">' + allJoin[i].Description + '</option>';
         }
 
@@ -682,7 +683,7 @@ function llenarCombOutsideEdgeProfile(pOutsideEdgeProfile) {
 
     var option = '<option id="">Select</option>';
     for (var i = 0; i < allOutsideEdgeProfile.length; i++) {
-        if (allOutsideEdgeProfile[i].Group.Id == 1) {
+        if (allOutsideEdgeProfile[i].Status.Id == 1) {
             option += '<option value="' + allOutsideEdgeProfile[i].Id + '">' + allOutsideEdgeProfile[i].Description + '</option>';
         }
 
@@ -725,7 +726,7 @@ function llenarCombInsideEdgeProfile(pInsideEdgeProfile) {
 
     var option = '<option id="">Select</option>';
     for (var i = 0; i < allInsideEdgeProfile.length; i++) {
-        if (allInsideEdgeProfile[i].Group.Id == 1) {
+        if (allInsideEdgeProfile[i].Status.Id == 1) {
             option += '<option value="' + allInsideEdgeProfile[i].Id + '">' + allInsideEdgeProfile[i].Description + '</option>';
         }
 
@@ -768,7 +769,7 @@ function llenarCombVerticalDivisions(pVerticalDivisions) {
 
     var option = '<option id="">Select</option>';
     for (var i = 0; i < allVerticalDivisions.length; i++) {
-        if (allVerticalDivisions[i].Group.Id == 1) {
+        if (allVerticalDivisions[i].Status.Id == 1) {
             option += '<option value="' + allVerticalDivisions[i].Id + '">' + allVerticalDivisions[i].Quantity + '</option>';
         }
 
@@ -811,7 +812,7 @@ function llenarCombHorizontalDivisions(pHorizontalDivisions) {
 
     var option = '<option id="">Select</option>';
     for (var i = 0; i < allHorizontalDivisions.length; i++) {
-        if (allHorizontalDivisions[i].Group.Id == 1) {
+        if (allHorizontalDivisions[i].Status.Id == 1) {
             option += '<option value="' + allHorizontalDivisions[i].Id + '">' + allHorizontalDivisions[i].Quantity + '</option>';
         }
 
@@ -854,7 +855,7 @@ function llenarCombPanel(pPanel) {
 
     var option = '<option id="">Select</option>';
     for (var i = 0; i < allPanel.length; i++) {
-        if (allPanel[i].Group.Id == 1) {
+        if (allPanel[i].Status.Id == 1) {
             option += '<option value="' + allPanel[i].Id + '">' + allPanel[i].Description + '</option>';
         }
 
@@ -897,7 +898,7 @@ function llenarCombPanelMaterial(pPanelMaterial) {
 
     var option = '<option id="">Select</option>';
     for (var i = 0; i < allPanelMaterial.length; i++) {
-        if (allPanelMaterial[i].Group.Id == 1) {
+        if (allPanelMaterial[i].Status.Id == 1) {
             option += '<option value="' + allPanelMaterial[i].Id + '">' + allPanelMaterial[i].Description + '</option>';
         }
 
@@ -983,7 +984,7 @@ function llenarComboHingeDirection(pHingeDirection) {
 
     var option = '<option id="">Select</option>';
     for (var i = 0; i < allHingeDirection.length; i++) {
-        if (allHingeDirection[i].Group.Id == 1) {
+        if (allHingeDirection[i].Status.Id == 1) {
             option += '<option value="' + allHingeDirection[i].Id + '">' + allHingeDirection[i].Description + '</option>';
         }
 

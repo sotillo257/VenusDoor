@@ -83,13 +83,13 @@ function Limpiar() {
     $('#inPassword').val(" ");
 
     $('#inType').removeClass("is-invalid");
-    $('#inType').val(0);
+    llenarComboType(0);
 
     $('#inPerson').removeClass("is-invalid");
-    $('#inPerson').val(0);
+    llenarComboPerson(0);
 
     $('#inStatus').removeClass("is-invalid");
-    $('#inStatus').val(0);
+    llenarComboEstatus(0);
 
     $('#inCompany').removeClass("is-invalid");
     $('#inCompany').val(0);
@@ -217,6 +217,22 @@ function UpdateUser() {
     });
 }
 
+var allEstatus = '';
+function llenarComboEstatus(pStatus) {
+
+    var option = '<option id="">Select</option>';
+    for (var i = 0; i < allEstatus.length; i++) {
+        if (allEstatus[i].Group.Id == 1) {
+            option += '<option value="' + allEstatus[i].Id + '">' + allEstatus[i].Description + '</option>';
+        }
+
+
+    }
+    $("#inStatus").empty().append(option);
+    if (pStatus != 0) {
+        $("#inStatus").val(pStatus);
+    }
+}
 function GetAllStatus() {
     $.ajax({
         url: urlGetAllStatus,
@@ -226,6 +242,7 @@ function GetAllStatus() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
+                allEstatus = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
                     option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
@@ -242,6 +259,23 @@ function GetAllStatus() {
         }
     });
 }
+
+var allType = '';
+function llenarComboType(pType) {
+
+    var option = '<option id="">Select</option>';
+    for (var i = 0; i < allType.length; i++) {
+        if (allType[i].Group.Id == 1) {
+            option += '<option value="' + allType[i].Id + '">' + allType[i].Description + '</option>';
+        }
+
+
+    }
+    $("#inType").empty().append(option);
+    if (pType != 0) {
+        $("#inType").val(pType);
+    }
+}
 function GetAllType() {
     $.ajax({
         url: urlGetAllType,
@@ -251,6 +285,7 @@ function GetAllType() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
+                allType = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
                     option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
@@ -267,6 +302,23 @@ function GetAllType() {
         }
     });
 }
+
+var allPerson = '';
+function llenarComboPerson(pPerson) {
+
+    var option = '<option id="">Select</option>';
+    for (var i = 0; i < allPerson.length; i++) {
+        if (allPerson[i].Status.Id == 1) {
+            option += '<option value="' + allPerson[i].Id + '">' + allPerson[i].Description + '</option>';
+        }
+
+
+    }
+    $("#inPerson").empty().append(option);
+    if (pPerson != 0) {
+        $("#inPerson").val(pPerson);
+    }
+}
 function GetAllPerson() {
     $.ajax({
         url: urlGetAllPerson,
@@ -276,9 +328,10 @@ function GetAllPerson() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
+                allPerson = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
-                    option += '<option value="' + data[i].Id + '">' + data[i].Name + '</option>';
+                    option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
                 }
                 $("#inPerson").empty().append(option);
 

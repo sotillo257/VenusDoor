@@ -37,7 +37,7 @@
                 var aux2 = listHD[i].Direction;
                 $('#inId').val(listHD[i].Id);
                 $('#inDirection').val(listHD[i].Direction);
-                $('#inStatus').val(listHD[i].Status.Id);
+                llenarComboEstatus(listHD[i].Status.Id);
             }
         }
     });
@@ -70,7 +70,7 @@ function Limpiar() {
     $('#inDirection').val("");
 
     $('#inStatus').removeClass("is-invalid");
-    $('#inStatus').val(0);
+    llenarComboEstatus(0);
 
 }
 
@@ -159,6 +159,22 @@ function UpdateHingeDirection() {
     });
 }
 
+var allEstatus = '';
+function llenarComboEstatus(pStatus) {
+
+    var option = '<option id="">Select</option>';
+    for (var i = 0; i < allEstatus.length; i++) {
+        if (allEstatus[i].Group.Id == 1) {
+            option += '<option value="' + allEstatus[i].Id + '">' + allEstatus[i].Description + '</option>';
+        }
+
+
+    }
+    $("#inStatus").empty().append(option);
+    if (pStatus != 0) {
+        $("#inStatus").val(pStatus);
+    }
+}
 function GetAllStatus() {
     $.ajax({
         url: urlGetAllStatus,
@@ -168,6 +184,7 @@ function GetAllStatus() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
+                allEstatus = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
                     option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
