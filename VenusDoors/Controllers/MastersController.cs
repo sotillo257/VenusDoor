@@ -194,9 +194,7 @@ namespace VenusDoors.Controllers
                     pDoors.CreationDate = DateTime.Now;
                     pDoors.CreatorUser = userID;
                     pDoors.ModificationDate = DateTime.Now;
-                    pDoors.ModificationUser = userID;
-                    pDoors.Picture = "Picture";
-                    pDoors.ProfilePicture = "empty";
+                    pDoors.ModificationUser = userID;                    
                     BusinessLogic.lnDoors _LM = new BusinessLogic.lnDoors();
                     var inDoor = _LM.InsertDoors(pDoors);
                     return Json(true, JsonRequestBehavior.AllowGet);
@@ -207,9 +205,7 @@ namespace VenusDoors.Controllers
                     pDoors.CreationDate = DateTime.Now;
                     pDoors.CreatorUser = userID;
                     pDoors.ModificationDate = DateTime.Now;
-                    pDoors.ModificationUser = userID;
-                    pDoors.Picture = "Picture";
-                    pDoors.ProfilePicture = "empty";
+                    pDoors.ModificationUser = userID;                   
                     BusinessLogic.lnDoors _LM = new BusinessLogic.lnDoors();                    
                     var inDoor = _LM.InsertDoors(pDoors);
                     return Json(true, JsonRequestBehavior.AllowGet);
@@ -1095,8 +1091,7 @@ namespace VenusDoors.Controllers
         public ActionResult Order()
         {
             if (Session["UserID"] != null && (int)Session["UserType"] == 1)
-            {
-                ViewBag.Masters = "active show-sub";
+            {                
                 ViewBag.Order = "active";
                 BusinessLogic.lnOrder _LK = new BusinessLogic.lnOrder();
 
@@ -2137,8 +2132,7 @@ namespace VenusDoors.Controllers
         public ActionResult Usuario()
         {
             if (Session["UserID"] != null && (int)Session["UserType"] == 1)
-            {
-                ViewBag.Masters = "active show-sub";
+            {                
                 ViewBag.Usuario = "active";
                 BusinessLogic.lnUser _USB = new BusinessLogic.lnUser();
 

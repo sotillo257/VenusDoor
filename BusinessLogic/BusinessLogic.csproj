@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="lnBottomRail.cs" />
+    <Compile Include="lnCompany.cs" />
     <Compile Include="lnDoors.cs" />
     <Compile Include="lnDoorsPrices.cs" />
     <Compile Include="lnDoorStylexInsideEdgeProfile.cs" />
