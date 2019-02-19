@@ -37,9 +37,9 @@
                 var aux2 = listTRV[i].VerticalDivisions.Id;
                 var aux3 = listTRV[i].Status.Id;
                 $('#intId').val(listTRV[i].Id);
-                $('#inTopRail').val(listTRV[i].TopRail.Id);
-                $('#inVerticalDivisions').val(listTRV[i].VerticalDivisions.Id);
-                $('#inStatus').val(listTRV[i].Status.Id);
+                llenarComboTopRail(listTRV[i].TopRail.Id);
+                llenarCombVerticalDivisions(listTRV[i].VerticalDivisions.Id);
+                llenarComboEstatus(listTRV[i].Status.Id);
             }
         }
     });
@@ -70,13 +70,13 @@ $(function () {
 function Limpiar() {
     $('#intId').val(0);
     $('#inTopRail').removeClass("is-invalid");
-    $('#inTopRail').val(0);
+    llenarComboTopRail(0);
 
     $('#inVerticalDivisions').removeClass("is-invalid");
-    $('#inVerticalDivisions').val(0);
+    llenarCombVerticalDivisions(0);
 
     $('#inStatus').removeClass("is-invalid");
-    $('#inStatus').val(0);
+    llenarComboEstatus(0);
 
 }
 
@@ -174,6 +174,65 @@ function UpdateTopRailByVerticalDivisions() {
     });
 }
 
+var allEstatus = '';
+function llenarComboEstatus(pStatus) {
+
+    var option = '<option id="">Select</option>';
+    for (var i = 0; i < allEstatus.length; i++) {
+        if (allEstatus[i].Group.Id == 1) {
+            option += '<option value="' + allEstatus[i].Id + '">' + allEstatus[i].Description + '</option>';
+        }
+
+
+    }
+    $("#inStatus").empty().append(option);
+    if (pStatus != 0) {
+        $("#inStatus").val(pStatus);
+    }
+}
+function GetAllStatus() {
+    $.ajax({
+        url: urlGetAllStatus,
+        cache: false,
+        type: 'POST',
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        success: function (data) {
+            if (data != null) {
+                allEstatus = data;
+                var option = '';
+                for (var i = 0; i < data.length; i++) {
+                    option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
+                }
+                $("#inStatus").empty().append(option);
+
+            }
+            else {
+                LlammarModal("Danger", "Error obtaining Join", " ");
+            }
+        },
+        error: function (err) {
+            LlammarModal("Danger", "Error.", "Check your internet connection I tried again.");
+        }
+    });
+}
+
+var allTopRail = '';
+function llenarComboTopRail(pTopRail) {
+
+    var option = '<option id="">Select</option>';
+    for (var i = 0; i < allTopRail.length; i++) {
+        if (allTopRail[i].Status.Id == 1) {
+            option += '<option value="' + allTopRail[i].Id + '">' + allTopRail[i].Description + '</option>';
+        }
+
+
+    }
+    $("#inTopRail").empty().append(option);
+    if (pTopRail != 0) {
+        $("#inTopRail").val(pTopRail);
+    }
+}
 function GetAllTopRail() {
     $.ajax({
         url: urlGetAllTopRail,
@@ -183,6 +242,7 @@ function GetAllTopRail() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
+                allTopRail = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
                     option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
@@ -199,6 +259,23 @@ function GetAllTopRail() {
         }
     });
 }
+
+var allVerticalDivisions = '';
+function llenarCombVerticalDivisions(pVerticalDivisions) {
+
+    var option = '<option id="">Select</option>';
+    for (var i = 0; i < allVerticalDivisions.length; i++) {
+        if (allVerticalDivisions[i].Status.Id == 1) {
+            option += '<option value="' + allVerticalDivisions[i].Id + '">' + allVerticalDivisions[i].Quantity + '</option>';
+        }
+
+
+    }
+    $("#inVerticalDivisions").empty().append(option);
+    if (pVerticalDivisions != 0) {
+        $("#inVerticalDivisions").val(pVerticalDivisions);
+    }
+}
 function GetAllVerticalDivisions() {
     $.ajax({
         url: urlGetAllVerticalDivisions,
@@ -208,36 +285,12 @@ function GetAllVerticalDivisions() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
+                allVerticalDivisions = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
                     option += '<option value="' + data[i].Id + '">' + data[i].Quantity + '</option>';
                 }
                 $("#inVerticalDivisions").empty().append(option);
-
-            }
-            else {
-                LlammarModal("Danger", "Error obtaining Join", " ");
-            }
-        },
-        error: function (err) {
-            LlammarModal("Danger", "Error.", "Check your internet connection I tried again.");
-        }
-    });
-}
-function GetAllStatus() {
-    $.ajax({
-        url: urlGetAllStatus,
-        cache: false,
-        type: 'POST',
-        async: false,
-        contentType: "application/json; charset=utf-8",
-        success: function (data) {
-            if (data != null) {
-                var option = '';
-                for (var i = 0; i < data.length; i++) {
-                    option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
-                }
-                $("#inStatus").empty().append(option);
 
             }
             else {

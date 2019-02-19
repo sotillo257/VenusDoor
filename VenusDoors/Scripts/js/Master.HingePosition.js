@@ -43,7 +43,7 @@
                 $('#inPosition3').val(listHP[i].Position3);
                 $('#inPosition4').val(listHP[i].Position4);
                 $('#inPosition5').val(listHP[i].Position5);
-                $('#inStatus').val(listHP[i].Status.Id);
+                llenarComboEstatus(listHP[i].Status.Id);
             }
         }
     });
@@ -90,7 +90,7 @@
         $('#inPosition5').val("");
 
         $('#inStatus').removeClass("is-invalid");
-        $('#inStatus').val(0);
+        llenarComboEstatus(0);
 
     }
 
@@ -222,6 +222,22 @@
         });
     }
 
+    var allEstatus = '';
+    function llenarComboEstatus(pStatus) {
+
+        var option = '<option id="">Select</option>';
+        for (var i = 0; i < allEstatus.length; i++) {
+            if (allEstatus[i].Group.Id == 1) {
+                option += '<option value="' + allEstatus[i].Id + '">' + allEstatus[i].Description + '</option>';
+            }
+
+
+        }
+        $("#inStatus").empty().append(option);
+        if (pStatus != 0) {
+            $("#inStatus").val(pStatus);
+        }
+    }
     function GetAllStatus() {
         $.ajax({
             url: urlGetAllStatus,
@@ -231,6 +247,7 @@
             contentType: "application/json; charset=utf-8",
             success: function (data) {
                 if (data != null) {
+                    allEstatus = data;
                     var option = '';
                     for (var i = 0; i < data.length; i++) {
                         option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';

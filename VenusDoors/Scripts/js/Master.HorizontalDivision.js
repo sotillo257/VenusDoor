@@ -36,7 +36,7 @@
                 var aux1 = listHoDi[i].Status.Id;
                 var aux2 = listHoDi[i].Quantity;
                 $('#inId').val(listHoDi[i].Id);
-                $('#inStatus').val(listHoDi[i].Status.Id);
+                llenarComboEstatus(listHoDi[i].Status.Id);
                 $('#inQuantity').val(listHoDi[i].Quantity);
             }
         }
@@ -70,7 +70,7 @@ function Limpiar() {
     $('#inQuantity').val("");
 
     $('#inStatus').removeClass("is-invalid");
-    $('#inStatus').val(0);
+    llenarComboEstatus(0);
 
 }
 
@@ -161,6 +161,23 @@ function UpdateHorizontalDivisions() {
     });
 }
 
+
+var allEstatus = '';
+function llenarComboEstatus(pStatus) {
+
+    var option = '<option id="">Select</option>';
+    for (var i = 0; i < allEstatus.length; i++) {
+        if (allEstatus[i].Group.Id == 1) {
+            option += '<option value="' + allEstatus[i].Id + '">' + allEstatus[i].Description + '</option>';
+        }
+
+
+    }
+    $("#inStatus").empty().append(option);
+    if (pStatus != 0) {
+        $("#inStatus").val(pStatus);
+    }
+}
 function GetAllStatus() {
     $.ajax({
         url: urlGetAllStatus,
@@ -170,6 +187,7 @@ function GetAllStatus() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
+                allEstatus = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
                     option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';

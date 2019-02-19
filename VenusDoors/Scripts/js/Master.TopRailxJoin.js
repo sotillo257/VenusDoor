@@ -37,9 +37,9 @@
                 var aux2 = listTRJ[i].Join.Id;
                 var aux3 = listTRJ[i].Status.Id;
                 $('#inId').val(listTRJ[i].Id);
-                $('#inTopRail').val(listTRJ[i].TopRail.Id);
-                $('#inJoin').val(listTRJ[i].Join.Id);
-                $('#inStatus').val(listTRJ[i].Status.Id);
+                llenarComboTopRail(listTRJ[i].TopRail.Id);
+                llenarComboJoin(listTRJ[i].Join.Id);
+                llenarComboEstatus(listTRJ[i].Status.Id);
             }
         }
     });
@@ -70,13 +70,13 @@ $(function () {
 function Limpiar() {
     $('#inId').val(0);
     $('#inTopRail').removeClass("is-invalid");
-    $('#inTopRail').val(0);
+    llenarComboTopRail(0);
 
     $('#inJoin').removeClass("is-invalid");
-    $('#inJoin').val(0);
+    llenarComboJoin(0);
 
     $('#inStatus').removeClass("is-invalid");
-    $('#inStatus').val(0);
+    llenarComboEstatus(0);
 
 }
 
@@ -174,6 +174,22 @@ function UpdateTopRailByJoin() {
     });
 }
 
+var allTopRail = '';
+function llenarComboTopRail(pTopRail) {
+
+    var option = '<option id="">Select</option>';
+    for (var i = 0; i < allTopRail.length; i++) {
+        if (allTopRail[i].Status.Id == 1) {
+            option += '<option value="' + allTopRail[i].Id + '">' + allTopRail[i].Description + '</option>';
+        }
+
+
+    }
+    $("#inTopRail").empty().append(option);
+    if (pTopRail != 0) {
+        $("#inTopRail").val(pTopRail);
+    }
+}
 function GetAllTopRail() {
     $.ajax({
         url: urlGetAllTopRail,
@@ -183,6 +199,7 @@ function GetAllTopRail() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
+                allTopRail = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
                     option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
@@ -199,6 +216,23 @@ function GetAllTopRail() {
         }
     });
 }
+
+var allEstatus = '';
+function llenarComboEstatus(pStatus) {
+
+    var option = '<option id="">Select</option>';
+    for (var i = 0; i < allEstatus.length; i++) {
+        if (allEstatus[i].Group.Id == 1) {
+            option += '<option value="' + allEstatus[i].Id + '">' + allEstatus[i].Description + '</option>';
+        }
+
+
+    }
+    $("#inStatus").empty().append(option);
+    if (pStatus != 0) {
+        $("#inStatus").val(pStatus);
+    }
+}
 function GetAllStatus() {
     $.ajax({
         url: urlGetAllStatus,
@@ -208,6 +242,7 @@ function GetAllStatus() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
+                allEstatus = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
                     option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
@@ -224,6 +259,23 @@ function GetAllStatus() {
         }
     });
 }
+
+var allJoin = '';
+function llenarComboJoin(pJoin) {
+
+    var option = '<option id="">Select</option>';
+    for (var i = 0; i < allJoin.length; i++) {
+        if (allJoin[i].Status.Id == 1) {
+            option += '<option value="' + allJoin[i].Id + '">' + allJoin[i].Description + '</option>';
+        }
+
+
+    }
+    $("#inJoin").empty().append(option);
+    if (pJoin != 0) {
+        $("#inJoin").val(pJoin);
+    }
+}
 function GetAllJoin() {
     $.ajax({
         url: urlGetAllJoin,
@@ -233,6 +285,7 @@ function GetAllJoin() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
+                allJoin = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
                     option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';

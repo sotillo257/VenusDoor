@@ -41,11 +41,11 @@
                 var aux5 = listORDER[i].Status.Id;
 
                 $('#inId').val(listORDER[i].Id);
-                $('#inUser').val(listORDER[i].User.Id);
+                llenarComboUser(listORDER[i].User.Id);
                 $('#inQuantity').val(listORDER[i].Quantity);
                 $('#inTotal').val(listORDER[i].Total);
-                $('#inType').val(listORDER[i].Type.Id);
-                $('#inStatus').val(listORDER[i].Status.Id);
+                llenarComboType(listORDER[i].Type.Id);
+                llenarComboEstatus(listORDER[i].Status.Id);
             }
         }
     });
@@ -76,7 +76,7 @@ $(function () {
 function Limpiar() {
     $('#inId').val(0);
     $('#inUser').removeClass("is-invalid");
-    $('#inUser').val(0);
+    llenarComboUser(0);
 
     $('#inQuantity').removeClass("is-invalid");
     $('#inQuantity').val("");
@@ -85,10 +85,10 @@ function Limpiar() {
     $('#inTotal').val("");
 
     $('#inType').removeClass("is-invalid");
-    $('#inType').val(0);
+    llenarComboType(0);
 
     $('#inStatus').removeClass("is-invalid");
-    $('#inStatus').val(0);
+    llenarComboEstatus(0);
 
 }
 
@@ -204,6 +204,22 @@ function UpdateOrder() {
     });
 }
 
+var allEstatus = '';
+function llenarComboEstatus(pStatus) {
+
+    var option = '<option id="">Select</option>';
+    for (var i = 0; i < allEstatus.length; i++) {
+        if (allEstatus[i].Group.Id == 1) {
+            option += '<option value="' + allEstatus[i].Id + '">' + allEstatus[i].Description + '</option>';
+        }
+
+
+    }
+    $("#inStatus").empty().append(option);
+    if (pStatus != 0) {
+        $("#inStatus").val(pStatus);
+    }
+}
 function GetAllStatus() {
     $.ajax({
         url: urlGetAllStatus,
@@ -213,6 +229,7 @@ function GetAllStatus() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
+                allEstatus = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
                     option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
@@ -229,6 +246,23 @@ function GetAllStatus() {
         }
     });
 }
+
+var allUser = '';
+function llenarComboUser(pUser) {
+
+    var option = '<option id="">Select</option>';
+    for (var i = 0; i < allUser.length; i++) {
+        if (allUser[i].Status.Id == 1) {
+            option += '<option value="' + allUser[i].Id + '">' + allUser[i].Email + '</option>';
+        }
+
+
+    }
+    $("#inUser").empty().append(option);
+    if (pUser != 0) {
+        $("#inUser").val(pUser);
+    }
+}
 function GetAllUser() {
     $.ajax({
         url: urlGetAllUser,
@@ -238,6 +272,7 @@ function GetAllUser() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
+                allUser = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
                     option += '<option value="' + data[i].Id + '">' + data[i].Email + '</option>';
@@ -254,6 +289,23 @@ function GetAllUser() {
         }
     });
 }
+
+var allType = '';
+function llenarComboType(pType) {
+
+    var option = '<option id="">Select</option>';
+    for (var i = 0; i < allType.length; i++) {
+        if (allType[i].Group.Id == 1) {
+            option += '<option value="' + allType[i].Id + '">' + allType[i].Description + '</option>';
+        }
+
+
+    }
+    $("#inType").empty().append(option);
+    if (pType != 0) {
+        $("#inType").val(pType);
+    }
+}
 function GetAllType() {
     $.ajax({
         url: urlGetAllType,
@@ -263,6 +315,7 @@ function GetAllType() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
+                allType = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
                     option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
