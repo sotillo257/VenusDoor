@@ -1,4 +1,7 @@
 ﻿$(document).ready(function () {
+    GetAllStatus();
+    GetAllBottomRail();
+    GetAllMaterial();
 
     $("#btInsertMaterialxBR").on("click", function () {
         if (ValidarCamposVacios()) {
@@ -35,7 +38,7 @@
                 var aux2 = listMBR[i].BottomRail.Id;
                 var aux3 = listMBR[i].Material.Id;
                 $('#inId').val(listMBR[i].Id);
-                $('#inMatarial').val(listMBR[i].Material.Id);
+                $('#inMaterial').val(listMBR[i].Material.Id);
                 $('#inBottomRail').val(listMBR[i].BottomRail.Id);
                 $('#inStatus').val(listMBR[i].Status.Id);
             }
@@ -68,8 +71,8 @@ $(function () {
 
 function Limpiar() {
     $('#inId').val(0);
-    $('#inMatarial').removeClass("is-invalid");
-    $('#inMatarial').val(0);
+    $('#inMaterial').removeClass("is-invalid");
+    $('#inMaterial').val(0);
 
     $('#inBottomRail').removeClass("is-invalid");
     $('#inBottomRail').val(0);
@@ -88,11 +91,11 @@ function ValidarCamposVacios() {
         $('#inStatus').removeClass("is-invalid");
     }
 
-    if ($('#inMatarial').val() == 0) {
-        $('#inMatarial').addClass("is-invalid");
+    if ($('#inMaterial').val() == 0) {
+        $('#inMaterial').addClass("is-invalid");
         aux = false;
     } else {
-        $('#inMatarial').removeClass("is-invalid");
+        $('#inMaterial').removeClass("is-invalid");
     }
 
     if ($('#inBottomRail').val() == 0) {
@@ -110,7 +113,7 @@ function InsertMaterialxBottomRail() {
     var datos =
     {
         pMaterialxBottomRail: {
-            Matarial: { Id: $("#inMatarial").val() },
+            Material: { Id: $("#inMaterial").val() },
             BottomRail: { Id: $("#inBottomRail").val() },
             Status: { Id: $("#inStatus").val() },
 
@@ -144,7 +147,7 @@ function UpdateMaterialxBottomRail() {
     {
         uMaterialxBottomRail: {
             Id: $("#inId").val(),
-            Matarial: { Id: $("#inMatarial").val() },
+            Material: { Id: $("#inMaterial").val() },
             BottomRail: { Id: $("#inBottomRail").val() },
             Status: { Id: $("#inStatus").val() },
 
@@ -170,5 +173,81 @@ function UpdateMaterialxBottomRail() {
             LlammarModal("Danger", "Error.", " ");
         },
 
+    });
+}
+
+function GetAllStatus() {
+    $.ajax({
+        url: urlGetAllStatus,
+        cache: false,
+        type: 'POST',
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        success: function (data) {
+            if (data != null) {
+                var option = '';
+                for (var i = 0; i < data.length; i++) {
+                    option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
+                }
+                $("#inStatus").empty().append(option);
+
+            }
+            else {
+                LlammarModal("Danger", "Error obtaining Join", " ");
+            }
+        },
+        error: function (err) {
+            LlammarModal("Danger", "Error.", "Check your internet connection I tried again.");
+        }
+    });
+}
+function GetAllBottomRail() {
+    $.ajax({
+        url: urlGetAllBottomRail,
+        cache: false,
+        type: 'POST',
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        success: function (data) {
+            if (data != null) {
+                var option = '';
+                for (var i = 0; i < data.length; i++) {
+                    option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
+                }
+                $("#inBottomRail").empty().append(option);
+
+            }
+            else {
+                LlammarModal("Danger", "Error obtaining Join", " ");
+            }
+        },
+        error: function (err) {
+            LlammarModal("Danger", "Error.", "Check your internet connection I tried again.");
+        }
+    });
+}
+function GetAllMaterial() {
+    $.ajax({
+        url: urlGetAllMaterial,
+        cache: false,
+        type: 'POST',
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        success: function (data) {
+            if (data != null) {
+                var option = '';
+                for (var i = 0; i < data.length; i++) {
+                    option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
+                }
+                $("#inMaterial").empty().append(option);
+
+            }
+            else {
+                LlammarModal("Danger", "Error obtaining Join", " ");
+            }
+        },
+        error: function (err) {
+            LlammarModal("Danger", "Error.", "Check your internet connection I tried again.");
+        }
     });
 }

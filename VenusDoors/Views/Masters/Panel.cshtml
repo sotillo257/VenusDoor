@@ -91,11 +91,6 @@
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="inStatus" style="margin-top: 25px;">Status: </label>
                                                 <select style="width:100%" class="form-control select2" id="inStatus" data-placeholder="">
-                                                    <option value="0">select</option>
-                                                    @foreach (Model.Status item in ViewBag.mStatus)
-                                                    {
-                                                        <option value="@item.Id">@item.Description</option>
-                                                    }
                                                 </select>
                                             </div><!-- form-group -->
                                         </div>
@@ -120,6 +115,7 @@
     <script>
     var urlInsertPanel = '@Url.Action("InsertPanel", "Masters")';
         var urlUpdatePanel = '@Url.Action("UpdatePanel", "Masters")';
+        var urlGetAllStatus = '@Url.Action("GetStatus", "Masters")';
         var listPal = JSON.parse('@Html.Raw(ViewBag.ListPanel)');
     </script>
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>

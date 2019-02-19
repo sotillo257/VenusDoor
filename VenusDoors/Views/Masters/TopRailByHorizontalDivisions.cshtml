@@ -33,7 +33,7 @@
                     <thead>
                         <tr>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="First name: activate to sort column ascending">Id</th>
-                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Top Rail</th>
+                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Stile Width</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Horizontal Divisions</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Status</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" style="text-align: center" aria-label="Last name: activate to sort column ascending"><i class="fa fa-flash"></i></th>
@@ -87,30 +87,18 @@
                                                 <input type="text" name="id" id="inId" class="form-control" readonly placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
-                                                <label for="inTopRail" style="margin-top: 25px;">Top Rail: </label>
+                                                <label for="inTopRail" style="margin-top: 25px;">Stile Width: </label>
                                                 <select style="width:100%" class="form-control select2" id="inTopRail" data-placeholder="">
-                                                    @foreach (Model.TopRail item in ViewBag.cbTopRail)
-                                                    {
-                                                        <option value="@item.Id">@item.Description</option>
-                                                    }
                                                 </select>
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="inHorizontalDivisions" style="margin-top: 25px;">Horizontal Divisions: </label>
                                                 <select style="width:100%" class="form-control select2" id="inHorizontalDivisions" data-placeholder="">
-                                                    @foreach (Model.HorizontalDivisions item in ViewBag.cbHorizontalDivisions)
-                                                    {
-                                                        <option value="@item.Id">@item.Quantity</option>
-                                                    }
                                                 </select>
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="inStatus" style="margin-top: 25px;">Status: </label>
                                                 <select style="width:100%" class="form-control select2" id="inStatus" data-placeholder="">
-                                                    @foreach (Model.Status item in ViewBag.mStatus)
-                                                    {
-                                                        <option value="@item.Id">@item.Description</option>
-                                                    }
                                                 </select>
                                             </div><!-- form-group -->
                                         </div>
@@ -132,6 +120,9 @@
 
 @section scripts{
     <script>
+        var urlGetAllStatus = '@Url.Action("GetStatus", "Masters")';
+        var urlGetAllTopRail = '@Url.Action("GetTopRail", "Masters")';
+        var urlGetAllHorizontalDivisions = '@Url.Action("GetHorizontalDivisions", "Masters")';
         var urlInsertTopRailxHorizontalDivisions = '@Url.Action("InsertTopRailxHorizontalDivisions", "Masters")';
         var urlUpdateTopRailxHorizontalDivisions = '@Url.Action("UpdateTopRailxHorizontalDivisions", "Masters")';
         var listTRH = JSON.parse('@Html.Raw(ViewBag.ListTopRailxHorizontal)');

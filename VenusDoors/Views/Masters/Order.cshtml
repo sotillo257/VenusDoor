@@ -101,37 +101,28 @@
                                             <div class="col-xs-3 col-md-4">
                                                 <label for="inUser" style="margin-top: 25px;">User: </label>
                                                 <select style="width:100%" class="form-control select2" id="inUser" data-placeholder="">
-                                                    @foreach (Model.User item in ViewBag.cbUser)
-                                                    {
-                                                        <option value="@item.Id">@item.Email</option>
-                                                    }
                                                 </select>
                                             </div><!-- form-group -->
 
                                             <div class="col-xs-3 col-md-4">
-                                                <label for="Quantity" style="margin-top: 25px;">Quantity: </label>
+                                                <label for="inQuantity" style="margin-top: 25px;">Quantity: </label>
                                                 <input type="text" name="id" id="inQuantity" class="form-control" placeholder="">
                                             </div><!-- form-group -->
+
                                             <div class="col-xs-3 col-md-4">
-                                                <label for="Total" style="margin-top: 25px;">Total: </label>
+                                                <label for="inTotal" style="margin-top: 25px;">Total: </label>
                                                 <input type="text" name="Total" id="inTotal" class="form-control" placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-3 col-md-4">
-                                                <label for="Template" style="margin-top: 25px;">Type: </label>
+
+                                                <label for="inType" style="margin-top: 25px;">Type: </label>
                                                 <select style="width:100%" class="form-control select2" id="inType" data-placeholder="">
-                                                    @foreach (Model.Type item in ViewBag.cbType)
-                                                    {
-                                                        <option value="@item.Id">@item.Description</option>
-                                                    }
                                                 </select>
                                             </div><!-- form-group -->
+
                                             <div class="col-xs-3 col-md-4">
                                                 <label for="IdStatus" style="margin-top: 25px;">Status: </label>
                                                 <select style="width:100%" class="form-control select2" id="inStatus" data-placeholder="">
-                                                    @foreach (Model.Status item in ViewBag.mStatus)
-                                                    {
-                                                        <option value="@item.Id">@item.Description</option>
-                                                    }
                                                 </select>
                                             </div><!-- form-group -->
                                         </div>
@@ -155,6 +146,9 @@
     <script>
     var urlInsertOrder = '@Url.Action("InsertOrder", "Masters")';
         var urlUpdateOrder = '@Url.Action("UpdateOrder", "Masters")';
+        var urlGetAllStatus = '@Url.Action("GetStatus", "Masters")';
+        var urlGetAllUser = '@Url.Action("GetUser", "Masters")';
+        var urlGetAllType = '@Url.Action("GetAllType", "Masters")';
         var listORDER = JSON.parse('@Html.Raw(ViewBag.ListOrder)');
     </script>
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>

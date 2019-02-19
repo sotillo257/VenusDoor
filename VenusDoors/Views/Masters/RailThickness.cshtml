@@ -88,12 +88,8 @@
                                                 <input type="text" name="id" id="inDescription" class="form-control" placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
-                                                <label for="IdStatus" style="margin-top: 25px;">Status: </label>
-                                                <select style="width: 100%;" class="form-control select2" id="IdStatus" data-placeholder="">
-                                                    @foreach (Model.Status item in ViewBag.mStatus)
-                                                    {
-                                                        <option value="@item.Id">@item.Description</option>
-                                                    }
+                                                <label for="inStatus" style="margin-top: 25px;">Status: </label>
+                                                <select style="width: 100%;" class="form-control select2" id="inStatus" data-placeholder="">
                                                 </select>
                                             </div><!-- form-group -->
                                         </div>
@@ -117,6 +113,7 @@
     <script>
         var urlInsertRailThickness = '@Url.Action("InsertRailThickness", "Masters")';
         var urlUpdateRailThickness = '@Url.Action("UpdateRailThickness", "Masters")';
+        var urlGetAllStatus = '@Url.Action("GetStatus", "Masters")';
         var listRailT = JSON.parse('@Html.Raw(ViewBag.ListRailThickness)');
     </script>
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
