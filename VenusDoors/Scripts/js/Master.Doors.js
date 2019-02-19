@@ -67,27 +67,27 @@
                     var aux20 = ListDoors[i].ProfilePicture.Id;
                     var aux21 = ListDoors[i].Status.Id;
                     $('#inId').val(ListDoors[i].Id);
-                    $('#inDoorStyle').val(ListDoors[i].DoorStyle.Id);
-                    $('#inMaterial').val(ListDoors[i].Material.Id);
-                    $('#inTopRail').val(ListDoors[i].TopRail.Id);
-                    $('#inBottomRail').val(ListDoors[i].BottomRail.Id);
-                    $('#inPreparation').val(ListDoors[i].Preparation.Id);
-                    $('#inJoin').val(ListDoors[i].Join.Id);
-                    $('#inOutsideEdgeProfile').val(ListDoors[i].OutsideEdgeProfile.Id);
-                    $('#inInsideEdgeProfile').val(ListDoors[i].InsideEdgeProfile.Id);
-                    $('#inVerticalDivisions').val(ListDoors[i].VerticalDivisions.Id);
-                    $('#inHorizontalDivisions').val(ListDoors[i].HorizontalDivisions.Id);
-                    $('#inHingeDirection').val(ListDoors[i].HingeDirection.Id);
+                    llenarComboDoorStyle(ListDoors[i].DoorStyle.Id);
+                    llenarCombolMaterial(ListDoors[i].Material.Id);
+                    llenarComboTopRail(ListDoors[i].TopRail.Id);
+                    llenarComboBottomRail(ListDoors[i].BottomRail.Id);
+                    llenarComboPreparation(ListDoors[i].Preparation.Id);
+                    llenarComboJoin(ListDoors[i].Join.Id);
+                    llenarCombOutsideEdgeProfile(ListDoors[i].OutsideEdgeProfile.Id);
+                    llenarCombInsideEdgeProfile(ListDoors[i].InsideEdgeProfile.Id);
+                    llenarCombVerticalDivisions(ListDoors[i].VerticalDivisions.Id);
+                    llenarCombHorizontalDivisions(ListDoors[i].HorizontalDivisions.Id);
+                    llenarComboHingeDirection(ListDoors[i].HingeDirection.Id);
                     $('#inHingePositions').val(ListDoors[i].HingePositions.Id);
-                    $('#inPanel').val(ListDoors[i].Panel.Id);
-                    $('#inPanelMaterial').val(ListDoors[i].PanelMaterial.Id);
+                    llenarCombPanel(ListDoors[i].Panel.Id);
+                    llenarCombPanelMaterial(ListDoors[i].PanelMaterial.Id);
                     $('#inDrill').val(ListDoors[i].isDrill);
                     $('#inWidth').val(ListDoors[i].Width);
                     $('#inHeight').val(ListDoors[i].Height);
                     $('#inOpeningMeasurement').val(ListDoors[i].IsOpeningMeasurement);
                     $('#inPicture').val(ListDoors[i].Picture);
                     $('#inProfilePicture').val(ListDoors[i].ProfilePicture);
-                    $('#inStatus').val(ListDoors[i].Status.Id);
+                    llenarComboEstatus(ListDoors[i].Status.Id);
                 }
             }
         });
@@ -120,40 +120,40 @@
 
         $('#inId').val(0);
         $('#inDoorStyle').removeClass("is-invalid");
-        $('#inDoorStyle').val(0);
+        llenarComboDoorStyle(0);
 
         $('#inMaterial').removeClass("is-invalid");
-        $('#inMaterial').val(0);
+        llenarCombolMaterial(0);
 
         $('#inBottomRail').removeClass("is-invalid");
-        $('#inBottomRail').val(0);
+        llenarComboBottomRail(0);
 
         $('#inPreparation').removeClass("is-invalid");
-        $('#inPreparation').val(0);
+        llenarComboPreparation(0);
 
         $('#inJoin').removeClass("is-invalid");
-        $('#inJoin').val(0);
+        llenarComboJoin(0);
 
         $('#inOutsideEdgeProfile').removeClass("is-invalid");
-        $('#inOutsideEdgeProfile').val(0);
+        llenarCombOutsideEdgeProfile(0);
 
         $('#inInsideEdgeProfile').removeClass("is-invalid");
-        $('#inInsideEdgeProfile').val(0);
+        llenarCombInsideEdgeProfile(0);
 
         $('#inVerticalDivisions').removeClass("is-invalid");
-        $('#inVerticalDivisions').val(0);
-
-        $('#inHorizontalDivisions').removeClass("is-invalid");
-        $('#inHorizontalDivisions').val(0);
+        llenarCombVerticalDivisions(0);
 
         $('#inHingeDirection').removeClass("is-invalid");
-        $('#inHingeDirection').val(0);
+        llenarComboHingeDirection(0);
+
+        $('#inHorizontalDivisions').removeClass("is-invalid");
+        llenarCombHorizontalDivisions(0);
 
         $('#inPanel').removeClass("is-invalid");
-        $('#inPanel').val(0);
+        llenarCombPanel(0);
 
         $('#inPanelMaterial').removeClass("is-invalid");
-        $('#inPanelMaterial').val(0);
+        llenarCombPanelMaterial(0);
 
         $('#inDrill').removeClass("is-invalid");
         $('#inDrill').val(0);
@@ -165,10 +165,10 @@
         $('#inHeight').val("");
 
         $('#inStatus').removeClass("is-invalid");
-        $('#inStatus').val("");
+        llenarComboEstatus(0);
 
         $('#inTopRail').removeClass("is-invalid");
-        $('#inTopRail').val("");
+        llenarComboTopRail(0);
 
     }
 
@@ -419,6 +419,22 @@ function UpdateDoors() {
     });
 }
 
+var allDoorStyle = '';
+function llenarComboDoorStyle(pDoorStyle) {
+
+    var option = '<option id="">Select</option>';
+    for (var i = 0; i < allDoorStyle.length; i++) {
+        if (allDoorStyle[i].Group.Id == 1) {
+            option += '<option value="' + allDoorStyle[i].Id + '">' + allDoorStyle[i].Description + '</option>';
+        }
+
+
+    }
+    $("#inDoorStyle").empty().append(option);
+    if (pDoorStyle != 0) {
+        $("#inDoorStyle").val(pDoorStyle);
+    }
+}
 function GetAllDoorStyle() {
     $.ajax({
         url: urlGetAllDoorStyle,
@@ -428,6 +444,7 @@ function GetAllDoorStyle() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
+                allDoorStyle = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
                     option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
@@ -444,6 +461,23 @@ function GetAllDoorStyle() {
         }
     });
 }
+
+var allMaterial = '';
+function llenarCombolMaterial(pMaterial) {
+
+    var option = '<option id="">Select</option>';
+    for (var i = 0; i < allMaterial.length; i++) {
+        if (allMaterial[i].Group.Id == 1) {
+            option += '<option value="' + allMaterial[i].Id + '">' + allMaterial[i].Description + '</option>';
+        }
+
+
+    }
+    $("#inMaterial").empty().append(option);
+    if (pMaterial != 0) {
+        $("#inMaterial").val(pMaterial);
+    }
+}
 function GetAllMaterial() {
     $.ajax({
         url: urlGetAllMaterial,
@@ -453,6 +487,7 @@ function GetAllMaterial() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
+                allMaterial = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
                     option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
@@ -469,6 +504,23 @@ function GetAllMaterial() {
         }
     });
 }
+
+var allTopRail = '';
+function llenarComboTopRail(pTopRail) {
+
+    var option = '<option id="">Select</option>';
+    for (var i = 0; i < allTopRail.length; i++) {
+        if (allTopRail[i].Group.Id == 1) {
+            option += '<option value="' + allTopRail[i].Id + '">' + allTopRail[i].Description + '</option>';
+        }
+
+
+    }
+    $("#inTopRail").empty().append(option);
+    if (pTopRail != 0) {
+        $("#inTopRail").val(pTopRail);
+    }
+}
 function GetAllTopRail() {
     $.ajax({
         url: urlGetAllTopRail,
@@ -478,6 +530,7 @@ function GetAllTopRail() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
+                allTopRail = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
                     option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
@@ -494,6 +547,23 @@ function GetAllTopRail() {
         }
     });
 }
+
+var allBottomRail = '';
+function llenarComboBottomRail(pBottomRail) {
+
+    var option = '<option id="">Select</option>';
+    for (var i = 0; i < allBottomRail.length; i++) {
+        if (allBottomRail[i].Group.Id == 1) {
+            option += '<option value="' + allBottomRail[i].Id + '">' + allBottomRail[i].Description + '</option>';
+        }
+
+
+    }
+    $("#inBottomRail").empty().append(option);
+    if (pBottomRail != 0) {
+        $("#inBottomRail").val(pBottomRail);
+    }
+}
 function GetAllBottomRail() {
     $.ajax({
         url: urlGetAllBottomRail,
@@ -503,6 +573,7 @@ function GetAllBottomRail() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
+                allBottomRail = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
                     option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
@@ -519,6 +590,23 @@ function GetAllBottomRail() {
         }
     });
 }
+
+var allPreparation = '';
+function llenarComboPreparation(pPreparation) {
+
+    var option = '<option id="">Select</option>';
+    for (var i = 0; i < allPreparation.length; i++) {
+        if (allPreparation[i].Group.Id == 1) {
+            option += '<option value="' + allPreparation[i].Id + '">' + allPreparation[i].Description + '</option>';
+        }
+
+
+    }
+    $("#inPreparation").empty().append(option);
+    if (pPreparation != 0) {
+        $("#inPreparation").val(pPreparation);
+    }
+}
 function GetAllPreparation() {
     $.ajax({
         url: urlGetAllPreparation,
@@ -528,6 +616,7 @@ function GetAllPreparation() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
+                allPreparation = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
                     option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
@@ -544,6 +633,23 @@ function GetAllPreparation() {
         }
     });
 }
+
+var allJoin = '';
+function llenarComboJoin(pJoin) {
+
+    var option = '<option id="">Select</option>';
+    for (var i = 0; i < allJoin.length; i++) {
+        if (allJoin[i].Group.Id == 1) {
+            option += '<option value="' + allJoin[i].Id + '">' + allJoin[i].Description + '</option>';
+        }
+
+
+    }
+    $("#inJoin").empty().append(option);
+    if (pJoin != 0) {
+        $("#inJoin").val(pJoin);
+    }
+}
 function GetAllJoin() {
     $.ajax({
         url: urlGetAllJoin,
@@ -553,6 +659,7 @@ function GetAllJoin() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
+                allJoin = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
                     option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
@@ -569,6 +676,23 @@ function GetAllJoin() {
         }
     });
 }
+
+var allOutsideEdgeProfile = '';
+function llenarCombOutsideEdgeProfile(pOutsideEdgeProfile) {
+
+    var option = '<option id="">Select</option>';
+    for (var i = 0; i < allOutsideEdgeProfile.length; i++) {
+        if (allOutsideEdgeProfile[i].Group.Id == 1) {
+            option += '<option value="' + allOutsideEdgeProfile[i].Id + '">' + allOutsideEdgeProfile[i].Description + '</option>';
+        }
+
+
+    }
+    $("#inOutsideEdgeProfile").empty().append(option);
+    if (pOutsideEdgeProfile != 0) {
+        $("#inOutsideEdgeProfile").val(pOutsideEdgeProfile);
+    }
+}
 function GetAllOutsideEdgeProfile() {
     $.ajax({
         url: urlGetAllOutsideEdgeProfile,
@@ -578,6 +702,7 @@ function GetAllOutsideEdgeProfile() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
+                allOutsideEdgeProfile = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
                     option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
@@ -594,6 +719,23 @@ function GetAllOutsideEdgeProfile() {
         }
     });
 }
+
+var allInsideEdgeProfile = '';
+function llenarCombInsideEdgeProfile(pInsideEdgeProfile) {
+
+    var option = '<option id="">Select</option>';
+    for (var i = 0; i < allInsideEdgeProfile.length; i++) {
+        if (allInsideEdgeProfile[i].Group.Id == 1) {
+            option += '<option value="' + allInsideEdgeProfile[i].Id + '">' + allInsideEdgeProfile[i].Description + '</option>';
+        }
+
+
+    }
+    $("#inInsideEdgeProfile").empty().append(option);
+    if (pInsideEdgeProfile != 0) {
+        $("#inInsideEdgeProfile").val(pInsideEdgeProfile);
+    }
+}
 function GetAllInsideEdgeProfile() {
     $.ajax({
         url: urlGetAllInsideEdgeProfile,
@@ -603,6 +745,7 @@ function GetAllInsideEdgeProfile() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
+                allInsideEdgeProfile = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
                     option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
@@ -619,6 +762,23 @@ function GetAllInsideEdgeProfile() {
         }
     });
 }
+
+var allVerticalDivisions = '';
+function llenarCombVerticalDivisions(pVerticalDivisions) {
+
+    var option = '<option id="">Select</option>';
+    for (var i = 0; i < allVerticalDivisions.length; i++) {
+        if (allVerticalDivisions[i].Group.Id == 1) {
+            option += '<option value="' + allVerticalDivisions[i].Id + '">' + allVerticalDivisions[i].Quantity + '</option>';
+        }
+
+
+    }
+    $("#inVerticalDivisions").empty().append(option);
+    if (pVerticalDivisions != 0) {
+        $("#inVerticalDivisions").val(pVerticalDivisions);
+    }
+}
 function GetAllVerticalDivisions() {
     $.ajax({
         url: urlGetAllVerticalDivisions,
@@ -628,6 +788,7 @@ function GetAllVerticalDivisions() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
+                allVerticalDivisions = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
                     option += '<option value="' + data[i].Id + '">' + data[i].Quantity + '</option>';
@@ -644,6 +805,23 @@ function GetAllVerticalDivisions() {
         }
     });
 }
+
+var allHorizontalDivisions = '';
+function llenarCombHorizontalDivisions(pHorizontalDivisions) {
+
+    var option = '<option id="">Select</option>';
+    for (var i = 0; i < allHorizontalDivisions.length; i++) {
+        if (allHorizontalDivisions[i].Group.Id == 1) {
+            option += '<option value="' + allHorizontalDivisions[i].Id + '">' + allHorizontalDivisions[i].Quantity + '</option>';
+        }
+
+
+    }
+    $("#inHorizontalDivisions").empty().append(option);
+    if (pHorizontalDivisions != 0) {
+        $("#inHorizontalDivisions").val(pHorizontalDivisions);
+    }
+}
 function GetAllHorizontalDivisions() {
     $.ajax({
         url: urlGetAllHorizontalDivisions,
@@ -653,6 +831,7 @@ function GetAllHorizontalDivisions() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
+                allHorizontalDivisions = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
                     option += '<option value="' + data[i].Id + '">' + data[i].Quantity + '</option>';
@@ -669,6 +848,23 @@ function GetAllHorizontalDivisions() {
         }
     });
 }
+
+var allPanel = '';
+function llenarCombPanel(pPanel) {
+
+    var option = '<option id="">Select</option>';
+    for (var i = 0; i < allPanel.length; i++) {
+        if (allPanel[i].Group.Id == 1) {
+            option += '<option value="' + allPanel[i].Id + '">' + allPanel[i].Description + '</option>';
+        }
+
+
+    }
+    $("#inPanel").empty().append(option);
+    if (pPanel != 0) {
+        $("#inPanel").val(pPanel);
+    }
+}
 function GetAllPanel() {
     $.ajax({
         url: urlGetAllPanel,
@@ -678,6 +874,7 @@ function GetAllPanel() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
+                allPanel = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
                     option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
@@ -694,6 +891,23 @@ function GetAllPanel() {
         }
     });
 }
+
+var allPanelMaterial = '';
+function llenarCombPanelMaterial(pPanelMaterial) {
+
+    var option = '<option id="">Select</option>';
+    for (var i = 0; i < allPanelMaterial.length; i++) {
+        if (allPanelMaterial[i].Group.Id == 1) {
+            option += '<option value="' + allPanelMaterial[i].Id + '">' + allPanelMaterial[i].Description + '</option>';
+        }
+
+
+    }
+    $("#inPanelMaterial").empty().append(option);
+    if (pPanelMaterial != 0) {
+        $("#inPanelMaterial").val(pPanelMaterial);
+    }
+}
 function GetAllPanelMaterial() {
     $.ajax({
         url: urlGetAllPanelMaterial,
@@ -703,6 +917,7 @@ function GetAllPanelMaterial() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
+                allPanelMaterial = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
                     option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
@@ -719,6 +934,23 @@ function GetAllPanelMaterial() {
         }
     });
 }
+
+var allEstatus = '';
+function llenarComboEstatus(pStatus) {
+
+    var option = '<option id="">Select</option>';
+    for (var i = 0; i < allEstatus.length; i++) {
+        if (allEstatus[i].Group.Id == 1) {
+            option += '<option value="' + allEstatus[i].Id + '">' + allEstatus[i].Description + '</option>';
+        }
+
+
+    }
+    $("#inStatus").empty().append(option);
+    if (pStatus != 0) {
+        $("#inStatus").val(pStatus);
+    }
+}
 function GetAllStatus() {
     $.ajax({
         url: urlGetAllStatus,
@@ -728,11 +960,55 @@ function GetAllStatus() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
+                allEstatus = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
                     option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
                 }
                 $("#inStatus").empty().append(option);
+
+            }
+            else {
+                LlammarModal("Danger", "Error obtaining Join", " ");
+            }
+        },
+        error: function (err) {
+            LlammarModal("Danger", "Error.", "Check your internet connection I tried again.");
+        }
+    });
+}
+
+var allHingeDirection = '';
+function llenarComboHingeDirection(pHingeDirection) {
+
+    var option = '<option id="">Select</option>';
+    for (var i = 0; i < allHingeDirection.length; i++) {
+        if (allHingeDirection[i].Group.Id == 1) {
+            option += '<option value="' + allHingeDirection[i].Id + '">' + allHingeDirection[i].Description + '</option>';
+        }
+
+
+    }
+    $("#inHingeDirection").empty().append(option);
+    if (pHingeDirection != 0) {
+        $("#inHingeDirection").val(pHingeDirection);
+    }
+}
+function GetAllHingeDirection() {
+    $.ajax({
+        url: urlGetAllHingeDirection,
+        cache: false,
+        type: 'POST',
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        success: function (data) {
+            if (data != null) {
+                allHingeDirection = data;
+                var option = '';
+                for (var i = 0; i < data.length; i++) {
+                    option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
+                }
+                $("#inHingeDirection").empty().append(option);
 
             }
             else {
