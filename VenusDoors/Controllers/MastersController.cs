@@ -128,7 +128,87 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
-        
+
+        #endregion
+
+        #region Company
+        public ActionResult Company()
+        {
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.Company = "active";
+                BusinessLogic.lnCompany _USB = new BusinessLogic.lnCompany();
+
+                var mCompany = _USB.GetAllCompany();
+                ViewBag.mCompany = mCompany;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListCompany = serializar.Serialize(mCompany);
+
+                ViewBag.mStatus = _LNStatus.GetAllStatus();
+                ViewBag.cbType = _LNType.GetAllType();                
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult InsertCompany(Company pCompany)
+        {
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                int userID = (int)Session["UserID"];
+                try
+                {
+
+                    pCompany.CreationDate = DateTime.Now;
+                    pCompany.CreatorUser = userID;
+                    pCompany.ModificationUser = userID;
+                    pCompany.ModificationDate = DateTime.Now;
+                    BusinessLogic.lnCompany _USB = new BusinessLogic.lnCompany();
+                    var InsertCompany = _USB.InsertCompany(pCompany);
+                    return Json(true, JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
+        }
+        [HttpPost]
+        public ActionResult UpdateCompany(Company uCompany)
+        {
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                int userID = (int)Session["UserID"];
+                try
+                {
+
+                    uCompany.ModificationUser = userID;
+                    uCompany.ModificationDate = DateTime.Now;
+                    BusinessLogic.lnCompany _USB = new BusinessLogic.lnCompany();
+                    var modCompany = _USB.UpdateCompany(uCompany);
+                    return Json(true, JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
+        }
         #endregion
 
         #region Doors
@@ -2132,7 +2212,8 @@ namespace VenusDoors.Controllers
         public ActionResult Usuario()
         {
             if (Session["UserID"] != null && (int)Session["UserType"] == 1)
-            {                
+            {
+                ViewBag.Masters = "active show-sub";
                 ViewBag.Usuario = "active";
                 BusinessLogic.lnUser _USB = new BusinessLogic.lnUser();
 
