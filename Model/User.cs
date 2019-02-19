@@ -14,7 +14,8 @@ namespace Model
         public Type Type { get; set; }
         public Person Person { get; set; }
         public Status Status { get; set; }
-        public string VerificationCode { get; set; }
+        public Company Company { get; set; }
+        public string VerificationCode { get; set; }        
         public DateTime CreationDate { get; set; }
         public int CreatorUser { get; set; }
         public DateTime ModificationDate { get; set; }

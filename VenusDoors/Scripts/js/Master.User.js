@@ -2,6 +2,7 @@
     GetAllStatus();
     GetAllType();
     GetAllPerson();
+    GetAllCompany();
 
     $("#btnInsertUser").on("click", function () {
         if (ValidarCamposVacios()) {
@@ -37,12 +38,14 @@
                 var aux2 = ListUsuario[i].Password;
                 var aux3 = ListUsuario[i].Type.Id;
                 var aux4 = ListUsuario[i].Person.Id;
-                var aux5 = ListUsuario[i].Status.Id;
+                var aux5 = ListUsuario[i].Company.Id;
+                var aux6 = ListUsuario[i].Status.Id;
                 $('#inId').val(ListUsuario[i].Id);
                 $('#inEmail').val(ListUsuario[i].Email);
                 $('#inPassword').val(ListUsuario[i].Password);
                 $('#inType').val(ListUsuario[i].Type.Id);
                 $('#inPerson').val(ListUsuario[i].Person.Id);
+                $('#inCompany').val(ListUsuario[i].Company.Id);
                 $('#inStatus').val(ListUsuario[i].Status.Id);
             }
         }
@@ -88,6 +91,9 @@ function Limpiar() {
     $('#inStatus').removeClass("is-invalid");
     $('#inStatus').val(0);
 
+    $('#inCompany').removeClass("is-invalid");
+    $('#inCompany').val(0);
+
 }
 
 function ValidarCamposVacios() {
@@ -120,6 +126,13 @@ function ValidarCamposVacios() {
         $('#inType').removeClass("is-invalid");
     }
 
+    if ($('#inCompany').val() == 0) {
+        $('#inCompany').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#inCompany').removeClass("is-invalid");
+    }
+
     if ($('#inPerson').val() == 0) {
         $('#inPerson').addClass("is-invalid");
         aux = false;
@@ -139,6 +152,7 @@ function InsertUser() {
             Password: $("#inPassword").val(),
             Type: { Id: $("#inType").val() },
             Person: { Id: $("#inPerson").val() },
+            Company: { Id: $("#inCompany").val() },
             Status: { Id: $("#inStatus").val() },
 
         }
@@ -175,6 +189,7 @@ function UpdateUser() {
             Password: $("#inPassword").val(),
             Type: { Id: $("#inType").val() },
             Person: { Id: $("#inPerson").val() },
+            Company: { Id: $("#inCompany").val() },
             Status: { Id: $("#inStatus").val() },
 
         }
@@ -270,6 +285,32 @@ function GetAllPerson() {
             }
             else {
                 LlammarModal("Danger", "Error obtaining Join", " ");
+            }
+        },
+        error: function (err) {
+            LlammarModal("Danger", "Error.", "Check your internet connection I tried again.");
+        }
+    });
+}
+
+function GetAllCompany() {
+    $.ajax({
+        url: urlGetAllCompany,
+        cache: false,
+        type: 'POST',
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        success: function (data) {
+            if (data != null) {
+                var option = '';
+                for (var i = 0; i < data.length; i++) {
+                    option += '<option value="' + data[i].Id + '">' + data[i].Name + '</option>';
+                }
+                $("#inCompany").empty().append(option);
+
+            }
+            else {
+                LlammarModal("Danger", "Error obtaining Company", " ");
             }
         },
         error: function (err) {

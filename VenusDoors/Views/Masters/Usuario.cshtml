@@ -37,6 +37,7 @@
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Password</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Type</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Person</th>
+                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Company</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Status</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" style="text-align: center" aria-label="Last name: activate to sort column ascending"><i class="fa fa-flash"></i></th>
                         </tr>
@@ -51,6 +52,7 @@
                                 <td class="">@item.Type.Description</td>
                                 <td class="">@item.Person.Name</td>
                                 <td class="">@item.Status.Description</td>
+                                <td class="">@item.Company.Name</td>
                                 <td class="">
                                     <center>
                                         <a href="#" data-toggle="modal" data-target="#modalInsert" value="@item.Id" class="Modificar btn btn-primary btn-icon">
@@ -110,6 +112,10 @@
                                                 </select>
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
+                                                <label for="inCompany" style="margin-top: 25px;">Company: </label>
+                                                <select style="width:100%" class="form-control select2" id="inCompany" data-placeholder=""></select>
+                                            </div><!-- form-group -->
+                                            <div class="col-xs-4 col-md-4">
                                                 <label for="inStatus" style="margin-top: 25px;">Status: </label>
                                                 <select style="width:100%" class="form-control select2" id="inStatus" data-placeholder="">
                                                 </select>
@@ -136,6 +142,7 @@
         var urlGetAllStatus = '@Url.Action("GetStatus", "Masters")';
         var urlGetAllType = '@Url.Action("GetAllType", "Masters")';
         var urlGetAllPerson = '@Url.Action("GetPerson", "Masters")';
+        var urlGetAllCompany = '@Url.Action("GetCompany", "Masters")';
         var urlInsertUser = '@Url.Action("InsertUser", "Masters")';
         var urlUpdateUser = '@Url.Action("UpdateUser", "Masters")';
         var ListUsuario = JSON.parse('@Html.Raw(ViewBag.ListUsuario)');

@@ -13,6 +13,7 @@ namespace VenusDoors.Controllers
     {
         // GET: Masters
         BusinessLogic.lnStatus _LNStatus = new BusinessLogic.lnStatus();
+        BusinessLogic.lnCompany _LNCOMP = new BusinessLogic.lnCompany();
         BusinessLogic.lnDoorStyle _LNDoorStile = new BusinessLogic.lnDoorStyle();
         BusinessLogic.lnMaterial _LNMaterial = new BusinessLogic.lnMaterial();
         BusinessLogic.lnTopRail _LNTopRail = new BusinessLogic.lnTopRail();
@@ -2375,6 +2376,20 @@ namespace VenusDoors.Controllers
             {
 
                 return Json(_LNStatus.GetAllStatus());
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult GetCompany()
+        {
+            try
+            {
+
+                return Json(_LNCOMP.GetAllCompany());
             }
             catch
             {
