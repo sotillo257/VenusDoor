@@ -1121,6 +1121,7 @@
     <Content Include="Scripts\js\Master.VerticalD.js" />
     <Content Include="Scripts\js\Masters.js" />
     <Content Include="Scripts\js\ModalAlert.js" />
+    <Content Include="Scripts\js\OrderControl.Index.Js" />
     <Content Include="Scripts\js\OrderStatus.Index.js" />
     <Content Include="Scripts\js\OrderSumm.js" />
     <Content Include="Scripts\js\PasswordRecovery.Logins.js" />
@@ -1207,10 +1208,10 @@
     <Content Include="Views\Masters\Company.cshtml" />
     <Content Include="Scripts\js\Master.Company.js" />
     <Content Include="Views\OrderControl\Index.cshtml" />
+    <Content Include="Views\UserManagement\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\UserManagement\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
