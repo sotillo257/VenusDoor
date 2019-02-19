@@ -83,7 +83,7 @@ namespace DataAccess
 
         public int InsertInsideEdgeProfile(InsideEdgeProfile pInsideEdgeProfile)
         {
-            string sql = @"[spInsertOutsideEdgeProfile] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}'";
+            string sql = @"[spInsertInsideEdgeProfile] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}'";
             sql = string.Format(sql, pInsideEdgeProfile.Description, pInsideEdgeProfile.Status.Id, pInsideEdgeProfile.CreationDate.ToString("yyyyMMdd"),
                 pInsideEdgeProfile.CreatorUser, pInsideEdgeProfile.ModificationDate.ToString("yyyyMMdd"), pInsideEdgeProfile.ModificationUser);
             try

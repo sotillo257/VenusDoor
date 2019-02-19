@@ -92,11 +92,6 @@
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="inStatus" style="margin-top: 25px;">Status: </label>
                                                 <select style="width:100%" class="form-control select2" id="inStatus" data-placeholder="">
-                                                    <option value="0">select</option>
-                                                    @foreach (Model.Status item in ViewBag.mStatus)
-                                                    {
-                                                        <option value="@item.Id">@item.Description</option>
-                                                    }
                                                 </select>
                                             </div><!-- form-group -->
                                         </div>
@@ -121,7 +116,14 @@
     <script>
     var urlInsertOutsideEdgeProfile = '@Url.Action("InsertOutsideEdgeProfile", "Masters")';
         var urlUpdateOutsideEdgeProfile = '@Url.Action("UpdateOutsideEdgeProfile", "Masters")';
+        var urlGetAllStatus = '@Url.Action("GetStatus", "Masters")';
         var listOEP = JSON.parse('@Html.Raw(ViewBag.ListOutsideEdgeProfile)');
+
+        $(document).ready(function () {
+            $("#button-cnt").click(function () {
+                location.reload();
+            });
+        });
     </script>
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>

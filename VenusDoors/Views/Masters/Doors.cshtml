@@ -89,167 +89,88 @@
                                     <div class="col-md-12">
                                         <div class="row">
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="Id" style="margin-top: 25px;">Id: </label>
+                                                <label for="inId" style="margin-top: 25px;">Id: </label>
                                                 <input type="text" id="inId" class="form-control" readonly placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="cbDoorStyle" style="margin-top: 25px;">Door Style: </label>
+                                                <label for="inDoorStyle" style="margin-top: 25px;">Door Style: </label>
                                                 <select style="width:100%" class="form-control select2" id="inDoorStyle" data-placeholder="Select">
-                                                    
                                                 </select>
                                             </div><!-- form-group -->
+
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="Material" style="margin-top: 25px;">Material: </label>
+                                                <label for="inMaterial" style="margin-top: 25px;">Material: </label>
                                                 <select style="width:100%" class="form-control select2" id="inMaterial" data-placeholder="Select">
-                                                    <option label="Select"></option>
-                                                    
                                                 </select>
                                             </div><!-- form-group -->
+
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="cbTopRail" style="margin-top: 25px;">Top Rail: </label>
+                                                <label for="inTopRail" style="margin-top: 25px;">Stile Width: </label>
                                                 <select style="width:100%" class="form-control select2" id="inTopRail" data-placeholder="Select">
-                                                    <option label="Select"></option>
-                                                    @foreach (Model.TopRail item in ViewBag.cbTopRail)
-                                                    {
-                                                        if (item.Status.Id == 1)
-                                                        {
-                                                            <option value="@item.Id">@item.Description</option>
-                                                        }
-                                                    }
                                                 </select>
                                             </div><!-- form-group -->
+
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="cbBottomRail" style="margin-top: 25px;">Bottom Rail: </label>
+                                                <label for="inBottomRail" style="margin-top: 25px;">Rail Width: </label>
                                                 <select style="width:100%" class="form-control select2" id="inBottomRail" data-placeholder="Select">
-                                                    <option label="Select"></option>
-                                                    @foreach (Model.BottomRail item in ViewBag.cbBottomRail)
-                                                    {
-                                                        if (item.Status.Id == 1)
-                                                        {
-                                                            <option value="@item.Id">@item.Description</option>
-                                                        }
-                                                    }
                                                 </select>
                                             </div><!-- form-group -->
 
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="cbPreparation" style="margin-top: 25px;">Grade: </label>
+                                                <label for="inPreparation" style="margin-top: 25px;">Grade: </label>
                                                 <select style="width:100%" class="form-control select2" id="inPreparation" data-placeholder="Select">
-                                                    <option label="Select"></option>
-                                                    @foreach (Model.Preparation item in ViewBag.cbPreparation)
-                                                    {
-                                                        if (item.Status.Id == 1)
-                                                        {
-                                                            <option value="@item.Id">@item.Description</option>
-                                                        }
-                                                    }
                                                 </select>
                                             </div><!-- form-group -->
 
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="cbJoin" style="margin-top: 25px;">Join: </label>
+                                                <label for="inJoin" style="margin-top: 25px;">Join: </label>
                                                 <select style="width:100%" class="form-control select2" id="inJoin" data-placeholder="Select">
-                                                    <option label="Select"></option>
-                                                    @foreach (Model.Join item in ViewBag.cbJoin)
-                                                    {
-                                                        if (item.Status.Id == 1)
-                                                        {
-                                                            <option value="@item.Id">@item.Description</option>
-                                                        }
-                                                    }
                                                 </select>
                                             </div><!-- form-group -->
+
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="cbOutsideEdgeProfile" style="margin-top: 25px;">Outside Edge Profile: </label>
+                                                <label for="inOutsideEdgeProfile" style="margin-top: 25px;">Outside Edge Profile: </label>
                                                 <select style="width:100%" class="form-control select2" id="inOutsideEdgeProfile" data-placeholder="Select">
-                                                    <option label="Select"></option>
-                                                    @foreach (Model.OutsideEdgeProfile item in ViewBag.cbOutsideEdgeProfile)
-                                                    {
-                                                        if (item.Status.Id == 1)
-                                                        {
-                                                            <option value="@item.Id">@item.Description</option>
-                                                        }
-                                                    }
                                                 </select>
                                             </div><!-- form-group -->
 
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="cbInsideEdgeProfile" style="margin-top: 25px;">Inside Edge Profile: </label>
+                                                <label for="inInsideEdgeProfile" style="margin-top: 25px;">Inside Edge Profile: </label>
                                                 <select style="width:100%" class="form-control select2" id="inInsideEdgeProfile" data-placeholder="Select">
-                                                    <option label="Select"></option>
-                                                    @foreach (Model.InsideEdgeProfile item in ViewBag.cbInsideEdgeProfile)
-                                                    {
-                                                        if (item.Status.Id == 1)
-                                                        {
-                                                            <option value="@item.Id">@item.Description</option>
-                                                        }
-                                                    }
                                                 </select>
                                             </div><!-- form-group -->
 
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="cbVerticalDivisions" style="margin-top: 25px;">Vertical Divisions: </label>
+                                                <label for="inVerticalDivisions" style="margin-top: 25px;">Vertical Divisions: </label>
                                                 <select style="width:100%" class="form-control select2" id="inVerticalDivisions" data-placeholder="Select">
-                                                    <option label="Select"></option>
-                                                    @foreach (Model.VerticalDivisions item in ViewBag.cbVerticalDivisions)
-                                                    {
-                                                        if (item.Status.Id == 1)
-                                                        {
-                                                            <option value="@item.Id">@item.Quantity</option>
-                                                        }
-                                                    }
                                                 </select>
                                             </div><!-- form-group -->
 
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="cbHorizontalDivisions" style="margin-top: 25px;">Horizontal Divisions: </label>
+                                                <label for="inHorizontalDivisions" style="margin-top: 25px;">Horizontal Divisions: </label>
                                                 <select style="width:100%" class="form-control select2" id="inHorizontalDivisions" data-placeholder="Select">
-                                                    <option label="Select"></option>
-                                                    @foreach (Model.HorizontalDivisions item in ViewBag.cbHorizontalDivisions)
-                                                    {
-                                                        if (item.Status.Id == 1)
-                                                        {
-                                                            <option value="@item.Id">@item.Quantity</option>
-                                                        }
-                                                    }
                                                 </select>
                                             </div><!-- form-group -->
 
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="cbPanel" style="margin-top: 25px;">Panel: </label>
+                                                <label for="inPanel" style="margin-top: 25px;">Panel: </label>
                                                 <select style="width:100%" class="form-control select2" id="inPanel" data-placeholder="Select">
-                                                    <option label="Select"></option>
-                                                    @foreach (Model.Panel item in ViewBag.cbPanel)
-                                                    {
-                                                        if (item.Status.Id == 1)
-                                                        {
-                                                            <option value="@item.Id">@item.Description</option>
-                                                        }
-                                                    }
                                                 </select>
                                             </div><!-- form-group -->
 
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="cbPanelMaterial" style="margin-top: 25px;">Panel Material: </label>
+                                                <label for="inPanelMaterial" style="margin-top: 25px;">Panel Material: </label>
                                                 <select style="width:100%" class="form-control select2" id="inPanelMaterial" data-placeholder="Select">
-                                                    <option label="Select"></option>
-                                                    @foreach (Model.PanelMaterial item in ViewBag.cbPanelMaterial)
-                                                    {
-                                                        if (item.Status.Id == 1)
-                                                        {
-                                                            <option value="@item.Id">@item.Description</option>
-                                                        }
-                                                    }
                                                 </select>
                                             </div><!-- form-group -->
 
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="Width" style="margin-top: 25px;">Width: </label>
-                                                <input type="text" id="inWidth" name="Width" class="form-control" placeholder="">
+                                                <label for="inWidth" style="margin-top: 25px;">Width: </label>
+                                                <input type="text" id="inWidth" name="inWidth" class="form-control" placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="Height" style="margin-top: 25px;">Height: </label>
-                                                <input type="text" id="inHeight" name="Height" class="txtHeight form-control" placeholder="">
+                                                <label for="inHeight" style="margin-top: 25px;">Height: </label>
+                                                <input type="text" id="inHeight" name="inHeight" class="txtHeight form-control" placeholder="">
                                             </div><!-- form-group -->
 
                                             @*<div class="col-xs-4 col-md-3">
@@ -306,7 +227,7 @@
                                                     <input id="btn_enviar" name="file" type="file">
                                                 </div>
                                                 }*@
-                                                <label for="Picture" style="margin-top: 25px;">Picture</label>
+                                                <label for="inPicture" style="margin-top: 25px;">Picture</label>
                                                 <input type="text" id="inPicture" class="form-control" placeholder="" />
                                             </div><!-- form-group -->
                                             
@@ -320,25 +241,17 @@
                                                     <input id="btn_enviar" name="file" type="file">
                                                 </div>
                                                 }*@
-                                                <label for="ProfilePicture" style="margin-top: 25px;">Profile picture</label>
+                                                <label for="inProfilePicture" style="margin-top: 25px;">Profile picture</label>
                                                 <input type="text" id="inProfilePicture" class="form-control" placeholder="" />
                                             </div><!-- form-group -->
 
                                             <div class="col-xs-4 col-md-3" style="padding-top: 20px;">
-                                                <label for="Template" style="margin-top: 25px;">Status: </label>
+                                                <label for="inStatus" style="margin-top: 25px;">Status: </label>
                                                 <select style="width:100%" class="form-control select2" id="inStatus" data-placeholder="Select">
-                                                    <option label="Select"></option>
-                                                    @foreach (Model.Status item in ViewBag.mStatus)
-                                                    {
-                                                        if (item.Group.Id == 1)
-                                                        {
-                                                            <option value="@item.Id">@item.Description</option>
-                                                        }
-                                                    }
                                                 </select>
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="isOpeningMeasurement" style="margin-top: 25px;">Opening Measurement: </label>
+                                                <label for="inOpeningMeasurement" style="margin-top: 25px;">Opening Measurement: </label>
                                                 <select style="width:100%" class="form-control select2" id="inOpeningMeasurement" data-placeholder="Select">
                                                     <option label="Select"></option>
                                                     <option value="true">Opening</option>
@@ -368,9 +281,26 @@
     <script>
         var urlGetAllDoorStyle = '@Url.Action("GetDoorStyle", "Masters")';
         var urlGetAllMaterial = '@Url.Action("GetMaterial", "Masters")';
+        var urlGetAllTopRail = '@Url.Action("GetTopRail", "Masters")';
+        var urlGetAllBottomRail = '@Url.Action("GetBottomRail", "Masters")';
+        var urlGetAllPreparation = '@Url.Action("GetPreparation", "Masters")';
+        var urlGetAllJoin = '@Url.Action("GetJoin", "Masters")';
+        var urlGetAllOutsideEdgeProfile = '@Url.Action("GetOutsideEdgeProfile", "Masters")';
+        var urlGetAllInsideEdgeProfile = '@Url.Action("GetInsideEdgeProfile", "Masters")';
+        var urlGetAllVerticalDivisions = '@Url.Action("GetVerticalDivisions", "Masters")';
+        var urlGetAllHorizontalDivisions = '@Url.Action("GetHorizontalDivisions", "Masters")';
+        var urlGetAllPanel = '@Url.Action("GetPanel", "Masters")';
+        var urlGetAllPanelMaterial = '@Url.Action("GetPanelMaterial", "Masters")';
+        var urlGetAllStatus = '@Url.Action("GetStatus", "Masters")';
         var urlInsertDoors = '@Url.Action("InsertDoors", "Masters")';
         var urlUpdateDoors = '@Url.Action("UpdateDoors", "Masters")';
         var ListDoors = JSON.parse('@Html.Raw(ViewBag.ListDoors)');
+
+        $(document).ready(function () {
+            $("#button-cnt").click(function () {
+                location.reload();
+            });
+        });
     </script>
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>

@@ -90,52 +90,36 @@
                                             </div><!-- form-group -->
 
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="cbDoorStyle" style="margin-top: 25px;">Door Style: </label>
+                                                <label for="inDoorStyle" style="margin-top: 25px;">Door Style: </label>
                                                 <select style="width:100%" class="form-control select2" id="inDoorStyle" data-placeholder="">
-                                                    @foreach (Model.DoorStyle item in ViewBag.cbDoorStyle)
-                                                    {
-                                                        <option value="@item.Id">@item.Description</option>
-                                                    }
                                                 </select>
                                             </div><!-- form-group -->
 
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="Material" style="margin-top: 25px;">Material: </label>
+                                                <label for="inMaterial" style="margin-top: 25px;">Material: </label>
                                                 <select style="width:100%" class="form-control select2" id="inMaterial" data-placeholder="">
-                                                    @foreach (Model.Material item in ViewBag.cbMatarial)
-                                                    {
-                                                        <option value="@item.Id">@item.Description</option>
-                                                    }
                                                 </select>
                                             </div><!-- form-group -->
 
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="RailThick" style="margin-top: 25px;">Rail Thickness: </label>
+                                                <label for="inRailThickness" style="margin-top: 25px;">Rail Thickness: </label>
                                                 <select style="width:100%" class="form-control select2" id="inRailThickness" data-placeholder="">
-                                                    @foreach (Model.RailThickness item in ViewBag.mRailThickness)
-                                                    {
-                                                        <option value="@item.Id">@item.Description</option>
-                                                    }
                                                 </select>
                                             </div><!-- form-group -->
 
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="BasePrice" style="margin-top: 25px;">Base Price: </label>
+                                                <label for="inBasePrice" style="margin-top: 25px;">Base Price: </label>
                                                 <input type="text" name="id" id="inBasePrice" class="form-control" placeholder="">
                                             </div><!-- form-group -->
 
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="AdditionalSFPrice" style="margin-top: 25px;">Additional SF Price: </label>
+                                                <label for="inAdditionalSFPrice" style="margin-top: 25px;">Additional SF Price: </label>
                                                 <input type="text" name="id" id="inAdditionalSFPrice" class="form-control" placeholder="">
                                             </div><!-- form-group -->
 
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="Status" style="margin-top: 25px;">Status: </label>
+                                                <label for="inStatus" style="margin-top: 25px;">Status: </label>
                                                 <select style="width:100%" class="form-control select2" id="inStatus" data-placeholder="">
-                                                    @foreach (Model.Status item in ViewBag.mStatus)
-                                                    {
-                                                        <option value="@item.Id">@item.Description</option>
-                                                    }
                                                 </select>
                                             </div><!-- form-group -->
 
@@ -163,22 +147,22 @@
                                             </div><!-- form-group -->
 
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="VerticalBase1FLPrice" style="margin-top: 25px;">Vertical Base1 FL Price: </label>
+                                                <label for="inVerticalBase1FLPrice" style="margin-top: 25px;">Vertical Base1 FL Price: </label>
                                                 <input type="text" name="id" id="inVerticalBase1FLPrice" class="form-control" placeholder="">
                                             </div><!-- form-group -->
 
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="VerticallAdditionalInchPrice" style="margin-top: 25px;">Vertical Additional Inch Price: </label>
+                                                <label for="inVerticalAdditionalInchPrice" style="margin-top: 25px;">Vertical Additional Inch Price: </label>
                                                 <input type="text" name="id" id="inVerticalAdditionalInchPrice" class="form-control" placeholder="">
                                             </div><!-- form-group -->
 
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="HorizontalBase1FLPrice" style="margin-top: 25px;">Horizontal Base1 FL Price: </label>
+                                                <label for="inHorizontalBase1FLPrice" style="margin-top: 25px;">Horizontal Base1 FL Price: </label>
                                                 <input type="text" name="id" id="inHorizontalBase1FLPrice" class="form-control" placeholder="">
                                             </div><!-- form-group -->
 
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="HorizontalAdditionalInchPrice" style="margin-top: 25px;">Horizontal Additional Inch Price: </label>
+                                                <label for="inHorizontalAdditionalInchPrice" style="margin-top: 25px;">Horizontal Additional Inch Price: </label>
                                                 <input type="text" name="id" id="inHorizontalAdditionalInchPrice" class="form-control" placeholder="">
                                             </div><!-- form-group -->
                                         </div>
@@ -201,9 +185,19 @@
 
 @section scripts{
     <script type="text/javascript">
-    var urlInsertDoorsPrices = '@Url.Action("InsertDoorsPrices", "Masters")';
+        var urlGetAllDoorStyle = '@Url.Action("GetDoorStyle", "Masters")';
+        var urlGetAllMaterial = '@Url.Action("GetMaterial", "Masters")';
+        var urlGetAllStatus = '@Url.Action("GetStatus", "Masters")';
+        var urlGetAllRailThickness = '@Url.Action("GetRailThickness", "Masters")';
+        var urlInsertDoorsPrices = '@Url.Action("InsertDoorsPrices", "Masters")';
         var urlUpdateDoorPrice = '@Url.Action("UpdateDoorPrice", "Masters")';
         var listDoorP = JSON.parse('@Html.Raw(ViewBag.ListDoorsPrices)');
+
+        $(document).ready(function () {
+            $("#button-cnt").click(function () {
+                location.reload();
+            });
+        });
     </script>
 @Scripts.Render("~/Scripts/js/Master.DoorsPrice.js")
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>

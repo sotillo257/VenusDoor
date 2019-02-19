@@ -91,11 +91,6 @@
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="inStatus" style="margin-top: 25px;">Status: </label>
                                                 <select style="width:100%" class="form-control select2" id="inStatus" data-placeholder="">
-                                                    <option value="0">select</option>
-                                                    @foreach (Model.Status item in ViewBag.mStatus)
-                                                    {
-                                                        <option value="@item.Id">@item.Description</option>
-                                                    }
                                                 </select>
                                             </div><!-- form-group -->
                                         </div>
@@ -120,7 +115,14 @@
     <script>
     var urlInsertPreparation = '@Url.Action("InsertPreparation", "Masters")';
         var urlUpdatePreparation = '@Url.Action("UpdatePreparation", "Masters")';
+        var urlGetAllStatus = '@Url.Action("GetStatus", "Masters")';
         var listPrepa = JSON.parse('@Html.Raw(ViewBag.ListPreparation)');
+
+        $(document).ready(function () {
+            $("#button-cnt").click(function () {
+                location.reload();
+            });
+        });
     </script>
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>

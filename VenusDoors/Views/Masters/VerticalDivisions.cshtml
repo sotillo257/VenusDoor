@@ -92,10 +92,6 @@
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="inStatus" style="margin-top: 25px;">Status: </label>
                                                 <select style="width:100%" class="form-control select2" id="inStatus" data-placeholder="">
-                                                    @foreach (Model.Status item in ViewBag.mStatus)
-                                                    {
-                                                        <option value="@item.Id">@item.Description</option>
-                                                    }
                                                 </select>
                                             </div><!-- form-group -->
                                         </div>
@@ -117,9 +113,16 @@
 
 @section scripts{
     <script>
+        var urlGetAllStatus = '@Url.Action("GetStatus", "Masters")';
     var urlInsertInsertVerticalDivisions = '@Url.Action("InsertVerticalDivisions", "Masters")';
         var urlUpdateVerticalDivisions = '@Url.Action("UpdateVerticalDivisions", "Masters")';
         var listVD = JSON.parse('@Html.Raw(ViewBag.ListVerticalDivisions)');
+
+        $(document).ready(function () {
+            $("#button-cnt").click(function () {
+                location.reload();
+            });
+        });
     </script>
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>

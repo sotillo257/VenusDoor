@@ -1,15 +1,18 @@
 ﻿$(document).ready(function () {
+    GetAllStatus();
+    GetAllType();
+    GetAllPerson();
 
     $("#btnInsertUser").on("click", function () {
         if (ValidarCamposVacios()) {
-            InsertUsuario();
+            InsertUser();
         } else {
             LlammarModal("Danger", "You must fill all the fields.", " ");
         }
     });
     $("#btUpdateUser").on("click", function () {
         if (ValidarCamposVacios()) {
-            UpdateUsuario();
+            UpdateUser();
         } else {
             LlammarModal("Danger", "You must fill all the fields.", " ");
         }
@@ -127,11 +130,11 @@ function ValidarCamposVacios() {
     return aux;
 }
 
-function InsertUsuario() {
+function InsertUser() {
 
     var datos =
     {
-        pUsuario: {
+        pUser: {
             Email: $("#inEmail").val(),
             Password: $("#inPassword").val(),
             Type: { Id: $("#inType").val() },
@@ -144,7 +147,7 @@ function InsertUsuario() {
     $.ajax({
         type: 'POST',
         data: JSON.stringify(datos),
-        url: urlInsertUsuario,
+        url: urlInsertUser,
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function (result) {
@@ -162,11 +165,11 @@ function InsertUsuario() {
 
     });
 }
-function UpdateUsuario() {
+function UpdateUser() {
 
     var datos =
     {
-        uUsuario: {
+        uUser: {
             Id: $("#inId").val(),
             Email: $("#inEmail").val(),
             Password: $("#inPassword").val(),
@@ -180,7 +183,7 @@ function UpdateUsuario() {
     $.ajax({
         type: 'POST',
         data: JSON.stringify(datos),
-        url: urlUpdateUsuario,
+        url: urlUpdateUser,
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function (result) {
@@ -196,5 +199,81 @@ function UpdateUsuario() {
             LlammarModal("Danger", "Error.", " ");
         },
 
+    });
+}
+
+function GetAllStatus() {
+    $.ajax({
+        url: urlGetAllStatus,
+        cache: false,
+        type: 'POST',
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        success: function (data) {
+            if (data != null) {
+                var option = '';
+                for (var i = 0; i < data.length; i++) {
+                    option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
+                }
+                $("#inStatus").empty().append(option);
+
+            }
+            else {
+                LlammarModal("Danger", "Error obtaining Join", " ");
+            }
+        },
+        error: function (err) {
+            LlammarModal("Danger", "Error.", "Check your internet connection I tried again.");
+        }
+    });
+}
+function GetAllType() {
+    $.ajax({
+        url: urlGetAllType,
+        cache: false,
+        type: 'POST',
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        success: function (data) {
+            if (data != null) {
+                var option = '';
+                for (var i = 0; i < data.length; i++) {
+                    option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
+                }
+                $("#inType").empty().append(option);
+
+            }
+            else {
+                LlammarModal("Danger", "Error obtaining Join", " ");
+            }
+        },
+        error: function (err) {
+            LlammarModal("Danger", "Error.", "Check your internet connection I tried again.");
+        }
+    });
+}
+function GetAllPerson() {
+    $.ajax({
+        url: urlGetAllPerson,
+        cache: false,
+        type: 'POST',
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        success: function (data) {
+            if (data != null) {
+                var option = '';
+                for (var i = 0; i < data.length; i++) {
+                    option += '<option value="' + data[i].Id + '">' + data[i].Name + '</option>';
+                }
+                $("#inPerson").empty().append(option);
+
+            }
+            else {
+                LlammarModal("Danger", "Error obtaining Join", " ");
+            }
+        },
+        error: function (err) {
+            LlammarModal("Danger", "Error.", "Check your internet connection I tried again.");
+        }
     });
 }

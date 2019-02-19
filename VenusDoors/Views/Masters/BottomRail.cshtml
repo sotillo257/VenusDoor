@@ -1,6 +1,6 @@
 ﻿@model Model.BottomRail
 @{
-    ViewBag.Title = "Bottom Rail";
+    ViewBag.Title = "Rail Width";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -117,6 +117,13 @@
         var urlUpdateBottomRail = '@Url.Action("UpdateBottomRail", "Masters")';
         var urlGetStatus = '@Url.Action("GetStatus", "Masters")';
         var listBTR = JSON.parse('@Html.Raw(ViewBag.ListBottomRail)');
+
+        $(document).ready(function () {
+            $("#button-cnt").click(function () {
+                location.reload();
+            });
+        });
+
     </script>
 
 <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>

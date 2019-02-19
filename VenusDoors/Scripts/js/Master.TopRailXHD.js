@@ -1,4 +1,7 @@
 ﻿$(document).ready(function () {
+    GetAllStatus();
+    GetAllHorizontalDivisions();
+    GetAllTopRail();
 
     $("#btInserTRHD").on("click", function () {
         if (ValidarCamposVacios()) {
@@ -168,5 +171,80 @@ function UpdateTopRailxHorizontalDivisions() {
             LlammarModal("Danger", "Error.", " ");
         },
 
+    });
+}
+function GetAllStatus() {
+    $.ajax({
+        url: urlGetAllStatus,
+        cache: false,
+        type: 'POST',
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        success: function (data) {
+            if (data != null) {
+                var option = '';
+                for (var i = 0; i < data.length; i++) {
+                    option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
+                }
+                $("#inStatus").empty().append(option);
+
+            }
+            else {
+                LlammarModal("Danger", "Error obtaining Join", " ");
+            }
+        },
+        error: function (err) {
+            LlammarModal("Danger", "Error.", "Check your internet connection I tried again.");
+        }
+    });
+}
+function GetAllHorizontalDivisions() {
+    $.ajax({
+        url: urlGetAllHorizontalDivisions,
+        cache: false,
+        type: 'POST',
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        success: function (data) {
+            if (data != null) {
+                var option = '';
+                for (var i = 0; i < data.length; i++) {
+                    option += '<option value="' + data[i].Id + '">' + data[i].Quantity + '</option>';
+                }
+                $("#inHorizontalDivisions").empty().append(option);
+
+            }
+            else {
+                LlammarModal("Danger", "Error obtaining Join", " ");
+            }
+        },
+        error: function (err) {
+            LlammarModal("Danger", "Error.", "Check your internet connection I tried again.");
+        }
+    });
+}
+function GetAllTopRail() {
+    $.ajax({
+        url: urlGetAllTopRail,
+        cache: false,
+        type: 'POST',
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        success: function (data) {
+            if (data != null) {
+                var option = '';
+                for (var i = 0; i < data.length; i++) {
+                    option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
+                }
+                $("#inTopRail").empty().append(option);
+
+            }
+            else {
+                LlammarModal("Danger", "Error obtaining Join", " ");
+            }
+        },
+        error: function (err) {
+            LlammarModal("Danger", "Error.", "Check your internet connection I tried again.");
+        }
     });
 }

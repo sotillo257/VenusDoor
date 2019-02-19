@@ -33,7 +33,7 @@
                     <thead>
                         <tr>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="First name: activate to sort column ascending">Id</th>
-                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Top Rail</th>
+                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Stile Width</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Vertical Divisions</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Status</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" style="text-align: center" aria-label="Last name: activate to sort column ascending"><i class="fa fa-flash"></i></th>
@@ -88,30 +88,18 @@
                                                 <input type="text" name="id" id="intId" class="form-control" readonly placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
-                                                <label for="inTopRail" style="margin-top: 25px;">Top Rail: </label>
+                                                <label for="inTopRail" style="margin-top: 25px;">Stile Width: </label>
                                                 <select style="width:100%" class="form-control select2" id="inTopRail" data-placeholder="">
-                                                    @foreach (Model.TopRail item in ViewBag.cbTopRail)
-                                                    {
-                                                        <option value="@item.Id">@item.Description</option>
-                                                    }
                                                 </select>
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="inVerticalDivisions" style="margin-top: 25px;">Vertical Divisions: </label>
                                                 <select style="width:100%" class="form-control select2" id="inVerticalDivisions" data-placeholder="">
-                                                    @foreach (Model.VerticalDivisions item in ViewBag.cbVerticalDivisions)
-                                                    {
-                                                        <option value="@item.Id">@item.Quantity</option>
-                                                    }
                                                 </select>
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="IdStatus" style="margin-top: 25px;">Status: </label>
                                                 <select style="width:100%" class="form-control select2" id="inStatus" data-placeholder="">
-                                                    @foreach (Model.Status item in ViewBag.mStatus)
-                                                    {
-                                                        <option value="@item.Id">@item.Description</option>
-                                                    }
                                                 </select>
                                             </div><!-- form-group -->
                                         </div>
@@ -133,9 +121,18 @@
 
 @section scripts{
     <script>
-    var urlInsertTopRailByVerticalDivisions = '@Url.Action("InsertTopRailByVerticalDivisions", "Masters")';
+        var urlGetAllStatus = '@Url.Action("GetStatus", "Masters")';
+        var urlGetAllTopRail = '@Url.Action("GetTopRail", "Masters")';
+        var urlGetAllVerticalDivisions = '@Url.Action("GetVerticalDivisions", "Masters")';
+        var urlInsertTopRailByVerticalDivisions = '@Url.Action("InsertTopRailByVerticalDivisions", "Masters")';
         var urlUpdateTopRailByVerticalDivisions = '@Url.Action("UpdateTopRailByVerticalDivisions", "Masters")';
         var listTRV = JSON.parse('@Html.Raw(ViewBag.ListTopRailxVertical)');
+
+        $(document).ready(function () {
+            $("#button-cnt").click(function () {
+                location.reload();
+            });
+        });
     </script>
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>

@@ -40,6 +40,20 @@ namespace VenusDoors.Controllers
             }
         }
 
+        [HttpPost]
+        public ActionResult GetAllCompany()
+        {
+            try
+            {
+                BusinessLogic.lnCompany _LN = new BusinessLogic.lnCompany();
+                return Json(_LN.GetAllCompany());
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
         // GET: Logins
         public ActionResult Recover_Password(User puser)
         {

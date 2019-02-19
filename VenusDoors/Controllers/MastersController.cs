@@ -194,9 +194,7 @@ namespace VenusDoors.Controllers
                     pDoors.CreationDate = DateTime.Now;
                     pDoors.CreatorUser = userID;
                     pDoors.ModificationDate = DateTime.Now;
-                    pDoors.ModificationUser = userID;
-                    pDoors.Picture = "Picture";
-                    pDoors.ProfilePicture = "empty";
+                    pDoors.ModificationUser = userID;                    
                     BusinessLogic.lnDoors _LM = new BusinessLogic.lnDoors();
                     var inDoor = _LM.InsertDoors(pDoors);
                     return Json(true, JsonRequestBehavior.AllowGet);
@@ -207,9 +205,7 @@ namespace VenusDoors.Controllers
                     pDoors.CreationDate = DateTime.Now;
                     pDoors.CreatorUser = userID;
                     pDoors.ModificationDate = DateTime.Now;
-                    pDoors.ModificationUser = userID;
-                    pDoors.Picture = "Picture";
-                    pDoors.ProfilePicture = "empty";
+                    pDoors.ModificationUser = userID;                   
                     BusinessLogic.lnDoors _LM = new BusinessLogic.lnDoors();                    
                     var inDoor = _LM.InsertDoors(pDoors);
                     return Json(true, JsonRequestBehavior.AllowGet);
@@ -759,7 +755,7 @@ namespace VenusDoors.Controllers
                     uHorizontalDivisions.ModificationDate = DateTime.Now;
                     uHorizontalDivisions.ModificationUser = userID;
                     BusinessLogic.lnHorizontalDivisions _LF = new BusinessLogic.lnHorizontalDivisions();
-                var modHoDi = _LF.UpdateHorizontalDivisions(uHorizontalDivisions);
+                    var modHoDi = _LF.UpdateHorizontalDivisions(uHorizontalDivisions);
                 return Json(true, JsonRequestBehavior.AllowGet);
 
             }
@@ -1095,8 +1091,7 @@ namespace VenusDoors.Controllers
         public ActionResult Order()
         {
             if (Session["UserID"] != null && (int)Session["UserType"] == 1)
-            {
-                ViewBag.Masters = "active show-sub";
+            {                
                 ViewBag.Order = "active";
                 BusinessLogic.lnOrder _LK = new BusinessLogic.lnOrder();
 
@@ -2137,8 +2132,7 @@ namespace VenusDoors.Controllers
         public ActionResult Usuario()
         {
             if (Session["UserID"] != null && (int)Session["UserType"] == 1)
-            {
-                ViewBag.Masters = "active show-sub";
+            {                
                 ViewBag.Usuario = "active";
                 BusinessLogic.lnUser _USB = new BusinessLogic.lnUser();
 
@@ -2159,7 +2153,7 @@ namespace VenusDoors.Controllers
         }
 
         [HttpPost]
-        public ActionResult InsertUsuario(User pUsuario)
+        public ActionResult InsertUser(User pUser)
         {
             if (Session["UserID"] == null)
             {
@@ -2171,12 +2165,12 @@ namespace VenusDoors.Controllers
                 try
             {
 
-                    pUsuario.CreationDate = DateTime.Now;
-                    pUsuario.CreatorUser = userID;
-                    pUsuario.ModificationUser = userID;
-                    pUsuario.ModificationDate = DateTime.Now;
+                    pUser.CreationDate = DateTime.Now;
+                    pUser.CreatorUser = userID;
+                    pUser.ModificationUser = userID;
+                    pUser.ModificationDate = DateTime.Now;
                 BusinessLogic.lnUser _USB = new BusinessLogic.lnUser();
-                var InsertUser = _USB.InsertUser(pUsuario);
+                var InsertUser = _USB.InsertUser(pUser);
                 return Json(true, JsonRequestBehavior.AllowGet);
 
             }
@@ -2187,7 +2181,7 @@ namespace VenusDoors.Controllers
         }
         }
         [HttpPost]
-        public ActionResult UpdateUsuario(User uUsuario)
+        public ActionResult UpdateUser(User uUser)
         {
             if (Session["UserID"] == null)
             {
@@ -2199,10 +2193,10 @@ namespace VenusDoors.Controllers
                 try
             {
 
-                    uUsuario.ModificationUser = userID;
-                    uUsuario.ModificationDate = DateTime.Now;
+                    uUser.ModificationUser = userID;
+                    uUser.ModificationDate = DateTime.Now;
                 BusinessLogic.lnUser _USB = new BusinessLogic.lnUser();
-                var modUser = _USB.UpdateUser(uUsuario);
+                var modUser = _USB.UpdateUser(uUser);
                 return Json(true, JsonRequestBehavior.AllowGet);
 
             }
@@ -2328,6 +2322,216 @@ namespace VenusDoors.Controllers
             {
 
                 return Json(_LNMaterial.GetAllMaterial());
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult GetTopRail()
+        {
+            try
+            {
+
+                return Json(_LNTopRail.GetAllTopRail());
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult GetBottomRail()
+        {
+            try
+            {
+
+                return Json(_LNBottomRail.GetAllBottomRail());
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult GetPreparation()
+        {
+            try
+            {
+
+                return Json(_LNPreparation.GetAllPreparation());
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult GetJoin()
+        {
+            try
+            {
+
+                return Json(_LNJoin.GetAllJoin());
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult GetOutsideEdgeProfile()
+        {
+            try
+            {
+
+                return Json(_LNOutsideEdgeProfile.GetAllOutsideEdgeProfile());
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult GetInsideEdgeProfile()
+        {
+            try
+            {
+
+                return Json(_LNInsideEdgeProfile.GetAllInsideEdgeProfile());
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult GetVerticalDivisions()
+        {
+            try
+            {
+
+                return Json(_LNVerticalDivisions.GetAllVerticalDivisions());
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult GetHorizontalDivisions()
+        {
+            try
+            {
+
+                return Json(_LNHorizontalDivisions.GetAllHorizontalDivisions());
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult GetPanel()
+        {
+            try
+            {
+
+                return Json(_LNPanel.GetAllPanel());
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult GetPanelMaterial()
+        {
+            try
+            {
+
+                return Json(_LNPanelMaterial.GetAllPanelMaterial());
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult GetRailThickness()
+        {
+            try
+            {
+
+                return Json(_LNRT.GetAllRailThickness());
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult GetUser()
+        {
+            try
+            {
+
+                return Json(_LNUser.GetAllUser());
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult GetAllType()
+        {
+            try
+            {
+
+                return Json(_LNType.GetAllType());
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult GetGroup()
+        {
+            try
+            {
+
+                return Json(_LNGroup.GetAllGroup());
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult GetPerson()
+        {
+            try
+            {
+
+                return Json(_LNPerson.GetAllPerson());
             }
             catch
             {

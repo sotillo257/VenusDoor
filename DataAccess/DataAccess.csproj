@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="adBottomRail.cs" />
+    <Compile Include="adCompany.cs" />
     <Compile Include="adDoors.cs" />
     <Compile Include="adDoorsPrices.cs" />
     <Compile Include="adDoorStyle.cs" />

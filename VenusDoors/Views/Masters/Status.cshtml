@@ -91,10 +91,6 @@
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="inGroup" style="margin-top: 25px;">Group: </label>
                                                 <select style="width:100%" class="form-control select2" id="inGroup" data-placeholder="">
-                                                    @foreach (Model.Group item in ViewBag.cbGroup)
-                                                    {
-                                                        <option value="@item.Id">@item.Description</option>
-                                                    }
                                                 </select>
                                             </div><!-- form-group -->
                                         </div>
@@ -116,9 +112,16 @@
 
 @section scripts{
     <script>
-    var urlInsertStatus = '@Url.Action("InsertStatus", "Masters")';
+        var urlInsertStatus = '@Url.Action("InsertStatus", "Masters")';
+        var urlGetAllGroup = '@Url.Action("GetGroup", "Masters")';
         var urlUpdateStatus = '@Url.Action("UpdateStatus", "Masters")';
         var listSTS = JSON.parse('@Html.Raw(ViewBag.ListStatus)');
+
+        $(document).ready(function () {
+            $("#button-cnt").click(function () {
+                location.reload();
+            });
+        });
     </script>
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>

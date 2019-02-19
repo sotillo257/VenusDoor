@@ -1,4 +1,5 @@
 ﻿$(document).ready(function () {
+    GetAllStatus();
 
     $("#btInsertHingeDirection").on("click", function () {
         if (ValidarCamposVacios()) {
@@ -155,5 +156,31 @@ function UpdateHingeDirection() {
             LlammarModal("Danger", "Error.", " ");
         },
 
+    });
+}
+
+function GetAllStatus() {
+    $.ajax({
+        url: urlGetAllStatus,
+        cache: false,
+        type: 'POST',
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        success: function (data) {
+            if (data != null) {
+                var option = '';
+                for (var i = 0; i < data.length; i++) {
+                    option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
+                }
+                $("#inStatus").empty().append(option);
+
+            }
+            else {
+                LlammarModal("Danger", "Error obtaining Join", " ");
+            }
+        },
+        error: function (err) {
+            LlammarModal("Danger", "Error.", "Check your internet connection I tried again.");
+        }
     });
 }
