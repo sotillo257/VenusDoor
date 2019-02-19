@@ -58,6 +58,10 @@
                         </div>
                     </div><!-- col-4 -->
                     <div class="col-lg-4">
+                        <label for="Company">Company: </label>
+                        <select style="width:100%" class="form-control select2" id="cbCompany" data-placeholder=""></select>
+                    </div><!-- col -->
+                    <div class="col-lg-4">
                         <div class="form-group">
                             <label class="form-control-label">Password: <span data-val="true" class="tx-danger">*</span></label>
                             <input required class="required RequiereLlenar form-control" type="password"
@@ -86,6 +90,13 @@
 
     <script type="text/javascript">
         var urlInsertUser = '@Url.Action("InsertUser", "Logins")';
+        var urlGetAllCompanys = '@Url.Action("GetAllCompany", "Logins")';
+
+        $(document).ready(function () {
+            $("#button-cnt").click(function () {
+                window.location.href = '/Logins/Index';
+            });
+        });
     </script>
 @*<script type="text/javascript">
            function validarFormulario(){

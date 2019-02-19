@@ -115,6 +115,12 @@
         var urlUpdateRailThickness = '@Url.Action("UpdateRailThickness", "Masters")';
         var urlGetAllStatus = '@Url.Action("GetStatus", "Masters")';
         var listRailT = JSON.parse('@Html.Raw(ViewBag.ListRailThickness)');
+
+        $(document).ready(function () {
+            $("#button-cnt").click(function () {
+                location.reload();
+            });
+        });
     </script>
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>

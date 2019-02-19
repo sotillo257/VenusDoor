@@ -1,4 +1,5 @@
 ﻿$(document).ready(function () {
+    GetCompanys();
     $("#btNewUser").on("click", function () {
         if (ValidarCamposVacios()) {
             if (ValContrasenas()) {
@@ -154,5 +155,34 @@ function Signin() {
         error: function (err) {
             LlammarModal("Danger", "An error occurred during the process.", "Check your internet connection I tried again");
         },
+    });
+}
+
+function GetCompanys() {
+    $.ajax({
+        url: urlGetAllCompanys,
+        cache: false,
+        type: 'POST',
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        success: function (data) {
+            if (data != null) {
+                var option = '<option value="0" selected Style="Display:none">Select</option>';
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i].Status.Id == 1) {
+                        option += '<option value="' + data[i].Id + '">' + data[i].Name + '</option>';
+                    }
+
+                }
+                $("#cbCompany").empty().append(option);
+
+            }
+            else {
+                LlammarModal("Danger", "Error obtaining Companys", " ");
+            }
+        },
+        error: function (err) {
+            LlammarModal("Danger", "Error.", " ");
+        }
     });
 }

@@ -126,6 +126,12 @@
         var urlGetAllStatus = '@Url.Action("GetStatus", "Masters")';
         var urlGetAllBottomRail = '@Url.Action("GetBottomRail", "Masters")';
         var listMBR = JSON.parse('@Html.Raw(ViewBag.ListMaterialxBottomRail)');
+
+        $(document).ready(function () {
+            $("#button-cnt").click(function () {
+                location.reload();
+            });
+        });
     </script>
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>

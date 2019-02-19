@@ -118,6 +118,12 @@
         var urlUpdatePanelMaterial = '@Url.Action("UpdatePanelMaterial", "Masters")';
         var urlGetAllStatus = '@Url.Action("GetStatus", "Masters")';
         var listPMa = JSON.parse('@Html.Raw(ViewBag.ListPanelMaterial)');
+
+        $(document).ready(function () {
+            $("#button-cnt").click(function () {
+                location.reload();
+            });
+        });
     </script>
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>

@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BottomRail.cs" />
+    <Compile Include="Company.cs" />
     <Compile Include="Doors.cs" />
     <Compile Include="DoorsPrices.cs" />
     <Compile Include="DoorStyle.cs" />
