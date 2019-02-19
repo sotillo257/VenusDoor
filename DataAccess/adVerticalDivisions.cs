@@ -98,7 +98,7 @@ namespace DataAccess
 
         public void UpdateVerticalDivisions(VerticalDivisions pVerticalDivisions)
         {
-            string sql = @"[spUpdateInsideEdgeProfile] '{0}', '{1}', '{2}', '{3}', '{4}'";
+            string sql = @"[spUpdateVerticalDivisions] '{0}', '{1}', '{2}', '{3}', '{4}'";
             sql = string.Format(sql,pVerticalDivisions.Id, pVerticalDivisions.Quantity, pVerticalDivisions.Status.Id, pVerticalDivisions.ModificationDate.ToString("yyyyMMdd"),
                 pVerticalDivisions.ModificationUser);
             try

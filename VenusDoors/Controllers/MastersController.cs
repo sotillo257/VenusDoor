@@ -2234,7 +2234,7 @@ namespace VenusDoors.Controllers
         }
 
         [HttpPost]
-        public ActionResult InsertUsuario(User pUsuario)
+        public ActionResult InsertUser(User pUser)
         {
             if (Session["UserID"] == null)
             {
@@ -2246,12 +2246,12 @@ namespace VenusDoors.Controllers
                 try
             {
 
-                    pUsuario.CreationDate = DateTime.Now;
-                    pUsuario.CreatorUser = userID;
-                    pUsuario.ModificationUser = userID;
-                    pUsuario.ModificationDate = DateTime.Now;
+                    pUser.CreationDate = DateTime.Now;
+                    pUser.CreatorUser = userID;
+                    pUser.ModificationUser = userID;
+                    pUser.ModificationDate = DateTime.Now;
                 BusinessLogic.lnUser _USB = new BusinessLogic.lnUser();
-                var InsertUser = _USB.InsertUser(pUsuario);
+                var InsertUser = _USB.InsertUser(pUser);
                 return Json(true, JsonRequestBehavior.AllowGet);
 
             }
@@ -2262,7 +2262,7 @@ namespace VenusDoors.Controllers
         }
         }
         [HttpPost]
-        public ActionResult UpdateUsuario(User uUsuario)
+        public ActionResult UpdateUser(User uUser)
         {
             if (Session["UserID"] == null)
             {
@@ -2274,10 +2274,10 @@ namespace VenusDoors.Controllers
                 try
             {
 
-                    uUsuario.ModificationUser = userID;
-                    uUsuario.ModificationDate = DateTime.Now;
+                    uUser.ModificationUser = userID;
+                    uUser.ModificationDate = DateTime.Now;
                 BusinessLogic.lnUser _USB = new BusinessLogic.lnUser();
-                var modUser = _USB.UpdateUser(uUsuario);
+                var modUser = _USB.UpdateUser(uUser);
                 return Json(true, JsonRequestBehavior.AllowGet);
 
             }

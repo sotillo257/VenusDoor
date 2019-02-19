@@ -5,14 +5,14 @@
 
     $("#btnInsertUser").on("click", function () {
         if (ValidarCamposVacios()) {
-            InsertUsuario();
+            InsertUser();
         } else {
             LlammarModal("Danger", "You must fill all the fields.", " ");
         }
     });
     $("#btUpdateUser").on("click", function () {
         if (ValidarCamposVacios()) {
-            UpdateUsuario();
+            UpdateUser();
         } else {
             LlammarModal("Danger", "You must fill all the fields.", " ");
         }
@@ -130,11 +130,11 @@ function ValidarCamposVacios() {
     return aux;
 }
 
-function InsertUsuario() {
+function InsertUser() {
 
     var datos =
     {
-        pUsuario: {
+        pUser: {
             Email: $("#inEmail").val(),
             Password: $("#inPassword").val(),
             Type: { Id: $("#inType").val() },
@@ -147,7 +147,7 @@ function InsertUsuario() {
     $.ajax({
         type: 'POST',
         data: JSON.stringify(datos),
-        url: urlInsertUsuario,
+        url: urlInsertUser,
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function (result) {
@@ -165,11 +165,11 @@ function InsertUsuario() {
 
     });
 }
-function UpdateUsuario() {
+function UpdateUser() {
 
     var datos =
     {
-        uUsuario: {
+        uUser: {
             Id: $("#inId").val(),
             Email: $("#inEmail").val(),
             Password: $("#inPassword").val(),
@@ -183,7 +183,7 @@ function UpdateUsuario() {
     $.ajax({
         type: 'POST',
         data: JSON.stringify(datos),
-        url: urlUpdateUsuario,
+        url: urlUpdateUser,
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function (result) {
