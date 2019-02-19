@@ -2302,6 +2302,20 @@ namespace VenusDoors.Controllers
         }
 
         [HttpPost]
+        public ActionResult GetHingeDirection()
+        {
+            try
+            {
+
+                return Json(_LNHingeDirection.GetAllHingeDirection());
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
         public ActionResult GetDoorStyle()
         {
             try
