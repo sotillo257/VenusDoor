@@ -96,7 +96,7 @@ namespace DataAccess
         {
             string sql = @"[spInsertCompany] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}'";
             sql = string.Format(sql, pCompany.Name, pCompany.Email, pCompany.Direction, pCompany.Telephone, pCompany.Logo, pCompany.Type.Id, pCompany.Status.Id, pCompany.CreationDate.ToString("yyyyMMdd"),
-                pCompany.CreatorUser, pCompany.ModificationDate.ToString("yyyyMMdd"), pCompany.ModificationDate);
+                pCompany.CreatorUser, pCompany.ModificationDate.ToString("yyyyMMdd"), pCompany.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);

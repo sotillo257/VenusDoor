@@ -91,13 +91,13 @@
 
             @if (Session["UserID"] != null && (int)Session["UserType"] == 1)
             {
-                <a href="/Masters/Order" class="br-menu-link @ViewBag.Order">
+                <a href="/OrderControl/Index" class="br-menu-link @ViewBag.OrderControl">
                     <div class="br-menu-item">
                         <i class="menu-item-icon fa fa-list tx-20"></i>
                         <span class="menu-item-label">Control of orders</span>
                     </div><!-- menu-item -->
                 </a><!-- br-menu-link -->
-                <a href="/Masters/Order" class="br-menu-link @ViewBag.Usuario">
+                <a href="/UserManagement/Index" class="br-menu-link @ViewBag.UserManagement">
                     <div class="br-menu-item">
                         <i class="menu-item-icon fa fa-users tx-20"></i>
                         <span class="menu-item-label">Users management</span>
@@ -111,6 +111,7 @@
                     </div><!-- menu-item -->
                 </a><!-- br-menu-link -->
                 <ul class="br-menu-sub nav flex-column">
+                    <li class="nav-item">@Html.ActionLink("Company", "Company", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Company })</li>
                     <li class="nav-item">@Html.ActionLink("Doors", "Doors", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Doors })</li>
                     <li class="nav-item">@Html.ActionLink("Doors Prices", "DoorsPrices", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.DoorPrice })</li>
                     <li class="nav-item">@Html.ActionLink("Doors Style", "Index", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.DoorStyle })</li>
@@ -125,7 +126,7 @@
                     <li class="nav-item">@Html.ActionLink("Join", "Join", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Join })</li>
                     <li class="nav-item">@Html.ActionLink("Material", "Material", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Material })</li>
                     <li class="nav-item">@Html.ActionLink("Material by Bottom Rail", "MaterialxBottomRail", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.MaterialxBottomRail })</li>
-                    @*<li class="nav-item">@Html.ActionLink("Order", "Order", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Order })</li>*@
+                    <li class="nav-item">@Html.ActionLink("Order", "Order", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Order })</li>
                     <li class="nav-item">@Html.ActionLink("Outside Edge Profile", "OutsideEdgeProfile", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.OutsideEdgeProfile })</li>
                     <li class="nav-item">@Html.ActionLink("Panel", "Panel", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Panel })</li>
                     <li class="nav-item">@Html.ActionLink("Panel Material", "PanelMaterial", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.PanelMaterial })</li>
@@ -139,7 +140,7 @@
                     <li class="nav-item">@Html.ActionLink("Top Rail by Join", "TopRailByJoin", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.TopRailByJoin })</li>
                     <li class="nav-item">@Html.ActionLink("Top Rail by Vertical D", "TopRailByVerticalDivisions", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.TopRailByVerticalDivisions })</li>
                     <li class="nav-item">@Html.ActionLink("Type", "Type", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Type })</li>
-                    @*<li class="nav-item">@Html.ActionLink("User", "Usuario", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Usuario })</li>*@
+                    <li class="nav-item">@Html.ActionLink("User", "Usuario", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Usuario })</li>
                     <li class="nav-item">@Html.ActionLink("Vertical Divisions", "VerticalDivisions", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.VerticalDivisions })</li>
                 </ul>                
             }

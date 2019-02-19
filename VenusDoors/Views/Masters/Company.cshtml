@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "User";
+    ViewBag.Title = "Company";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -33,26 +33,28 @@
                     <thead>
                         <tr>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="First name: activate to sort column ascending">Id</th>
+                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Name</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Email</th>
-                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Password</th>
+                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Direction</th>
+                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Telephone</th>
+                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Logo</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Type</th>
-                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Person</th>
-                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Company</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Status</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" style="text-align: center" aria-label="Last name: activate to sort column ascending"><i class="fa fa-flash"></i></th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (Model.User item in ViewBag.mUsuario)
+                        @foreach (Model.Company item in ViewBag.mCompany)
                         {
                             <tr role="row" class="odd">
                                 <td tabindex="0" class="">@item.Id</td>
+                                <td class="">@item.Name</td>
                                 <td class="">@item.Email</td>
-                                <td class="">@item.Password</td>
-                                <td class="">@item.Type.Description</td>
-                                <td class="">@item.Person.Name</td>
-                                <td class="">@item.Status.Description</td>
-                                <td class="">@item.Company.Name</td>
+                                <td class="">@item.Direction</td>                                
+                                <td class="">@item.Telephone</td>  
+                                <td class="">@item.Logo</td>                                
+                                <td class="">@item.Type.Description</td> 
+                                <td class="">@item.Status.Description</td> 
                                 <td class="">
                                     <center>
                                         <a href="#" data-toggle="modal" data-target="#modalInsert" value="@item.Id" class="Modificar btn btn-primary btn-icon">
@@ -62,7 +64,6 @@
                                 </td>
                             </tr>
                         }
-                        
 
                     </tbody>
                 </table>
@@ -85,7 +86,7 @@
                             </button>
                             <div class="pd-xs-x-15 pd-y-10">
                                 <h3 id="lblTitulo" class="tx-inverse  mg-b-5">Insert new</h3>
-                                <p id="lblSubTitulo">You can create a new article below</p>
+                                <p id="lblSubTitulo">You can add a new company below</p>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="row">
@@ -94,39 +95,40 @@
                                                 <input type="text" name="id" id="inId" class="form-control" readonly placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
-                                                <label for="inEmail" style="margin-top: 25px;">Email: </label>
-                                                <input type="email" name="id" id="inEmail" class="form-control" placeholder="">
+                                                <label for="inName" style="margin-top: 25px;">Name: </label>
+                                                <input type="text" name="id" id="inName" class="form-control" placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
-                                                <label for="inPassword" style="margin-top: 25px;">Password: </label>
-                                                <input type="text" name="id" id="inPassword" class="form-control" placeholder="">
+                                                <label for="inEmail" style="margin-top: 25px;">Email: </label>
+                                                <input type="text" name="id" id="inEmail" class="form-control" placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-3 col-md-4">
+                                                <label for="inDirection" style="margin-top: 25px;">Direction: </label>
+                                                <input type="text" class="form-control" id="inDirection" data-placeholder="">
+                                            </div><!-- form-group -->
+                                            <div class="col-xs-4 col-md-4">
+                                                <label for="inTelephone" style="margin-top: 25px;">Telephone: </label>
+                                                <input type="text" class="form-control" id="inTelephone" data-placeholder="">
+                                            </div><!-- form-group -->
+                                            <div class="col-xs-4 col-md-4">
+                                                <label for="inLogo" style="margin-top: 25px;">Logo: </label>
+                                                <input type="text" class="form-control" id="inLogo" data-placeholder="">
+                                            </div><!-- form-group -->
+                                            <div class="col-xs-4 col-md-4">
                                                 <label for="inType" style="margin-top: 25px;">Type: </label>
-                                                <select style="width:100%" class="form-control select2" id="inType" data-placeholder="">
-                                                </select>
-                                            </div><!-- form-group -->
-                                            <div class="col-xs-4 col-md-4">
-                                                <label for="inPerson" style="margin-top: 25px;">Person: </label>
-                                                <select style="width:100%" class="form-control select2" id="inPerson" data-placeholder="">
-                                                </select>
-                                            </div><!-- form-group -->
-                                            <div class="col-xs-4 col-md-4">
-                                                <label for="inCompany" style="margin-top: 25px;">Company: </label>
-                                                <select style="width:100%" class="form-control select2" id="inCompany" data-placeholder=""></select>
+                                                <select style="width:100%" class="form-control select2" id="inType" data-placeholder=""></select>
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="inStatus" style="margin-top: 25px;">Status: </label>
-                                                <select style="width:100%" class="form-control select2" id="inStatus" data-placeholder="">
-                                                </select>
+                                                <select style="width:100%" class="form-control select2" id="inStatus" data-placeholder=""></select>
                                             </div><!-- form-group -->
                                         </div>
                                     </div><!-- pd-20 -->
                                 </div><!-- col-6 -->
                             </div><!-- row -->
                             <div class="modal-footer justify-content-lg-end">
-                                <button type="button" id="btUpdateUser" class="btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Modify</button>
-                                <button type="button" id="btnInsertUser" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Insert</button>
+                                <button type="button" id="btUpdateCompany" class="btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Modify</button>
+                                <button type="button" id="btnInsertCompany" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Insert</button>
                                 <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>
                             </div>
                         </div><!-- modal-body -->
@@ -140,12 +142,10 @@
 @section scripts{
     <script>
         var urlGetAllStatus = '@Url.Action("GetStatus", "Masters")';
-        var urlGetAllType = '@Url.Action("GetAllType", "Masters")';
-        var urlGetAllPerson = '@Url.Action("GetPerson", "Masters")';
-        var urlGetAllCompany = '@Url.Action("GetCompany", "Masters")';
-        var urlInsertUser = '@Url.Action("InsertUser", "Masters")';
-        var urlUpdateUser = '@Url.Action("UpdateUser", "Masters")';
-        var ListUsuario = JSON.parse('@Html.Raw(ViewBag.ListUsuario)');
+        var urlGetAllType = '@Url.Action("GetAllType", "Masters")';        
+        var urlInsertCompany = '@Url.Action("InsertCompany", "Masters")';
+        var urlUpdateCompany = '@Url.Action("UpdateCompany", "Masters")';
+        var listComp = JSON.parse('@Html.Raw(ViewBag.ListCompany)');
 
         $(document).ready(function () {
             $("#button-cnt").click(function () {
@@ -156,5 +156,6 @@
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>
     <script src="~/Content/lib/select2/js/select2.min.js"></script>
-    @Scripts.Render("~/Scripts/js/Master.User.js")
+    @Scripts.Render("~/Scripts/js/Master.Company.js")
 }
+
