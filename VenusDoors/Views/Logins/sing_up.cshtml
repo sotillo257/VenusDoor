@@ -91,6 +91,12 @@
     <script type="text/javascript">
         var urlInsertUser = '@Url.Action("InsertUser", "Logins")';
         var urlGetAllCompanys = '@Url.Action("GetAllCompany", "Logins")';
+
+        $(document).ready(function () {
+            $("#button-cnt").click(function () {
+                window.location.href = '/Logins/Index';
+            });
+        });
     </script>
 @*<script type="text/javascript">
            function validarFormulario(){

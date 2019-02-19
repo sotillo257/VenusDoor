@@ -85,9 +85,9 @@ namespace DataAccess
                 }
                 return comp;
             }
-            catch (Exception)
+            catch (Exception err)
             {
-                throw;
+                throw err;
             }
 
         }

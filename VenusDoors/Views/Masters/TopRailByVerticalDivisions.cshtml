@@ -127,6 +127,12 @@
         var urlInsertTopRailByVerticalDivisions = '@Url.Action("InsertTopRailByVerticalDivisions", "Masters")';
         var urlUpdateTopRailByVerticalDivisions = '@Url.Action("UpdateTopRailByVerticalDivisions", "Masters")';
         var listTRV = JSON.parse('@Html.Raw(ViewBag.ListTopRailxVertical)');
+
+        $(document).ready(function () {
+            $("#button-cnt").click(function () {
+                location.reload();
+            });
+        });
     </script>
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>
