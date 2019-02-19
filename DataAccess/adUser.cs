@@ -33,6 +33,7 @@ namespace DataAccess
                             Type = new Model.Type() { Id = int.Parse(item["IdType"].ToString()), Description = item["DescripType"].ToString() },
                             Person = new Model.Person() { Id = int.Parse(item["IdPerson"].ToString()) },
                             Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["DescripStatus"].ToString() },
+                            Company = new Company() { Id = int.Parse(item["IdCompany"].ToString()), Name = item["NameCompany"].ToString()},
                             VerificationCode = item["VerificationCode"].ToString(),
                             CreationDate = DateTime.Parse(item["CreationDate"].ToString()),
                             ModificationDate = DateTime.Parse(item["ModificationDate"].ToString()),
@@ -71,6 +72,7 @@ namespace DataAccess
                             Type = new Model.Type() { Id = int.Parse(item["IdType"].ToString()), Description = item["DescripType"].ToString() },
                             Person = new Model.Person() { Id = int.Parse(item["IdPerson"].ToString()) },
                             Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["DescripStatus"].ToString() },
+                           // Company = new Company() { Id = int.Parse(item["IdCompany"].ToString()), Name = item["NameCompany"].ToString() },
                             VerificationCode = item["VerificationCode"].ToString(),
                             CreationDate = DateTime.Parse(item["CreationDate"].ToString()),
                             ModificationDate = DateTime.Parse(item["ModificationDate"].ToString()),
@@ -91,8 +93,8 @@ namespace DataAccess
 
         public int InsertUser(User pUser)
         {
-            string sql = @"[spInsertUser] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}'";
-            sql = string.Format(sql, pUser.Email, pUser.Password, pUser.Type.Id, pUser.Person.Id, pUser.Status.Id, pUser.VerificationCode, pUser.CreationDate.ToString("yyyyMMdd"),
+            string sql = @"[spInsertUser] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}'";
+            sql = string.Format(sql, pUser.Email, pUser.Password, pUser.Type.Id, pUser.Person.Id, pUser.Company.Id, pUser.Status.Id, pUser.VerificationCode, pUser.CreationDate.ToString("yyyyMMdd"),
                 pUser.CreatorUser, pUser.ModificationDate.ToString("yyyyMMdd"), pUser.ModificationUser);
             try
             {
@@ -106,8 +108,8 @@ namespace DataAccess
 
         public void UpdateUser(User pUser)
         {
-            string sql = @"[spUpdateUser] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}'";
-            sql = string.Format(sql,pUser.Id, pUser.Email, pUser.Password, pUser.Type.Id, pUser.Person.Id, pUser.Status.Id, pUser.VerificationCode, pUser.ModificationDate.ToString("yyyyMMdd"),
+            string sql = @"[spUpdateUser] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}'";
+            sql = string.Format(sql,pUser.Id, pUser.Email, pUser.Password, pUser.Type.Id, pUser.Person.Id, pUser.Company.Id, pUser.Status.Id, pUser.VerificationCode, pUser.ModificationDate.ToString("yyyyMMdd"),
                 pUser.ModificationUser);
             try
             {

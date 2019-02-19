@@ -11,7 +11,29 @@ namespace VenusDoors.Controllers
         // GET: OrderControl
         public ActionResult Index()
         {
-            return View();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.OrderControl = "active";                
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult ModifiyOrder()
+        {
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.OrderControl = "active";
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
     }
 }

@@ -81,6 +81,7 @@
     <Compile Include="TopRailxHorizontalDivisions.cs" />
     <Compile Include="TopRailxJoin.cs" />
     <Compile Include="TopRailxVerticalDivisions.cs" />
+    <Compile Include="Totales.cs" />
     <Compile Include="Type.cs" />
     <Compile Include="User.cs" />
     <Compile Include="VerticalDivisions.cs" />

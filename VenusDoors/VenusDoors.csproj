@@ -259,10 +259,8 @@
     <Compile Include="Controllers\LoginsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MastersController.cs" />
-    <Compile Include="Controllers\OrderControlController.cs" />
     <Compile Include="Controllers\OrderStatusController.cs" />
     <Compile Include="Controllers\OrderSummaryController.cs" />
-    <Compile Include="Controllers\UserManagementController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -481,7 +479,7 @@
     <Content Include="Content\img\Profile\-Shaker_Shaker_22_flat_panel.png" />
     <Content Include="Content\img\Profile\-Shaker_Shaker_22_flat_panel_beaded.png" />
     <Content Include="Content\img\Profile\-Shaker_Shaker_22_raised_panel.png" />
-    <Content Include="Content\img\Profile\-Shaker_shaker_goove _flat_panel.png" />
+    <Content Include="Content\img\Profile\-Shaker_shaker_goove_flat_panel.png" />
     <Content Include="Content\img\Profile\-Shaker_shaker_goove_flat_panel_beaded.png" />
     <Content Include="Content\img\Profile\-Shaker_shaker_goove_raised_panel.png" />
     <Content Include="Content\img\Profile\FingerPull-Shaker22-RaisedPanel.png" />
@@ -1204,13 +1202,10 @@
     <Content Include="Views\Logins\New_Password.cshtml" />
     <Content Include="Views\Logins\Account_Verification.cshtml" />
     <Content Include="Views\ErrorInterno\Internal_Error.cshtml" />
-    <Content Include="Views\Masters\Company.cshtml" />
-    <Content Include="Scripts\js\Master.Company.js" />
-    <Content Include="Views\OrderControl\Index.cshtml" />
+    <Content Include="Views\Home\Dashboard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\UserManagement\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
