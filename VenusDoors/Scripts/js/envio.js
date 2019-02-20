@@ -29,6 +29,7 @@ function ConfirmOrder() {
                 LlammarModal("Congratuletions", "Congratulations! Your order is being processed.", "At this time you will be redirected to the Order Status view. Check your email to see your order details.");               
                             } else {
                 LlammarModal("Danger", "An error occurred during the process.", " ");
+                $("#btn-continue").prop('disabled', false);
                             }
         },
         error: function (err) {

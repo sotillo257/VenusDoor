@@ -34,7 +34,7 @@
                 var aux1 = listPMa[i].Status.Id;
                 var aux2 = listPMa[i].Description;
                 $('#inId').val(listPMa[i].Id);
-                $('#inStatus').val(listPMa[i].Status.Id);
+                llenarComboEstatus(listPMa[i].Status.Id);
                 $('#inDescription').val(listPMa[i].Description);
                
             }
@@ -71,7 +71,7 @@ function Limpiar() {
     $('#inDescription').val("");
 
     $('#inStatus').removeClass("is-invalid");
-    $('#inStatus').val(0);
+    llenarComboEstatus(0);
 }
 
 function ValidarCamposVacios() {
@@ -158,6 +158,22 @@ function UpdatePanelMaterial() {
     });
 }
 
+var allEstatus = '';
+function llenarComboEstatus(pStatus) {
+
+    var option = '<option id="">Select</option>';
+    for (var i = 0; i < allEstatus.length; i++) {
+        if (allEstatus[i].Group.Id == 1) {
+            option += '<option value="' + allEstatus[i].Id + '">' + allEstatus[i].Description + '</option>';
+        }
+
+
+    }
+    $("#inStatus").empty().append(option);
+    if (pStatus != 0) {
+        $("#inStatus").val(pStatus);
+    }
+}
 function GetAllStatus() {
     $.ajax({
         url: urlGetAllStatus,
@@ -167,6 +183,7 @@ function GetAllStatus() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
+                allEstatus = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
                     option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';

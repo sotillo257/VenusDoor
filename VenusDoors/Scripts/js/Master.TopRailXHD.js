@@ -37,9 +37,9 @@
                 var aux2 = listTRH[i].HorizontalDivisions.Id;
                 var aux3 = listTRH[i].Status.Id;
                 $('#inId').val(listTRH[i].Id);
-                $('#inTopRail').val(listTRH[i].TopRail.Id);
-                $('#inHorizontalDivisions').val(listTRH[i].HorizontalDivisions.Id);
-                $('#inStatus').val(listTRH[i].Status.Id);
+                llenarComboTopRail(listTRH[i].TopRail.Id);
+                llenarComboHorizontalDivisions(listTRH[i].HorizontalDivisions.Id);
+                llenarComboEstatus(listTRH[i].Status.Id);
             }
         }
     });
@@ -70,13 +70,13 @@ $(function () {
 function Limpiar() {
     $('#inId').val(0);
     $('#inTopRail').removeClass("is-invalid");
-    $('#inTopRail').val(0);
+    llenarComboTopRail(0);
 
     $('#inHorizontalDivisions').removeClass("is-invalid");
-    $('#inHorizontalDivisions').val(0);
+    llenarComboHorizontalDivisions(0);
 
     $('#inStatus').removeClass("is-invalid");
-    $('#inStatus').val(0);
+    llenarComboEstatus(0);
 
 }
 
@@ -173,6 +173,23 @@ function UpdateTopRailxHorizontalDivisions() {
 
     });
 }
+
+var allEstatus = '';
+function llenarComboEstatus(pStatus) {
+
+    var option = '<option id="">Select</option>';
+    for (var i = 0; i < allEstatus.length; i++) {
+        if (allEstatus[i].Group.Id == 1) {
+            option += '<option value="' + allEstatus[i].Id + '">' + allEstatus[i].Description + '</option>';
+        }
+
+
+    }
+    $("#inStatus").empty().append(option);
+    if (pStatus != 0) {
+        $("#inStatus").val(pStatus);
+    }
+}
 function GetAllStatus() {
     $.ajax({
         url: urlGetAllStatus,
@@ -182,6 +199,7 @@ function GetAllStatus() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
+                allEstatus = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
                     option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
@@ -198,6 +216,23 @@ function GetAllStatus() {
         }
     });
 }
+
+var allHorizontalDivisions = '';
+function llenarComboHorizontalDivisions(pHorizontalDivisions) {
+
+    var option = '<option id="">Select</option>';
+    for (var i = 0; i < allHorizontalDivisions.length; i++) {
+        if (allHorizontalDivisions[i].Status.Id == 1) {
+            option += '<option value="' + allHorizontalDivisions[i].Id + '">' + allHorizontalDivisions[i].Quantity + '</option>';
+        }
+
+
+    }
+    $("#inHorizontalDivisions").empty().append(option);
+    if (pHorizontalDivisions != 0) {
+        $("#inHorizontalDivisions").val(pHorizontalDivisions);
+    }
+}
 function GetAllHorizontalDivisions() {
     $.ajax({
         url: urlGetAllHorizontalDivisions,
@@ -207,6 +242,7 @@ function GetAllHorizontalDivisions() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
+                allHorizontalDivisions = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
                     option += '<option value="' + data[i].Id + '">' + data[i].Quantity + '</option>';
@@ -223,6 +259,23 @@ function GetAllHorizontalDivisions() {
         }
     });
 }
+
+var allTopRail = '';
+function llenarComboTopRail(pTopRail) {
+
+    var option = '<option id="">Select</option>';
+    for (var i = 0; i < allTopRail.length; i++) {
+        if (allTopRail[i].Status.Id == 1) {
+            option += '<option value="' + allTopRail[i].Id + '">' + allTopRail[i].Description + '</option>';
+        }
+
+
+    }
+    $("#inTopRail").empty().append(option);
+    if (pTopRail != 0) {
+        $("#inTopRail").val(pTopRail);
+    }
+}
 function GetAllTopRail() {
     $.ajax({
         url: urlGetAllTopRail,
@@ -232,6 +285,7 @@ function GetAllTopRail() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
+                allTopRail = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
                     option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';

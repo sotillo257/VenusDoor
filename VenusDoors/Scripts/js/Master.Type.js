@@ -35,7 +35,7 @@
                 var aux2 = listTy[i].Group.Id;
                 $('#intId').val(listTy[i].Id);
                 $('#inDescription').val(listTy[i].Description);
-                $('#inGroup').val(listTy[i].Group.Id);
+                llenarComboGroup(listTy[i].Group.Id);
             }
         }
     });
@@ -69,7 +69,7 @@ function Limpiar() {
     $('#inDescription').val("");
 
     $('#inGroup').removeClass("is-invalid");
-    $('#inGroup').val(0);
+    llenarComboGroup(0);
 
 }
 
@@ -158,6 +158,19 @@ function UpdateType() {
     });
 }
 
+var allGroup = '';
+function llenarComboGroup(pGroup) {
+
+    var option = '<option id="">Select</option>';
+    for (var i = 0; i < allGroup.length; i++) {
+        option += '<option value="' + allGroup[i].Id + '">' + allGroup[i].Description + '</option>';
+        
+    }
+    $("#inGroup").empty().append(option);
+    if (pGroup != 0) {
+        $("#inGroup").val(pGroup);
+    }
+}
 function GetAllGroup() {
     $.ajax({
         url: urlGetAllGroup,
@@ -167,6 +180,7 @@ function GetAllGroup() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
+                allGroup = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
                     option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';

@@ -38,9 +38,9 @@
                 var aux2 = listMBR[i].BottomRail.Id;
                 var aux3 = listMBR[i].Material.Id;
                 $('#inId').val(listMBR[i].Id);
-                $('#inMaterial').val(listMBR[i].Material.Id);
-                $('#inBottomRail').val(listMBR[i].BottomRail.Id);
-                $('#inStatus').val(listMBR[i].Status.Id);
+                llenarCombolMaterial(listMBR[i].Material.Id);
+                llenarComboBottomRail(listMBR[i].BottomRail.Id);
+                llenarComboEstatus(listMBR[i].Status.Id);
             }
         }
     });
@@ -72,13 +72,13 @@ $(function () {
 function Limpiar() {
     $('#inId').val(0);
     $('#inMaterial').removeClass("is-invalid");
-    $('#inMaterial').val(0);
+    llenarCombolMaterial(0);
 
     $('#inBottomRail').removeClass("is-invalid");
-    $('#inBottomRail').val(0);
+    llenarComboBottomRail(0);
 
     $('#inStatus').removeClass("is-invalid");
-    $('#inStatus').val(0);
+    llenarComboEstatus(0);
 
 }
 
@@ -176,6 +176,22 @@ function UpdateMaterialxBottomRail() {
     });
 }
 
+var allEstatus = '';
+function llenarComboEstatus(pStatus) {
+
+    var option = '<option id="">Select</option>';
+    for (var i = 0; i < allEstatus.length; i++) {
+        if (allEstatus[i].Group.Id == 1) {
+            option += '<option value="' + allEstatus[i].Id + '">' + allEstatus[i].Description + '</option>';
+        }
+
+
+    }
+    $("#inStatus").empty().append(option);
+    if (pStatus != 0) {
+        $("#inStatus").val(pStatus);
+    }
+}
 function GetAllStatus() {
     $.ajax({
         url: urlGetAllStatus,
@@ -185,6 +201,7 @@ function GetAllStatus() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
+                allEstatus = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
                     option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
@@ -201,6 +218,23 @@ function GetAllStatus() {
         }
     });
 }
+
+var allBottomRail = '';
+function llenarComboBottomRail(pBottomRail) {
+
+    var option = '<option id="">Select</option>';
+    for (var i = 0; i < allBottomRail.length; i++) {
+        if (allBottomRail[i].Status.Id == 1) {
+            option += '<option value="' + allBottomRail[i].Id + '">' + allBottomRail[i].Description + '</option>';
+        }
+
+
+    }
+    $("#inBottomRail").empty().append(option);
+    if (pBottomRail != 0) {
+        $("#inBottomRail").val(pBottomRail);
+    }
+}
 function GetAllBottomRail() {
     $.ajax({
         url: urlGetAllBottomRail,
@@ -210,6 +244,7 @@ function GetAllBottomRail() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
+                allBottomRail = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
                     option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
@@ -226,6 +261,23 @@ function GetAllBottomRail() {
         }
     });
 }
+
+var allMaterial = '';
+function llenarCombolMaterial(pMaterial) {
+
+    var option = '<option id="">Select</option>';
+    for (var i = 0; i < allMaterial.length; i++) {
+        if (allMaterial[i].Status.Id == 1) {
+            option += '<option value="' + allMaterial[i].Id + '">' + allMaterial[i].Description + '</option>';
+        }
+
+
+    }
+    $("#inMaterial").empty().append(option);
+    if (pMaterial != 0) {
+        $("#inMaterial").val(pMaterial);
+    }
+}
 function GetAllMaterial() {
     $.ajax({
         url: urlGetAllMaterial,
@@ -235,6 +287,7 @@ function GetAllMaterial() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
+                allMaterial = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
                     option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';

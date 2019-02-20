@@ -34,6 +34,7 @@ namespace VenusDoors.Controllers
         BusinessLogic.lnGroup _LNGroup = new BusinessLogic.lnGroup();
         BusinessLogic.lnPerson _LNPerson = new BusinessLogic.lnPerson();
         BusinessLogic.lnRailThickness _LNRT = new BusinessLogic.lnRailThickness();
+        BusinessLogic.lnCompany _LNCOM = new BusinessLogic.lnCompany();
 
         #region BottomRail
         public ActionResult BottomRail()
