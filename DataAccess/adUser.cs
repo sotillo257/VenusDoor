@@ -72,7 +72,7 @@ namespace DataAccess
                             Type = new Model.Type() { Id = int.Parse(item["IdType"].ToString()), Description = item["DescripType"].ToString() },
                             Person = new Model.Person() { Id = int.Parse(item["IdPerson"].ToString()) },
                             Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["DescripStatus"].ToString() },
-                           // Company = new Company() { Id = int.Parse(item["IdCompany"].ToString()), Name = item["NameCompany"].ToString() },
+                            Company = new Company() { Id = int.Parse(item["IdCompany"].ToString()), Name = item["NameCompany"].ToString() },
                             VerificationCode = item["VerificationCode"].ToString(),
                             CreationDate = DateTime.Parse(item["CreationDate"].ToString()),
                             ModificationDate = DateTime.Parse(item["ModificationDate"].ToString()),
