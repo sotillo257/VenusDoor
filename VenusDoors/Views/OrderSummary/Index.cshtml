@@ -108,8 +108,8 @@
                                 <td>@i.InsideEdgeProfile.Description</td>
                                 <td>@i.Panel.Description</td>
                                 <td>@i.Quantity</td>
-                                <td>@itemcost</td>
-                                <td>@i.SubTotal</td>
+                                <td><span>$</span>@itemcost</td>
+                                <td><span>$</span>@i.SubTotal</td>
                                 <td id="tddelete">
                                     <button class="Cursor btn btn-danger btn-icon btnn-dele" data-id="@i.Id" style="width: 37px;height: 37px;" type="submit"><i class="fa fa-trash"></i></button>
                                 </td>
@@ -143,9 +143,9 @@
                     <input hidden id="idtotal" value="@ord.Total" />
                     <input hidden id="idstatus" value="@ord.Status.Id" />
                     <div class="col-md-7">
-                        <h5 style="color:#7b7979">Sub-Total: @ord.SubTotal<span>$</span></h5>
-                        <h5 style="color:#7b7979">Tax: @ord.Tax<span>$</span></h5>
-                        <h3 style="color:#000">Total Price: @ord.Total<span>$</span></h3>
+                        <h5 style="color:#7b7979">Sub-Total: <span>$</span>@ord.SubTotal</h5>
+                        <h5 style="color:#7b7979">Tax: <span>$</span>@ord.Tax</h5>
+                        <h3 style="color:#000">Total Price: <span>$</span>@ord.Total</h3>
                     </div>
                 }
                 else
