@@ -303,7 +303,8 @@ namespace VenusDoors.Controllers
                     PersonData.Id = IdPerson;
                     UserData.Person = PersonData;
                     UserData.CreationDate = DateTime.Now;
-                    UserData.ModificationDate = DateTime.Now;                                       
+                    UserData.ModificationDate = DateTime.Now;
+                    UserData.VerificationCode = "Created";                                     
                     var create = _LNU.InsertUser(UserData);
                     return Json(1, JsonRequestBehavior.AllowGet);
                 }
