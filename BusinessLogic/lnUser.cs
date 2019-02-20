@@ -91,5 +91,10 @@ namespace BusinessLogic
             }
 
         }
+
+        public dynamic GetAllCompany()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
