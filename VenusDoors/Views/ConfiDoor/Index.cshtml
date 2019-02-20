@@ -56,13 +56,13 @@
                         </div><!-- col -->
 
                         <div name="SoloNumeros" class="col-xs-4 col-md-2">
-                            <label for="Width" style="margin-top: 25px;">(*) Width: </label>
-                            <input name="SoloNumeros" required class="required RequiereLlenar eventChange iptWidth form-control" type="text" maxlength="6" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="iptWidth">
+                            <label for="Width" style="margin-top: 25px;">(") Width: </label>
+                            <input name="SoloNumeros" required class="required RequiereLlenar eventChange iptWidth form-control" type="number" maxlength="2" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="iptWidth">
                         </div><!-- col -->
 
                         <div name="SoloNumeros" class="col-xs-4 col-md-2">
-                            <label for="Height" style="margin-top: 25px;">(*) Height: </label>
-                            <input name="SoloNumeros" required class="required RequiereLlenar eventChange iptHeight form-control" type="text" maxlength="6" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="iptHeight">
+                            <label for="Height" style="margin-top: 25px;">(") Height: </label>
+                            <input name="SoloNumeros" required class="required RequiereLlenar eventChange iptHeight form-control" type="number" maxlength="2" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="iptHeight">
                         </div><!-- col -->
                         <div  class="col-xs-4 col-md-3" style="">
                             <label for="Height" style="margin-top: 25px;">Massive Order: </label>
@@ -164,8 +164,8 @@
                         </div><!-- col -->
 
                         <div class="col-xs-4 col-md-3">
-                            <label for="iptQuantity" style="margin-top: 25px;">(*) Quantity: </label>
-                            <input name="iptQuantity" required class="required RequiereLlenar form-control" maxlength="3" minlength="1" onkeypress="return soloNumeros(event);" id="iptQuantity">
+                            <label for="iptQuantity" style="margin-top: 25px;">Quantity: </label>
+                            <input name="iptQuantity" type="number" required class="required RequiereLlenar form-control" maxlength="3" minlength="1" ninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="iptQuantity">
                         </div>
 
                         

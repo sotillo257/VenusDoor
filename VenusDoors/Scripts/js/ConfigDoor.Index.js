@@ -32,6 +32,9 @@
 	    $("#File1").trigger('click');
 	});
 
+
+    //Show and Hide de los input de los HingePositions y calculo de distancias (KeyUp & OnChange)
+
     $(".iptHeight").keyup(function (e) {
         if ($(this).val() <= 36) {
             if (e.keyup = true) {
@@ -42,6 +45,7 @@
                 $(".hp5").css('display', 'none');
                 $("#HingePositionsDiv").removeClass("col-md-4").addClass("col-md-3");
                 $("#HingePositionsDiv").removeClass("col-md-5");
+                $("#HingePositionsDiv").removeClass("col-md-6");
             }
         }
         else if ($(this).val() <= 60) {
@@ -52,6 +56,9 @@
                 $(".hp4").css('display', 'none');
                 $(".hp5").css('display', 'none');
                 $("#HingePositionsDiv").removeClass("col-md-3").addClass("col-md-4");
+                $("#HingePositionsDiv").removeClass("col-md-5");
+                $("#HingePositionsDiv").removeClass("col-md-6");
+
             }
         } else if ($(this).val() <= 80) {
             if (e.keyup = true) {
@@ -61,6 +68,8 @@
                 $(".hp4").css('display', 'block');
                 $(".hp5").css('display', 'none');
                 $("#HingePositionsDiv").removeClass("col-md-4").addClass("col-md-5");
+                $("#HingePositionsDiv").removeClass("col-md-3");
+                $("#HingePositionsDiv").removeClass("col-md-6");
             }
         } else if ($(this).val() > 80) {
             if (e.keyup = true) {
@@ -70,6 +79,8 @@
                 $(".hp4").css('display', 'block');
                 $(".hp5").css('display', 'block');
                 $("#HingePositionsDiv").removeClass("col-md-5").addClass("col-md-6");
+                $("#HingePositionsDiv").removeClass("col-md-3");
+                $("#HingePositionsDiv").removeClass("col-md-4");
             }
         }
         else {
@@ -77,20 +88,136 @@
         }
     });
 
-    $(document).on('change', '#cbisDrill', function () {
-        if ($("#cbisDrill").val() == "true") {
-            $("#HingeDirectionDiv").css('display', 'block');
-            $("#HingePositionsDiv").css('display', 'block');
-        } else if ($("#cbisDrill").val() == "false") {
-            $("#HingeDirectionDiv").css('display', 'none');
-            $("#HingePositionsDiv").css('display', 'none');
+    $(document).on('change', '.iptHeight', function () {
+        if ($(this).val() <= 36) {            
+                $(".hp1").css('display', 'block');
+                $(".hp2").css('display', 'block');
+                $(".hp3").css('display', 'none');
+                $(".hp4").css('display', 'none');
+                $(".hp5").css('display', 'none');
+                $("#HingePositionsDiv").removeClass("col-md-4").addClass("col-md-3");
+                $("#HingePositionsDiv").removeClass("col-md-5");
+                $("#HingePositionsDiv").removeClass("col-md-6");            
+        }
+        else if ($(this).val() <= 60) {     
+                $(".hp1").css('display', 'block');
+                $(".hp2").css('display', 'block');
+                $(".hp3").css('display', 'block');
+                $(".hp4").css('display', 'none');
+                $(".hp5").css('display', 'none');
+                $("#HingePositionsDiv").removeClass("col-md-3").addClass("col-md-4");
+                $("#HingePositionsDiv").removeClass("col-md-5");
+                $("#HingePositionsDiv").removeClass("col-md-6");
+        }
+        else if ($(this).val() <= 80) {
+                $(".hp1").css('display', 'block');
+                $(".hp2").css('display', 'block');
+                $(".hp3").css('display', 'block');
+                $(".hp4").css('display', 'block');
+                $(".hp5").css('display', 'none');
+                $("#HingePositionsDiv").removeClass("col-md-4").addClass("col-md-5");
+                $("#HingePositionsDiv").removeClass("col-md-3");
+                $("#HingePositionsDiv").removeClass("col-md-6");
+        }
+        else if ($(this).val() > 80) {    
+                $(".hp1").css('display', 'block');
+                $(".hp2").css('display', 'block');
+                $(".hp3").css('display', 'block');
+                $(".hp4").css('display', 'block');
+                $(".hp5").css('display', 'block');
+                $("#HingePositionsDiv").removeClass("col-md-5").addClass("col-md-6");
+                $("#HingePositionsDiv").removeClass("col-md-3");
+                $("#HingePositionsDiv").removeClass("col-md-4");
+        }
+        else {
+
         }
     });
 
-    $(document).on('change', '#cbMaterial', function () {
-        var pMaterial = $("#cbMaterial").val()
-        llenarComboPanelMaterial(pMaterial)
-    });
+    //$(".iptHeight").keyup(function (e) {
+    //    var Height = parseFloat($(this).val())
+    //    if ($(this).val() < 5) {
+    //        if (e.keyup = true) {
+    //            Height = 5;
+    //            var ip1 = 3.5;
+    //            var ip2 = Height - 3.5;
+    //            $('.iptHeight').val(Height);
+    //            GetPrices();
+    //            $('.HPinpt1').val(ip1);
+    //            $('.HPinpt2').val(ip2);
+    //            $('.HPinpt3').val("No hinge");
+    //            $('.HPinpt4').val("No hinge");
+    //            $('.HPinpt5').val("No hinge");
+    //        }
+    //    }
+    //    else if ($(this).val() >= 5 && $(this).val() < 37) {
+    //        if (e.keyup = true) {
+    //            var ip1 = 3.5;
+    //            var ip2 = Height - 3.5;
+    //            $('.HPinpt1').val(ip1);
+    //            $('.HPinpt2').val(ip2);
+    //            $('.HPinpt3').val("No hinge");
+    //            $('.HPinpt4').val("No hinge");
+    //            $('.HPinpt5').val("No hinge");
+    //        }
+    //    }
+    //    else if ($(this).val() >= 37 && $(this).val() < 61) {
+    //        if (e.keyup = true) {
+    //            var ip1 = 3.5;
+    //            var ip2 = Height / 2;
+    //            var ip3 = Height - 3.5;
+    //            $('.HPinpt1').val(ip1);
+    //            $('.HPinpt2').val(ip2);
+    //            $('.HPinpt3').val(ip3);
+    //            $('.HPinpt4').val("No hinge");
+    //            $('.HPinpt5').val("No hinge");
+    //        }
+    //    }
+    //    else if ($(this).val() >= 61 && $(this).val() < 81) {
+    //        if (e.keyup = true) {
+    //            var ip1 = 3.5;
+    //            var ip2 = ((Height - 7) / 3) + 3.5;
+    //            var ip3 = Height - (((Height - 7) / 3) + 3.5);
+    //            var ip4 = Height - 3.5;
+    //            $('.HPinpt1').val(ip1);
+    //            $('.HPinpt2').val(ip2);
+    //            $('.HPinpt3').val(ip3);
+    //            $('.HPinpt4').val(ip4);
+    //            $('.HPinpt5').val("No hinge");
+    //        }
+    //    }
+    //    else if ($(this).val() >= 81 && $(this).val() < 97) {
+    //        if (e.keyup = true) {
+    //            var ip1 = 3.5;
+    //            var ip2 = 3.5 + (((Height / 2) - 3.5) / 2);
+    //            var ip3 = Height / 2;
+    //            var ip4 = Height - (3.5 + (((Height / 2) - 3.5) / 2));
+    //            var ip5 = Height - 3.5;
+    //            $('.HPinpt1').val(ip1);
+    //            $('.HPinpt2').val(ip2);
+    //            $('.HPinpt3').val(ip3);
+    //            $('.HPinpt4').val(ip4);
+    //            $('.HPinpt5').val(ip5);
+    //        }
+    //    }
+    //    else {
+    //        if (e.keyup = true) {                
+    //            Height = 96;
+    //            var ip1 = 3.5;
+    //            var ip2 = 3.5 + (((Height / 2) - 3.5) / 2);
+    //            var ip3 = Height / 2;
+    //            var ip4 = Height - (3.5 + (((Height / 2) - 3.5) / 2));
+    //            var ip5 = Height - 3.5;
+    //            $('.iptHeight').val(Height);
+    //            GetPrices();
+    //            $('.HPinpt1').val(ip1);
+    //            $('.HPinpt2').val(ip2);
+    //            $('.HPinpt3').val(ip3);
+    //            $('.HPinpt4').val(ip4);
+    //            $('.HPinpt5').val(ip5);
+    //        }
+    //    }
+    //});
 
     $(document).on('change', '.iptHeight', function () {
         var Height = parseFloat($(this).val())
@@ -178,6 +305,24 @@
 
         }
     });
+
+    // Fin del Show and Hide de los input de los HingePositions y calculo de distancias (KeyUp & OnChange)HingePositions Calculo de distancias y Show and Hide de inputs
+
+    $(document).on('change', '#cbisDrill', function () {
+        if ($("#cbisDrill").val() == "true") {
+            $("#HingeDirectionDiv").css('display', 'block');
+            $("#HingePositionsDiv").css('display', 'block');
+        } else if ($("#cbisDrill").val() == "false") {
+            $("#HingeDirectionDiv").css('display', 'none');
+            $("#HingePositionsDiv").css('display', 'none');
+        }
+    });
+
+    $(document).on('change', '#cbMaterial', function () {
+        var pMaterial = $("#cbMaterial").val()
+        llenarComboPanelMaterial(pMaterial)
+    });
+
 
     $(document).on('change', '.iptWidth', function () {
         var Width = parseFloat($(this).val())
