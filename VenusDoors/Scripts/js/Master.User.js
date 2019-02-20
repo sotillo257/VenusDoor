@@ -43,10 +43,10 @@
                 $('#inId').val(ListUsuario[i].Id);
                 $('#inEmail').val(ListUsuario[i].Email);
                 $('#inPassword').val(ListUsuario[i].Password);
-                $('#inType').val(ListUsuario[i].Type.Id);
-                $('#inPerson').val(ListUsuario[i].Person.Id);
-                $('#inCompany').val(ListUsuario[i].Company.Id);
-                $('#inStatus').val(ListUsuario[i].Status.Id);
+                llenarComboType(ListUsuario[i].Type.Id);
+                llenarComboPerson(ListUsuario[i].Person.Id);
+                llenarComboCompany(ListUsuario[i].Company.Id);
+                llenarComboEstatus(ListUsuario[i].Status.Id);
             }
         }
     });
@@ -92,7 +92,7 @@ function Limpiar() {
     llenarComboEstatus(0);
 
     $('#inCompany').removeClass("is-invalid");
-    $('#inCompany').val(0);
+    llenarComboCompany(0);
 
 }
 
@@ -309,7 +309,7 @@ function llenarComboPerson(pPerson) {
     var option = '<option id="">Select</option>';
     for (var i = 0; i < allPerson.length; i++) {
         if (allPerson[i].Status.Id == 1) {
-            option += '<option value="' + allPerson[i].Id + '">' + allPerson[i].Description + '</option>';
+            option += '<option value="' + allPerson[i].Id + '">' + allPerson[i].Name + '</option>';
         }
 
 
@@ -331,7 +331,7 @@ function GetAllPerson() {
                 allPerson = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
-                    option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
+                    option += '<option value="' + data[i].Id + '">' + data[i].Name + '</option>';
                 }
                 $("#inPerson").empty().append(option);
 
@@ -346,6 +346,21 @@ function GetAllPerson() {
     });
 }
 
+var allCompany = '';
+function llenarComboCompany(pCompany) {
+
+    var option = '<option id="">Select</option>';
+    for (var i = 0; i < allCompany.length; i++) {
+        if (allCompany[i].Status.Id == 1) {
+            option += '<option value="' + allCompany[i].Id + '">' + allCompany[i].Name + '</option>';
+        }
+
+    }
+    $("#inCompany").empty().append(option);
+    if (pCompany != 0) {
+        $("#inCompany").val(pCompany);
+    }
+}
 function GetAllCompany() {
     $.ajax({
         url: urlGetAllCompany,
@@ -355,6 +370,7 @@ function GetAllCompany() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
+                allCompany = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
                     option += '<option value="' + data[i].Id + '">' + data[i].Name + '</option>';

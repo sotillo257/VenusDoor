@@ -165,11 +165,8 @@ function llenarComboGroup(pGroup) {
 
     var option = '<option id="">Select</option>';
     for (var i = 0; i < allGroup.length; i++) {
-        if (allGroup[i].Description.Id == 1) {
-            option += '<option value="' + allGroup[i].Id + '">' + allGroup[i].Description + '</option>';
-        }
-
-
+        option += '<option value="' + allGroup[i].Id + '">' + allGroup[i].Description + '</option>';
+        
     }
     $("#inGroup").empty().append(option);
     if (pGroup != 0) {

@@ -1093,6 +1093,7 @@
     <Content Include="Scripts\js\envio.js" />
     <Content Include="Scripts\js\LoginSiginUp.js" />
     <Content Include="Scripts\js\Master.BottomRail.js" />
+    <Content Include="Scripts\js\Master.Company.js" />
     <Content Include="Scripts\js\Master.Doors.js" />
     <Content Include="Scripts\js\Master.DoorsPrice.js" />
     <Content Include="Scripts\js\Master.DoorStyle.js" />

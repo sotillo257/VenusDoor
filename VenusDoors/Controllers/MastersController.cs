@@ -2227,7 +2227,6 @@ namespace VenusDoors.Controllers
                 ViewBag.mStatus = _LNStatus.GetAllStatus();
                 ViewBag.cbType = _LNType.GetAllType();
                 ViewBag.cbPerson = _LNPerson.GetAllPerson();
-                ViewBag.mCompany = _USB.GetAllCompany();
                 return View();
             }
             else
