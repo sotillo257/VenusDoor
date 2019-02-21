@@ -1439,7 +1439,7 @@ function FlatPanelDoor(Style) {
        
 
 
-        if ($('#cbJoin').val() == 2) {
+        if ($('#cbJoin').val() == 2){
             if (Style == 1009) {
 
                 DoorUrl = "Cabinet Vector-13.png";

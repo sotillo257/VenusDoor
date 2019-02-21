@@ -64,7 +64,7 @@ namespace BusinessLogic
 
         }
 
-        public Order GetOrderByUser(int pId)
+        public List<Order> GetOrderByUser(int pId)
         {
             try
             {

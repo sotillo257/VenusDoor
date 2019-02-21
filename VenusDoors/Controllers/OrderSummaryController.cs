@@ -19,36 +19,43 @@ namespace VenusDoors.Controllers
         // GET: OrderSummary
         public ActionResult Index()
         {
-            ViewBag.OrderSummary = "active";
-            if (Session["UserID"] == null)
+            try
             {
-                return View();
-            }
-            else
-            {
-                BusinessLogic.lnOrder _LNOrder = new BusinessLogic.lnOrder();
-                int userID = (int)Session["UserID"];
-                int idU = userID;
-                var orderList = _LNOrder.GetOrderByUser(idU);
-                ViewBag.Listo = orderList;
-                Order item = ViewBag.Listo;
-                if (item.Status == null)
+                ViewBag.OrderSummary = "active";
+                if (Session["UserID"] == null)
                 {
-                    return View();
-                }
-                else if (item.Status.Id == 4)
-                {
-                    BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
-                    List<DoorsxUser> xDoorsU = _LN.GetAllDoorsxUser();
-                    List<DoorsxUser> doorByOrder = xDoorsU.Where(x => x.Order.Id == item.Id).ToList();
-                    ViewBag.xUserDoors = doorByOrder;
                     return View();
                 }
                 else
                 {
-                    return View();
+                    BusinessLogic.lnOrder _LNOrder = new BusinessLogic.lnOrder();
+                    int userID = (int)Session["UserID"];
+                    int idU = userID;
+                    var orderList = _LNOrder.GetOrderByUser(idU);
+                    ViewBag.Listo = orderList.Where(x => x.Status.Id == 4).LastOrDefault();
+                    Order item = ViewBag.Listo;
+                    if (item.Status == null)
+                    {
+                        return View();
+                    }
+                    else if (item.Status.Id == 4)
+                    {
+                        BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
+                        List<DoorsxUser> xDoorsU = _LN.GetAllDoorsxUser();
+                        List<DoorsxUser> doorByOrder = xDoorsU.Where(x => x.Order.Id == item.Id).ToList();
+                        ViewBag.xUserDoors = doorByOrder;
+                        return View();
+                    }
+                    else
+                    {
+                        return View();
+                    }
                 }
-            }
+                }
+            catch (Exception)
+            {
+                return View("Error");
+            }                       
         }
 
         [HttpPost]
