@@ -207,7 +207,7 @@ function UpdateOrder() {
 var allEstatus = '';
 function llenarComboEstatus(pStatus) {
 
-    var option = '<option id="">Select</option>';
+    var option = '<option value="0" id="">Select</option>';
     for (var i = 0; i < allEstatus.length; i++) {
         if (allEstatus[i].Group.Id == 1) {
             option += '<option value="' + allEstatus[i].Id + '">' + allEstatus[i].Description + '</option>';
@@ -250,7 +250,7 @@ function GetAllStatus() {
 var allUser = '';
 function llenarComboUser(pUser) {
 
-    var option = '<option id="">Select</option>';
+    var option = '<option value="0" id="">Select</option>';
     for (var i = 0; i < allUser.length; i++) {
         if (allUser[i].Status.Id == 1) {
             option += '<option value="' + allUser[i].Id + '">' + allUser[i].Email + '</option>';
@@ -293,7 +293,7 @@ function GetAllUser() {
 var allType = '';
 function llenarComboType(pType) {
 
-    var option = '<option id="">Select</option>';
+    var option = '<option value="0" id="">Select</option>';
     for (var i = 0; i < allType.length; i++) {
         if (allType[i].Group.Id == 1) {
             option += '<option value="' + allType[i].Id + '">' + allType[i].Description + '</option>';

@@ -163,7 +163,7 @@ function UpdateStatus() {
 var allGroup = '';
 function llenarComboGroup(pGroup) {
 
-    var option = '<option id="">Select</option>';
+    var option = '<option value="0" id="">Select</option>';
     for (var i = 0; i < allGroup.length; i++) {
         option += '<option value="' + allGroup[i].Id + '">' + allGroup[i].Description + '</option>';
         

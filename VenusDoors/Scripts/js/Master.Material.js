@@ -72,13 +72,13 @@ $(function () {
 function Limpiar() {
     $('#inId').val(0);
     $('#inDescription').removeClass("is-invalid");
-    $('#inDescription').val("");
+    $('#inDescription').val(" ");
 
-    $('#inPriceFLatPanel').removeClass("is-invalid");
-    $('#inPriceFLatPanel').val("");
+    $('#inPriceFlatPanel').removeClass("is-invalid");
+    $('#inPriceFlatPanel').val(" ");
 
-    $('#inRaisedFLatPanel').removeClass("is-invalid");
-    $('#inRaisedFLatPanel').val("");
+    $('#inPriceRaisedPanel').removeClass("is-invalid");
+    $('#inPriceRaisedPanel').val(" ");
 
     $('#inStatus').removeClass("is-invalid");
     llenarComboEstatus(0);

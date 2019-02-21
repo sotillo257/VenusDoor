@@ -423,7 +423,7 @@ function UpdateDoors() {
 var allDoorStyle = '';
 function llenarComboDoorStyle(pDoorStyle) {
 
-    var option = '<option id="">Select</option>';
+    var option = '<option value="0" id="">Select</option>';
     for (var i = 0; i < allDoorStyle.length; i++) {
         if (allDoorStyle[i].Status.Id == 1) {
             option += '<option value="' + allDoorStyle[i].Id + '">' + allDoorStyle[i].Description + '</option>';
@@ -466,7 +466,7 @@ function GetAllDoorStyle() {
 var allMaterial = '';
 function llenarCombolMaterial(pMaterial) {
 
-    var option = '<option id="">Select</option>';
+    var option = '<option value="0" id="">Select</option>';
     for (var i = 0; i < allMaterial.length; i++) {
         if (allMaterial[i].Status.Id == 1) {
             option += '<option value="' + allMaterial[i].Id + '">' + allMaterial[i].Description + '</option>';
@@ -509,7 +509,7 @@ function GetAllMaterial() {
 var allTopRail = '';
 function llenarComboTopRail(pTopRail) {
 
-    var option = '<option id="">Select</option>';
+    var option = '<option value="0" id="">Select</option>';
     for (var i = 0; i < allTopRail.length; i++) {
         if (allTopRail[i].Status.Id == 1) {
             option += '<option value="' + allTopRail[i].Id + '">' + allTopRail[i].Description + '</option>';
@@ -552,7 +552,7 @@ function GetAllTopRail() {
 var allBottomRail = '';
 function llenarComboBottomRail(pBottomRail) {
 
-    var option = '<option id="">Select</option>';
+    var option = '<option value="0" id="">Select</option>';
     for (var i = 0; i < allBottomRail.length; i++) {
         if (allBottomRail[i].Status.Id == 1) {
             option += '<option value="' + allBottomRail[i].Id + '">' + allBottomRail[i].Description + '</option>';
@@ -595,7 +595,7 @@ function GetAllBottomRail() {
 var allPreparation = '';
 function llenarComboPreparation(pPreparation) {
 
-    var option = '<option id="">Select</option>';
+    var option = '<option value="0" id="">Select</option>';
     for (var i = 0; i < allPreparation.length; i++) {
         if (allPreparation[i].Status.Id == 1) {
             option += '<option value="' + allPreparation[i].Id + '">' + allPreparation[i].Description + '</option>';
@@ -638,7 +638,7 @@ function GetAllPreparation() {
 var allJoin = '';
 function llenarComboJoin(pJoin) {
 
-    var option = '<option id="">Select</option>';
+    var option = '<option value="0" id="">Select</option>';
     for (var i = 0; i < allJoin.length; i++) {
         if (allJoin[i].Status.Id == 1) {
             option += '<option value="' + allJoin[i].Id + '">' + allJoin[i].Description + '</option>';
@@ -681,7 +681,7 @@ function GetAllJoin() {
 var allOutsideEdgeProfile = '';
 function llenarCombOutsideEdgeProfile(pOutsideEdgeProfile) {
 
-    var option = '<option id="">Select</option>';
+    var option = '<option value="0" id="">Select</option>';
     for (var i = 0; i < allOutsideEdgeProfile.length; i++) {
         if (allOutsideEdgeProfile[i].Status.Id == 1) {
             option += '<option value="' + allOutsideEdgeProfile[i].Id + '">' + allOutsideEdgeProfile[i].Description + '</option>';
@@ -724,7 +724,7 @@ function GetAllOutsideEdgeProfile() {
 var allInsideEdgeProfile = '';
 function llenarCombInsideEdgeProfile(pInsideEdgeProfile) {
 
-    var option = '<option id="">Select</option>';
+    var option = '<option value="0" id="">Select</option>';
     for (var i = 0; i < allInsideEdgeProfile.length; i++) {
         if (allInsideEdgeProfile[i].Status.Id == 1) {
             option += '<option value="' + allInsideEdgeProfile[i].Id + '">' + allInsideEdgeProfile[i].Description + '</option>';
@@ -767,7 +767,7 @@ function GetAllInsideEdgeProfile() {
 var allVerticalDivisions = '';
 function llenarCombVerticalDivisions(pVerticalDivisions) {
 
-    var option = '<option id="">Select</option>';
+    var option = '<option value="0" id="">Select</option>';
     for (var i = 0; i < allVerticalDivisions.length; i++) {
         if (allVerticalDivisions[i].Status.Id == 1) {
             option += '<option value="' + allVerticalDivisions[i].Id + '">' + allVerticalDivisions[i].Quantity + '</option>';
@@ -810,7 +810,7 @@ function GetAllVerticalDivisions() {
 var allHorizontalDivisions = '';
 function llenarCombHorizontalDivisions(pHorizontalDivisions) {
 
-    var option = '<option id="">Select</option>';
+    var option = '<option value="0" id="">Select</option>';
     for (var i = 0; i < allHorizontalDivisions.length; i++) {
         if (allHorizontalDivisions[i].Status.Id == 1) {
             option += '<option value="' + allHorizontalDivisions[i].Id + '">' + allHorizontalDivisions[i].Quantity + '</option>';
@@ -853,7 +853,7 @@ function GetAllHorizontalDivisions() {
 var allPanel = '';
 function llenarCombPanel(pPanel) {
 
-    var option = '<option id="">Select</option>';
+    var option = '<option value="0" id="">Select</option>';
     for (var i = 0; i < allPanel.length; i++) {
         if (allPanel[i].Status.Id == 1) {
             option += '<option value="' + allPanel[i].Id + '">' + allPanel[i].Description + '</option>';
@@ -896,7 +896,7 @@ function GetAllPanel() {
 var allPanelMaterial = '';
 function llenarCombPanelMaterial(pPanelMaterial) {
 
-    var option = '<option id="">Select</option>';
+    var option = '<option value="0" id="">Select</option>';
     for (var i = 0; i < allPanelMaterial.length; i++) {
         if (allPanelMaterial[i].Status.Id == 1) {
             option += '<option value="' + allPanelMaterial[i].Id + '">' + allPanelMaterial[i].Description + '</option>';
@@ -939,7 +939,7 @@ function GetAllPanelMaterial() {
 var allEstatus = '';
 function llenarComboEstatus(pStatus) {
 
-    var option = '<option id="">Select</option>';
+    var option = '<option value="0" id="">Select</option>';
     for (var i = 0; i < allEstatus.length; i++) {
         if (allEstatus[i].Group.Id == 1) {
             option += '<option value="' + allEstatus[i].Id + '">' + allEstatus[i].Description + '</option>';
@@ -982,7 +982,7 @@ function GetAllStatus() {
 var allHingeDirection = '';
 function llenarComboHingeDirection(pHingeDirection) {
 
-    var option = '<option id="">Select</option>';
+    var option = '<option value="0" id="">Select</option>';
     for (var i = 0; i < allHingeDirection.length; i++) {
         if (allHingeDirection[i].Status.Id == 1) {
             option += '<option value="' + allHingeDirection[i].Id + '">' + allHingeDirection[i].Description + '</option>';

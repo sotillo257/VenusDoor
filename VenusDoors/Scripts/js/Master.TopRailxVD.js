@@ -177,7 +177,7 @@ function UpdateTopRailByVerticalDivisions() {
 var allEstatus = '';
 function llenarComboEstatus(pStatus) {
 
-    var option = '<option id="">Select</option>';
+    var option = '<option value="0" id="">Select</option>';
     for (var i = 0; i < allEstatus.length; i++) {
         if (allEstatus[i].Group.Id == 1) {
             option += '<option value="' + allEstatus[i].Id + '">' + allEstatus[i].Description + '</option>';
@@ -220,7 +220,7 @@ function GetAllStatus() {
 var allTopRail = '';
 function llenarComboTopRail(pTopRail) {
 
-    var option = '<option id="">Select</option>';
+    var option = '<option value="0" id="">Select</option>';
     for (var i = 0; i < allTopRail.length; i++) {
         if (allTopRail[i].Status.Id == 1) {
             option += '<option value="' + allTopRail[i].Id + '">' + allTopRail[i].Description + '</option>';
@@ -263,7 +263,7 @@ function GetAllTopRail() {
 var allVerticalDivisions = '';
 function llenarCombVerticalDivisions(pVerticalDivisions) {
 
-    var option = '<option id="">Select</option>';
+    var option = '<option value="0" id="">Select</option>';
     for (var i = 0; i < allVerticalDivisions.length; i++) {
         if (allVerticalDivisions[i].Status.Id == 1) {
             option += '<option value="' + allVerticalDivisions[i].Id + '">' + allVerticalDivisions[i].Quantity + '</option>';

@@ -177,7 +177,7 @@ function UpdateTopRailByJoin() {
 var allTopRail = '';
 function llenarComboTopRail(pTopRail) {
 
-    var option = '<option id="">Select</option>';
+    var option = '<option value="0" id="">Select</option>';
     for (var i = 0; i < allTopRail.length; i++) {
         if (allTopRail[i].Status.Id == 1) {
             option += '<option value="' + allTopRail[i].Id + '">' + allTopRail[i].Description + '</option>';
@@ -220,7 +220,7 @@ function GetAllTopRail() {
 var allEstatus = '';
 function llenarComboEstatus(pStatus) {
 
-    var option = '<option id="">Select</option>';
+    var option = '<option value="0" id="">Select</option>';
     for (var i = 0; i < allEstatus.length; i++) {
         if (allEstatus[i].Group.Id == 1) {
             option += '<option value="' + allEstatus[i].Id + '">' + allEstatus[i].Description + '</option>';
@@ -263,7 +263,7 @@ function GetAllStatus() {
 var allJoin = '';
 function llenarComboJoin(pJoin) {
 
-    var option = '<option id="">Select</option>';
+    var option = '<option value="0" id="">Select</option>';
     for (var i = 0; i < allJoin.length; i++) {
         if (allJoin[i].Status.Id == 1) {
             option += '<option value="' + allJoin[i].Id + '">' + allJoin[i].Description + '</option>';

@@ -179,7 +179,7 @@ function UpdateMaterialxBottomRail() {
 var allEstatus = '';
 function llenarComboEstatus(pStatus) {
 
-    var option = '<option id="">Select</option>';
+    var option = '<option value="0" id="">Select</option>';
     for (var i = 0; i < allEstatus.length; i++) {
         if (allEstatus[i].Group.Id == 1) {
             option += '<option value="' + allEstatus[i].Id + '">' + allEstatus[i].Description + '</option>';
@@ -222,7 +222,7 @@ function GetAllStatus() {
 var allBottomRail = '';
 function llenarComboBottomRail(pBottomRail) {
 
-    var option = '<option id="">Select</option>';
+    var option = '<option value="0" id="">Select</option>';
     for (var i = 0; i < allBottomRail.length; i++) {
         if (allBottomRail[i].Status.Id == 1) {
             option += '<option value="' + allBottomRail[i].Id + '">' + allBottomRail[i].Description + '</option>';
@@ -265,7 +265,7 @@ function GetAllBottomRail() {
 var allMaterial = '';
 function llenarCombolMaterial(pMaterial) {
 
-    var option = '<option id="">Select</option>';
+    var option = '<option value="0" id="">Select</option>';
     for (var i = 0; i < allMaterial.length; i++) {
         if (allMaterial[i].Status.Id == 1) {
             option += '<option value="' + allMaterial[i].Id + '">' + allMaterial[i].Description + '</option>';

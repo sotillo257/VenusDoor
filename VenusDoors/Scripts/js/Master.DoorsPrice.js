@@ -286,7 +286,7 @@ function UpdateDoorPrice() {
 var allDoorStyle = '';
 function llenarComboDoorStyle(pDoorStyle) {
 
-    var option = '<option id="">Select</option>';
+    var option = '<option value="0" id="">Select</option>';
     for (var i = 0; i < allDoorStyle.length; i++) {
         if (allDoorStyle[i].Status.Id == 1) {
             option += '<option value="' + allDoorStyle[i].Id + '">' + allDoorStyle[i].Description + '</option>';
@@ -329,7 +329,7 @@ function GetAllDoorStyle() {
 var allMaterial = '';
 function llenarCombolMaterial(pMaterial) {
 
-    var option = '<option id="">Select</option>';
+    var option = '<option value="0" id="">Select</option>';
     for (var i = 0; i < allMaterial.length; i++) {
         if (allMaterial[i].Status.Id == 1) {
             option += '<option value="' + allMaterial[i].Id + '">' + allMaterial[i].Description + '</option>';
@@ -372,7 +372,7 @@ function GetAllMaterial() {
 var allEstatus = '';
 function llenarComboEstatus(pStatus) {
 
-    var option = '<option id="">Select</option>';
+    var option = '<option value="0" id="">Select</option>';
     for (var i = 0; i < allEstatus.length; i++) {
         if (allEstatus[i].Group.Id == 1) {
             option += '<option value="' + allEstatus[i].Id + '">' + allEstatus[i].Description + '</option>';
@@ -415,7 +415,7 @@ function GetAllStatus() {
 var allRailThickness = '';
 function llenarCombRailThickness(pRailThickness) {
 
-    var option = '<option id="">Select</option>';
+    var option = '<option value="0" id="">Select</option>';
     for (var i = 0; i < allRailThickness.length; i++) {
         if (allRailThickness[i].Status.Id == 1) {
             option += '<option value="' + allRailThickness[i].Id + '">' + allRailThickness[i].Description + '</option>';
