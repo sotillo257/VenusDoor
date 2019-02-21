@@ -351,7 +351,6 @@
         changeDoorPicture();
     });
     $(document).on('change', '#File1', function () {
-        console.log("activo");
         var compania = new Array();
         var formData = new FormData();
         if ($("#File1")[0].files.length > 0) {

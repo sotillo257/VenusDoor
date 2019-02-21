@@ -279,9 +279,11 @@ namespace VenusDoors.Controllers
 
                         // We return the interface, so that
                         IExcelDataReader reader = null;
+                        string oPath = Server.MapPath(string.Format("~/Content/img/{0}", fileName));
 
+                        file.SaveAs(oPath);
 
-                         if (file.FileName.EndsWith(".xlsx"))
+                        if (file.FileName.EndsWith(".xlsx"))
                         {
                             reader = ExcelReaderFactory.CreateOpenXmlReader(stream);
                             BusinessLogic.lnDoorsxUser lnDoorxUsers = new BusinessLogic.lnDoorsxUser();                            

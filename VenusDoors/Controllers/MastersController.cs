@@ -158,7 +158,7 @@ namespace VenusDoors.Controllers
         }
 
         [HttpPost]
-        public ActionResult InsertCompany(Company pCompany)
+        public ActionResult InsertCompany(string Name, string Email, string Direction, string Telephone, int Status, int Type)
         {
             if (Session["UserID"] == null)
             {
@@ -169,13 +169,121 @@ namespace VenusDoors.Controllers
                 int userID = (int)Session["UserID"];
                 try
                 {
+                    if (Request.Files.Count > 0)
+                    {
+                        var file = Request.Files[0];
+                        var fileName = Path.GetFileName(file.FileName);
+                        // ExcelDataReader works with the binary Excel file, so it needs a FileStream
+                        // to get started. This is how we avoid dependencies on ACE or Interop:
+                        Stream stream = file.InputStream;
 
-                    pCompany.CreationDate = DateTime.Now;
-                    pCompany.CreatorUser = userID;
-                    pCompany.ModificationUser = userID;
-                    pCompany.ModificationDate = DateTime.Now;
-                    BusinessLogic.lnCompany _USB = new BusinessLogic.lnCompany();
-                    var InsertCompany = _USB.InsertCompany(pCompany);
+                        // We return the interface, so that
+
+
+
+                        Company uCompany = new Company();
+                        string oPath = Server.MapPath(string.Format("~/Content/img/{0}", fileName));
+
+                        file.SaveAs(oPath);
+                        uCompany.Logo = "/Content/img/"+ fileName;
+                        uCompany.Name = Name;
+                        uCompany.Direction = Direction;
+                        uCompany.Email = Email;
+                        uCompany.Telephone = Telephone;
+                        uCompany.Status = new Status() { Id = Status };
+                        uCompany.Type = new Model.Type() { Id = Type };
+                        uCompany.CreationDate = DateTime.Now;
+                        uCompany.CreatorUser = userID;
+                        uCompany.ModificationUser = userID;
+                        uCompany.ModificationDate = DateTime.Now;
+                        BusinessLogic.lnCompany _USB = new BusinessLogic.lnCompany();
+                        var InsertCompany = _USB.InsertCompany(uCompany);
+
+
+                    }
+                    else
+                    {
+                        Company uCompany = new Company();
+                        uCompany.Logo = "/Content/img/img11.jpg";
+                        uCompany.Name = Name;
+                        uCompany.Direction = Direction;
+                        uCompany.Email = Email;
+                        uCompany.Telephone = Telephone;
+                        uCompany.Status = new Status() { Id = Status };
+                        uCompany.Type = new Model.Type() { Id = Type };
+                        uCompany.CreationDate = DateTime.Now;
+                        uCompany.CreatorUser = userID;
+                        uCompany.ModificationUser = userID;
+                        uCompany.ModificationDate = DateTime.Now;
+                        BusinessLogic.lnCompany _USB = new BusinessLogic.lnCompany();
+                        var InsertCompany = _USB.InsertCompany(uCompany);
+                    }
+                    return Json(true, JsonRequestBehavior.AllowGet);
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
+        }
+        [HttpPost]
+        public ActionResult UpdateCompany(int Id, string Name, string Email, string Direction,string Telephone,int Status,int Type)
+        {
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                int userID = (int)Session["UserID"];
+                try
+                {
+                    if (Request.Files.Count > 0)
+                    {
+                        var file = Request.Files[0];
+                        var fileName = Path.GetFileName(file.FileName);
+                        // ExcelDataReader works with the binary Excel file, so it needs a FileStream
+                        // to get started. This is how we avoid dependencies on ACE or Interop:
+                        Stream stream = file.InputStream;
+
+                        // We return the interface, so that
+                        Company uCompany = new Company();
+
+
+                        string oPath = Server.MapPath(string.Format("~/Content/img/{0}", fileName));
+
+                        file.SaveAs(oPath);
+                        uCompany.Logo = "/Content/img/" + fileName;
+                        uCompany.Name = Name;
+                        uCompany.Id = Id;
+                        uCompany.Direction = Direction;
+                        uCompany.Email = Email;
+                        uCompany.Telephone = Telephone;
+                        uCompany.Status = new Status() { Id = Status };
+                        uCompany.Type = new Model.Type() { Id = Type };
+                        uCompany.ModificationUser = userID;
+                        uCompany.ModificationDate = DateTime.Now;
+                        BusinessLogic.lnCompany _USB = new BusinessLogic.lnCompany();
+                        var modCompany = _USB.UpdateCompany(uCompany);
+                    }
+                    else
+                    {
+                        BusinessLogic.lnCompany compa = new BusinessLogic.lnCompany();                   
+                        Company com = new Company();
+                        com = compa.GetCompanyById(Id);
+                        com.Name = Name;
+                        com.Id = Id;
+                        com.Direction = Direction;
+                        com.Email = Email;
+                        com.Telephone = Telephone;
+                        com.Status = new Status() { Id = Status };
+                        com.Type = new Model.Type() { Id = Type };
+                        com.ModificationUser = userID;
+                        com.ModificationDate = DateTime.Now;
+                        var modCompany = compa.UpdateCompany(com);
+
+
+                    }
                     return Json(true, JsonRequestBehavior.AllowGet);
 
                 }
@@ -185,8 +293,10 @@ namespace VenusDoors.Controllers
                 }
             }
         }
+
+
         [HttpPost]
-        public ActionResult UpdateCompany(Company uCompany)
+        public ActionResult GetAllCompany(Company pCompany)
         {
             if (Session["UserID"] == null)
             {
@@ -194,15 +304,13 @@ namespace VenusDoors.Controllers
             }
             else
             {
-                int userID = (int)Session["UserID"];
+               
                 try
                 {
 
-                    uCompany.ModificationUser = userID;
-                    uCompany.ModificationDate = DateTime.Now;
-                    BusinessLogic.lnCompany _USB = new BusinessLogic.lnCompany();
-                    var modCompany = _USB.UpdateCompany(uCompany);
-                    return Json(true, JsonRequestBehavior.AllowGet);
+                    BusinessLogic.lnCompany company = new BusinessLogic.lnCompany();
+
+                    return Json(company.GetAllCompany(), JsonRequestBehavior.AllowGet);
 
                 }
                 catch
