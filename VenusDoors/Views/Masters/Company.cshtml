@@ -48,11 +48,11 @@
                         {
                             <tr role="row" class="odd">
                                 <td tabindex="0" class="">@item.Id</td>
+                                <td><img style="width: 80px;" src="@item.Logo"></td>
                                 <td class="">@item.Name</td>
                                 <td class="">@item.Email</td>
                                 <td class="">@item.Direction</td>                                
-                                <td class="">@item.Telephone</td>  
-                                <td class="">@item.Logo</td>                                
+                                <td class="">@item.Telephone</td>                                 
                                 <td class="">@item.Type.Description</td> 
                                 <td class="">@item.Status.Description</td> 
                                 <td class="">
@@ -112,7 +112,7 @@
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="inLogo" style="margin-top: 25px;">Logo: </label>
-                                                <input type="text" class="form-control" id="inLogo" data-placeholder="">
+                                                <input type="file" class="form-control" id="inLogo" data-placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="inType" style="margin-top: 25px;">Type: </label>
@@ -145,13 +145,11 @@
         var urlGetAllType = '@Url.Action("GetAllType", "Masters")';        
         var urlInsertCompany = '@Url.Action("InsertCompany", "Masters")';
         var urlUpdateCompany = '@Url.Action("UpdateCompany", "Masters")';
+        var urlGetAllCompany = '@Url.Action("GetAllCompany", "Masters")';
         var listComp = JSON.parse('@Html.Raw(ViewBag.ListCompany)');
 
-        $(document).ready(function () {
-            $("#button-cnt").click(function () {
-                location.reload();
-            });
-        });
+
+      
     </script>
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>

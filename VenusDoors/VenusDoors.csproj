@@ -1090,6 +1090,7 @@
     <Content Include="Scripts\js\CargaImg.js" />
     <Content Include="Scripts\js\ComboBox.js" />
     <Content Include="Scripts\js\ConverExcel.js" />
+    <Content Include="Scripts\js\dashboard.js" />
     <Content Include="Scripts\js\envio.js" />
     <Content Include="Scripts\js\LoginSiginUp.js" />
     <Content Include="Scripts\js\Master.BottomRail.js" />
@@ -1122,6 +1123,7 @@
     <Content Include="Scripts\js\Master.VerticalD.js" />
     <Content Include="Scripts\js\Masters.js" />
     <Content Include="Scripts\js\ModalAlert.js" />
+    <Content Include="Scripts\js\OrderControl.Index.Js" />
     <Content Include="Scripts\js\OrderStatus.Index.js" />
     <Content Include="Scripts\js\OrderSumm.js" />
     <Content Include="Scripts\js\PasswordRecovery.Logins.js" />

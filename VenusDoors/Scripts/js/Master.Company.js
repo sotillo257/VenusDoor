@@ -23,9 +23,7 @@
         $("#btUpdateCompany").hide();
         $("#btnInsertCompany").show();
         Limpiar();
-    });
-
-       
+    });       
     $(document).on('click', '.Modificar', function (event) {
     	$("#btUpdateCompany").show();
         $("#btnInsertCompany").hide();
@@ -50,7 +48,7 @@
                 	$('#inEmail').val(listComp[i].Email);
                 	$('#inDirection').val(listComp[i].Direction);
                 	$('#inTelephone').val(listComp[i].Telephone);
-                	$('#inLogo').val(listComp[i].Logo);
+                	//$('#inLogo').val(listComp[i].Logo);
                 break;
                 }
             }
@@ -139,42 +137,36 @@ function ValidarCamposVacios() {
     	$('#inTelephone').removeClass("is-invalid");
     }
 
-    if ($('#inLogo').val() == "") {
-    	$('#inLogo').addClass("is-invalid");
-    	aux = false;
-    } else {
-    	$('#inLogo').removeClass("is-invalid");
-    }
     return aux;
 }
 
 function InsertCompany() {
+    var compania = new Array();
+    var formData = new FormData();
+    if ($("#inLogo")[0].files.length > 0) {
+        //alert($("#File1")[0].files[0].name);
+        formData.append('Files', $("#inLogo")[0].files[0], $("#inLogo")[0].files[0].name);
+    }
+    formData.append('Name', $("#inName").val());
+    formData.append('Email', $("#inEmail").val());
+    formData.append('Direction', $("#inDirection").val());
+    formData.append('Telephone', $("#inTelephone").val());
+    formData.append('Status', $("#inStatus").val());
+    formData.append('Type', $("#inType").val());
 
-    var datos =
-    {
-        pCompany: {
-        	Name: $("#inName").val(),
-        	Email: $("#inEmail").val(),
-        	Direction: $("#inDirection").val(),
-        	Telephone: $("#inTelephone").val(),
-        	Logo: $("#inLogo").val(),
-        	Status: { Id: $("#inStatus").val() },
-        	Type: { Id: $("#inType").val() }
-
-        }
-    };
-    console.log(datos);
+    compania.push(formData);
     $.ajax({
         type: 'POST',
-        data: JSON.stringify(datos),
+        data: compania[0],
         url: urlInsertCompany,
-        dataType: "json",
-        contentType: 'application/json; charset=utf-8',
+        contentType: false,
+        processData: false,
         success: function (result) {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
                 LlammarModal("Congratuletions", "Congratulations! It has been inserted correctly.", " ");
+                llenarTablaCompany();
             } else {
                 LlammarModal("Danger", "Error: An error occurred while inserting.", " ");
             }
@@ -187,31 +179,34 @@ function InsertCompany() {
 }
 function UpdateCompany() {
 
-    var datos =
-    {
-    	uCompany: {
-            Id: $("#inId").val(),
-            Name: $("#inName").val(),
-            Email: $("#inEmail").val(),
-            Direction: $("#inDirection").val(),
-            Telephone: $("#inTelephone").val(),
-            Logo: $("#inLogo").val(),
-            Status: { Id: $("#inStatus").val() },
-            Type: { Id: $("#inType").val() }
-        }
-    };
-    console.log(datos);
+    var compania = new Array();
+    var formData = new FormData();
+    if ($("#inLogo")[0].files.length > 0) {
+        //alert($("#File1")[0].files[0].name);
+        formData.append('Files', $("#inLogo")[0].files[0], $("#inLogo")[0].files[0].name);
+    }
+
+    formData.append('Id', $("#inId").val());
+    formData.append('Name', $("#inName").val());
+    formData.append('Email', $("#inEmail").val());
+    formData.append('Direction', $("#inDirection").val());
+    formData.append('Telephone', $("#inTelephone").val());
+    formData.append('Status',  $("#inStatus").val() );
+    formData.append('Type',  $("#inType").val());
+        
+    compania.push(formData);
     $.ajax({
         type: 'POST',
-        data: JSON.stringify(datos),
+        data: compania[0],
         url: urlUpdateCompany,
-        dataType: "json",
-        contentType: 'application/json; charset=utf-8',
+        contentType: false,
+        processData: false,
         success: function (result) {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
                 LlammarModal("Congratuletions", "Congratulations! It has been modified correctly.", " ");
+                llenarTablaCompany();
             } else {
                 LlammarModal("Danger", "Error: An error occurred while modifying.", " ");
             }
@@ -311,4 +306,45 @@ function GetType() {
 			LlammarModal("Danger", "Error.", " ");
 		}
 	});
+}
+
+function llenarTablaCompany() {
+    $.ajax({
+        url: urlGetAllCompany,
+        cache: false,
+        type: 'POST',
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        success: function (data) {
+            if (data != null) {
+                listComp = data;
+                var option = '';
+                for (var i = 0; i < data.length; i++) {
+                    option += '<tr role="row" class="odd">';
+                    option += '<td tabindex="0"  >' + data[i].Id + '</td>';
+                    option += ' <td><img style="width: 80px;" src="' + data[i].Logo + '"></td>';
+                    option += '<td>'+data[i].Name+'</td>';
+                    option += '<td>'+data[i].Email+'</td>';
+                    option += '<td>'+data[i].Direction+'</td>';                                
+                    option += '<td>'+data[i].Telephone+'</td>';  
+                    option += '<td>'+data[i].Type.Description+'</td>'; 
+                    option += '<td>'+data[i].Status.Description+'</td>'; 
+                    option += '<td>';
+                    option += '<center>';
+                    option += '<a href="#" data-toggle="modal" data-target="#modalInsert" value="'+data[i].Id+'" class="Modificar btn btn-primary btn-icon">';
+                    option += '<div><i class="fa fa-edit"></i></div></a></center></td></tr>';
+                   
+                }
+                $("#datatable1 > tbody").empty().append(option);
+                $("#modalInsert").modal("hide");
+            }
+            else {
+                LlammarModal("Danger", "Error obtaining Type", " ");
+            }
+        },
+        error: function (err) {
+            LlammarModal("Danger", "Error.", " ");
+        }
+    });
+
 }
