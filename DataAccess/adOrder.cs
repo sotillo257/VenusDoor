@@ -52,9 +52,9 @@ namespace DataAccess
 
         }
 
-        public Order GetOrderByUser(int IdUser)
+        public List<Order> GetOrderByUser(int IdUser)
         {
-            Order ord = new Order();
+           List<Order> ord = new List<Order>();
             string sql = @"[spGetOrderByUser] '{0}' ";
             sql = string.Format(sql, IdUser);
 
@@ -66,7 +66,7 @@ namespace DataAccess
                 {
                     foreach (DataRow item in ds.Tables["Order"].Rows)
                     {
-                        ord = new Order()
+                        ord.Add( new Order()
                         {
                             Id = int.Parse(item["Id"].ToString()),
                             User = new User() { Id = int.Parse(item["IdUser"].ToString()) },
@@ -81,7 +81,7 @@ namespace DataAccess
                             CreatorUser = int.Parse(item["CreatorUser"].ToString()),
                             ModificationUser = int.Parse(item["ModificationUser"].ToString()),
 
-                        };
+                        });
                     }
                 }
                 return ord;

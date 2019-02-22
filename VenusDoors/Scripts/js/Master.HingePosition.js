@@ -103,13 +103,6 @@
             $('#inStatus').removeClass("is-invalid");
         }
 
-        if ($('#IdStatus').val() == 0) {
-            $('#IdStatus').addClass("is-invalid");
-            aux = false;
-        } else {
-            $('#IdStatus').removeClass("is-invalid");
-        }
-
         if ($('#inPosition').val() == "") {
             $('#inPosition').addClass("is-invalid");
             aux = false;

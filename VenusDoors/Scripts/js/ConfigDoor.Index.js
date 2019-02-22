@@ -1436,33 +1436,10 @@ function FlatPanelDoor(Style) {
     var DoorUrl = "img11.png";
     var urlFolder = "/Content/img/Doors/";
    
-        if (Style == 1008) {
-           
-                DoorUrl = "Cabinet Vector-01.png";
-          
-
-        }
-        if (Style == 1002) {
-            if (stile == 3 && rail == 3) {
-                DoorUrl = "Cabinet Vector-02.png";
-            } else if (stile == 1 && rail == 1) {
-                DoorUrl = "Cabinet Vector-14.png";
-            }
-        }
-        if (Style == 1004) {
-            if (stile == 3 && rail == 3) {
-                DoorUrl = "Cabinet Vector-05.png";
-            } else if (stile == 1 && rail == 1) {
-                DoorUrl = "Cabinet Vector-06.png";
-            }
-        }
-        if (Style == 1009) {
-           
-                DoorUrl = "Cabinet Vector-13.png";
-           
-        }
        
-        if ($('#cbJoin').val() == 2) {
+
+
+        if ($('#cbJoin').val() == 2){
             if (Style == 1009) {
 
                 DoorUrl = "Cabinet Vector-13.png";
@@ -1473,7 +1450,30 @@ function FlatPanelDoor(Style) {
             } else {
                 DoorUrl = "Cabinet Vector-08.png";
             }
-    }
+        }else if (Style == 1008) {
+
+            DoorUrl = "Cabinet Vector-01.png";
+
+
+        } else if (Style == 1002) {
+            if (stile == 3 && rail == 3) {
+                DoorUrl = "Cabinet Vector-02.png";
+            } else if (stile == 1 && rail == 1) {
+                DoorUrl = "Cabinet Vector-14.png";
+            }
+        }else if (Style == 1004) {
+            if (stile == 3 && rail == 3) {
+                DoorUrl = "Cabinet Vector-05.png";
+            } else if (stile == 1 && rail == 1) {
+                DoorUrl = "Cabinet Vector-06.png";
+            }
+        }else if (Style == 1009) {
+           
+                DoorUrl = "Cabinet Vector-13.png";
+           
+        }else {
+            DoorUrl = "Cabinet Vector-02.png";
+        }
         $('#DoorPicture').attr('src', urlFolder + DoorUrl);
    
 }
