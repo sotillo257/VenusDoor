@@ -139,12 +139,7 @@
         var urlGetAllUser = '@Url.Action("GetUser", "Masters")';
         var urlGetAllType = '@Url.Action("GetAllType", "Masters")';
         var listORDER = JSON.parse('@Html.Raw(ViewBag.ListOrder)');
-
-        $(document).ready(function () {
-            $("#button-cnt").click(function () {
-                location.reload();
-            });
-        });
+        var urlGetAllOrder = '@Url.Action("GetAllOrder", "Masters")';
     </script>
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>

@@ -116,12 +116,7 @@
         var urlGetAllGroup = '@Url.Action("GetGroup", "Masters")';
         var urlUpdateStatus = '@Url.Action("UpdateStatus", "Masters")';
         var listSTS = JSON.parse('@Html.Raw(ViewBag.ListStatus)');
-
-        $(document).ready(function () {
-            $("#button-cnt").click(function () {
-                location.reload();
-            });
-        });
+        var urlGetAllStatus = '@Url.Action("GetAllStatus", "Masters")';
     </script>
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>

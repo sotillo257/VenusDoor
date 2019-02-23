@@ -126,12 +126,7 @@
         var urlInsertTopRailxHorizontalDivisions = '@Url.Action("InsertTopRailxHorizontalDivisions", "Masters")';
         var urlUpdateTopRailxHorizontalDivisions = '@Url.Action("UpdateTopRailxHorizontalDivisions", "Masters")';
         var listTRH = JSON.parse('@Html.Raw(ViewBag.ListTopRailxHorizontal)');
-
-        $(document).ready(function () {
-            $("#button-cnt").click(function () {
-                location.reload();
-            });
-        });
+        var urlGetAllTopRailxHorizontalDivisions = '@Url.Action("GetAllTopRailxHorizontalDivisions", "Masters")';
     </script>
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>

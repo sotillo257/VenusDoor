@@ -116,13 +116,8 @@
     var urlInsertJoin = '@Url.Action("InsertJoin", "Masters")';
         var urlUpdateJoin = '@Url.Action("UpdateJoin", "Masters")';
         var urlGetAllStatus = '@Url.Action("GetStatus", "Masters")';
+        var urlGetAllJoin = '@Url.Action("GetAllJoin", "Masters")';
         var listJOIN = JSON.parse('@Html.Raw(ViewBag.ListJoin)');
-
-        $(document).ready(function () {
-            $("#button-cnt").click(function () {
-                location.reload();
-            });
-        });
     </script>
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>

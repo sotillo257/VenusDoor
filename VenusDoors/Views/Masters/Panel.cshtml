@@ -117,12 +117,7 @@
         var urlUpdatePanel = '@Url.Action("UpdatePanel", "Masters")';
         var urlGetAllStatus = '@Url.Action("GetStatus", "Masters")';
         var listPal = JSON.parse('@Html.Raw(ViewBag.ListPanel)');
-
-        $(document).ready(function () {
-            $("#button-cnt").click(function () {
-                location.reload();
-            });
-        });
+        var urlGetAllPanel = '@Url.Action("GetAllPanel", "Masters")';
     </script>
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>

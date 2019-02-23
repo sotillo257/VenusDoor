@@ -117,12 +117,7 @@
     var urlInsertInsertVerticalDivisions = '@Url.Action("InsertVerticalDivisions", "Masters")';
         var urlUpdateVerticalDivisions = '@Url.Action("UpdateVerticalDivisions", "Masters")';
         var listVD = JSON.parse('@Html.Raw(ViewBag.ListVerticalDivisions)');
-
-        $(document).ready(function () {
-            $("#button-cnt").click(function () {
-                location.reload();
-            });
-        });
+        var urlGetAllVerticalDivisions = '@Url.Action("GetAllVerticalDivisions", "Masters")';
     </script>
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>

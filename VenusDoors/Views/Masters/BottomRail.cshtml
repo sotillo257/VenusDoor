@@ -116,13 +116,8 @@
         var urlInsertBottomRail = '@Url.Action("InsertBottomRail", "Masters")';
         var urlUpdateBottomRail = '@Url.Action("UpdateBottomRail", "Masters")';
         var urlGetStatus = '@Url.Action("GetStatus", "Masters")';
+        var urlGetAllBottomRail = '@Url.Action("GetAllBottomRail", "Masters")';
         var listBTR = JSON.parse('@Html.Raw(ViewBag.ListBottomRail)');
-
-        $(document).ready(function () {
-            $("#button-cnt").click(function () {
-                location.reload();
-            });
-        });
 
     </script>
 

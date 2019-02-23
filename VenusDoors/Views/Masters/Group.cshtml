@@ -108,13 +108,8 @@
     <script>
         var urlInsertGroup = '@Url.Action("InsertGroup", "Masters")';
         var urlUpdateGroup = '@Url.Action("UpdateGroup", "Masters")';
+        var urlGetAllGroup = '@Url.Action("GetAllGroup", "Masters")';
         var listGroup = JSON.parse('@Html.Raw(ViewBag.ListGroup)');
-
-        $(document).ready(function () {
-            $("#button-cnt").click(function () {
-                location.reload();
-            });
-        });
     </script>
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>
