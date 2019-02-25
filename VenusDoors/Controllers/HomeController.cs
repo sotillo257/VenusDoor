@@ -71,6 +71,11 @@ namespace VenusDoors.Controllers
         {
             try
             {
+                if (Session["UserID"] == null)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                else {  
                 DateTime hoy = DateTime.Now;
 
                 string mes = hoy.ToString("MMMM"); //te da el nombre completo en la cultura default
@@ -78,6 +83,25 @@ namespace VenusDoors.Controllers
                 ViewBag.lblMes = hoy.ToString("MMMM", CultureInfo.CreateSpecificCulture("en-US")); //en ingles
 
                 ViewBag.lblMesAnterior = hoy.AddMonths(-1).ToString("MMMM", CultureInfo.CreateSpecificCulture("en-US"));
+                BusinessLogic.lnDoors doors = new BusinessLogic.lnDoors();
+                var TotalesDoors = doors.GetTotalesDoors();
+                ViewBag.doors = TotalesDoors;
+                var aux = TotalesDoors;
+                var aux2 = aux.Active + aux.Approve + aux.Completed + aux.InProcess + aux.Pending;
+                ViewBag.totalOrdenes = aux2;
+                TotalesDoors TD = new TotalesDoors();
+                
+                decimal x = decimal.Parse(aux.Active.ToString()) / decimal.Parse(aux2.ToString()) * 100;
+                decimal u = decimal.Parse(aux.Pending.ToString()) / decimal.Parse(aux2.ToString()) * 100;
+                decimal y = decimal.Parse(aux.Approve.ToString()) / decimal.Parse(aux2.ToString()) * 100;
+                decimal z = decimal.Parse(aux.InProcess.ToString()) / decimal.Parse(aux2.ToString()) * 100;
+                decimal i = decimal.Parse(aux.Completed.ToString()) / decimal.Parse(aux2.ToString()) * 100;
+                ViewBag.Active = "wd-"+x.ToString("N0")+"p";
+                ViewBag.Pending = "wd-" + u.ToString("N0") + "p";
+                ViewBag.Approve = "wd-" + y.ToString("N0") + "p";
+                ViewBag.InProcess = "wd-" + z.ToString("N0") + "p";
+                ViewBag.Completed = "wd-" + i.ToString("N0") + "p";
+                ViewBag.doorsPorcentaje = TD;
 
                 BusinessLogic.lnOrder Order = new BusinessLogic.lnOrder();                
                 var totales = Order.GetAllTotales();
@@ -143,6 +167,7 @@ namespace VenusDoors.Controllers
                 }
                 ViewBag.MejorMes = listTotal.Average().ToString("N2");
                 return View();
+            }
             }
             catch (Exception ex)
             {

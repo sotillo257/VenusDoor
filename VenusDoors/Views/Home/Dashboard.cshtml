@@ -66,10 +66,10 @@
         <div class="col-sm-6 col-xl-3">
             <div class="bg-teal rounded overflow-hidden">
                 <div class="pd-25 d-flex align-items-center">
-                    <i class="ion ion-earth tx-60 lh-0 tx-white op-7"></i>
+                    <i class="ion ion-load-a tx-60 lh-0 tx-white op-7"></i>
                     <div class="mg-l-20">
-                        <p class="tx-10 tx-spacing-1 tx-mont tx-medium tx-uppercase tx-white-8 mg-b-10">Doors Style</p>
-                        <p class="tx-24 tx-white tx-lato tx-bold mg-b-2 lh-1">1,975,224</p>
+                        <p class="tx-10 tx-spacing-1 tx-mont tx-medium tx-uppercase tx-white-8 mg-b-10">Doors Pending</p>
+                        <p class="tx-24 tx-white tx-lato tx-bold mg-b-2 lh-1">@ViewBag.Doors.DoorPending</p>
                         <span class="tx-11 tx-roboto tx-white-6">24% higher yesterday</span>
                     </div>
                 </div>
@@ -78,10 +78,10 @@
         <div class="col-sm-6 col-xl-3 mg-t-20 mg-sm-t-0">
             <div class="bg-danger rounded overflow-hidden">
                 <div class="pd-25 d-flex align-items-center">
-                    <i class="ion ion-bag tx-60 lh-0 tx-white op-7"></i>
+                    <i class="ion ion-clock tx-60 lh-0 tx-white op-7"></i>
                     <div class="mg-l-20">
-                        <p class="tx-10 tx-spacing-1 tx-mont tx-medium tx-uppercase tx-white-8 mg-b-10">Today Sales</p>
-                        <p class="tx-24 tx-white tx-lato tx-bold mg-b-2 lh-1">$329,291</p>
+                        <p class="tx-10 tx-spacing-1 tx-mont tx-medium tx-uppercase tx-white-8 mg-b-10">Approved doors</p>
+                        <p class="tx-24 tx-white tx-lato tx-bold mg-b-2 lh-1">@ViewBag.Doors.DoorApprove</p>
                         <span class="tx-11 tx-roboto tx-white-6">$390,212 before tax</span>
                     </div>
                 </div>
@@ -90,10 +90,10 @@
         <div class="col-sm-6 col-xl-3 mg-t-20 mg-xl-t-0">
             <div class="bg-primary rounded overflow-hidden">
                 <div class="pd-25 d-flex align-items-center">
-                    <i class="ion ion-monitor tx-60 lh-0 tx-white op-7"></i>
+                    <i class="ion ion-ios-gear-outline tx-60 lh-0 tx-white op-7"></i>
                     <div class="mg-l-20">
-                        <p class="tx-10 tx-spacing-1 tx-mont tx-medium tx-uppercase tx-white-8 mg-b-10">% Unique Visits</p>
-                        <p class="tx-24 tx-white tx-lato tx-bold mg-b-2 lh-1">54.45%</p>
+                        <p class="tx-10 tx-spacing-1 tx-mont tx-medium tx-uppercase tx-white-8 mg-b-10">Doors in Process</p>
+                        <p class="tx-24 tx-white tx-lato tx-bold mg-b-2 lh-1">@ViewBag.Doors.DoorInProcess</p>
                         <span class="tx-11 tx-roboto tx-white-6">23% average duration</span>
                     </div>
                 </div>
@@ -102,10 +102,10 @@
         <div class="col-sm-6 col-xl-3 mg-t-20 mg-xl-t-0">
             <div class="bg-br-primary rounded overflow-hidden">
                 <div class="pd-25 d-flex align-items-center">
-                    <i class="ion ion-clock tx-60 lh-0 tx-white op-7"></i>
+                    <i class="ion ion-checkmark tx-60 lh-0 tx-white op-7"></i>
                     <div class="mg-l-20">
-                        <p class="tx-10 tx-spacing-1 tx-mont tx-medium tx-uppercase tx-white-8 mg-b-10">Bounce Rate</p>
-                        <p class="tx-24 tx-white tx-lato tx-bold mg-b-2 lh-1">32.16%</p>
+                        <p class="tx-10 tx-spacing-1 tx-mont tx-medium tx-uppercase tx-white-8 mg-b-10">Completed Doors</p>
+                        <p class="tx-24 tx-white tx-lato tx-bold mg-b-2 lh-1">@ViewBag.Doors.DoorCompleted</p>
                         <span class="tx-11 tx-roboto tx-white-6">65.45% on average time</span>
                     </div>
                 </div>
@@ -114,35 +114,37 @@
     </div><!-- row -->
 
     <div class="row row-sm mg-t-20">
-        <div class="col-sm-6 col-lg-4 mg-t-20 mg-sm-t-0">
-            <div class="card shadow-base bd-0">
-                <div class="card-header bg-transparent d-flex justify-content-between align-items-center">
-                    <h6 class="card-title tx-uppercase tx-12 mg-b-0">Sales Monitoring</h6>
-                    <span class="tx-12 tx-uppercase">March 2017</span>
-                </div><!-- card-header -->
-                <div class="card-body">
-                    <p class="tx-sm tx-inverse tx-medium mg-b-0">Bracket Online Store</p>
-                    <p class="tx-12"><a href="">http://bracketstore.com</a></p>
-                    <div class="row align-items-center">
-                        <div class="col-3 tx-12 tx-bold">Men</div><!-- col-3 -->
-                        <div class="col-9">
-                            <div class="progress rounded-0 mg-b-0">
-                                <div class="progress-bar bg-teal wd-50p lh-3" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100">55%</div>
-                            </div><!-- progress -->
-                        </div><!-- col-9 -->
-                    </div><!-- row -->
-                    <div class="row align-items-center mg-t-5">
-                        <div class="col-3 tx-12 tx-bold">Women</div><!-- col-3 -->
-                        <div class="col-9">
-                            <div class="progress rounded-0 mg-b-0">
-                                <div class="progress-bar bg-info wd-45p lh-3" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">45%</div>
-                            </div><!-- progress -->
-                        </div><!-- col-9 -->
-                    </div><!-- row -->
-                    <p class="tx-11 mg-b-0 mg-t-15">Notice: Lorem ipsum dolor sit amet.</p>
-                </div><!-- card-body -->
+
+        <div class="col-sm-6 col-xl-4">
+            <div class="card bd-0 shadow-base pd-30">
+                <h6 class="tx-13 tx-uppercase tx-inverse tx-semibold tx-spacing-1">Order Status</h6>
+                <p class="mg-b-25">Summary of the status of your order.</p>
+                <label class="tx-12 tx-gray-600 mg-b-10">Active order (@ViewBag.Doors.Active)</label>
+                <div class="progress ht-5 mg-b-10">
+                    <div class="progress-bar @ViewBag.Active" role="progressbar" aria-valuenow="@ViewBag.Doors.Active" aria-valuemin="0" aria-valuemax="@ViewBag.totalOrdenes"></div>
+                </div>
+                <label class="tx-12 tx-gray-600 mg-b-10">Pending Order to Approve (@ViewBag.Doors.Pending)</label>
+                <div class="progress ht-5 mg-b-10">
+                    <div class="progress-bar bg-teal @ViewBag.Pending" role="progressbar" aria-valuenow="@ViewBag.Doors.Pending" aria-valuemin="0" aria-valuemax="@ViewBag.totalOrdenes"></div>
+                </div>
+                <label class="tx-12 tx-gray-600 mg-b-10">Approved Order (@ViewBag.Doors.Approve)</label>
+                <div class="progress ht-5 mg-b-10">
+                    <div class="progress-bar bg-danger @ViewBag.Approve" role="progressbar" aria-valuenow="(@ViewBag.Doors.Approve" aria-valuemin="0" aria-valuemax="@ViewBag.totalOrdenes"></div>
+                </div>
+                <label class="tx-12 tx-gray-600 mg-b-10">Order in Process (@ViewBag.Doors.InProcess)</label>
+                <div class="progress ht-5 mg-b-10">
+                    <div class="progress-bar bg-warning @ViewBag.InProcess" role="progressbar" aria-valuenow="@ViewBag.Doors.InProcess" aria-valuemin="0" aria-valuemax="@ViewBag.totalOrdenes"></div>
+                </div>
+                <label class="tx-12 tx-gray-600 mg-b-10">Order Completed (@ViewBag.Doors.Completed)</label>
+                <div class="progress ht-5 mg-b-10">
+                    <div class="progress-bar bg-info @ViewBag.Completed" role="progressbar" aria-valuenow="@ViewBag.Doors.Completed" aria-valuemin="0" aria-valuemax="@ViewBag.totalOrdenes"></div>
+                </div>
+                <div class="mg-t-20 tx-13">
+                    <a href="" class="tx-gray-600 hover-info">View Orders</a>
+                </div>
             </div><!-- card -->
-        </div>
+        </div><!-- col-3 -->
+       
         <div class="col-sm-6 col-xl-4">
             <div class="bg-primary rounded-top">
                 <div class="pd-l-30 pd-t-30 ">
@@ -186,6 +188,35 @@
                 </div><!-- d-flex -->
             </div><!-- d-flex -->
         </div>
+        <div class="col-sm-6 col-lg-4 mg-t-20 mg-sm-t-0">
+            <div class="card shadow-base bd-0">
+                <div class="card-header bg-transparent d-flex justify-content-between align-items-center">
+                    <h6 class="card-title tx-uppercase tx-12 mg-b-0">Sales Monitoring</h6>
+                    <span class="tx-12 tx-uppercase">March 2017</span>
+                </div><!-- card-header -->
+                <div class="card-body">
+                    <p class="tx-sm tx-inverse tx-medium mg-b-0">Bracket Online Store</p>
+                    <p class="tx-12"><a href="">http://bracketstore.com</a></p>
+                    <div class="row align-items-center">
+                        <div class="col-3 tx-12 tx-bold">Men</div><!-- col-3 -->
+                        <div class="col-9">
+                            <div class="progress rounded-0 mg-b-0">
+                                <div class="progress-bar bg-teal wd-50p lh-3" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100">55%</div>
+                            </div><!-- progress -->
+                        </div><!-- col-9 -->
+                    </div><!-- row -->
+                    <div class="row align-items-center mg-t-5">
+                        <div class="col-3 tx-12 tx-bold">Women</div><!-- col-3 -->
+                        <div class="col-9">
+                            <div class="progress rounded-0 mg-b-0">
+                                <div class="progress-bar bg-info wd-45p lh-3" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">45%</div>
+                            </div><!-- progress -->
+                        </div><!-- col-9 -->
+                    </div><!-- row -->
+                    <p class="tx-11 mg-b-0 mg-t-15">Notice: Lorem ipsum dolor sit amet.</p>
+                </div><!-- card-body -->
+            </div><!-- card -->
+        </div>
         @*<div class="col-sm-6 col-xl-4">
             <div class="card bd-0 shadow-base pd-30">
                 <center>
@@ -195,47 +226,6 @@
                 </center>
             </div>
         </div>*@
-        <div class="col-sm-6 col-xl-4">
-            <div class="card bd-0 shadow-base pd-30">
-                <h6 class="tx-13 tx-uppercase tx-inverse tx-semibold tx-spacing-1">Order Status</h6>
-                <p class="mg-b-25">Summary of the status of your order.</p>
-
-                <label class="tx-12 tx-gray-600 mg-b-10">Active order (63/90)</label>
-                <div class="progress ht-5 mg-b-10">
-                    <div class="progress-bar wd-25p" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-
-                <label class="tx-12 tx-gray-600 mg-b-10">Pending payment (20/50)</label>
-                <div class="progress ht-5 mg-b-10">
-                    <div class="progress-bar bg-teal wd-60p" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-
-                <label class="tx-12 tx-gray-600 mg-b-10">Building doors 1/2 (63/65)</label>
-                <div class="progress ht-5 mg-b-10">
-                    <div class="progress-bar bg-danger wd-70p" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-
-                <label class="tx-12 tx-gray-600 mg-b-10">Building doors 2/2 (63/100)</label>
-                <div class="progress ht-5 mg-b-10">
-                    <div class="progress-bar bg-warning wd-50p" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-
-                <label class="tx-12 tx-gray-600 mg-b-10">Ready, pending withdraw (30/50)</label>
-                <div class="progress ht-5 mg-b-10">
-                    <div class="progress-bar bg-info wd-45p" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-
-                <label class="tx-12 tx-gray-600 mg-b-10">Complete (13/50)</label>
-                <div class="progress ht-5 mg-b-10">
-                    <div class="progress-bar bg-purple wd-65p" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-
-                <div class="mg-t-20 tx-13">
-                    <a href="" class="tx-gray-600 hover-info">Generate Report</a>
-                    <a href="" class="tx-gray-600 hover-info bd-l mg-l-10 pd-l-10">Print Report</a>
-                </div>
-            </div><!-- card -->
-        </div><!-- col-3 -->
     </div>
 
     </div><!-- row -->

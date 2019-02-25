@@ -50,6 +50,19 @@ namespace BusinessLogic
 
         }
 
+        public TotalesDoors GetTotalesDoors()
+        {
+            try
+            {
+                return _AD.GetTotalDoors();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+        }
+
         public int InsertDoors(Doors pDoors)
         {
             try
