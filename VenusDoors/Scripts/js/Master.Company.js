@@ -303,6 +303,7 @@ function GetType() {
 			}
 		},
 		error: function (err) {
+		    console.log(err);
 			LlammarModal("Danger", "Error.", " ");
 		}
 	});

@@ -50,11 +50,19 @@ namespace BusinessLogic
 
         }
 
-        public TotalesDoors GetTotalesDoors()
+        public TotalesDoors GetTotalesDoors(int Company, int IdType)
         {
             try
             {
-                return _AD.GetTotalDoors();
+                if (IdType == 1)
+                {
+                    return _AD.GetTotalDoors();
+                }
+                else
+                {
+                    return _AD.GetTotalDoorsxCompany(Company);
+                }
+               
             }
             catch (Exception ex)
             {
