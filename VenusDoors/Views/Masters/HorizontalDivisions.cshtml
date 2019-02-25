@@ -116,13 +116,8 @@
         var urlInserHorizontalDivisions = '@Url.Action("InserHorizontalDivisions", "Masters")';
         var urlUpdateHorizontalDivisions = '@Url.Action("UpdateHorizontalDivisions", "Masters")';
         var urlGetAllStatus = '@Url.Action("GetStatus", "Masters")';
+        var urlGetAllHorizontalDivisions = '@Url.Action("GetAllHorizontalDivisions", "Masters")';
         var listHoDi = JSON.parse('@Html.Raw(ViewBag.ListHorizontalDivisions)');
-
-        $(document).ready(function () {
-            $("#button-cnt").click(function () {
-                location.reload();
-            });
-        });
     </script>
 @Scripts.Render("~/Scripts/js/Master.HorizontalDivision.js")
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>

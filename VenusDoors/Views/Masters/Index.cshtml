@@ -116,13 +116,8 @@
     var urlInsertDoorStyle = '@Url.Action("InsertDoorStyle", "Masters")';
         var urlUpdateDoorStyle = '@Url.Action("UpdateDoorStyle", "Masters")';
         var urlGetAllStatus = '@Url.Action("GetStatus", "Masters")';
+        var urlGetAllDoorStyle = '@Url.Action("GetAllDoorStyle", "Masters")';
         var ListDoorsStyle = JSON.parse('@Html.Raw(ViewBag.ListDoorsStyle)');
-
-        $(document).ready(function () {
-            $("#button-cnt").click(function () {
-                location.reload();
-            });
-        });
     </script>
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>

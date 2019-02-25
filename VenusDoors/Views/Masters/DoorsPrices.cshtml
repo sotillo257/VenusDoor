@@ -191,13 +191,8 @@
         var urlGetAllRailThickness = '@Url.Action("GetRailThickness", "Masters")';
         var urlInsertDoorsPrices = '@Url.Action("InsertDoorsPrices", "Masters")';
         var urlUpdateDoorPrice = '@Url.Action("UpdateDoorPrice", "Masters")';
+        var urlGetAllDoorsPrices = '@Url.Action("GetAllDoorsPrices", "Masters")';
         var listDoorP = JSON.parse('@Html.Raw(ViewBag.ListDoorsPrices)');
-
-        $(document).ready(function () {
-            $("#button-cnt").click(function () {
-                location.reload();
-            });
-        });
     </script>
 @Scripts.Render("~/Scripts/js/Master.DoorsPrice.js")
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>

@@ -117,13 +117,8 @@
     var urlInsertOutsideEdgeProfile = '@Url.Action("InsertOutsideEdgeProfile", "Masters")';
         var urlUpdateOutsideEdgeProfile = '@Url.Action("UpdateOutsideEdgeProfile", "Masters")';
         var urlGetAllStatus = '@Url.Action("GetStatus", "Masters")';
+        var urlGetAllOutsideEdgeProfile = '@Url.Action("GetAllOutsideEdgeProfile", "Masters")';
         var listOEP = JSON.parse('@Html.Raw(ViewBag.ListOutsideEdgeProfile)');
-
-        $(document).ready(function () {
-            $("#button-cnt").click(function () {
-                location.reload();
-            });
-        });
     </script>
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>

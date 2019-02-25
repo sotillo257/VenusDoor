@@ -117,12 +117,7 @@
         var urlUpdatePreparation = '@Url.Action("UpdatePreparation", "Masters")';
         var urlGetAllStatus = '@Url.Action("GetStatus", "Masters")';
         var listPrepa = JSON.parse('@Html.Raw(ViewBag.ListPreparation)');
-
-        $(document).ready(function () {
-            $("#button-cnt").click(function () {
-                location.reload();
-            });
-        });
+        var urlGetAllPreparation = '@Url.Action("GetAllPreparation", "Masters")';
     </script>
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>

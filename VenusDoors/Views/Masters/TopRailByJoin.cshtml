@@ -127,12 +127,7 @@
         var urlInsertTopRailByJoin = '@Url.Action("InsertTopRailByJoin", "Masters")';
         var urlUpdateTopRailByJoin = '@Url.Action("UpdateTopRailByJoin", "Masters")';
         var listTRJ = JSON.parse('@Html.Raw(ViewBag.ListTopRailByJoin)');
-
-        $(document).ready(function () {
-            $("#button-cnt").click(function () {
-                location.reload();
-            });
-        });
+        var urlGetAllTopRailxJoin = '@Url.Action("GetAllTopRailxJoin", "Masters")';
     </script>
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>

@@ -128,13 +128,8 @@
     var urlInsertMaterial = '@Url.Action("InsertMaterial", "Masters")';
         var urlUpdateMaterial = '@Url.Action("UpdateMaterial", "Masters")';
         var urlGetAllStatus = '@Url.Action("GetStatus", "Masters")';
+        var urlGetAllMaterial = '@Url.Action("GetAllMaterial", "Masters")';
         var listMaterial = JSON.parse('@Html.Raw(ViewBag.ListMaterial)');
-
-        $(document).ready(function () {
-            $("#button-cnt").click(function () {
-                location.reload();
-            });
-        });
     </script>
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>

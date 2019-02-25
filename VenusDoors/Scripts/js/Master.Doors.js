@@ -358,6 +358,7 @@ function InsertDoors() {
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
                 LlammarModal("Congratuletions", "Congratulations! It has been inserted correctly.", " ");
+                llenarTablaDoors();
             } else {
                 LlammarModal("Danger", "Error: An error occurred while inserting.", " ");
             }
@@ -409,6 +410,7 @@ function UpdateDoors() {
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
                 LlammarModal("Congratuletions", "Congratulations! It has been modified correctly.", " ");
+                llenarTablaDoors();
             } else {
                 LlammarModal("Danger", "Error: An error occurred while modifying.", " ");
             }
@@ -1020,4 +1022,44 @@ function GetAllHingeDirection() {
             LlammarModal("Danger", "Error.", "Check your internet connection I tried again.");
         }
     });
+}
+
+function llenarTablaDoors() {
+    $.ajax({
+        url: urlGetAllDoors,
+        cache: false,
+        type: 'POST',
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        success: function (data) {
+            if (data != null) {
+                ListDoors = data;
+                var option = '';
+                for (var i = 0; i < data.length; i++) {
+                    option += '<tr role="row" class="odd">';
+                    option += '<td tabindex="0"  >' + data[i].Id + '</td>';
+                    option += '<td>' + data[i].DoorStyle.Description + '</td>';
+                    option += '<td>' + data[i].Material.Description + '</td>';
+                    option += '<td>' + data[i].OutsideEdgeProfile.Descriptionn + '</td>';
+                    option += '<td>' + data[i].InsideEdgeProfile.Description + '</td>';
+                    option += '<td>' + data[i].Panel.Description + '</td>';
+                    option += '<td>' + data[i].Status.Description + '</td>';
+                    option += '<td>';
+                    option += '<center>';
+                    option += '<a href="#" data-toggle="modal" data-target="#modalInsert" value="' + data[i].Id + '" class="Modificar btn btn-primary btn-icon">';
+                    option += '<div><i class="fa fa-edit"></i></div></a></center></td></tr>';
+
+                }
+                $("#datatable1 > tbody").empty().append(option);
+                $("#modalInsert").modal("hide");
+            }
+            else {
+                LlammarModal("Danger", "Error obtaining Type", " ");
+            }
+        },
+        error: function (err) {
+            LlammarModal("Danger", "Error.", " ");
+        }
+    });
+
 }
