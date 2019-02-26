@@ -42,6 +42,8 @@ namespace VenusDoors.Controllers
                     List<DoorsxUser> xDoorsU = _LN.GetAllDoorsxUser();
                     List<DoorsxUser> doorByOrder = xDoorsU.Where(x => x.Order.Id == item.Id).ToList();
                     ViewBag.xUserDoors = doorByOrder;
+                    var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                    ViewBag.ListDoorsxUser = serializar.Serialize(doorByOrder);
                     return View();
                 }
                 else
@@ -52,7 +54,7 @@ namespace VenusDoors.Controllers
         }
 
         [HttpPost]
-        public ActionResult DeleteItem(int itemID, Order ord)
+        public ActionResult DeleteItem(int itemID, int orderid)
         {
             if(Session["UserID"] == null)
             {
@@ -65,23 +67,12 @@ namespace VenusDoors.Controllers
                     BusinessLogic.lnDoorsxUser _LND = new BusinessLogic.lnDoorsxUser();
                     int userID = (int)Session["UserID"];
                     int idU = userID;
-                    if (ord.Status == null)
-                    {
-                        return View();
-                    }
-                    else if (ord.Status.Id == 4)
-                    {
-                        BusinessLogic.lnOrder _LNO = new BusinessLogic.lnOrder();
-                        Order upptOrd = _LNO.GetOrderById(ord.Id);
+                    BusinessLogic.lnOrder _LNO = new BusinessLogic.lnOrder();
+                        Order upptOrd = _LNO.GetOrderById(orderid);
                         var xDoor = _LND.GetDoorsxUserById(itemID);
                         var delete = _LND.DeleteDoorsxUser(itemID);
                         UpdateOrderExist(xDoor, upptOrd);
                         return Json(true, JsonRequestBehavior.AllowGet);
-                    }
-                    else
-                    {
-                        return View();
-                    }
                 }
                 catch
                 {

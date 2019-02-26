@@ -54,12 +54,14 @@
   <ItemGroup>
     <Compile Include="BottomRail.cs" />
     <Compile Include="Company.cs" />
+    <Compile Include="DoorOption.cs" />
     <Compile Include="Doors.cs" />
     <Compile Include="DoorsPrices.cs" />
     <Compile Include="DoorStyle.cs" />
     <Compile Include="DoorStylexInsideEdgeProfile.cs" />
     <Compile Include="DoorStylexOutsideEdgeProfile.cs" />
     <Compile Include="DoorsxUser.cs" />
+    <Compile Include="DoorType.cs" />
     <Compile Include="Group.cs" />
     <Compile Include="HingeDirection.cs" />
     <Compile Include="HingePositions.cs" />

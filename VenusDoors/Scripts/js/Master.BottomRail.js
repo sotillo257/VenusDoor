@@ -34,7 +34,7 @@
             for (var i = 0; i < listBTR.length; i++) {
                 if (listBTR[i].Id == $(this).attr('value')) {
                    
-                    var aux = listBTR[i].Id;
+                  var aux = listBTR[i].Id;
                 var aux1 = listBTR[i].Status.Id;
                 var aux2 = listBTR[i].Description;
                     $('#inId').val(listBTR[i].Id);
@@ -44,8 +44,6 @@
                 }
             }
         });
-
-
     });
 
 $(function () {

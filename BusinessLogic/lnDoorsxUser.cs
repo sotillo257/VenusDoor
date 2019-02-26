@@ -429,65 +429,96 @@ namespace BusinessLogic
                     int IdOrder = _LNOrder.InsertOrder(neworder);
                     neworder.Id = IdOrder;
 
-                    HingePositions newhp = new HingePositions()
+                    if (pDoorsxUser.HingePositions.Id == 2)
                     {
-                        Status = new Model.Status() { Id = 1 },
-                        Position1 = HingeP.Position1,
-                        Position2 = HingeP.Position2,
-                        Position3 = HingeP.Position3,
-                        Position4 = HingeP.Position4,
-                        Position5 = HingeP.Position5,
-                        CreationDate = DateTime.Now,
-                        CreatorUser = userID,
-                        ModificationDate = DateTime.Now,
-                        ModificationUser = userID
-                    };
+                        pDoorsxUser.CreatorUser = userID;
+                        pDoorsxUser.ModificationUser = userID;
+                        pDoorsxUser.CreationDate = DateTime.Now;
+                        pDoorsxUser.ModificationDate = DateTime.Now;
+                        pDoorsxUser.Order = neworder;                        
+                        pDoorsxUser.User.Id = idU;
+                        BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
+                        var OrDoor = _LN.InsertDoorsxUser(pDoorsxUser);
+                        return true;
+                    }
+                    else
+                    {
+                        HingePositions newhp = new HingePositions()
+                        {
+                            Status = new Model.Status() { Id = 1 },
+                            Position1 = HingeP.Position1,
+                            Position2 = HingeP.Position2,
+                            Position3 = HingeP.Position3,
+                            Position4 = HingeP.Position4,
+                            Position5 = HingeP.Position5,
+                            CreationDate = DateTime.Now,
+                            CreatorUser = userID,
+                            ModificationDate = DateTime.Now,
+                            ModificationUser = userID
+                        };
 
-                    int IdHingeP = _LNHP.InsertHingePositions(newhp);
-                    newhp.Id = IdHingeP;
+                        int IdHingeP = _LNHP.InsertHingePositions(newhp);
+                        newhp.Id = IdHingeP;
 
-                    pDoorsxUser.CreatorUser = userID;
-                    pDoorsxUser.ModificationUser = userID;
-                    pDoorsxUser.CreationDate = DateTime.Now;
-                    pDoorsxUser.ModificationDate = DateTime.Now;
-                    pDoorsxUser.Order = neworder;
-                    pDoorsxUser.HingePositions = newhp;
-                    pDoorsxUser.User.Id = idU;
-                    BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
-                    var OrDoor = _LN.InsertDoorsxUser(pDoorsxUser);
-                    return true;
-
+                        pDoorsxUser.CreatorUser = userID;
+                        pDoorsxUser.ModificationUser = userID;
+                        pDoorsxUser.CreationDate = DateTime.Now;
+                        pDoorsxUser.ModificationDate = DateTime.Now;
+                        pDoorsxUser.Order = neworder;
+                        pDoorsxUser.HingePositions = newhp;
+                        pDoorsxUser.User.Id = idU;
+                        BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
+                        var OrDoor = _LN.InsertDoorsxUser(pDoorsxUser);
+                        return true;
+                    }                   
                 }
                 else if (item.Status.Id == 4)
                 {
-                    HingePositions newhp = new HingePositions()
+                    if (pDoorsxUser.HingePositions.Id == 2)
                     {
-                        Status = new Model.Status() { Id = 1 },
-                        Position1 = HingeP.Position1,
-                        Position2 = HingeP.Position2,
-                        Position3 = HingeP.Position3,
-                        Position4 = HingeP.Position4,
-                        Position5 = HingeP.Position5,
-                        CreationDate = DateTime.Now,
-                        CreatorUser = userID,
-                        ModificationDate = DateTime.Now,
-                        ModificationUser = userID
-                    };
+                        UpdateOrderExist(item, pDoorsxUser, Ord);
+                        pDoorsxUser.CreatorUser = userID;
+                        pDoorsxUser.ModificationUser = userID;
+                        pDoorsxUser.CreationDate = DateTime.Now;
+                        pDoorsxUser.ModificationDate = DateTime.Now;                       
+                        pDoorsxUser.Order = item;
+                        pDoorsxUser.User.Id = idU;
 
-                    int IdHingeP = _LNHP.InsertHingePositions(newhp);
-                    newhp.Id = IdHingeP;
+                        var updaOrDoor = (InsertDoorsxUser(pDoorsxUser));
+                        return true;
+                    }
+                    else
+                    {
+                        HingePositions newhp = new HingePositions()
+                        {
+                            Status = new Model.Status() { Id = 1 },
+                            Position1 = HingeP.Position1,
+                            Position2 = HingeP.Position2,
+                            Position3 = HingeP.Position3,
+                            Position4 = HingeP.Position4,
+                            Position5 = HingeP.Position5,
+                            CreationDate = DateTime.Now,
+                            CreatorUser = userID,
+                            ModificationDate = DateTime.Now,
+                            ModificationUser = userID
+                        };
 
-                    UpdateOrderExist(item, pDoorsxUser, Ord);
-                    pDoorsxUser.CreatorUser = userID;
-                    pDoorsxUser.ModificationUser = userID;
-                    pDoorsxUser.CreationDate = DateTime.Now;
-                    pDoorsxUser.ModificationDate = DateTime.Now;
-                    pDoorsxUser.HingePositions = newhp;
-                    pDoorsxUser.Order = item;
-                    pDoorsxUser.User.Id = idU;
+                        int IdHingeP = _LNHP.InsertHingePositions(newhp);
+                        newhp.Id = IdHingeP;
+
+                        UpdateOrderExist(item, pDoorsxUser, Ord);
+                        pDoorsxUser.CreatorUser = userID;
+                        pDoorsxUser.ModificationUser = userID;
+                        pDoorsxUser.CreationDate = DateTime.Now;
+                        pDoorsxUser.ModificationDate = DateTime.Now;
+                        pDoorsxUser.HingePositions = newhp;
+                        pDoorsxUser.Order = item;
+                        pDoorsxUser.User.Id = idU;
+
+                        var updaOrDoor = (InsertDoorsxUser(pDoorsxUser));
+                        return true;
+                    }
                     
-                    var updaOrDoor = (InsertDoorsxUser(pDoorsxUser));
-                    return true;
                 }
                 else
                 {
@@ -508,36 +539,142 @@ namespace BusinessLogic
 
                     int IdOrder = _LNOrder.InsertOrder(neworder);
 
-                    HingePositions newhp = new HingePositions()
+                    if (pDoorsxUser.HingePositions.Id == 3)
                     {
-                        Status = new Model.Status() { Id = 1 },
-                        Position1 = HingeP.Position1,
-                        Position2 = HingeP.Position2,
-                        Position3 = HingeP.Position3,
-                        Position4 = HingeP.Position4,
-                        Position5 = HingeP.Position5,
-                        CreationDate = DateTime.Now,
-                        CreatorUser = userID,
-                        ModificationDate = DateTime.Now,
-                        ModificationUser = userID
-                    };
+                        pDoorsxUser.CreatorUser = userID;
+                        pDoorsxUser.ModificationUser = userID;
+                        pDoorsxUser.CreationDate = DateTime.Now;
+                        pDoorsxUser.ModificationDate = DateTime.Now;
+                        pDoorsxUser.Order = neworder;
+                        pDoorsxUser.User.Id = idU;
+                        BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
+                        var OrDoor = _LN.InsertDoorsxUser(pDoorsxUser);
+                        return true;
+                    }
+                    else
+                    {
+                        HingePositions newhp = new HingePositions()
+                        {
+                            Status = new Model.Status() { Id = 1 },
+                            Position1 = HingeP.Position1,
+                            Position2 = HingeP.Position2,
+                            Position3 = HingeP.Position3,
+                            Position4 = HingeP.Position4,
+                            Position5 = HingeP.Position5,
+                            CreationDate = DateTime.Now,
+                            CreatorUser = userID,
+                            ModificationDate = DateTime.Now,
+                            ModificationUser = userID
+                        };
 
-                    int IdHingeP = _LNHP.InsertHingePositions(newhp);
-                    newhp.Id = IdHingeP;
-                    neworder.Id = IdOrder;
-                    pDoorsxUser.CreatorUser = userID;
-                    pDoorsxUser.ModificationUser = userID;
-                    pDoorsxUser.CreationDate = DateTime.Now;
-                    pDoorsxUser.ModificationDate = DateTime.Now;
-                    pDoorsxUser.Order = neworder;
-                    pDoorsxUser.HingePositions = newhp;
-                    pDoorsxUser.User.Id = idU;
-                    var OrDoor = InsertDoorsxUser(pDoorsxUser);
-                    return true;
+                        int IdHingeP = _LNHP.InsertHingePositions(newhp);
+                        newhp.Id = IdHingeP;
+
+                        pDoorsxUser.CreatorUser = userID;
+                        pDoorsxUser.ModificationUser = userID;
+                        pDoorsxUser.CreationDate = DateTime.Now;
+                        pDoorsxUser.ModificationDate = DateTime.Now;
+                        pDoorsxUser.Order = neworder;
+                        pDoorsxUser.HingePositions = newhp;
+                        pDoorsxUser.User.Id = idU;
+                        BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
+                        var OrDoor = _LN.InsertDoorsxUser(pDoorsxUser);
+                        return true;
+                    }
 
                 }
 
 
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool ModificarDoors(DoorsxUser pDoorsxUser, HingePositions HingeP, Order Ord, int CodUsuario)
+        {
+            try
+            {
+                BusinessLogic.lnOrder _LNUPor = new BusinessLogic.lnOrder();
+                BusinessLogic.lnDoorsxUser _LNDoorx = new BusinessLogic.lnDoorsxUser();
+                lnHingePositions _LNHP = new lnHingePositions();
+                int userID = CodUsuario;
+                int idU = userID;
+
+                
+                Order item = _LNUPor.GetOrderById(Ord.Id);
+                if (item.Status.Id == 4)
+                {
+                    //restar lo de la puerta modificada
+                    var getDoorComple = _LNDoorx.GetDoorsxUserById(pDoorsxUser.Id);
+                    item.Quantity = item.Quantity - getDoorComple.Quantity;
+                    item.SubTotal = item.SubTotal - getDoorComple.SubTotal;
+                    decimal taxDoor = getDoorComple.SubTotal * Convert.ToDecimal(0.0825);
+                    decimal TaxRound = Math.Round(taxDoor * 100) / 100;
+                    item.Tax = item.Tax - TaxRound;
+                    decimal TotaltaxDoor = TaxRound + getDoorComple.SubTotal;
+                    item.Total = item.Total - TotaltaxDoor;
+                    var updateord = _LNUPor.UpdateOrder(item);
+
+                    //sumar lo de la nueva puerta
+                    item.Quantity = item.Quantity + pDoorsxUser.Quantity;
+                    item.SubTotal = item.SubTotal + pDoorsxUser.SubTotal;
+                    decimal taxDoor1 = pDoorsxUser.SubTotal * Convert.ToDecimal(0.0825);
+                    decimal TaxRound1 = Math.Round(taxDoor1 * 100) / 100;
+                    item.Tax = item.Tax + TaxRound1;
+                    decimal TotaltaxDoor1 = TaxRound1 + pDoorsxUser.SubTotal;
+                    item.Total = item.Total + TotaltaxDoor1;
+                    item.ModificationDate = DateTime.Now;
+                    var updateordnew = _LNUPor.UpdateOrder(item);                                    
+                   
+                    if (pDoorsxUser.HingePositions.Id == 2)
+                    {
+                        if(getDoorComple.HingePositions.Id != 2)
+                        {
+                            var deletehinge = _LNHP.DeleteHingePositions(HingeP.Id);
+                        }                                            
+                    }
+                    else
+                    {
+                        if (getDoorComple.HingePositions.Id == 2)
+                        {
+                            HingePositions newhp = new HingePositions()
+                            {
+                                Status = new Model.Status() { Id = 1 },
+                                Position1 = HingeP.Position1,
+                                Position2 = HingeP.Position2,
+                                Position3 = HingeP.Position3,
+                                Position4 = HingeP.Position4,
+                                Position5 = HingeP.Position5,
+                                CreationDate = DateTime.Now,
+                                CreatorUser = userID,
+                                ModificationDate = DateTime.Now,
+                                ModificationUser = userID
+                            };
+
+                            int IdHingeP = _LNHP.InsertHingePositions(newhp);
+                            newhp.Id = IdHingeP;
+                            pDoorsxUser.HingePositions = newhp;
+                        }
+                        else
+                        {
+                            HingeP.ModificationDate = DateTime.Now;
+                            var updatehip = _LNHP.UpdateHingePositions(HingeP);
+                        }
+                        
+                    }
+                    pDoorsxUser.User.Id = getDoorComple.User.Id;
+                    pDoorsxUser.CreationDate = getDoorComple.CreationDate;
+                    pDoorsxUser.CreatorUser = getDoorComple.CreatorUser;
+                    pDoorsxUser.ModificationDate = DateTime.Now;
+                    var updateDoor = _LNDoorx.UpdateDoorsxUser(pDoorsxUser);               
+                    return true;                    
+                }
+                else 
+                {
+                    return false;
+                }               
             }
             catch (Exception ex)
             {

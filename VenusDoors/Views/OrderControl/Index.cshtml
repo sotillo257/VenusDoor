@@ -1,12 +1,13 @@
 ﻿
 @{
-    ViewBag.Title = "User Managemenet";
+    ViewBag.Title = "Order";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="br-pageheader pd-y-15 pd-l-20">
     <nav class="breadcrumb pd-0 mg-0 tx-12">
         <a class="breadcrumb-item" href="/">Venus Doors</a>
+        <a class="breadcrumb-item" href="#">Masters</a>
         <span class="breadcrumb-item active">@ViewBag.Title</span>
     </nav>
 </div><!-- br-pageheader -->
@@ -20,9 +21,6 @@
                         <h4 class="tx-gray-800 mg-b-5">@ViewBag.Title</h4>
                         <p class="mg-b-0">Modals are streamlined, but flexible, dialog prompts with the minimum required functionality and smart defaults.</p>
                     </div>
-                    <div class="col-md-1">
-                        <button type="button" id="btInsert" data-toggle="modal" data-target="#modalInsert" class="Cursor btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Insert</button>
-                    </div>
                 </div>
             </div>
         </div>
@@ -32,31 +30,37 @@
                     <thead>
                         <tr>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="First name: activate to sort column ascending">Id</th>
-                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Email</th>
-                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Password</th>
+                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">User</th>
+                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Quantity</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Type</th>
-                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Person</th>
-                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Company</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Status</th>
+                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Total</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" style="text-align: center" aria-label="Last name: activate to sort column ascending"><i class="fa fa-flash"></i></th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (Model.User item in ViewBag.UserList)
+                        @foreach (Model.Order item in ViewBag.Ordenes)
                         {
                             <tr role="row" class="odd">
                                 <td tabindex="0" class="">@item.Id</td>
-                                <td class="">@item.Email</td>
-                                <td class="">@item.Password</td>
+                                <td class="">@item.User.Id</td>
+                                <td class="">@item.Quantity</td>
                                 <td class="">@item.Type.Description</td>
-                                <td class="">@item.Person.Name</td>
-                                <td class="">@item.Company.Name</td>
-                                <td class="">@item.Status.Description</td>
+                                <td class="tx-12">
+                                    @if (item.Status.Id == 4)
+                                    { <span class="square-8 bg-success mg-r-5 rounded-circle"></span> }
+                                    else if (item.Status.Id == 8)
+                                    { <span class="square-8 bg-teal mg-r-5 rounded-circle"></span> }
+                                    else if (item.Status.Id == 9)
+                                    { <span class="square-8 bg-primary mg-r-5 rounded-circle"></span> }
+                                    else
+                                    { <span class="square-8 bg-warning mg-r-5 rounded-circle"></span> }
+                                    @item.Status.Description
+                                </td>
+
+                                <td class="">@item.Total</td>
                                 <td class="">
                                     <center>
-                                        <a href="#" data-toggle="modal" data-target="#modalInsert" value="@item.Id" class="Modificar btn btn-danger btn-icon">
-                                            <div><i class="fa fa-edit"></i></div>
-                                        </a>
                                         <a href="#" data-toggle="modal" data-target="#modalInsert" value="@item.Id" class="Modificar btn btn-primary btn-icon">
                                             <div><i class="fa fa-edit"></i></div>
                                         </a>
@@ -64,7 +68,6 @@
                                 </td>
                             </tr>
                         }
-
 
                     </tbody>
                 </table>
@@ -93,30 +96,30 @@
                                         <div class="row">
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="inId" style="margin-top: 25px;">Id: </label>
-                                                <input type="text" name="id" id="inId" class="form-control" readonly placeholder="">
-                                            </div><!-- form-group -->
-                                            <div class="col-xs-4 col-md-4">
-                                                <label for="inEmail" style="margin-top: 25px;">Email: </label>
-                                                <input type="email" name="id" id="inEmail" class="form-control" placeholder="">
-                                            </div><!-- form-group -->
-                                            <div class="col-xs-4 col-md-4">
-                                                <label for="inPassword" style="margin-top: 25px;">Password: </label>
-                                                <input type="text" name="id" id="inPassword" class="form-control" placeholder="">
+                                                <input type="text" id="inId" class="form-control" readonly placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-3 col-md-4">
+                                                <label for="inUser" style="margin-top: 25px;">User: </label>
+                                                <select style="width:100%" class="form-control select2" id="inUser" data-placeholder=""></select>
+                                            </div><!-- form-group -->
+
+                                            <div class="col-xs-3 col-md-4">
+                                                <label for="inQuantity" style="margin-top: 25px;">Quantity: </label>
+                                                <input type="text" name="id" id="inQuantity" class="form-control" placeholder="">
+                                            </div><!-- form-group -->
+
+                                            <div class="col-xs-3 col-md-4">
+                                                <label for="inTotal" style="margin-top: 25px;">Total: </label>
+                                                <input type="text" name="Total" id="inTotal" class="form-control" placeholder="">
+                                            </div><!-- form-group -->
+                                            <div class="col-xs-3 col-md-4">
+
                                                 <label for="inType" style="margin-top: 25px;">Type: </label>
                                                 <select style="width:100%" class="form-control select2" id="inType" data-placeholder=""></select>
                                             </div><!-- form-group -->
-                                            <div class="col-xs-4 col-md-4">
-                                                <label for="inPerson" style="margin-top: 25px;">Person: </label>
-                                                <select style="width:100%" class="form-control select2" id="inPerson" data-placeholder=""></select>
-                                            </div><!-- form-group -->
-                                            <div class="col-xs-4 col-md-4">
-                                                <label for="inCompany" style="margin-top: 25px;">Company: </label>
-                                                <select style="width:100%" class="form-control select2" id="inCompany" data-placeholder=""></select>
-                                            </div><!-- form-group -->
-                                            <div class="col-xs-4 col-md-4">
-                                                <label for="inStatus" style="margin-top: 25px;">Status: </label>
+
+                                            <div class="col-xs-3 col-md-4">
+                                                <label for="IdStatus" style="margin-top: 25px;">Status: </label>
                                                 <select style="width:100%" class="form-control select2" id="inStatus" data-placeholder=""></select>
                                             </div><!-- form-group -->
                                         </div>
@@ -124,8 +127,8 @@
                                 </div><!-- col-6 -->
                             </div><!-- row -->
                             <div class="modal-footer justify-content-lg-end">
-                                <button type="button" id="btUpdateUser" class="btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Modify</button>
-                                <button type="button" id="btnInsertUser" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Insert</button>
+                                <button type="button" id="btnUpdateOrder" class="btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Modify</button>
+                                <button type="button" id="btInsertOrder" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Insert</button>
                                 <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>
                             </div>
                         </div><!-- modal-body -->
@@ -138,13 +141,12 @@
 
 @section scripts{
     <script>
+    var urlInsertOrder = '@Url.Action("InsertOrder", "Masters")';
+        var urlUpdateOrder = '@Url.Action("UpdateOrder", "Masters")';
         var urlGetAllStatus = '@Url.Action("GetStatus", "Masters")';
+        var urlGetAllUser = '@Url.Action("GetUser", "Masters")';
         var urlGetAllType = '@Url.Action("GetAllType", "Masters")';
-        var urlGetAllPerson = '@Url.Action("GetPerson", "Masters")';
-        var urlGetAllCompany = '@Url.Action("GetCompany", "Masters")';
-        var urlInsertUser = '@Url.Action("InsertUser", "Masters")';
-        var urlUpdateUser = '@Url.Action("UpdateUser", "Masters")';
-        var ListUsuario = JSON.parse('@Html.Raw(ViewBag.ListUsuario)');
+        var listORDER = JSON.parse('@Html.Raw(ViewBag.ListOrder)');
 
         $(document).ready(function () {
             $("#button-cnt").click(function () {
@@ -155,5 +157,5 @@
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>
     <script src="~/Content/lib/select2/js/select2.min.js"></script>
-    @Scripts.Render("~/Scripts/js/Master.User.js")
+    @Scripts.Render("~/Scripts/js/Master.Order.js")
 }
