@@ -108,8 +108,8 @@ namespace DataAccess
 
         public void UpdateUser(User pUser)
         {
-            string sql = @"[spUpdateUser] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}'";
-            sql = string.Format(sql,pUser.Id, pUser.Email, pUser.Password, pUser.Type.Id, pUser.Person.Id, pUser.Company.Id, pUser.Status.Id, pUser.VerificationCode, pUser.ModificationDate.ToString("yyyyMMdd"),
+            string sql = @"[spUpdateUser] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}'";
+            sql = string.Format(sql,pUser.Id, pUser.Email, pUser.Type.Id, pUser.Person.Id, pUser.Company.Id, pUser.Status.Id, pUser.VerificationCode, pUser.ModificationDate.ToString("yyyyMMdd"),
                 pUser.ModificationUser);
             try
             {

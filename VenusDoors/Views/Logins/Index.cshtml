@@ -69,7 +69,7 @@
                             <img class="mySlides" src="~/Content/img/Cabinet Vector-03.png" style="width:100%">
                         </div>
                     </div>*@<!-- col-6 -->
-                <div class="col-lg-6 bg-white">
+                <div class="col-lg-6 bg-white" action="cucu.htm">
 
                     <div class="pd-30">
                         <div class="pd-x-30 pd-y-10">
@@ -84,7 +84,7 @@
                             </div><!-- form-group -->
                             <div class="form-group mg-b-20">
                                 <label>Password</label>
-                                <input class="UserPass form-control" id="intPassword" type="password">
+                                <input class="UserPass form-control" id="intPassword" name="intPassword" type="password">
                                 <a href='@Url.Action("Recover_Password","Logins")'>forget your password?</a>                                
                             </div><!-- form-group -->
                             <div class="form-group mg-b-20">
@@ -92,7 +92,7 @@
                         </div><!-- form-group -->
 
 
-                        <button id="ingresarbtn" class="Cursor ingresar btn btn-primary pd-y-12 btn-block">Sign In</button>
+                        <button id="ingresarbtn" onkeypress="Enter(event)" class="Cursor ingresar btn btn-primary pd-y-12 btn-block">Sign In</button>
 
                         <div class="mg-t-30 mg-b-20 tx-12">Don't have an account yet? @Html.ActionLink("Create one!", "sing_up", "Logins")</div>
 
@@ -133,7 +133,14 @@ function carousel() {
   x[myIndex-1].style.display = "block";
   setTimeout(carousel, 5000); // Change image every 2 seconds
 }
-    </script>
+
+    function Enter(e) {
+        tecla = (document.all) ? e.keyCode : e.which;
+        if (tecla == 13) {
+            
+        }
+    }
+</script>
 
 
 

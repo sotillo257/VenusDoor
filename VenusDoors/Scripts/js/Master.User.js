@@ -22,10 +22,18 @@
         $("#lblTitulo").text("Insert new");
         $("#lblSubTitulo").text("You can create a new article below");
         $("#btUpdateUser").hide();
-        $("#btnInsertUser").show();
+        $("#btnInsertUser").show(); 
+        $("#Password").hide();
+        $(".CampoDesha").hide();
+        $(".CampoHa").show();
+        $("#Password").show();
         Limpiar();
     });
     $(document).on('click', '.Modificar', function (event) {
+        $("#Password").show(); 
+        $("#Password").hide();
+        $(".CampoHa").hide();
+        $(".CampoDesha").show();
         $("#btUpdateUser").show();
         $("#btnInsertUser").hide();
         $("#lblTitulo").text("Modify");
@@ -41,7 +49,7 @@
                 var aux5 = ListUsuario[i].Company.Id;
                 var aux6 = ListUsuario[i].Status.Id;
                 $('#inId').val(ListUsuario[i].Id);
-                $('#inEmail').val(ListUsuario[i].Email);
+                $('#Email').val(ListUsuario[i].Email);
                 $('#inPassword').val(ListUsuario[i].Password);
                 llenarComboType(ListUsuario[i].Type.Id);
                 llenarComboPerson(ListUsuario[i].Person.Id);
@@ -76,8 +84,8 @@ $(function () {
 
 function Limpiar() {
     $('#inId').val(0);
-    $('#inEmail').removeClass("is-invalid");
-    $('#inEmail').val(" ");
+    $('#Email').removeClass("is-invalid");
+    $('#Email').val(" ");
 
     $('#inPassword').removeClass("is-invalid");
     $('#inPassword').val(" ");
@@ -105,11 +113,11 @@ function ValidarCamposVacios() {
         $('#inStatus').removeClass("is-invalid");
     }
 
-    if ($('#inEmail').val() == " ") {
-        $('#inEmail').addClass("is-invalid");
+    if ($('#Email').val() == " ") {
+        $('#Email').addClass("is-invalid");
         aux = false;
     } else {
-        $('#inEmail').removeClass("is-invalid");
+        $('#Email').removeClass("is-invalid");
     }
 
     if ($('#inPassword').val() == " ") {
@@ -186,8 +194,7 @@ function UpdateUser() {
     {
         uUser: {
             Id: $("#inId").val(),
-            Email: $("#inEmail").val(),
-            Password: $("#inPassword").val(),
+            Email: $("#Email").val(),
             Type: { Id: $("#inType").val() },
             Person: { Id: $("#inPerson").val() },
             Company: { Id: $("#inCompany").val() },

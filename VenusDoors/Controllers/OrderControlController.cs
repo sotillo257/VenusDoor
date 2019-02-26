@@ -42,5 +42,19 @@ namespace VenusDoors.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
+
+        [HttpPost]
+        public ActionResult GetDoorsByOrder(int idOrder)
+        {
+            //BusinessLogic.lnOrder _LNO = new BusinessLogic.lnOrder();
+            //var getOrderData = _LNO.GetOrderById(idOrder);
+            //ViewBag.OrderDetails = getOrderData;
+            BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
+            List<DoorsxUser> xDoors = _LN.GetAllDoorsxUser();
+            List<DoorsxUser> doorsByOrder = xDoors.Where(x => x.Order.Id == idOrder).ToList();
+            // ViewBag.DoorsOrder = doorsByOrder;
+            return Json(doorsByOrder);
+
+        }
     }
 }
