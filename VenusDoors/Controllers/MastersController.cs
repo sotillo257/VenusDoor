@@ -115,6 +115,31 @@ namespace VenusDoors.Controllers
         }
         }
 
+        [HttpPost]
+        public ActionResult GetAllBottomRail(BottomRail gBottomRail)
+        {
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+
+                try
+                {
+
+                    BusinessLogic.lnBottomRail _LN = new BusinessLogic.lnBottomRail();
+
+                    return Json(_LN.GetAllBottomRail(), JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
+        }
+
         public ActionResult DeleteBottomRail(int pId)
         {
 
@@ -158,7 +183,7 @@ namespace VenusDoors.Controllers
         }
 
         [HttpPost]
-        public ActionResult InsertCompany(Company pCompany)
+        public ActionResult InsertCompany(string Name, string Email, string Direction, string Telephone, int Status, int Type)
         {
             if (Session["UserID"] == null)
             {
@@ -169,13 +194,121 @@ namespace VenusDoors.Controllers
                 int userID = (int)Session["UserID"];
                 try
                 {
+                    if (Request.Files.Count > 0)
+                    {
+                        var file = Request.Files[0];
+                        var fileName = Path.GetFileName(file.FileName);
+                        // ExcelDataReader works with the binary Excel file, so it needs a FileStream
+                        // to get started. This is how we avoid dependencies on ACE or Interop:
+                        Stream stream = file.InputStream;
 
-                    pCompany.CreationDate = DateTime.Now;
-                    pCompany.CreatorUser = userID;
-                    pCompany.ModificationUser = userID;
-                    pCompany.ModificationDate = DateTime.Now;
-                    BusinessLogic.lnCompany _USB = new BusinessLogic.lnCompany();
-                    var InsertCompany = _USB.InsertCompany(pCompany);
+                        // We return the interface, so that
+
+
+
+                        Company uCompany = new Company();
+                        string oPath = Server.MapPath(string.Format("~/Content/img/{0}", fileName));
+
+                        file.SaveAs(oPath);
+                        uCompany.Logo = "/Content/img/"+ fileName;
+                        uCompany.Name = Name;
+                        uCompany.Direction = Direction;
+                        uCompany.Email = Email;
+                        uCompany.Telephone = Telephone;
+                        uCompany.Status = new Status() { Id = Status };
+                        uCompany.Type = new Model.Type() { Id = Type };
+                        uCompany.CreationDate = DateTime.Now;
+                        uCompany.CreatorUser = userID;
+                        uCompany.ModificationUser = userID;
+                        uCompany.ModificationDate = DateTime.Now;
+                        BusinessLogic.lnCompany _USB = new BusinessLogic.lnCompany();
+                        var InsertCompany = _USB.InsertCompany(uCompany);
+
+
+                    }
+                    else
+                    {
+                        Company uCompany = new Company();
+                        uCompany.Logo = "/Content/img/img11.jpg";
+                        uCompany.Name = Name;
+                        uCompany.Direction = Direction;
+                        uCompany.Email = Email;
+                        uCompany.Telephone = Telephone;
+                        uCompany.Status = new Status() { Id = Status };
+                        uCompany.Type = new Model.Type() { Id = Type };
+                        uCompany.CreationDate = DateTime.Now;
+                        uCompany.CreatorUser = userID;
+                        uCompany.ModificationUser = userID;
+                        uCompany.ModificationDate = DateTime.Now;
+                        BusinessLogic.lnCompany _USB = new BusinessLogic.lnCompany();
+                        var InsertCompany = _USB.InsertCompany(uCompany);
+                    }
+                    return Json(true, JsonRequestBehavior.AllowGet);
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
+        }
+        [HttpPost]
+        public ActionResult UpdateCompany(int Id, string Name, string Email, string Direction,string Telephone,int Status,int Type)
+        {
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                int userID = (int)Session["UserID"];
+                try
+                {
+                    if (Request.Files.Count > 0)
+                    {
+                        var file = Request.Files[0];
+                        var fileName = Path.GetFileName(file.FileName);
+                        // ExcelDataReader works with the binary Excel file, so it needs a FileStream
+                        // to get started. This is how we avoid dependencies on ACE or Interop:
+                        Stream stream = file.InputStream;
+
+                        // We return the interface, so that
+                        Company uCompany = new Company();
+
+
+                        string oPath = Server.MapPath(string.Format("~/Content/img/{0}", fileName));
+
+                        file.SaveAs(oPath);
+                        uCompany.Logo = "/Content/img/" + fileName;
+                        uCompany.Name = Name;
+                        uCompany.Id = Id;
+                        uCompany.Direction = Direction;
+                        uCompany.Email = Email;
+                        uCompany.Telephone = Telephone;
+                        uCompany.Status = new Status() { Id = Status };
+                        uCompany.Type = new Model.Type() { Id = Type };
+                        uCompany.ModificationUser = userID;
+                        uCompany.ModificationDate = DateTime.Now;
+                        BusinessLogic.lnCompany _USB = new BusinessLogic.lnCompany();
+                        var modCompany = _USB.UpdateCompany(uCompany);
+                    }
+                    else
+                    {
+                        BusinessLogic.lnCompany compa = new BusinessLogic.lnCompany();                   
+                        Company com = new Company();
+                        com = compa.GetCompanyById(Id);
+                        com.Name = Name;
+                        com.Id = Id;
+                        com.Direction = Direction;
+                        com.Email = Email;
+                        com.Telephone = Telephone;
+                        com.Status = new Status() { Id = Status };
+                        com.Type = new Model.Type() { Id = Type };
+                        com.ModificationUser = userID;
+                        com.ModificationDate = DateTime.Now;
+                        var modCompany = compa.UpdateCompany(com);
+
+
+                    }
                     return Json(true, JsonRequestBehavior.AllowGet);
 
                 }
@@ -185,8 +318,10 @@ namespace VenusDoors.Controllers
                 }
             }
         }
+
+
         [HttpPost]
-        public ActionResult UpdateCompany(Company uCompany)
+        public ActionResult GetAllCompany(Company pCompany)
         {
             if (Session["UserID"] == null)
             {
@@ -194,15 +329,13 @@ namespace VenusDoors.Controllers
             }
             else
             {
-                int userID = (int)Session["UserID"];
+               
                 try
                 {
 
-                    uCompany.ModificationUser = userID;
-                    uCompany.ModificationDate = DateTime.Now;
-                    BusinessLogic.lnCompany _USB = new BusinessLogic.lnCompany();
-                    var modCompany = _USB.UpdateCompany(uCompany);
-                    return Json(true, JsonRequestBehavior.AllowGet);
+                    BusinessLogic.lnCompany company = new BusinessLogic.lnCompany();
+
+                    return Json(company.GetAllCompany(), JsonRequestBehavior.AllowGet);
 
                 }
                 catch
@@ -328,7 +461,32 @@ namespace VenusDoors.Controllers
             }
         }
         }
-        
+
+        [HttpPost]
+        public ActionResult GetAllDoors(Doors gDoors)
+        {
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+
+                try
+                {
+
+                    BusinessLogic.lnDoors _LM = new BusinessLogic.lnDoors();
+
+                    return Json(_LM.GetAllDoors(), JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
+        }
+
         #endregion
 
         #region DoorsPrices
@@ -412,6 +570,31 @@ namespace VenusDoors.Controllers
             }
         }
         }
+
+        [HttpPost]
+        public ActionResult GetAllDoorsPrices(DoorsPrices gDoorsPrices)
+        {
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+
+                try
+                {
+
+                    BusinessLogic.lnDoorsPrices _LP = new BusinessLogic.lnDoorsPrices();
+
+                    return Json(_LP.GetAllDoorsPrices(), JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
+        }
         #endregion
 
         #region DoorStyle
@@ -490,6 +673,31 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
+        }
+
+        [HttpPost]
+        public ActionResult GetAllDoorStyle(DoorStyle gDoorStyle)
+        {
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+
+                try
+                {
+
+                    BusinessLogic.lnDoorStyle _LA = new BusinessLogic.lnDoorStyle();
+
+                    return Json(_LA.GetAllDoorStyle(), JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
         }
         #endregion
 
@@ -612,6 +820,31 @@ namespace VenusDoors.Controllers
             }
         }
         }
+
+        [HttpPost]
+        public ActionResult GetAllGroup(Group gGroup)
+        {
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+
+                try
+                {
+
+                    BusinessLogic.lnGroup _LC = new BusinessLogic.lnGroup();
+
+                    return Json(_LC.GetAllGroup(), JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
+        }
         #endregion
 
         #region HingeDirection
@@ -691,6 +924,31 @@ namespace VenusDoors.Controllers
             }
         }
         }
+
+        [HttpPost]
+        public ActionResult GetAllHingeDirection(HingeDirection gHingeDirection)
+        {
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+
+                try
+                {
+
+                    BusinessLogic.lnHingeDirection _LD = new BusinessLogic.lnHingeDirection();
+
+                    return Json(_LD.GetAllHingeDirection(), JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
+        }
         #endregion
 
         #region HingePositions
@@ -767,6 +1025,31 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
+        }
+
+        [HttpPost]
+        public ActionResult GetAllHingePositions(HingePositions gHingePositions)
+        {
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+
+                try
+                {
+
+                    BusinessLogic.lnHingePositions _LE = new BusinessLogic.lnHingePositions();
+
+                    return Json(_LE.GetAllHingePositions(), JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
         }
         #endregion
 
@@ -846,6 +1129,31 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
+        }
+
+        [HttpPost]
+        public ActionResult GetAllHorizontalDivisions(HorizontalDivisions gHorizontalDivisions)
+        {
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+
+                try
+                {
+
+                    BusinessLogic.lnHorizontalDivisions _LF = new BusinessLogic.lnHorizontalDivisions();
+
+                    return Json(_LF.GetAllHorizontalDivisions(), JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
         }
         #endregion
 
@@ -927,6 +1235,31 @@ namespace VenusDoors.Controllers
             }
         }
         }
+
+        [HttpPost]
+        public ActionResult GetAllInsideEdgeProfile(InsideEdgeProfile gHorizontalDivisions)
+        {
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+
+                try
+                {
+
+                    BusinessLogic.lnInsideEdgeProfile _LG = new BusinessLogic.lnInsideEdgeProfile();
+
+                    return Json(_LG.GetAllInsideEdgeProfile(), JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
+        }
         #endregion
 
         #region Join
@@ -1007,6 +1340,30 @@ namespace VenusDoors.Controllers
             }
         }
         }
+        [HttpPost]
+        public ActionResult GetAllJoin(Join gJoin)
+        {
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+
+                try
+                {
+
+                    BusinessLogic.lnJoin _LH = new BusinessLogic.lnJoin();
+
+                    return Json(_LH.GetAllJoin(), JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
+        }
         #endregion
 
         #region Material
@@ -1085,6 +1442,31 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
+        }
+
+        [HttpPost]
+        public ActionResult GetAllMaterial(Material gMaterial)
+        {
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+
+                try
+                {
+
+                    BusinessLogic.lnMaterial _LI = new BusinessLogic.lnMaterial();
+
+                    return Json(_LI.GetAllMaterial(), JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
         }
         #endregion
 
@@ -1167,6 +1549,31 @@ namespace VenusDoors.Controllers
             }
         }
         }
+
+        [HttpPost]
+        public ActionResult GetAllMaterialxBottomRail(MaterialxBottomRail gMaterialxBottomRail)
+        {
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+
+                try
+                {
+
+                    BusinessLogic.lnMaterialxBottomRail _LJ = new BusinessLogic.lnMaterialxBottomRail();
+
+                    return Json(_LJ.GetAllMaterialxBottomRail(), JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
+        }
         #endregion
 
         #region Order
@@ -1246,6 +1653,31 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
+        }
+
+        [HttpPost]
+        public ActionResult GetAllOrder(Order gOrder)
+        {
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+
+                try
+                {
+
+                    BusinessLogic.lnOrder _LK = new BusinessLogic.lnOrder();
+
+                    return Json(_LK.GetAllOrder(), JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
         }
         #endregion
 
@@ -1327,6 +1759,31 @@ namespace VenusDoors.Controllers
             }
         }
         }
+
+        [HttpPost]
+        public ActionResult GetAllOutsideEdgeProfile(OutsideEdgeProfile gOutsideEdgeProfile)
+        {
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+
+                try
+                {
+
+                    BusinessLogic.lnOutsideEdgeProfile _LL = new BusinessLogic.lnOutsideEdgeProfile();
+
+                    return Json(_LL.GetAllOutsideEdgeProfile(), JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
+        }
         #endregion
 
         #region Panel
@@ -1405,6 +1862,31 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
+        }
+
+        [HttpPost]
+        public ActionResult GetAllPanel(Panel gPanel)
+        {
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+
+                try
+                {
+
+                    BusinessLogic.lnPanel _LX = new BusinessLogic.lnPanel();
+
+                    return Json(_LX.GetAllPanel(), JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
         }
         #endregion
 
@@ -1485,6 +1967,31 @@ namespace VenusDoors.Controllers
             }
         }
         }
+
+        [HttpPost]
+        public ActionResult GetAllPanelMaterial(PanelMaterial gPanelMaterial)
+        {
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+
+                try
+                {
+
+                    BusinessLogic.lnPanelMaterial _PAC = new BusinessLogic.lnPanelMaterial();
+
+                    return Json(_PAC.GetAllPanelMaterial(), JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
+        }
         #endregion
 
         #region Person
@@ -1564,6 +2071,31 @@ namespace VenusDoors.Controllers
             }
         }
         }
+
+        [HttpPost]
+        public ActionResult GetAllPerson(Person gPerson)
+        {
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+
+                try
+                {
+
+                    BusinessLogic.lnPerson _PAX = new BusinessLogic.lnPerson();
+
+                    return Json(_PAX.GetAllPerson(), JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
+        }
         #endregion
 
         #region Preparation
@@ -1642,6 +2174,31 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
+        }
+
+        [HttpPost]
+        public ActionResult GetAllPreparation(Preparation gPreparation)
+        {
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+
+                try
+                {
+
+                    BusinessLogic.lnPreparation _JFK = new BusinessLogic.lnPreparation();
+
+                    return Json(_JFK.GetAllPreparation(), JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
         }
         #endregion
 
@@ -1732,6 +2289,31 @@ namespace VenusDoors.Controllers
             else
                 return View(dRailThickness);
         }
+
+        [HttpPost]
+        public ActionResult GetAllRailThickness(RailThickness gRailThicknessn)
+        {
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+
+                try
+                {
+
+                    BusinessLogic.lnRailThickness _LN = new BusinessLogic.lnRailThickness();
+
+                    return Json(_LN.GetAllRailThickness(), JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
+        }
         #endregion
 
         #region Status
@@ -1804,6 +2386,31 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
+        }
+
+        [HttpPost]
+        public ActionResult GetAllStatus(Status gStatus)
+        {
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+
+                try
+                {
+
+                    BusinessLogic.lnStatus _LNStatus = new BusinessLogic.lnStatus();
+
+                    return Json(_LNStatus.GetAllStatus(), JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
         }
         #endregion
 
@@ -1883,6 +2490,31 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
+        }
+
+        [HttpPost]
+        public ActionResult GetAllTopRail(TopRail gTopRail)
+        {
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+
+                try
+                {
+
+                    BusinessLogic.lnTopRail _TOP = new BusinessLogic.lnTopRail();
+
+                    return Json(_TOP.GetAllTopRail(), JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
         }
         #endregion
 
@@ -1965,6 +2597,31 @@ namespace VenusDoors.Controllers
             }
         }
         }
+
+        [HttpPost]
+        public ActionResult GetAllTopRailxHorizontalDivisions(TopRailxHorizontalDivisions gTopRailxHorizontalDivisions)
+        {
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+
+                try
+                {
+
+                    BusinessLogic.lnTopRailxHorizontalDivisions _TAP = new BusinessLogic.lnTopRailxHorizontalDivisions();
+
+                    return Json(_TAP.GetAllTopRailxHorizontalDivisions(), JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
+        }
         #endregion
 
         #region TopRailxJoin
@@ -2045,6 +2702,31 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
+        }
+
+        [HttpPost]
+        public ActionResult GetAllTopRailxJoin(TopRailxJoin gTopRailByJoin)
+        {
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+
+                try
+                {
+
+                    BusinessLogic.lnTopRailxJoin _TEP = new BusinessLogic.lnTopRailxJoin();
+
+                    return Json(_TEP.GetAllTopRailxJoin(), JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
         }
         #endregion
 
@@ -2128,6 +2810,31 @@ namespace VenusDoors.Controllers
             }
         }
         }
+
+        [HttpPost]
+        public ActionResult GetAllTopRailxVerticalDivisions(TopRailxVerticalDivisions gTopRailByVerticalDivisions)
+        {
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+
+                try
+                {
+
+                    BusinessLogic.lnTopRailxVerticalDivisions _TUP = new BusinessLogic.lnTopRailxVerticalDivisions();
+
+                    return Json(_TUP.GetAllTopRailxVerticalDivisions(), JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
+        }
         #endregion
 
         #region Type
@@ -2208,6 +2915,31 @@ namespace VenusDoors.Controllers
             }
         }
         }
+
+        //[HttpPost]
+        //public ActionResult GetAllType(Model.Type gType)
+        //{
+        //    if (Session["UserID"] == null)
+        //    {
+        //        return View();
+        //    }
+        //    else
+        //    {
+
+        //        try
+        //        {
+
+        //            BusinessLogic.lnType _LBL = new BusinessLogic.lnType();
+
+        //            return Json(_LBL.GetAllType(), JsonRequestBehavior.AllowGet);
+
+        //        }
+        //        catch
+        //        {
+        //            return Json(false, JsonRequestBehavior.AllowGet);
+        //        }
+        //    }
+        //}
         #endregion
 
         #region User
@@ -2289,6 +3021,31 @@ namespace VenusDoors.Controllers
             }
         }
         }
+
+        [HttpPost]
+        public ActionResult GetAllUser(User gType)
+        {
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+
+                try
+                {
+
+                    BusinessLogic.lnUser _USB = new BusinessLogic.lnUser();
+
+                    return Json(_USB.GetAllUser(), JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
+        }
         #endregion
 
         #region VerticalDivisions
@@ -2367,6 +3124,31 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
+        }
+
+        [HttpPost]
+        public ActionResult GetAllVerticalDivisions(VerticalDivisions gVerticalDivisions)
+        {
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+
+                try
+                {
+
+                    BusinessLogic.lnVerticalDivisions _UCB = new BusinessLogic.lnVerticalDivisions();
+
+                    return Json(_UCB.GetAllVerticalDivisions(), JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
         }
         #endregion
 

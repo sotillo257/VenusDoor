@@ -131,6 +131,7 @@ function InsertMaterialxBottomRail() {
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
                 LlammarModal("Congratuletions", "Congratulations! It has been inserted correctly.", " ");
+                llenarTablaMaterialxBottomRail();
             } else {
                 LlammarModal("Danger", "Error: An error occurred while inserting.", " ");
             }
@@ -165,6 +166,7 @@ function UpdateMaterialxBottomRail() {
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
                 LlammarModal("Congratuletions", "Congratulations! It has been modified correctly.", " ");
+                llenarTablaMaterialxBottomRail();
             } else {
                 LlammarModal("Danger", "Error: An error occurred while modifying.", " ");
             }
@@ -179,7 +181,7 @@ function UpdateMaterialxBottomRail() {
 var allEstatus = '';
 function llenarComboEstatus(pStatus) {
 
-    var option = '<option id="">Select</option>';
+    var option = '<option value="0" id="">Select</option>';
     for (var i = 0; i < allEstatus.length; i++) {
         if (allEstatus[i].Group.Id == 1) {
             option += '<option value="' + allEstatus[i].Id + '">' + allEstatus[i].Description + '</option>';
@@ -222,7 +224,7 @@ function GetAllStatus() {
 var allBottomRail = '';
 function llenarComboBottomRail(pBottomRail) {
 
-    var option = '<option id="">Select</option>';
+    var option = '<option value="0" id="">Select</option>';
     for (var i = 0; i < allBottomRail.length; i++) {
         if (allBottomRail[i].Status.Id == 1) {
             option += '<option value="' + allBottomRail[i].Id + '">' + allBottomRail[i].Description + '</option>';
@@ -265,7 +267,7 @@ function GetAllBottomRail() {
 var allMaterial = '';
 function llenarCombolMaterial(pMaterial) {
 
-    var option = '<option id="">Select</option>';
+    var option = '<option value="0" id="">Select</option>';
     for (var i = 0; i < allMaterial.length; i++) {
         if (allMaterial[i].Status.Id == 1) {
             option += '<option value="' + allMaterial[i].Id + '">' + allMaterial[i].Description + '</option>';
@@ -303,4 +305,41 @@ function GetAllMaterial() {
             LlammarModal("Danger", "Error.", "Check your internet connection I tried again.");
         }
     });
+}
+
+function llenarTablaMaterialxBottomRail() {
+    $.ajax({
+        url: urlGetAllMaterialxBottomRail,
+        cache: false,
+        type: 'POST',
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        success: function (data) {
+            if (data != null) {
+                listMBR = data;
+                var option = '';
+                for (var i = 0; i < data.length; i++) {
+                    option += '<tr role="row" class="odd">';
+                    option += '<td tabindex="0"  >' + data[i].Id + '</td>';
+                    option += '<td>' + data[i].Material.Description + '</td>';
+                    option += '<td>' + data[i].BottomRail.Description + '</td>';
+                    option += '<td>' + data[i].Status.Description + '</td>';
+                    option += '<td>';
+                    option += '<center>';
+                    option += '<a href="#" data-toggle="modal" data-target="#modalInsert" value="' + data[i].Id + '" class="Modificar btn btn-primary btn-icon">';
+                    option += '<div><i class="fa fa-edit"></i></div></a></center></td></tr>';
+
+                }
+                $("#datatable1 > tbody").empty().append(option);
+                $("#modalInsert").modal("hide");
+            }
+            else {
+                LlammarModal("Danger", "Error obtaining Type", " ");
+            }
+        },
+        error: function (err) {
+            LlammarModal("Danger", "Error.", " ");
+        }
+    });
+
 }

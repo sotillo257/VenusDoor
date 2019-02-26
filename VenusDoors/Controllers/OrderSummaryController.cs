@@ -19,6 +19,8 @@ namespace VenusDoors.Controllers
         // GET: OrderSummary
         public ActionResult Index()
         {
+            try
+            {
             ViewBag.OrderSummary = "active";
             if (Session["UserID"] == null)
             {
@@ -30,7 +32,7 @@ namespace VenusDoors.Controllers
                 int userID = (int)Session["UserID"];
                 int idU = userID;
                 var orderList = _LNOrder.GetOrderByUser(idU);
-                ViewBag.Listo = orderList;
+                    ViewBag.Listo = orderList.Where(x => x.Status.Id == 4).LastOrDefault();
                 Order item = ViewBag.Listo;
                 if (item.Status == null)
                 {
@@ -50,7 +52,12 @@ namespace VenusDoors.Controllers
                 {
                     return View();
                 }
+                }
             }
+            catch (Exception)
+            {
+                return View("Error");
+            }                       
         }
 
         [HttpPost]
@@ -67,13 +74,13 @@ namespace VenusDoors.Controllers
                     BusinessLogic.lnDoorsxUser _LND = new BusinessLogic.lnDoorsxUser();
                     int userID = (int)Session["UserID"];
                     int idU = userID;
-                    BusinessLogic.lnOrder _LNO = new BusinessLogic.lnOrder();
+                        BusinessLogic.lnOrder _LNO = new BusinessLogic.lnOrder();
                         Order upptOrd = _LNO.GetOrderById(orderid);
                         var xDoor = _LND.GetDoorsxUserById(itemID);
                         var delete = _LND.DeleteDoorsxUser(itemID);
                         UpdateOrderExist(xDoor, upptOrd);
                         return Json(true, JsonRequestBehavior.AllowGet);
-                }
+                    }
                 catch
                 {
                     return Json(false, JsonRequestBehavior.AllowGet);

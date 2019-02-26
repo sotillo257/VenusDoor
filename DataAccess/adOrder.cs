@@ -52,9 +52,9 @@ namespace DataAccess
 
         }
 
-        public Order GetOrderByUser(int IdUser)
+        public List<Order> GetOrderByUser(int IdUser)
         {
-            Order ord = new Order();
+           List<Order> ord = new List<Order>();
             string sql = @"[spGetOrderByUser] '{0}' ";
             sql = string.Format(sql, IdUser);
 
@@ -66,7 +66,7 @@ namespace DataAccess
                 {
                     foreach (DataRow item in ds.Tables["Order"].Rows)
                     {
-                        ord = new Order()
+                        ord.Add( new Order()
                         {
                             Id = int.Parse(item["Id"].ToString()),
                             User = new User() { Id = int.Parse(item["IdUser"].ToString()) },
@@ -81,7 +81,7 @@ namespace DataAccess
                             CreatorUser = int.Parse(item["CreatorUser"].ToString()),
                             ModificationUser = int.Parse(item["ModificationUser"].ToString()),
 
-                        };
+                        });
                     }
                 }
                 return ord;
@@ -162,6 +162,48 @@ namespace DataAccess
                             Octubre = decimal.Parse((item["TotalOctubre"].ToString() == "")?"0":item["TotalOctubre"].ToString()),
                             Noviembre = decimal.Parse((item["TotalNoviembre"].ToString() == "")?"0":item["TotalNoviembre"].ToString()),
                             Diciembre = decimal.Parse((item["TotalDiciembre"].ToString() == "")?"0":item["TotalDiciembre"].ToString())
+                        };
+                    }
+                }
+                return ord;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
+
+        public Totales GetAllTotalesxCompany(int IdCompany)
+        {
+            Totales ord = new Totales();
+            string sql = @"[spGetTotalesDashboardxComany] '{0}', '{1}', '{2}'";
+            sql = string.Format(sql, DateTime.Now.Month, DateTime.Today.AddMonths(-1).Month, IdCompany);
+            try
+            {
+                DataSet ds = new DataSet();
+                ds = _MB.CreaDS(ds, "Totales", sql, _CN);
+                if (ds.Tables["Totales"].Rows.Count > 0)
+                {
+                    foreach (DataRow item in ds.Tables["Totales"].Rows)
+                    {
+                        ord = new Totales()
+                        {
+                            TotalHistorico = decimal.Parse((item["TotalHistorico"].ToString() == "") ? "0" : item["TotalHistorico"].ToString()),
+                            TotalMes = decimal.Parse((item["Total"].ToString() == "") ? "0" : item["Total"].ToString()),
+                            TotalMesAnterior = decimal.Parse((item["TotalMesAnterior"].ToString() == "") ? "0" : item["TotalMesAnterior"].ToString()),
+                            Enero = decimal.Parse((item["TotalEnero"].ToString() == "") ? "0" : item["TotalEnero"].ToString()),
+                            Febrero = decimal.Parse((item["TotalFebrero"].ToString() == "") ? "0" : item["TotalFebrero"].ToString()),
+                            Marzo = decimal.Parse((item["TotalMarzo"].ToString() == "") ? "0" : item["TotalMarzo"].ToString()),
+                            Abril = decimal.Parse((item["TotalAbril"].ToString() == "") ? "0" : item["TotalAbril"].ToString()),
+                            Mayo = decimal.Parse((item["TotalMayo"].ToString() == "") ? "0" : item["TotalMayo"].ToString()),
+                            Junio = decimal.Parse((item["TotalJunio"].ToString() == "") ? "0" : item["TotalJunio"].ToString()),
+                            Julio = decimal.Parse((item["TotalJulio"].ToString() == "") ? "0" : item["TotalJulio"].ToString()),
+                            Agosto = decimal.Parse((item["TotalAgosto"].ToString() == "") ? "0" : item["TotalAgosto"].ToString()),
+                            Septiembre = decimal.Parse((item["TotalSeptiembre"].ToString() == "") ? "0" : item["TotalSeptiembre"].ToString()),
+                            Octubre = decimal.Parse((item["TotalOctubre"].ToString() == "") ? "0" : item["TotalOctubre"].ToString()),
+                            Noviembre = decimal.Parse((item["TotalNoviembre"].ToString() == "") ? "0" : item["TotalNoviembre"].ToString()),
+                            Diciembre = decimal.Parse((item["TotalDiciembre"].ToString() == "") ? "0" : item["TotalDiciembre"].ToString())
                         };
                     }
                 }

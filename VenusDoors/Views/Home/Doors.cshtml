@@ -1,0 +1,125 @@
+﻿
+@{
+    ViewBag.Title = "Doors";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="pd-x-30 pd-t-30">
+    <h4 class="tx-gray-800 mg-b-5">Dashboard</h4>
+    <p class="mg-b-0">Select one of our default settings to start building your door..</p>
+</div>
+
+<div class="br-pagebody pd-x-20 pd-sm-x-30 ">
+
+    <div class="row row-sm mg-t-20">
+        @foreach (Model.Doors item in ViewBag.ListDoors)
+        {
+
+            <div class="col-sm-6 col-lg-4" style="padding-top: 10px;padding-bottom: 10px;">
+                <div class="bg-white rounded shadow-base overflow-hidden">
+                    <a data-toggle="modal" data-target="#modaldemo1" class="Cursor Door" value="@item.Id">
+                        <div class="pd-x-20 pd-t-20 d-flex align-items-center" style="padding-top: 0px;/* height: 120px; */">
+                            <p class="tx-20 tx-inverse tx-lato tx-black  mg-b-0 lh-1" style="padding-left: 15px;">@item.DoorStyle.Description</p>
+                        </div>
+                        <div class="pd-x-20 pd-t-20 d-flex align-items-center" style="padding-top: 0px;height: 120px;margin-bottom: 10px;">
+                            <img style="width: 130px;" src="@item.Picture" />
+                            <input type="hidden" value="@item.Id" id="hdId" />
+                            <div class="mg-l-20">
+                                <p class="tx-20 tx-inverse tx-lato mg-b-0 lh-1">@item.Material.Description</p>
+
+                                <span class="tx-12 tx-roboto tx-gray-600 d-block">
+                                    Outside profile: @item.OutsideEdgeProfile.Description
+                                </span>
+                                <span class="tx-12 tx-roboto tx-gray-600 d-block">
+                                    Inside profile: @item.InsideEdgeProfile.Description
+                                </span>
+                                <span class="tx-12 tx-roboto tx-gray-600 d-block">
+                                    Panel Type: @item.Panel.Description
+                                </span>
+                                <p class="tx-12 mg-b-0">
+
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+        }
+    </div>
+</div>
+<!-- Modal -->
+<div id="modaldemo1" class="modal fade animated fadeInLeftBig" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content bd-0">
+            <div class="modal-body pd-0">
+                <div class="row flex-row-reverse no-gutters">
+                    <div class="col-lg-6" id="ModalImage">
+                        <button type="button" class="close mg-t-15 mg-r-20" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <img class="img-fluid rounded-right" alt="" src="" id="ImagenModal" />
+                    </div><!-- col-6 -->
+                    <div class="col-lg-6 rounded-left">
+                        <div class="pd-40" id="CuerpoModal">
+
+                        </div>
+                    </div><!-- col-6 -->
+                </div><!-- row -->
+
+            </div><!-- modal-body -->
+        </div><!-- modal-content -->
+    </div><!-- modal-dialog -->
+</div>
+
+
+
+@section scripts{
+    <script type="text/javascript">
+$(window).load(function() {
+    $(".loader").fadeOut("slow");
+});
+    </script>
+    <script type="text/javascript">
+
+
+    $(document).ready(function () {
+        var listDoors = JSON.parse('@Html.Raw(ViewBag.ListDoor)');
+        $(document).on('click', '.Door', function (event) {
+          SearchDoor(listDoors, $(this).attr('value'));
+        });
+
+        $(document).on('click', '.EnviarDoor', function (event) {
+            console.log('@Url.Action("Index","ConfiDoor")');
+            window.location.href = '@Url.Action("Index","ConfiDoor")'+'/Index/'+$(this).attr('value');
+        });
+    });
+
+
+
+    function SearchDoor(data, idDoor) {
+        if (data != null) {
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].Id == idDoor) {
+                    console.log(data[i]);
+                    var HTML = " <h2 class='tx-sm-40 tx-semibold tx-uppercase tx-inverse mg-b-15'>" + data[i].DoorStyle.Description + "</h2>" +
+                    "<p class='mg-b-10 tx-sm-30 d-block'>" + data[i].Material.Description + "</p>" +
+                    "<p class='mg-b-10 d-block'>Outside profile: "+data[i].OutsideEdgeProfile.Description+"</p>"+
+                      "<p class='mg-b-10 d-block'>Inside profile: " + data[i].InsideEdgeProfile.Description + "</p>" +
+                      "<p class='mg-b-10 d-block'>Panel Type: " + data[i].Panel.Description + "</p>" +
+                       "<p class='mg-b-10 d-block'>Rails: "+data[i].TopRail.Description+"</p>"+
+                      "<p class='mg-b-30 d-block'>Stiles Width: "+data[i].BottomRail.Description+"</p>"+
+                    "  <p class='mg-b-20'><a class='Cursor EnviarDoor btn btn-outline-info bd-2 pd-y-12 pd-x-25 tx-uppercase tx-12 tx-semibold tx-spacing-1 ' value='" + data[i].Id + "'>Build a Door</a></p>";
+                    $("#CuerpoModal").html(HTML);
+                    var HTMLImage = '<button type="button" class="close mg-t-15 mg-r-20" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>'+
+                        '<img class="img-fluid rounded-right" alt="' + data[i].Material.Description + '" src="' + data[i].Picture + '"/>';
+                    console.log(data[i].Picture);
+                    $('#ModalImage').html(HTMLImage);
+                }
+            }
+        }else{
+            alert("lista vacia");}
+
+    }
+    </script>
+}
+

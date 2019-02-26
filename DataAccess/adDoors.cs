@@ -70,6 +70,77 @@ namespace DataAccess
 
         }
 
+        public TotalesDoors GetTotalDoorsxCompany(int Company)
+        {
+            TotalesDoors door = new TotalesDoors();
+            string sql = @"[spGetTotaleDoorsxCompany] '{0}'";
+            sql = string.Format(sql, Company);
+            try
+            {
+                DataSet ds = new DataSet();
+                ds = _MB.CreaDS(ds, "TotalesDoors", sql, _CN);
+                if (ds.Tables["TotalesDoors"].Rows.Count > 0)
+                {
+                    foreach (DataRow item in ds.Tables["TotalesDoors"].Rows)
+                    {
+                        door = new TotalesDoors()
+                        {
+                            DoorPending = int.Parse((item["DoorPending"].ToString() == "") ? "0" : item["DoorPending"].ToString()),
+                            DoorApprove = int.Parse((item["DoorApprove"].ToString() == "") ? "0" : item["DoorApprove"].ToString()),
+                            DoorInProcess = int.Parse((item["DoorInProcess"].ToString() == "") ? "0" : item["DoorInProcess"].ToString()),
+                            DoorCompleted = int.Parse((item["DoorCompleted"].ToString() == "") ? "0" : item["DoorCompleted"].ToString()),
+                            Active = int.Parse((item["Active"].ToString() == "") ? "0" : item["Active"].ToString()),
+                            Pending = int.Parse((item["Pending"].ToString() == "") ? "0" : item["Pending"].ToString()),
+                            Approve = int.Parse((item["Approved"].ToString() == "") ? "0" : item["Approved"].ToString()),
+                            InProcess = int.Parse((item["InProcess"].ToString() == "") ? "0" : item["InProcess"].ToString()),
+                            Completed = int.Parse((item["Completed"].ToString() == "") ? "0" : item["Completed"].ToString()),
+                        };
+                    }
+                }
+                return door;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
+
+        public TotalesDoors GetTotalDoors()
+        {
+            TotalesDoors door = new TotalesDoors();
+            string sql = @"[spGetTotaleDoors] ";
+            try
+            {
+                DataSet ds = new DataSet();
+                ds = _MB.CreaDS(ds, "TotalesDoors", sql, _CN);
+                if (ds.Tables["TotalesDoors"].Rows.Count > 0)
+                {
+                    foreach (DataRow item in ds.Tables["TotalesDoors"].Rows)
+                    {
+                        door = new TotalesDoors()
+                        {
+                            DoorPending = int.Parse((item["DoorPending"].ToString() == "") ? "0" : item["DoorPending"].ToString()),
+                            DoorApprove = int.Parse((item["DoorApprove"].ToString() == "") ? "0" : item["DoorApprove"].ToString()),
+                            DoorInProcess = int.Parse((item["DoorInProcess"].ToString() == "") ? "0" : item["DoorInProcess"].ToString()),
+                            DoorCompleted = int.Parse((item["DoorCompleted"].ToString() == "") ? "0" : item["DoorCompleted"].ToString()),
+                            Active = int.Parse((item["Active"].ToString() == "") ? "0" : item["Active"].ToString()),
+                            Pending = int.Parse((item["Pending"].ToString() == "") ? "0" : item["Pending"].ToString()),
+                            Approve = int.Parse((item["Approved"].ToString() == "") ? "0" : item["Approved"].ToString()),
+                            InProcess = int.Parse((item["InProcess"].ToString() == "") ? "0" : item["InProcess"].ToString()),
+                            Completed = int.Parse((item["Completed"].ToString() == "") ? "0" : item["Completed"].ToString()),
+                        };
+                    }
+                }
+                return door;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
+
         public List<Doors> GetAllDoors()
         {
             List<Doors> door = new List<Doors>();

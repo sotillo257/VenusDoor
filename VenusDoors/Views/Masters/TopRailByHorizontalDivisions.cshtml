@@ -106,9 +106,9 @@
                                 </div><!-- col-6 -->
                             </div><!-- row -->
                             <div class="modal-footer justify-content-lg-end">
-                                <button type="button" id="btbUpdateTRHorizonatlDivi" class="btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Modify</button>
-                                <button type="button" id="btInserTRHD" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Insert</button>
-                                <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>
+                                <button type="button" id="btbUpdateTRHorizonatlDivi" class="Cursor btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Modify</button>
+                                <button type="button" id="btInserTRHD" class="Cursor btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Insert</button>
+                                <button type="button" class="Cursor btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>
                             </div>
                         </div><!-- modal-body -->
                     </div><!-- modal-content -->
@@ -126,12 +126,7 @@
         var urlInsertTopRailxHorizontalDivisions = '@Url.Action("InsertTopRailxHorizontalDivisions", "Masters")';
         var urlUpdateTopRailxHorizontalDivisions = '@Url.Action("UpdateTopRailxHorizontalDivisions", "Masters")';
         var listTRH = JSON.parse('@Html.Raw(ViewBag.ListTopRailxHorizontal)');
-
-        $(document).ready(function () {
-            $("#button-cnt").click(function () {
-                location.reload();
-            });
-        });
+        var urlGetAllTopRailxHorizontalDivisions = '@Url.Action("GetAllTopRailxHorizontalDivisions", "Masters")';
     </script>
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>

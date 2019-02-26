@@ -61,7 +61,15 @@
                     <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
                     <span class="menu-item-label">Dashboard</span>
                 </div><!-- menu-item -->
-            </a><!-- br-menu-link -->
+            </a>
+            @if (Session["UserID"] != null)
+            {
+             <a href="/Home/Doors" class="br-menu-link @ViewBag.Doors">
+                <div class="br-menu-item">
+                    <i class="menu-item-icon icon ion-android-exit tx-22"></i>
+                    <span class="menu-item-label">Doors</span>
+                </div><!-- menu-item -->
+            </a>}<!-- br-menu-link -->
             @* @Html.ActionLink("Build a Door", "Index", "ConfiDoor", new { area = "" }, new { @class = "br-menu-link " + ViewBag.DoorStyle }) *@
             <a href="/ConfiDoor/" class="br-menu-link @ViewBag.ConfiDoor ">
                 <div class="br-menu-item">
@@ -254,9 +262,9 @@
                 </div><!-- dropdown -->
                 <div class="dropdown">
                     <a href="" class="nav-link pd-x-7 pos-relative" data-toggle="dropdown">
-                        @*<i class="icon ion-ios-bell-outline tx-24"></i>*@
+                        <i class="icon ion-ios-bell-outline tx-24"></i>
                         <!-- start: if statement -->
-                        @*<span class="square-8 bg-danger pos-absolute t-15 r-5 rounded-circle"></span>*@
+                        <span class="square-8 bg-danger pos-absolute t-15 r-5 rounded-circle"></span>
                         <!-- end: if statement -->
                     </a>
                     <div class="dropdown-menu dropdown-menu-header wd-300 pd-0-force">
@@ -785,13 +793,13 @@
     <script src="~/Content/lib/chartist/chartist.js"></script>
     <script src="~/Content/lib/jquery.sparkline.bower/jquery.sparkline.min.js"></script>
     <script src="~/Content/lib/d3/d3.js"></script>
-   @* <script src="~/Content/lib/rickshaw/rickshaw.min.js"></script>*@
+    <script src="~/Content/lib/rickshaw/rickshaw.min.js"></script>
     <script src="~/Content/lib/select2/js/select2.min.js"></script>
     <script src="~/Scripts/js/ComboBox.js"></script>
     <script src="~/Content/lib/select2/js/select2.full.min.js"></script>
     <script src="~/Content/js/bracket.js"></script>
     <script src="~/Content/js/ResizeSensor.js"></script>
-   @* <script src="~/Content/js/dashboard.js"></script>*@
+
     <script>
 
         $(document).ajaxStart(function () {

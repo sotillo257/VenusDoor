@@ -129,6 +129,7 @@ function InsertTopRailByVerticalDivisions() {
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
                 LlammarModal("Congratuletions", "Congratulations! It has been inserted correctly.", " ");
+                llenarTablaGetAllTopRailxVerticalDivisions();
             } else {
                 LlammarModal("Danger", "Error: An error occurred while inserting.", " ");
             }
@@ -163,6 +164,7 @@ function UpdateTopRailByVerticalDivisions() {
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
                 LlammarModal("Congratuletions", "Congratulations! It has been modified correctly.", " ");
+                llenarTablaGetAllTopRailxVerticalDivisions();
             } else {
                 LlammarModal("Danger", "Error: An error occurred while modifying.", " ");
             }
@@ -177,7 +179,7 @@ function UpdateTopRailByVerticalDivisions() {
 var allEstatus = '';
 function llenarComboEstatus(pStatus) {
 
-    var option = '<option id="">Select</option>';
+    var option = '<option value="0" id="">Select</option>';
     for (var i = 0; i < allEstatus.length; i++) {
         if (allEstatus[i].Group.Id == 1) {
             option += '<option value="' + allEstatus[i].Id + '">' + allEstatus[i].Description + '</option>';
@@ -220,7 +222,7 @@ function GetAllStatus() {
 var allTopRail = '';
 function llenarComboTopRail(pTopRail) {
 
-    var option = '<option id="">Select</option>';
+    var option = '<option value="0" id="">Select</option>';
     for (var i = 0; i < allTopRail.length; i++) {
         if (allTopRail[i].Status.Id == 1) {
             option += '<option value="' + allTopRail[i].Id + '">' + allTopRail[i].Description + '</option>';
@@ -263,7 +265,7 @@ function GetAllTopRail() {
 var allVerticalDivisions = '';
 function llenarCombVerticalDivisions(pVerticalDivisions) {
 
-    var option = '<option id="">Select</option>';
+    var option = '<option value="0" id="">Select</option>';
     for (var i = 0; i < allVerticalDivisions.length; i++) {
         if (allVerticalDivisions[i].Status.Id == 1) {
             option += '<option value="' + allVerticalDivisions[i].Id + '">' + allVerticalDivisions[i].Quantity + '</option>';
@@ -301,4 +303,41 @@ function GetAllVerticalDivisions() {
             LlammarModal("Danger", "Error.", "Check your internet connection I tried again.");
         }
     });
+}
+
+function llenarTablaGetAllTopRailxVerticalDivisions() {
+    $.ajax({
+        url: urlGetAllTopRailxVerticalDivisions,
+        cache: false,
+        type: 'POST',
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        success: function (data) {
+            if (data != null) {
+                listTRV = data;
+                var option = '';
+                for (var i = 0; i < data.length; i++) {
+                    option += '<tr role="row" class="odd">';
+                    option += '<td tabindex="0"  >' + data[i].Id + '</td>';
+                    option += '<td>' + data[i].TopRail.Description + '</td>';
+                    option += '<td>' + data[i].VerticalDivisions.Quantity + '</td>';
+                    option += '<td>' + data[i].Status.Description + '</td>';
+                    option += '<td>';
+                    option += '<center>';
+                    option += '<a href="#" data-toggle="modal" data-target="#modalInsert" value="' + data[i].Id + '" class="Modificar btn btn-primary btn-icon">';
+                    option += '<div><i class="fa fa-edit"></i></div></a></center></td></tr>';
+
+                }
+                $("#datatable1 > tbody").empty().append(option);
+                $("#modalInsert").modal("hide");
+            }
+            else {
+                LlammarModal("Danger", "Error obtaining Type", " ");
+            }
+        },
+        error: function (err) {
+            LlammarModal("Danger", "Error.", " ");
+        }
+    });
+
 }

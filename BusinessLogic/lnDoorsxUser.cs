@@ -408,8 +408,8 @@ namespace BusinessLogic
                 int userID = CodUsuario;
                 int idU = userID;
                 
-                Order item = _LNOrder.GetOrderByUser(idU);
-                if (item.Status == null)
+                Order item = _LNOrder.GetOrderByUser(idU).Where( x => x.Status.Id == 4).LastOrDefault();
+                if (item == null)
                 {
                     Order neworder = new Order()
                     {
@@ -1097,17 +1097,30 @@ namespace BusinessLogic
             var rail = pDoorxUser.BottomRail.Id;
             string DoorUrl = "img11.png";
             string urlFolder = "/Content/img/Doors/";
-            if (pDoorxUser.Join.Id == 1)
+            if (pDoorxUser.Join.Id == 2)
             {
-                if (pDoorxUser.DoorStyle.Id == 1008)
+                if (pDoorxUser.DoorStyle.Id == 1009)
                 {
-                    if (stile == 3 && rail == 3)
-                    {
-                        DoorUrl = "Cabinet Vector-01.png";
-                    }
+
+                    DoorUrl = "Cabinet Vector-13.png";
 
                 }
-                if (pDoorxUser.DoorStyle.Id == 1002)
+                else if (pDoorxUser.DoorStyle.Id == 1008)
+                {
+
+
+                }
+                else {
+                    DoorUrl = "Cabinet Vector-08.png";
+                }
+               
+
+            }else  if (pDoorxUser.DoorStyle.Id == 1008)
+                {
+                    
+                        DoorUrl = "Cabinet Vector-01.png";
+
+                }else if (pDoorxUser.DoorStyle.Id == 1002)
                 {
                     if (stile == 3 && rail == 3)
                     {
@@ -1118,8 +1131,7 @@ namespace BusinessLogic
                         DoorUrl = "Cabinet Vector-14.png";
                     }
 
-                }
-                if (pDoorxUser.DoorStyle.Id == 1004)
+                }else if (pDoorxUser.DoorStyle.Id == 1004)
                 {
                     if (stile == 3 && rail == 3)
                     {
@@ -1130,22 +1142,19 @@ namespace BusinessLogic
                         DoorUrl = "Cabinet Vector-06.png";
                     }
 
-                }
-                if (pDoorxUser.DoorStyle.Id == 1009)
+                }else if (pDoorxUser.DoorStyle.Id == 1009)
                 {
-                    if (stile == 3 && rail == 3)
-                    {
+                    
                         DoorUrl = "Cabinet Vector-13.png";
-                    }
-
-                }
+                   
 
             }
-            else if (pDoorxUser.Join.Id == 2)
+            else
             {
-                DoorUrl = "Cabinet Vector-08.png";
-
+                DoorUrl = "Cabinet Vector-02.png";
             }
+
+          
             return urlFolder + DoorUrl;
         }
         public string RaisedPanelDoor(DoorsxUser pDoorxUser)
@@ -1154,8 +1163,7 @@ namespace BusinessLogic
             var rail = pDoorxUser.BottomRail.Id;
             string DoorUrl = "img11.png";
             string urlFolder = "/Content/img/Doors/";
-            if (pDoorxUser.Join.Id == 1)
-            {
+          
                 if (stile == 3 && rail == 3)
                 {
                     if (pDoorxUser.DoorStyle.Id == 1008)
@@ -1193,8 +1201,7 @@ namespace BusinessLogic
                 }
 
 
-            }
-            else if (pDoorxUser.Join.Id == 2)
+            if (pDoorxUser.Join.Id == 2)
             {
                 DoorUrl = "Cabinet Vector-07.png";
             }

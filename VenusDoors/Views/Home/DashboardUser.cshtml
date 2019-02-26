@@ -1,0 +1,313 @@
+﻿
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Model.DoorsxUser LastDoor = ViewBag.xUserDoors;
+    Model.Order ord = ViewBag.LastOrder;
+}
+
+<style>
+    .orderreff {
+        background: #007d69;
+        color: #fff !important;
+        border-radius: 2px;
+        border: solid 1px #01483d;
+        padding: 5px;
+    }
+
+        .orderreff:hover {
+            cursor: pointer;
+            background: #014d41;
+        }
+</style>
+
+<div class="br-pageheader pd-y-15 pd-l-20">
+    <nav class="breadcrumb pd-0 mg-0 tx-12">
+        <a class="breadcrumb-item" href="/">Venus Doors</a>
+        <span class="breadcrumb-item active">@ViewBag.Title</span>
+    </nav>
+</div>
+
+<div class="pd-x-20 pd-sm-x-30 pd-t-20 pd-sm-t-30">
+    <h4 class="tx-gray-800 mg-b-5">@ViewBag.Title</h4>
+    <p class="mg-b-0">Here you can see the status of your orders and your shopping list.</p>
+</div>
+
+@if (ViewBag.LastOrder == null)
+{<div class="br-pagebody pd-x-20 pd-sm-x-30">
+        <div class="pd-x-20 pd-sm-x-30 pd-t-20">
+            <h5 class="tx-gray-800 mg-b-5" style="color: #ff1a00;">Currently there is no order in progress. </h5><p class="mg-b-0">Click <a href="#">here </a>to start a new order</p>
+        </div>
+        <div class="br-pagebody pd-x-20 pd-sm-x-30">
+
+            <div class="row row-sm mg-t-20">
+                <div class="col-lg-12">
+                    <div class="card shadow-base bd-0">
+                        <div class="card-header bg-transparent pd-20">
+                            <h6 class="card-title tx-uppercase tx-12 mg-b-0">Status of recent orders</h6>
+                        </div><!-- card-header -->
+                        <table style="width: 100%;" id="datatable1" class="table display responsive nowrap dataTable no-footer dtr-inline" role="grid" aria-describedby="datatable1_info">
+                            <thead>
+                                <tr>
+                                    <th class="pd-y-5">Reference number</th>
+                                    <th class="pd-y-5">Number of items</th>
+                                    <th class="pd-y-5">Total</th>
+                                    <th class="pd-y-5">Status</th>
+                                    <th class="pd-y-5">Date</th>
+                                    <th style="text-align:center" class="pd-y-5"><i class="fa fa-flash"></i></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (ViewBag.ListO == null)
+                                {
+                                    <tr class="odd">
+                                        <td valign="top" colspan="10" class="dataTables_empty">There is no record of orders.</td>
+                                    </tr>
+                                }
+                                else {
+                                    foreach (Model.Order ordenes in ViewBag.ListO)
+                                    {
+                                        <tr>
+                                            <td class="pd-l-20">@ordenes.Id</td>
+                                            <td>@ordenes.Quantity</td>
+                                            <td class="tx-12">
+                                                <span>$</span>@ordenes.Total
+                                            </td>
+                                            <td class="tx-12">
+                                                @if (ordenes.Status.Id == 4)
+                                                { <span class="square-8 bg-success mg-r-5 rounded-circle"></span> }
+                                                else if (ordenes.Status.Id == 8)
+                                                { <span class="square-8 bg-teal mg-r-5 rounded-circle"></span> }
+                                                else if (ordenes.Status.Id == 9)
+                                                { <span class="square-8 bg-primary mg-r-5 rounded-circle"></span> }
+                                                else
+                                                { <span class="square-8 bg-warning mg-r-5 rounded-circle"></span> }
+                                                @ordenes.Status.Description
+                                            </td>
+                                            <td>@ordenes.ModificationDate</td>
+                                            <td class="">
+                                                <center>
+                                                    <a class="orderreff" data-id="@ordenes.Id" title="Click here for more details of your order">
+                                                        <i class="fa fa-list"></i>
+                                                    </a>
+                                                </center>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div><!-- card -->
+                </div><!-- col-6 -->
+            </div>
+
+        </div>
+    </div>
+}
+else
+{
+    <div class="br-pagebody pd-x-20 pd-sm-x-30">
+        <div class="row row-sm mg-t-20">
+            <div class="col-lg-5">
+                <div class="card shadow-base card-body pd-25 bd-0">
+                    <div class="row">
+                        <div style="width:100%">
+                            <h6 class="card-title tx-uppercase tx-12">Progress</h6>
+                            @if (ord.Status.Id == 4)
+                            {
+                                <p class="display-4 tx-medium tx-inverse mg-b-5 tx-lato">15%</p>
+                                <div class="progress mg-b-10">
+                                    <div class="progress-bar bg-primary progress-bar-xs wd-15p" role="progressbar" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div><!-- progress -->
+                                <p class="tx-12">You have an active order. Confirm your purchase to continue and proceed to the next step.</p>
+                            }
+                            else if (ord.Status.Id == 5)
+                            {
+                                <p class="display-4 tx-medium tx-inverse mg-b-5 tx-lato">25%</p>
+                                <div class="progress mg-b-10">
+                                    <div class="progress-bar bg-primary progress-bar-xs wd-25p" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div><!-- progress -->
+                                <p class="tx-12">Soon we will contact you to complete the payment process and continue with your order.</p>
+                            }
+                            else if (ord.Status.Id == 6)
+                            {
+                                <p class="display-4 tx-medium tx-inverse mg-b-5 tx-lato">40%</p>
+                                <div class="progress mg-b-10">
+                                    <div class="progress-bar bg-primary progress-bar-xs wd-40p" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div><!-- progress -->
+                                <p class="tx-12">We are building your doors. You will receive an email when you can pick them up.</p>
+                            }
+                            else if (ord.Status.Id == 7)
+                            {
+                                <p class="display-4 tx-medium tx-inverse mg-b-5 tx-lato">75%</p>
+                                <div class="progress mg-b-10">
+                                    <div class="progress-bar bg-primary progress-bar-xs wd-75p" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div><!-- progress -->
+                                <p class="tx-12">We are building your doors. You will receive an email when you can pick them up.</p>
+                            }
+                            else
+                            {
+                                <p class="display-4 tx-medium tx-inverse mg-b-5 tx-lato">100%</p>
+                                <div class="progress mg-b-10">
+                                    <div class="progress-bar bg-primary progress-bar-xs wd-100p" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div><!-- progress -->
+                                <p class="tx-12">Your order is ready. You can spend withdrawing it through our store.</p>
+                            }
+
+                        </div><!-- col-6 -->
+                        <div class="col-sm-6 mg-t-20 mg-sm-t-0 d-flex align-items-center justify-content-center">
+                            <span class="peity-donut" data-peity="{ &quot;fill&quot;: [&quot;#0866C6&quot;, &quot;#E9ECEF&quot;],  &quot;innerRadius&quot;: 60, &quot;radius&quot;: 90 }" style="display: none;">30/100</span>
+                        </div>
+                    </div><!-- row -->
+                </div><!-- card -->
+            </div>
+
+            <div class="col-lg-7 mg-t-30 mg-lg-t-0">
+                <div class="card shadow-base card-body pd-25 bd-0">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h6 class="card-title tx-uppercase tx-12 tx-inverse">Last door added</h6>
+
+                            <p class="display-4 tx-medium tx-inverse mg-b-5 tx-lato" style="font-size: 2.5rem;">@LastDoor.Material.Description</p><br>
+                            <p>
+                                Outside profile: @LastDoor.OutsideEdgeProfile.Description<br>
+                                Inside profile: @LastDoor.InsideEdgeProfile.Description<br>
+                                @LastDoor.DoorStyle.Description - @LastDoor.PanelMaterial.Description <br>
+                            </p>
+                        </div><!-- col-6 -->
+                        <div style="padding-left: 60px; padding-right: 0px;" class="col-sm-6 mg-t-20 mg-sm-t-0 d-flex align-items-end justify-content-center">
+                            <img style="width: 185px;" src="@LastDoor.Picture" />
+                        </div><!-- col-6 -->
+
+                    </div><!-- row -->
+                </div><!-- card -->
+            </div><!-- col-6 -->
+        </div>
+
+        <div class="br-pagebody pd-x-20 pd-sm-x-30" style="padding-left: 0px;padding-right: 0px;">
+            <div class="row row-sm mg-t-20">
+                <div class="col-lg-12">
+                    <div class="card shadow-base bd-0">
+                        <div class="card-header bg-transparent pd-20">
+                            <h6 class="card-title tx-uppercase tx-12 mg-b-0">Status of recent orders</h6>
+                        </div><!-- card-header -->
+                        <table style="width: 100%;" id="datatable1" data-page-length="5" class="table display responsive nowrap dataTable no-footer dtr-inline" role="grid" aria-describedby="datatable1_info">
+                            <thead>
+                                <tr>
+                                    <th class="pd-y-5">Reference number</th>
+                                    <th class="pd-y-5">Number of items</th>
+                                    <th class="pd-y-5">Total</th>
+                                    <th class="pd-y-5">Status</th>
+                                    <th class="pd-y-5">Date</th>
+                                    <th style="text-align:center" class="pd-y-5"><i class="fa fa-flash"></i></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (ViewBag.ListO == null)
+                                {
+                                    <tr class="odd">
+                                        <td valign="top" colspan="10" class="dataTables_empty">There is no record of orders.</td>
+                                    </tr>
+                                }
+                                else {
+                                    foreach (Model.Order ordenes in ViewBag.ListO)
+                                    {
+                                        <tr>
+                                            <td class="pd-l-20">@ordenes.Id</td>
+                                            <td>@ordenes.Quantity</td>
+                                            <td class="tx-12">
+                                                <span>$</span>@ordenes.Total
+                                            </td>
+                                            <td class="tx-12">
+                                                @if (ordenes.Status.Id == 4)
+                                                { <span class="square-8 bg-success mg-r-5 rounded-circle"></span> }
+                                                else if (ordenes.Status.Id == 8)
+                                                { <span class="square-8 bg-teal mg-r-5 rounded-circle"></span> }
+                                                else if (ordenes.Status.Id == 9)
+                                                { <span class="square-8 bg-primary mg-r-5 rounded-circle"></span> }
+                                                else
+                                                { <span class="square-8 bg-warning mg-r-5 rounded-circle"></span> }
+                                                @ordenes.Status.Description
+                                            </td>
+                                            <td>@ordenes.ModificationDate</td>
+                                            <td class="">
+                                                <center>
+                                                    <a class="orderreff" data-id="@ordenes.Id" title="Click here for more details of your order">
+                                                        <i class="fa fa-list"></i>
+                                                    </a>
+                                                </center>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div><!-- card -->
+                </div><!-- col-6 -->
+            </div>
+        </div>
+    </div>
+}
+
+<div class="modal fade" id="ModalOrderInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+    <div class="modal-dialog modal-lg" id="mdialTamanio" style="width: 80%!important">
+        <div class="modal-content">
+            <div class="modal-header" id="orderhead">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body" id="ordertable">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="Cursor btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+    var urlGetDoorsByOrder = '@Url.Action("GetDoorsByOrder", "OrderStatus")';
+
+    $(function () {
+        'use strict';
+
+        $('#datatable1').DataTable({
+            ordering: false,
+            responsive: true,
+            language: {
+                searchPlaceholder: 'Search...',
+                sSearch: '',
+                lengthMenu: '_MENU_ items/page',
+            }
+        });
+
+        $('#datatable2').DataTable({
+            bLengthChange: false,
+            searching: false,
+            responsive: true
+        });
+
+        // Select2
+        $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
+
+    });
+
+    </script>
+    <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
+    <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>
+    <script src="~/Content/lib/select2/js/select2.min.js"></script>
+
+    @Scripts.Render("~/Scripts/js/OrderStatus.Index.js")
+
+
+}
+
+
+
+
+
+

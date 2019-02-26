@@ -31,11 +31,19 @@ namespace BusinessLogic
 
         }
 
-        public Totales GetAllTotales()
+        public Totales GetAllTotales(int IdCompany, int IdTypeCompany)
         {
             try
             {
-                return _AD.GetAllTotales();
+                if (IdTypeCompany == 1)
+                {
+                    return _AD.GetAllTotales();
+                }
+                else
+                {
+                    return _AD.GetAllTotalesxCompany(IdCompany);
+                }
+               
             }
             catch (Exception ex)
             {
@@ -64,7 +72,7 @@ namespace BusinessLogic
 
         }
 
-        public Order GetOrderByUser(int pId)
+        public List<Order> GetOrderByUser(int pId)
         {
             try
             {

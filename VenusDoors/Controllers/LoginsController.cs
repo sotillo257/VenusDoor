@@ -251,21 +251,27 @@ namespace VenusDoors.Controllers
         public ActionResult Autherize(User userData)
         {
             BusinessLogic.lnUser _LNU = new BusinessLogic.lnUser();
+            BusinessLogic.lnCompany _Company = new BusinessLogic.lnCompany();
             var getU = _LNU.GetAllUser();
             //Buscar el usuario con ese email
             var userDetails = getU.Where(x => x.Email == userData.Email).FirstOrDefault();
+
             //Validar que ese usuario exista
             if (userDetails != null)
             {
+
                 //Validar que la contrasena este correcta
                 if (userDetails.Password == userData.Password)
                 {
                     //Validar el estado de la cuenta
                     if (userDetails.Status.Id == 1)
                     {
+                        userDetails.Company = _Company.GetCompanyById(userDetails.Company.Id);
                         System.Web.HttpContext.Current.Session["UserID"] = userDetails.Id;
                         System.Web.HttpContext.Current.Session["UserName"] = userDetails.Person.Id;
                         System.Web.HttpContext.Current.Session["UserType"] = userDetails.Type.Id;
+                        System.Web.HttpContext.Current.Session["IdCompany"] = userDetails.Company.Id;
+                        System.Web.HttpContext.Current.Session["IdTypeCompany"] = userDetails.Company.Id;
 
                         return Json(1, JsonRequestBehavior.AllowGet);
                     }

@@ -169,6 +169,7 @@ function InsertUser() {
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
                 LlammarModal("Congratuletions", "Congratulations! It has been inserted correctly.", " ");
+                llenarTablaGetAllUser();
             } else {
                 LlammarModal("Danger", "Error: An error occurred while inserting.", " ");
             }
@@ -206,6 +207,7 @@ function UpdateUser() {
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
                 LlammarModal("Congratuletions", "Congratulations! It has been modified correctly.", " ");
+                llenarTablaGetAllUser();
             } else {
                 LlammarModal("Danger", "Error: An error occurred while modifying.", " ");
             }
@@ -220,7 +222,7 @@ function UpdateUser() {
 var allEstatus = '';
 function llenarComboEstatus(pStatus) {
 
-    var option = '<option id="">Select</option>';
+    var option = '<option value="0" id="">Select</option>';
     for (var i = 0; i < allEstatus.length; i++) {
         if (allEstatus[i].Group.Id == 1) {
             option += '<option value="' + allEstatus[i].Id + '">' + allEstatus[i].Description + '</option>';
@@ -263,7 +265,7 @@ function GetAllStatus() {
 var allType = '';
 function llenarComboType(pType) {
 
-    var option = '<option id="">Select</option>';
+    var option = '<option value="0" id="">Select</option>';
     for (var i = 0; i < allType.length; i++) {
         if (allType[i].Group.Id == 1) {
             option += '<option value="' + allType[i].Id + '">' + allType[i].Description + '</option>';
@@ -306,7 +308,7 @@ function GetAllType() {
 var allPerson = '';
 function llenarComboPerson(pPerson) {
 
-    var option = '<option id="">Select</option>';
+    var option = '<option value="0" id="">Select</option>';
     for (var i = 0; i < allPerson.length; i++) {
         if (allPerson[i].Status.Id == 1) {
             option += '<option value="' + allPerson[i].Id + '">' + allPerson[i].Name + '</option>';
@@ -349,7 +351,7 @@ function GetAllPerson() {
 var allCompany = '';
 function llenarComboCompany(pCompany) {
 
-    var option = '<option id="">Select</option>';
+    var option = '<option value="0" id="">Select</option>';
     for (var i = 0; i < allCompany.length; i++) {
         if (allCompany[i].Status.Id == 1) {
             option += '<option value="' + allCompany[i].Id + '">' + allCompany[i].Name + '</option>';
@@ -386,4 +388,44 @@ function GetAllCompany() {
             LlammarModal("Danger", "Error.", "Check your internet connection I tried again.");
         }
     });
+}
+
+function llenarTablaGetAllUser() {
+    $.ajax({
+        url: urlGetAllUser,
+        cache: false,
+        type: 'POST',
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        success: function (data) {
+            if (data != null) {
+                ListUsuario = data;
+                var option = '';
+                for (var i = 0; i < data.length; i++) {
+                    option += '<tr role="row" class="odd">';
+                    option += '<td tabindex="0"  >' + data[i].Id + '</td>';
+                    option += '<td>' + data[i].Email + '</td>';
+                    option += '<td>' + data[i].Password + '</td>';
+                    option += '<td>' + data[i].Type.Description + '</td>';
+                    option += '<td>' + data[i].Person.Name + '</td>';
+                    option += '<td>' + data[i].Company.Name + '</td>';
+                    option += '<td>' + data[i].Status.Description + '</td>';
+                    option += '<td>';
+                    option += '<center>';
+                    option += '<a href="#" data-toggle="modal" data-target="#modalInsert" value="' + data[i].Id + '" class="Modificar btn btn-primary btn-icon">';
+                    option += '<div><i class="fa fa-edit"></i></div></a></center></td></tr>';
+
+                }
+                $("#datatable1 > tbody").empty().append(option);
+                $("#modalInsert").modal("hide");
+            }
+            else {
+                LlammarModal("Danger", "Error obtaining Type", " ");
+            }
+        },
+        error: function (err) {
+            LlammarModal("Danger", "Error.", " ");
+        }
+    });
+
 }

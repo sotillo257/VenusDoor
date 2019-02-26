@@ -12,45 +12,54 @@ namespace VenusDoors.Controllers
         // GET: OrderStatus
         public ActionResult Index()
         {
-            if (Session["UserID"] == null)
+            try
             {
-                return RedirectToAction("Index", "Home");
-            }
-            else
-            {
-                ViewBag.OrderStatus = "active";
-                int userID = (int)Session["UserID"];
-
-                //Get last Order 
-                BusinessLogic.lnOrder _LNO = new BusinessLogic.lnOrder();
-                var getOr = _LNO.GetAllOrder();
-                var LastOrder = getOr.Where(x => x.Status.Id != 9 && x.User.Id == userID).OrderByDescending(x => x.ModificationDate).FirstOrDefault();
-                ViewBag.LastOrder = LastOrder;
-
-                if (LastOrder != null)
+                if (Session["UserID"] == null)
                 {
-                    //Get Doors in the last Order
-                    BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
-                    var xDoorsU = _LN.GetAllDoorsxUser();
-                    DoorsxUser doorByOrder = xDoorsU.Where(x => x.Order.Id == LastOrder.Id).OrderByDescending(x => x.CreationDate).FirstOrDefault();
-                    ViewBag.xUserDoors = doorByOrder;
-                }
-
-                //Get List Order
-                List<Order> ListOrders = _LNO.GetAllOrder();
-                List<Order> OrdersByU = ListOrders.Where(x => x.User.Id == userID).OrderByDescending(x => x.ModificationDate).ToList();
-                if (OrdersByU.Count == 0)
-                {
-                    ViewBag.ListO = null;
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
-                    ViewBag.ListO = OrdersByU;
-                }
+                    ViewBag.OrderStatus = "active";
+                    int userID = (int)Session["UserID"];
 
-                return View();                         
+                    //Get last Order 
+                    BusinessLogic.lnOrder _LNO = new BusinessLogic.lnOrder();
+                    var getOr = _LNO.GetAllOrder();
+                    var LastOrder = getOr.Where(x => x.Status.Id != 9 && x.User.Id == userID).OrderByDescending(x => x.ModificationDate).FirstOrDefault();
+                    ViewBag.LastOrder = LastOrder;
+
+                    if (LastOrder != null)
+                    {
+                        //Get Doors in the last Order
+                        BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
+                        var xDoorsU = _LN.GetAllDoorsxUser();
+                        DoorsxUser doorByOrder = xDoorsU.Where(x => x.Order.Id == LastOrder.Id).OrderByDescending(x => x.CreationDate).FirstOrDefault();
+                        ViewBag.xUserDoors = doorByOrder;
+                    }
+
+                    //Get List Order
+                    List<Order> ListOrders = _LNO.GetAllOrder();
+                    List<Order> OrdersByU = ListOrders.Where(x => x.User.Id == userID).OrderByDescending(x => x.ModificationDate).ToList();
+                    if (OrdersByU.Count == 0)
+                    {
+                        ViewBag.ListO = null;
+                    }
+                    else
+                    {
+                        ViewBag.ListO = OrdersByU;
+                    }
+
+                    return View();
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
+        
 
         [HttpPost]
         public ActionResult GetDoorsByOrder(int idOrder)
@@ -61,8 +70,9 @@ namespace VenusDoors.Controllers
             BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
             List<DoorsxUser> xDoors = _LN.GetAllDoorsxUser();
             List<DoorsxUser> doorsByOrder = xDoors.Where(x => x.Order.Id == idOrder).ToList();
-            ViewBag.DoorsOrder = doorsByOrder;
+           // ViewBag.DoorsOrder = doorsByOrder;
             return Json(doorsByOrder);
+
         }
     }
 } 

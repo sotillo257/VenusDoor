@@ -26,4 +26,17 @@ namespace Model
 
 
     }
+
+    public class TotalesDoors
+    {
+        public int DoorPending { get; set; }
+        public int DoorApprove { get; set; }
+        public int DoorInProcess { get; set; }
+        public int DoorCompleted { get; set; }
+        public int Active { get; set; }
+        public int Pending { get; set; }
+        public int Approve { get; set; }
+        public int InProcess { get; set; }
+        public int Completed { get; set; }
+    }
 }

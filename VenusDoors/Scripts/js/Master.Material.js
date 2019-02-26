@@ -72,13 +72,13 @@ $(function () {
 function Limpiar() {
     $('#inId').val(0);
     $('#inDescription').removeClass("is-invalid");
-    $('#inDescription').val("");
+    $('#inDescription').val(" ");
 
-    $('#inPriceFLatPanel').removeClass("is-invalid");
-    $('#inPriceFLatPanel').val("");
+    $('#inPriceFlatPanel').removeClass("is-invalid");
+    $('#inPriceFlatPanel').val(" ");
 
-    $('#inRaisedFLatPanel').removeClass("is-invalid");
-    $('#inRaisedFLatPanel').val("");
+    $('#inPriceRaisedPanel').removeClass("is-invalid");
+    $('#inPriceRaisedPanel').val(" ");
 
     $('#inStatus').removeClass("is-invalid");
     llenarComboEstatus(0);
@@ -140,6 +140,7 @@ function InsertMaterial() {
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
                 LlammarModal("Congratuletions", "Congratulations! It has been inserted correctly.", " ");
+                llenarTablaurlGetAllMaterial();
             } else {
                 LlammarModal("Danger", "Error: An error occurred while inserting.", " ");
             }
@@ -175,6 +176,7 @@ function UpdateMaterial() {
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
                 LlammarModal("Congratuletions", "Congratulations! It has been modified correctly.", " ");
+                llenarTablaurlGetAllMaterial();
             } else {
                 LlammarModal("Danger", "Error: An error occurred while modifying.", " ");
             }
@@ -189,7 +191,7 @@ function UpdateMaterial() {
 var allEstatus = '';
 function llenarComboEstatus(pStatus) {
 
-    var option = '<option id="">Select</option>';
+    var option = '<option value="0" id="">Select</option>';
     for (var i = 0; i < allEstatus.length; i++) {
         if (allEstatus[i].Group.Id == 1) {
             option += '<option value="' + allEstatus[i].Id + '">' + allEstatus[i].Description + '</option>';
@@ -227,4 +229,42 @@ function GetAllStatus() {
             LlammarModal("Danger", "Error.", "Check your internet connection I tried again.");
         }
     });
+}
+
+function llenarTablaurlGetAllMaterial() {
+    $.ajax({
+        url: urlGetAllMaterial,
+        cache: false,
+        type: 'POST',
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        success: function (data) {
+            if (data != null) {
+                listMaterial = data;
+                var option = '';
+                for (var i = 0; i < data.length; i++) {
+                    option += '<tr role="row" class="odd">';
+                    option += '<td tabindex="0"  >' + data[i].Id + '</td>';
+                    option += '<td>' + data[i].Description + '</td>';
+                    option += '<td>' + data[i].PriceFlatPanel + '</td>';
+                    option += '<td>' + data[i].PriceRaisedPanel + '</td>';
+                    option += '<td>' + data[i].Status.Description + '</td>';
+                    option += '<td>';
+                    option += '<center>';
+                    option += '<a href="#" data-toggle="modal" data-target="#modalInsert" value="' + data[i].Id + '" class="Modificar btn btn-primary btn-icon">';
+                    option += '<div><i class="fa fa-edit"></i></div></a></center></td></tr>';
+
+                }
+                $("#datatable1 > tbody").empty().append(option);
+                $("#modalInsert").modal("hide");
+            }
+            else {
+                LlammarModal("Danger", "Error obtaining Type", " ");
+            }
+        },
+        error: function (err) {
+            LlammarModal("Danger", "Error.", " ");
+        }
+    });
+
 }
