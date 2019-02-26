@@ -21,37 +21,39 @@ namespace VenusDoors.Controllers
         {
             try
             {
-                ViewBag.OrderSummary = "active";
-                if (Session["UserID"] == null)
+            ViewBag.OrderSummary = "active";
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                BusinessLogic.lnOrder _LNOrder = new BusinessLogic.lnOrder();
+                int userID = (int)Session["UserID"];
+                int idU = userID;
+                var orderList = _LNOrder.GetOrderByUser(idU);
+                    ViewBag.Listo = orderList.Where(x => x.Status.Id == 4).LastOrDefault();
+                Order item = ViewBag.Listo;
+                if (item.Status == null)
                 {
+                    return View();
+                }
+                else if (item.Status.Id == 4)
+                {
+                    BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
+                    List<DoorsxUser> xDoorsU = _LN.GetAllDoorsxUser();
+                    List<DoorsxUser> doorByOrder = xDoorsU.Where(x => x.Order.Id == item.Id).ToList();
+                    ViewBag.xUserDoors = doorByOrder;
+                    var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                    ViewBag.ListDoorsxUser = serializar.Serialize(doorByOrder);
                     return View();
                 }
                 else
                 {
-                    BusinessLogic.lnOrder _LNOrder = new BusinessLogic.lnOrder();
-                    int userID = (int)Session["UserID"];
-                    int idU = userID;
-                    var orderList = _LNOrder.GetOrderByUser(idU);
-                    ViewBag.Listo = orderList.Where(x => x.Status.Id == 4).LastOrDefault();
-                    Order item = ViewBag.Listo;
-                    if (item.Status == null)
-                    {
-                        return View();
-                    }
-                    else if (item.Status.Id == 4)
-                    {
-                        BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
-                        List<DoorsxUser> xDoorsU = _LN.GetAllDoorsxUser();
-                        List<DoorsxUser> doorByOrder = xDoorsU.Where(x => x.Order.Id == item.Id).ToList();
-                        ViewBag.xUserDoors = doorByOrder;
-                        return View();
-                    }
-                    else
-                    {
-                        return View();
-                    }
+                    return View();
                 }
                 }
+            }
             catch (Exception)
             {
                 return View("Error");
@@ -59,7 +61,7 @@ namespace VenusDoors.Controllers
         }
 
         [HttpPost]
-        public ActionResult DeleteItem(int itemID, Order ord)
+        public ActionResult DeleteItem(int itemID, int orderid)
         {
             if(Session["UserID"] == null)
             {
@@ -72,24 +74,13 @@ namespace VenusDoors.Controllers
                     BusinessLogic.lnDoorsxUser _LND = new BusinessLogic.lnDoorsxUser();
                     int userID = (int)Session["UserID"];
                     int idU = userID;
-                    if (ord.Status == null)
-                    {
-                        return View();
-                    }
-                    else if (ord.Status.Id == 4)
-                    {
                         BusinessLogic.lnOrder _LNO = new BusinessLogic.lnOrder();
-                        Order upptOrd = _LNO.GetOrderById(ord.Id);
+                        Order upptOrd = _LNO.GetOrderById(orderid);
                         var xDoor = _LND.GetDoorsxUserById(itemID);
                         var delete = _LND.DeleteDoorsxUser(itemID);
                         UpdateOrderExist(xDoor, upptOrd);
                         return Json(true, JsonRequestBehavior.AllowGet);
                     }
-                    else
-                    {
-                        return View();
-                    }
-                }
                 catch
                 {
                     return Json(false, JsonRequestBehavior.AllowGet);

@@ -84,27 +84,102 @@ namespace VenusDoors.Controllers
 
                 ViewBag.lblMesAnterior = hoy.AddMonths(-1).ToString("MMMM", CultureInfo.CreateSpecificCulture("en-US"));
                 BusinessLogic.lnDoors doors = new BusinessLogic.lnDoors();
-                var TotalesDoors = doors.GetTotalesDoors();
+                var TotalesDoors = doors.GetTotalesDoors((int)Session["IdCompany"], (int)Session["IdTypeCompany"]);
                 ViewBag.doors = TotalesDoors;
                 var aux = TotalesDoors;
                 var aux2 = aux.Active + aux.Approve + aux.Completed + aux.InProcess + aux.Pending;
+                    var aux3 = aux.DoorApprove + aux.DoorCompleted + aux.DoorInProcess + aux.DoorPending;
                 ViewBag.totalOrdenes = aux2;
                 TotalesDoors TD = new TotalesDoors();
-                
-                decimal x = decimal.Parse(aux.Active.ToString()) / decimal.Parse(aux2.ToString()) * 100;
+
+                    decimal uu = decimal.Parse(aux.DoorPending.ToString()) / decimal.Parse(aux3.ToString()) * 100;
+                    decimal yy = decimal.Parse(aux.DoorApprove.ToString()) / decimal.Parse(aux3.ToString()) * 100;
+                    decimal zz = decimal.Parse(aux.DoorInProcess.ToString()) / decimal.Parse(aux3.ToString()) * 100;
+                    decimal ii = decimal.Parse(aux.DoorCompleted.ToString()) / decimal.Parse(aux3.ToString()) * 100;
+
+                    decimal x = decimal.Parse(aux.Active.ToString()) / decimal.Parse(aux2.ToString()) * 100;
                 decimal u = decimal.Parse(aux.Pending.ToString()) / decimal.Parse(aux2.ToString()) * 100;
                 decimal y = decimal.Parse(aux.Approve.ToString()) / decimal.Parse(aux2.ToString()) * 100;
                 decimal z = decimal.Parse(aux.InProcess.ToString()) / decimal.Parse(aux2.ToString()) * 100;
                 decimal i = decimal.Parse(aux.Completed.ToString()) / decimal.Parse(aux2.ToString()) * 100;
-                ViewBag.Active = "wd-"+x.ToString("N0")+"p";
+                    bool bande = true;
+                    x = decimal.Parse(x.ToString("N0"));
+                    while (bande)
+                    {
+                        if (x % 5 == 0)
+                        {
+                            bande = false;
+                        }
+                        else
+                        {
+                            x = decimal.Parse(x.ToString("N0")) + 1m;    
+                        }
+                    }
+                    bande = true;
+                    u = decimal.Parse(u.ToString("N0"));
+                    while (bande)
+                    {
+                        if (u % 5 == 0)
+                        {
+                            bande = false;
+                        }
+                        else
+                        {
+                            u = decimal.Parse(u.ToString("N0")) + 1m;
+                        }
+                    }
+                    bande = true;
+                    y = decimal.Parse(y.ToString("N0"));
+                    while (bande)
+                    {
+                        if (y % 5 == 0)
+                        {
+                            bande = false;
+                        }
+                        else
+                        {
+                            y = decimal.Parse(y.ToString("N0")) + 1m;
+                        }
+                    }
+                    bande = true;
+                    z = decimal.Parse(z.ToString("N0"));
+                    while (bande)
+                    {
+                        if (z % 5 == 0)
+                        {
+                            bande = false;
+                        }
+                        else
+                        {
+                            z = decimal.Parse(z.ToString("N0")) + 1m;
+                        }
+                    }
+                    bande = true;
+                    i = decimal.Parse(i.ToString("N0"));
+                    while (bande)
+                    {
+                        if (i % 5 == 0)
+                        {
+                            bande = false;
+                        }
+                        else
+                        {
+                            i = decimal.Parse(i.ToString("N0")) + 1m;
+                        }
+                    }
+
+                    ViewBag.Active = "wd-"+x.ToString("N0")+"p";
                 ViewBag.Pending = "wd-" + u.ToString("N0") + "p";
                 ViewBag.Approve = "wd-" + y.ToString("N0") + "p";
                 ViewBag.InProcess = "wd-" + z.ToString("N0") + "p";
                 ViewBag.Completed = "wd-" + i.ToString("N0") + "p";
                 ViewBag.doorsPorcentaje = TD;
-
-                BusinessLogic.lnOrder Order = new BusinessLogic.lnOrder();                
-                var totales = Order.GetAllTotales();
+                    ViewBag.DoorPending =  uu.ToString("N2") + "% of the doors";
+                    ViewBag.DoorApprove =  yy.ToString("N2") + "% of the doors";
+                    ViewBag.DoorInProcess =  zz.ToString("N2") + "% of the doors";
+                    ViewBag.DoorCompleted =  ii.ToString("N2") + "% of the doors";
+                    BusinessLogic.lnOrder Order = new BusinessLogic.lnOrder();                
+                var totales = Order.GetAllTotales((int)Session["IdCompany"], (int)Session["IdTypeCompany"]);
                 ViewBag.TotalHistorico = totales.TotalHistorico;
                 ViewBag.Mes = totales.TotalMes;
                 ViewBag.MesAnterior = totales.TotalMesAnterior;

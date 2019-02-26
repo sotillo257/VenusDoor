@@ -49,12 +49,14 @@
   <ItemGroup>
     <Compile Include="adBottomRail.cs" />
     <Compile Include="adCompany.cs" />
+    <Compile Include="adDoorOption.cs" />
     <Compile Include="adDoors.cs" />
     <Compile Include="adDoorsPrices.cs" />
     <Compile Include="adDoorStyle.cs" />
     <Compile Include="adDoorStylexInsideEdgeProfile.cs" />
     <Compile Include="adDoorStylexOutsideEdgeProfile.cs" />
     <Compile Include="adDoorsxUser.cs" />
+    <Compile Include="adDoorType.cs" />
     <Compile Include="adGroup.cs" />
     <Compile Include="adHingeDirection.cs" />
     <Compile Include="adHingePositions.cs" />

@@ -1,4 +1,4 @@
-﻿function LlammarModal(TipoModal, Titulo, Mensaje) {
+﻿function LlammarModal(TipoModal, Titulo, Mensaje, boton) {
   
       
     if (TipoModal == "Succes") {
@@ -28,6 +28,13 @@
                 $("#TituloCongratuletions").html(Titulo);
                 $("#MensageCongratuletions").html(Mensaje);
                 $("#modalCongra").modal("show");
+            }
+
+            if (TipoModal == "ConfirmOrdenSummary") {
+                $("#TituloeConfirmO").html(Titulo);
+                $("#MensageConfirmO").html(Mensaje);
+                $("#footer").html(boton);
+                $("#modalConfirmOrderSummary").modal("show");
             }
 
 }

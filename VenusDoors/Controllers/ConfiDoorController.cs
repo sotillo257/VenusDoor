@@ -239,6 +239,34 @@ namespace VenusDoors.Controllers
         }
 
         [HttpPost]
+        public ActionResult GetAllDoorType()
+        {
+            try
+            {
+                BusinessLogic.lnDoorType _LN = new BusinessLogic.lnDoorType();
+                return Json(_LN.GetAllDoorType());
+            }
+            catch
+            {
+                return View("Error");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult GetAllDoorOption()
+        {
+            try
+            {
+                BusinessLogic.lnDoorOption _LN = new BusinessLogic.lnDoorOption();
+                return Json(_LN.GetAllDoorOption());
+            }
+            catch
+            {
+                return View("Error");
+            }
+        }
+
+        [HttpPost]
         public ActionResult GetPrices(RailThickness RailThick, Material pMaterial, DoorStyle pDoorstyle)
         {
             try
@@ -329,7 +357,30 @@ namespace VenusDoors.Controllers
             {
                 return View("Error");
             }
-               }
+        }
+
+        public ActionResult UpdateDoorsxUser(DoorsxUser pDoorsxUser, HingePositions HingeP, Order Ord)
+        {
+            try
+            {
+                if (Session["UserID"] == null)
+                {
+
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    BusinessLogic.lnDoorsxUser ln = new BusinessLogic.lnDoorsxUser();
+
+                    return Json(ln.ModificarDoors(pDoorsxUser, HingeP, Ord, (int)Session["UserID"]), JsonRequestBehavior.AllowGet);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return View("Error");
+            }
+        }
 
         [HttpPost]
         public ActionResult ValidateSession()

@@ -7,41 +7,42 @@ using Model;
 
 namespace BusinessLogic
 {
-    public class lnDoors
+    public class lnDoorOption
     {
-        DataAccess.adDoors _AD = new DataAccess.adDoors();
+        DataAccess.adDoorOption _AD = new DataAccess.adDoorOption();
 
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna toda la Lista de Doors.
+        /// @Descripción: Retorna toda la Lista de DoorOption.
         /// </summary>
         /// <param></param>
         /// <returns></returns>
-        public List<Doors> GetAllDoors()
+        public List<DoorOption> GetAllDoorOption()
         {
             try
             {
-                return _AD.GetAllDoors();
+                return _AD.GetAllDoorOption();
             }
             catch (Exception ex)
             {
                 throw;
             }
+
         }
 
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna Doors por Id.
+        /// @Descripción: Retorna DoorOption por Id.
         /// </summary>
         /// <param name="pId"></param>
         /// <returns></returns>
-        public Doors GetDoorsById(int pId)
+        public DoorOption GetDoorOptionById(int pId)
         {
             try
             {
-                return _AD.GetDoorsById(pId);
+                return _AD.GetDoorOptionById(pId);
             }
             catch (Exception ex)
             {
@@ -50,19 +51,11 @@ namespace BusinessLogic
 
         }
 
-        public TotalesDoors GetTotalesDoors(int Company, int IdType)
+        public int InsertDoorOption(DoorOption pDoorOption)
         {
             try
             {
-                if (IdType == 1)
-                {
-                    return _AD.GetTotalDoors();
-                }
-                else
-                {
-                    return _AD.GetTotalDoorsxCompany(Company);
-                }
-               
+                return _AD.InsertDoorOption(pDoorOption);
             }
             catch (Exception ex)
             {
@@ -71,24 +64,11 @@ namespace BusinessLogic
 
         }
 
-        public int InsertDoors(Doors pDoors)
+        public bool UpdateDoorOption(DoorOption pDoorOption)
         {
             try
             {
-                return _AD.InsertDoors(pDoors);
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-
-        }
-
-        public bool UpdateDoors(Doors pDoors)
-        {
-            try
-            {
-                _AD.UpdateDoors(pDoors);
+                _AD.UpdateDoorOption(pDoorOption);
                 return true;
             }
             catch (Exception ex)
@@ -98,11 +78,11 @@ namespace BusinessLogic
 
         }
 
-        public bool DeleteDoors(int pId)
+        public bool DeleteDoorOption(int pId)
         {
             try
             {
-                _AD.DeleteDoors(pId);
+                _AD.DeleteDoorOption(pId);
                 return true;
             }
             catch (Exception ex)
@@ -110,6 +90,21 @@ namespace BusinessLogic
                 throw;
             }
 
+        }
+
+        public DoorOption dDoorOption(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Save()
+        {
+            throw new NotImplementedException();
+        }
+
+        public object DeleteDoorOption(DoorOption dDoorOption)
+        {
+            throw new NotImplementedException();
         }
     }
 }

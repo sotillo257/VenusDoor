@@ -53,7 +53,47 @@ namespace DataAccess
                             ModificationUser = int.Parse(item["ModificationUser"].ToString()),
                             Picture = item["Picture"].ToString(),
                             ProfilePicture = item["ProfilePicture"].ToString(),
+                            DoorType = new DoorType() { Id = int.Parse(item["IdDoorType"].ToString()), Description = item["DescripDoorType"].ToString() },
+                            DoorOption = new DoorOption() { Id = int.Parse(item["IdDoorOption"].ToString()), Description = item["DescripDoorOption"].ToString() },
+                            isOverlay = bool.Parse(item["isOverlay"].ToString()),
+                            isFingerPull = bool.Parse(item["isFingerPull"].ToString()),
 
+                        };
+                    }
+                }
+                return door;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
+
+        public TotalesDoors GetTotalDoorsxCompany(int Company)
+        {
+            TotalesDoors door = new TotalesDoors();
+            string sql = @"[spGetTotaleDoorsxCompany] '{0}'";
+            sql = string.Format(sql, Company);
+            try
+            {
+                DataSet ds = new DataSet();
+                ds = _MB.CreaDS(ds, "TotalesDoors", sql, _CN);
+                if (ds.Tables["TotalesDoors"].Rows.Count > 0)
+                {
+                    foreach (DataRow item in ds.Tables["TotalesDoors"].Rows)
+                    {
+                        door = new TotalesDoors()
+                        {
+                            DoorPending = int.Parse((item["DoorPending"].ToString() == "") ? "0" : item["DoorPending"].ToString()),
+                            DoorApprove = int.Parse((item["DoorApprove"].ToString() == "") ? "0" : item["DoorApprove"].ToString()),
+                            DoorInProcess = int.Parse((item["DoorInProcess"].ToString() == "") ? "0" : item["DoorInProcess"].ToString()),
+                            DoorCompleted = int.Parse((item["DoorCompleted"].ToString() == "") ? "0" : item["DoorCompleted"].ToString()),
+                            Active = int.Parse((item["Active"].ToString() == "") ? "0" : item["Active"].ToString()),
+                            Pending = int.Parse((item["Pending"].ToString() == "") ? "0" : item["Pending"].ToString()),
+                            Approve = int.Parse((item["Approved"].ToString() == "") ? "0" : item["Approved"].ToString()),
+                            InProcess = int.Parse((item["InProcess"].ToString() == "") ? "0" : item["InProcess"].ToString()),
+                            Completed = int.Parse((item["Completed"].ToString() == "") ? "0" : item["Completed"].ToString()),
                         };
                     }
                 }
@@ -69,7 +109,7 @@ namespace DataAccess
         public TotalesDoors GetTotalDoors()
         {
             TotalesDoors door = new TotalesDoors();
-            string sql = @"[spGetTotaleDoors]"; 
+            string sql = @"[spGetTotaleDoors] ";
             try
             {
                 DataSet ds = new DataSet();
@@ -141,6 +181,10 @@ namespace DataAccess
                             ModificationUser = int.Parse(item["ModificationUser"].ToString()),
                             Picture = item["Picture"].ToString(),
                             ProfilePicture = item["ProfilePicture"].ToString(),
+                            DoorType = new DoorType() { Id = int.Parse(item["IdDoorType"].ToString()), Description = item["DescripDoorType"].ToString() },
+                            DoorOption = new DoorOption() { Id = int.Parse(item["IdDoorOption"].ToString()), Description = item["DescripDoorOption"].ToString() },
+                            isOverlay = bool.Parse(item["isOverlay"].ToString()),
+                            isFingerPull = bool.Parse(item["isFingerPull"].ToString()),
 
                         });
                     }
@@ -156,13 +200,13 @@ namespace DataAccess
 
         public int InsertDoors(Doors pDoors)
         {
-            string sql = @"[spInsertDoors] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}', '{20}', '{21}', '{22}', '{23}', '{24}'";
+            string sql = @"[spInsertDoors] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}', '{20}', '{21}', '{22}', '{23}', '{24}', '{25}', '{26}', '{27}', '{28}'";
             sql = string.Format(sql, pDoors.DoorStyle.Id, pDoors.Material.Id, pDoors.TopRail.Id,pDoors.BottomRail.Id, 
                 pDoors.Preparation.Id, pDoors.Join.Id, pDoors.OutsideEdgeProfile.Id, 
                 pDoors.InsideEdgeProfile.Id, pDoors.VerticalDivisions.Id, pDoors.HorizontalDivisions.Id, pDoors.HingeDirection.Id, 
                 pDoors.HingePositions.Id, (pDoors.isDrill == true) ? 1 : 0, pDoors.Width.ToString().Replace(',', '.'), pDoors.Height.ToString().Replace(',', '.'), (pDoors.IsOpeningMeasurement == true) ? 1 : 0, 
                 pDoors.Status.Id, pDoors.CreationDate.ToString("yyyyMMdd"), pDoors.CreatorUser, pDoors.ModificationDate.ToString("yyyyMMdd"),
-                pDoors.ModificationUser, pDoors.Picture, pDoors.ProfilePicture, pDoors.Panel.Id, pDoors.PanelMaterial.Id);
+                pDoors.ModificationUser, pDoors.Picture, pDoors.ProfilePicture, pDoors.Panel.Id, pDoors.PanelMaterial.Id, pDoors.DoorType.Id, pDoors.DoorOption.Id, (pDoors.isOverlay == true) ? 1 : 0, (pDoors.isFingerPull == true) ? 1 : 0);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -175,13 +219,13 @@ namespace DataAccess
 
         public void UpdateDoors(Doors pDoors)
         {
-            string sql = @"[spUpdateDoors] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}', '{20}', '{21}', '{22}', '{23}'";
+            string sql = @"[spUpdateDoors] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}', '{20}', '{21}', '{22}', '{23}', '{24}', '{25}', '{26}', '{27}'";
             sql = string.Format(sql, pDoors.Id, pDoors.DoorStyle.Id, pDoors.Material.Id, pDoors.TopRail.Id, pDoors.BottomRail.Id,
                 pDoors.Preparation.Id, pDoors.Join.Id, pDoors.OutsideEdgeProfile.Id,
                 pDoors.InsideEdgeProfile.Id, pDoors.VerticalDivisions.Id, pDoors.HorizontalDivisions.Id, pDoors.HingeDirection.Id,
                 pDoors.HingePositions.Id, pDoors.isDrill, pDoors.Width.ToString().Replace(',', '.'), pDoors.Height.ToString().Replace(',', '.'), pDoors.IsOpeningMeasurement,
                 pDoors.Status.Id, pDoors.ModificationDate.ToString("yyyyMMdd"),
-                pDoors.ModificationUser, pDoors.Picture, pDoors.ProfilePicture, pDoors.Panel.Id, pDoors.PanelMaterial.Id);
+                pDoors.ModificationUser, pDoors.Picture, pDoors.ProfilePicture, pDoors.Panel.Id, pDoors.PanelMaterial.Id, pDoors.DoorType.Id, pDoors.DoorOption.Id, (pDoors.isOverlay == true) ? 1 : 0, (pDoors.isFingerPull == true) ? 1 : 0);
             try
             {
                 _MB.EjecutarSQL(_CN, sql);

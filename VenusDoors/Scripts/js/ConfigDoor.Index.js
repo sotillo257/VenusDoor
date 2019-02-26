@@ -13,17 +13,37 @@
 	GetAllVerticalDivisions();
 	GetAllHorizontalDivisions();
 	GetAllHingeDirection();
-	ValidateSession();
+	GetAllDoorType();
+	GetAllDoorOption();
+	PrintDoorOverlay();
+	//ValidateSession();
 
-	$("#btConfirm").on("click", function () {
-	    if (ValidarCamposVacios()) {
-	    InsertDoorsxUser();
+	//$("#btConfirm").on("click", function () {
+	//    if (ValidarCamposVacios()) {
+	//    InsertDoorsxUser();
+	//    } else {
+	//        LlammarModal("Danger", "You must fill all the fields.", " ");
+	//    }
+
+    //});
+
+	$(".iptHeight").keyup(function () {
+	    if ($(this).val() > 96) {
+	        HeightInchesMax();
 	    } else {
-	        LlammarModal("Danger", "You must fill all the fields.", " ");
+	        HingeCalculate();
 	    }
-
 	});
-    
+
+	$(document).on('change', '.iptHeight', function () {
+	    if($(this).val() < 5){
+	        HeightInchesMin();
+	    }else{
+	        HingeCalculate();
+	    }
+	});
+
+
 	$("#bt-conf-log").on("click", function () {
 	    LlammarModal("MLogin", "Sign in to your account to process your order!", " ");
 	});
@@ -32,290 +52,12 @@
 	    $("#File1").trigger('click');
 	});
 
-
-    //Show and Hide de los input de los HingePositions y calculo de distancias (KeyUp & OnChange)
-
-    $(".iptHeight").keyup(function (e) {
-        if ($(this).val() <= 36) {
-            if (e.keyup = true) {
-                $(".hp1").css('display', 'block');
-                $(".hp2").css('display', 'block');
-                $(".hp3").css('display', 'none');
-                $(".hp4").css('display', 'none');
-                $(".hp5").css('display', 'none');
-                $("#HingePositionsDiv").removeClass("col-md-4").addClass("col-md-3");
-                $("#HingePositionsDiv").removeClass("col-md-5");
-                $("#HingePositionsDiv").removeClass("col-md-6");
-            }
-        }
-        else if ($(this).val() <= 60) {
-            if (e.keyup = true) {
-                $(".hp1").css('display', 'block');
-                $(".hp2").css('display', 'block');
-                $(".hp3").css('display', 'block');
-                $(".hp4").css('display', 'none');
-                $(".hp5").css('display', 'none');
-                $("#HingePositionsDiv").removeClass("col-md-3").addClass("col-md-4");
-                $("#HingePositionsDiv").removeClass("col-md-5");
-                $("#HingePositionsDiv").removeClass("col-md-6");
-
-            }
-        } else if ($(this).val() <= 80) {
-            if (e.keyup = true) {
-                $(".hp1").css('display', 'block');
-                $(".hp2").css('display', 'block');
-                $(".hp3").css('display', 'block');
-                $(".hp4").css('display', 'block');
-                $(".hp5").css('display', 'none');
-                $("#HingePositionsDiv").removeClass("col-md-4").addClass("col-md-5");
-                $("#HingePositionsDiv").removeClass("col-md-3");
-                $("#HingePositionsDiv").removeClass("col-md-6");
-            }
-        } else if ($(this).val() > 80) {
-            if (e.keyup = true) {
-                $(".hp1").css('display', 'block');
-                $(".hp2").css('display', 'block');
-                $(".hp3").css('display', 'block');
-                $(".hp4").css('display', 'block');
-                $(".hp5").css('display', 'block');
-                $("#HingePositionsDiv").removeClass("col-md-5").addClass("col-md-6");
-                $("#HingePositionsDiv").removeClass("col-md-3");
-                $("#HingePositionsDiv").removeClass("col-md-4");
-            }
-        }
-        else {
-
-        }
+    $(document).on('change', '.form-control', function () {
+        GetPrices();
     });
-
-    $(document).on('change', '.iptHeight', function () {
-        if ($(this).val() <= 36) {            
-                $(".hp1").css('display', 'block');
-                $(".hp2").css('display', 'block');
-                $(".hp3").css('display', 'none');
-                $(".hp4").css('display', 'none');
-                $(".hp5").css('display', 'none');
-                $("#HingePositionsDiv").removeClass("col-md-4").addClass("col-md-3");
-                $("#HingePositionsDiv").removeClass("col-md-5");
-                $("#HingePositionsDiv").removeClass("col-md-6");            
-        }
-        else if ($(this).val() <= 60) {     
-                $(".hp1").css('display', 'block');
-                $(".hp2").css('display', 'block');
-                $(".hp3").css('display', 'block');
-                $(".hp4").css('display', 'none');
-                $(".hp5").css('display', 'none');
-                $("#HingePositionsDiv").removeClass("col-md-3").addClass("col-md-4");
-                $("#HingePositionsDiv").removeClass("col-md-5");
-                $("#HingePositionsDiv").removeClass("col-md-6");
-        }
-        else if ($(this).val() <= 80) {
-                $(".hp1").css('display', 'block');
-                $(".hp2").css('display', 'block');
-                $(".hp3").css('display', 'block');
-                $(".hp4").css('display', 'block');
-                $(".hp5").css('display', 'none');
-                $("#HingePositionsDiv").removeClass("col-md-4").addClass("col-md-5");
-                $("#HingePositionsDiv").removeClass("col-md-3");
-                $("#HingePositionsDiv").removeClass("col-md-6");
-        }
-        else if ($(this).val() > 80) {    
-                $(".hp1").css('display', 'block');
-                $(".hp2").css('display', 'block');
-                $(".hp3").css('display', 'block');
-                $(".hp4").css('display', 'block');
-                $(".hp5").css('display', 'block');
-                $("#HingePositionsDiv").removeClass("col-md-5").addClass("col-md-6");
-                $("#HingePositionsDiv").removeClass("col-md-3");
-                $("#HingePositionsDiv").removeClass("col-md-4");
-        }
-        else {
-
-        }
-    });
-
-    //$(".iptHeight").keyup(function (e) {
-    //    var Height = parseFloat($(this).val())
-    //    if ($(this).val() < 5) {
-    //        if (e.keyup = true) {
-    //            Height = 5;
-    //            var ip1 = 3.5;
-    //            var ip2 = Height - 3.5;
-    //            $('.iptHeight').val(Height);
-    //            GetPrices();
-    //            $('.HPinpt1').val(ip1);
-    //            $('.HPinpt2').val(ip2);
-    //            $('.HPinpt3').val("No hinge");
-    //            $('.HPinpt4').val("No hinge");
-    //            $('.HPinpt5').val("No hinge");
-    //        }
-    //    }
-    //    else if ($(this).val() >= 5 && $(this).val() < 37) {
-    //        if (e.keyup = true) {
-    //            var ip1 = 3.5;
-    //            var ip2 = Height - 3.5;
-    //            $('.HPinpt1').val(ip1);
-    //            $('.HPinpt2').val(ip2);
-    //            $('.HPinpt3').val("No hinge");
-    //            $('.HPinpt4').val("No hinge");
-    //            $('.HPinpt5').val("No hinge");
-    //        }
-    //    }
-    //    else if ($(this).val() >= 37 && $(this).val() < 61) {
-    //        if (e.keyup = true) {
-    //            var ip1 = 3.5;
-    //            var ip2 = Height / 2;
-    //            var ip3 = Height - 3.5;
-    //            $('.HPinpt1').val(ip1);
-    //            $('.HPinpt2').val(ip2);
-    //            $('.HPinpt3').val(ip3);
-    //            $('.HPinpt4').val("No hinge");
-    //            $('.HPinpt5').val("No hinge");
-    //        }
-    //    }
-    //    else if ($(this).val() >= 61 && $(this).val() < 81) {
-    //        if (e.keyup = true) {
-    //            var ip1 = 3.5;
-    //            var ip2 = ((Height - 7) / 3) + 3.5;
-    //            var ip3 = Height - (((Height - 7) / 3) + 3.5);
-    //            var ip4 = Height - 3.5;
-    //            $('.HPinpt1').val(ip1);
-    //            $('.HPinpt2').val(ip2);
-    //            $('.HPinpt3').val(ip3);
-    //            $('.HPinpt4').val(ip4);
-    //            $('.HPinpt5').val("No hinge");
-    //        }
-    //    }
-    //    else if ($(this).val() >= 81 && $(this).val() < 97) {
-    //        if (e.keyup = true) {
-    //            var ip1 = 3.5;
-    //            var ip2 = 3.5 + (((Height / 2) - 3.5) / 2);
-    //            var ip3 = Height / 2;
-    //            var ip4 = Height - (3.5 + (((Height / 2) - 3.5) / 2));
-    //            var ip5 = Height - 3.5;
-    //            $('.HPinpt1').val(ip1);
-    //            $('.HPinpt2').val(ip2);
-    //            $('.HPinpt3').val(ip3);
-    //            $('.HPinpt4').val(ip4);
-    //            $('.HPinpt5').val(ip5);
-    //        }
-    //    }
-    //    else {
-    //        if (e.keyup = true) {                
-    //            Height = 96;
-    //            var ip1 = 3.5;
-    //            var ip2 = 3.5 + (((Height / 2) - 3.5) / 2);
-    //            var ip3 = Height / 2;
-    //            var ip4 = Height - (3.5 + (((Height / 2) - 3.5) / 2));
-    //            var ip5 = Height - 3.5;
-    //            $('.iptHeight').val(Height);
-    //            GetPrices();
-    //            $('.HPinpt1').val(ip1);
-    //            $('.HPinpt2').val(ip2);
-    //            $('.HPinpt3').val(ip3);
-    //            $('.HPinpt4').val(ip4);
-    //            $('.HPinpt5').val(ip5);
-    //        }
-    //    }
-    //});
-
-    $(document).on('change', '.iptHeight', function () {
-        var Height = parseFloat($(this).val())
-        if ($(this).val() < 5) {
-
-            LlammarModal("Danger", "Error: Minimum is 5 inches", " ");
-            Height = 5;
-            var ip1 = 3.5;
-            var ip2 = Height - 3.5;
-            $('.iptHeight').val(Height);
-            GetPrices();
-            $('.HPinpt1').val(ip1);
-            $('.HPinpt2').val(ip2);
-            $('.HPinpt3').val("No hinge");
-            $('.HPinpt4').val("No hinge");
-            $('.HPinpt5').val("No hinge");
-
-        }
-        else if ($(this).val() >= 5 && $(this).val() < 37) {
-
-            var ip1 = 3.5;
-            var ip2 = Height - 3.5;
-            $('.HPinpt1').val(ip1);
-            $('.HPinpt2').val(ip2);
-            $('.HPinpt3').val("No hinge");
-            $('.HPinpt4').val("No hinge");
-            $('.HPinpt5').val("No hinge");
-
-        }
-        else if ($(this).val() >= 37 && $(this).val() < 61) {
-
-            var ip1 = 3.5;
-            var ip2 = Height / 2;
-            var ip3 = Height - 3.5;
-            $('.HPinpt1').val(ip1);
-            $('.HPinpt2').val(ip2);
-            $('.HPinpt3').val(ip3);
-            $('.HPinpt4').val("No hinge");
-            $('.HPinpt5').val("No hinge");
-
-        }
-        else if ($(this).val() >= 61 && $(this).val() < 81) {
-
-            var ip1 = 3.5;
-            var ip2 = ((Height - 7) / 3) + 3.5;
-            var ip3 = Height - (((Height - 7) / 3) + 3.5);
-            var ip4 = Height - 3.5;
-            $('.HPinpt1').val(ip1);
-            $('.HPinpt2').val(ip2);
-            $('.HPinpt3').val(ip3);
-            $('.HPinpt4').val(ip4);
-            $('.HPinpt5').val("No hinge");
-
-        }
-        else if ($(this).val() >= 81 && $(this).val() < 97) {
-
-            var ip1 = 3.5;
-            var ip2 = 3.5 + (((Height / 2) - 3.5) / 2);
-            var ip3 = Height / 2;
-            var ip4 = Height - (3.5 + (((Height / 2) - 3.5) / 2));
-            var ip5 = Height - 3.5;
-            $('.HPinpt1').val(ip1);
-            $('.HPinpt2').val(ip2);
-            $('.HPinpt3').val(ip3);
-            $('.HPinpt4').val(ip4);
-            $('.HPinpt5').val(ip5);
-
-        }
-        else {
-
-            LlammarModal("Danger", "Error: Max is 96 inches", " ");
-            Height = 96;
-            var ip1 = 3.5;
-            var ip2 = 3.5 + (((Height / 2) - 3.5) / 2);
-            var ip3 = Height / 2;
-            var ip4 = Height - (3.5 + (((Height / 2) - 3.5) / 2));
-            var ip5 = Height - 3.5;
-            $('.iptHeight').val(Height);
-            GetPrices();
-            $('.HPinpt1').val(ip1);
-            $('.HPinpt2').val(ip2);
-            $('.HPinpt3').val(ip3);
-            $('.HPinpt4').val(ip4);
-            $('.HPinpt5').val(ip5);
-
-        }
-    });
-
-    // Fin del Show and Hide de los input de los HingePositions y calculo de distancias (KeyUp & OnChange)HingePositions Calculo de distancias y Show and Hide de inputs
 
     $(document).on('change', '#cbisDrill', function () {
-        if ($("#cbisDrill").val() == "true") {
-            $("#HingeDirectionDiv").css('display', 'block');
-            $("#HingePositionsDiv").css('display', 'block');
-        } else if ($("#cbisDrill").val() == "false") {
-            $("#HingeDirectionDiv").css('display', 'none');
-            $("#HingePositionsDiv").css('display', 'none');
-        }
+        HingeShow();
     });
 
     $(document).on('change', '#cbMaterial', function () {
@@ -391,7 +133,6 @@
                      if (AllPanelType[i].Status.Id == 1 && AllPanelType[i].Id != 2) {
                         option += '<option value="' + AllPanelType[i].Id + '">' + AllPanelType[i].Description + '</option>';
                     }
-
                 }
                  $("#cbPanel").empty().append(option);
 
@@ -692,6 +433,163 @@ function ValidarCamposVacios() {
     return aux;
 }
 
+function HeightInchesMin() {
+    LlammarModal("Danger", "Error: Minimum is 5 inches", " ");
+    Height = 5;
+    var ip1 = 3.5;
+    var ip2 = Height - 3.5;
+    $('.iptHeight').val(Height);
+    GetPrices();
+
+    $(".hp1").css('display', 'block');
+    $(".hp2").css('display', 'block');
+    $(".hp3").css('display', 'none');
+    $(".hp4").css('display', 'none');
+    $(".hp5").css('display', 'none');
+    $("#HingePositionsDiv").removeClass("col-md-4").addClass("col-md-3");
+    $("#HingePositionsDiv").removeClass("col-md-5");
+    $("#HingePositionsDiv").removeClass("col-md-6");
+
+    $('.HPinpt1').val(ip1);
+    $('.HPinpt2').val(ip2);
+    $('.HPinpt3').val("No hinge");
+    $('.HPinpt4').val("No hinge");
+    $('.HPinpt5').val("No hinge");
+}
+
+function HeightInchesMax() {
+    LlammarModal("Danger", "Error: Max is 96 inches", " ");
+    Height = 96;
+    var ip1 = 3.5;
+    var ip2 = 3.5 + (((Height / 2) - 3.5) / 2);
+    var ip3 = Height / 2;
+    var ip4 = Height - (3.5 + (((Height / 2) - 3.5) / 2));
+    var ip5 = Height - 3.5;
+    $('.iptHeight').val(Height);
+    GetPrices();
+
+    $(".hp1").css('display', 'block');
+    $(".hp2").css('display', 'block');
+    $(".hp3").css('display', 'block');
+    $(".hp4").css('display', 'block');
+    $(".hp5").css('display', 'block');
+    $("#HingePositionsDiv").removeClass("col-md-5").addClass("col-md-6");
+    $("#HingePositionsDiv").removeClass("col-md-3");
+    $("#HingePositionsDiv").removeClass("col-md-4");
+
+    $('.HPinpt1').val(ip1);
+    $('.HPinpt2').val(ip2);
+    $('.HPinpt3').val(ip3);
+    $('.HPinpt4').val(ip4);
+    $('.HPinpt5').val(ip5);
+}
+
+function HingeCalculate() {
+        var Height = parseFloat($(".iptHeight").val())
+        if (Height >= 5 && Height < 37) {
+
+            var ip1 = 3.5;
+            var ip2 = Height - 3.5;
+
+            $(".hp1").css('display', 'block');
+            $(".hp2").css('display', 'block');
+            $(".hp3").css('display', 'none');
+            $(".hp4").css('display', 'none');
+            $(".hp5").css('display', 'none');
+            $("#HingePositionsDiv").removeClass("col-md-4").addClass("col-md-3");
+            $("#HingePositionsDiv").removeClass("col-md-5");
+            $("#HingePositionsDiv").removeClass("col-md-6");
+
+            $('.HPinpt1').val(ip1);
+            $('.HPinpt2').val(ip2);
+            $('.HPinpt3').val("No hinge");
+            $('.HPinpt4').val("No hinge");
+            $('.HPinpt5').val("No hinge");
+
+        }
+        else if (Height >= 37 && Height < 61) {
+
+            var ip1 = 3.5;
+            var ip2 = Height / 2;
+            var ip3 = Height - 3.5;
+
+            $(".hp1").css('display', 'block');
+            $(".hp2").css('display', 'block');
+            $(".hp3").css('display', 'block');
+            $(".hp4").css('display', 'none');
+            $(".hp5").css('display', 'none');
+            $("#HingePositionsDiv").removeClass("col-md-3").addClass("col-md-4");
+            $("#HingePositionsDiv").removeClass("col-md-5");
+            $("#HingePositionsDiv").removeClass("col-md-6");
+
+            $('.HPinpt1').val(ip1);
+            $('.HPinpt2').val(ip2);
+            $('.HPinpt3').val(ip3);
+            $('.HPinpt4').val("No hinge");
+            $('.HPinpt5').val("No hinge");
+
+        }
+        else if (Height >= 61 && Height < 81) {
+
+            var ip1 = 3.5;
+            var ip2 = ((Height - 7) / 3) + 3.5;
+            var ip3 = Height - (((Height - 7) / 3) + 3.5);
+            var ip4 = Height - 3.5;
+
+            $(".hp1").css('display', 'block');
+            $(".hp2").css('display', 'block');
+            $(".hp3").css('display', 'block');
+            $(".hp4").css('display', 'block');
+            $(".hp5").css('display', 'none');
+            $("#HingePositionsDiv").removeClass("col-md-4").addClass("col-md-5");
+            $("#HingePositionsDiv").removeClass("col-md-3");
+            $("#HingePositionsDiv").removeClass("col-md-6");
+
+            $('.HPinpt1').val(ip1);
+            $('.HPinpt2').val(ip2);
+            $('.HPinpt3').val(ip3);
+            $('.HPinpt4').val(ip4);
+            $('.HPinpt5').val("No hinge");
+
+        }
+        else if (Height >= 81 && Height < 97) {
+
+            var ip1 = 3.5;
+            var ip2 = 3.5 + (((Height / 2) - 3.5) / 2);
+            var ip3 = Height / 2;
+            var ip4 = Height - (3.5 + (((Height / 2) - 3.5) / 2));
+            var ip5 = Height - 3.5;
+
+            $(".hp1").css('display', 'block');
+            $(".hp2").css('display', 'block');
+            $(".hp3").css('display', 'block');
+            $(".hp4").css('display', 'block');
+            $(".hp5").css('display', 'block');
+            $("#HingePositionsDiv").removeClass("col-md-5").addClass("col-md-6");
+            $("#HingePositionsDiv").removeClass("col-md-3");
+            $("#HingePositionsDiv").removeClass("col-md-4");
+
+            $('.HPinpt1').val(ip1);
+            $('.HPinpt2').val(ip2);
+            $('.HPinpt3').val(ip3);
+            $('.HPinpt4').val(ip4);
+            $('.HPinpt5').val(ip5);
+
+        }        
+}
+
+function HingeShow() {
+    var drilling = ($("#cbisDrill").val() == 1) ? false : true;
+    if (drilling == true) {
+        $("#HingeDirectionDiv").css('display', 'block');
+        $("#HingePositionsDiv").css('display', 'block');
+        HingeCalculate();
+    } else {
+        $("#HingeDirectionDiv").css('display', 'none');
+        $("#HingePositionsDiv").css('display', 'none');
+    }
+}
+
 function GetAllMaterial() {
     $.ajax({
         url: urlGetAllMaterial,
@@ -701,6 +599,7 @@ function GetAllMaterial() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
+                allMaterial = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
                     if (data[i].Status.Id == 1) {
@@ -729,7 +628,8 @@ function GetAllDoorStyle() {
 		async: false,
 		contentType: "application/json; charset=utf-8",
 		success: function (data) {
-			if (data != null) {
+		    if (data != null) {
+		        allDoorStyle = data;
 				var option = '';
 				for (var i = 0; i < data.length; i++) {
 				    if (data[i].Status.Id == 1) {
@@ -758,7 +658,7 @@ function GetAllInsideEdgeProfile() {
         async: false,
         contentType: "application/json; charset=utf-8",
         success: function (data) {
-            if (data != null) {
+            if (data != null) {                
                 AllInsideEdgeProfile = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
@@ -819,6 +719,7 @@ function GetAllBottomRail() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
+                AllStileWidth = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
                     if (data[i].Status.Id == 1) {
@@ -848,6 +749,7 @@ function GetAllTopRail() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
+                AllRailWidth = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
                     if (data[i].Status.Id == 1) {
@@ -877,6 +779,7 @@ function GetAllJoin() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
+                AllDoorAssembly = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
                     if (data[i].Status.Id == 1) {
@@ -905,6 +808,7 @@ function GetAllPreparation() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
+                AllPanelStyle = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
                     if (data[i].Status.Id == 1) {
@@ -995,6 +899,7 @@ function GetAllVerticalDivisions() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
+                AllVerticalDivisions = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
                     if (data[i].Status.Id == 1) {
@@ -1023,6 +928,7 @@ function GetAllHorizontalDivisions() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
+                AllHorizontalDivisions = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
                     if (data[i].Status.Id == 1) {
@@ -1051,6 +957,7 @@ function GetAllHingeDirection() {
         async: false,
         contentType: "application/json; charset=utf-8",
         success: function (data) {
+            AllHingeDirection = data;
             if (data != null) {
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
@@ -1072,6 +979,78 @@ function GetAllHingeDirection() {
     });
 }
 
+function GetAllDoorType() {
+    $.ajax({
+        url: urlGetAllDoorType,
+        cache: false,
+        type: 'POST',
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        success: function (data) {
+            if (data != null) {
+                allDoorType = data;
+                var option = '';
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i].Status.Id == 1) {
+                        option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
+                    }
+
+                }
+                $("#cbDoorType").empty().append(option);
+
+            }
+            else {
+                LlammarModal("Danger", "Error obtaining DoorType", " ");
+            }
+        },
+        error: function (err) {
+            LlammarModal("Danger", "Error.", " ");
+        }
+    });
+}
+
+function GetAllDoorOption() {
+    $.ajax({
+        url: urlGetAllDoorOption,
+        cache: false,
+        type: 'POST',
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        success: function (data) {
+            if (data != null) {
+                allDoorOption = data;
+                var radioButt = '';
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i].Status.Id == 1) {
+                        console.log(data);
+                        radioButt += '<label style="margin-left: 8px;">';
+                        radioButt += '<input style="margin-right:5px" name="radioOption" type="radio"  data-id="' + data[i].Id + '"></input>' + data[i].Description + '';
+                        radioButt += '</label>';
+                        $("#DivDoorOption").html(radioButt);
+                    }
+
+                }
+                
+
+            }
+            else {
+                LlammarModal("Danger", "Error obtaining DoorOption", " ");
+            }
+        },
+        error: function (err) {
+            LlammarModal("Danger", "Error.", " ");
+        }
+    });
+}
+
+function PrintDoorOverlay(pOverlay) {
+    var lbl = '<label><input style="margin-right: 8px;" type="radio" name="radioOver" data-id="1">Insert Door Type</label>';
+    lbl += '<label style="margin-left: 10px;"><input style="margin-right: 8px;" type="radio" name="radioOver" data-id="2">Overlay Door Type</label>';
+    $("#isOverlay").html(lbl);    
+}
+
+
+
 function InsertDoorsxUser() {
     var itemCost = parseFloat($("#iptCost").val());
     var DoorQuantity = $("#iptQuantity").val();
@@ -1080,21 +1059,32 @@ function InsertDoorsxUser() {
     var Tx = parseFloat(0.0825);
     var Taxes = (parseFloat(OrdSubTotal) * Tx).toFixed(2);
     var OrdTotal = (parseFloat(OrdSubTotal) + parseFloat(Taxes)).toFixed(2);
+    var DoorOp = $('input[name=radioOption]:checked').attr("data-id");
+    var isOver = ($('input[name=radioOver]:checked').attr("data-id") == 1) ? false : true;
+    var drillingV = ($("#cbisDrill").val()==1)? false: true;
+    var HingeDirection = $("#cbHingeDirection").val();
+    var HingePositions;
+    if(drillingV == true){
+        HingeDirection = $("#cbHingeDirection").val();
+    } else  {
+        HingeDirection = 3;
+        HingePositions = 2;
+    }
     var datos =
          {
              
              pDoorsxUser: {
-                 User: { Id: 1 },
+                 User: {Id: 1},
                  Status: {Id: 1},
                  Material: { Id: $("#cbMaterial").val() },                            
                  DoorStyle: { Id: $("#cbDoorStyle").val() },                                                        
-                 TopRail: { Id: $("#cbTopRail").val() },
-                 BottomRail: { Id: $("#cbBottomRail").val() },
-                 Preparation: { Id: $("#cbPreparation").val() },
+                 TopRail: { Id: $("#cbRailWidth").val() },
+                 BottomRail: { Id: $("#cbStileWidth").val() },
+                 Preparation: { Id: 1 },
                  Panel: { Id: $("#cbPanel").val() },
                  PanelMaterial: { Id: $("#cbPanelMaterial").val() },
-                 IsOpeningMeasurement: $("#cbIsOpeningMeasurement").val(),
-                 Join: { Id: $("#cbJoin").val() },
+                 IsOpeningMeasurement: ($("#cbIsOpeningMeasurement").val()==1)? false: true,
+                 Join: { Id: $("#cbDoorAssembly").val() },
                  OutsideEdgeProfile: { Id: $("#cbOutsideEdgeProfile").val() },
                  InsideEdgeProfile: { Id: $("#cbInsideEdgeProfile").val() },                            
                  VerticalDivisions: { Id: $("#cbVerticalDivisions").val() },
@@ -1106,8 +1096,13 @@ function InsertDoorsxUser() {
                  SubTotal: DoorSubTotal,
                  Picture: $('#DoorPicture').attr('src'),
                  ProfilePicture: $('#ProfilePicture').attr('src'),
-                 isDrill: $("#cbisDrill").val(),
-                 HingeDirection: { Id: $("#cbHingeDirection").val()},
+                 isDrill: drillingV,
+                 HingeDirection: { Id: HingeDirection },
+                 HingePositions: { Id: HingePositions },
+                 DoorType: { Id: $("#cbDoorType").val() },
+                 DoorOption: { Id: DoorOp },
+                 isOverlay: isOver,
+                 isFingerPull: ($("#cbisFingerPull").val()==1)? false: true,
              },
                         
              Ord:{
@@ -1147,6 +1142,106 @@ function InsertDoorsxUser() {
                 });
 }
 
+function UpdateDoorsxUser() {
+    var itemCost = parseFloat($("#iptCost").val());
+    var DoorQuantity = $("#iptQuantity").val();
+    var DoorSubTotal = itemCost * DoorQuantity;
+    var OrdSubTotal = DoorSubTotal;
+    var Tx = parseFloat(0.0825);
+    var Taxes = (parseFloat(OrdSubTotal) * Tx).toFixed(2);
+    var OrdTotal = (parseFloat(OrdSubTotal) + parseFloat(Taxes)).toFixed(2);
+    var DoorOp = $('input[name=radioOption]:checked').attr("data-id");
+    var isOver = ($('input[name=radioOver]:checked').attr("data-id") == 1) ? false : true;
+    var drillingV = ($("#cbisDrill").val() == 1) ? false : true;
+    var HingeDirection = $("#cbHingeDirection").val();
+    var HingePositions;
+    if (drillingV == true) {
+        HingeDirection = $("#cbHingeDirection").val();
+        if ($("#idHingeP").val() == 2 ) {
+            HingePositions = 0;
+        } else {
+            HingePositions = $("#idHingeP").val();
+        }
+    } else {
+        HingeDirection = 3;
+        HingePositions = 2;
+    }
+    var datos =
+         {
+             
+             pDoorsxUser: {
+                 Id: $("#idDoor").val(),
+                 User: { Id: 1 },
+                 Order: {Id: $("#idorder").val()},
+                 Status: {Id: 1},
+                 Material: { Id: $("#cbMaterial").val() },                            
+                 DoorStyle: { Id: $("#cbDoorStyle").val() },                                                        
+                 TopRail: { Id: $("#cbRailWidth").val() },
+                 BottomRail: { Id: $("#cbStileWidth").val() },
+                 Preparation: { Id: 1 },
+                 Panel: { Id: $("#cbPanel").val() },
+                 PanelMaterial: { Id: $("#cbPanelMaterial").val() },
+                 IsOpeningMeasurement: ($("#cbIsOpeningMeasurement").val() == 1) ? false : true,
+                 Join: { Id: $("#cbDoorAssembly").val() },
+                 OutsideEdgeProfile: { Id: $("#cbOutsideEdgeProfile").val() },
+                 InsideEdgeProfile: { Id: $("#cbInsideEdgeProfile").val() },                            
+                 VerticalDivisions: { Id: $("#cbVerticalDivisions").val() },
+                 HorizontalDivisions: { Id: $("#cbHorizontalDivisions").val() },
+                 Width: parseFloat($("#iptWidth").val()),
+                 Height: parseFloat($("#iptHeight").val()),
+                 Quantity: DoorQuantity,
+                 ItemCost: itemCost,
+                 SubTotal: DoorSubTotal,
+                 Picture: $('#DoorPicture').attr('src'),
+                 ProfilePicture: $('#ProfilePicture').attr('src'),
+                 isDrill: drillingV,
+                 HingeDirection: { Id: $("#cbHingeDirection").val() },
+                 HingePositions: { Id: HingePositions },
+                 DoorType: { Id: $("#cbDoorType").val() },
+                 DoorOption: { Id: DoorOp },
+                 isOverlay: isOver,
+                 isFingerPull: ($("#cbisFingerPull").val() == 1) ? false : true,
+             },
+                        
+             Ord: {
+                 Id: $("#idorder").val(),
+                 SubTotal: OrdSubTotal,
+                 Tax: parseFloat(Taxes),
+                 Total: parseFloat(OrdTotal),
+             },
+
+             HingeP: {
+                 Id: $("#idHingeP").val(),
+                 Status: { Id: 1 },
+                 Position1: $("#HP1").val(),
+                 Position2: $("#HP2").val(),
+                 Position3: $("#HP3").val(),
+                 Position4: $("#HP4").val(),
+                 Position5: $("#HP5").val(),
+             },
+         };
+                console.log(datos);
+                $.ajax({
+                    type: 'POST',
+                    data: JSON.stringify(datos),
+                    url: urlUpdateDoorsxUser,
+                    dataType: "json",
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (result) {
+
+                        //Validar data para ver si mostrar error al guardar o exito al guardar
+                        if (result == true) {
+                            LlammarModal("Succes", "Successful door creation!", "You can go to see your order and specify your purchase or, you can create another door.");
+                        } else {
+                            LlammarModal("Danger", "An error occurred during the process.", "Check your internet connection I tried again");
+                        }
+                    },
+                    error: function (err) {
+                        alert("error");
+                    },
+              
+                });
+}
 
 
 $(document).on('change', '.eventChange', function () {
@@ -1165,20 +1260,20 @@ function GetPrices() {
     $("#iptCost").val(getPriceDoor($("#cbMaterial").val(), $("#cbPanel").val(), H, W, TR, BR));
 }
 
-function ValidateSession() {
-    $.ajax({
-        type: 'POST',
-        url: urlValidateSession,
-        dataType: "json",
-        contentType: 'application/json; charset=utf-8',
-        success: function (result) {
+//function ValidateSession() {
+//    $.ajax({
+//        type: 'POST',
+//        url: urlValidateSession,
+//        dataType: "json",
+//        contentType: 'application/json; charset=utf-8',
+//        success: function (result) {
 
-            if (result == false) {
-                LlammarModal("MLogin", "Sign in to your account to start building doors!", " ");
-            } 
-        },
-    });
-}
+//            if (result == false) {
+//                LlammarModal("MLogin", "Sign in to your account to start building doors!", " ");
+//            } 
+//        },
+//    });
+//}
 function ChangeProfile() {
     var Outside = $('#cbOutsideEdgeProfile').val();
     var Inside = $('#cbInsideEdgeProfile').val();

@@ -2916,30 +2916,30 @@ namespace VenusDoors.Controllers
         }
         }
 
-        [HttpPost]
-        public ActionResult GetAllType(Model.Type gType)
-        {
-            if (Session["UserID"] == null)
-            {
-                return View();
-            }
-            else
-            {
+        //[HttpPost]
+        //public ActionResult GetAllType(Model.Type gType)
+        //{
+        //    if (Session["UserID"] == null)
+        //    {
+        //        return View();
+        //    }
+        //    else
+        //    {
 
-                try
-                {
+        //        try
+        //        {
 
-                    BusinessLogic.lnType _LBL = new BusinessLogic.lnType();
+        //            BusinessLogic.lnType _LBL = new BusinessLogic.lnType();
 
-                    return Json(_LBL.GetAllType(), JsonRequestBehavior.AllowGet);
+        //            return Json(_LBL.GetAllType(), JsonRequestBehavior.AllowGet);
 
-                }
-                catch
-                {
-                    return Json(false, JsonRequestBehavior.AllowGet);
-                }
-            }
-        }
+        //        }
+        //        catch
+        //        {
+        //            return Json(false, JsonRequestBehavior.AllowGet);
+        //        }
+        //    }
+        //}
         #endregion
 
         #region User
