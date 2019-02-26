@@ -125,7 +125,7 @@
     });
 
     $(document).on('change', '#cbDoorStyle', function () {
-        
+        var bandera = true;
         if ($("#cbDoorStyle").val() == 1002) {
           var panelType =  $("#cbPanel").val();
           option = '<option value="0">Select</option>';
@@ -203,9 +203,22 @@
             }
             $("#cbPanel").empty().append(option);
             $("#cbPanel").val(5);
+        } else if ($("#cbDoorStyle").val() == 1010) {
+            llenarComboInsideAndOutside();
+             var option = '<option value="slab">Slab</option>';                
+             $("#cbPanel").empty().append(option);
+             $("#cbInsideEdgeProfile").empty().append(option);
+             $("#cbOutsideEdgeProfile").empty().append(option);
+             $("#cbDoorAssembly").empty().append(option);
+            $('#DoorPicture').attr('src', "/Content/img/Doors/slab.png");
+            $('#ProfilePicture').attr('src', "/Content/img/Profile/slab.png");
+            bandera = false;
         }
-        changeDoorPicture();
-        ChangeProfile();
+        if (bandera) {
+            changeDoorPicture();
+            ChangeProfile();
+        }
+       
     });
 });
 
@@ -1455,7 +1468,11 @@ function FlatPanelDoor(Style) {
            
                 DoorUrl = "Cabinet Vector-13.png";
            
-        }else {
+        } else if (Style == 1010) {
+
+            DoorUrl = "Cabinet Vector-13.png";
+
+        } else {
             DoorUrl = "Cabinet Vector-02.png";
         }
         $('#DoorPicture').attr('src', urlFolder + DoorUrl);
