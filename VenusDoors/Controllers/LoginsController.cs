@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Model;
 using System.Net.Mail;
 using System.Text;
+using System.Web.Security;
 
 namespace VenusDoors.Controllers
 {
@@ -272,7 +273,7 @@ namespace VenusDoors.Controllers
                         System.Web.HttpContext.Current.Session["UserType"] = userDetails.Type.Id;
                         System.Web.HttpContext.Current.Session["IdCompany"] = userDetails.Company.Id;
                         System.Web.HttpContext.Current.Session["IdTypeCompany"] = userDetails.Company.Id;
-
+                        SetupFormsAuthTicket(userDetails, true);
                         return Json(1, JsonRequestBehavior.AllowGet);
                     }
                     else
@@ -328,8 +329,39 @@ namespace VenusDoors.Controllers
 
         public ActionResult LogOut()
         {
+            clearCookie();
             Session.Abandon();
             return RedirectToAction("Index", "Logins");
+        }
+
+        private void SetupFormsAuthTicket(User Usuario, bool persistanceFlag)
+        {
+
+            FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(1,
+                                    Usuario.Person.Name,
+                                    DateTime.Now,
+                                    DateTime.Now.AddMinutes(30),
+                                    persistanceFlag,
+                                    Usuario.Id.ToString());
+
+            string encTicket = FormsAuthentication.Encrypt(authTicket);
+            this.Response.Cookies.Add(new HttpCookie("VenusCabinetDoorsCookie", encTicket));
+
+        }
+        private void clearCookie()
+        {
+            FormsAuthentication.SignOut();
+            Session.Abandon();
+
+            // clear authentication cookie
+            HttpCookie cookie1 = new HttpCookie("VenusCabinetDoorsCookie", "");
+            cookie1.Expires = DateTime.Now.AddYears(-1);
+            Response.Cookies.Add(cookie1);
+
+            // clear session cookie (not necessary for your current problem but i would recommend you do it anyway)
+            HttpCookie cookie2 = new HttpCookie("VenusCabinetDoorsCookie", "");
+            cookie2.Expires = DateTime.Now.AddYears(-1);
+            Response.Cookies.Add(cookie2);
         }
     }
 }
