@@ -1907,7 +1907,7 @@ textarea.form-control.parsley-error,
 .custom-select.is-invalid,
 input.custom-select.parsley-error,
 textarea.custom-select.parsley-error {
-  border-color: #dc3545;
+  border-color: #dc3545!important;
 }
 .was-validated .form-control:invalid:focus, .was-validated .dataTables_filter input:invalid:focus, .dataTables_filter .was-validated input:invalid:focus, .form-control.is-invalid:focus, .dataTables_filter input.is-invalid:focus, .dataTables_filter input.parsley-error:focus, input.form-control.parsley-error:focus,
 textarea.form-control.parsley-error:focus,

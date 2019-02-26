@@ -323,129 +323,6 @@ function llenarComboInsideAndOutside() {
     $("#cbOutsideEdgeProfile").val(outside);
 }
 
-function ValidarCamposVacios() {
-    var aux = true;
-    if ($('#cbMaterial').val() == 0) {
-        $('#cbMaterial').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#cbMaterial').removeClass("is-invalid");
-    }
-
-    if ($('#iptQuantity').val() == "") {
-        $('#iptQuantity').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#iptQuantity').removeClass("is-invalid");
-    }
-
-    if ($('#cbDoorStyle').val() == 0) {
-        $('#cbDoorStyle').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#cbDoorStyle').removeClass("is-invalid");
-    }
-
-    if ($('#cbTopRail').val() == 0) {
-        $('#cbTopRail').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#cbTopRail').removeClass("is-invalid");
-    }
-
-    if ($('#cbBottomRail').val() == 0) {
-        $('#cbBottomRail').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#cbBottomRail').removeClass("is-invalid");
-    }
-
-    if ($('#cbPreparation').val() == 0) {
-        $('#cbPreparation').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#cbPreparation').removeClass("is-invalid");
-    }
-
-    if ($('#cbPanel').val() == 0) {
-        $('#cbPanel').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#cbPanel').removeClass("is-invalid");
-    }
-
-    if ($('#cbPanelMaterial').val() == 0) {
-        $('#cbPanelMaterial').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#cbPanelMaterial').removeClass("is-invalid");
-    }
-
-    if ($('#cbIsOpeningMeasurement').val() == 0) {
-        $('#cbIsOpeningMeasurement').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#cbIsOpeningMeasurement').removeClass("is-invalid");
-    }
-
-    if ($('#cbJoin').val() == 0) {
-        $('#cbJoin').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#cbJoin').removeClass("is-invalid");
-    }
-
-    if ($('#cbOutsideEdgeProfile').val() == 0) {
-        $('#cbOutsideEdgeProfile').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#cbOutsideEdgeProfile').removeClass("is-invalid");
-    }
-
-    if ($('#cbInsideEdgeProfile').val() == 0) {
-        $('#cbInsideEdgeProfile').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#cbInsideEdgeProfile').removeClass("is-invalid");
-    }
-
-    if ($('#cbVerticalDivisions').val() == 0) {
-        $('#cbVerticalDivisions').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#cbVerticalDivisions').removeClass("is-invalid");
-    }
-
-    if ($('#cbHorizontalDivisions').val() == 0) {
-        $('#cbHorizontalDivisions').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#cbHorizontalDivisions').removeClass("is-invalid");
-    }
-
-    if ($('#iptWidth').val() == "") {
-        $('#iptWidth').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#iptWidth').removeClass("is-invalid");
-    }
-
-    if ($('#iptHeight').val() == "") {
-        $('#iptHeight').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#iptHeight').removeClass("is-invalid");
-    }
-
-    if ($('#cbisDrill').val() == "") {
-        $('#cbisDrill').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#cbisDrill').removeClass("is-invalid");
-    }
-    return aux;
-}
-
 function HeightInchesMin() {
     LlammarModal("Danger", "Error: Minimum is 5 inches", " ");
     Height = 5;
@@ -592,8 +469,8 @@ function HingeCalculate() {
 }
 
 function HingeShow() {
-    var drilling = ($("#cbisDrill").val() == 1) ? false : true;
-    if (drilling == true) {
+    var drilling = $("#cbisDrill").val();
+    if (drilling == 2) {
         $("#HingeDirectionDiv").css('display', 'block');
         $("#HingePositionsDiv").css('display', 'block');
         HingeCalculate();
@@ -1079,6 +956,7 @@ function InsertDoorsxUser() {
     var HingePositions;
     if(drillingV == true){
         HingeDirection = $("#cbHingeDirection").val();
+        HingePositions = 0;
     } else  {
         HingeDirection = 3;
         HingePositions = 2;
@@ -1115,7 +993,7 @@ function InsertDoorsxUser() {
                  DoorType: { Id: $("#cbDoorType").val() },
                  DoorOption: { Id: DoorOp },
                  isOverlay: isOver,
-                 isFingerPull: ($("#cbisFingerPull").val()==1)? false: true,
+                 isFingerPull: ($("#cbFingerPull").val() == 1) ? false : true,
              },
                         
              Ord:{
@@ -1214,12 +1092,12 @@ function UpdateDoorsxUser() {
                  Picture: $('#DoorPicture').attr('src'),
                  ProfilePicture: $('#ProfilePicture').attr('src'),
                  isDrill: drillingV,
-                 HingeDirection: { Id: $("#cbHingeDirection").val() },
+                 HingeDirection: { Id: HingeDirection },
                  HingePositions: { Id: HingePositions },
                  DoorType: { Id: $("#cbDoorType").val() },
                  DoorOption: { Id: DoorOp },
                  isOverlay: isOver,
-                 isFingerPull: ($("#cbisFingerPull").val() == 1) ? false : true,
+                 isFingerPull: ($("#cbFingerPull").val() == 1) ? false : true,
              },
                         
              Ord: {
@@ -1282,7 +1160,7 @@ function GetPrices() {
     var RT;
     var H = parseFloat($("#iptHeight").val());
     var W = parseFloat($("#iptWidth").val());
-    $("#iptCost").val(getPriceDoor($("#cbMaterial").val(), $("#cbPanel").val(), H, W, TR, BR));
+    $("#iptCost").val(!isNaN(getPriceDoor($("#cbMaterial").val(), $("#cbPanel").val(), H, W, TR, BR))?getPriceDoor($("#cbMaterial").val(), $("#cbPanel").val(), H, W, TR, BR) : '0.00' );
 }
 
 //function ValidateSession() {
