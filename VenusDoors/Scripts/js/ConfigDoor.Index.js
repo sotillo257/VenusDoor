@@ -1527,7 +1527,7 @@ function changeDoorPicture() {
 function FlatPanelDoor(Style) {
     var stile = $('#cbTopRail').val();
     var rail = $('#cbBottomRail').val();
-    var DoorUrl = "img11.png";
+    var DoorUrl = "Cabinet Vector-02.png";
     var urlFolder = "/Content/img/Doors/";
    
        
@@ -1575,7 +1575,7 @@ function FlatPanelDoor(Style) {
 function RaisedPanelDoor(Style) {
     var stile = $('#cbTopRail').val();
     var rail = $('#cbBottomRail').val();
-    var DoorUrl = "img11.png";
+    var DoorUrl = "Cabinet Vector-07.png";
     var urlFolder = "/Content/img/Doors/";
     
         if (stile == 3 && rail == 3) {
