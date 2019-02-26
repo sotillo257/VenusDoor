@@ -16,8 +16,5 @@ namespace DataAccess
         public MetodosDB.MetodosDB _MB = new MetodosDB.MetodosDB(); 
 
         public SqlConnection connection = new SqlConnection();
-
-
     }
-
 }

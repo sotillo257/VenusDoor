@@ -37,4 +37,10 @@
                 $("#modalConfirmOrderSummary").modal("show");
             }
 
+            if (TipoModal == "ConfigM") {
+                $("#TituloCM").html(Titulo);
+                $("#MensageCM").html(Mensaje);
+                $("#modalCongraCofigModal").modal("show");
+            }
+
 }
