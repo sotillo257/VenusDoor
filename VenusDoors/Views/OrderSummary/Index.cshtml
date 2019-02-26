@@ -88,11 +88,12 @@
                     <th>Widht</th>
                     <th>Height</th>
                     <th>Door Style</th>
+                    <th>Material</th>
                     <th>Panel Type</th>
+                    <th>Door Type</th>
                     <th>U. Price</th>
                     <th>Total</th>
-                    <th>Material</th>
-                    <th>Door Type</th>
+                   
                     <th style="text-align:center"><i class="fa fa-flash"></i></th>
                 </tr>
             </thead>
@@ -119,15 +120,16 @@
                             
                             <tr>
                                 <td><img style="width: 80px;" src="@i.Picture"></td>
-                                <td>@i.Quantity</td>
-                                <td>@i.Width</td>
-                                <td>@i.Height</td>
+                                <td>@i.Quantity.ToString().Replace(',','.')</td>
+                                <td>@i.Width.ToString("N0") 1/2</td>
+                                <td>@i.Height.ToString("N0") 1/2</td>
                                 <td>@i.DoorStyle.Description</td>
-                                <td>@i.Panel.Description</td>
-                                <td><span>$</span>@i.ItemCost</td>
-                                <td><span>$</span>@i.SubTotal</td>
                                 <td>@i.Material.Description</td>
+                                <td>@i.Panel.Description</td>
                                 <td>@i.DoorOption.Description</td>
+                                <td><span>$</span>@i.ItemCost.ToString().Replace(',', '.')</td>
+                                <td><span>$</span>@i.SubTotal.ToString().Replace(',', '.')</td>
+                                
 
                                 <td id="tddelete" style="display: flex; padding-top: 35px;">
                                     <button class="Cursor Details btn btn-primary btn-icon" data-toggle="modal" data-target="#modalInsert" data-id="@i.Id" style="width: 37px;height: 37px;" type="submit"><i class="fa fa-list"></i></button>
@@ -163,9 +165,9 @@
                     <input hidden id="idtotal" value="@ord.Total" />
                     <input hidden id="idstatus" value="@ord.Status.Id" />
                     <div class="col-md-7">
-                        <h5 style="color:#7b7979">Sub-Total: <span>$</span>@ord.SubTotal</h5>
-                        <h5 style="color:#7b7979">Tax: <span>$</span>@ord.Tax</h5>
-                        <h3 style="color:#000">Total Price: <span>$</span>@ord.Total</h3>
+                        <h5 style="color:#7b7979">Sub-Total: <span>$</span>@ord.SubTotal.ToString().Replace(',', '.')</h5>
+                        <h5 style="color:#7b7979">Tax: <span>$</span>@ord.Tax.ToString().Replace(',', '.')</h5>
+                        <h3 style="color:#000">Total Price: <span>$</span>@ord.Total.ToString().Replace(',', '.')</h3>
                     </div>
                 }
                 else
