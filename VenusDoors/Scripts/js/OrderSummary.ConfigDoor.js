@@ -12,8 +12,11 @@
         $("#iptQuantity").prop('disabled', false);
         $("#iptWidth").prop('disabled', false);
         $("#iptHeight").prop('disabled', false);
+        $("input[name=radioOption]").attr("disabled", false);
+        $("input[name=radioOver]").attr("disabled", false);
         $(".select2-selection").css('background-color', '#fff!important');
         LimpiarCombos();
+        HingeShow();
     });
 
     $("#btModify").on('click', function () {
@@ -24,6 +27,7 @@
         $("#btXclose").hide();
         $("#btConfAdd").hide();
         $("#btModify").hide();
+        HingeShow();
 
         $("select").prop('disabled', false);
         $("#iptQuantity").prop('disabled', false);
@@ -42,6 +46,7 @@
         $("#btXclose").show();
         $("#lblTitulo").text("Details of the door");
         $("#lblSubTitulo").text("You can change the configuration of this door by clicking on the modify button");
+        
 
         $("select").prop('disabled', true);
         $("#iptQuantity").prop('disabled', true);
@@ -53,7 +58,6 @@
  
         for (var i = 0; i < listDOOR.length; i++) {
             if (listDOOR[i].Id == $(this).attr('data-id')) {
-                var aux = listDOOR[i].isFingerPull;
                 
                 $('#idDoor').val(listDOOR[i].Id);
                 $("#idHingeP").val(listDOOR[i].HingePositions.Id),
@@ -76,15 +80,13 @@
 
                 var isDrill = listDOOR[i].isDrill;
                 if (isDrill == false) {
-                    isDrill = 1;
-                    HingeCalculate();
-                    HingeShow();
+                    isDrill = 1;                    
                 } else {
-                    isDrill = 2;
-                    HingeCalculate();
-                    HingeShow();
+                    isDrill = 2;                   
                 }
                 llenarComboIsDrill(isDrill);
+                HingeCalculate();
+                HingeShow();
 
                 var isOpen = listDOOR[i].IsOpeningMeasurement;
                 if (isOpen == false) {
@@ -115,7 +117,7 @@
                 llenarComboVerticalDivisions(listDOOR[i].VerticalDivisions.Id);
                 llenarComboHorizontalDivisions(listDOOR[i].HorizontalDivisions.Id);                
                 llenarComboHingeDirection(listDOOR[i].HingeDirection.Id);
-                llenarComboDoorType(listDOOR[i].DoorType.Id);                
+                llenarComboDoorType(listDOOR[i].DoorType.Id);               
                 break;
             }
         }
@@ -153,6 +155,7 @@ function GuardarMod() {
     if (ValidarCamposVacios()) {
         UpdateDoorsxUser();
     } else {
+        $('#modalConfirmOrderSummary').modal('hide');
         LlammarModal("Danger", "You must fill all the fields.", " ");
     }
 }
@@ -161,6 +164,7 @@ function AgregarD() {
     if (ValidarCamposVacios()) {
         InsertDoorsxUser();
     } else {
+        $('#modalConfirmOrderSummary').modal('hide');
         LlammarModal("Danger", "You must fill all the fields.", " ");
     }
 }
@@ -421,7 +425,6 @@ function llenarComboIsDrill(pDrill) {
     $("#cbisDrill").empty().append(option);
     if (pDrill != 0) {
         $("#cbisDrill").val(pDrill);
-        
     }
 }
 
@@ -463,6 +466,7 @@ function checkDoorOption(pDoorOp) {
 
 function LimpiarCombos() {        
     $('input').val("");
+    $('#iptCost').val("0.00");
     $("input[name=radioOption]").prop("checked", false);
     $("input[name=radioOver]").prop("checked", false);
     //llenarComboDecimales(0);
@@ -483,4 +487,157 @@ function LimpiarCombos() {
     llenarComboDoorType(0);
     llenarComboDoorType(0);
     llenarComboFinger(0);
+}
+
+function ValidarCamposVacios() {
+    var aux = true;
+    if ($('#cbMaterial').val() == 0) {
+        $('#cbMaterial').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#cbMaterial').removeClass("is-invalid");
+    }
+
+    if ($('#iptQuantity').val() == "") {
+        $('#iptQuantity').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#iptQuantity').removeClass("is-invalid");
+    }
+
+    if ($('#cbDoorStyle').val() == 0) {
+        $('#cbDoorStyle').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#cbDoorStyle').removeClass("is-invalid");
+    }
+
+    if ($('#cbTopRail').val() == 0) {
+        $('#cbTopRail').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#cbTopRail').removeClass("is-invalid");
+    }
+
+    if ($('#cbBottomRail').val() == 0) {
+        $('#cbBottomRail').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#cbBottomRail').removeClass("is-invalid");
+    }
+
+    if ($('#cbPreparation').val() == 0) {
+        $('#cbPreparation').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#cbPreparation').removeClass("is-invalid");
+    }
+
+    if ($('#cbPanel').val() == 0) {
+        $('#cbPanel').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#cbPanel').removeClass("is-invalid");
+    }
+
+    if ($('#cbPanelMaterial').val() == 0) {
+        $('#cbPanelMaterial').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#cbPanelMaterial').removeClass("is-invalid");
+    }
+
+    if ($('#cbIsOpeningMeasurement').val() == 0) {
+        $('#cbIsOpeningMeasurement').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#cbIsOpeningMeasurement').removeClass("is-invalid");
+    }
+
+    if ($('#cbJoin').val() == 0) {
+        $('#cbJoin').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#cbJoin').removeClass("is-invalid");
+    }
+
+    if ($('#cbOutsideEdgeProfile').val() == 0) {
+        $('#cbOutsideEdgeProfile').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#cbOutsideEdgeProfile').removeClass("is-invalid");
+    }
+
+    if ($('#cbInsideEdgeProfile').val() == 0) {
+        $('#cbInsideEdgeProfile').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#cbInsideEdgeProfile').removeClass("is-invalid");
+    }
+
+    if ($('#cbVerticalDivisions').val() == 0) {
+        $('#cbVerticalDivisions').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#cbVerticalDivisions').removeClass("is-invalid");
+    }
+
+    if ($('#cbHorizontalDivisions').val() == 0) {
+        $('#cbHorizontalDivisions').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#cbHorizontalDivisions').removeClass("is-invalid");
+    }
+
+    if ($('#iptWidth').val() == "") {
+        $('#iptWidth').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#iptWidth').removeClass("is-invalid");
+    }
+
+    if ($('#iptHeight').val() == "") {
+        $('#iptHeight').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#iptHeight').removeClass("is-invalid");
+    }
+
+    if ($('#cbisDrill').val() == 0) {
+        $('#cbisDrill').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#cbisDrill').removeClass("is-invalid");
+    }
+
+    if ($('#cbFingerPull').val() == 0) {
+        $('#cbFingerPull').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#cbFingerPull').removeClass("is-invalid");
+    }
+
+    if ($('#cbDoorType').val() == 0) {
+        $('#cbDoorType').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#cbDoorType').removeClass("is-invalid");
+    }
+
+    if ($("input[name=radioOption]").is(':checked')) {
+        $("input[name=radioOption]").removeClass("is-invalid");
+
+    } else {
+        $("input[name=radioOption]").addClass("is-invalid");
+        aux = false;
+    }
+
+    if ($("input[name=radioOver]").is(':checked')) {
+        $("input[name=radioOver]").removeClass("is-invalid");
+
+    } else {
+        $("input[name=radioOver]").addClass("is-invalid");
+        aux = false;
+    }
+    return aux;
 }

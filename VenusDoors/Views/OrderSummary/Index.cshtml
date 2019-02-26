@@ -120,8 +120,8 @@
                             <tr>
                                 <td><img style="width: 80px;" src="@i.Picture"></td>
                                 <td>@i.Quantity</td>
-                                <td>@i.Width</td>
-                                <td>@i.Height</td>
+                                <td>@i.Width<span style="font-size: 10px;"> 1/2</span></td>
+                                <td>@i.Height<span style="font-size: 10px;"> 1/2</span></td>
                                 <td>@i.DoorStyle.Description</td>
                                 <td>@i.Panel.Description</td>
                                 <td><span>$</span>@i.ItemCost</td>
@@ -157,8 +157,7 @@
                     </div>
                 }
                 else if(ord.Status.Id == 4 && ord.Total != 0)
-                {
-                  
+                {                 
                     <input hidden id="idorder" value="@ord.Id" />
                     <input hidden id="idtotal" value="@ord.Total" />
                     <input hidden id="idstatus" value="@ord.Status.Id" />
