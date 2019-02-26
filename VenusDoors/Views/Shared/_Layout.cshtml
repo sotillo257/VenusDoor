@@ -71,12 +71,12 @@
                 </div><!-- menu-item -->
             </a>}<!-- br-menu-link -->
             @* @Html.ActionLink("Build a Door", "Index", "ConfiDoor", new { area = "" }, new { @class = "br-menu-link " + ViewBag.DoorStyle }) *@
-            <a href="/ConfiDoor/" class="br-menu-link @ViewBag.ConfiDoor ">
+            @*<a href="/ConfiDoor/" class="br-menu-link @ViewBag.ConfiDoor ">
                 <div class="br-menu-item">
                     <i class="menu-item-icon icon ion-ios-gear-outline tx-24"></i>
                     <span class="menu-item-label">Build a Door</span>
                 </div><!-- menu-item -->
-            </a><!-- br-menu-link -->
+            </a><!-- br-menu-link -->*@
             <a href="/OrderSummary/" class="br-menu-link @ViewBag.OrderSummary ">
                 <div class="br-menu-item">
                     <i class="menu-item-icon icon ion-ios-photos-outline tx-20"></i>
@@ -867,7 +867,7 @@
     </div><!-- modal-dialog -->
 </div>
 
-<div id="modalError" class="modal fade">
+<div id="modalError" class="modal fade" style="z-index:1000000">
     <div class="modal-dialog" role="document">
         <div class="modal-content tx-size-sm">
             <div class="modal-body tx-center pd-y-20 pd-x-20">
@@ -921,7 +921,7 @@
     </div><!-- modal-dialog -->
 </div>
 
-<div id="modalCongra" class="modal fade" style="display: none;" aria-hidden="true">
+<div id="modalCongra" class="modal fade" style="display: none; " aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content tx-size-sm">
             <div class="modal-body tx-center pd-y-20 pd-x-20">
@@ -939,10 +939,10 @@
     </div><!-- modal-dialog -->
 </div>
 
-<div id="modalConfirmOrderSummary" class="modal fade" aria-hidden="true" style="display: none;">
+<div id="modalConfirmOrderSummary" class="modal fade" aria-hidden="true" style="display: none; z-index:1000000">
     <div class="modal-dialog modal-sm" role="document">
-        <div class="modal-content bd-0 tx-14">
-            <div class="modal-header pd-x-20">
+        <div class="modal-content bd-0 tx-14" style="border: solid 2px black;">
+            <div class="modal-header pd-x-20" style="border-bottom: 1px solid #000;">
                 <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold" id="TituloeConfirmO"></h6>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
@@ -951,7 +951,7 @@
             <div class="modal-body pd-20">
                 <p class="mg-b-5" id="MensageConfirmO"></p>
             </div>
-            <div class="modal-footer justify-content-center" id="footer">
+            <div class="modal-footer justify-content-center" style="border-top: 1px solid #000;" id="footer">
 
 
             </div>
@@ -959,7 +959,7 @@
     </div>
 </div>
 
-<div id="modalCongra" class="modal fade" style="display: none;" aria-hidden="true">
+<div id="modalCongraCofigModal" class="modal fade" style="display: none;" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content tx-size-sm">
             <div class="modal-body tx-center pd-y-20 pd-x-20">
@@ -967,8 +967,8 @@
                     <span aria-hidden="true">×</span>
                 </button>
                 <i class="icon ion-ios-checkmark-outline tx-100 tx-success lh-1 mg-t-20 d-inline-block"></i>
-                <h4 class="tx-success tx-semibold mg-b-20" id="TituloCongDelete"></h4>
-                <p class="mg-b-20 mg-x-20" id="MensageCongratuletions"></p>
+                <h4 class="tx-success tx-semibold mg-b-20" id="TituloCM"></h4>
+                <p class="mg-b-20 mg-x-20" id="MensageCM"></p>
                 <button type="button" onclick="window.location.reload()" class="Cursor btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">
                     Continue
                 </button>

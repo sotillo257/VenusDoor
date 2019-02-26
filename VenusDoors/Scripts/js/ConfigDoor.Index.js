@@ -125,7 +125,7 @@
     });
 
     $(document).on('change', '#cbDoorStyle', function () {
-        
+        var bandera = true;
         if ($("#cbDoorStyle").val() == 1002) {
           var panelType =  $("#cbPanel").val();
           option = '<option value="0">Select</option>';
@@ -203,9 +203,22 @@
             }
             $("#cbPanel").empty().append(option);
             $("#cbPanel").val(5);
+        } else if ($("#cbDoorStyle").val() == 1010) {
+            llenarComboInsideAndOutside();
+             var option = '<option value="slab">Slab</option>';                
+             $("#cbPanel").empty().append(option);
+             $("#cbInsideEdgeProfile").empty().append(option);
+             $("#cbOutsideEdgeProfile").empty().append(option);
+             $("#cbDoorAssembly").empty().append(option);
+            $('#DoorPicture').attr('src', "/Content/img/Doors/slab.png");
+            $('#ProfilePicture').attr('src', "/Content/img/Profile/slab.png");
+            bandera = false;
         }
-        changeDoorPicture();
-        ChangeProfile();
+        if (bandera) {
+            changeDoorPicture();
+            ChangeProfile();
+        }
+       
     });
 });
 
@@ -1130,13 +1143,19 @@ function InsertDoorsxUser() {
 
                         //Validar data para ver si mostrar error al guardar o exito al guardar
                         if (result == true) {
-                            LlammarModal("Succes", "Successful door creation!", "You can go to see your order and specify your purchase or, you can create another door.");
+                            $('#modalInsert').modal('hide');
+                            $('#modalConfirmOrderSummary').modal('hide');
+                            LlammarModal("ConfigM", "Successful door creation!", "Your door has been added successfully.");
                         } else {
+                            $('#modalInsert').modal('hide');
+                            $('#modalConfirmOrderSummary').modal('hide');
                             LlammarModal("Danger", "An error occurred during the process.", "Check your internet connection I tried again");
                         }
                     },
                     error: function (err) {
-                        alert("error");
+                        $('#modalInsert').modal('hide');
+                        $('#modalConfirmOrderSummary').modal('hide');
+                        LlammarModal("Danger", "An error occurred during the process.");
                     },
               
                 });
@@ -1231,13 +1250,19 @@ function UpdateDoorsxUser() {
 
                         //Validar data para ver si mostrar error al guardar o exito al guardar
                         if (result == true) {
-                            LlammarModal("Succes", "Successful door creation!", "You can go to see your order and specify your purchase or, you can create another door.");
+                            $('#modalInsert').modal('hide');
+                            $('#modalConfirmOrderSummary').modal('hide');
+                            LlammarModal("ConfigM", "Successful modification!", "Your door has been modified successfully.");
                         } else {
-                            LlammarModal("Danger", "An error occurred during the process.", "Check your internet connection I tried again");
+                            $('#modalInsert').modal('hide');
+                            $('#modalConfirmOrderSummary').modal('hide');
+                            LlammarModal("Danger", "An error occurred during the process.");
                         }
                     },
                     error: function (err) {
-                        alert("error");
+                        $('#modalInsert').modal('hide');
+                        $('#modalConfirmOrderSummary').modal('hide');
+                        LlammarModal("Danger", "An error occurred during the process.", "Check your internet connection I tried again");
                     },
               
                 });
@@ -1527,7 +1552,7 @@ function changeDoorPicture() {
 function FlatPanelDoor(Style) {
     var stile = $('#cbTopRail').val();
     var rail = $('#cbBottomRail').val();
-    var DoorUrl = "img11.png";
+    var DoorUrl = "Cabinet Vector-02.png";
     var urlFolder = "/Content/img/Doors/";
    
        
@@ -1565,7 +1590,11 @@ function FlatPanelDoor(Style) {
            
                 DoorUrl = "Cabinet Vector-13.png";
            
-        }else {
+        } else if (Style == 1010) {
+
+            DoorUrl = "Cabinet Vector-13.png";
+
+        } else {
             DoorUrl = "Cabinet Vector-02.png";
         }
         $('#DoorPicture').attr('src', urlFolder + DoorUrl);
@@ -1575,7 +1604,7 @@ function FlatPanelDoor(Style) {
 function RaisedPanelDoor(Style) {
     var stile = $('#cbTopRail').val();
     var rail = $('#cbBottomRail').val();
-    var DoorUrl = "img11.png";
+    var DoorUrl = "Cabinet Vector-07.png";
     var urlFolder = "/Content/img/Doors/";
     
         if (stile == 3 && rail == 3) {

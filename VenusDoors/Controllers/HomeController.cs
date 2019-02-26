@@ -10,6 +10,7 @@ namespace VenusDoors.Controllers
 {
     public class HomeController : Controller
     {
+        //[Authorize]
         public ActionResult Index()
         {
             try
@@ -91,17 +92,31 @@ namespace VenusDoors.Controllers
                     var aux3 = aux.DoorApprove + aux.DoorCompleted + aux.DoorInProcess + aux.DoorPending;
                 ViewBag.totalOrdenes = aux2;
                 TotalesDoors TD = new TotalesDoors();
-
-                    decimal uu = decimal.Parse(aux.DoorPending.ToString()) / decimal.Parse(aux3.ToString()) * 100;
-                    decimal yy = decimal.Parse(aux.DoorApprove.ToString()) / decimal.Parse(aux3.ToString()) * 100;
-                    decimal zz = decimal.Parse(aux.DoorInProcess.ToString()) / decimal.Parse(aux3.ToString()) * 100;
-                    decimal ii = decimal.Parse(aux.DoorCompleted.ToString()) / decimal.Parse(aux3.ToString()) * 100;
-
-                    decimal x = decimal.Parse(aux.Active.ToString()) / decimal.Parse(aux2.ToString()) * 100;
-                decimal u = decimal.Parse(aux.Pending.ToString()) / decimal.Parse(aux2.ToString()) * 100;
-                decimal y = decimal.Parse(aux.Approve.ToString()) / decimal.Parse(aux2.ToString()) * 100;
-                decimal z = decimal.Parse(aux.InProcess.ToString()) / decimal.Parse(aux2.ToString()) * 100;
-                decimal i = decimal.Parse(aux.Completed.ToString()) / decimal.Parse(aux2.ToString()) * 100;
+                    decimal uu = 0;
+                    decimal yy = 0;
+                    decimal zz = 0;
+                    decimal ii = 0;
+                    decimal x = 0;
+                    decimal u = 0;
+                    decimal y = 0;
+                    decimal z = 0;
+                    decimal i = 0;
+                    if (aux3 > 0)
+                    {
+                         uu = decimal.Parse(aux.DoorPending.ToString()) / decimal.Parse(aux3.ToString()) * 100;
+                         yy = decimal.Parse(aux.DoorApprove.ToString()) / decimal.Parse(aux3.ToString()) * 100;
+                         zz = decimal.Parse(aux.DoorInProcess.ToString()) / decimal.Parse(aux3.ToString()) * 100;
+                         ii = decimal.Parse(aux.DoorCompleted.ToString()) / decimal.Parse(aux3.ToString()) * 100;
+                    }
+                    if (aux2 > 0)
+                    {
+                         x = decimal.Parse(aux.Active.ToString()) / decimal.Parse(aux2.ToString()) * 100;
+                         u = decimal.Parse(aux.Pending.ToString()) / decimal.Parse(aux2.ToString()) * 100;
+                         y = decimal.Parse(aux.Approve.ToString()) / decimal.Parse(aux2.ToString()) * 100;
+                         z = decimal.Parse(aux.InProcess.ToString()) / decimal.Parse(aux2.ToString()) * 100;
+                         i = decimal.Parse(aux.Completed.ToString()) / decimal.Parse(aux2.ToString()) * 100;
+                    }                 
+                    
                     bool bande = true;
                     x = decimal.Parse(x.ToString("N0"));
                     while (bande)
@@ -240,7 +255,12 @@ namespace VenusDoors.Controllers
                 {
                     listTotal.Add(totales.Diciembre);
                 }
-                ViewBag.MejorMes = listTotal.Average().ToString("N2");
+                    ViewBag.MejorMes = 0;
+                    if (listTotal.Count > 0)
+                    {
+                        ViewBag.MejorMes = listTotal.Average().ToString("N2");
+                    }
+               
                 return View();
             }
             }

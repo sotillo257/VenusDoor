@@ -24,6 +24,7 @@
         '<button onclick="ConfirmOrder();" class="Cursor btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Confirm order</button>' +
         '<button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>');
     });
+
 });
 
 function DltItem() {
@@ -79,6 +80,8 @@ function ConfirmOrder() {
         contentType: 'application/json; charset=utf-8',
         success: function (data) {
             if (data == true) {
+                $('#modalInsert').modal('hide');
+                $('#modalConfirmOrderSummary').modal('hide');
                 LlammarModal("Congratuletions", "Congratulations! Your order is being processed.", "At this time you will be redirected to the Order Status view. Check your email to see your order details.");
             } else {
                 LlammarModal("Danger", "An error occurred during the process.", " ");

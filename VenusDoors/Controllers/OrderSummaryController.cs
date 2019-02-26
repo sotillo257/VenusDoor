@@ -34,7 +34,7 @@ namespace VenusDoors.Controllers
                 var orderList = _LNOrder.GetOrderByUser(idU);
                     ViewBag.Listo = orderList.Where(x => x.Status.Id == 4).LastOrDefault();
                 Order item = ViewBag.Listo;
-                if (item.Status == null)
+                if (item == null)
                 {
                     return View();
                 }
@@ -54,7 +54,7 @@ namespace VenusDoors.Controllers
                 }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return View("Error");
             }                       
