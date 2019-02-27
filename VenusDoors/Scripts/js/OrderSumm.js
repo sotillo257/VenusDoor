@@ -31,10 +31,8 @@ function DltItem() {
     var datos =
                     {
                         itemID: $('#deleteidhidden').val(),
-                        ord: {
-                            Id: $("#idorder").val(),
-                            Status: { Id: $("#idstatus").val() },
-                        }
+                        orderid: $("#idorder").val(),
+                            
                      }
               
     console.log(datos);
@@ -48,15 +46,17 @@ function DltItem() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
+                $('#modalDelete').modal('hide');
                 LlammarModal("CongDelete", "Success! It has been removed correctly.", " ");
             } else {
+                $('#modalDelete').modal('hide');
                 LlammarModal("Danger", "Error! An error occurred while deleting..", " ");
             }
         },
         error: function (err) {
+            $('#modalDelete').modal('hide');
             LlammarModal("Danger", "An error occurred during the process.", "Check your internet connection I tried again");
         },
-
     });
 }
 

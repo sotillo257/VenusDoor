@@ -43,4 +43,10 @@
                 $("#modalCongraCofigModal").modal("show");
             }
 
+            if (TipoModal == "CongDelete") {
+                $("#TituloCD").html(Titulo);
+                $("#MensageCD").html(Mensaje);
+                $("#modalcongreDelete").modal("show");
+            }
+
 }

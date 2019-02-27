@@ -17,29 +17,42 @@ namespace VenusDoors.Controllers
         public IEnumerable<string> ConverExcel { get; private set; }
 
         // GET: OrderSummary
-        public ActionResult Index()
+        public ActionResult Index(int? Id)
         {
             try
             {
-            ViewBag.OrderSummary = "active";
-            if (Session["UserID"] == null)
-            {
-                return View();
-            }
-            else
-            {
-                BusinessLogic.lnOrder _LNOrder = new BusinessLogic.lnOrder();
-                int userID = (int)Session["UserID"];
-                int idU = userID;
-                var orderList = _LNOrder.GetOrderByUser(idU);
-                    ViewBag.Listo = orderList.Where(x => x.Status.Id == 4).LastOrDefault();
-                Order item = ViewBag.Listo;
-                if (item == null)
+                ViewBag.OrderSummary = "active";
+                BusinessLogic.lnDoors _LNd = new BusinessLogic.lnDoors();
+                if (Session["UserID"] == null)
                 {
+                    if (Id > 0)
+                    {
+                        var Door = _LNd.GetDoorsById(Id.Value);
+                        var serializar1 = new System.Web.Script.Serialization.JavaScriptSerializer();
+                        ViewBag.Door = serializar1.Serialize(Door);
+                    }
                     return View();
                 }
-                else if (item.Status.Id == 4)
+                else
                 {
+                    if (Id > 0)
+                    {
+                        var Door = _LNd.GetDoorsById(Id.Value);
+                        var serializar1 = new System.Web.Script.Serialization.JavaScriptSerializer();
+                        ViewBag.Door = serializar1.Serialize(Door);
+                    }
+                    BusinessLogic.lnOrder _LNOrder = new BusinessLogic.lnOrder();
+                    int userID = (int)Session["UserID"];
+                    int idU = userID;
+                    var orderList = _LNOrder.GetOrderByUser(idU);
+                    ViewBag.Listo = orderList.Where(x => x.Status.Id == 4).LastOrDefault();
+                    Order item = ViewBag.Listo;
+                    if (item == null)
+                    {
+                        return View(); 
+                    }
+                    else if (item.Status.Id == 4)
+                    {
                     BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
                     List<DoorsxUser> xDoorsU = _LN.GetAllDoorsxUser();
                     List<DoorsxUser> doorByOrder = xDoorsU.Where(x => x.Order.Id == item.Id).ToList();
