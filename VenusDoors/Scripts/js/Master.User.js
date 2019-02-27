@@ -195,6 +195,7 @@ function UpdateUser() {
         uUser: {
             Id: $("#inId").val(),
             Email: $("#Email").val(),
+            Password: $("#inPassword").val(),
             Type: { Id: $("#inType").val() },
             Person: { Id: $("#inPerson").val() },
             Company: { Id: $("#inCompany").val() },

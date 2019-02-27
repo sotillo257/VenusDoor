@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
-    $(".Detalle").click(function (e) {
-        //var id = $(this).attr('data-id');
+    $("#Detalle").click(function (e) {
+        var id = $(this).attr('data-id');
         GetDoorsByOrder(id);
     });
 });
@@ -28,16 +28,20 @@ function GetDoorsByOrder(id) {
             '<th>Panel type</th>' +
             '<th>Quantity</th>' +
             '<th>Item cost</th>' +
-            '<th>SubTotal</th>';
+            '<th>SubTotal</th>' +
+             '<th><i class="fa fa-flash"></i></th>';
             table += '</tr></thead><tbody>';                           
             for (var i = 0; i < data.length; i++) {
-                table += '<tr><td><img width="65px" src="'+ data[i].Picture +'"/></td><td>' + data[i].Material.Description + '</td>' +
+                table += '<tr><td><img width="65px" class="Cursor" src="' + data[i].Picture + '"/></td><td>' + data[i].Material.Description + '</td>' +
                     '<td>' + data[i].InsideEdgeProfile.Description + '</td>' +
                     '<td>' + data[i].OutsideEdgeProfile.Description + '</td>' +
                     '<td>' + data[i].Panel.Description + '</td>' +
                     '<td>' + data[i].Quantity + '</td>' +
                     '<td>' + data[i].ItemCost + '$</td>' +
-                    '<td>' + data[i].SubTotal + '$</td></tr>';
+                    '<td>' + data[i].SubTotal + '$</td>' +
+                    '<td><center><button href="#"  data-target="#modalInsert" data-toggle="modal" data-id="@item.Id" id="Details" value="" class="btn btn-info btn-icon">' +
+                        '<div><i class="fa fa-eye"></i></div></button></center></td>' +
+                    '</tr>';
             }
             table += '</tbody></table>';
             $("#orderhead").html(head);

@@ -1090,6 +1090,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\js\CargaImg.js" />
     <Content Include="Scripts\js\ComboBox.js" />
+    <Content Include="Scripts\js\ControlOfOrderd.ConfiDoor.js" />
     <Content Include="Scripts\js\ControlOfOrders.js" />
     <Content Include="Scripts\js\ConverExcel.js" />
     <Content Include="Scripts\js\dashboard.js" />
@@ -1128,8 +1129,10 @@
     <Content Include="Scripts\js\OrderControl.Index.Js" />
     <Content Include="Scripts\js\OrderStatus.Index.js" />
     <Content Include="Scripts\js\OrderSumm.js" />
+    <Content Include="Scripts\js\OrderSummary.ConfigDoor.js" />
     <Content Include="Scripts\js\PasswordRecovery.Logins.js" />
     <Content Include="Scripts\js\PriceCalc.js" />
+    <Content Include="Scripts\js\UserManagement.Index.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
