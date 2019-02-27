@@ -269,10 +269,19 @@ namespace VenusDoors.Controllers
                     {
                         userDetails.Company = _Company.GetCompanyById(userDetails.Company.Id);
                         System.Web.HttpContext.Current.Session["UserID"] = userDetails.Id;
-                        System.Web.HttpContext.Current.Session["UserName"] = userDetails.Person.Id;
+                        System.Web.HttpContext.Current.Session["UserName"] = userDetails.Person.Name;
                         System.Web.HttpContext.Current.Session["UserType"] = userDetails.Type.Id;
                         System.Web.HttpContext.Current.Session["IdCompany"] = userDetails.Company.Id;
-                        System.Web.HttpContext.Current.Session["IdTypeCompany"] = userDetails.Company.Id;
+                        System.Web.HttpContext.Current.Session["IdTypeCompany"] = userDetails.Company.Type.Id;
+                        System.Web.HttpContext.Current.Session["NameCompany"] = userDetails.Company.Name;
+                        System.Web.HttpContext.Current.Session["CompanyActive"] = userDetails.Company.Id;
+                        if (userDetails.Company.Type.Id == 1 && userDetails.Type.Id == 1)
+                        {
+                         List<Company> _CompanyList =  _Company.GetAllCompany();
+                            System.Web.HttpContext.Current.Session["NameCompany"] = "All Companies";
+                            System.Web.HttpContext.Current.Session["CompanyActive"] = 0;
+                            System.Web.HttpContext.Current.Session["ListCompany"] = _CompanyList;
+                        }
                         SetupFormsAuthTicket(userDetails, true);
                         return Json(1, JsonRequestBehavior.AllowGet);
                     }

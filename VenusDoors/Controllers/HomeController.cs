@@ -68,7 +68,7 @@ namespace VenusDoors.Controllers
             return View();
         }
 
-        public ActionResult Dashboard()
+        public ActionResult Dashboard(int? Id)
         {
             try
             {
@@ -76,9 +76,32 @@ namespace VenusDoors.Controllers
                 {
                     return RedirectToAction("Index", "Home");
                 }
-                else {  
-                DateTime hoy = DateTime.Now;
+                else
+                {
+                    if (Id != null)
+                    {
+                        if (Id > 0)
+                        {
+                          
+                            System.Web.HttpContext.Current.Session["CompanyActive"] = Id;
+                            BusinessLogic.lnCompany comp = new BusinessLogic.lnCompany();
+                            Company company = comp.GetCompanyById((int)Id);
+                            System.Web.HttpContext.Current.Session["NameCompany"] = company.Name;
+                            System.Web.HttpContext.Current.Session["IdCompany"] = company.Id;
+                            System.Web.HttpContext.Current.Session["IdTypeCompany"] = 2;
+                        }
+                        else
+                        {
+                            System.Web.HttpContext.Current.Session["NameCompany"] = "All Companies";
+                            BusinessLogic.lnUser user = new BusinessLogic.lnUser();
+                            Model.User _user = user.GetUserById((int)Session["UserID"]);
+                            System.Web.HttpContext.Current.Session["IdCompany"] = _user.Company.Id;
+                            System.Web.HttpContext.Current.Session["IdTypeCompany"] = 1;
+                        }
+                   
 
+                    }
+                DateTime hoy = DateTime.Now;
                 string mes = hoy.ToString("MMMM"); //te da el nombre completo en la cultura default
                 ViewBag.Dashboard = "active";
                 ViewBag.lblMes = hoy.ToString("MMMM", CultureInfo.CreateSpecificCulture("en-US")); //en ingles

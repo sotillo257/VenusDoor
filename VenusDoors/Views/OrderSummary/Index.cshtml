@@ -58,10 +58,10 @@
                 <h3 class="tx-gray-800 mg-b-5">Order Summary</h3>
             </div>
             
-            @if (ViewBag.xUserDoors == null)
+            @if (Session["UserID"] == null)
             {
                 <div style="display: flex;justify-content: flex-end;width: 60%;">
-                    <button style="margin-right: 20px;" type="button" data-toggle="modal" data-target="#modalInsert" class="Cursor btBuild btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Build a door</button>
+                    <button style="margin-right: 20px;" type="button" data-toggle="modal" data-target="#modalInsert" class="Cursor btBuild btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Create order</button>
                     <div class="col-xs-4 col-md-4" style="">                        
                         <button disabled title="Massive order only available when you are logged in" id="btnLogo" class="Cursor btn btn-outline-success btn-block"><i class="fa fa-upload mg-r-10"></i> Massive Order</button>                                                
                     </div>
@@ -70,12 +70,25 @@
             }
             else
             {
-                <div style="display: flex;justify-content: flex-end;width: 60%;">
-                    <button style="margin-right: 20px;" type="button" data-toggle="modal" data-target="#modalInsert" class="Cursor btBuild btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Build a door</button>
-                    <div class="col-xs-4 col-md-4" style="">                        
-                        <button data-toggle="modal" data-target="#ModalUpload" class="Cursor btn btn-outline-success btn-block"><i class="fa fa-upload mg-r-10"></i> Massive Order</button>                                                
+                if (ViewBag.xUserDoors == null)
+                {
+                    <div style="display: flex;justify-content: flex-end;width: 60%;">
+                        <button style="margin-right: 20px;" type="button" data-toggle="modal" data-target="#modalInsert" class="Cursor btBuild btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Create order</button>
+                        <div class="col-xs-4 col-md-4" style="">
+                            <button data-toggle="modal" data-target="#ModalUpload" class="Cursor btn btn-outline-success btn-block"><i class="fa fa-upload mg-r-10"></i> Massive Order</button>
+                        </div>
                     </div>
-                </div>
+                }
+                else
+                {
+                    <div style="display: flex;justify-content: flex-end;width: 60%;">
+                        <button style="margin-right: 20px;" type="button" data-toggle="modal" data-target="#modalInsert" class="Cursor btBuild btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Build a door</button>
+                        <div class="col-xs-4 col-md-4" style="">
+                            <button data-toggle="modal" data-target="#ModalUpload" class="Cursor btn btn-outline-success btn-block"><i class="fa fa-upload mg-r-10"></i> Massive Order</button>
+                        </div>
+                    </div>
+                }
+
             }
 
         </div>
@@ -88,11 +101,12 @@
                     <th>Widht</th>
                     <th>Height</th>
                     <th>Door Style</th>
+                    <th>Material</th>
                     <th>Panel Type</th>
+                    <th>Door Type</th>
                     <th>U. Price</th>
                     <th>Total</th>
-                    <th>Material</th>
-                    <th>Door Type</th>
+                   
                     <th style="text-align:center"><i class="fa fa-flash"></i></th>
                 </tr>
             </thead>
@@ -119,15 +133,16 @@
                             
                             <tr>
                                 <td><img style="width: 80px;" src="@i.Picture"></td>
-                                <td>@i.Quantity</td>
-                                <td>@i.Width</td>
-                                <td>@i.Height</td>
+                                <td>@i.Quantity.ToString().Replace(',','.')</td>
+                                <td>@i.Width.ToString("N0") 1/2</td>
+                                <td>@i.Height.ToString("N0") 1/2</td>
                                 <td>@i.DoorStyle.Description</td>
-                                <td>@i.Panel.Description</td>
-                                <td><span>$</span>@i.ItemCost</td>
-                                <td><span>$</span>@i.SubTotal</td>
                                 <td>@i.Material.Description</td>
+                                <td>@i.Panel.Description</td>
                                 <td>@i.DoorOption.Description</td>
+                                <td><span>$</span>@i.ItemCost.ToString().Replace(',', '.')</td>
+                                <td><span>$</span>@i.SubTotal.ToString().Replace(',', '.')</td>
+                                
 
                                 <td id="tddelete" style="display: flex; padding-top: 35px;">
                                     <button class="Cursor Details btn btn-primary btn-icon" data-toggle="modal" data-target="#modalInsert" data-id="@i.Id" style="width: 37px;height: 37px;" type="submit"><i class="fa fa-list"></i></button>
@@ -158,14 +173,13 @@
                 }
                 else if(ord.Status.Id == 4 && ord.Total != 0)
                 {
-                  
                     <input hidden id="idorder" value="@ord.Id" />
                     <input hidden id="idtotal" value="@ord.Total" />
                     <input hidden id="idstatus" value="@ord.Status.Id" />
                     <div class="col-md-7">
-                        <h5 style="color:#7b7979">Sub-Total: <span>$</span>@ord.SubTotal</h5>
-                        <h5 style="color:#7b7979">Tax: <span>$</span>@ord.Tax</h5>
-                        <h3 style="color:#000">Total Price: <span>$</span>@ord.Total</h3>
+                        <h5 style="color:#7b7979">Sub-Total: <span>$</span>@ord.SubTotal.ToString().Replace(',', '.')</h5>
+                        <h5 style="color:#7b7979">Tax: <span>$</span>@ord.Tax.ToString().Replace(',', '.')</h5>
+                        <h3 style="color:#000">Total Price: <span>$</span>@ord.Total.ToString().Replace(',', '.')</h3>
                     </div>
                 }
                 else
@@ -211,6 +225,29 @@
             </div>
             <div class="modal-footer justify-content-center">
                 <button name="confirmButton" value="Delete" id="btnDelete" class="btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Remove</button>
+                <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="ModalUpload" class="modal fade" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content bd-0 tx-14">
+            <div class="modal-header pd-x-20">
+                <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Massive order!</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body pd-20">
+                <p class="mg-b-5">Upload your excel file with your doors already configured. (Download our template by clicking <a href="~/Content/Template.xlsx">here</a> to use this method).</p>
+                <input id="deleteidhidden" type="hidden" value="" />
+            </div>
+            <div class="modal-footer justify-content-rigth">
+                <button id="btnupp" class="Cursor btn btn-outline-success btn-block"><i class="fa fa-upload mg-r-10"></i> Upload</button>
+                <input id="File1" name="file" type="file" style="display:none;" />               
                 <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>
             </div>
         </div>
@@ -446,7 +483,13 @@
         var urlUploadExcel = '@Url.Action("UploadExcel", "ConfiDoor")';
         var urlDeleteItem = '@Url.Action("DeleteItem", "OrderSummary")';
         var urlConfirmOrder = '@Url.Action("ConfirmOrder", "OrderSummary")';
-        var listDOOR = JSON.parse('@Html.Raw(ViewBag.ListDoorsxUser)');       
+        try {
+            var listDOOR = JSON.parse('@Html.Raw(ViewBag.ListDoorsxUser)');
+        } catch (e) {
+            var listDOOR = '';
+        }
+
+        var doorDetail = JSON.parse('@Html.Raw(ViewBag.Door)');
 
         $(function () {
             'use strict'
@@ -473,6 +516,9 @@
             });
 
         });
+
+
+
     </script>
 
 
