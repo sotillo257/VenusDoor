@@ -61,7 +61,7 @@
             @if (Session["UserID"] == null)
             {
                 <div style="display: flex;justify-content: flex-end;width: 60%;">
-                    <button style="margin-right: 20px;" type="button" data-toggle="modal" data-target="#modalInsert" class="Cursor btBuild btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Build a door</button>
+                    <button style="margin-right: 20px;" type="button" data-toggle="modal" data-target="#modalInsert" class="Cursor btBuild btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Create order</button>
                     <div class="col-xs-4 col-md-4" style="">                        
                         <button disabled title="Massive order only available when you are logged in" id="btnLogo" class="Cursor btn btn-outline-success btn-block"><i class="fa fa-upload mg-r-10"></i> Massive Order</button>                                                
                     </div>
@@ -483,7 +483,13 @@
         var urlUploadExcel = '@Url.Action("UploadExcel", "ConfiDoor")';
         var urlDeleteItem = '@Url.Action("DeleteItem", "OrderSummary")';
         var urlConfirmOrder = '@Url.Action("ConfirmOrder", "OrderSummary")';
-        var listDOOR = JSON.parse('@Html.Raw(ViewBag.ListDoorsxUser)');       
+        try {
+            var listDOOR = JSON.parse('@Html.Raw(ViewBag.ListDoorsxUser)');
+        } catch (e) {
+            var listDOOR = '';
+        }
+
+        var doorDetail = JSON.parse('@Html.Raw(ViewBag.Door)');
 
         $(function () {
             'use strict'
@@ -512,47 +518,7 @@
         });
 
 
-        $(document).ready(function () {
-            var Do = JSON.parse('@Html.Raw(ViewBag.Door)');
 
-            SearchDoor(Do);
-        });
-
-        function SearchDoor(data) {
-            if (data != null) {
-                $('#modalInsert').modal('show');
-                console.log(data);
-                var HTMLImage =
-                  
-               ' <center> <img style="height: 100px;width: 235px;margin-top: 20px;" id="ProfilePicture" src="' + data.ProfilePicture + '">' +
-                          '<img style="width: 230px;height: 230px;" id="DoorPicture" src="' + data.Picture + '">' +
-                          '</center>';
-                $('#Picture').html(HTMLImage);
-
-                $("#cbMaterial").val(data.Material.Id);
-                $("#cbDoorStyle").val(data.DoorStyle.Id);
-                $("#cbTopRail").val(data.TopRail.Id);
-                $("#cbBottomRail").val(data.BottomRail.Id);
-                $("#cbPreparation").val(data.Preparation.Id);
-                $("#cbPanel").val(data.Panel.Id);
-                $("#cbPanelMaterial").val(data.PanelMaterial.Id);
-                $("#cbIsOpeningMeasurement").val(data.IsOpeningMeasurement);
-                $("#cbJoin").val(data.Join.Id);
-                $("#cbOutsideEdgeProfile").val(data.OutsideEdgeProfile.Id);
-                $("#cbInsideEdgeProfile").val(data.InsideEdgeProfile.Id);
-                $("#cbVerticalDivisions").val(data.VerticalDivisions.Id);
-                $("#cbHorizontalDivisions").val(data.HorizontalDivisions.Id);
-                $("#iptWidth").val(data.Width);
-                $("#iptHeight").val(data.Height);
-                $("#iptQuantity").val(1);
-                // $("#iptCost").val();
-                $("#cbisDrill").val(data.isDrill);
-                GetPrices();
-            } else {
-                
-            }
-
-        }
     </script>
 
 

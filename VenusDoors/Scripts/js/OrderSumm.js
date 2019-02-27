@@ -89,6 +89,7 @@ function ConfirmOrder() {
             }
         },
         error: function (err) {
+            $('#modalConfirmOrderSummary').modal('hide');
             LlammarModal("Danger", "An error occurred during the process.", "Check your internet connection I tried again");
         },
 
