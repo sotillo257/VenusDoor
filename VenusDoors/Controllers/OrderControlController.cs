@@ -19,7 +19,7 @@ namespace VenusDoors.Controllers
                 ViewBag.OrderControl = "active";
                
                 List<Order> ListOrders = _LNOR.GetAllOrder();
-                List<Order> ListaOrdenada = ListOrders.OrderByDescending(x => x.ModificationDate).ToList();
+                List<Order> ListaOrdenada = ListOrders.Where(x=> x.Status.Id != 8).OrderByDescending(x => x.ModificationDate).ToList();
                 ViewBag.Ordenes = ListaOrdenada;
                 return View();
             }

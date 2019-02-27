@@ -97,8 +97,8 @@
 
             }
 
-            @if (Session["UserID"] != null && (int)Session["UserType"] == 1)
-            {
+            @if (Session["UserID"] != null && ((int)Session["UserType"] == 1 || (int)Session["UserType"] == 2))
+                        {
                 <a href="/OrderControl/Index" class="br-menu-link @ViewBag.OrderControl">
                     <div class="br-menu-item">
                         <i class="menu-item-icon fa fa-list tx-20"></i>
@@ -111,6 +111,8 @@
                         <span class="menu-item-label">Users management</span>
                     </div><!-- menu-item -->
                 </a><!-- br-menu-link -->
+               if ((int)Session["UserType"] == 1)
+	            {
                 <a href="#" class="br-menu-link  @ViewBag.Masters">
                     <div class="br-menu-item">
                         <i class="menu-item-icon icon ion-ios-filing-outline tx-24"></i>
@@ -150,7 +152,8 @@
                     <li class="nav-item">@Html.ActionLink("Type", "Type", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Type })</li>
                     <li class="nav-item">@Html.ActionLink("User", "Usuario", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Usuario })</li>
                     <li class="nav-item">@Html.ActionLink("Vertical Divisions", "VerticalDivisions", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.VerticalDivisions })</li>
-                </ul>                
+                </ul>              
+                }
             }
             else
             {
@@ -167,16 +170,16 @@
         <div class="br-header-left">
             <div class="navicon-left hidden-md-down"><a id="btnLeftMenu" href=""><i class="icon ion-navicon-round"></i></a></div>
             <div class="navicon-left hidden-lg-up"><a id="btnLeftMenuMobile" href=""><i class="icon ion-navicon-round"></i></a></div>
-            <div class="input-group hidden-xs-down wd-170 transition" style="visibility: hidden;">
+            <div class="input-group hidden-xs-down wd-170 transition" style="display: none;">
                 <input id="searchbox" type="text" class="form-control" placeholder="Search">
                 <span class="input-group-btn">
                     <button class="btn btn-secondary" type="button"><i class="fa fa-search"></i></button>
                 </span>
             </div><!-- input-group -->
-        </div><!-- br-header-left -->
+    </div><!-- br-header-left -->
 
     @if (Session["UserID"] == null)
-    {
+            {
         <div class="col-md-1">
             <div class="br-header-right" style="margin-top: 10px;">
 
@@ -262,60 +265,60 @@
                 </div><!-- dropdown -->
                 <div class="dropdown">
                     <a href="" class="nav-link pd-x-7 pos-relative" data-toggle="dropdown">
-                        <i class="icon ion-ios-bell-outline tx-24"></i>
-                        <!-- start: if statement -->
-                        <span class="square-8 bg-danger pos-absolute t-15 r-5 rounded-circle"></span>
+                        <i class="icon ion-ios-home-outline tx-24"></i>
+                        @if (Session["NameCompany"] != null)
+                        {
+                            string name = Session["NameCompany"].ToString();
+                            @name;
+                       }
+                        <i class="fa fa-angle-down mg-r-5"></i>
+                        <!-- start: if statement
+                        <span class="square-8 bg-danger pos-absolute t-15 r-5 rounded-circle"></span> -->
                         <!-- end: if statement -->
                     </a>
                     <div class="dropdown-menu dropdown-menu-header wd-300 pd-0-force">
+                        @if ((int)Session["UserType"] == 1 )
+                        {
                         <div class="d-flex align-items-center justify-content-between pd-y-10 pd-x-20 bd-b bd-gray-200">
-                            <label class="tx-12 tx-info tx-uppercase tx-semibold tx-spacing-2 mg-b-0">Notifications</label>
-                            <a href="" class="tx-11">Mark All as Read</a>
+                            <label class="tx-12 tx-info tx-uppercase tx-semibold tx-spacing-2 mg-b-0">Company</label>
+                           
                         </div><!-- d-flex -->
+                      
+                            <div class="media-list">
 
-                        <div class="media-list">
-                            <!-- loop starts here -->
-                            <a href="" class="media-list-link read">
-                                <div class="media pd-x-20 pd-y-15">
-                                    <img src="http://via.placeholder.com/280x280" class="wd-40 rounded-circle" alt="">
-                                    <div class="media-body">
-                                        <p class="tx-13 mg-b-0 tx-gray-700"><strong class="tx-medium tx-gray-800">Suzzeth Bungaos</strong> tagged you and 18 others in a post.</p>
-                                        <span class="tx-12">October 03, 2017 8:45am</span>
-                                    </div>
-                                </div><!-- media -->
-                            </a>
-                            <!-- loop ends here -->
-                            <a href="" class="media-list-link read">
-                                <div class="media pd-x-20 pd-y-15">
-                                    <img src="http://via.placeholder.com/280x280" class="wd-40 rounded-circle" alt="">
-                                    <div class="media-body">
-                                        <p class="tx-13 mg-b-0 tx-gray-700"><strong class="tx-medium tx-gray-800">Mellisa Brown</strong> appreciated your work <strong class="tx-medium tx-gray-800">The Social Network</strong></p>
-                                        <span class="tx-12">October 02, 2017 12:44am</span>
-                                    </div>
-                                </div><!-- media -->
-                            </a>
-                            <a href="" class="media-list-link read">
-                                <div class="media pd-x-20 pd-y-15">
-                                    <img src="http://via.placeholder.com/280x280" class="wd-40 rounded-circle" alt="">
-                                    <div class="media-body">
-                                        <p class="tx-13 mg-b-0 tx-gray-700">20+ new items added are for sale in your <strong class="tx-medium tx-gray-800">Sale Group</strong></p>
-                                        <span class="tx-12">October 01, 2017 10:20pm</span>
-                                    </div>
-                                </div><!-- media -->
-                            </a>
-                            <a href="" class="media-list-link read">
-                                <div class="media pd-x-20 pd-y-15">
-                                    <img src="http://via.placeholder.com/280x280" class="wd-40 rounded-circle" alt="">
-                                    <div class="media-body">
-                                        <p class="tx-13 mg-b-0 tx-gray-700"><strong class="tx-medium tx-gray-800">Julius Erving</strong> wants to connect with you on your conversation with <strong class="tx-medium tx-gray-800">Ronnie Mara</strong></p>
-                                        <span class="tx-12">October 01, 2017 6:08pm</span>
-                                    </div>
-                                </div><!-- media -->
-                            </a>
-                            <div class="pd-y-10 tx-center bd-t">
-                                <a href="" class="tx-12"><i class="fa fa-angle-down mg-r-5"></i> Show All Notifications</a>
-                            </div>
-                        </div><!-- media-list -->
+                                @if (Session["ListCompany"] != null)
+                                {
+                                    <a href="/Home/Dashboard/0" class="media-list-link read">
+                                        <div class="media pd-x-20 pd-y-15">
+                                            <img src="" class="wd-40 rounded-circle" alt="">
+                                            <div class="media-body">
+                                                <p class="tx-13 mg-b-0 tx-gray-700"><strong class="tx-medium tx-gray-800">All Company</strong></p>
+
+                                            </div>
+                                        </div><!-- media -->
+                                    </a>
+                                    List<Model.Company> list = (List<Model.Company>)Session["ListCompany"];
+                                    foreach (Model.Company item in list)
+                                    {
+                                        <a href="/Home/Dashboard/@item.Id" class="media-list-link read">
+                                            <div class="media pd-x-20 pd-y-15">
+                                                <img src="@item.Logo" class="wd-40 rounded-circle" alt="">
+                                                <div class="media-body">
+                                                    <p class="tx-13 mg-b-0 tx-gray-700" ><strong class="tx-medium tx-gray-800">@item.Name</strong></p>
+
+                                                </div>
+                                            </div><!-- media -->
+                                        </a>
+                                    }
+                                }
+                                <!-- loop starts here -->
+
+                                <div class="pd-y-10 tx-center bd-t">
+                                    <a href="/Masters/Company" class="tx-12"><i class="fa fa-angle-down mg-r-5"></i> Show All Company</a>
+                                </div>
+                            </div><!-- media-list -->
+                        }
+                      
                     </div><!-- dropdown-menu -->
                 </div><!-- dropdown -->
                 <div class="dropdown">
@@ -327,15 +330,10 @@
                             }
                             else
                             {
-                                int perID = (int)Session["UserName"];
-                                BusinessLogic.lnPerson _LNP = new BusinessLogic.lnPerson();
-                                var perList = _LNP.GetPersonById(perID);
-                                ViewBag.xPerson = perList;
-                                Model.Person item = ViewBag.xPerson;
-                                
-                                @item.Name
-                                
-                            }
+                                string person = Session["UserName"].ToString();
+                            @person
+
+                        }
                         </span>
                         <img src="http://via.placeholder.com/64x64" class="wd-32 rounded-circle" alt="">
                         <span class="square-10 bg-success"></span>
