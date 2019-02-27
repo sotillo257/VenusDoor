@@ -16,7 +16,7 @@ namespace VenusDoors.Controllers
         public ActionResult Index()
         {
             List<User> Usuarios = _LNU.GetAllUser();
-            List<User> ListaUsuarios = Usuarios.OrderByDescending(x => x.ModificationDate).ToList();
+            List<User> ListaUsuarios = Usuarios.Where(x => x.Status.Id == 2).OrderByDescending(x => x.ModificationDate).ToList();
             ViewBag.UserList = ListaUsuarios;
             return View();
         }

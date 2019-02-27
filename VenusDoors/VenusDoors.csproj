@@ -1092,6 +1092,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\js\CargaImg.js" />
     <Content Include="Scripts\js\ComboBox.js" />
+    <Content Include="Scripts\js\ControlOfOrderd.ConfiDoor.js" />
     <Content Include="Scripts\js\ControlOfOrders.js" />
     <Content Include="Scripts\js\ConverExcel.js" />
     <Content Include="Scripts\js\dashboard.js" />
