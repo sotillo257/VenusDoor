@@ -263,6 +263,7 @@
     <Compile Include="Controllers\OrderStatusController.cs" />
     <Compile Include="Controllers\OrderSummaryController.cs" />
     <Compile Include="Controllers\UserManagementController.cs" />
+    <Compile Include="CustomRoleProvider.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -271,6 +272,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="UserIdentity.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />

@@ -17,6 +17,7 @@ namespace VenusDoors.Controllers
         public IEnumerable<string> ConverExcel { get; private set; }
 
         // GET: OrderSummary
+        //[Authorize(Roles = "1")]
         public ActionResult Index()
         {
             try
