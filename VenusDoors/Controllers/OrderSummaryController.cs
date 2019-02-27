@@ -17,18 +17,30 @@ namespace VenusDoors.Controllers
         public IEnumerable<string> ConverExcel { get; private set; }
 
         // GET: OrderSummary
-        //[Authorize(Roles = "1")]
-        public ActionResult Index()
+        public ActionResult Index(int? Id)
         {
             try
             {
             ViewBag.OrderSummary = "active";
+                BusinessLogic.lnDoors _LNd = new BusinessLogic.lnDoors();
             if (Session["UserID"] == null)
             {
+                    if (Id > 0)
+                    {
+                        var Door = _LNd.GetDoorsById(Id.Value);
+                        var serializar1 = new System.Web.Script.Serialization.JavaScriptSerializer();
+                        ViewBag.Door = serializar1.Serialize(Door);
+                    }
                 return View();
             }
             else
             {
+                    if (Id > 0)
+                    {
+                        var Door = _LNd.GetDoorsById(Id.Value);
+                        var serializar1 = new System.Web.Script.Serialization.JavaScriptSerializer();
+                        ViewBag.Door = serializar1.Serialize(Door);
+                    }
                 BusinessLogic.lnOrder _LNOrder = new BusinessLogic.lnOrder();
                 int userID = (int)Session["UserID"];
                 int idU = userID;

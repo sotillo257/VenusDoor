@@ -90,7 +90,7 @@ $(window).load(function() {
 
         $(document).on('click', '.EnviarDoor', function (event) {
             console.log('@Url.Action("Index","ConfiDoor")');
-            window.location.href = '@Url.Action("Index","ConfiDoor")'+'/Index/'+$(this).attr('value');
+            window.location.href = '@Url.Action("Index","OrderSummary")'+'/Index/'+$(this).attr('value');
         });
     });
 
