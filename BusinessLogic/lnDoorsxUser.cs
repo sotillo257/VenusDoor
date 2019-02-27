@@ -122,22 +122,26 @@ namespace BusinessLogic
                         {
                             DoorStyle = new DoorStyle() { Id = 0, Description = reader[0].ToString() },
                             Material = new Material() { Id = 0, Description = reader[1].ToString() },
-                            TopRail = new TopRail() { Id = 0, Description = reader[2].ToString() },
-                            BottomRail = new BottomRail() { Id = 0, Description = reader[3].ToString() },
-                            Panel = new Panel() { Id = 0, Description = reader[4].ToString() },
-                            PanelMaterial = new PanelMaterial() { Id = 0, Description = reader[5].ToString() },
-                            Preparation = new Preparation() { Id = 0, Description = reader[6].ToString() },
-                            Join = new Join() { Id = 0, Description = reader[7].ToString() },
-                            OutsideEdgeProfile = new OutsideEdgeProfile() { Id = 0, Description = reader[8].ToString() },
-                            InsideEdgeProfile = new InsideEdgeProfile() { Id = 0, Description = reader[9].ToString() },
-                            VerticalDivisions = new VerticalDivisions() { Id = 0, Quantity = int.Parse(reader[10].ToString()), },
-                            HorizontalDivisions = new HorizontalDivisions() { Id = 0, Quantity = int.Parse(reader[11].ToString()), },
-                            Width = decimal.Parse(reader[12].ToString()),
-                            Height = decimal.Parse(reader[13].ToString()),
-                            isDrill = (reader[14].ToString() == "Drill") ? true : false,
-                            HingeDirection = new HingeDirection() { Id = 0, Direction = reader[15].ToString(), },
-                            IsOpeningMeasurement = (reader[16].ToString() == "Opening") ? true : false,
-                            Quantity = int.Parse(reader[17].ToString()),
+                            DoorOption = new DoorOption() { Id = 0, Description = reader[2].ToString() },
+                            isOverlay = (reader[3].ToString() == "Insert Door Type") ? false : true,
+                            TopRail = new TopRail() { Id = 0, Description = reader[4].ToString() },
+                            BottomRail = new BottomRail() { Id = 0, Description = reader[5].ToString() },
+                            Panel = new Panel() { Id = 0, Description = reader[6].ToString() },
+                            PanelMaterial = new PanelMaterial() { Id = 0, Description = reader[7].ToString() },
+                            Preparation = new Preparation() { Id = 0, Description = reader[8].ToString() },
+                            Join = new Join() { Id = 0, Description = reader[9].ToString() },
+                            OutsideEdgeProfile = new OutsideEdgeProfile() { Id = 0, Description = reader[10].ToString() },
+                            InsideEdgeProfile = new InsideEdgeProfile() { Id = 0, Description = reader[11].ToString() },
+                            VerticalDivisions = new VerticalDivisions() { Id = 0, Quantity = int.Parse(reader[12].ToString()), },
+                            HorizontalDivisions = new HorizontalDivisions() { Id = 0, Quantity = int.Parse(reader[13].ToString()), },
+                            Width = decimal.Parse(reader[14].ToString()),
+                            Height = decimal.Parse(reader[15].ToString()),
+                            isDrill = (reader[16].ToString() == "Drill") ? true : false,
+                            HingeDirection = new HingeDirection() { Id = 0, Direction = reader[17].ToString(), },
+                            IsOpeningMeasurement = (reader[18].ToString() == "Opening") ? true : false,
+                            DoorType = new DoorType() { Id = 0, Description = reader[19].ToString(), },
+                            isFingerPull = (reader[20].ToString() == "Yes") ? true : false,
+                            Quantity = int.Parse(reader[21].ToString()),
                             Status = new Status() { Id = 1 },
                             CreationDate = DateTime.Now,
                             ModificationDate = DateTime.Now,
@@ -170,6 +174,13 @@ namespace BusinessLogic
                     if (_listMateriale != null)
                     {
                         item.Material.Id = _listMateriale.Id;
+                    }
+
+                    BusinessLogic.lnDoorOption _LNDoorOption = new BusinessLogic.lnDoorOption();
+                    var _listDoorOption = _LNDoorOption.GetAllDoorOption().Where(x => x.Description.Trim() == item.DoorOption.Description.Trim()).FirstOrDefault();
+                    if (_listDoorOption != null)
+                    {
+                        item.DoorOption.Id = _listDoorOption.Id;
                     }
                     BusinessLogic.lnTopRail _LNTopRail = new BusinessLogic.lnTopRail();
                     var _listTopRail = _LNTopRail.GetAllTopRail().Where(x => x.Description.Trim() == item.TopRail.Description.Trim().Replace(',', '.')).FirstOrDefault();
@@ -237,6 +248,12 @@ namespace BusinessLogic
                     {
                         item.HingeDirection.Id = _listHingeDirection.Id;
                     }
+                    BusinessLogic.lnDoorType _LNDoorType = new BusinessLogic.lnDoorType();
+                    var _listDoorType = _LNDoorType.GetAllDoorType().Where(x => x.Description.Trim() == item.DoorType.Description.Trim()).FirstOrDefault();
+                    if (_listDoorType != null)
+                    {
+                        item.DoorType.Id = _listDoorType.Id;
+                    }
 
                     item.HingePositions = CalcularPosicionHing(item);
                     item.ProfilePicture = BuscarProfilePicture(item.OutsideEdgeProfile.Id, item.InsideEdgeProfile.Id, item.Panel.Id);
@@ -255,7 +272,7 @@ namespace BusinessLogic
                 reader.Close();
                 return true;
             }
-            catch (Exception)
+            catch (Exception error)
             {
                 return false;
             }
