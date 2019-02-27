@@ -97,8 +97,8 @@
 
             }
 
-            @if (Session["UserID"] != null && (int)Session["UserType"] == 1)
-            {
+            @if (Session["UserID"] != null && ((int)Session["UserType"] == 1 || (int)Session["UserType"] == 2))
+                        {
                 <a href="/OrderControl/Index" class="br-menu-link @ViewBag.OrderControl">
                     <div class="br-menu-item">
                         <i class="menu-item-icon fa fa-list tx-20"></i>
@@ -111,7 +111,8 @@
                         <span class="menu-item-label">Users management</span>
                     </div><!-- menu-item -->
                 </a><!-- br-menu-link -->
-               
+               if ((int)Session["UserType"] == 1)
+	            {
                 <a href="#" class="br-menu-link  @ViewBag.Masters">
                     <div class="br-menu-item">
                         <i class="menu-item-icon icon ion-ios-filing-outline tx-24"></i>
@@ -152,6 +153,7 @@
                     <li class="nav-item">@Html.ActionLink("User", "Usuario", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Usuario })</li>
                     <li class="nav-item">@Html.ActionLink("Vertical Divisions", "VerticalDivisions", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.VerticalDivisions })</li>
                 </ul>              
+                }
             }
             else
             {
@@ -177,7 +179,7 @@
     </div><!-- br-header-left -->
 
     @if (Session["UserID"] == null)
-    {
+            {
         <div class="col-md-1">
             <div class="br-header-right" style="margin-top: 10px;">
 
