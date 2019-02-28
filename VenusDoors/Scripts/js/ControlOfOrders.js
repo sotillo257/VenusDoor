@@ -230,7 +230,7 @@ function llenarTablaOrderControl() {
                     option += '<td tabindex="0"  >' + data[i].Id + '</td>';
                     option += '<td>' + data[i].Quantity + '</td>';
                     option += '<td>' + data[i].Total + '</td>';
-                    option += '<td>' 
+                    option += '<td>';
                     if (data[i].Status.Id == 7) {
                         option += '<span class="square-8 bg-success mg-r-5 rounded-circle"></span>';
                     } else if (data[i].Status.Id == 6) {
@@ -240,17 +240,16 @@ function llenarTablaOrderControl() {
                     }
                     option += data[i].Status.Description + '</td>';
                     option += '<td>';
-                    option += '<button href="#" data-id="' + data[i].Id + '" id="" value="" class="Detalle Cursor btn btn-info btn-icon">' +
-                        '<div><i class="fa fa-eye"></i></div></button>';
+                    option += '<button href="#" data-id="' + data[i].Id + '" id="" value="" class="Detalle Cursor btn btn-info btn-icon" style="margin-right: 5px;" ><div><i class="fa fa-eye" ></i></div></button>';
                     if (data[i].Status.Id == 5)
                     {
-                        option += '<button  data-target="" id="" title="Approve order." value="' + data[i].Id + '" class="Approved btn btn-primary btn-icon"><div><i class="fa fa-check"></i></div></button>';
-                        option += '<button  data-toggle="modal" data-target="" id="" title="Remove order." value="' + data[i].Id + '" class="Remove btn btn-danger btn-icon"><div><i class="fa fa-close"></i></div></button>';
+                        option += '<button title="Approve order." value="' + data[i].Id + '" class="Approved btn btn-primary btn-icon" style="margin-right: 5px;"><div><i class="fa fa-check"></i></div></button>';
+                        option += '<button  data-toggle="modal" data-target="" id="" title="Remove order." value="' + data[i].Id + '" style="margin-right: 5px;" class="Remove btn btn-danger btn-icon"><div><i class="fa fa-close"></i></div></button>';
                     }
                     else if (data[i].Status.Id == 6)
-                    { option += '<button  data-target="" id="" title="Process order." value="' + data[i].Id + '" class="Process btn btn-warning btn-icon"><div><i class="fa fa-check"></i></div></button>'; }
+                    { option += '<button title="Process order." value="' + data[i].Id + '" class="Process btn btn-warning btn-icon" style="margin-right: 5px;" > <div> <i class="fa fa-check"></i> </div> </button>'; }
                     else if (data[i].Status.Id == 7)
-                    { option += '<button  data-target="" id="" title="Complete order." value="' + data[i].Id + '" class="Completed btn btn-success btn-icon"><div><i class="fa fa-check"></i></div></button> '; }
+                    { option += '<button title="Complete order." value="' + data[i].Id + '" class="Completed btn btn-success btn-icon" style="margin-right: 5px;" > <div> <i class="fa fa-check"></i> </div> </button>'; }
                    
                     option += '</td></tr>';
 
