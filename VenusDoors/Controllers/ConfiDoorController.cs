@@ -267,6 +267,20 @@ namespace VenusDoors.Controllers
         }
 
         [HttpPost]
+        public ActionResult GetAllDecimals()
+        {
+            try
+            {
+                BusinessLogic.lnDecimals _LN = new BusinessLogic.lnDecimals();
+                return Json(_LN.GetAllDecimals());
+            }
+            catch
+            {
+                return View("Error");
+            }
+        }
+
+        [HttpPost]
         public ActionResult GetPrices(RailThickness RailThick, Material pMaterial, DoorStyle pDoorstyle)
         {
             try

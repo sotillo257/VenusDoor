@@ -15,6 +15,7 @@
 	GetAllHingeDirection();
 	GetAllDoorType();
 	GetAllDoorOption();
+	GetAllDecimals();
 	PrintDoorOverlay();
 	//ValidateSession();
 
@@ -919,12 +920,41 @@ function GetAllDoorOption() {
                         $("#DivDoorOption").html(radioButt);
                     }
 
-                }
-                
-
+                }                
             }
             else {
                 LlammarModal("Danger", "Error obtaining DoorOption", " ");
+            }
+        },
+        error: function (err) {
+            LlammarModal("Danger", "Error.", " ");
+        }
+    });
+}
+
+function GetAllDecimals() {
+    $.ajax({
+        url: urlGetAllDecimals,
+        cache: false,
+        type: 'POST',
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        success: function (data) {
+            if (data != null) {
+                allDecimals = data;
+                var option = '';
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i].Status.Id == 1) {
+                        option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
+                    }
+
+                }
+                $("#cbDecimalsW").empty().append(option);
+                $("#cbDecimalsH").empty().append(option);
+
+            }
+            else {
+                LlammarModal("Danger", "Error obtaining Decimals");
             }
         },
         error: function (err) {
@@ -981,7 +1011,9 @@ function InsertDoorsxUser() {
                  VerticalDivisions: { Id: $("#cbVerticalDivisions").val() },
                  HorizontalDivisions: { Id: $("#cbHorizontalDivisions").val() },
                  Width: parseFloat($("#iptWidth").val()),
+                 DecimalsWidth: { Id: $("#cbDecimalsW").val() },
                  Height: parseFloat($("#iptHeight").val()),
+                 DecimalsHeight: { Id: $("#cbDecimalsH").val() },
                  Quantity: DoorQuantity,
                  ItemCost: itemCost,
                  SubTotal: DoorSubTotal,
@@ -1085,7 +1117,9 @@ function UpdateDoorsxUser() {
                  VerticalDivisions: { Id: $("#cbVerticalDivisions").val() },
                  HorizontalDivisions: { Id: $("#cbHorizontalDivisions").val() },
                  Width: parseFloat($("#iptWidth").val()),
+                 DecimalsWidth: { Id: $("#cbDecimalsW").val() },
                  Height: parseFloat($("#iptHeight").val()),
+                 DecimalsHeight: { Id: $("#cbDecimalsH").val() },
                  Quantity: DoorQuantity,
                  ItemCost: itemCost,
                  SubTotal: DoorSubTotal,

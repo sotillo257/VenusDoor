@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="adBottomRail.cs" />
     <Compile Include="adCompany.cs" />
+    <Compile Include="adDecimals.cs" />
     <Compile Include="adDoorOption.cs" />
     <Compile Include="adDoors.cs" />
     <Compile Include="adDoorsPrices.cs" />

@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="lnBottomRail.cs" />
     <Compile Include="lnCompany.cs" />
+    <Compile Include="lnDecimals.cs" />
     <Compile Include="lnDoorOption.cs" />
     <Compile Include="lnDoors.cs" />
     <Compile Include="lnDoorsPrices.cs" />

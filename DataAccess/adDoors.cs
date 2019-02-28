@@ -44,7 +44,9 @@ namespace DataAccess
                             HingePositions = new HingePositions() { Id = int.Parse(item["IdHingePositions"].ToString()), Position1 = item["HP1"].ToString(), Position2 = item["HP2"].ToString(), Position3 = item["HP3"].ToString(), Position4 = item["HP4"].ToString(), Position5 = item["HP5"].ToString(), },
                             isDrill = bool.Parse(item["isDrill"].ToString()),
                             Width = decimal.Parse(item["Width"].ToString()),
+                            DecimalsWidth = new Decimals() { Id = int.Parse(item["IdDecimalsWidth"].ToString()), Description = item["DescriptDW"].ToString() },
                             Height = decimal.Parse(item["Height"].ToString()),
+                            DecimalsHeight = new Decimals() { Id = int.Parse(item["IdDecimalsHeight"].ToString()), Description = item["DescriptDH"].ToString() },
                             IsOpeningMeasurement = bool.Parse(item["IsOpeningMeasurement"].ToString()),
                             Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["DescripStatus"].ToString() },
                             CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
@@ -172,7 +174,9 @@ namespace DataAccess
                             HingePositions = new HingePositions() { Id = int.Parse(item["IdHingePositions"].ToString()), Position1 = item["HP1"].ToString(), Position2 = item["HP2"].ToString(), Position3 = item["HP3"].ToString(), Position4 = item["HP4"].ToString(), Position5 = item["HP5"].ToString(), },
                             isDrill = bool.Parse(item["isDrill"].ToString()),
                             Width = decimal.Parse(item["Width"].ToString()),
+                            DecimalsWidth = new Decimals() { Id = int.Parse(item["IdDecimalsWidth"].ToString()), Description = item["DescriptDW"].ToString() },
                             Height = decimal.Parse(item["Height"].ToString()),
+                            DecimalsHeight = new Decimals() { Id = int.Parse(item["IdDecimalsHeight"].ToString()), Description = item["DescriptDH"].ToString() },
                             IsOpeningMeasurement = bool.Parse(item["IsOpeningMeasurement"].ToString()),
                             Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["DescripStatus"].ToString() },
                             CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
@@ -200,11 +204,11 @@ namespace DataAccess
 
         public int InsertDoors(Doors pDoors)
         {
-            string sql = @"[spInsertDoors] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}', '{20}', '{21}', '{22}', '{23}', '{24}', '{25}', '{26}', '{27}', '{28}'";
+            string sql = @"[spInsertDoors] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}', '{20}', '{21}', '{22}', '{23}', '{24}', '{25}', '{26}', '{27}', '{28}', '{29}', '{30}'";
             sql = string.Format(sql, pDoors.DoorStyle.Id, pDoors.Material.Id, pDoors.TopRail.Id,pDoors.BottomRail.Id, 
                 pDoors.Preparation.Id, pDoors.Join.Id, pDoors.OutsideEdgeProfile.Id, 
                 pDoors.InsideEdgeProfile.Id, pDoors.VerticalDivisions.Id, pDoors.HorizontalDivisions.Id, pDoors.HingeDirection.Id, 
-                pDoors.HingePositions.Id, (pDoors.isDrill == true) ? 1 : 0, pDoors.Width.ToString().Replace(',', '.'), pDoors.Height.ToString().Replace(',', '.'), (pDoors.IsOpeningMeasurement == true) ? 1 : 0, 
+                pDoors.HingePositions.Id, (pDoors.isDrill == true) ? 1 : 0, pDoors.Width.ToString().Replace(',', '.'), pDoors.DecimalsWidth.Id, pDoors.Height.ToString().Replace(',', '.'), pDoors.DecimalsHeight.Id, (pDoors.IsOpeningMeasurement == true) ? 1 : 0, 
                 pDoors.Status.Id, pDoors.CreationDate.ToString("yyyyMMdd"), pDoors.CreatorUser, pDoors.ModificationDate.ToString("yyyyMMdd"),
                 pDoors.ModificationUser, pDoors.Picture, pDoors.ProfilePicture, pDoors.Panel.Id, pDoors.PanelMaterial.Id, pDoors.DoorType.Id, pDoors.DoorOption.Id, (pDoors.isOverlay == true) ? 1 : 0, (pDoors.isFingerPull == true) ? 1 : 0);
             try
@@ -219,11 +223,11 @@ namespace DataAccess
 
         public void UpdateDoors(Doors pDoors)
         {
-            string sql = @"[spUpdateDoors] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}', '{20}', '{21}', '{22}', '{23}', '{24}', '{25}', '{26}', '{27}'";
+            string sql = @"[spUpdateDoors] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}', '{20}', '{21}', '{22}', '{23}', '{24}', '{25}', '{26}', '{27}', '{28}', '{29}'";
             sql = string.Format(sql, pDoors.Id, pDoors.DoorStyle.Id, pDoors.Material.Id, pDoors.TopRail.Id, pDoors.BottomRail.Id,
                 pDoors.Preparation.Id, pDoors.Join.Id, pDoors.OutsideEdgeProfile.Id,
                 pDoors.InsideEdgeProfile.Id, pDoors.VerticalDivisions.Id, pDoors.HorizontalDivisions.Id, pDoors.HingeDirection.Id,
-                pDoors.HingePositions.Id, pDoors.isDrill, pDoors.Width.ToString().Replace(',', '.'), pDoors.Height.ToString().Replace(',', '.'), pDoors.IsOpeningMeasurement,
+                pDoors.HingePositions.Id, pDoors.Width.ToString().Replace(',', '.'), pDoors.DecimalsWidth.Id, pDoors.Height.ToString().Replace(',', '.'), pDoors.DecimalsHeight.Id, pDoors.IsOpeningMeasurement,
                 pDoors.Status.Id, pDoors.ModificationDate.ToString("yyyyMMdd"),
                 pDoors.ModificationUser, pDoors.Picture, pDoors.ProfilePicture, pDoors.Panel.Id, pDoors.PanelMaterial.Id, pDoors.DoorType.Id, pDoors.DoorOption.Id, (pDoors.isOverlay == true) ? 1 : 0, (pDoors.isFingerPull == true) ? 1 : 0);
             try
