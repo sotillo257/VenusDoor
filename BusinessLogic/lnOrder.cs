@@ -84,7 +84,7 @@ namespace BusinessLogic
             }
 
         }
-
+        
         public int InsertOrder(Order pOrder)
         {
             try
@@ -103,6 +103,20 @@ namespace BusinessLogic
             try
             {
                 _AD.UpdateOrder(pOrder);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+        }
+
+        public bool UpdateOrderStatus(Order pOrder)
+        {
+            try
+            {
+                _AD.UpdateOrderStatus(pOrder);
                 return true;
             }
             catch (Exception ex)

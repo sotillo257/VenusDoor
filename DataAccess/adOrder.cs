@@ -131,6 +131,7 @@ namespace DataAccess
             }
 
         }
+        
 
         public Totales GetAllTotales()
         {
@@ -242,6 +243,22 @@ namespace DataAccess
             string sql = @"[spUpdateOrder] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}'";
 
             sql = string.Format(sql, pOrder.Id, pOrder.User.Id, pOrder.Quantity, subtotal.ToString().Replace(',', '.'), tax.ToString().Replace(',', '.'), total.ToString().Replace(',', '.'), pOrder.Type.Id, pOrder.Status.Id, pOrder.ModificationDate.ToString("yyyyMMdd HH:mm:ss"),
+                pOrder.ModificationUser);
+            try
+            {
+                _MB.EjecutarSQL(_CN, sql);
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
+        public void UpdateOrderStatus(Order pOrder)
+        {
+            string sql = @"[spUpdateOrderStatus] '{0}', '{1}', '{2}', '{3}'";
+
+            sql = string.Format(sql, pOrder.Id, pOrder.Status.Id, pOrder.ModificationDate.ToString("yyyyMMdd HH:mm:ss"),
                 pOrder.ModificationUser);
             try
             {

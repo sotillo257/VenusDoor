@@ -78,6 +78,20 @@ namespace BusinessLogic
 
         }
 
+        public bool UpdateUserStatus(User pUser)
+        {
+            try
+            {
+                _AD.UpdateUserStatus(pUser);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+        }
+
         public bool DeleteUser(int pId)
         {
             try
