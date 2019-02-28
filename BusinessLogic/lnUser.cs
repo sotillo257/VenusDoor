@@ -31,6 +31,27 @@ namespace BusinessLogic
 
         }
 
+        public List<User> GetAllUserByCompany(int pIdCompany, int pType)
+        {
+            try
+            {
+                if (pType == 1)
+                {
+                    return _AD.GetAllUser();
+                }
+                else
+                {
+                    return _AD.GetAllUserByCompany(pIdCompany);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+        }
+
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018

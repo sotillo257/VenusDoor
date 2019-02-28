@@ -20,22 +20,31 @@ namespace VenusDoors
         }
         void MvcApplication_PostAuthenticateRequest(object sender, EventArgs e)
         {
-            //HttpContext.Current.Request.Cookies.Remove("BioKontrolCookie");
-            HttpCookie authCookie = HttpContext.Current.Request.Cookies["VenusCabinetDoorsCookie"];
-            if (authCookie != null)
+            try
             {
-                string encTicket = authCookie.Value;
-                if (!String.IsNullOrEmpty(encTicket))
+                
+                HttpCookie authCookie = HttpContext.Current.Request.Cookies["VenusCabinetDoorsCookie"];
+                if (authCookie != null)
                 {
-                    var ticket = FormsAuthentication.Decrypt(encTicket);
-                    var id = new UserIdentity(ticket);
+                    string encTicket = authCookie.Value;
+                    if (!String.IsNullOrEmpty(encTicket))
+                    {
+                        var ticket = FormsAuthentication.Decrypt(encTicket);
+                        var id = new UserIdentity(ticket);
 
-                    //int CodCompania = int.Parse(HttpContext.Current.Session["CodCompania"].ToString());
-                    var userRoles = Roles.GetRolesForUser(id.AuthenticationType);
-                    var prin = new GenericPrincipal(id, userRoles);
-                    HttpContext.Current.User = prin;
+                        //int CodCompania = int.Parse(HttpContext.Current.Session["CodCompania"].ToString());
+                        var userRoles = Roles.GetRolesForUser(id.AuthenticationType);
+                        var prin = new GenericPrincipal(id, userRoles);
+                        HttpContext.Current.User = prin;
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                 HttpContext.Current.Request.Cookies.Remove("VenusCabinetDoorsCookie");
+                // throw;
+            }
+          
 
         }
         protected void Application_Start()
