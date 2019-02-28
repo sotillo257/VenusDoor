@@ -91,6 +91,46 @@ namespace DataAccess
 
         }
 
+        public List<User> GetAllUserByCompany(int IdCompany)
+        {
+            List<User> usr = new List<User>();
+            string sql = @"[spGetAllUserByCompany] '{0}'";
+            sql = string.Format(sql, IdCompany);
+            try
+            {
+                DataSet ds = new DataSet();
+                ds = _MB.CreaDS(ds, "User", sql, _CN);
+                if (ds.Tables["User"].Rows.Count > 0)
+                {
+                    foreach (DataRow item in ds.Tables["User"].Rows)
+                    {
+                        usr.Add(new User()
+                        {
+                            Id = int.Parse(item["Id"].ToString()),
+                            Email = item["Email"].ToString(),
+                            Password = item["Password"].ToString(),
+                            Type = new Model.Type() { Id = int.Parse(item["IdType"].ToString()), Description = item["DescripType"].ToString() },
+                            Person = new Model.Person() { Id = int.Parse(item["IdPerson"].ToString()), Name = item["NamePerson"].ToString() },
+                            Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["DescripStatus"].ToString() },
+                            Company = new Company() { Id = int.Parse(item["IdCompany"].ToString()), Name = item["NameCompany"].ToString() },
+                            VerificationCode = item["VerificationCode"].ToString(),
+                            CreationDate = DateTime.Parse(item["CreationDate"].ToString()),
+                            ModificationDate = DateTime.Parse(item["ModificationDate"].ToString()),
+                            CreatorUser = int.Parse(item["CreatorUser"].ToString()),
+                            ModificationUser = int.Parse(item["ModificationUser"].ToString()),
+
+                        });
+                    }
+                }
+                return usr;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
+
         public int InsertUser(User pUser)
         {
             string sql = @"[spInsertUser] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}'";

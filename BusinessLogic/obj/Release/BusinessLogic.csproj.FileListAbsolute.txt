@@ -43,3 +43,5 @@ C:\Users\jesus\Source\Repos\copia venus 333\BusinessLogic\obj\Release\BusinessLo
 C:\Users\jesus\Source\Repos\copia venus 333\BusinessLogic\obj\Release\BusinessLogic.pdb
 C:\Users\jesus\Source\Repos\copia venus 333\BusinessLogic\bin\Release\ExcelDataReader.dll
 C:\Users\jesus\Source\Repos\copia venus 333\BusinessLogic\bin\Release\ExcelDataReader.xml
+C:\Users\Lenovo\Source\Repos\VenusDoor\BusinessLogic\bin\Release\ExcelDataReader.dll
+C:\Users\Lenovo\Source\Repos\VenusDoor\BusinessLogic\bin\Release\ExcelDataReader.xml

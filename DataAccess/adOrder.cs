@@ -132,6 +132,46 @@ namespace DataAccess
 
         }
 
+        public List<Order> GetAllOrderByCompany(int IdCompany)
+        {
+            List<Order> ord = new List<Order>();
+            string sql = @"[spGetAllOrderByCompany] '{0}' ";
+            sql = string.Format(sql, IdCompany);
+            try
+            {
+                DataSet ds = new DataSet();
+                ds = _MB.CreaDS(ds, "Order", sql, _CN);
+                if (ds.Tables["Order"].Rows.Count > 0)
+                {
+                    foreach (DataRow item in ds.Tables["Order"].Rows)
+                    {
+                        ord.Add(new Order()
+                        {
+                            Id = int.Parse(item["Id"].ToString()),
+                            User = new User() { Id = int.Parse(item["IdUser"].ToString()) },
+                            Quantity = int.Parse(item["Quantity"].ToString()),
+                            SubTotal = decimal.Parse(item["SubTotal"].ToString()),
+                            Tax = decimal.Parse(item["Tax"].ToString()),
+                            Total = decimal.Parse(item["Total"].ToString()),
+                            Type = new Model.Type() { Id = int.Parse(item["IdType"].ToString()), Description = item["DescripType"].ToString() },
+                            Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["DescripStatus"].ToString() },
+                            CreationDate = DateTime.Parse(item["CreationDate"].ToString()),
+                            ModificationDate = DateTime.Parse(item["ModificationDate"].ToString()),
+                            CreatorUser = int.Parse(item["CreatorUser"].ToString()),
+                            ModificationUser = int.Parse(item["ModificationUser"].ToString()),
+
+                        });
+                    }
+                }
+                return ord;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
+
         public Totales GetAllTotales()
         {
             Totales ord = new Totales();
