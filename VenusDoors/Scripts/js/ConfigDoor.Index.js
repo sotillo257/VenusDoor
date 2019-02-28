@@ -1192,8 +1192,8 @@ function GetPrices() {
     var TR = $("#cbTopRail").val();
     var BR = $("#cbBottomRail").val();
     var RT;
-    var H = parseFloat($("#iptHeight").val());
-    var W = parseFloat($("#iptWidth").val());
+    var H = parseFloat($("#iptHeight").val()) + parseFloat($("#cbHeight").val());
+    var W = parseFloat($("#iptWidth").val()) + parseFloat($("#cbWidth").val());
     $("#iptCost").val(!isNaN(getPriceDoor($("#cbMaterial").val(), $("#cbPanel").val(), H, W, TR, BR))?getPriceDoor($("#cbMaterial").val(), $("#cbPanel").val(), H, W, TR, BR) : '0.00' );
 }
 
@@ -1608,6 +1608,19 @@ function getPriceDoor(pMaterial, pPanel, Height, width, pTopRail, pBottomRail) {
         {
             precio = 9.66;
         }
+    }
+
+    for (var i = 0; i < allMaterial.length; i++) {
+        if (allMaterial[i].Id == pMaterial) {
+            if (pPanel == 5 || pPanel == 6) {
+                precio = allMaterial[i].PriceFlatPanel;
+
+            } else {
+                precio = allMaterial[i].PriceRaisedPanel;
+            }
+
+        }
+       
     }
 
     if (pTopRail == 3 || pBottomRail == 3)

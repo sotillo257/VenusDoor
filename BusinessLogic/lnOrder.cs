@@ -31,6 +31,28 @@ namespace BusinessLogic
 
         }
 
+        public List<Order> GetAllOrderByCompany(int pIdCompany, int pType )
+        {
+            try
+            {
+                if (pType == 1)
+                {
+                    return _AD.GetAllOrder();
+                }
+                else
+                {
+                    return _AD.GetAllOrderByCompany(pIdCompany);
+                }
+               
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+        }
+
+
         public Totales GetAllTotales(int IdCompany, int IdTypeCompany)
         {
             try
