@@ -161,6 +161,21 @@ namespace DataAccess
             }
         }
 
+        public void UpdateUserStatus(User pUser)
+        {
+            string sql = @"[spUpdateUserStatus] '{0}', '{1}', '{2}', '{3}'";
+            sql = string.Format(sql, pUser.Id, pUser.Status.Id, pUser.ModificationDate.ToString("yyyyMMdd"),
+                pUser.ModificationUser);
+            try
+            {
+                _MB.EjecutarSQL(_CN, sql);
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018

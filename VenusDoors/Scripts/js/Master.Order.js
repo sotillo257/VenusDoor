@@ -211,7 +211,7 @@ function llenarComboEstatus(pStatus) {
 
     var option = '<option value="0" id="">Select</option>';
     for (var i = 0; i < allEstatus.length; i++) {
-        if (allEstatus[i].Group.Id == 1) {
+        if (allEstatus[i].Group.Id == 2) {
             option += '<option value="' + allEstatus[i].Id + '">' + allEstatus[i].Description + '</option>';
         }
 
