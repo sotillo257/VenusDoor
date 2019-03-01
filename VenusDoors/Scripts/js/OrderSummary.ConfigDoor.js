@@ -165,9 +165,7 @@ function SearchDoor(data) {
         $("select").prop('disabled', false);
         $("#iptQuantity").prop('disabled', false);
         $("#iptWidth").prop('disabled', false);
-        $("#iptHeight").prop('disabled', false);
-        $("input[name=radioOption]").attr("disabled", false);
-        $("input[name=radioOver]").attr("disabled", false);
+        $("#iptHeight").prop('disabled', false);       
 
         var fingerPull = data.isFingerPull;
         if (fingerPull == false) {
@@ -203,7 +201,6 @@ function SearchDoor(data) {
         }
         checkIsOverlay(isOver);
         checkDoorOption(data.DoorOption.Id);
-        //llenarComboDecimales(data.Decimales.Id);
         llenarComboMaterial(data.Material.Id);
         llenarComboDoorStyle(data.DoorStyle.Id);
         llenarComboIEP(data.InsideEdgeProfile.Id);
@@ -222,8 +219,10 @@ function SearchDoor(data) {
         $("#iptWidth").val(data.Width);
         $("#iptHeight").val(data.Height);
         $("#iptQuantity").val(1);
-        // $("#iptCost").val();
+        //$("#iptCost").val(data.ItemCost);
         GetPrices();
+        $("input[name=radioOption]").attr("disabled", false);
+        $("input[name=radioOver]").attr("disabled", false);
     } else {
 
     }
