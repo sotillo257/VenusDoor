@@ -17,7 +17,7 @@
 	GetAllDoorOption();
 	GetAllDecimals();
 	PrintDoorOverlay();
-	//ValidateSession();
+	ValidateSession();
 
 	//$("#btConfirm").on("click", function () {
 	//    if (ValidarCamposVacios()) {
@@ -1200,20 +1200,20 @@ function GetPrices() {
     $("#iptCost").val(!isNaN(getPriceDoor($("#cbMaterial").val(), $("#cbPanel").val(), H, W, TR, BR))?getPriceDoor($("#cbMaterial").val(), $("#cbPanel").val(), H, W, TR, BR) : '0.00' );
 }
 
-//function ValidateSession() {
-//    $.ajax({
-//        type: 'POST',
-//        url: urlValidateSession,
-//        dataType: "json",
-//        contentType: 'application/json; charset=utf-8',
-//        success: function (result) {
+function ValidateSession() {
+    $.ajax({
+        type: 'POST',
+        url: urlValidateSession,
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
 
-//            if (result == false) {
-//                LlammarModal("MLogin", "Sign in to your account to start building doors!", " ");
-//            } 
-//        },
-//    });
-//}
+            if (result == false) {
+                LlammarModal("MLogin", "Sign in to your account to start building doors!", " ");
+            } 
+        },
+    });
+}
 function ChangeProfile() {
     var Outside = $('#cbOutsideEdgeProfile').val();
     var Inside = $('#cbInsideEdgeProfile').val();

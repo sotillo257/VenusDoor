@@ -31,8 +31,8 @@ namespace VenusDoors.Controllers
                         var serializar1 = new System.Web.Script.Serialization.JavaScriptSerializer();
                         ViewBag.Door = serializar1.Serialize(Door);
                     }
-                return View();
-            }
+                    return View();
+                }
             else
             {
                     if (Id > 0)
@@ -451,6 +451,21 @@ namespace VenusDoors.Controllers
                 }
             }
         }
+
+        [HttpPost]
+        public ActionResult ValidateSession()
+        {
+
+            if (Session["UserID"] != null)
+            {
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
 
         #region BottomRail 
         [HttpPost]
