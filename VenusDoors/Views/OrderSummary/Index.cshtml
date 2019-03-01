@@ -156,7 +156,7 @@
             </tbody>
         </table>
 
-        <div class="row">
+        <div class="row" id="Resultados">
             @if (Session["UserID"] == null)
             {
                 <div class="col-md-7">
@@ -177,9 +177,9 @@
                     <input hidden id="idtotal" value="@ord.Total" />
                     <input hidden id="idstatus" value="@ord.Status.Id" />
                     <div class="col-md-7">
-                        <h5 style="color:#7b7979">Sub-Total: <span>$</span>@ord.SubTotal.ToString().Replace(',', '.')</h5>
-                        <h5 style="color:#7b7979">Tax: <span>$</span>@ord.Tax.ToString().Replace(',', '.')</h5>
-                        <h3 style="color:#000">Total Price: <span>$</span>@ord.Total.ToString().Replace(',', '.')</h3>
+                        <h5 id="lblSubtotal" style="color:#7b7979">Sub-Total: <span>$</span>@ord.SubTotal.ToString().Replace(',', '.')</h5>
+                        <h5 id="lblTax" style="color:#7b7979">Tax: <span>$</span>@ord.Tax.ToString().Replace(',', '.')</h5>
+                        <h3 id="lblTotal" style="color:#000">Total Price: <span>$</span>@ord.Total.ToString().Replace(',', '.')</h3>
                     </div>
                 }
                 else
@@ -484,6 +484,8 @@
         var urlUploadExcel = '@Url.Action("UploadExcel", "ConfiDoor")';
         var urlDeleteItem = '@Url.Action("DeleteItem", "OrderSummary")';
         var urlConfirmOrder = '@Url.Action("ConfirmOrder", "OrderSummary")';
+        var urlGetOrderSumary = '@Url.Action("GetOrderSumary", "OrderSummary")';
+        
         try {
             var listDOOR = JSON.parse('@Html.Raw(ViewBag.ListDoorsxUser)');
         } catch (e) {
