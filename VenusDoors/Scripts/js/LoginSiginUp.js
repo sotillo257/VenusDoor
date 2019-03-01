@@ -100,10 +100,10 @@ function CreateNewUser() {
             UserData: {
                 Email: $('#inptEmail').val(),
                 Password: $('#inptPassword').val(),
-                Type: { Id: 2 },
+                Type: { Id: 3 },
                 Person: { Id: 0 },
                 Company: { Id: $('#cbCompany').val() },
-                Status: { Id: 2},
+                Status: { Id: 1},
                 CreatorUser: 6,
                 ModificationUser: 6,
             }

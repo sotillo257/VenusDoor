@@ -123,7 +123,9 @@
                 llenarComboVerticalDivisions(listDOOR[i].VerticalDivisions.Id);
                 llenarComboHorizontalDivisions(listDOOR[i].HorizontalDivisions.Id);                
                 llenarComboHingeDirection(listDOOR[i].HingeDirection.Id);
-                llenarComboDoorType(listDOOR[i].DoorType.Id);               
+                llenarComboDoorType(listDOOR[i].DoorType.Id);
+                llenarComboDecimalW(listDOOR[i].DecimalsWidth.Id);
+                llenarComboDecimalH(listDOOR[i].DecimalsHeight.Id);
                 break;
             }
         }
@@ -160,6 +162,10 @@ function SearchDoor(data) {
         $("#btXclose").show();
         $("#btConfAdd").show();
         $("#btModify").hide();
+        $("select").prop('disabled', false);
+        $("#iptQuantity").prop('disabled', false);
+        $("#iptWidth").prop('disabled', false);
+        $("#iptHeight").prop('disabled', false);       
 
         var fingerPull = data.isFingerPull;
         if (fingerPull == false) {
@@ -195,7 +201,6 @@ function SearchDoor(data) {
         }
         checkIsOverlay(isOver);
         checkDoorOption(data.DoorOption.Id);
-        //llenarComboDecimales(data.Decimales.Id);
         llenarComboMaterial(data.Material.Id);
         llenarComboDoorStyle(data.DoorStyle.Id);
         llenarComboIEP(data.InsideEdgeProfile.Id);
@@ -209,11 +214,15 @@ function SearchDoor(data) {
         llenarComboHorizontalDivisions(data.HorizontalDivisions.Id);
         llenarComboHingeDirection(data.HingeDirection.Id);
         llenarComboDoorType(data.DoorType.Id);
+        llenarComboDecimalW(data.DecimalsWidth.Id);
+        llenarComboDecimalH(data.DecimalsHeight.Id);
         $("#iptWidth").val(data.Width);
         $("#iptHeight").val(data.Height);
         $("#iptQuantity").val(1);
-        // $("#iptCost").val();
+        //$("#iptCost").val(data.ItemCost);
         GetPrices();
+        $("input[name=radioOption]").attr("disabled", false);
+        $("input[name=radioOver]").attr("disabled", false);
     } else {
 
     }
@@ -548,6 +557,35 @@ function checkDoorOption(pDoorOp) {
     }
 }
 
+var allDecimals = '';
+function llenarComboDecimalW(pDecimalW) {
+
+    var option = '<option value="0">Select</option>';
+    for (var i = 0; i < allDecimals.length; i++) {
+        if (allDecimals[i].Status.Id == 1) {
+            option += '<option value="' + allDecimals[i].Id + '">' + allDecimals[i].Description + '</option>';
+        }
+    }
+    $("#cbDecimalsW").empty().append(option);
+    if (pDecimalW != 0) {
+        $("#cbDecimalsW").val(pDecimalW);
+    }
+}
+
+function llenarComboDecimalH(pDecimalH) {
+
+    var option = '<option value="0">Select</option>';
+    for (var i = 0; i < allDecimals.length; i++) {
+        if (allDecimals[i].Status.Id == 1) {
+            option += '<option value="' + allDecimals[i].Id + '">' + allDecimals[i].Description + '</option>';
+        }
+    }
+    $("#cbDecimalsH").empty().append(option);
+    if (pDecimalH != 0) {
+        $("#cbDecimalsH").val(pDecimalH);
+    }
+}
+
 function LimpiarCombos() {        
     $('input').val("");
     $('#iptCost').val("0.00");
@@ -571,6 +609,8 @@ function LimpiarCombos() {
     llenarComboDoorType(0);
     llenarComboDoorType(0);
     llenarComboFinger(0);
+    llenarComboDecimalW(0);
+    llenarComboDecimalH(0);
 }
 
 function ValidarCamposVacios() {
@@ -725,3 +765,5 @@ function ValidarCamposVacios() {
     }
     return aux;
 }
+
+

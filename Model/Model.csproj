@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="BottomRail.cs" />
     <Compile Include="Company.cs" />
+    <Compile Include="Decimals.cs" />
     <Compile Include="DoorOption.cs" />
     <Compile Include="Doors.cs" />
     <Compile Include="DoorsPrices.cs" />

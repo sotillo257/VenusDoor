@@ -25,7 +25,9 @@ namespace Model
         public  HingePositions HingePositions { get; set; }
         public bool isDrill { get; set; }
         public decimal Width { get; set; }
+        public Decimals DecimalsWidth { get; set; }
         public decimal Height { get; set; }
+        public Decimals DecimalsHeight { get; set; }
         public bool IsOpeningMeasurement { get; set; }
         public Status Status { get; set; }
         public DateTime CreationDate { get; set; }
