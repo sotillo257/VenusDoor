@@ -135,13 +135,15 @@ namespace BusinessLogic
                             VerticalDivisions = new VerticalDivisions() { Id = 0, Quantity = int.Parse(reader[12].ToString()), },
                             HorizontalDivisions = new HorizontalDivisions() { Id = 0, Quantity = int.Parse(reader[13].ToString()), },
                             Width = decimal.Parse(reader[14].ToString()),
-                            Height = decimal.Parse(reader[15].ToString()),
-                            isDrill = (reader[16].ToString() == "Drill") ? true : false,
-                            HingeDirection = new HingeDirection() { Id = 0, Direction = reader[17].ToString(), },
-                            IsOpeningMeasurement = (reader[18].ToString() == "Opening") ? true : false,
-                            DoorType = new DoorType() { Id = 0, Description = reader[19].ToString(), },
-                            isFingerPull = (reader[20].ToString() == "Yes") ? true : false,
-                            Quantity = int.Parse(reader[21].ToString()),
+                            DecimalsWidth = new Decimals() { Id = 0, Description = reader[15].ToString()},
+                            Height = decimal.Parse(reader[16].ToString()),
+                            DecimalsHeight = new Decimals() { Id = 0, Description = reader[17].ToString()},
+                            isDrill = (reader[18].ToString() == "Drill") ? true : false,
+                            HingeDirection = new HingeDirection() { Id = 0, Direction = reader[19].ToString(), },
+                            IsOpeningMeasurement = (reader[20].ToString() == "Opening") ? true : false,
+                            DoorType = new DoorType() { Id = 0, Description = reader[21].ToString(), },
+                            isFingerPull = (reader[22].ToString() == "Yes") ? true : false,
+                            Quantity = int.Parse(reader[23].ToString()),
                             Status = new Status() { Id = 1 },
                             CreationDate = DateTime.Now,
                             ModificationDate = DateTime.Now,
@@ -253,6 +255,19 @@ namespace BusinessLogic
                     if (_listDoorType != null)
                     {
                         item.DoorType.Id = _listDoorType.Id;
+                    }
+                    BusinessLogic.lnDecimals _LNDecimals = new BusinessLogic.lnDecimals();
+                    var _listDecimals1 = _LNDecimals.GetAllDecimals().Where(x => x.Description.Trim() == item.DecimalsHeight.Description.Trim()).FirstOrDefault();
+                    if (_listDecimals1 != null)
+                    {
+                        item.DecimalsHeight.Id = _listDecimals1.Id;
+                        
+                    }                
+                    var _listDecimals2 = _LNDecimals.GetAllDecimals().Where(x => x.Description.Trim() == item.DecimalsWidth.Description.Trim()).FirstOrDefault();
+                    if (_listDecimals2 != null)
+                    {
+                        item.DecimalsWidth.Id = _listDecimals2.Id;
+
                     }
 
                     item.HingePositions = CalcularPosicionHing(item);
