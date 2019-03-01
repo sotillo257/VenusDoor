@@ -7,7 +7,7 @@
         $("#btXclose").show();
         $("#btConfAdd").show();
         $("#btModify").hide();
-
+        
         var imggg =
                    ' <center> <img style="height: 100px;width: 235px;margin-top: 20px;" id="ProfilePicture" src="/Content/img/Profile/img11.png">' +
                               '<img style="width: 230px;height: 230px;" id="DoorPicture" src="/Content/img/Doors/img11.png">' +
@@ -223,26 +223,14 @@ function SearchDoor(data) {
         GetPrices();
         $("input[name=radioOption]").attr("disabled", false);
         $("input[name=radioOver]").attr("disabled", false);
+        window.history.replaceState({}, document.title, "/" + "../OrderSummary");
     } else {
 
     }
 
 }
 
-//var allDecimal = '';
-//function llenarComboDecimales(pDecimal) {
 
-//    var option = '<option value="0">Select</option>';
-//    for (var i = 0; i < allDecimal.length; i++) {
-//        option += '<option value="' + allDecimal[i].Id + '">' + allDecimal[i].Description + '</option>';
-//    }
-//    $("#cbWidth").empty().append(option);
-//    $("#cbHeight").empty().append(option);
-//    if (pDecimal != 0) {
-//        $("#cbWidth").val(pDecimal);
-//        $("#cbHeight").val(pDecimal);
-//    }
-//}
 
 function GuardarMod() {
     if (ValidarCamposVacios()) {
