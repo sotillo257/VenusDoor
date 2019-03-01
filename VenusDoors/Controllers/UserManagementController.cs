@@ -15,10 +15,65 @@ namespace VenusDoors.Controllers
         // GET: UserManagement
         public ActionResult Index()
         {
+
             List<User> Usuarios = _LNU.GetAllUser();
             List<User> ListaUsuarios = Usuarios.Where(x => x.Status.Id == 2).OrderByDescending(x => x.ModificationDate).ToList();
             ViewBag.UserList = ListaUsuarios;
             return View();
+            
+        }
+
+        [HttpPost]
+        public ActionResult UpdateUserStatus(User modUser)
+        {
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                int userID = (int)Session["UserID"];
+                try
+                {
+
+                    modUser.ModificationDate = DateTime.Now;
+                    modUser.ModificationUser = userID;
+                    BusinessLogic.lnUser _LNU = new BusinessLogic.lnUser();
+                    var modOrderStatus = _LNU.UpdateUserStatus(modUser);
+                    return Json(true, JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult GetAllUserManagement(Order gUserManagement)
+        {
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+
+                try
+                {
+                    BusinessLogic.lnUser _LNU = new BusinessLogic.lnUser();
+                    List<User> Usuarios = _LNU.GetAllUser();
+                    List<User> ListaUsuarios = Usuarios.Where(x => x.Status.Id == 2).OrderByDescending(x => x.ModificationDate).ToList();
+                    ViewBag.UserList = ListaUsuarios;
+                    return Json(ListaUsuarios, JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
         }
     }
 }

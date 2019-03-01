@@ -993,38 +993,22 @@
     </div><!-- modal-dialog -->
 </div>
 
-@*<div id="modalErrorPass" class="modal fade">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content tx-size-sm">
-            <div class="modal-body tx-center pd-y-20 pd-x-20">
+<div id="modalConfim" class="modal fade" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content bd-0 tx-14">
+            <div class="modal-header pd-x-20">
+                <h6 id="btnTitleConfirm" class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold"></h6>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
-                <i class="icon icon ion-ios-close-outline tx-100 tx-danger lh-1 mg-t-20 d-inline-block"></i>
-                <h4 class="tx-danger  tx-semibold mg-b-20">Error! Invalid username or password</h4>
-                <p class="mg-b-20 mg-x-20">If you forgot your password you can restore it <a href='@Url.Action("Recover_Password","Logins")'>here</a></p>
-                <button type="button" class="btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">
-                    Continue
-                </button>
-            </div><!-- modal-body -->
-        </div><!-- modal-content -->
-    </div><!-- modal-dialog -->
-</div>*@
-
-@*<div id="modalExist" class="modal fade">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content tx-size-sm">
-            <div class="modal-body tx-center pd-y-20 pd-x-20">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-                <i class="icon icon ion-ios-close-outline tx-100 tx-danger lh-1 mg-t-20 d-inline-block"></i>
-                <h4 class="tx-danger  tx-semibold mg-b-20">There is already a registered user with this email!</h4>
-                <p class="mg-b-20 mg-x-20">Did you forget your password?. Click on the button below to recover your password</p>
-                <button onclick="location.href='@Url.Action("Recover_Password","Logins")'" id="recovery" type="button" class="btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" aria-label="Close">
-                    Continue
-                </button>
-            </div><!-- modal-body -->
-        </div><!-- modal-content -->
-    </div><!-- modal-dialog -->
-</div>*@
+            </div>
+            <div class="modal-body pd-20">
+                <p id="btnSubConfirm" class="mg-b-5"></p>
+                <input id="deleteidhidden" type="hidden" value="" />
+            </div>
+            <div id="btnFooter" class="modal-footer justify-content-center">
+               
+            </div>
+        </div>
+    </div>
+</div>

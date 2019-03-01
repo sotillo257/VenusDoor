@@ -4,31 +4,61 @@
         GetDoorsByOrder(id);
     });
 
-    $(document).on('click', '.Approved', function (event) {  
+    $(document).on('click', '.Approved', function (event) {
         var id = $(this).attr('value');
-        UpdateOrderStatus5(id);
+        LlammarModal("modalConfim", "Confirm", "Are you sure you want to approve this order?",
+        '<button onclick="UpdateOrderStatus5(id)" class="Cursor btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal" aria-label="Close">Confirm</button>' +
+        '<button type="button" class="Cursor btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>');
+        $('#deleteidhidden').val(id);
     });
 
     $(document).on('click', '.Process', function (event) { 
         var id = $(this).attr('value');
-        UpdateOrderStatus6(id);
+        LlammarModal("modalConfim", "Confirm", "Are you sure to process this order?",
+        '<button onclick="UpdateOrderStatus6(id)" class="Cursor btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal" aria-label="Close">Confirm</button>' +
+        '<button type="button" class="Cursor btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>');
+        $('#deleteidhidden').val(id);
     });
 
     $(document).on('click', '.Completed', function (event) {  
         var id = $(this).attr('value');
-        UpdateOrderStatus7(id);
-    });
-
-    $(document).on('click', '.Remove', function (event) {   
-        var id = $(this).attr('value');
-        $('#modalDelete').modal('toggle');
+        LlammarModal("modalConfim", "Confirm", "Are you sure you mark this order as completed?",
+        '<button onclick="UpdateOrderStatus7(id)" class="Cursor btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal" aria-label="Close">Confirm</button>' +
+        '<button type="button" class="Cursor btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>');
         $('#deleteidhidden').val(id);
     });
 
-    $(document).on('click', '#btnDelete', function (event) {  
+    $(document).on('click', '.Remove', function (event) {
         var id = $(this).attr('value');
-        UpdateOrderStatus3(id);
+        LlammarModal("modalConfim", "Warning!", "You are about to delete an article. What would you like to do?",
+        '<button onclick="UpdateOrderStatus3(id)" class="Cursor btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal" aria-label="Close">Remove</button>' +
+        '<button type="button" class="Cursor btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>');
+        $('#deleteidhidden').val(id);
     });
+
+});
+
+$(function () {
+    'use strict';
+
+    $('#datatable1').DataTable({
+        responsive: true,
+        language: {
+            searchPlaceholder: 'Search...',
+            sSearch: '',
+            lengthMenu: '_MENU_ items/page',
+        }
+    });
+
+    $('#datatable2').DataTable({
+        bLengthChange: false,
+        searching: false,
+        responsive: true
+    });
+
+    // Select2
+    $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
+
 });
 
 function GetDoorsByOrder(id) {
@@ -65,7 +95,7 @@ function GetDoorsByOrder(id) {
                     '<td>' + data[i].Quantity + '</td>' +
                     '<td>' + data[i].ItemCost + '$</td>' +
                     '<td>' + data[i].SubTotal + '$</td>' +
-                    '<td><center><button href="#"  data-target="#modalInsert" data-toggle="modal" data-id="@item.Id" id="Details" value="" class="btn btn-info btn-icon">' +
+                    '<td><center><button href="#"  data-target="#modalInsert" data-toggle="modal" data-id="@item.Id" id="Details" value=""Cursor class="btn btn-info btn-icon">' +
                         '<div><i class="fa fa-eye"></i></div></button></center></td>' +
                     '</tr>';
             }
@@ -83,7 +113,7 @@ function UpdateOrderStatus5(id) {
     var datos =
     {
         modOrder: {
-            Id: id,
+            Id: $('#deleteidhidden').val(),
             Status: { Id: status }
 
         }
@@ -99,6 +129,7 @@ function UpdateOrderStatus5(id) {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
+                $('#modalConfim').modal('hide');
                 LlammarModal("Congratuletions", "Congratulations! It has been modified correctly.", " ");
                 llenarTablaOrderControl();
             } else {
@@ -117,7 +148,7 @@ function UpdateOrderStatus6(id) {
     var datos =
     {
         modOrder: {
-            Id: id,
+            Id: $('#deleteidhidden').val(),
             Status: { Id: status }
 
         }
@@ -151,7 +182,7 @@ function UpdateOrderStatus7(id) {
     var datos =
     {
         modOrder: {
-            Id: id,
+            Id: $('#deleteidhidden').val(),
             Status: { Id: status }
 
         }
@@ -180,7 +211,7 @@ function UpdateOrderStatus7(id) {
     });
 }
 
-function UpdateOrderStatus3() {
+function UpdateOrderStatus3(id) {
     var status = 3;
     var datos =
     {
@@ -243,13 +274,13 @@ function llenarTablaOrderControl() {
                     option += '<button href="#" data-id="' + data[i].Id + '" id="" value="" class="Detalle Cursor btn btn-info btn-icon" style="margin-right: 5px;" ><div><i class="fa fa-eye" ></i></div></button>';
                     if (data[i].Status.Id == 5)
                     {
-                        option += '<button title="Approve order." value="' + data[i].Id + '" class="Approved btn btn-primary btn-icon" style="margin-right: 5px;"><div><i class="fa fa-check"></i></div></button>';
-                        option += '<button  data-toggle="modal" data-target="" id="" title="Remove order." value="' + data[i].Id + '" style="margin-right: 5px;" class="Remove btn btn-danger btn-icon"><div><i class="fa fa-close"></i></div></button>';
+                        option += '<button title="Approve order." value="' + data[i].Id + '" class="Approved Cursor btn btn-primary btn-icon" style="margin-right: 5px;"><div><i class="fa fa-check"></i></div></button>';
+                        option += '<button  data-toggle="modal" data-target="" id="" title="Remove order." value="' + data[i].Id + '" style="margin-right: 5px;" class="Remove Cursor btn btn-danger btn-icon"><div><i class="fa fa-close"></i></div></button>';
                     }
                     else if (data[i].Status.Id == 6)
-                    { option += '<button title="Process order." value="' + data[i].Id + '" class="Process btn btn-warning btn-icon" style="margin-right: 5px;" > <div> <i class="fa fa-check"></i> </div> </button>'; }
+                    { option += '<button title="Process order." value="' + data[i].Id + '" class="Process Cursor btn btn-warning btn-icon" style="margin-right: 5px;" > <div> <i class="fa fa-check"></i> </div> </button>'; }
                     else if (data[i].Status.Id == 7)
-                    { option += '<button title="Complete order." value="' + data[i].Id + '" class="Completed btn btn-success btn-icon" style="margin-right: 5px;" > <div> <i class="fa fa-check"></i> </div> </button>'; }
+                    { option += '<button title="Complete order." value="' + data[i].Id + '" class="Completed Cursor btn btn-success btn-icon" style="margin-right: 5px;" > <div> <i class="fa fa-check"></i> </div> </button>'; }
                    
                     option += '</td></tr>';
 

@@ -36,44 +36,52 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (Model.Order item in ViewBag.Ordenes)
+                        @if (ViewBag.Ordenes == null)
                         {
-                        <tr role="row" class="odd">
-                            <td tabindex="0" class="">@item.Id</td>
-                            <td class="">@item.Quantity</td>
-                            <td class="">@item.Total</td>
-                            <td class="tx-12">
-                                @if (item.Status.Id == 7)
-                                { <span class="square-8 bg-success mg-r-5 rounded-circle"></span> }
-                                else if (item.Status.Id == 6)
-                                { <span class="square-8 btn-primary mg-r-5 rounded-circle"></span> }
-                                else if (item.Status.Id == 5)
-                                { <span class="square-8 bg-warning mg-r-5 rounded-circle"></span> }
-                                @item.Status.Description
-                            </td>
+                            <tr class="odd">
+                                <td valign="top" colspan="10" class="dataTables_empty">No data available in table.</td>
+                            </tr>
+                        }
+                        else {
+                            foreach (Model.Order item in ViewBag.Ordenes)
+                            {
+                                <tr role="row" class="odd">
+                                    <td tabindex="0" class="">@item.Id</td>
+                                    <td class="">@item.Quantity</td>
+                                    <td class="">@item.Total</td>
+                                    <td class="tx-12">
+                                        @if (item.Status.Id == 7)
+                                        { <span class="square-8 bg-success mg-r-5 rounded-circle"></span> }
+                                        else if (item.Status.Id == 6)
+                                        { <span class="square-8 btn-primary mg-r-5 rounded-circle"></span> }
+                                        else if (item.Status.Id == 5)
+                                        { <span class="square-8 bg-warning mg-r-5 rounded-circle"></span> }
+                                        @item.Status.Description
+                                    </td>
 
-                            <td class="">
-                               
-                                    <button href="#" data-id="@item.Id" id="" value="" class="Detalle Cursor btn btn-info btn-icon">
-                                        <div><i class="fa fa-eye"></i></div>
-                                    </button>
-                                    @if (item.Status.Id == 5)
-                                    { <a href="#" data-target="" id="" title="Approve order." value="@item.Id" class="Approved btn btn-primary btn-icon">
-                                        <div><i class="fa fa-check"></i></div>
-                                    </a>
+                                    <td class="">
+
+                                        <button href="#" data-id="@item.Id" id="" value="" class="Detalle Cursor btn btn-info btn-icon">
+                                            <div><i class="fa fa-eye"></i></div>
+                                        </button>
+                                        @if (item.Status.Id == 5)
+                                        { <a href="#" data-target="" id="" title="Approve order." value="@item.Id" class="Approved btn btn-primary btn-icon">
+                                    <div><i class="fa fa-check"></i></div>
+                                </a>
                                     <a href="#" data-toggle="modal" data-target="" id="" title="Remove order." value="@item.Id" class="Remove btn btn-danger btn-icon">
                                         <div><i class="fa fa-close"></i></div>
                                     </a>}
-                                    else if (item.Status.Id == 6)
-                                    {<a href="#" data-target="" id="" title="Process order." value="@item.Id" class="Process btn btn-warning btn-icon">
-                                        <div><i class="fa fa-check"></i></div>
-                                    </a> }
-                                    else if (item.Status.Id == 7)
-                                    {<a href="#" data-target="" id="" title="Complete order." value="@item.Id" class="Completed btn btn-success btn-icon">
-                                        <div><i class="fa fa-check"></i></div>
-                                    </a> }
-                            </td>
-                        </tr>
+                                        else if (item.Status.Id == 6)
+                                        {<a href="#" data-target="" id="" title="Process order." value="@item.Id" class="Process btn btn-warning btn-icon">
+                                    <div><i class="fa fa-check"></i></div>
+                                </a> }
+                                        else if (item.Status.Id == 7)
+                                        {<a href="#" data-target="" id="" title="Complete order." value="@item.Id" class="Completed btn btn-success btn-icon">
+                                    <div><i class="fa fa-check"></i></div>
+                                </a> }
+                                    </td>
+                                </tr>
+                            }
                         }
                     </tbody>
                 </table>
@@ -82,27 +90,6 @@
     </div>
 </div>
 <div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div>
-
-<div id="modalDelete" class="modal fade" aria-hidden="true" style="display: none;">
-    <div class="modal-dialog modal-sm" role="document">
-        <div class="modal-content bd-0 tx-14">
-            <div class="modal-header pd-x-20">
-                <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Warning!</h6>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body pd-20">
-                <p class="mg-b-5">You are about to delete an article. What would you like to do?</p>
-                <input id="deleteidhidden" type="hidden" value="" />
-            </div>
-            <div class="modal-footer justify-content-center">
-                <button name="confirmButton" value="Delete" id="btnDelete" class="btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Remove</button>
-                <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 <div class="modal fade" id="ModalOrderInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 
@@ -123,7 +110,7 @@
     </div>
 </div>
 
-<div id="modalInsert" class="modal fade effect-scale" aria-hidden="true" style="display: none;" data-backdrop="static" data-keyboard="false">
+@*<div id="modalInsert" class="modal fade effect-scale" aria-hidden="true" style="display: none;" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog" style="width: 95%!important;max-width: 100%" role="document">
         <div class="modal-content bd-0 rounded-0">
             <div class="modal-body pd-0">
@@ -323,7 +310,7 @@
             </div>
         </div>
     </div>
-</div>
+</div>*@
 
 @section scripts{
     <script type="text/javascript">
@@ -354,6 +341,10 @@
         }
       
     </script>
+    <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
+    <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>
+    <script src="~/Content/lib/select2/js/select2.min.js"></script>
+    <script src="~/Content/lib/select2/js/select2.full.min.js"></script>
     @Scripts.Render("~/Scripts/js/ControlOfOrders.js")
     @Scripts.Render("~/Scripts/js/ConfigDoor.Index.js")
     @Scripts.Render("~/Scripts/js/ControlOfOrderd.ConfiDoor.js")
