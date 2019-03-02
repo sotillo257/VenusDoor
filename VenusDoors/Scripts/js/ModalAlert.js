@@ -49,4 +49,11 @@
                 $("#modalcongreDelete").modal("show");
             }
 
+            if (TipoModal == "modalConfim") {
+                $("#btnTitleConfirm").html(Titulo);
+                $("#btnSubConfirm").html(Mensaje);
+                $("#btnFooter").html(boton);
+                $("#modalConfim").modal("show");
+            }
+
 }

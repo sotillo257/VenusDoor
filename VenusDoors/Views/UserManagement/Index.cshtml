@@ -47,12 +47,12 @@
                             <td class="">@item.Status.Description</td>
                             <td class="">
                                 <center>
-                                    <a href="#" data-toggle="modal" data-target="#modalInsert" value="@item.Id" class="btn btn-primary btn-icon">
+                                    <button value="@item.Id" class="Approved Cursor btn btn-primary btn-icon">
                                         <div><i class="fa fa-check"></i></div>
-                                    </a>
-                                    <a href="#" data-toggle="modal" data-target="#modalInsert" value="@item.Id" class="btn btn-danger btn-icon">
+                                    </button>
+                                    <button value="@item.Id" class="Refuse Cursor btn btn-danger btn-icon">
                                         <div><i class="fa fa-close"></i></div>
-                                    </a>
+                                    </button>
                                 </center>
                             </td>
                         </tr>
@@ -64,3 +64,16 @@
     </div>
 </div>
 <div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div>
+
+@section scripts{
+    <script type="text/javascript">
+        var urlUpdateUserStatus = '@Url.Action("UpdateUserStatus", "UserManagement")';
+        var urlGetAllUserManagement = '@Url.Action("GetAllUserManagement", "UserManagement")';
+    </script>
+
+    <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
+    <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>
+    <script src="~/Content/lib/select2/js/select2.min.js"></script>
+    <script src="~/Content/lib/select2/js/select2.full.min.js"></script>
+    @Scripts.Render("~/Scripts/js/UserManagement.Index.js")
+}
