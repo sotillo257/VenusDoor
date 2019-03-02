@@ -636,6 +636,8 @@ namespace BusinessLogic
 
                 
                 Order item = _LNUPor.GetOrderById(Ord.Id);
+                if (item != null)
+                {
                 if (item.Status.Id == 4)
                 {
                     //restar lo de la puerta modificada
@@ -706,7 +708,12 @@ namespace BusinessLogic
                 else 
                 {
                     return false;
-                }               
+                }
+                }
+                else
+                {
+                    return false;
+                }
             }
             catch (Exception ex)
             {

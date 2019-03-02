@@ -18,8 +18,8 @@ namespace VenusDoors.Controllers
             {
                 ViewBag.OrderControl = "active";
 
-                List<Order> ListOrders = _LNOR.GetAllOrder();
-                List<Order> ListaOrdenada = ListOrders.Where(x=> x.Status.Id != 8).OrderByDescending(x => x.Status.Id == 5).ToList();
+                List<Order> ListOrders = _LNOR.GetAllOrderByCompany((int)Session["IdCompany"], (int)Session["IdTypeCompany"]);
+                List<Order> ListaOrdenada = ListOrders.Where(x=> x.Status.Id != 8 && x.Status.Id != 4).OrderByDescending(x => x.Status.Id == 5).ToList();
                 ViewBag.Ordenes = ListaOrdenada;
                 return View();
             }
@@ -71,7 +71,7 @@ namespace VenusDoors.Controllers
         }
 
         [HttpPost]
-        public ActionResult GetAllOrderControl(Order gOrderControl)
+        public ActionResult GetAllOrderControl()
         {
             if (Session["UserID"] == null)
             {
@@ -82,10 +82,10 @@ namespace VenusDoors.Controllers
 
                 try
                 {
+                    
                     BusinessLogic.lnOrder _LNOR = new BusinessLogic.lnOrder();
-                    List<Order> ListOrders = _LNOR.GetAllOrder();
-                    List<Order> ListaOrdenada = ListOrders.Where(x => x.Status.Id != 8).OrderByDescending(x => x.Status.Id == 5).ToList();
-                    ViewBag.Ordenes = ListaOrdenada;
+                    List<Order> ListOrders = _LNOR.GetAllOrderByCompany((int)Session["IdCompany"], (int)Session["IdTypeCompany"]);
+                    List<Order> ListaOrdenada = ListOrders.Where(x => x.Status.Id != 8 && x.Status.Id != 4).OrderByDescending(x => x.Status.Id == 5).ToList();
                     return Json(ListaOrdenada, JsonRequestBehavior.AllowGet);
 
                 }
