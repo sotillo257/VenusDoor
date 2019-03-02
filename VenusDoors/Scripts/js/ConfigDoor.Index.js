@@ -1209,7 +1209,9 @@ function ValidateSession() {
         success: function (result) {
 
             if (result == false) {
+                $(".btBuild").prop('disabled', false);
                 LlammarModal("MLogin", "Sign in to your account to start building doors!", " ");
+                setTimeout(window.location.href = '/Logins/Index', 15000);
             } 
         },
     });
