@@ -13,10 +13,11 @@ namespace VenusDoors.Controllers
     {
         BusinessLogic.lnUser _LNU = new BusinessLogic.lnUser();
         // GET: UserManagement
+        
         public ActionResult Index()
         {
 
-            List<User> Usuarios = _LNU.GetAllUser();
+            List<User> Usuarios = _LNU.GetAllUserByCompany((int)Session["IdCompany"], (int)Session["IdTypeCompany"]);
             List<User> ListaUsuarios = Usuarios.Where(x => x.Status.Id == 2).OrderByDescending(x => x.ModificationDate).ToList();
             ViewBag.UserList = ListaUsuarios;
             return View();
@@ -51,11 +52,11 @@ namespace VenusDoors.Controllers
         }
 
         [HttpPost]
-        public ActionResult GetAllUserManagement(Order gUserManagement)
+        public ActionResult GetAllUserManagement()
         {
             if (Session["UserID"] == null)
             {
-                return View();
+                return Json(false, JsonRequestBehavior.AllowGet);
             }
             else
             {
@@ -63,9 +64,8 @@ namespace VenusDoors.Controllers
                 try
                 {
                     BusinessLogic.lnUser _LNU = new BusinessLogic.lnUser();
-                    List<User> Usuarios = _LNU.GetAllUser();
+                    List<User> Usuarios = _LNU.GetAllUserByCompany((int)Session["IdCompany"], (int)Session["IdTypeCompany"]);
                     List<User> ListaUsuarios = Usuarios.Where(x => x.Status.Id == 2).OrderByDescending(x => x.ModificationDate).ToList();
-                    ViewBag.UserList = ListaUsuarios;
                     return Json(ListaUsuarios, JsonRequestBehavior.AllowGet);
 
                 }
