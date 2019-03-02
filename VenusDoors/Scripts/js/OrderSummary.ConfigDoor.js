@@ -666,11 +666,11 @@ function ValidarCamposVacios() {
         $('#cbIsOpeningMeasurement').removeClass("is-invalid");
     }
 
-    if ($('#cbJoin').val() == 0) {
-        $('#cbJoin').addClass("is-invalid");
+    if ($('#cbDoorAssembly').val() == 0) {
+        $('#cbDoorAssembly').addClass("is-invalid");
         aux = false;
     } else {
-        $('#cbJoin').removeClass("is-invalid");
+        $('#cbDoorAssembly').removeClass("is-invalid");
     }
 
     if ($('#cbOutsideEdgeProfile').val() == 0) {
@@ -751,5 +751,20 @@ function ValidarCamposVacios() {
         $("input[name=radioOver]").addClass("is-invalid");
         aux = false;
     }
+    if ($('#cbDecimalsW').val() == 0) {
+        $('#cbDecimalsW').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#cbDecimalsW').removeClass("is-invalid");
+    }
+    if ($('#cbDecimalsH').val() == 0) {
+        $('#cbDecimalsH').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#cbDecimalsH').removeClass("is-invalid");
+    }
+
     return aux;
 }
+
+

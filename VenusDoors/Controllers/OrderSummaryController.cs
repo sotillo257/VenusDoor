@@ -74,6 +74,38 @@ namespace VenusDoors.Controllers
         }
 
         [HttpPost]
+        public ActionResult GetOrderSumary()
+        {
+            try
+                {
+                BusinessLogic.lnOrder _LNOrder = new BusinessLogic.lnOrder();
+                var orderList = _LNOrder.GetOrderByUser((int)Session["UserID"]).Where(x => x.Status.Id == 4).LastOrDefault();
+                if (orderList == null)
+                {
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                }
+                else if (orderList.Status.Id == 4)
+                {
+                    BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
+                    List<DoorsxUser> xDoorsU = _LN.GetAllDoorsxUser();
+                    List<DoorsxUser> doorByOrder = xDoorsU.Where(x => x.Order.Id == orderList.Id).ToList();
+                    return Json(new { OrderSumary = doorByOrder, Order = orderList }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                }
+               
+                }
+                catch
+                {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+            }
+        
+
+
+        [HttpPost]
         public ActionResult DeleteItem(int itemID, int orderid)
         {
             if(Session["UserID"] == null)
