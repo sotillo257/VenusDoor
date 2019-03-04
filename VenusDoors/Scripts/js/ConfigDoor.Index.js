@@ -28,21 +28,21 @@
 
     //});
 
-	$(".iptHeight").keyup(function () {
-	    if ($(this).val() > 96) {
-	        HeightInchesMax();
-	    } else {
-	        HingeCalculate();
-	    }
-	});
+	//$(".iptHeight").keyup(function () {
+	//    if ($(this).val() > 96) {
+	//        HeightInchesMax();
+	//    } else {
+	//        HingeCalculate();
+	//    }
+	//});
 
-	$(document).on('change', '.iptHeight', function () {
-	    if($(this).val() < 5){
-	        HeightInchesMin();
-	    }else{
-	        HingeCalculate();
-	    }
-	});
+	//$(document).on('change', '.iptHeight', function () {
+	//    if($(this).val() < 5){
+	//        HeightInchesMin();
+	//    }else{
+	//        HingeCalculate();
+	//    }
+	//});
 
 
 	$("#bt-conf-log").on("click", function () {
@@ -67,25 +67,25 @@
     });
 
 
-    $(document).on('change', '.iptWidth', function () {
-        var Width = parseFloat($(this).val())
-        if ($(this).val() < 5) {
+    //$(document).on('change', '.iptWidth', function () {
+    //    var Width = parseFloat($(this).val())
+    //    if ($(this).val() < 5) {
 
-            LlammarModal("Danger", "Error: Minimum is 5 inches", " ");
-            Width = 5;
-            $('.iptWidth').val(Width);
-            GetPrices();
+    //        LlammarModal("Danger", "Error: Minimum is 5 inches", " ");
+    //        Width = 5;
+    //        $('.iptWidth').val(Width);
+    //        GetPrices();
 
-        }
-        else if ($(this).val() > 42) {
+    //    }
+    //    else if ($(this).val() > 42) {
 
-            //$('#modalMaximo').modal('toggle');
-            LlammarModal("Danger", "Error: Max is 42 inches", " ");
-            Width = 42;
-            $('.iptWidth').val(Width);
-            GetPrices();
-        }
-    });
+    //        //$('#modalMaximo').modal('toggle');
+    //        LlammarModal("Danger", "Error: Max is 42 inches", " ");
+    //        Width = 42;
+    //        $('.iptWidth').val(Width);
+    //        GetPrices();
+    //    }
+    //});
 
     $(document).on('change', '.Profile', function () {
         ChangeProfile();
@@ -224,12 +224,13 @@
 });
 
 $(window).on('load', function () {
-        $(".loader-page").css({ visibility: "hidden", opacity: "0" })
+    $(".loader-page").css({ visibility: "hidden", opacity: "0" });
+    $(".loader-page").css('z-index', 999999999999);
 });
 function llenarComboPanel() {
 
     var panelType = $("#cbPanel").val();
-    var option = '<option value="0">Select</option>';
+    var option = '';
     for (var i = 0; i < AllPanelType.length; i++) {
         if (AllPanelType[i].Status.Id == 1) {
             option += '<option value="' + AllPanelType[i].Id + '">' + AllPanelType[i].Description + '</option>';
@@ -324,56 +325,52 @@ function llenarComboInsideAndOutside() {
     $("#cbOutsideEdgeProfile").val(outside);
 }
 
-function HeightInchesMin() {
-    LlammarModal("Danger", "Error: Minimum is 5 inches", " ");
-    Height = 5;
-    var ip1 = 3.5;
-    var ip2 = Height - 3.5;
-    $('.iptHeight').val(Height);
-    GetPrices();
+//function HeightInchesMin() {
+//    Height = $('.iptHeight').val();
+//    var ip1 = 3.5;
+//    var ip2 = Height - 3.5;    
+//    GetPrices();
 
-    $(".hp1").css('display', 'block');
-    $(".hp2").css('display', 'block');
-    $(".hp3").css('display', 'none');
-    $(".hp4").css('display', 'none');
-    $(".hp5").css('display', 'none');
-    $("#HingePositionsDiv").removeClass("col-md-4").addClass("col-md-3");
-    $("#HingePositionsDiv").removeClass("col-md-5");
-    $("#HingePositionsDiv").removeClass("col-md-6");
+//    $(".hp1").css('display', 'block');
+//    $(".hp2").css('display', 'block');
+//    $(".hp3").css('display', 'none');
+//    $(".hp4").css('display', 'none');
+//    $(".hp5").css('display', 'none');
+//    $("#HingePositionsDiv").removeClass("col-md-4").addClass("col-md-3");
+//    $("#HingePositionsDiv").removeClass("col-md-5");
+//    $("#HingePositionsDiv").removeClass("col-md-6");
 
-    $('.HPinpt1').val(ip1);
-    $('.HPinpt2').val(ip2);
-    $('.HPinpt3').val("No hinge");
-    $('.HPinpt4').val("No hinge");
-    $('.HPinpt5').val("No hinge");
-}
+//    $('.HPinpt1').val(ip1);
+//    $('.HPinpt2').val(ip2);
+//    $('.HPinpt3').val("No hinge");
+//    $('.HPinpt4').val("No hinge");
+//    $('.HPinpt5').val("No hinge");
+//}
 
-function HeightInchesMax() {
-    LlammarModal("Danger", "Error: Max is 96 inches", " ");
-    Height = 96;
-    var ip1 = 3.5;
-    var ip2 = 3.5 + (((Height / 2) - 3.5) / 2);
-    var ip3 = Height / 2;
-    var ip4 = Height - (3.5 + (((Height / 2) - 3.5) / 2));
-    var ip5 = Height - 3.5;
-    $('.iptHeight').val(Height);
-    GetPrices();
+//function HeightInchesMax() {
+//    Height = $('.iptHeight').val();
+//    var ip1 = 3.5;
+//    var ip2 = 3.5 + (((Height / 2) - 3.5) / 2);
+//    var ip3 = Height / 2;
+//    var ip4 = Height - (3.5 + (((Height / 2) - 3.5) / 2));
+//    var ip5 = Height - 3.5;
+//    GetPrices();
 
-    $(".hp1").css('display', 'block');
-    $(".hp2").css('display', 'block');
-    $(".hp3").css('display', 'block');
-    $(".hp4").css('display', 'block');
-    $(".hp5").css('display', 'block');
-    $("#HingePositionsDiv").removeClass("col-md-5").addClass("col-md-6");
-    $("#HingePositionsDiv").removeClass("col-md-3");
-    $("#HingePositionsDiv").removeClass("col-md-4");
+//    $(".hp1").css('display', 'block');
+//    $(".hp2").css('display', 'block');
+//    $(".hp3").css('display', 'block');
+//    $(".hp4").css('display', 'block');
+//    $(".hp5").css('display', 'block');
+//    $("#HingePositionsDiv").removeClass("col-md-5").addClass("col-md-6");
+//    $("#HingePositionsDiv").removeClass("col-md-3");
+//    $("#HingePositionsDiv").removeClass("col-md-4");
 
-    $('.HPinpt1').val(ip1);
-    $('.HPinpt2').val(ip2);
-    $('.HPinpt3').val(ip3);
-    $('.HPinpt4').val(ip4);
-    $('.HPinpt5').val(ip5);
-}
+//    $('.HPinpt1').val(ip1);
+//    $('.HPinpt2').val(ip2);
+//    $('.HPinpt3').val(ip3);
+//    $('.HPinpt4').val(ip4);
+//    $('.HPinpt5').val(ip5);
+//}
 
 function HingeCalculate() {
         var Height = parseFloat($(".iptHeight").val())
@@ -1211,7 +1208,7 @@ function ValidateSession() {
             if (result == false) {
                 $(".btBuild").prop('disabled', false);
                 LlammarModal("MLogin", "Sign in to your account to start building doors!", " ");
-                setTimeout(window.location.href = '/Logins/Index', 15000);
+                //setTimeout(window.location.href = '/Logins/Index', 15000);
             } 
         },
     });
@@ -1690,6 +1687,7 @@ function llenarTablaOrderSumary() {
             result +='</div><div class="col-md-5"><center style="text-align: right; margin-top: 20px;"><button id="btn-continue" style="margin-left: 10px;" disabled type="submit" src="#" class="Cursor btn btn-primary" title="">Send order</button></center></div>';
                   
             $("#Resultados").html(result);
+            $("#btn-continue").prop('disabled', false);
             $("#idOrderSummary > tbody").empty().append(option);
 
         },
