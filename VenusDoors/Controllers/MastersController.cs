@@ -36,6 +36,7 @@ namespace VenusDoors.Controllers
         BusinessLogic.lnPerson _LNPerson = new BusinessLogic.lnPerson();
         BusinessLogic.lnRailThickness _LNRT = new BusinessLogic.lnRailThickness();
         BusinessLogic.lnCompany _LNCOM = new BusinessLogic.lnCompany();
+        BusinessLogic.lnShippingAddress _LNShip = new BusinessLogic.lnShippingAddress();
         #endregion OBJETOS
 
         #region BottomRail
@@ -1635,6 +1636,7 @@ namespace VenusDoors.Controllers
                     pOrder.CreatorUser = userID;
                     pOrder.ModificationUser = userID;
                     pOrder.ModificationDate = DateTime.Now;
+                    pOrder.ShippingAddress.Id = 1;
                 BusinessLogic.lnOrder _LK = new BusinessLogic.lnOrder();
                 var InserOrder = _LK.InsertOrder(pOrder);
                 return Json(true, JsonRequestBehavior.AllowGet);
@@ -3450,6 +3452,20 @@ namespace VenusDoors.Controllers
             }
         }
 
-      
+        [Authorize(Roles = "1")] [HttpPost]
+        public ActionResult GetShippingAddress()
+        {
+            try
+            {
+
+                return Json(_LNShip.GetAllShippingAddress());
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
     }
 }

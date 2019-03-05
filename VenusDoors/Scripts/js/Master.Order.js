@@ -2,6 +2,7 @@
     GetAllUser();
     GetAllStatus();
     GetAllType();
+    GetAllShippingAddress();
 
     $("#btInsertOrder").on("click", function () {
         if (ValidarCamposVacios()) {
@@ -36,20 +37,26 @@
                 var aux = listORDER[i].Id;
                 var aux1 = listORDER[i].User.Id;
                 var aux2 = listORDER[i].Quantity;
-                var aux3 = listORDER[i].Total;
-                var aux4 = listORDER[i].Type.Id;
-                var aux5 = listORDER[i].Status.Id;
+                var aux3 = listORDER[i].Observations;
+                var aux4 = listORDER[i].ShippingAddress;
+                var aux5 = listORDER[i].Total;
+                var aux6 = listORDER[i].Type.Id;
+                var aux7 = listORDER[i].Status.Id;
 
                 $('#inId').val(listORDER[i].Id);
                 llenarComboUser(listORDER[i].User.Id);
                 $('#inQuantity').val(listORDER[i].Quantity);
+                $('#inObservations').val(listORDER[i].Observations);
+                $('#inShippingAddress').val(listORDER[i].ShippingAddress);
                 $('#inTotal').val(listORDER[i].Total);
                 llenarComboType(listORDER[i].Type.Id);
                 llenarComboEstatus(listORDER[i].Status.Id);
+                llenarComboShip(listORDER[i].ShippingAddress.Id);
             }
         }
     });
 });
+
 $(function () {
     'use strict';
 
@@ -99,6 +106,12 @@ function Limpiar() {
     $('#inQuantity').removeClass("is-invalid");
     $('#inQuantity').val("");
 
+    $('#inObservations').removeClass("is-invalid");
+    $('#inObservations').val("");
+
+    $('#inShippingAddress').removeClass("is-invalid");
+    $('#inShippingAddress').val("");
+
     $('#inTotal').removeClass("is-invalid");
     $('#inTotal').val("");
 
@@ -107,6 +120,12 @@ function Limpiar() {
 
     $('#inStatus').removeClass("is-invalid");
     llenarComboEstatus(0);
+
+    $('#inObservations').removeClass("is-invalid");
+    $('#inObservations').val("");
+
+    $('#inShip').removeClass("is-invalid");
+    llenarComboShip(0);
 
 }
 
@@ -124,6 +143,20 @@ function ValidarCamposVacios() {
         aux = false;
     } else {
         $('#inQuantity').removeClass("is-invalid");
+    }
+
+    if ($('#inObservations').val() == "") {
+        $('#inObservations').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#inObservations').removeClass("is-invalid");
+    }
+
+    if ($('#inShippingAddress').val() == "") {
+        $('#inShippingAddress').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#inShippingAddress').removeClass("is-invalid");
     }
 
     if ($('#inTotal').val() == "") {
@@ -147,6 +180,20 @@ function ValidarCamposVacios() {
         $('#inStatus').removeClass("is-invalid");
     }
 
+    if ($('#inObservations').val() == "") {
+        $('#inObservations').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#inObservations').removeClass("is-invalid");
+    }
+
+    if ($('#inShip').val() == 0) {
+        $('#inShip').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#inShip').removeClass("is-invalid");
+    }
+
     return aux;
 }
 
@@ -157,10 +204,12 @@ function InsertOrder() {
         pOrder: {
             User: { Id: $("#inUser").val() },
             Quantity: $("#inQuantity").val(),
+            Observations: $("#inObservations").val(),
+            ShippingAddress: $("#inShippingAddress").val(),
             Total: $("#inTotal").val(),
             Type: { Id: $("#inType").val() },
             Status: { Id: $("#inStatus").val() },
-
+            Observations: $("#inObservations").val(),
         }
     };
     console.log(datos);
@@ -194,9 +243,12 @@ function UpdateOrder() {
             Id: $("#inId").val(),
             User: { Id: $("#inUser").val() },
             Quantity: $("#inQuantity").val(),
+            Observations: $("#inObservations").val(),
+            ShippingAddress: $("#inShippingAddress").val(),
             Total: $("#inTotal").val(),
             Type: { Id: $("#inType").val() },
             Status: { Id: $("#inStatus").val() },
+            Observations: $("#inObservations").val(),
 
         }
     };
@@ -224,6 +276,33 @@ function UpdateOrder() {
     });
 }
 
+function GetAllStatus() {
+    $.ajax({
+        url: urlGetAllStatus,
+        cache: false,
+        type: 'POST',
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        success: function (data) {
+            if (data != null) {
+                allEstatus = data;
+                var option = '';
+                for (var i = 0; i < data.length; i++) {
+                    option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
+                }
+                $("#inStatus").empty().append(option);
+
+            }
+            else {
+                LlammarModal("Danger", "Error obtaining Join", " ");
+            }
+        },
+        error: function (err) {
+            LlammarModal("Danger", "Error.", "Check your internet connection I tried again.");
+        }
+    });
+}
+
 var allEstatus = '';
 function llenarComboEstatus(pStatus) {
 
@@ -240,21 +319,22 @@ function llenarComboEstatus(pStatus) {
         $("#inStatus").val(pStatus);
     }
 }
-function GetAllStatus() {
+
+function GetAllUser() {
     $.ajax({
-        url: urlGetAllStatus,
+        url: urlGetAllUser,
         cache: false,
         type: 'POST',
         async: false,
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
-                allEstatus = data;
+                allUser = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
-                    option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
+                    option += '<option value="' + data[i].Id + '">' + data[i].Email + '</option>';
                 }
-                $("#inStatus").empty().append(option);
+                $("#inUser").empty().append(option);
 
             }
             else {
@@ -283,21 +363,22 @@ function llenarComboUser(pUser) {
         $("#inUser").val(pUser);
     }
 }
-function GetAllUser() {
+
+function GetAllType() {
     $.ajax({
-        url: urlGetAllUser,
+        url: urlGetAllType,
         cache: false,
         type: 'POST',
         async: false,
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
-                allUser = data;
+                allType = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
-                    option += '<option value="' + data[i].Id + '">' + data[i].Email + '</option>';
+                    option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
                 }
-                $("#inUser").empty().append(option);
+                $("#inType").empty().append(option);
 
             }
             else {
@@ -326,31 +407,49 @@ function llenarComboType(pType) {
         $("#inType").val(pType);
     }
 }
-function GetAllType() {
+
+function GetAllShippingAddress() {
     $.ajax({
-        url: urlGetAllType,
+        url: urlGetAllShip,
         cache: false,
         type: 'POST',
         async: false,
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
-                allType = data;
+                allShip = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
-                    option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
+                    option += '<option value="' + data[i].Id + '">' + data[i].Name + '</option>';
                 }
-                $("#inType").empty().append(option);
+                $("#inShip").empty().append(option);
 
             }
             else {
-                LlammarModal("Danger", "Error obtaining Join", " ");
+                LlammarModal("Danger", "Error obtaining Shipping Address", " ");
             }
         },
         error: function (err) {
             LlammarModal("Danger", "Error.", "Check your internet connection I tried again.");
         }
     });
+}
+
+var allShip = '';
+function llenarComboShip(pShip) {
+
+    var option = '<option value="0" id="">Select</option>';
+    for (var i = 0; i < allShip.length; i++) {
+        if (allShip[i].Status.Id == 1) {
+            option += '<option value="' + allShip[i].Id + '">' + allShip[i].Name + '</option>';
+        }
+
+
+    }
+    $("#inShip").empty().append(option);
+    if (pShip != 0) {
+        $("#inShip").val(pShip);
+    }
 }
 
 function llenarTablaGetAllOrder() {
@@ -369,6 +468,8 @@ function llenarTablaGetAllOrder() {
                     option += '<td tabindex="0"  >' + data[i].Id + '</td>';
                     option += '<td>' + data[i].User.Id + '</td>';
                     option += '<td>' + data[i].Quantity + '</td>';
+                    option += '<td>' + data[i].Observations + '</td>';
+                    option += '<td>' + data[i].ShippingAddress + '</td>';
                     option += '<td>' + data[i].Type.Description + '</td>';
                     option += '<td>' + data[i].Status.Description + '</td>';
                     option += '<td>' + data[i].Total + '</td>';

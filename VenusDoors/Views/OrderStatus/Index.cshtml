@@ -37,7 +37,7 @@
 @if (ViewBag.LastOrder == null)
 {<div class="br-pagebody pd-x-20 pd-sm-x-30">
         <div class="pd-x-20 pd-sm-x-30 pd-t-20">
-            <h5 class="tx-gray-800 mg-b-5" style="color: #ff1a00;">Currently there is no order in progress. </h5><p class="mg-b-0">Click <a href="#">here </a>to start a new order</p>
+            <h5 class="tx-gray-800 mg-b-5" style="color: #ff1a00;">Currently there is no order in progress. </h5><p class="mg-b-0">Click <a href="#" onclick="location.href='@Url.Action("Index","OrderSummary")'">here </a>to start a new order</p>
         </div>
         <div class="br-pagebody pd-x-20 pd-sm-x-30">
 

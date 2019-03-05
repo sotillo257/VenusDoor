@@ -306,7 +306,7 @@
                                                         <label for="inDescription" style="margin-top: 25px;">Height: </label>
                                                         <div>
                                                             <div style="display:flex">
-                                                                <input style="width:50%!important" name="SoloNumeros" required class="required RequiereLlenar eventChange iptHeight form-control" type="number" maxlength="2" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="iptHeight">
+                                                                <input style="width:50%!important" name="SoloNumeros" required class="required RequiereLlenar eventChange iptHeight form-control" type="number" maxlength="3" max="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="iptHeight">
                                                                 <select style="width:100%" class="form-control select2" id="cbDecimalsH"></select>
                                                             </div>
                                                             <label id="alertHeight" style="Color:red; font-size:10px; margin:0"></label>
@@ -444,7 +444,7 @@
                                 <div style="width: 50%; display: flex; justify-content: flex-start; align-items: center;">                                    
                                     <div class="col-xs-3 col-md-3">
                                         <label for="iptQuantity">Quantity: </label>
-                                        <input name="iptQuantity" type="number" style="width: 52%;" required class="required RequiereLlenar form-control" maxlength="3" minlength="1" ninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="iptQuantity">
+                                        <input name="iptQuantity" type="number" style="width: 52%;" required class="required RequiereLlenar form-control" min="1" maxlength="3" minlength="1" ninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="iptQuantity">
                                     </div><!-- form-group -->
 
                                     <div class="col-xs-4 col-md-4">
