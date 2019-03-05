@@ -440,7 +440,7 @@ function HingeCalculate() {
             $('.HPinpt5').val("No hinge");
 
         }
-        else if (Height >= 81 && Height < 97) {
+        else if (Height >= 81 && Height < 101) {
 
             var ip1 = 3.5;
             var ip2 = 3.5 + (((Height / 2) - 3.5) / 2);

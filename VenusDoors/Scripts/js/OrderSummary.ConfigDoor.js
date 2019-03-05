@@ -164,10 +164,10 @@
             $('#iptHeight').addClass("is-invalid");
             $("#alertHeight").css('display', 'block');
             $("#alertHeight").text("Minimum is 5 inches.");
-        } else if ($('#iptHeight').val() > 96) {
+        } else if ($('#iptHeight').val() > 100) {
             $('#iptHeight').addClass("is-invalid");
             $("#alertHeight").css('display', 'block');
-            $("#alertHeight").text("Maximum is 96 inches.");
+            $("#alertHeight").text("Maximum is 100 inches.");
         } else {
             $('#iptHeight').removeClass("is-invalid");
             $("#alertHeight").css('display', 'none');
@@ -814,7 +814,7 @@ function ValidadWH() {
     } else {
         $('#iptWidth').removeClass("is-invalid");
     }
-    if ($('#iptHeight').val() < 5 || $('#iptHeight').val() > 96) {
+    if ($('#iptHeight').val() < 5 || $('#iptHeight').val() > 100) {
         $('#iptHeight').addClass("is-invalid");
         aux = false;
     } else {
