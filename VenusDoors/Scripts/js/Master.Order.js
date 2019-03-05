@@ -2,6 +2,7 @@
     GetAllUser();
     GetAllStatus();
     GetAllType();
+    GetAllShippingAddress();
 
     $("#btInsertOrder").on("click", function () {
         if (ValidarCamposVacios()) {
@@ -43,13 +44,16 @@
                 $('#inId').val(listORDER[i].Id);
                 llenarComboUser(listORDER[i].User.Id);
                 $('#inQuantity').val(listORDER[i].Quantity);
-                $('#inTotal').val(listORDER[i].Total);
+                $('#inTotal').val(listORDER[i].Total),
+                $("#inObservations").val(listORDER[i].Observations),
                 llenarComboType(listORDER[i].Type.Id);
                 llenarComboEstatus(listORDER[i].Status.Id);
+                llenarComboShip(listORDER[i].ShippingAddress.Id);
             }
         }
     });
 });
+
 $(function () {
     'use strict';
 
@@ -90,6 +94,12 @@ function Limpiar() {
     $('#inStatus').removeClass("is-invalid");
     llenarComboEstatus(0);
 
+    $('#inObservations').removeClass("is-invalid");
+    $('#inObservations').val("");
+
+    $('#inShip').removeClass("is-invalid");
+    llenarComboShip(0);
+
 }
 
 function ValidarCamposVacios() {
@@ -129,6 +139,20 @@ function ValidarCamposVacios() {
         $('#inStatus').removeClass("is-invalid");
     }
 
+    if ($('#inObservations').val() == "") {
+        $('#inObservations').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#inObservations').removeClass("is-invalid");
+    }
+
+    if ($('#inShip').val() == 0) {
+        $('#inShip').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#inShip').removeClass("is-invalid");
+    }
+
     return aux;
 }
 
@@ -142,7 +166,7 @@ function InsertOrder() {
             Total: $("#inTotal").val(),
             Type: { Id: $("#inType").val() },
             Status: { Id: $("#inStatus").val() },
-
+            Observations: $("#inObservations").val(),
         }
     };
     console.log(datos);
@@ -176,9 +200,11 @@ function UpdateOrder() {
             Id: $("#inId").val(),
             User: { Id: $("#inUser").val() },
             Quantity: $("#inQuantity").val(),
-            Total: $("#inTotal").val(),
+            Total: parseFloat($("#inTotal").val()),
+            ShippingAddress: { Id: $("#inShip").val() },
             Type: { Id: $("#inType").val() },
             Status: { Id: $("#inStatus").val() },
+            Observations: $("#inObservations").val(),
 
         }
     };
@@ -206,6 +232,33 @@ function UpdateOrder() {
     });
 }
 
+function GetAllStatus() {
+    $.ajax({
+        url: urlGetAllStatus,
+        cache: false,
+        type: 'POST',
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        success: function (data) {
+            if (data != null) {
+                allEstatus = data;
+                var option = '';
+                for (var i = 0; i < data.length; i++) {
+                    option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
+                }
+                $("#inStatus").empty().append(option);
+
+            }
+            else {
+                LlammarModal("Danger", "Error obtaining Join", " ");
+            }
+        },
+        error: function (err) {
+            LlammarModal("Danger", "Error.", "Check your internet connection I tried again.");
+        }
+    });
+}
+
 var allEstatus = '';
 function llenarComboEstatus(pStatus) {
 
@@ -222,21 +275,22 @@ function llenarComboEstatus(pStatus) {
         $("#inStatus").val(pStatus);
     }
 }
-function GetAllStatus() {
+
+function GetAllUser() {
     $.ajax({
-        url: urlGetAllStatus,
+        url: urlGetAllUser,
         cache: false,
         type: 'POST',
         async: false,
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
-                allEstatus = data;
+                allUser = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
-                    option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
+                    option += '<option value="' + data[i].Id + '">' + data[i].Email + '</option>';
                 }
-                $("#inStatus").empty().append(option);
+                $("#inUser").empty().append(option);
 
             }
             else {
@@ -265,21 +319,22 @@ function llenarComboUser(pUser) {
         $("#inUser").val(pUser);
     }
 }
-function GetAllUser() {
+
+function GetAllType() {
     $.ajax({
-        url: urlGetAllUser,
+        url: urlGetAllType,
         cache: false,
         type: 'POST',
         async: false,
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
-                allUser = data;
+                allType = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
-                    option += '<option value="' + data[i].Id + '">' + data[i].Email + '</option>';
+                    option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
                 }
-                $("#inUser").empty().append(option);
+                $("#inType").empty().append(option);
 
             }
             else {
@@ -308,31 +363,49 @@ function llenarComboType(pType) {
         $("#inType").val(pType);
     }
 }
-function GetAllType() {
+
+function GetAllShippingAddress() {
     $.ajax({
-        url: urlGetAllType,
+        url: urlGetAllShip,
         cache: false,
         type: 'POST',
         async: false,
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
-                allType = data;
+                allShip = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
-                    option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
+                    option += '<option value="' + data[i].Id + '">' + data[i].Name + '</option>';
                 }
-                $("#inType").empty().append(option);
+                $("#inShip").empty().append(option);
 
             }
             else {
-                LlammarModal("Danger", "Error obtaining Join", " ");
+                LlammarModal("Danger", "Error obtaining Shipping Address", " ");
             }
         },
         error: function (err) {
             LlammarModal("Danger", "Error.", "Check your internet connection I tried again.");
         }
     });
+}
+
+var allShip = '';
+function llenarComboShip(pShip) {
+
+    var option = '<option value="0" id="">Select</option>';
+    for (var i = 0; i < allShip.length; i++) {
+        if (allShip[i].Status.Id == 1) {
+            option += '<option value="' + allShip[i].Id + '">' + allShip[i].Name + '</option>';
+        }
+
+
+    }
+    $("#inShip").empty().append(option);
+    if (pShip != 0) {
+        $("#inShip").val(pShip);
+    }
 }
 
 function llenarTablaGetAllOrder() {

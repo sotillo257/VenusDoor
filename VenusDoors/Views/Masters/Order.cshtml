@@ -47,7 +47,7 @@
                                 <td class="">@item.Quantity</td>
                                 <td class="">@item.Type.Description</td>
                                 <td class="">@item.Status.Description</td>
-                                <td class="">@item.Total</td>
+                                <td class="">@item.Total.ToString().Replace(',', '.')</td>
                                 <td class="">
                                     <center>
                                         <a href="#" data-toggle="modal" data-target="#modalInsert" value="@item.Id" class="Modificar btn btn-primary btn-icon">
@@ -57,7 +57,6 @@
                                 </td>
                             </tr>
                         }
-
                     </tbody>
                 </table>
             </div>
@@ -100,19 +99,30 @@
 
                                             <div class="col-xs-3 col-md-4">
                                                 <label for="inTotal" style="margin-top: 25px;">Total: </label>
-                                                <input type="text" name="Total" id="inTotal" class="form-control" placeholder="">
+                                                <input type="number" name="Total" id="inTotal" class="form-control" placeholder="">
                                             </div><!-- form-group -->
+
+                                            <div class="col-xs-3 col-md-4">
+
+                                                <label for="inShip" style="margin-top: 25px;">Shipping Address: </label>
+                                                <select style="width:100%" class="form-control select2" id="inShip" data-placeholder=""></select>
+                                            </div><!-- form-group -->  
+
                                             <div class="col-xs-3 col-md-4">
 
                                                 <label for="inType" style="margin-top: 25px;">Type: </label>
                                                 <select style="width:100%" class="form-control select2" id="inType" data-placeholder="">
                                                 </select>
+                                            </div><!-- form-group -->                                   
+
+                                            <div class="col-xs-3 col-md-6">
+                                                <label for="Observations" style="margin-top: 25px;">Observations: </label>
+                                                <textarea type="text" rows="4" id="inObservations" class="form-control" placeholder=""></textarea>
                                             </div><!-- form-group -->
 
                                             <div class="col-xs-3 col-md-4">
                                                 <label for="IdStatus" style="margin-top: 25px;">Status: </label>
-                                                <select style="width:100%" class="form-control select2" id="inStatus" data-placeholder="">
-                                                </select>
+                                                <select style="width:100%" class="form-control select2" id="inStatus" data-placeholder=""></select>
                                             </div><!-- form-group -->
                                         </div>
                                     </div><!-- pd-20 -->
@@ -140,6 +150,7 @@
         var urlGetAllType = '@Url.Action("GetAllType", "Masters")';
         var listORDER = JSON.parse('@Html.Raw(ViewBag.ListOrder)');
         var urlGetAllOrder = '@Url.Action("GetAllOrder", "Masters")';
+        var urlGetAllShip = '@Url.Action("GetShippingAddress", "Masters")';
     </script>
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>
