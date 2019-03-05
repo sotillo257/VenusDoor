@@ -90,15 +90,15 @@
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="inDescription" style="margin-top: 25px;">Description: </label>
-                                                <input type="text" id="inDescription" name="Description" class="form-control" placeholder="">
+                                                <input type="text" id="inDescription" onkeypress="return soloLetras(event)" maxlength="15" name="Description" class="form-control" placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="inPriceFlatPanel" style="margin-top: 25px;">Price flat panel: </label>
-                                                <input type="text" id="inPriceFlatPanel" name="inPriceFlatPanel" class="form-control" placeholder="">
+                                                <input type="text" id="inPriceFlatPanel" onkeypress="return soloAndNumeros(event)" maxlength="6" name="inPriceFlatPanel" class="form-control" placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="inPriceRaisedPanel" style="margin-top: 25px;">Price raised panel: </label>
-                                                <input type="text" id="inPriceRaisedPanel" name="inPriceRaisedPanel" class="form-control" placeholder="">
+                                                <input type="text" id="inPriceRaisedPanel" onkeypress="return soloAndNumeros(event)" maxlength="6" name="inPriceRaisedPanel" class="form-control" placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="inStatus" style="margin-top: 25px;">Status: </label>

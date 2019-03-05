@@ -84,8 +84,8 @@ $(function () {
 
 function Limpiar() {
     $('#inId').val(0);
-    $('#Email').removeClass("is-invalid");
-    $('#Email').val(" ");
+    $('#inEmail').removeClass("is-invalid");
+    $('#inEmail').val(" ");
 
     $('#inPassword').removeClass("is-invalid");
     $('#inPassword').val(" ");
