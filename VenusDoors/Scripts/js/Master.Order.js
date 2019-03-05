@@ -36,13 +36,17 @@
                 var aux = listORDER[i].Id;
                 var aux1 = listORDER[i].User.Id;
                 var aux2 = listORDER[i].Quantity;
-                var aux3 = listORDER[i].Total;
-                var aux4 = listORDER[i].Type.Id;
-                var aux5 = listORDER[i].Status.Id;
+                var aux3 = listORDER[i].Observations;
+                var aux4 = listORDER[i].ShippingAddress;
+                var aux5 = listORDER[i].Total;
+                var aux6 = listORDER[i].Type.Id;
+                var aux7 = listORDER[i].Status.Id;
 
                 $('#inId').val(listORDER[i].Id);
                 llenarComboUser(listORDER[i].User.Id);
                 $('#inQuantity').val(listORDER[i].Quantity);
+                $('#inObservations').val(listORDER[i].Observations);
+                $('#inShippingAddress').val(listORDER[i].ShippingAddress);
                 $('#inTotal').val(listORDER[i].Total);
                 llenarComboType(listORDER[i].Type.Id);
                 llenarComboEstatus(listORDER[i].Status.Id);
@@ -73,24 +77,6 @@ $(function () {
 
 });
 
-function soloAndNumeros(e) {
-    key = e.keyCode || e.which;
-    tecla = String.fromCharCode(key).toLowerCase();
-    letras = "0123456789";
-    especiales = [8, 37, 39, 46];
-
-    tecla_especial = false
-    for (var i in especiales) {
-        if (key == especiales[i]) {
-            tecla_especial = true;
-            break;
-        }
-    }
-
-    if (letras.indexOf(tecla) == -1 && !tecla_especial)
-        return false;
-}
-
 function Limpiar() {
     $('#inId').val(0);
     $('#inUser').removeClass("is-invalid");
@@ -98,6 +84,12 @@ function Limpiar() {
 
     $('#inQuantity').removeClass("is-invalid");
     $('#inQuantity').val("");
+
+    $('#inObservations').removeClass("is-invalid");
+    $('#inObservations').val("");
+
+    $('#inShippingAddress').removeClass("is-invalid");
+    $('#inShippingAddress').val("");
 
     $('#inTotal').removeClass("is-invalid");
     $('#inTotal').val("");
@@ -124,6 +116,20 @@ function ValidarCamposVacios() {
         aux = false;
     } else {
         $('#inQuantity').removeClass("is-invalid");
+    }
+
+    if ($('#inObservations').val() == "") {
+        $('#inObservations').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#inObservations').removeClass("is-invalid");
+    }
+
+    if ($('#inShippingAddress').val() == "") {
+        $('#inShippingAddress').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#inShippingAddress').removeClass("is-invalid");
     }
 
     if ($('#inTotal').val() == "") {
@@ -157,6 +163,8 @@ function InsertOrder() {
         pOrder: {
             User: { Id: $("#inUser").val() },
             Quantity: $("#inQuantity").val(),
+            Observations: $("#inObservations").val(),
+            ShippingAddress: $("#inShippingAddress").val(),
             Total: $("#inTotal").val(),
             Type: { Id: $("#inType").val() },
             Status: { Id: $("#inStatus").val() },
@@ -194,6 +202,8 @@ function UpdateOrder() {
             Id: $("#inId").val(),
             User: { Id: $("#inUser").val() },
             Quantity: $("#inQuantity").val(),
+            Observations: $("#inObservations").val(),
+            ShippingAddress: $("#inShippingAddress").val(),
             Total: $("#inTotal").val(),
             Type: { Id: $("#inType").val() },
             Status: { Id: $("#inStatus").val() },
@@ -369,6 +379,8 @@ function llenarTablaGetAllOrder() {
                     option += '<td tabindex="0"  >' + data[i].Id + '</td>';
                     option += '<td>' + data[i].User.Id + '</td>';
                     option += '<td>' + data[i].Quantity + '</td>';
+                    option += '<td>' + data[i].Observations + '</td>';
+                    option += '<td>' + data[i].ShippingAddress + '</td>';
                     option += '<td>' + data[i].Type.Description + '</td>';
                     option += '<td>' + data[i].Status.Description + '</td>';
                     option += '<td>' + data[i].Total + '</td>';
