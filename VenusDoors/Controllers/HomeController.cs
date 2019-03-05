@@ -17,12 +17,12 @@ namespace VenusDoors.Controllers
             {
                 if (Session["UserID"] != null)
                 {
-                    if ((int)Session["UserType"] == 1)
+                    if ((int)Session["UserType"] == 1 || (int)Session["UserType"] == 2)
                     {
                         return RedirectToAction("Dashboard", "Home");
 
                     }
-                    else if ((int)Session["UserType"] == 2)
+                    else if ((int)Session["UserType"] == 3)
                     {
                         BusinessLogic.lnOrder order = new BusinessLogic.lnOrder();
                         var list = order.GetOrderByUser((int)Session["UserID"]).ToList();
@@ -32,9 +32,7 @@ namespace VenusDoors.Controllers
                             {
                                 return RedirectToAction("DashboardUser", "Home");
                             }
-                        }
-                       
-
+                        }                      
                     }
                 }
                 ViewBag.Dashboard = "active";

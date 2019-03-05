@@ -1,17 +1,17 @@
 ﻿$(document).ready(function () {
 
-    $(".btnn-dele").click(function (e) {
-        e.preventDefault();
+    $(".btnn-dele").on("click", function (e) {
+       // e.preventDefault();
         var id = $(this).parentsUntil('#id-table').find('.btnn-dele').attr('data-id');
         $('#modalDelete').modal('toggle');
         $('#deleteidhidden').val(id);
     });
 
-    $("#btnDelete").click(function () {
+    $("#btnDelete").on("click", function () {
         DltItem();
     });
 
-    $("#button-cnt").click(function () {
+    $("#button-cnt").on("click", function () {
         window.location.href = '/OrderStatus/Index';
     });
 

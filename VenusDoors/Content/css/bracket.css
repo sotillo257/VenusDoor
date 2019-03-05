@@ -98,14 +98,14 @@
     top: 0px;
     width: 100%;
     height: 100%;
-    z-index: 9999;
+    z-index: 99999999999;
     background: url('images/pageLoader.gif') 50% 50% no-repeat rgb(249,249,249);
     opacity: .8;
 }
 
   /*.loader-page {
     position: fixed;
-    z-index: 25000;
+    z-index: 2500099999999999;
     background: rgb(255, 255, 255);
     left: 0px;
     top: 0px;

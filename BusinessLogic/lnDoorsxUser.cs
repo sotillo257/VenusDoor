@@ -281,6 +281,8 @@ namespace BusinessLogic
                     decimal Tx = 0.0825m;
                     newOrder.Tax = newOrder.SubTotal * Tx;
                     newOrder.Total = newOrder.SubTotal + newOrder.Tax;
+                    newOrder.Observations = "Here you can add an observation about this order";
+                    newOrder.ShippingAddress.Id = 1;
                     InsertarDoors(item, item.HingePositions, newOrder, CodUsuario);
 
                 }
@@ -447,6 +449,7 @@ namespace BusinessLogic
                     {
                         User = new Model.User() { Id = userID },
                         Status = new Model.Status() { Id = 4 },
+                        ShippingAddress = new Model.ShippingAddress() {Id = 1 },
                         Type = new Model.Type() { Id = 1 },
                         Quantity = pDoorsxUser.Quantity,
                         SubTotal = Ord.SubTotal,
@@ -455,7 +458,8 @@ namespace BusinessLogic
                         CreationDate = DateTime.Now,
                         CreatorUser = userID,
                         ModificationDate = DateTime.Now,
-                        ModificationUser = userID
+                        ModificationUser = userID,
+                        Observations = "Here you can add an observation about this order"
                     };
 
                     int IdOrder = _LNOrder.InsertOrder(neworder);
@@ -558,6 +562,7 @@ namespace BusinessLogic
                     {
                         User = new Model.User() { Id = userID },
                         Status = new Model.Status() { Id = 4 },
+                        ShippingAddress = new Model.ShippingAddress() { Id = 1 },
                         Type = new Model.Type() { Id = 1 },
                         Quantity = pDoorsxUser.Quantity,
                         SubTotal = Ord.SubTotal,
@@ -566,7 +571,8 @@ namespace BusinessLogic
                         CreationDate = DateTime.Now,
                         CreatorUser = userID,
                         ModificationDate = DateTime.Now,
-                        ModificationUser = userID
+                        ModificationUser = userID,
+                        Observations = "Here you can add an observation about this order"
                     };
 
                     int IdOrder = _LNOrder.InsertOrder(neworder);
@@ -636,6 +642,8 @@ namespace BusinessLogic
 
                 
                 Order item = _LNUPor.GetOrderById(Ord.Id);
+                if (item != null)
+                {
                 if (item.Status.Id == 4)
                 {
                     //restar lo de la puerta modificada
@@ -706,7 +714,12 @@ namespace BusinessLogic
                 else 
                 {
                     return false;
-                }               
+                }
+                }
+                else
+                {
+                    return false;
+                }
             }
             catch (Exception ex)
             {
