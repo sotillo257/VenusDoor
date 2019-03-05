@@ -93,19 +93,19 @@
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="inName" style="margin-top: 25px;">Name: </label>
-                                                <input type="text" name="id" id="inName" class="form-control" placeholder="">
+                                                <input type="text" onkeypress="return soloLetras(event)" name="id" minlength="3" maxlength="25" id="inName" class="form-control" placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="inLastname" style="margin-top: 25px;">Lastname: </label>
-                                                <input type="text" name="id" id="inLastname" class="form-control" placeholder="">
+                                                <input type="text" onkeypress="return soloLetras(event)" name="id" minlength="3" maxlength="25" id="inLastname" class="form-control" placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="inTelephone" style="margin-top: 25px;">Telephone: </label>
-                                                <input type="text" name="id" id="inTelephone" class="form-control" placeholder="">
+                                                <input type="text" name="id" id="inTelephone" onkeypress="return soloAndNumeros(event)" minlength="12" maxlength="12" class="form-control" placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="inDirection" style="margin-top: 25px;">Direction: </label>
-                                                <input type="text" name="id" id="inDirection" class="form-control" placeholder="">
+                                                <input type="text" onkeypress="return soloLetras(event)" minlength="3" maxlength="25" name="id" id="inDirection" class="form-control" placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="inStatus" style="margin-top: 25px;">Status: </label>
@@ -129,7 +129,6 @@
         </div><!-- modal-content -->
     </div><!-- modal-dialog -->
 </div>
-
 @section scripts{
     <script>
     var urlInsertPerson = '@Url.Action("InsertPerson", "Masters")';

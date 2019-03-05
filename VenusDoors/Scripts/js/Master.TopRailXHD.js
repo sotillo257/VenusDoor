@@ -67,6 +67,7 @@ $(function () {
 
 });
 
+
 function Limpiar() {
     $('#inId').val(0);
     $('#inTopRail').removeClass("is-invalid");
