@@ -228,103 +228,103 @@ $(window).on('load', function () {
     $(".loader-page").css('z-index', 999999999999);
 });
 
-//function llenarComboPanel() {
+function llenarComboPanel() {
 
-//    var panelType = $("#cbPanel").val();
-//    var option = '<option value="0">Select</option>';
-//    for (var i = 0; i < AllPanelType.length; i++) {
-//        if (AllPanelType[i].Status.Id == 1) {
-//            option += '<option value="' + AllPanelType[i].Id + '">' + AllPanelType[i].Description + '</option>';
-//        }
+    var panelType = $("#cbPanel").val();
+    var option = '<option value="0">Select</option>';
+    for (var i = 0; i < AllPanelType.length; i++) {
+        if (AllPanelType[i].Status.Id == 1) {
+            option += '<option value="' + AllPanelType[i].Id + '">' + AllPanelType[i].Description + '</option>';
+        }
 
-//    }
-//    $("#cbPanel").empty().append(option);
-//    $("#cbPanel").val(panelType);
-//}
+    }
+    $("#cbPanel").empty().append(option);
+    $("#cbPanel").val(panelType);
+}
 
-//function llenarComboPanelMaterial(pMaterial) {
-//    var pPanelMaterial = 0;
-//    if (pMaterial == 1) {
-//        //knotty Alder
-//        pPanelMaterial = 6;
+function llenarComboPanelMaterial(pMaterial) {
+    var pPanelMaterial = 0;
+    if (pMaterial == 1) {
+        //knotty Alder
+        pPanelMaterial = 6;
 
-//    } else if (pMaterial == 4) {
-//        //Maple
-//        pPanelMaterial = 7;
-//    }
-//    else if (pMaterial == 6) {
-//        //Poplar
-//        pPanelMaterial = 9;
-//    }
-//    else if (pMaterial == 7) {
-//        //Red oak
-//        pPanelMaterial = 11;
-//    }
-//    else if (pMaterial == 13) {
-//        //Beech
-//        pPanelMaterial = 3;
-//    }
-//    var option = '';
-//    for (var i = 0; i < AllPanelMaterial.length; i++) {
-//        if (AllPanelMaterial[i].Status.Id == 1 && AllPanelMaterial[i].Id == pPanelMaterial) {
-//            option += '<option value="' + AllPanelMaterial[i].Id + '">' + AllPanelMaterial[i].Description + '</option>';
+    } else if (pMaterial == 4) {
+        //Maple
+        pPanelMaterial = 7;
+    }
+    else if (pMaterial == 6) {
+        //Poplar
+        pPanelMaterial = 9;
+    }
+    else if (pMaterial == 7) {
+        //Red oak
+        pPanelMaterial = 11;
+    }
+    else if (pMaterial == 13) {
+        //Beech
+        pPanelMaterial = 3;
+    }
+    var option = '';
+    for (var i = 0; i < AllPanelMaterial.length; i++) {
+        if (AllPanelMaterial[i].Status.Id == 1 && AllPanelMaterial[i].Id == pPanelMaterial) {
+            option += '<option value="' + AllPanelMaterial[i].Id + '">' + AllPanelMaterial[i].Description + '</option>';
             
-//        }
-//        if (pMaterial == 6) {
-//            if (AllPanelMaterial[i].Status.Id == 1 && AllPanelMaterial[i].Id == 1) {
-//                option += '<option value="' + AllPanelMaterial[i].Id + '">' + AllPanelMaterial[i].Description + '</option>';
+        }
+        if (pMaterial == 6) {
+            if (AllPanelMaterial[i].Status.Id == 1 && AllPanelMaterial[i].Id == 1) {
+                option += '<option value="' + AllPanelMaterial[i].Id + '">' + AllPanelMaterial[i].Description + '</option>';
 
-//            }
-//        }
-//    }
-//    $("#cbPanelMaterial").empty().append(option);
-//    $("#cbPanelMaterial").val(pPanelMaterial);
-//}
-//function llenarInsideAndOutsideEspecificos(pInside, pOutside) {
-//    var inside = $("#cbInsideEdgeProfile").val();
-//    var outside = $("#cbOutsideEdgeProfile").val();
-//    var option = '';
-//    for (var i = 0; i < AllInsideEdgeProfile.length; i++) {
-//        if (AllInsideEdgeProfile[i].Status.Id == 1 && AllInsideEdgeProfile[i].Id == pInside) {
-//            option += '<option value="' + AllInsideEdgeProfile[i].Id + '">' + AllInsideEdgeProfile[i].Description + '</option>';
-//            break;
-//        }
-//    }
-//    $("#cbInsideEdgeProfile").empty().append(option);
-//        $("#cbInsideEdgeProfile").val(pInside);
-//    option = '';
-//    for (var i = 0; i < AllOutsideEdgeProfile.length; i++) {
-//        if (AllOutsideEdgeProfile[i].Status.Id == 1 && AllOutsideEdgeProfile[i].Id == pOutside) {
-//            option += '<option value="' + AllOutsideEdgeProfile[i].Id + '">' + AllOutsideEdgeProfile[i].Description + '</option>';
-//            break;
-//        }
-//    }
-//    $("#cbOutsideEdgeProfile").empty().append(option);
-//    $("#cbOutsideEdgeProfile").val(pOutside);
-//}
-//function llenarComboInsideAndOutside() {
+            }
+        }
+    }
+    $("#cbPanelMaterial").empty().append(option);
+    $("#cbPanelMaterial").val(pPanelMaterial);
+}
+function llenarInsideAndOutsideEspecificos(pInside, pOutside) {
+    var inside = $("#cbInsideEdgeProfile").val();
+    var outside = $("#cbOutsideEdgeProfile").val();
+    var option = '';
+    for (var i = 0; i < AllInsideEdgeProfile.length; i++) {
+        if (AllInsideEdgeProfile[i].Status.Id == 1 && AllInsideEdgeProfile[i].Id == pInside) {
+            option += '<option value="' + AllInsideEdgeProfile[i].Id + '">' + AllInsideEdgeProfile[i].Description + '</option>';
+            break;
+        }
+    }
+    $("#cbInsideEdgeProfile").empty().append(option);
+        $("#cbInsideEdgeProfile").val(pInside);
+    option = '';
+    for (var i = 0; i < AllOutsideEdgeProfile.length; i++) {
+        if (AllOutsideEdgeProfile[i].Status.Id == 1 && AllOutsideEdgeProfile[i].Id == pOutside) {
+            option += '<option value="' + AllOutsideEdgeProfile[i].Id + '">' + AllOutsideEdgeProfile[i].Description + '</option>';
+            break;
+        }
+    }
+    $("#cbOutsideEdgeProfile").empty().append(option);
+    $("#cbOutsideEdgeProfile").val(pOutside);
+}
+function llenarComboInsideAndOutside() {
 
-//    var inside = $("#cbInsideEdgeProfile").val();
-//    var outside = $("#cbOutsideEdgeProfile").val();
-//    var option = '<option value="0">Select</option>';
-//    for (var i = 0; i < AllInsideEdgeProfile.length; i++) {
-//        if (AllInsideEdgeProfile[i].Status.Id == 1) {
-//            option += '<option value="' + AllInsideEdgeProfile[i].Id + '">' + AllInsideEdgeProfile[i].Description + '</option>';
-//        }
-//    }
-//    $("#cbInsideEdgeProfile").empty().append(option);
+    var inside = $("#cbInsideEdgeProfile").val();
+    var outside = $("#cbOutsideEdgeProfile").val();
+    var option = '<option value="0">Select</option>';
+    for (var i = 0; i < AllInsideEdgeProfile.length; i++) {
+        if (AllInsideEdgeProfile[i].Status.Id == 1) {
+            option += '<option value="' + AllInsideEdgeProfile[i].Id + '">' + AllInsideEdgeProfile[i].Description + '</option>';
+        }
+    }
+    $("#cbInsideEdgeProfile").empty().append(option);
  
-//        $("#cbInsideEdgeProfile").val(inside);
+        $("#cbInsideEdgeProfile").val(inside);
  
-//    option = '<option value="0">Select</option>';
-//    for (var i = 0; i < AllOutsideEdgeProfile.length; i++) {
-//        if (AllOutsideEdgeProfile[i].Status.Id == 1) {
-//            option += '<option value="' + AllOutsideEdgeProfile[i].Id + '">' + AllOutsideEdgeProfile[i].Description + '</option>';
-//        }
-//    }
-//    $("#cbOutsideEdgeProfile").empty().append(option);
-//    $("#cbOutsideEdgeProfile").val(outside);
-//}
+    option = '<option value="0">Select</option>';
+    for (var i = 0; i < AllOutsideEdgeProfile.length; i++) {
+        if (AllOutsideEdgeProfile[i].Status.Id == 1) {
+            option += '<option value="' + AllOutsideEdgeProfile[i].Id + '">' + AllOutsideEdgeProfile[i].Description + '</option>';
+        }
+    }
+    $("#cbOutsideEdgeProfile").empty().append(option);
+    $("#cbOutsideEdgeProfile").val(outside);
+}
 
 //function HeightInchesMin() {
 //    Height = $('.iptHeight').val();
