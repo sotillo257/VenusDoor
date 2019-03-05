@@ -84,7 +84,7 @@
                             </div><!-- form-group -->
                             <div class="form-group mg-b-20">
                                 <label>Password</label>
-                                <input class="UserPass form-control" id="intPassword" name="intPassword" type="password">
+                                <input class="UserPass form-control" id="intPassword" name="intPassword" type="password" onkeydown = "if (event.keyCode == 13)document.getElementById('ingresarbtn').click()">
                                 <a href='@Url.Action("Recover_Password","Logins")'>forget your password?</a>                                
                             </div><!-- form-group -->
                             <div class="form-group mg-b-20">
@@ -92,7 +92,7 @@
                         </div><!-- form-group -->
 
 
-                        <button id="ingresarbtn" onkeypress="Enter(event)" class="Cursor ingresar btn btn-primary pd-y-12 btn-block">Sign In</button>
+                        <button id="ingresarbtn" onclick = "doSomething();" class="Cursor ingresar btn btn-primary pd-y-12 btn-block">Sign In</button>
 
                         <div class="mg-t-30 mg-b-20 tx-12">Don't have an account yet? @Html.ActionLink("Create one!", "sing_up", "Logins")</div>
 

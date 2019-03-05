@@ -61,7 +61,7 @@
             @if (Session["UserID"] == null)
             {
                 <div style="display: flex;justify-content: flex-end;width: 60%;">
-                    <button style="margin-right: 20px;" type="button" data-toggle="modal" data-target="#modalInsert" class="Cursor btBuild btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Create order</button>
+                    <button disabled style="margin-right: 20px;" type="button" data-toggle="modal" data-target="#modalInsert" class="Cursor btBuild btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Create order</button>
                     <div class="col-xs-4 col-md-4" style="">                        
                         <button disabled title="Massive order only available when you are logged in" id="btnLogo" class="Cursor btn btn-outline-success btn-block"><i class="fa fa-upload mg-r-10"></i> Massive Order</button>                                                
                     </div>
@@ -134,8 +134,18 @@
                             <tr>
                                 <td><img style="width: 80px;" src="@i.Picture"></td>
                                 <td>@i.Quantity.ToString().Replace(',','.')</td>
-                                <td>@i.Width.ToString("N0") <span>@i.DecimalsWidth.Description</span></td>
-                                <td>@i.Height.ToString("N0") <span>@i.DecimalsHeight.Description</span></td>
+                                <td>@i.Width.ToString("N0")
+                                    @if (i.DecimalsWidth.Value != 0)
+                                    {
+                                        <span>@i.DecimalsWidth.Description</span>
+                                    }                                    
+                                </td>
+                                <td>@i.Height.ToString("N0")
+                                    @if (i.DecimalsHeight.Value != 0)
+                                    {
+                                        <span>@i.DecimalsHeight.Description</span>
+                                    }
+                                </td>
                                 <td>@i.DoorStyle.Description</td>
                                 <td>@i.Material.Description</td>
                                 <td>@i.Panel.Description</td>
@@ -284,21 +294,23 @@
                                                     </div><!-- col -->
                                                     <div class="col-xs-3 col-md-3">
                                                         <label for="width" style="margin-top: 25px;">Width: </label>
-                                                        <div style="display:flex">
-                                                            <input style="width:50%!important" name="SoloNumeros" required class="required RequiereLlenar eventChange iptWidth form-control" type="number" maxlength="2" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="iptWidth">
-                                                            <select style="width:100%" class="form-control select2" id="cbDecimalsW">
-                                                                
-                                                            </select>
+                                                        <div>
+                                                            <div style="display:flex">
+                                                                <input style="width:50%!important" name="SoloNumeros" required class="required RequiereLlenar eventChange iptWidth form-control" type="number" maxlength="2" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="iptWidth">
+                                                                <select style="width:100%" class="form-control select2" id="cbDecimalsW"></select>
+                                                            </div>
+                                                            <label id="alertWidth" style="Color:red; font-size:10px; display:none;margin:0"></label>                                                            
                                                         </div>
                                                     </div><!-- form-group -->
                                                     <div class="col-xs-3 col-md-3">
                                                         <label for="inDescription" style="margin-top: 25px;">Height: </label>
-                                                        <div style="display:flex">
-                                                            <input style="width:50%!important" name="SoloNumeros" required class="required RequiereLlenar eventChange iptHeight form-control" type="number" maxlength="2" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="iptHeight">
-                                                            <select style="width:100%" class="form-control select2" id="cbDecimalsH">
-                                                                
-                                                            </select>
-                                                        </div>
+                                                        <div>
+                                                            <div style="display:flex">
+                                                                <input style="width:50%!important" name="SoloNumeros" required class="required RequiereLlenar eventChange iptHeight form-control" type="number" maxlength="2" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="iptHeight">
+                                                                <select style="width:100%" class="form-control select2" id="cbDecimalsH"></select>
+                                                            </div>
+                                                            <label id="alertHeight" style="Color:red; font-size:10px; margin:0"></label>
+                                                       </div>
                                                     </div><!-- form-group -->
 
                                                     <div class="col-xs-3 col-md-4" style="display:flex; align-items:flex-end">      

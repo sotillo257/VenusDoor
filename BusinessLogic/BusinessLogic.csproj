@@ -74,6 +74,7 @@
     <Compile Include="lnPerson.cs" />
     <Compile Include="lnPreparation.cs" />
     <Compile Include="lnRailThickness.cs" />
+    <Compile Include="lnShippingAddress.cs" />
     <Compile Include="lnStatus.cs" />
     <Compile Include="lnTopRail.cs" />
     <Compile Include="lnTopRailxHorizontalDivisions.cs" />

@@ -143,6 +143,36 @@
         '<button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>');
     });
     SearchDoor(doorDetail);
+
+    $(document).on('change', '#iptWidth', function () {
+        if ($('#iptWidth').val() < 5) {
+            $('#iptWidth').addClass("is-invalid");
+            $("#alertWidth").css('display', 'block');
+            $("#alertWidth").text("Minimum is 5 inches.");
+        } else if ($('#iptWidth').val() > 42) {
+            $('#iptWidth').addClass("is-invalid");
+            $("#alertWidth").css('display', 'block');
+            $("#alertWidth").text("Maximum is 42 inches.");
+        } else {
+            $('#iptWidth').removeClass("is-invalid");
+            $("#alertWidth").css('display', 'none');
+        }
+    });
+
+    $(document).on('change', '#iptHeight', function () {
+        if ($('#iptHeight').val() < 5) {
+            $('#iptHeight').addClass("is-invalid");
+            $("#alertHeight").css('display', 'block');
+            $("#alertHeight").text("Minimum is 5 inches.");
+        } else if ($('#iptHeight').val() > 96) {
+            $('#iptHeight').addClass("is-invalid");
+            $("#alertHeight").css('display', 'block');
+            $("#alertHeight").text("Maximum is 96 inches.");
+        } else {
+            $('#iptHeight').removeClass("is-invalid");
+            $("#alertHeight").css('display', 'none');
+        }
+    });
 });
 
 function SearchDoor(data) {
@@ -234,7 +264,12 @@ function SearchDoor(data) {
 
 function GuardarMod() {
     if (ValidarCamposVacios()) {
-        UpdateDoorsxUser();
+        if (ValidadWH()) {
+            UpdateDoorsxUser();
+        } else {
+            $('#modalConfirmOrderSummary').modal('hide');
+            LlammarModal("Danger", "The inches are not within our limits.", " ");
+        } 
     } else {
         $('#modalConfirmOrderSummary').modal('hide');
         LlammarModal("Danger", "You must fill all the fields.", " ");
@@ -243,7 +278,12 @@ function GuardarMod() {
 
 function AgregarD() {
     if (ValidarCamposVacios()) {
-        InsertDoorsxUser();
+        if (ValidadWH()) {
+            InsertDoorsxUser();
+        } else {
+            $('#modalConfirmOrderSummary').modal('hide');
+            LlammarModal("Danger", "The inches are not within our limits.", " ");
+        }       
     } else {
         $('#modalConfirmOrderSummary').modal('hide');
         LlammarModal("Danger", "You must fill all the fields.", " ");
@@ -253,7 +293,7 @@ function AgregarD() {
 var allMaterial = '';
 function llenarComboMaterial(pMaterial) {
 
-    var option = '<option value="0">Select</option>';
+    var option = '';
     for (var i = 0; i < allMaterial.length; i++) {
         if (allMaterial[i].Status.Id == 1) {
             option += '<option value="' + allMaterial[i].Id + '">' + allMaterial[i].Description + '</option>';
@@ -268,7 +308,7 @@ function llenarComboMaterial(pMaterial) {
 var allDoorStyle = '';
 function llenarComboDoorStyle(pDoorStyle) {
 
-    var option = '<option value="0">Select</option>';
+    var option = '';
     for (var i = 0; i < allDoorStyle.length; i++) {
         if (allDoorStyle[i].Status.Id == 1) {
             option += '<option value="' + allDoorStyle[i].Id + '">' + allDoorStyle[i].Description + '</option>';
@@ -358,7 +398,7 @@ function llenarComboDoorAssembly(pDoorAssembly) {
 var AllPanelType = '';
 function llenarComboPanelStyle(pPanelStyle) {
 
-    var option = '<option value="0">Select</option>';
+    var option = '';
     for (var i = 0; i < AllPanelType.length; i++) {
         if (AllPanelType[i].Status.Id == 1) {
             option += '<option value="' + AllPanelType[i].Id + '">' + AllPanelType[i].Description + '</option>';
@@ -372,7 +412,6 @@ function llenarComboPanelStyle(pPanelStyle) {
 
 var AllPanelMaterial = '';
 function llenarComboPanelMaterial(pMaterial) {
-
     var pPanelMaterial = 0;
     if (pMaterial == 1) {
         //knotty Alder
@@ -394,7 +433,7 @@ function llenarComboPanelMaterial(pMaterial) {
         //Beech
         pPanelMaterial = 3;
     }    
-    var option = '<option value="0">Select</option>';
+    var option = '';
     for (var i = 0; i < AllPanelMaterial.length; i++) {
         if (AllPanelMaterial[i].Status.Id == 1 && AllPanelMaterial[i].Id == pPanelMaterial) {
             option += '<option value="' + AllPanelMaterial[i].Id + '">' + AllPanelMaterial[i].Description + '</option>';
@@ -548,7 +587,7 @@ function checkDoorOption(pDoorOp) {
 var allDecimals = '';
 function llenarComboDecimalW(pDecimalW) {
 
-    var option = '<option value="0">Select</option>';
+    var option = '';
     for (var i = 0; i < allDecimals.length; i++) {
         if (allDecimals[i].Status.Id == 1) {
             option += '<option value="' + allDecimals[i].Id + '">' + allDecimals[i].Description + '</option>';
@@ -562,7 +601,7 @@ function llenarComboDecimalW(pDecimalW) {
 
 function llenarComboDecimalH(pDecimalH) {
 
-    var option = '<option value="0">Select</option>';
+    var option = '';
     for (var i = 0; i < allDecimals.length; i++) {
         if (allDecimals[i].Status.Id == 1) {
             option += '<option value="' + allDecimals[i].Id + '">' + allDecimals[i].Description + '</option>';
@@ -587,8 +626,8 @@ function LimpiarCombos() {
     llenarComboStileWidth(0);
     llenarComboRailWidth(0);
     llenarComboDoorAssembly(0);
-    llenarComboPanelStyle(0);
-    llenarComboPanelMaterial(0);
+    llenarComboPanelStyle(5);
+    llenarComboPanelMaterial(1);
     llenarComboIsOpen(0);
     llenarComboVerticalDivisions(0);
     llenarComboHorizontalDivisions(0);
@@ -767,4 +806,20 @@ function ValidarCamposVacios() {
     return aux;
 }
 
+function ValidadWH() {
+    var aux = true;
+    if ($('#iptWidth').val() < 5 || $('#iptWidth').val() > 42) {
+        $('#iptWidth').addClass("is-invalid");       
+        aux = false;
+    } else {
+        $('#iptWidth').removeClass("is-invalid");
+    }
+    if ($('#iptHeight').val() < 5 || $('#iptHeight').val() > 96) {
+        $('#iptHeight').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#iptHeight').removeClass("is-invalid");
+    }
+    return aux;
+}
 

@@ -33,12 +33,14 @@ namespace DataAccess
                             SubTotal = decimal.Parse(item["SubTotal"].ToString()),
                             Tax = decimal.Parse(item["Tax"].ToString()),
                             Total = decimal.Parse(item["Total"].ToString()),
+                            ShippingAddress = new ShippingAddress() { Id = int.Parse(item["IdShip"].ToString()), Name = item["ShippingName"].ToString() },
                             Type = new Model.Type() { Id = int.Parse(item["IdType"].ToString()), Description = item["DescripType"].ToString() },
                             Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["DescripStatus"].ToString() },
                             CreationDate = DateTime.Parse(item["CreationDate"].ToString()),
                             ModificationDate = DateTime.Parse(item["ModificationDate"].ToString()),
                             CreatorUser = int.Parse(item["CreatorUser"].ToString()),
                             ModificationUser = int.Parse(item["ModificationUser"].ToString()),
+                            Observations = item["Observations"].ToString(),
 
                         };
                     }
@@ -74,12 +76,14 @@ namespace DataAccess
                             SubTotal = decimal.Parse(item["SubTotal"].ToString()),
                             Tax = decimal.Parse(item["Tax"].ToString()),
                             Total = decimal.Parse(item["Total"].ToString()),
+                            ShippingAddress = new ShippingAddress() { Id = int.Parse(item["IdShip"].ToString()), Name = item["ShippingName"].ToString() },
                             Type = new Model.Type() { Id = int.Parse(item["IdType"].ToString()), Description = item["DescripType"].ToString() },
                             Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["DescripStatus"].ToString() },
                             CreationDate = DateTime.Parse(item["CreationDate"].ToString()),
                             ModificationDate = DateTime.Parse(item["ModificationDate"].ToString()),
                             CreatorUser = int.Parse(item["CreatorUser"].ToString()),
                             ModificationUser = int.Parse(item["ModificationUser"].ToString()),
+                            Observations = item["Observations"].ToString(),
 
                         });
                     }
@@ -113,12 +117,14 @@ namespace DataAccess
                             SubTotal = decimal.Parse(item["SubTotal"].ToString()),
                             Tax = decimal.Parse(item["Tax"].ToString()),
                             Total = decimal.Parse(item["Total"].ToString()),
+                            ShippingAddress = new ShippingAddress() { Id = int.Parse(item["IdShip"].ToString()), Name = item["ShippingName"].ToString() },
                             Type = new Model.Type() { Id = int.Parse(item["IdType"].ToString()), Description = item["DescripType"].ToString() },
                             Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["DescripStatus"].ToString() },
                             CreationDate = DateTime.Parse(item["CreationDate"].ToString()),
                             ModificationDate = DateTime.Parse(item["ModificationDate"].ToString()),
                             CreatorUser = int.Parse(item["CreatorUser"].ToString()),
                             ModificationUser = int.Parse(item["ModificationUser"].ToString()),
+                            Observations = item["Observations"].ToString(),
 
                         });
                     }
@@ -154,12 +160,14 @@ namespace DataAccess
                             SubTotal = decimal.Parse(item["SubTotal"].ToString()),
                             Tax = decimal.Parse(item["Tax"].ToString()),
                             Total = decimal.Parse(item["Total"].ToString()),
+                            ShippingAddress = new ShippingAddress() { Id = int.Parse(item["IdShip"].ToString()), Name = item["ShippingName"].ToString() },
                             Type = new Model.Type() { Id = int.Parse(item["IdType"].ToString()), Description = item["DescripType"].ToString() },
                             Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["DescripStatus"].ToString() },
                             CreationDate = DateTime.Parse(item["CreationDate"].ToString()),
                             ModificationDate = DateTime.Parse(item["ModificationDate"].ToString()),
                             CreatorUser = int.Parse(item["CreatorUser"].ToString()),
                             ModificationUser = int.Parse(item["ModificationUser"].ToString()),
+                            Observations = item["Observations"].ToString(),
 
                         });
                     }
@@ -262,9 +270,9 @@ namespace DataAccess
             decimal subtotal = Convert.ToDecimal(pOrder.SubTotal);
             decimal tax = Convert.ToDecimal(pOrder.Tax);
             decimal total = Convert.ToDecimal(pOrder.Total);
-            string sql = @"[spInsertOrder] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}'";
-            sql = string.Format(sql, pOrder.User.Id, pOrder.Quantity, subtotal.ToString().Replace(',', '.'), tax.ToString().Replace(',', '.'), total.ToString().Replace(',', '.'), pOrder.Type.Id, pOrder.Status.Id, pOrder.CreationDate.ToString("yyyyMMdd HH:mm:ss"),
-                pOrder.CreatorUser, pOrder.ModificationDate.ToString("yyyyMMdd HH:mm:ss"), pOrder.ModificationUser);
+            string sql = @"[spInsertOrder] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}'";
+            sql = string.Format(sql, pOrder.User.Id, pOrder.Quantity, subtotal.ToString().Replace(',', '.'), tax.ToString().Replace(',', '.'), total.ToString().Replace(',', '.'),pOrder.ShippingAddress.Id, pOrder.Type.Id, pOrder.Status.Id, pOrder.CreationDate.ToString("yyyyMMdd HH:mm:ss"),
+                pOrder.CreatorUser, pOrder.ModificationDate.ToString("yyyyMMdd HH:mm:ss"), pOrder.ModificationUser, pOrder.Observations);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -280,10 +288,10 @@ namespace DataAccess
             decimal subtotal = Convert.ToDecimal(pOrder.SubTotal);
             decimal tax = Convert.ToDecimal(pOrder.Tax);
             decimal total = Convert.ToDecimal(pOrder.Total);
-            string sql = @"[spUpdateOrder] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}'";
+            string sql = @"[spUpdateOrder] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}'";
 
-            sql = string.Format(sql, pOrder.Id, pOrder.User.Id, pOrder.Quantity, subtotal.ToString().Replace(',', '.'), tax.ToString().Replace(',', '.'), total.ToString().Replace(',', '.'), pOrder.Type.Id, pOrder.Status.Id, pOrder.ModificationDate.ToString("yyyyMMdd HH:mm:ss"),
-                pOrder.ModificationUser);
+            sql = string.Format(sql, pOrder.Id, pOrder.User.Id, pOrder.Quantity, subtotal.ToString().Replace(',', '.'), tax.ToString().Replace(',', '.'), total.ToString().Replace(',', '.'), pOrder.ShippingAddress.Id, pOrder.Type.Id, pOrder.Status.Id, pOrder.ModificationDate.ToString("yyyyMMdd HH:mm:ss"),
+                pOrder.ModificationUser, pOrder.Observations);
             try
             {
                 _MB.EjecutarSQL(_CN, sql);
