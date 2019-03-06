@@ -35,7 +35,6 @@ function DltItem() {
                             
                      }
               
-    console.log(datos);
     $.ajax({
         type: 'POST',
         data: JSON.stringify(datos),

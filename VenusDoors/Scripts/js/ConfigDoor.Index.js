@@ -471,11 +471,11 @@ function HingeShow() {
     var drilling = $("#cbisDrill").val();
     if (drilling == 2) {
         $("#HingeDirectionDiv").css('display', 'block');
-        $("#HingePositionsDiv").css('display', 'block');
+        //$("#HingePositionsDiv").css('display', 'block');
         HingeCalculate();
     } else {
         $("#HingeDirectionDiv").css('display', 'none');
-        $("#HingePositionsDiv").css('display', 'none');
+        //$("#HingePositionsDiv").css('display', 'none');
     }
 }
 
@@ -908,7 +908,7 @@ function GetAllDoorOption() {
         success: function (data) {
             if (data != null) {
                 allDoorOption = data;
-                var radioButt = '';
+                var option = '';
                 for (var i = 0; i < data.length; i++) {
                     if (data[i].Status.Id == 1) {
                         radioButt += '<label style="margin-left: 8px;">';
@@ -916,8 +916,8 @@ function GetAllDoorOption() {
                         radioButt += '</label>';
                         $("#DivDoorOption").html(radioButt);
                     }
-
                 }                
+                $("#cbDoorOpt").empty().append(option);
             }
             else {
                 LlammarModal("Danger", "Error obtaining DoorOption", " ");
@@ -1760,7 +1760,11 @@ function llenarheaderOrder() {
                 headerConfig += '<div><h6>Door Style: <span>' + data.LastDoor.DoorStyle.Description + '</span></h6>';
                 headerConfig += '<h6 style="margin-left:15px">Material: <span>' + data.LastDoor.Material.Description + '</span></h6>';
                 headerConfig += '<h6 style="margin-left:15px">Panel Material: <span>' + data.LastDoor.PanelMaterial.Description + '</span></h6>';
-                headerConfig += '<h6 style="margin-left:15px">Door Type: <span>' + data.LastDoor.DoorType.Description + '</span></h6></div>';                
+                if(data.LastDoor.isOverlay == false){
+                    headerConfig += '<h6 style="margin-left:15px">Door Type: <span>Insert Door Type</span></h6></div>';
+                } else {
+                    headerConfig += '<h6 style="margin-left:15px">Door Type: <span>Overlay Door Type</span></h6></div>';
+                }
             } else {
                 headerConfig += '';
             }

@@ -20,9 +20,8 @@
         $("#iptHeight").prop('disabled', false);
         $("input[name=radioOption]").attr("disabled", false);
         $("input[name=radioOver]").attr("disabled", false);
-        $(".select2-selection").css('background-color', '#fff!important');
-        LimpiarCombos();
-        HingeShow();
+        $(".select2-selection").css('background-color', '#fff!important');       
+        HingeShow(); LimpiarCombos();
     });
 
     $("#btModify").on('click', function () {
@@ -109,7 +108,6 @@
                     isOver = 2;
                 }
                 checkIsOverlay(isOver);
-                checkDoorOption(listDOOR[i].DoorOption.Id);
                 //llenarComboDecimales(listDOOR[i].Decimales.Id);
                 llenarComboMaterial(listDOOR[i].Material.Id);
                 llenarComboDoorStyle(listDOOR[i].DoorStyle.Id);
@@ -126,6 +124,7 @@
                 llenarComboDoorType(listDOOR[i].DoorType.Id);
                 llenarComboDecimalW(listDOOR[i].DecimalsWidth.Id);
                 llenarComboDecimalH(listDOOR[i].DecimalsHeight.Id);
+                llenarComboDoorOption(listDOOR[i].DoorOption.Id);
                 break;
             }
         }
@@ -264,12 +263,12 @@ function SearchDoor(data) {
 
 function GuardarMod() {
     if (ValidarCamposVacios()) {
-        if (ValidadWH()) {
+        //if (ValidadWH()) {
             UpdateDoorsxUser();
-        } else {
-            $('#modalConfirmOrderSummary').modal('hide');
-            LlammarModal("Danger", "The inches are not within our limits.", " ");
-        } 
+        //} else {
+        //    $('#modalConfirmOrderSummary').modal('hide');
+        //    LlammarModal("Danger", "The inches are not within our limits.", " ");
+        //} 
     } else {
         $('#modalConfirmOrderSummary').modal('hide');
         LlammarModal("Danger", "You must fill all the fields.", " ");
@@ -278,12 +277,12 @@ function GuardarMod() {
 
 function AgregarD() {
     if (ValidarCamposVacios()) {
-        if (ValidadWH()) {
+        //if (ValidadWH()) {
             InsertDoorsxUser();
-        } else {
-            $('#modalConfirmOrderSummary').modal('hide');
-            LlammarModal("Danger", "The inches are not within our limits.", " ");
-        }       
+        //} else {
+        //    $('#modalConfirmOrderSummary').modal('hide');
+        //    LlammarModal("Danger", "The inches are not within our limits.", " ");
+        //}    
     } else {
         $('#modalConfirmOrderSummary').modal('hide');
         LlammarModal("Danger", "You must fill all the fields.", " ");
@@ -568,19 +567,17 @@ function checkIsOverlay(pOverlay) {
     }
 }
 
-function checkDoorOption(pDoorOp) {
-    var radioButt = '';
+var allDoorOption = '';
+function llenarComboDoorOption(pDoorOp) {
+    var option = '';
     for (var i = 0; i < allDoorOption.length; i++) {
-        if (allDoorOption[i].Status.Id == 1) {
-            console.log(allDoorOption);            
-            radioButt += '<label style="margin-left: 8px;">';
-            radioButt += '<input disabled style="margin-right:5px" name="radioOption" type="radio" data-id="' + allDoorOption[i].Id + '"></input>' + allDoorOption[i].Description + '';
-            radioButt += '</label>';
-            $("#DivDoorOption").html(radioButt);
+        if (allDoorOption[i].Status.Id == 1) {           
+            option += '<option value="' + allDoorOption[i].Id + '">' + allDoorOption[i].Description + '</option>';
         }
     }
+    $("#cbDoorOpt").empty().append(option);
     if (pDoorOp != 0) {
-        $("input[name=radioOption][data-id='" + pDoorOp + "']").prop("checked", true);
+        $("#cbDoorOpt").val(pDoorOp);
     }
 }
 
@@ -616,9 +613,8 @@ function llenarComboDecimalH(pDecimalH) {
 function LimpiarCombos() {        
     $('input').val("");
     $('#iptCost').val("0.00");
-    $("input[name=radioOption]").prop("checked", false);
-    $("input[name=radioOver]").prop("checked", false);
-    //llenarComboDecimales(0);
+    llenarComboDoorOption(0);
+    $("input[name=radioOver]").prop("checked", false);    
     llenarComboMaterial(0);
     llenarComboDoorStyle(0);
     llenarComboIEP(0);
@@ -633,8 +629,7 @@ function LimpiarCombos() {
     llenarComboHorizontalDivisions(0);
     llenarComboIsDrill(0);
     llenarComboHingeDirection(0);
-    llenarComboDoorType(0);
-    llenarComboDoorType(0);
+    llenarComboDoorType(0);    
     llenarComboFinger(0);
     llenarComboDecimalW(0);
     llenarComboDecimalH(0);
@@ -649,12 +644,12 @@ function ValidarCamposVacios() {
         $('#cbMaterial').removeClass("is-invalid");
     }
 
-    if ($('#iptQuantity').val() == "") {
-        $('#iptQuantity').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#iptQuantity').removeClass("is-invalid");
-    }
+    //if ($('#iptQuantity').val() == "") {
+    //    $('#iptQuantity').addClass("is-invalid");
+    //    aux = false;
+    //} else {
+    //    $('#iptQuantity').removeClass("is-invalid");
+    //}
 
     if ($('#cbDoorStyle').val() == 0) {
         $('#cbDoorStyle').addClass("is-invalid");
@@ -684,12 +679,12 @@ function ValidarCamposVacios() {
         $('#cbPreparation').removeClass("is-invalid");
     }
 
-    if ($('#cbPanel').val() == 0) {
-        $('#cbPanel').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#cbPanel').removeClass("is-invalid");
-    }
+    //if ($('#cbPanel').val() == 0) {
+    //    $('#cbPanel').addClass("is-invalid");
+    //    aux = false;
+    //} else {
+    //    $('#cbPanel').removeClass("is-invalid");
+    //}
 
     if ($('#cbPanelMaterial').val() == 0) {
         $('#cbPanelMaterial').addClass("is-invalid");
@@ -740,19 +735,19 @@ function ValidarCamposVacios() {
         $('#cbHorizontalDivisions').removeClass("is-invalid");
     }
 
-    if ($('#iptWidth').val() == "") {
-        $('#iptWidth').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#iptWidth').removeClass("is-invalid");
-    }
+    //if ($('#iptWidth').val() == "") {
+    //    $('#iptWidth').addClass("is-invalid");
+    //    aux = false;
+    //} else {
+    //    $('#iptWidth').removeClass("is-invalid");
+    //}
 
-    if ($('#iptHeight').val() == "") {
-        $('#iptHeight').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#iptHeight').removeClass("is-invalid");
-    }
+    //if ($('#iptHeight').val() == "") {
+    //    $('#iptHeight').addClass("is-invalid");
+    //    aux = false;
+    //} else {
+    //    $('#iptHeight').removeClass("is-invalid");
+    //}
 
     if ($('#cbisDrill').val() == 0) {
         $('#cbisDrill').addClass("is-invalid");
@@ -768,20 +763,12 @@ function ValidarCamposVacios() {
         $('#cbFingerPull').removeClass("is-invalid");
     }
 
-    if ($('#cbDoorType').val() == 0) {
-        $('#cbDoorType').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#cbDoorType').removeClass("is-invalid");
-    }
-
-    if ($("input[name=radioOption]").is(':checked')) {
-        $("input[name=radioOption]").removeClass("is-invalid");
-
-    } else {
-        $("input[name=radioOption]").addClass("is-invalid");
-        aux = false;
-    }
+    //if ($('#cbDoorType').val() == 0) {
+    //    $('#cbDoorType').addClass("is-invalid");
+    //    aux = false;
+    //} else {
+    //    $('#cbDoorType').removeClass("is-invalid");
+    //}
 
     if ($("input[name=radioOver]").is(':checked')) {
         $("input[name=radioOver]").removeClass("is-invalid");
@@ -790,18 +777,18 @@ function ValidarCamposVacios() {
         $("input[name=radioOver]").addClass("is-invalid");
         aux = false;
     }
-    if ($('#cbDecimalsW').val() == 0) {
-        $('#cbDecimalsW').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#cbDecimalsW').removeClass("is-invalid");
-    }
-    if ($('#cbDecimalsH').val() == 0) {
-        $('#cbDecimalsH').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#cbDecimalsH').removeClass("is-invalid");
-    }
+    //if ($('#cbDecimalsW').val() == 0) {
+    //    $('#cbDecimalsW').addClass("is-invalid");
+    //    aux = false;
+    //} else {
+    //    $('#cbDecimalsW').removeClass("is-invalid");
+    //}
+    //if ($('#cbDecimalsH').val() == 0) {
+    //    $('#cbDecimalsH').addClass("is-invalid");
+    //    aux = false;
+    //} else {
+    //    $('#cbDecimalsH').removeClass("is-invalid");
+    //}
 
     return aux;
 }

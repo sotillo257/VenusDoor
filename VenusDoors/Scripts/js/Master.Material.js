@@ -164,7 +164,7 @@ function InsertMaterial() {
 
         }
     };
-    console.log(datos);
+   
     $.ajax({
         type: 'POST',
         data: JSON.stringify(datos),
@@ -200,7 +200,7 @@ function UpdateMaterial() {
 
         }
     };
-    console.log(datos);
+    
     $.ajax({
         type: 'POST',
         data: JSON.stringify(datos),

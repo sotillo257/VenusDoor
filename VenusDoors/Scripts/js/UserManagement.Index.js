@@ -49,7 +49,6 @@ function ApprovedUser(id) {
 
         }
     };
-    console.log(datos);
     $.ajax({
         type: 'POST',
         data: JSON.stringify(datos),
@@ -82,7 +81,6 @@ function RefuseUser(id) {
 
         }
     };
-    console.log(datos);
     $.ajax({
         type: 'POST',
         data: JSON.stringify(datos),

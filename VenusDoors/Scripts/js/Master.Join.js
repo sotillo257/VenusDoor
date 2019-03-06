@@ -119,7 +119,7 @@ function soloLetras(e) {
 
             }
         };
-        console.log(datos);
+        
         $.ajax({
             type: 'POST',
             data: JSON.stringify(datos),
@@ -153,7 +153,7 @@ function soloLetras(e) {
 
             }
         };
-        console.log(datos);
+        
         $.ajax({
             type: 'POST',
             data: JSON.stringify(datos),

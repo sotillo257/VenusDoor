@@ -303,7 +303,7 @@ namespace VenusDoors.Controllers
 
 
         [HttpPost]
-        public ActionResult InsertUser(Person PersonData, User UserData)
+        public ActionResult InsertUser(Person PersonData, User UserData, ShippingAddress ShippingData)
         {
             try
             {
@@ -313,6 +313,7 @@ namespace VenusDoors.Controllers
                 if (userDetails == null)
                 {
                     BusinessLogic.lnPerson _LNP = new BusinessLogic.lnPerson();
+                    BusinessLogic.lnShippingAddress _LNSA = new BusinessLogic.lnShippingAddress();
                     PersonData.CreationDate = DateTime.Now;
                     PersonData.ModificationDate = DateTime.Now;
                     int IdPerson = _LNP.InsertPerson(PersonData);
@@ -321,7 +322,13 @@ namespace VenusDoors.Controllers
                     UserData.CreationDate = DateTime.Now;
                     UserData.ModificationDate = DateTime.Now;
                     UserData.VerificationCode = "Created";                                     
-                    var create = _LNU.InsertUser(UserData);
+                    int create = _LNU.InsertUser(UserData);
+                    UserData.Id = create;
+                    ShippingData.User = UserData;
+                    ShippingData.CreationDate = DateTime.Now;
+                    ShippingData.ModificationDate = DateTime.Now;
+                    ShippingData.LotBlock = "00000000";
+                    var InsertShip = _LNSA.InsertShippingAddress(ShippingData);
                     return Json(1, JsonRequestBehavior.AllowGet);
                 }
                 else

@@ -12,7 +12,6 @@ function GetDoorsByOrder(id) {
                         IdOrder: id,
                     }
 
-    console.log(datos);
     $.ajax({
         data: JSON.stringify(datos),
         url: urlGetDoorsByOrder,

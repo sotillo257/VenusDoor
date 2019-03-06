@@ -19,6 +19,7 @@
             cursor: pointer;
             background: #014d41;
         }
+
 </style>
 
 <div class="br-pageheader pd-y-15 pd-l-20">
@@ -34,7 +35,7 @@
 </div>
 
 @if (ViewBag.LastOrder == null)
-{<div class="br-pagebody pd-x-20 pd-sm-x-30">
+{<div class="container br-pagebody pd-x-20 pd-sm-x-30">
         <div class="pd-x-20 pd-sm-x-30 pd-t-20">
             <h5 class="tx-gray-800 mg-b-5" style="color: #ff1a00;">Currently there is no order in progress. </h5><p class="mg-b-0">Click <a href="#">here </a>to start a new order</p>
         </div>
@@ -106,7 +107,7 @@
 }
 else
 {
-    <div class="br-pagebody pd-x-20 pd-sm-x-30">
+    <div class="container br-pagebody pd-x-20 pd-sm-x-30">
         <div class="row row-sm mg-t-20">
             <div class="col-lg-5">
                 <div class="card shadow-base card-body pd-25 bd-0">

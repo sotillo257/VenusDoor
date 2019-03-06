@@ -121,7 +121,6 @@ function InsertVerticalDivisions() {
 
         }
     };
-    console.log(datos);
     $.ajax({
         type: 'POST',
         data: JSON.stringify(datos),
@@ -155,7 +154,6 @@ function UpdateVerticalDivisions() {
 
         }
     };
-    console.log(datos);
     $.ajax({
         type: 'POST',
         data: JSON.stringify(datos),
