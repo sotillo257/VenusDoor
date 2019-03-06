@@ -91,10 +91,8 @@
                             <button data-toggle="modal" data-target="#ModalUpload" class="Cursor btn btn-outline-success btn-block"><i class="fa fa-upload mg-r-10"></i> Massive Order</button>
                         </div>
                     </div>
-                }
-
+                }            
             }
-
         </div>
         @if (LastDoor != null)
             {
@@ -110,7 +108,6 @@
                 {
                     <h6 style="margin-left:15px">Door Place: <span>Overlay Door Type</span></h6>
                 }
-
             </div>
         }
         <div class="row" style="display:flex; width:100%">
@@ -280,6 +277,15 @@
                         <h5 id="lblSubtotal" style="color:#7b7979">Sub-Total: <span>$</span>@ord.SubTotal.ToString().Replace(',', '.')</h5>
                         <h5 id="lblTax" style="color:#7b7979">Tax: <span>$</span>@ord.Tax.ToString().Replace(',', '.')</h5>
                         <h3 id="lblTotal" style="color:#000">Total Price: <span>$</span>@ord.Total.ToString().Replace(',', '.')</h3>
+                        <div style="display:flex; width:100%">
+                            <div class="col-xs-4 col-md-4">
+                                <label for="ShipppingAddress" style="margin-top: 25px;">Shipping Address: </label><div></div>
+                                <select style="width:100%" class="eventChange form-control select2" id="cbShippingAddress" data-placeholder=""></select>
+                            </div><!-- col --> 
+                            <div class="col-xs-4 col-md-4">                                
+                                <button style="margin-top: 55px;" type="button" class="Cursor btBuild btn btn-success tx-11 pd-y-12 pd-x-25 tx-mont tx-medium">Add new</button>
+                            </div><!-- col --> 
+                        </div>
                     </div>
                 }
                 else
@@ -288,24 +294,7 @@
 
                     </div>
                 }
-            }
-            @if (ViewBag.xUserDoors == null)
-            {
-                <div class="col-md-5">
-                    <center style="text-align: right; margin-top: 20px;">                        
-                        <button id="btn-continue" style="margin-left: 10px;" disabled type="submit" src="#" class="Cursor btn btn-primary" title="">Send order</button>
-                    </center>
-                </div>
-            }
-            else
-            {
-
-                <div class="col-md-5">
-                    <center style="text-align: right; margin-top: 20px;">                        
-                        <button id="btn-continue" style="margin-left: 10px;"  type="submit" src="#" class="Cursor btn btn-primary" title="">Send order</button>
-                    </center>
-                </div>
-            }
+            }            
         </div>
     </div>
 </div>

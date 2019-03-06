@@ -80,6 +80,33 @@ function ValidarCamposVacios() {
         $('#inptPassword').removeClass("is-invalid");
     }
 
+    if ($('#inptResidence').val() == "") {
+        $('#inptResidence').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#inptResidence').removeClass("is-invalid");
+    }
+
+    if ($('#inptCity').val() == "") {
+        $('#inptCity').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#inptCity').removeClass("is-invalid");
+    }
+
+    if ($('#inptStreet').val() == "") {
+        $('#inptStreet').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#inptStreet').removeClass("is-invalid");
+    }
+
+    if ($('#inptZipCode').val() == "") {
+        $('#inptZipCode').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#inptZipCode').removeClass("is-invalid");
+    }
     return aux;
 }
 function CreateNewUser() {
@@ -104,6 +131,19 @@ function CreateNewUser() {
                 Person: { Id: 0 },
                 Company: { Id: $('#cbCompany').val() },
                 Status: { Id: 1},
+                CreatorUser: 6,
+                ModificationUser: 6,
+            },
+
+            ShippingData: {
+                Name: $('#inptName').val(),
+                Contact: $('#inptTelephone').val(),
+                Residence: $('#inptResidence').val(),
+                Address: $('#inptDirec').val(),
+                City: $('#inptCity').val(),
+                St: $('#inptStreet').val(),
+                ZipCode: $('#inptZipCode').val(),
+                Status: { Id: 1 },
                 CreatorUser: 6,
                 ModificationUser: 6,
             }

@@ -263,12 +263,12 @@ function SearchDoor(data) {
 
 function GuardarMod() {
     if (ValidarCamposVacios()) {
-        if (ValidadWH()) {
+        //if (ValidadWH()) {
             UpdateDoorsxUser();
-        } else {
-            $('#modalConfirmOrderSummary').modal('hide');
-            LlammarModal("Danger", "The inches are not within our limits.", " ");
-        } 
+        //} else {
+        //    $('#modalConfirmOrderSummary').modal('hide');
+        //    LlammarModal("Danger", "The inches are not within our limits.", " ");
+        //} 
     } else {
         $('#modalConfirmOrderSummary').modal('hide');
         LlammarModal("Danger", "You must fill all the fields.", " ");
@@ -277,12 +277,12 @@ function GuardarMod() {
 
 function AgregarD() {
     if (ValidarCamposVacios()) {
-        if (ValidadWH()) {
+        //if (ValidadWH()) {
             InsertDoorsxUser();
-        } else {
-            $('#modalConfirmOrderSummary').modal('hide');
-            LlammarModal("Danger", "The inches are not within our limits.", " ");
-        }       
+        //} else {
+        //    $('#modalConfirmOrderSummary').modal('hide');
+        //    LlammarModal("Danger", "The inches are not within our limits.", " ");
+        //}    
     } else {
         $('#modalConfirmOrderSummary').modal('hide');
         LlammarModal("Danger", "You must fill all the fields.", " ");
@@ -644,12 +644,12 @@ function ValidarCamposVacios() {
         $('#cbMaterial').removeClass("is-invalid");
     }
 
-    if ($('#iptQuantity').val() == "") {
-        $('#iptQuantity').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#iptQuantity').removeClass("is-invalid");
-    }
+    //if ($('#iptQuantity').val() == "") {
+    //    $('#iptQuantity').addClass("is-invalid");
+    //    aux = false;
+    //} else {
+    //    $('#iptQuantity').removeClass("is-invalid");
+    //}
 
     if ($('#cbDoorStyle').val() == 0) {
         $('#cbDoorStyle').addClass("is-invalid");
@@ -679,12 +679,12 @@ function ValidarCamposVacios() {
         $('#cbPreparation').removeClass("is-invalid");
     }
 
-    if ($('#cbPanel').val() == 0) {
-        $('#cbPanel').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#cbPanel').removeClass("is-invalid");
-    }
+    //if ($('#cbPanel').val() == 0) {
+    //    $('#cbPanel').addClass("is-invalid");
+    //    aux = false;
+    //} else {
+    //    $('#cbPanel').removeClass("is-invalid");
+    //}
 
     if ($('#cbPanelMaterial').val() == 0) {
         $('#cbPanelMaterial').addClass("is-invalid");
@@ -735,19 +735,19 @@ function ValidarCamposVacios() {
         $('#cbHorizontalDivisions').removeClass("is-invalid");
     }
 
-    if ($('#iptWidth').val() == "") {
-        $('#iptWidth').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#iptWidth').removeClass("is-invalid");
-    }
+    //if ($('#iptWidth').val() == "") {
+    //    $('#iptWidth').addClass("is-invalid");
+    //    aux = false;
+    //} else {
+    //    $('#iptWidth').removeClass("is-invalid");
+    //}
 
-    if ($('#iptHeight').val() == "") {
-        $('#iptHeight').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#iptHeight').removeClass("is-invalid");
-    }
+    //if ($('#iptHeight').val() == "") {
+    //    $('#iptHeight').addClass("is-invalid");
+    //    aux = false;
+    //} else {
+    //    $('#iptHeight').removeClass("is-invalid");
+    //}
 
     if ($('#cbisDrill').val() == 0) {
         $('#cbisDrill').addClass("is-invalid");
@@ -763,20 +763,12 @@ function ValidarCamposVacios() {
         $('#cbFingerPull').removeClass("is-invalid");
     }
 
-    if ($('#cbDoorType').val() == 0) {
-        $('#cbDoorType').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#cbDoorType').removeClass("is-invalid");
-    }
-
-    if ($("input[name=radioOption]").is(':checked')) {
-        $("input[name=radioOption]").removeClass("is-invalid");
-
-    } else {
-        $("input[name=radioOption]").addClass("is-invalid");
-        aux = false;
-    }
+    //if ($('#cbDoorType').val() == 0) {
+    //    $('#cbDoorType').addClass("is-invalid");
+    //    aux = false;
+    //} else {
+    //    $('#cbDoorType').removeClass("is-invalid");
+    //}
 
     if ($("input[name=radioOver]").is(':checked')) {
         $("input[name=radioOver]").removeClass("is-invalid");
@@ -785,18 +777,18 @@ function ValidarCamposVacios() {
         $("input[name=radioOver]").addClass("is-invalid");
         aux = false;
     }
-    if ($('#cbDecimalsW').val() == 0) {
-        $('#cbDecimalsW').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#cbDecimalsW').removeClass("is-invalid");
-    }
-    if ($('#cbDecimalsH').val() == 0) {
-        $('#cbDecimalsH').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#cbDecimalsH').removeClass("is-invalid");
-    }
+    //if ($('#cbDecimalsW').val() == 0) {
+    //    $('#cbDecimalsW').addClass("is-invalid");
+    //    aux = false;
+    //} else {
+    //    $('#cbDecimalsW').removeClass("is-invalid");
+    //}
+    //if ($('#cbDecimalsH').val() == 0) {
+    //    $('#cbDecimalsH').addClass("is-invalid");
+    //    aux = false;
+    //} else {
+    //    $('#cbDecimalsH').removeClass("is-invalid");
+    //}
 
     return aux;
 }
