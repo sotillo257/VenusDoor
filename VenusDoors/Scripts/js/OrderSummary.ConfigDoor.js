@@ -20,9 +20,8 @@
         $("#iptHeight").prop('disabled', false);
         $("input[name=radioOption]").attr("disabled", false);
         $("input[name=radioOver]").attr("disabled", false);
-        $(".select2-selection").css('background-color', '#fff!important');
-        LimpiarCombos();
-        HingeShow();
+        $(".select2-selection").css('background-color', '#fff!important');       
+        HingeShow(); LimpiarCombos();
     });
 
     $("#btModify").on('click', function () {
@@ -109,7 +108,6 @@
                     isOver = 2;
                 }
                 checkIsOverlay(isOver);
-                checkDoorOption(listDOOR[i].DoorOption.Id);
                 //llenarComboDecimales(listDOOR[i].Decimales.Id);
                 llenarComboMaterial(listDOOR[i].Material.Id);
                 llenarComboDoorStyle(listDOOR[i].DoorStyle.Id);
@@ -126,6 +124,7 @@
                 llenarComboDoorType(listDOOR[i].DoorType.Id);
                 llenarComboDecimalW(listDOOR[i].DecimalsWidth.Id);
                 llenarComboDecimalH(listDOOR[i].DecimalsHeight.Id);
+                llenarComboDoorOption(listDOOR[i].DoorOption.Id);
                 break;
             }
         }
@@ -568,19 +567,17 @@ function checkIsOverlay(pOverlay) {
     }
 }
 
-function checkDoorOption(pDoorOp) {
-    var radioButt = '';
+var allDoorOption = '';
+function llenarComboDoorOption(pDoorOp) {
+    var option = '';
     for (var i = 0; i < allDoorOption.length; i++) {
-        if (allDoorOption[i].Status.Id == 1) {
-            console.log(allDoorOption);            
-            radioButt += '<label style="margin-left: 8px;">';
-            radioButt += '<input disabled style="margin-right:5px" name="radioOption" type="radio" data-id="' + allDoorOption[i].Id + '"></input>' + allDoorOption[i].Description + '';
-            radioButt += '</label>';
-            $("#DivDoorOption").html(radioButt);
+        if (allDoorOption[i].Status.Id == 1) {           
+            option += '<option value="' + allDoorOption[i].Id + '">' + allDoorOption[i].Description + '</option>';
         }
     }
+    $("#cbDoorOpt").empty().append(option);
     if (pDoorOp != 0) {
-        $("input[name=radioOption][data-id='" + pDoorOp + "']").prop("checked", true);
+        $("#cbDoorOpt").val(pDoorOp);
     }
 }
 
@@ -616,9 +613,8 @@ function llenarComboDecimalH(pDecimalH) {
 function LimpiarCombos() {        
     $('input').val("");
     $('#iptCost').val("0.00");
-    $("input[name=radioOption]").prop("checked", false);
-    $("input[name=radioOver]").prop("checked", false);
-    //llenarComboDecimales(0);
+    llenarComboDoorOption(0);
+    $("input[name=radioOver]").prop("checked", false);    
     llenarComboMaterial(0);
     llenarComboDoorStyle(0);
     llenarComboIEP(0);
@@ -633,8 +629,7 @@ function LimpiarCombos() {
     llenarComboHorizontalDivisions(0);
     llenarComboIsDrill(0);
     llenarComboHingeDirection(0);
-    llenarComboDoorType(0);
-    llenarComboDoorType(0);
+    llenarComboDoorType(0);    
     llenarComboFinger(0);
     llenarComboDecimalW(0);
     llenarComboDecimalH(0);
