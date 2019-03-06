@@ -92,6 +92,52 @@
             }
 
         </div>
+        <div class="row" style="display:flex; width:100%">
+            <div class="col-xs-1 col-md-1">
+                <label for="Material" style="margin-top: 25px;">Quantity: </label>
+                <input style="width:100%!important" name="SoloNumeros" required class="required RequiereLlenar form-control" type="number" maxlength="2" id="CantidadFila">
+            </div><!-- col -->
+            <div class="col-xs-2 col-md-2">
+                <label for="width" style="margin-top: 25px;">Width: </label>
+                <div>
+                    <div style="display:flex">
+                        <input style="width:50%!important" name="SoloNumeros" required class="required RequiereLlenar eventChange iptWidth form-control" type="number" maxlength="2" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="iptWidth">
+                        <select style="width:50%!important" class="form-control select2" id="cbDecimalsW"></select>
+                    </div>
+                    <label id="alertWidth" style="Color:red; font-size:10px; display:none;margin:0"></label>
+                </div>
+            </div><!-- form-group -->
+            <div class="col-xs-2 col-md-2">
+                <label for="inDescription" style="margin-top: 25px;">Height: </label>
+                <div>
+                    <div style="display:flex">
+                        <input style="width:50%!important" name="SoloNumeros" required class="required RequiereLlenar eventChange iptHeight form-control" type="number" maxlength="3" max="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="iptHeight">
+                        <select style="width:50%!important" class="form-control select2" id="cbDecimalsH"></select>
+                    </div>
+                    <label id="alertHeight" style="Color:red; font-size:10px; margin:0"></label>
+                </div>
+            </div><!-- form-group -->
+            <div class="col-xs-2 col-md-2">
+                <label for="Panel" style="margin-top: 25px;">Panel Style: </label>
+                <select style="width:100%" class="form-control select2 Profile Doors" id="cbPanel" data-placeholder=""></select>
+            </div><!-- col -->
+            <div class="col-xs-2 col-md-2">
+                <label for="DoorType" style="margin-top: 25px;">Door Type: </label>
+                <select style="width:100%" class="form-control select2" id="cbDoorType"></select>
+            </div>
+            <div class="col-xs-2 col-md-2">
+                <label for="DoorType" style="margin-top: 25px;">Door Option</label>
+                <select style="width:100%" class="form-control select2" id="cbDoorOpt">
+                    <option>Door</option>
+                    <option>Drawer</option>
+                    <option>Back Panel</option>
+                </select>
+            </div>
+            <div class="col-xs-1 col-md-1">
+                <button class="Cursor Details btn btn-success btn-icon" style="width: 37px;height: 37px; margin-top: 55px;" type="submit"><i class="fa fa-plus"></i></button>
+            </div>   <!-- form-group -->
+
+            </div>
 
         <table id="idOrderSummary" class="table table-responsive mg-b-0 tx-12">
             <thead>
@@ -100,9 +146,8 @@
                     <th>Quantity</th>
                     <th>Widht</th>
                     <th>Height</th>
-                    <th>Door Style</th>
-                    <th>Material</th>
-                    <th>Panel Type</th>
+                    <th>Panel Style</th>
+                    <th>Type</th>
                     <th>Door Type</th>
                     <th>U. Price</th>
                     <th>Total</th>
@@ -146,9 +191,8 @@
                                         <span>@i.DecimalsHeight.Description</span>
                                     }
                                 </td>
-                                <td>@i.DoorStyle.Description</td>
-                                <td>@i.Material.Description</td>
                                 <td>@i.Panel.Description</td>
+                                <td>@i.DoorType.Description</td>
                                 <td>@i.DoorOption.Description</td>
                                 <td><span>$</span>@i.ItemCost.ToString().Replace(',', '.')</td>
                                 <td><span>$</span>@i.SubTotal.ToString().Replace(',', '.')</td>
@@ -160,9 +204,40 @@
                                 </td>
                             </tr>
                         }
-                    }
-                }
 
+
+
+                    }
+                  
+                }
+                @*<tr>
+                    <td>Imagen</td>
+                    <td>
+                        <input style="width:50%!important" name="SoloNumeros" required class="required RequiereLlenar form-control" type="number" maxlength="2" id="CantidadFila">
+
+                    </td>
+                    <td>
+                        <input style="width:50%" name="SoloNumeros" required class="required RequiereLlenar eventChange iptWidth form-control" type="number" maxlength="2" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="iptWidthFila">
+                        <select style="width:100%"  class="form-control select2" id="cbDecimalsWFila"></select>
+
+                    </td>
+                    <td>
+                        <input style="width:50%!important" name="SoloNumeros" required class="required RequiereLlenar eventChange iptHeight form-control" type="number" maxlength="2" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="iptHeightFila">
+                        <select style="width:100%" class="form-control select2" id="cbDecimalsHFila"></select>
+
+                    </td>
+                    <td class="col-md-2"> <select style="width:100%" class="form-control select2" id="cbPanelTypeFila"></select></td>
+                    <td class="col-md-2"><select style="width:100%" class="form-control select2" id="cbTypeFila"></select></td>
+                    <td class="col-md-2"><select style="width:100%" class="form-control select2" id="cbDoorTypeFila"></select></td>
+                    <td><span>$</span>Total Unit.</td>
+                    <td><span>$</span>Total</td>
+
+
+                    <td id="tddelete" style="display: flex; padding-top: 35px;">
+                      
+                        <button class="Cursor btn btn-danger btn-icon btnn-dele" style="width: 37px;height: 37px; margin-left: 10px;" type="submit"><i class="fa fa-trash"></i></button>
+                    </td>
+                </tr>*@
             </tbody>
         </table>
 
