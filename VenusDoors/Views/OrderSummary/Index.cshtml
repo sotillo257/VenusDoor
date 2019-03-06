@@ -6,43 +6,43 @@
 }
 
 <style>
-        #confirmDROP{
-            background-color:#ff9900; 
-            border-color:#ff9900;
+    #confirmDROP {
+        background-color: #ff9900;
+        border-color: #ff9900;
+    }
+
+        #confirmDROP:hover {
+            background-color: #dc3545;
+            border-color: #dc3545;
+            cursor: pointer;
         }
 
-         #confirmDROP:hover{
-             background-color:#dc3545; 
-            border-color:#dc3545;
-            cursor:pointer;
-        }
+    #cnlDROP {
+        background-color: #868686;
+        border-color: #868686;
+    }
 
-         #cnlDROP{
-             background-color:#868686; 
-             border-color:#868686
-         }
-
-         #cnlDROP:hover{
-             background-color: #dedcdc;
+        #cnlDROP:hover {
+            background-color: #dedcdc;
             color: black;
-            cursor:pointer;
-         }
-
-         #btn_dropItems{
-             background-color:#ff9900; 
-            border-color:#ff9900;
+            cursor: pointer;
         }
 
-         #btn_dropItems:hover{
-             background-color:#c74000; 
-            border-color:#c74000;
-            cursor:pointer;
+    #btn_dropItems {
+        background-color: #ff9900;
+        border-color: #ff9900;
+    }
+
+        #btn_dropItems:hover {
+            background-color: #c74000;
+            border-color: #c74000;
+            cursor: pointer;
         }
 
     .table th, .table td {
-        vertical-align:middle!important;
+        vertical-align: middle !important;
     }
-    </style>
+</style>
 
 <div class="br-pageheader pd-y-15 pd-l-20">
     <nav class="breadcrumb pd-0 mg-0 tx-12">
@@ -53,173 +53,175 @@
 
 <div class="br-pagebody">
     <div class="br-section-wrapper">
-        <div class="card-header pd-sm-bottom-30" style="background-color: #ffffff00; display:flex">
-            <div style="width: 40%;">
-                <h3 class="tx-gray-800 mg-b-5">Order Summary</h3>
-            </div>
-            
-            @if (Session["UserID"] == null)
-            {
-                <div style="display: flex;justify-content: flex-end;width: 60%;">
-                    <button disabled style="margin-right: 20px;" type="button" data-toggle="modal" data-target="#modalInsert" class="Cursor btBuild btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Create order</button>
-                    <div class="col-xs-4 col-md-4" style="">                        
-                        <button disabled title="Massive order only available when you are logged in" id="btnLogo" class="Cursor btn btn-outline-success btn-block"><i class="fa fa-upload mg-r-10"></i> Massive Order</button>                                                
-                    </div>
-                </div>
-
-            }
-            else
-            {
-                if (ViewBag.xUserDoors == null)
-                {
-                    <div style="display: flex;justify-content: flex-end;width: 60%;">
-                        <button style="margin-right: 20px;" type="button" data-toggle="modal" data-target="#modalInsert" class="Cursor btBuild btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Create order</button>
-                        <div class="col-xs-4 col-md-4" style="">
-                            <button data-toggle="modal" data-target="#ModalUpload" class="Cursor btn btn-outline-success btn-block"><i class="fa fa-upload mg-r-10"></i> Massive Order</button>
+        <div class="row">
+                <div class="col-md-12">
+                    <div class="card-header pd-sm-bottom-30" style="background-color: #ffffff00; display:flex">
+                        <div class="col-md-9" style="width: 40%;">
+                            <h3 class="tx-gray-800 mg-b-5">Order Summary</h3>
                         </div>
+
+                        @if (Session["UserID"] == null)
+            {
+                            <div class="col-md-3" style="display: flex;justify-content: flex-end;width: 60%;">
+                                <button disabled style="margin-right: 20px;" type="button" data-toggle="modal" data-target="#modalInsert" class="Cursor btBuild btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Create order</button>
+                                <button disabled title="Massive order only available when you are logged in" id="btnLogo" class="Cursor btn btn-outline-success btn-block"><i class="fa fa-upload mg-r-10"></i> Massive Order</button>
+                                
+                            </div>
+
+                        }
+                        else
+                        {
+                            if (ViewBag.xUserDoors == null)
+                            {
+                                <div class="col-md-3" style="display: flex;justify-content: flex-end;width: 60%;">
+                                    <button style="margin-right: 20px;" type="button" data-toggle="modal" data-target="#modalInsert" class="Cursor btBuild btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Create order</button>
+                                    <button data-toggle="modal" data-target="#ModalUpload" class="Cursor btn btn-outline-success btn-block"><i class="fa fa-upload mg-r-10"></i> Massive Order</button>
+                                    
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="col-md-3" style="display: flex;justify-content: flex-end;width: 60%;">
+                                    <button style="margin-right: 20px;" type="button" data-toggle="modal" data-target="#modalInsert" class="Cursor btBuild btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Build a door</button>
+                                    <button data-toggle="modal" data-target="#ModalUpload" class="Cursor btn btn-outline-success btn-block"><i class="fa fa-upload mg-r-10"></i> Massive Order</button>
+                                   
+                                </div>
+                            }
+
+                        }
+
                     </div>
-                }
-                else
-                {
-                    <div style="display: flex;justify-content: flex-end;width: 60%;">
-                        <button style="margin-right: 20px;" type="button" data-toggle="modal" data-target="#modalInsert" class="Cursor btBuild btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Build a door</button>
-                        <div class="col-xs-4 col-md-4" style="">
-                            <button data-toggle="modal" data-target="#ModalUpload" class="Cursor btn btn-outline-success btn-block"><i class="fa fa-upload mg-r-10"></i> Massive Order</button>
-                        </div>
-                    </div>
-                }
 
-            }
+                <table id="idOrderSummary" class="table table-responsive mg-b-0 tx-12">
+                    <thead>
+                        <tr class="tx-10">
+                            <th>Preview</th>
+                            <th>Quantity</th>
+                            <th>Widht</th>
+                            <th>Height</th>
+                            <th>Door Style</th>
+                            <th>Material</th>
+                            <th>Panel Type</th>
+                            <th>Door Type</th>
+                            <th>U. Price</th>
+                            <th>Total</th>
 
-        </div>
-
-        <table id="idOrderSummary" class="table table-responsive mg-b-0 tx-12">
-            <thead>
-                <tr class="tx-10">
-                    <th>Preview</th>
-                    <th>Quantity</th>
-                    <th>Widht</th>
-                    <th>Height</th>
-                    <th>Door Style</th>
-                    <th>Material</th>
-                    <th>Panel Type</th>
-                    <th>Door Type</th>
-                    <th>U. Price</th>
-                    <th>Total</th>
-                   
-                    <th style="text-align:center"><i class="fa fa-flash"></i></th>
-                </tr>
-            </thead>
-            <tbody class="odd" id="id-table">
-                @if (Session["UserID"] == null)
-                {
-                    <tr class="odd">
-                        <td valign="top" colspan="10" class="dataTables_empty">No data available in table. Log in to your account to see your active order or, click <a href="" class="btBuild" data-toggle="modal" data-target="#modalInsert">here</a> to create a door</td>
-                    </tr>
-                }
-                else
-                {
-                    if (ViewBag.xUserDoors == null)
-                    {
-                        <tr class="odd">
-                            <td valign="top" colspan="10" class="dataTables_empty">No data available in table. Click <a href="" class="btBuild"  data-toggle="modal" data-target="#modalInsert">here</a> to create a new door</td>
+                            <th style="text-align:center"><i class="fa fa-flash"></i></th>
                         </tr>
+                    </thead>
+                    <tbody class="odd" id="id-table">
+                        @if (Session["UserID"] == null)
+                        {
+                            <tr class="odd">
+                                <td valign="top" colspan="10" class="dataTables_empty">No data available in table. Log in to your account to see your active order or, click <a href="" class="btBuild" data-toggle="modal" data-target="#modalInsert">here</a> to create a door</td>
+                            </tr>
+                        }
+                        else
+                        {
+                            if (ViewBag.xUserDoors == null)
+                            {
+                                <tr class="odd">
+                                    <td valign="top" colspan="10" class="dataTables_empty">No data available in table. Click <a href="" class="btBuild" data-toggle="modal" data-target="#modalInsert">here</a> to create a new door</td>
+                                </tr>
+                            }
+                            else
+                            {
+                                foreach (Model.DoorsxUser i in ViewBag.xUserDoors)
+                                {
+                                    decimal itemcost = (i.SubTotal / i.Quantity);
+
+                                    <tr>
+                                        <td><img style="width: 80px;" src="@i.Picture"></td>
+                                        <td>@i.Quantity.ToString().Replace(',', '.')</td>
+                                        <td>
+                                            @i.Width.ToString("N0")
+                                            @if (i.DecimalsWidth.Value != 0)
+                                            {
+                                                <span>@i.DecimalsWidth.Description</span>
+                                            }
+                                        </td>
+                                        <td>
+                                            @i.Height.ToString("N0")
+                                            @if (i.DecimalsHeight.Value != 0)
+                                            {
+                                                <span>@i.DecimalsHeight.Description</span>
+                                            }
+                                        </td>
+                                        <td>@i.DoorStyle.Description</td>
+                                        <td>@i.Material.Description</td>
+                                        <td>@i.Panel.Description</td>
+                                        <td>@i.DoorOption.Description</td>
+                                        <td><span>$</span>@i.ItemCost.ToString().Replace(',', '.')</td>
+                                        <td><span>$</span>@i.SubTotal.ToString().Replace(',', '.')</td>
+
+
+                                        <td id="tddelete" style="display: flex; padding-top: 35px;">
+                                            <button class="Cursor Details btn btn-primary btn-icon" data-toggle="modal" data-target="#modalInsert" data-id="@i.Id" style="width: 37px;height: 37px;" type="submit"><i class="fa fa-list"></i></button>
+                                            <button class="Cursor btn btn-danger btn-icon btnn-dele" data-id="@i.Id" style="width: 37px;height: 37px; margin-left: 10px;" type="submit"><i class="fa fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        }
+
+                    </tbody>
+                </table>
+
+                <div class="row" id="Resultados">
+                    @if (Session["UserID"] == null)
+            {
+                        <div class="col-md-7">
+
+                        </div>
                     }
                     else
                     {
-                        foreach (Model.DoorsxUser i in ViewBag.xUserDoors)
+                        if (ord == null)
                         {
-                            decimal itemcost = (i.SubTotal / i.Quantity);
-                            
-                            <tr>
-                                <td><img style="width: 80px;" src="@i.Picture"></td>
-                                <td>@i.Quantity.ToString().Replace(',','.')</td>
-                                <td>@i.Width.ToString("N0")
-                                    @if (i.DecimalsWidth.Value != 0)
-                                    {
-                                        <span>@i.DecimalsWidth.Description</span>
-                                    }                                    
-                                </td>
-                                <td>@i.Height.ToString("N0")
-                                    @if (i.DecimalsHeight.Value != 0)
-                                    {
-                                        <span>@i.DecimalsHeight.Description</span>
-                                    }
-                                </td>
-                                <td>@i.DoorStyle.Description</td>
-                                <td>@i.Material.Description</td>
-                                <td>@i.Panel.Description</td>
-                                <td>@i.DoorOption.Description</td>
-                                <td><span>$</span>@i.ItemCost.ToString().Replace(',', '.')</td>
-                                <td><span>$</span>@i.SubTotal.ToString().Replace(',', '.')</td>
-                                
+                            <div class="col-md-7">
 
-                                <td id="tddelete" style="display: flex; padding-top: 35px;">
-                                    <button class="Cursor Details btn btn-primary btn-icon" data-toggle="modal" data-target="#modalInsert" data-id="@i.Id" style="width: 37px;height: 37px;" type="submit"><i class="fa fa-list"></i></button>
-                                    <button class="Cursor btn btn-danger btn-icon btnn-dele" data-id="@i.Id" style="width: 37px;height: 37px; margin-left: 10px;" type="submit"><i class="fa fa-trash"></i></button>
-                                </td>
-                            </tr>
+                            </div>
+                        }
+                        else if (ord.Status.Id == 4 && ord.Total != 0)
+                        {
+                            <input hidden id="idorder" value="@ord.Id" />
+                            <input hidden id="idtotal" value="@ord.Total" />
+                            <input hidden id="idstatus" value="@ord.Status.Id" />
+                            <div class="col-md-7">
+                                <h5 id="lblSubtotal" style="color:#7b7979">Sub-Total: <span>$</span>@ord.SubTotal.ToString().Replace(',', '.')</h5>
+                                <h5 id="lblTax" style="color:#7b7979">Tax: <span>$</span>@ord.Tax.ToString().Replace(',', '.')</h5>
+                                <h3 id="lblTotal" style="color:#000">Total Price: <span>$</span>@ord.Total.ToString().Replace(',', '.')</h3>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col-md-7">
+
+                            </div>
                         }
                     }
-                }
-
-            </tbody>
-        </table>
-
-        <div class="row" id="Resultados">
-            @if (Session["UserID"] == null)
+                    @if (ViewBag.xUserDoors == null)
             {
-                <div class="col-md-7">
+                        <div class="col-md-5">
+                            <center style="text-align: right; margin-top: 20px;">
+                                <button id="btn-continue" style="margin-left: 10px;" disabled type="submit" src="#" class="Cursor btn btn-primary" title="">Send order</button>
+                            </center>
+                        </div>
+                    }
+                    else
+                    {
 
+                        <div class="col-md-5">
+                            <center style="text-align: right; margin-top: 20px;">
+                                <button id="btn-continue" style="margin-left: 10px;" type="submit" src="#" class="Cursor btn btn-primary" title="">Send order</button>
+                            </center>
+                        </div>
+                    }
                 </div>
-            }
-            else
-            {
-                if (ord == null)
-                {
-                    <div class="col-md-7">
-                        
-                    </div>
-                }
-                else if(ord.Status.Id == 4 && ord.Total != 0)
-                {
-                    <input hidden id="idorder" value="@ord.Id" />
-                    <input hidden id="idtotal" value="@ord.Total" />
-                    <input hidden id="idstatus" value="@ord.Status.Id" />
-                    <div class="col-md-7">
-                        <h5 id="lblSubtotal" style="color:#7b7979">Sub-Total: <span>$</span>@ord.SubTotal.ToString().Replace(',', '.')</h5>
-                        <h5 id="lblTax" style="color:#7b7979">Tax: <span>$</span>@ord.Tax.ToString().Replace(',', '.')</h5>
-                        <h3 id="lblTotal" style="color:#000">Total Price: <span>$</span>@ord.Total.ToString().Replace(',', '.')</h3>
-                    </div>
-                }
-                else
-                {
-                    <div class="col-md-7">
-
-                    </div>
-                }
-            }
-            @if (ViewBag.xUserDoors == null)
-            {
-                <div class="col-md-5">
-                    <center style="text-align: right; margin-top: 20px;">                        
-                        <button id="btn-continue" style="margin-left: 10px;" disabled type="submit" src="#" class="Cursor btn btn-primary" title="">Send order</button>
-                    </center>
-                </div>
-            }
-            else
-            {
-
-                <div class="col-md-5">
-                    <center style="text-align: right; margin-top: 20px;">                        
-                        <button id="btn-continue" style="margin-left: 10px;"  type="submit" src="#" class="Cursor btn btn-primary" title="">Send order</button>
-                    </center>
-                </div>
-            }
+            </div>
         </div>
     </div>
 </div>
-
 <div id="modalDelete" class="modal fade" aria-hidden="true" style="display: none;">
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content bd-0 tx-14">
@@ -257,7 +259,7 @@
             </div>
             <div class="modal-footer justify-content-rigth">
                 <button id="btnupp" class="Cursor btn btn-outline-success btn-block"><i class="fa fa-upload mg-r-10"></i> Upload</button>
-                <input id="File1" name="file" type="file" style="display:none;" />               
+                <input id="File1" name="file" type="file" style="display:none;" />
                 <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>
             </div>
         </div>
@@ -274,19 +276,20 @@
                             <button type="button" id="btXclose" class="close" data-dismiss="modal">
                                 <span aria-hidden="true">×</span>
                             </button>
-                            
+
                             <div class="pd-xs-x-15 pd-y-10">
-                            <div style="display:flex">
-                                <h3 id="lblTitulo" class="tx-inverse  mg-b-5">Create a new door</h3>
-                                <a style="margin-left: 20px;" title="Click here to modify the door" href="#" id="btModify" class="btn btn-primary btn-icon">
-                                <div><i class="fa fa-edit"></i></div></a>
-                                </div>                                
+                                <div style="display:flex">
+                                    <h3 id="lblTitulo" class="tx-inverse  mg-b-5">Create a new door</h3>
+                                    <a style="margin-left: 20px;" title="Click here to modify the door" href="#" id="btModify" class="btn btn-primary btn-icon">
+                                        <div><i class="fa fa-edit"></i></div>
+                                    </a>
+                                </div>
                                 <p id="lblSubTitulo">Choose the the best door option that fit your needs.</p>
                                 <div class="row" style="margin-right: 0;">
-                                    <div class="col-md-12" style="padding-right:0">                                        
+                                    <div class="col-md-12" style="padding-right:0">
                                         <div style="display:flex; width:100%">
                                             <div class="row" style="width:80%; max-height: 350px; overflow-y:scroll">
-                                                <input id="idDoor" hidden/>
+                                                <input id="idDoor" hidden />
                                                 <div class="row" style="display:flex; width:100%">
                                                     <div class="col-xs-4 col-md-2">
                                                         <label for="Material" style="margin-top: 25px;">Wood Species: </label>
@@ -299,7 +302,7 @@
                                                                 <input style="width:50%!important" name="SoloNumeros" required class="required RequiereLlenar eventChange iptWidth form-control" type="number" maxlength="2" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="iptWidth">
                                                                 <select style="width:100%" class="form-control select2" id="cbDecimalsW"></select>
                                                             </div>
-                                                            <label id="alertWidth" style="Color:red; font-size:10px; display:none;margin:0"></label>                                                            
+                                                            <label id="alertWidth" style="Color:red; font-size:10px; display:none;margin:0"></label>
                                                         </div>
                                                     </div><!-- form-group -->
                                                     <div class="col-xs-3 col-md-3">
@@ -310,25 +313,25 @@
                                                                 <select style="width:100%" class="form-control select2" id="cbDecimalsH"></select>
                                                             </div>
                                                             <label id="alertHeight" style="Color:red; font-size:10px; margin:0"></label>
-                                                       </div>
+                                                        </div>
                                                     </div><!-- form-group -->
 
-                                                    <div class="col-xs-3 col-md-4" style="display:flex; align-items:flex-end">      
+                                                    <div class="col-xs-3 col-md-4" style="display:flex; align-items:flex-end">
                                                         <div class="radio" id="DivDoorOption" style="display:flex">
-                                                            
+
                                                         </div>
-                                                        </div><!-- form-group -->
+                                                    </div><!-- form-group -->
 
                                                 </div>
                                                 <div class="row" style="width: 100%;">
                                                     <div class="col-xs-3 col-md-8">
                                                         <label for="inDescription" style="margin-top: 25px;"></label>
                                                         <div class="radio" id="isOverlay" style="display:flex">
-                                                                                                                        
-                                                        </div>                                                                                                              
-                                                    </div><!-- form-group --> 
+
+                                                        </div>
+                                                    </div><!-- form-group -->
                                                 </div>
-                                                
+
                                                 <div class="row" style="width: 100%;">
                                                     <div class="col-xs-4 col-md-3">
                                                         <label for="DoorStyle" style="margin-top: 25px;">Door Style </label>
@@ -400,8 +403,7 @@
 
                                                     <div id="HingeDirectionDiv" style="display:none" class="target col-xs-4 col-md-3">
                                                         <label for="HingeDirection" style="margin-top: 25px;">Hinge Direction: </label>
-                                                        <select style="width:100%" value="true" class="select2 form-control" id="cbHingeDirection" data-placeholder="">                                                            
-                                                        </select>
+                                                        <select style="width:100%" value="true" class="select2 form-control" id="cbHingeDirection" data-placeholder=""></select>
                                                     </div><!-- col -->
 
                                                     <div id="HingePositionsDiv" style="display:none" class="target col-xs-4 col-md-3">
@@ -409,12 +411,12 @@
                                                         <label for="HingePositions" value="true" style="margin-top: 25px;">Hinge Positions: </label>
                                                         <div style="display:flex"><span class="hp1">1: </span><input id="HP1" disabled class="form-control HPinpt1 hp1" /><span class="hp2">2: </span><input id="HP2" disabled class="form-control HPinpt2 hp2" /><span class="hp3">3: </span><input id="HP3" disabled class="form-control HPinpt3 hp3" /><span class="hp4">4: </span><input id="HP4" disabled class="form-control HPinpt4 hp4" /><span class="hp5">5: </span><input id="HP5" disabled class="form-control HPinpt5 hp5" /></div>
                                                     </div><!-- col -->
-                                                    
+
                                                     <div class="col-xs-3 col-md-3">
                                                         <label for="DoorType" style="margin-top: 25px;">Door Type: </label>
                                                         <select style="width:100%" class="form-control select2" id="cbDoorType"></select>
                                                     </div><!-- form-group -->
-                                                    
+
                                                     <div class="col-xs-3 col-md-3">
                                                         <label for="FingerPull" style="margin-top: 25px;">Finger Pull: </label>
                                                         <select style="width:100%" class="form-control select2" id="cbFingerPull">
@@ -423,9 +425,9 @@
                                                             <option value="2">Yes</option>
                                                         </select>
                                                     </div><!-- form-group -->
-                                                </div>                                                
-                                            </div> 
-                                            
+                                                </div>
+                                            </div>
+
                                             <div class="row" style="width:20%" id="ModalIMG">
 
                                                 <div id="Picture" class="row" style="margin-right: 0px;">
@@ -435,13 +437,13 @@
                                                     </center>
                                                 </div>
                                             </div>
-                                            
+
                                         </div>
                                     </div><!-- pd-20 -->
                                 </div><!-- col-6 -->
                             </div><!-- row -->
                             <div class="modal-footer">
-                                <div style="width: 50%; display: flex; justify-content: flex-start; align-items: center;">                                    
+                                <div style="width: 50%; display: flex; justify-content: flex-start; align-items: center;">
                                     <div class="col-xs-3 col-md-3">
                                         <label for="iptQuantity">Quantity: </label>
                                         <input name="iptQuantity" type="number" style="width: 52%;" required class="required RequiereLlenar form-control" maxlength="3" minlength="1" ninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="iptQuantity">
@@ -456,12 +458,12 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div style="width: 50%; display: flex;justify-content: flex-end;">
                                     <button id="btConfAdd" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Add to cart</button>
                                     <button id="btConfSave" type="button" class="btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Save</button>
                                     <button type="button" id="btnCancel" style="margin-left:10px" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>
-                                </div>                                
+                                </div>
                             </div>
                         </div><!-- modal-body -->
                     </div><!-- modal-content -->
@@ -498,7 +500,7 @@
         var urlConfirmOrder = '@Url.Action("ConfirmOrder", "OrderSummary")';
         var urlValidateSession = '@Url.Action("ValidateSession", "OrderSummary")';
         var urlGetOrderSumary = '@Url.Action("GetOrderSumary", "OrderSummary")';
-        
+
         try {
             var listDOOR = JSON.parse('@Html.Raw(ViewBag.ListDoorsxUser)');
         } catch (e) {
@@ -538,12 +540,12 @@
     </script>
 
 
-@Scripts.Render("~/Scripts/js/OrderSumm.js")
-@Scripts.Render("~/Scripts/js/envio.js")
-@Scripts.Render("~/Scripts/js/ConfigDoor.Index.js")
-@Scripts.Render("~/Scripts/js/OrderSummary.ConfigDoor.js")
-<script src="~/Content/lib/select2/js/select2.min.js"></script>
-<script src="~/Content/lib/select2/js/select2.full.min.js"></script>
+    @Scripts.Render("~/Scripts/js/OrderSumm.js")
+    @Scripts.Render("~/Scripts/js/envio.js")
+    @Scripts.Render("~/Scripts/js/ConfigDoor.Index.js")
+    @Scripts.Render("~/Scripts/js/OrderSummary.ConfigDoor.js")
+    <script src="~/Content/lib/select2/js/select2.min.js"></script>
+    <script src="~/Content/lib/select2/js/select2.full.min.js"></script>
 }
 
 

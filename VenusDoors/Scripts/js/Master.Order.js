@@ -47,7 +47,6 @@
                 llenarComboUser(listORDER[i].User.Id);
                 $('#inQuantity').val(listORDER[i].Quantity);
                 $('#inObservations').val(listORDER[i].Observations);
-                $('#inShippingAddress').val(listORDER[i].ShippingAddress);
                 $('#inTotal').val(listORDER[i].Total);
                 llenarComboType(listORDER[i].Type.Id);
                 llenarComboEstatus(listORDER[i].Status.Id);
