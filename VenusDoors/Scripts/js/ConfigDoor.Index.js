@@ -1700,3 +1700,29 @@ function llenarTablaOrderSumary() {
     });
 
 }
+
+function llenarheaderOrder() {
+    $.ajax({
+        url: urlGetLastDoor,
+        cache: false,
+        type: 'POST',
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        success: function (data) {
+            var headerConfig = '';
+            if (data.LastDoor != null) {                
+                headerConfig += '<div><h6>Door Style: <span>' + data.LastDoor.DoorStyle.Description + '</span></h6>';
+                headerConfig += '<h6 style="margin-left:15px">Material: <span>' + data.LastDoor.Material.Description + '</span></h6>';
+                headerConfig += '<h6 style="margin-left:15px">Panel Material: <span>' + data.LastDoor.PanelMaterial.Description + '</span></h6>';
+                headerConfig += '<h6 style="margin-left:15px">Door Type: <span>' + data.LastDoor.DoorType.Description + '</span></h6></div>';                
+            } else {
+                headerConfig += '';
+            }
+            
+            $("#HeaderOptions").html(headerConfig);
+        },
+        error: function (err) {
+            LlammarModal("Danger", "Error.", " ");
+        }
+    });
+}
