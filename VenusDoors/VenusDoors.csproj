@@ -1220,6 +1220,7 @@
     <Content Include="Views\Home\DashboardUser.cshtml" />
     <Content Include="Views\UserManagement\Index.cshtml" />
     <Content Include="Views\OrderControl\Index.cshtml" />
+    <Content Include="Scripts\js\InsertDoor.OrderSumary.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
