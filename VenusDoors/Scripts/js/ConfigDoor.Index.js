@@ -147,7 +147,7 @@
         } else if ($("#cbDoorStyle").val() == 1003) {
 
             var panelType = $("#cbPanel").val();
-            var option = '';
+            var option = '<option value="0">Select</option>';
             for (var i = 0; i < AllPanelType.length; i++) {
                 if (AllPanelType[i].Status.Id == 1 && AllPanelType[i].Id == 2) {
                     option += '<option value="' + AllPanelType[i].Id + '">' + AllPanelType[i].Description + '</option>';
@@ -196,7 +196,7 @@
             llenarComboPanel();
         } else if ($("#cbDoorStyle").val() == 1009) {
             llenarComboInsideAndOutside();
-            var option = '';
+            var option = '<option value="0">Select</option>';
             for (var i = 0; i < AllPanelType.length; i++) {
                 if (AllPanelType[i].Status.Id == 1 && AllPanelType[i].Id == 5) {
                     option += '<option value="' + AllPanelType[i].Id + '">' + AllPanelType[i].Description + '</option>';
@@ -227,10 +227,11 @@ $(window).on('load', function () {
     $(".loader-page").css({ visibility: "hidden", opacity: "0" });
     $(".loader-page").css('z-index', 999999999999);
 });
+
 function llenarComboPanel() {
 
     var panelType = $("#cbPanel").val();
-    var option = '';
+    var option = '<option value="0">Select</option>';
     for (var i = 0; i < AllPanelType.length; i++) {
         if (AllPanelType[i].Status.Id == 1) {
             option += '<option value="' + AllPanelType[i].Id + '">' + AllPanelType[i].Description + '</option>';
@@ -470,11 +471,11 @@ function HingeShow() {
     var drilling = $("#cbisDrill").val();
     if (drilling == 2) {
         $("#HingeDirectionDiv").css('display', 'block');
-        $("#HingePositionsDiv").css('display', 'block');
+        //$("#HingePositionsDiv").css('display', 'block');
         HingeCalculate();
     } else {
         $("#HingeDirectionDiv").css('display', 'none');
-        $("#HingePositionsDiv").css('display', 'none');
+        //$("#HingePositionsDiv").css('display', 'none');
     }
 }
 
@@ -907,17 +908,13 @@ function GetAllDoorOption() {
         success: function (data) {
             if (data != null) {
                 allDoorOption = data;
-                var radioButt = '';
+                var option = '';
                 for (var i = 0; i < data.length; i++) {
                     if (data[i].Status.Id == 1) {
-                        console.log(data);
-                        radioButt += '<label style="margin-left: 8px;">';
-                        radioButt += '<input style="margin-right:5px" name="radioOption" type="radio"  data-id="' + data[i].Id + '"></input>' + data[i].Description + '';
-                        radioButt += '</label>';
-                        $("#DivDoorOption").html(radioButt);
+                        option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
                     }
-
-                }                
+                }
+                $("#cbDoorOpt").empty().append(option);
             }
             else {
                 LlammarModal("Danger", "Error obtaining DoorOption", " ");
@@ -1054,6 +1051,7 @@ function InsertDoorsxUser() {
                             $('#modalConfirmOrderSummary').modal('hide');
                             LlammarModal("ConfigM", "Successful door creation!", "Your door has been added successfully.");
                             llenarTablaOrderSumary();
+                            llenarheaderOrder();
                         } else {
                             $('#modalInsert').modal('hide');
                             $('#modalConfirmOrderSummary').modal('hide');
@@ -1161,6 +1159,7 @@ function UpdateDoorsxUser() {
                         //Validar data para ver si mostrar error al guardar o exito al guardar
                         if (result == true) {
                             llenarTablaOrderSumary();
+                            llenarheaderOrder();
                             $('#modalInsert').modal('hide');
                             $('#modalConfirmOrderSummary').modal('hide');
                             LlammarModal("ConfigM", "Successful modification!", "Your door has been modified successfully.");
@@ -1671,7 +1670,7 @@ function llenarTablaOrderSumary() {
                     option += '<td id="tddelete" style="display: flex; padding-top: 35px;">';
                     option += '  <button class="Cursor Details btn btn-primary btn-icon" data-toggle="modal" data-target="#modalInsert" data-id="' + data.OrderSumary[i].Id + '" style="width: 37px;height: 37px;" type="submit"><i class="fa fa-list"></i></button>';
                     option += '<button class="Cursor btn btn-danger btn-icon btnn-dele" data-id="' + data.OrderSumary[i].Id + '" style="width: 37px;height: 37px; margin-left: 10px;" type="submit"><i class="fa fa-trash"></i></button>';
-                    option += '</td></tr>';
+                    option += '</td></tr>';                    
                 }
             } else {
                 option += '<tr class="odd"><td valign="top" colspan="10" class="dataTables_empty">No data available in table. Click <a href="" class="btBuild"  data-toggle="modal" data-target="#modalInsert">here</a> to create a new door</td></tr>';
@@ -1684,8 +1683,8 @@ function llenarTablaOrderSumary() {
             result +='<h5 id="lblSubtotal" style="color:#7b7979">Sub-Total: <span>$</span>'+ data.Order.SubTotal.toString().replace(',', '.')+'</h5>';
             result +='<h5 id="lblTax" style="color:#7b7979">Tax: <span>$</span>'+ data.Order.Tax.toString().replace(',', '.')+'</h5>';
             result += '<h3 id="lblTotal" style="color:#000">Total Price: <span>$</span>' + data.Order.Total.toString().replace(',', '.') + '</h3>';
-            result +='</div><div class="col-md-5"><center style="text-align: right; margin-top: 20px;"><button id="btn-continue" style="margin-left: 10px;" disabled type="submit" src="#" class="Cursor btn btn-primary" title="">Send order</button></center></div>';
-                  
+            result += '</div><div class="col-md-5"><center style="text-align: right; margin-top: 20px;"><button id="btn-continue" style="margin-left: 10px;" disabled type="submit" src="#" class="Cursor btn btn-primary" title="">Send order</button></center></div>';
+
             $("#Resultados").html(result);
             $("#btn-continue").prop('disabled', false);
             $("#idOrderSummary > tbody").empty().append(option);
@@ -1696,4 +1695,34 @@ function llenarTablaOrderSumary() {
         }
     });
 
+}
+
+function llenarheaderOrder() {
+    $.ajax({
+        url: urlGetLastDoor,
+        cache: false,
+        type: 'POST',
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        success: function (data) {
+            var headerConfig = '';
+            if (data.LastDoor != null) {                
+                headerConfig += '<div><h6>Door Style: <span>' + data.LastDoor.DoorStyle.Description + '</span></h6>';
+                headerConfig += '<h6 style="margin-left:15px">Material: <span>' + data.LastDoor.Material.Description + '</span></h6>';
+                headerConfig += '<h6 style="margin-left:15px">Panel Material: <span>' + data.LastDoor.PanelMaterial.Description + '</span></h6>';
+                if(data.LastDoor.isOverlay == false){
+                    headerConfig += '<h6 style="margin-left:15px">Door Type: <span>Insert Door Type</span></h6></div>';
+                } else {
+                    headerConfig += '<h6 style="margin-left:15px">Door Type: <span>Overlay Door Type</span></h6></div>';
+                }
+            } else {
+                headerConfig += '';
+            }
+            
+            $("#HeaderOptions").html(headerConfig);
+        },
+        error: function (err) {
+            LlammarModal("Danger", "Error.", " ");
+        }
+    });
 }
