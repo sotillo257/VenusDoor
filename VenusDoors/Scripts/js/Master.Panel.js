@@ -120,7 +120,7 @@ function InsertPanel() {
 
         }
     };
-    console.log(datos);
+    
     $.ajax({
         type: 'POST',
         data: JSON.stringify(datos),
@@ -154,7 +154,7 @@ function UpdatePanel() {
 
         }
     };
-    console.log(datos);
+    
     $.ajax({
         type: 'POST',
         data: JSON.stringify(datos),

@@ -1036,7 +1036,7 @@ function InsertDoorsxUser() {
                  Position5: $("#HP5").val(),
              },
          };
-                console.log(datos);
+                
                 $.ajax({
                     type: 'POST',
                     data: JSON.stringify(datos),
@@ -1147,7 +1147,7 @@ function UpdateDoorsxUser() {
                  Position5: $("#HP5").val(),
              },
          };
-                console.log(datos);
+                
                 $.ajax({
                     type: 'POST',
                     data: JSON.stringify(datos),

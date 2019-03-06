@@ -123,7 +123,7 @@ function InsertStatus() {
 
         }
     };
-    console.log(datos);
+    
     $.ajax({
         type: 'POST',
         data: JSON.stringify(datos),
@@ -157,7 +157,7 @@ function UpdateStatus() {
 
         }
     };
-    console.log(datos);
+    
     $.ajax({
         type: 'POST',
         data: JSON.stringify(datos),

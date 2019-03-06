@@ -211,7 +211,7 @@ function InsertOrder() {
             Observations: $("#inObservations").val(),
         }
     };
-    console.log(datos);
+    
     $.ajax({
         type: 'POST',
         data: JSON.stringify(datos),
@@ -251,7 +251,7 @@ function UpdateOrder() {
 
         }
     };
-    console.log(datos);
+    
     $.ajax({
         type: 'POST',
         data: JSON.stringify(datos),

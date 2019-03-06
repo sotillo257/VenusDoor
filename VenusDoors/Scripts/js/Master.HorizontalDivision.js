@@ -123,7 +123,7 @@ function InserHorizontalDivisions() {
 
         }
     };
-    console.log(datos);
+    
     $.ajax({
         type: 'POST',
         data: JSON.stringify(datos),
@@ -157,7 +157,7 @@ function UpdateHorizontalDivisions() {
 
         }
     };
-    console.log(datos);
+    
     $.ajax({
         type: 'POST',
         data: JSON.stringify(datos),

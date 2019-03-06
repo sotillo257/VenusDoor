@@ -106,7 +106,7 @@ function InsertGroup() {
 
         }
     };
-    console.log(datos);
+    
     $.ajax({
         type: 'POST',
         data: JSON.stringify(datos),
@@ -139,7 +139,7 @@ function UpdateGroup() {
 
         }
     };
-    console.log(datos);
+    
     $.ajax({
         type: 'POST',
         data: JSON.stringify(datos),

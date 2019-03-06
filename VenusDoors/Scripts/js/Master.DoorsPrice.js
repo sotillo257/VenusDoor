@@ -235,7 +235,7 @@ function InsertDoorsPrices() {
             HorizontalAdditionalInchPrice: $("#inHorizontalAdditionalInchPrice").val(),
         }
     };
-    console.log(datos);
+    
     $.ajax({
         type: 'POST',
         data: JSON.stringify(datos),
@@ -279,7 +279,7 @@ function UpdateDoorPrice() {
 
         }
     };
-    console.log(datos);
+    
     $.ajax({
         type: 'POST',
         data: JSON.stringify(datos),

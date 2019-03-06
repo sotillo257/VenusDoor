@@ -120,7 +120,7 @@ function InsertInsideEdgeProfile() {
 
         }
     };
-    console.log(datos);
+    
     $.ajax({
         type: 'POST',
         data: JSON.stringify(datos),
@@ -154,7 +154,7 @@ function UpdateInsideEdgeProfile() {
 
         }
     };
-    console.log(datos);
+    
     $.ajax({
         type: 'POST',
         data: JSON.stringify(datos),

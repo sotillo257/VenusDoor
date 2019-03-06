@@ -120,7 +120,7 @@ function InsertPanelMaterial() {
             Status: { Id: $("#inStatus").val() },
         }
     };
-    console.log(datos);
+    
     $.ajax({
         type: 'POST',
         data: JSON.stringify(datos),
@@ -154,7 +154,7 @@ function UpdatePanelMaterial() {
 
         }
     };
-    console.log(datos);
+    
     $.ajax({
         type: 'POST',
         data: JSON.stringify(datos),

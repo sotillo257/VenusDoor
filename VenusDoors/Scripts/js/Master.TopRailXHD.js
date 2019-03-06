@@ -118,7 +118,7 @@ function InsertTopRailxHorizontalDivisions() {
 
         }
     };
-    console.log(datos);
+    
     $.ajax({
         type: 'POST',
         data: JSON.stringify(datos),
@@ -153,7 +153,7 @@ function UpdateTopRailxHorizontalDivisions() {
 
         }
     };
-    console.log(datos);
+    
     $.ajax({
         type: 'POST',
         data: JSON.stringify(datos),

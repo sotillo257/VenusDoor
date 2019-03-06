@@ -404,7 +404,7 @@ function checkDoorOption(pDoorOp) {
     var radioButt = '';
     for (var i = 0; i < allDoorOption.length; i++) {
         if (allDoorOption[i].Status.Id == 1) {
-            console.log(allDoorOption);
+            
             radioButt += '<label style="margin-left: 8px;">';
             radioButt += '<input disabled style="margin-right:5px" name="radioOption" type="radio" data-id="' + allDoorOption[i].Id + '"></input>' + allDoorOption[i].Description + '';
             radioButt += '</label>';

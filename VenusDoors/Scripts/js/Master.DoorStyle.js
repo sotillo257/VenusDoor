@@ -121,7 +121,7 @@ function InsertDoorStyle() {
 
         }
     };
-    console.log(datos);
+    
     $.ajax({
         type: 'POST',
         data: JSON.stringify(datos),
@@ -154,7 +154,7 @@ function UpdateDoorStyle() {
             Status: { Id: $("#inStatus").val() },
         }
     };
-    console.log(datos);
+    
     $.ajax({
         type: 'POST',
         data: JSON.stringify(datos),

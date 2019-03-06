@@ -364,7 +364,7 @@ function InsertDoors() {
 
     //compania.push(formData);
 
-    console.log(datos);
+    
     $.ajax({
         type: 'POST',
         data: JSON.stringify(datos),
@@ -416,7 +416,7 @@ function UpdateDoors() {
             OpeningMeasurement: { Id: $("#inOpeningMeasurement").val() },
         }
     };
-    console.log(datos);
+    
     $.ajax({
         type: 'POST',
         data: JSON.stringify(datos),

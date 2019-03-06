@@ -163,7 +163,7 @@
   if($().datepicker) {
     $('.form-control-datepicker').datepicker()
       .on("change", function (e) {
-        console.log("Date changed: ", e.target.value);
+        
     });
   }
 
