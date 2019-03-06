@@ -47,6 +47,7 @@ function DltItem() {
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
                 llenarTablaOrderSumary();
+                llenarheaderOrder();
                 $('#modalDelete').modal('hide');
                 LlammarModal("CongDelete", "Success! It has been removed correctly.", " ");
             } else {

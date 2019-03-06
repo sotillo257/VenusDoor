@@ -3,6 +3,7 @@
     ViewBag.Title = "Order Summary";
     Layout = "~/Views/Shared/_Layout.cshtml";
     Model.Order ord = ViewBag.Listo;
+    Model.DoorsxUser LastDoor = ViewBag.LstD;
 }
 
 <style>
@@ -42,6 +43,10 @@
     .table th, .table td {
         vertical-align:middle!important;
     }
+
+    #HeaderOptions h6 span {
+        color:#868ba1;
+    }
     </style>
 
 <div class="br-pageheader pd-y-15 pd-l-20">
@@ -66,7 +71,6 @@
                         <button disabled title="Massive order only available when you are logged in" id="btnLogo" class="Cursor btn btn-outline-success btn-block"><i class="fa fa-upload mg-r-10"></i> Massive Order</button>                                                
                     </div>
                 </div>
-
             }
             else
             {
@@ -92,6 +96,15 @@
             }
 
         </div>
+        @if (LastDoor != null)
+            {
+            <div id="HeaderOptions" style="color:#000;margin-top: 15px; display:flex">
+                <h6>Door Style: <span>@LastDoor.DoorStyle.Description</span></h6>
+                <h6 style="margin-left:15px">Material: <span>@LastDoor.Material.Description</span></h6>
+                <h6 style="margin-left:15px">Panel Material: <span>@LastDoor.PanelMaterial.Description</span></h6>  
+                <h6 style="margin-left:15px">Door Type: <span>@LastDoor.DoorType.Description</span></h6>                                  
+            </div>
+        }
         <div class="row" style="display:flex; width:100%">
             <div class="col-xs-1 col-md-1">
                 <label for="Material" style="margin-top: 25px;">Quantity: </label>
