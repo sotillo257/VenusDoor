@@ -119,7 +119,7 @@ function InsertOutsideEdgeProfile() {
             Status: { Id: $("#inStatus").val() },
         }
     };
-    console.log(datos);
+    
     $.ajax({
         type: 'POST',
         data: JSON.stringify(datos),
@@ -153,7 +153,7 @@ function UpdateOutsideEdgeProfile() {
 
         }
     };
-    console.log(datos);
+    
     $.ajax({
         type: 'POST',
         data: JSON.stringify(datos),

@@ -1096,7 +1096,6 @@
     <Content Include="Scripts\js\ControlOfOrders.js" />
     <Content Include="Scripts\js\ConverExcel.js" />
     <Content Include="Scripts\js\dashboard.js" />
-    <Content Include="Scripts\js\envio.js" />
     <Content Include="Scripts\js\LoginSiginUp.js" />
     <Content Include="Scripts\js\Master.BottomRail.js" />
     <Content Include="Scripts\js\Master.Company.js" />

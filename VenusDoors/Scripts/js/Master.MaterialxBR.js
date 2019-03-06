@@ -119,7 +119,7 @@ function InsertMaterialxBottomRail() {
 
         }
     };
-    console.log(datos);
+    
     $.ajax({
         type: 'POST',
         data: JSON.stringify(datos),
@@ -154,7 +154,7 @@ function UpdateMaterialxBottomRail() {
 
         }
     };
-    console.log(datos);
+    
     $.ajax({
         type: 'POST',
         data: JSON.stringify(datos),

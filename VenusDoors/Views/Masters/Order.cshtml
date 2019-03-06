@@ -26,13 +26,12 @@
         </div>
         <div class="table-wrapper">
             <div id="datatable1_wrapper" class="dataTables_wrapper no-footer">
-                <table id="datatable1" style="width: 100%;" class="table display responsive nowrap dataTable no-footer dtr-inline" role="grid" aria-describedby="datatable1_info">
+                <table id="datatable1" style="width: 100%;" class="table table-responsive display responsive nowrap dataTable no-footer dtr-inline" role="grid" aria-describedby="datatable1_info">
                     <thead>
                         <tr>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="First name: activate to sort column ascending">Id</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">User</th>
-                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Quantity</th>                            
-                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Observations</th> 
+                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Quantity</th> 
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Shipping Address</th>                         
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Type</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Status</th>
@@ -47,8 +46,7 @@
                                 <td tabindex="0" class="">@item.Id</td>
                                 <td class="">@item.User.Id</td>
                                 <td class="">@item.Quantity</td>
-                                <td class="">@item.Observations</td>
-                                <td class="">@item.ShippingAddress.Address</td>
+                                <td class="">@item.ShippingAddress.Name</td>
                                 <td class="">@item.Type.Description</td>
                                 <td class="">@item.Status.Description</td>
                                 <td class="">@item.Total.ToString().Replace(',', '.')</td>
@@ -107,11 +105,6 @@
                                             </div><!-- form-group -->
 
                                             <div class="col-xs-3 col-md-4">
-                                                <label for="inShippingAddress" style="margin-top: 25px;">Shipping Address: </label>
-                                                <input type="text" name="id" id="inShippingAddress" class="form-control" placeholder="">
-                                            </div><!-- form-group -->
-
-                                            <div class="col-xs-3 col-md-4">
                                                 <label for="inTotal" style="margin-top: 25px;">Total: </label>
                                                 <input type="text" name="Total" onkeypress="return soloAndNumeros(event)" id="inTotal" class="form-control" placeholder="">
                                             </div><!-- form-group -->
@@ -129,15 +122,16 @@
                                                 </select>
                                             </div><!-- form-group -->
 
+                                            <div class="col-xs-3 col-md-4">
+                                                <label for="IdStatus" style="margin-top: 25px;">Status: </label>
+                                                <select style="width:100%" class="form-control select2" id="inStatus" data-placeholder=""></select>
+                                            </div><!-- form-group -->
+
                                             <div class="col-xs-3 col-md-6">
                                                 <label for="Observations" style="margin-top: 25px;">Observations: </label>
                                                 <textarea type="text" rows="4" id="inObservations" class="form-control" placeholder=""></textarea>
                                             </div><!-- form-group -->
 
-                                            <div class="col-xs-3 col-md-4">
-                                                <label for="IdStatus" style="margin-top: 25px;">Status: </label>
-                                                <select style="width:100%" class="form-control select2" id="inStatus" data-placeholder=""></select>
-                                            </div><!-- form-group -->
                                         </div>
                                     </div><!-- pd-20 -->
                                 </div><!-- col-6 -->

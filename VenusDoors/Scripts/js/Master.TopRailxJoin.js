@@ -117,7 +117,7 @@ function InsertTopRailByJoin() {
 
         }
     };
-    console.log(datos);
+    
     $.ajax({
         type: 'POST',
         data: JSON.stringify(datos),
@@ -152,7 +152,7 @@ function UpdateTopRailByJoin() {
 
         }
     };
-    console.log(datos);
+    
     $.ajax({
         type: 'POST',
         data: JSON.stringify(datos),

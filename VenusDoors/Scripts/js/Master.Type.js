@@ -120,7 +120,6 @@ function InsertType() {
 
         }
     };
-    console.log(datos);
     $.ajax({
         type: 'POST',
         data: JSON.stringify(datos),
@@ -154,7 +153,6 @@ function UpdateType() {
 
         }
     };
-    console.log(datos);
     $.ajax({
         type: 'POST',
         data: JSON.stringify(datos),

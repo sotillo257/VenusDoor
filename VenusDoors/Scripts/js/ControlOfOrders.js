@@ -67,7 +67,7 @@ function GetDoorsByOrder(id) {
                         IdOrder: id,
                     }
 
-    console.log(datos);
+    
     $.ajax({
         data: JSON.stringify(datos),
         url: urlGetDoorsByOrder,
@@ -118,7 +118,7 @@ function UpdateOrderStatus5(id) {
 
         }
     };
-    console.log(datos);
+   
     $.ajax({
         type: 'POST',
         data: JSON.stringify(datos),
@@ -153,7 +153,7 @@ function UpdateOrderStatus6(id) {
 
         }
     };
-    console.log(datos);
+    
     $.ajax({
         type: 'POST',
         data: JSON.stringify(datos),
@@ -187,7 +187,7 @@ function UpdateOrderStatus7(id) {
 
         }
     };
-    console.log(datos);
+    
     $.ajax({
         type: 'POST',
         data: JSON.stringify(datos),
@@ -221,7 +221,7 @@ function UpdateOrderStatus3(id) {
 
         }
     };
-    console.log(datos);
+    
     $.ajax({
         type: 'POST',
         data: JSON.stringify(datos),

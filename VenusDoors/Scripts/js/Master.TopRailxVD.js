@@ -117,7 +117,6 @@ function InsertTopRailByVerticalDivisions() {
 
         }
     };
-    console.log(datos);
     $.ajax({
         type: 'POST',
         data: JSON.stringify(datos),
@@ -152,7 +151,6 @@ function UpdateTopRailByVerticalDivisions() {
 
         }
     };
-    console.log(datos);
     $.ajax({
         type: 'POST',
         data: JSON.stringify(datos),
