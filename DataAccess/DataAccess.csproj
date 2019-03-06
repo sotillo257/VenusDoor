@@ -58,6 +58,7 @@
     <Compile Include="adDoorStylexOutsideEdgeProfile.cs" />
     <Compile Include="adDoorsxUser.cs" />
     <Compile Include="adDoorType.cs" />
+    <Compile Include="adDoorxOrder.cs" />
     <Compile Include="adGroup.cs" />
     <Compile Include="adHingeDirection.cs" />
     <Compile Include="adHingePositions.cs" />
