@@ -911,7 +911,6 @@ function GetAllDoorOption() {
                 var radioButt = '';
                 for (var i = 0; i < data.length; i++) {
                     if (data[i].Status.Id == 1) {
-                        console.log(data);
                         radioButt += '<label style="margin-left: 8px;">';
                         radioButt += '<input style="margin-right:5px" name="radioOption" type="radio"  data-id="' + data[i].Id + '"></input>' + data[i].Description + '';
                         radioButt += '</label>';
@@ -1040,7 +1039,6 @@ function InsertDoorsxUser() {
                  Position5: $("#HP5").val(),
              },
          };
-                console.log(datos);
                 $.ajax({
                     type: 'POST',
                     data: JSON.stringify(datos),
@@ -1069,6 +1067,56 @@ function InsertDoorsxUser() {
                     },
               
                 });
+}
+
+function InsertDoorsxOrder() {
+    var itemCost = parseFloat($("#iptCost").val());
+    var DoorQuantity = $("#iptQuantity").val();
+    var DoorOp = $("#cbDoorOption").val();
+
+    var datos =
+         {
+
+             pDoorsxOrder: {
+                 DoorsxUser: "Aqui Id DoorsxUser",
+                 Width: parseFloat($("#iptWidth").val()),
+                 DecimalsWidth: { Id: $("#cbDecimalsW").val() },
+                 Height: parseFloat($("#iptHeight").val()),
+                 DecimalsHeight: { Id: $("#cbDecimalsH").val() },
+                 Quantity: DoorQuantity,
+                 ItemCost: itemCost,
+                 SubTotal: DoorSubTotal,
+                 Picture: $('#DoorPicture').attr('src'),
+                 ProfilePicture: $('#ProfilePicture').attr('src'),                
+                 DoorType: { Id: $("#cbDoorType").val() },
+                 DoorOption: { Id: DoorOp }            
+             }
+         };
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(datos),
+        url: urlInsertDoorsxOrder,
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+
+            //Validar data para ver si mostrar error al guardar o exito al guardar
+            if (result == true) {
+                llenarTablaOrderSumary();
+              //  llenarheaderOrder();
+            } else {
+                $('#modalInsert').modal('hide');
+                $('#modalConfirmOrderSummary').modal('hide');
+                LlammarModal("Danger", "An error occurred during the process.", "Check your internet connection I tried again");
+            }
+        },
+        error: function (err) {
+            $('#modalInsert').modal('hide');
+            $('#modalConfirmOrderSummary').modal('hide');
+            LlammarModal("Danger", "An error occurred during the process.");
+        },
+
+    });
 }
 
 function UpdateDoorsxUser() {
@@ -1151,7 +1199,6 @@ function UpdateDoorsxUser() {
                  Position5: $("#HP5").val(),
              },
          };
-                console.log(datos);
                 $.ajax({
                     type: 'POST',
                     data: JSON.stringify(datos),
@@ -1687,10 +1734,9 @@ function llenarTablaOrderSumary() {
             result +='<h5 id="lblSubtotal" style="color:#7b7979">Sub-Total: <span>$</span>'+ data.Order.SubTotal.toString().replace(',', '.')+'</h5>';
             result +='<h5 id="lblTax" style="color:#7b7979">Tax: <span>$</span>'+ data.Order.Tax.toString().replace(',', '.')+'</h5>';
             result += '<h3 id="lblTotal" style="color:#000">Total Price: <span>$</span>' + data.Order.Total.toString().replace(',', '.') + '</h3>';
-            result += '</div><div class="col-md-5"><center style="text-align: right; margin-top: 20px;"><button id="btn-continue" style="margin-left: 10px;" disabled type="submit" src="#" class="Cursor btn btn-primary" title="">Send order</button></center></div>';
+            result += '</div><div class="col-md-5"><center style="text-align: right; margin-top: 20px;"><button id="btn-continue" style="margin-left: 10px;" type="submit" src="#" class="Cursor btn btn-primary" title="">Send order</button></center></div>';
 
             $("#Resultados").html(result);
-            $("#btn-continue").prop('disabled', false);
             $("#idOrderSummary > tbody").empty().append(option);
 
         },

@@ -54,8 +54,6 @@ namespace VenusDoors.Controllers
             }
         }
 
-
-
         [HttpPost]
         public ActionResult GetAllDoorStyle()
         {
@@ -364,6 +362,29 @@ namespace VenusDoors.Controllers
                     BusinessLogic.lnDoorsxUser ln = new BusinessLogic.lnDoorsxUser();
 
                     return Json(ln.InsertarDoors(pDoorsxUser, HingeP, Ord, (int)Session["UserID"]), JsonRequestBehavior.AllowGet);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return View("Error");
+            }
+        }
+
+        public ActionResult InsertDoorsxOrder(DoorxOrder pDoorsxUser)
+        {
+            try
+            {
+                if (Session["UserID"] == null)
+                {
+
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    BusinessLogic.lnDoorsxUser ln = new BusinessLogic.lnDoorsxUser();
+
+                    return Json(true, JsonRequestBehavior.AllowGet);
                 }
 
             }
