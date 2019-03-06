@@ -59,7 +59,10 @@ namespace VenusDoors.Controllers
                     ViewBag.xUserDoors = doorByOrder;
                     var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
                     ViewBag.ListDoorsxUser = serializar.Serialize(doorByOrder);
-                    return View();
+                        DoorsxUser LastDoor = doorByOrder.OrderByDescending(x => x.ModificationDate).FirstOrDefault();
+                        ViewBag.LstD = LastDoor;
+                        
+                   return View();
                 }
                 else
                 {
@@ -101,9 +104,38 @@ namespace VenusDoors.Controllers
                 {
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
-            }
-        
+        }
 
+        [HttpPost]
+        public ActionResult GetLastDoor()
+        {
+            try
+            {
+                BusinessLogic.lnDoorsxUser _LNDOR = new BusinessLogic.lnDoorsxUser();
+                BusinessLogic.lnOrder _LNOrder = new BusinessLogic.lnOrder();
+                var orderList = _LNOrder.GetOrderByUser((int)Session["UserID"]).Where(x => x.Status.Id == 4).LastOrDefault();
+                                                        
+                if (orderList == null)
+                {
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                }
+                else if(orderList.Status.Id == 4)
+                {
+                    var xDoorsU = _LNDOR.GetAllDoorsxUser();
+                    DoorsxUser LastDoorr = xDoorsU.Where(x => x.Order.Id == orderList.Id).OrderByDescending(x => x.ModificationDate).FirstOrDefault();
+                    return Json(new { LastDoor = LastDoorr}, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(null, JsonRequestBehavior.AllowGet);
+                }
+
+            }
+            catch
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
 
         [HttpPost]
         public ActionResult DeleteItem(int itemID, int orderid)

@@ -3,6 +3,7 @@
     ViewBag.Title = "Order Summary";
     Layout = "~/Views/Shared/_Layout.cshtml";
     Model.Order ord = ViewBag.Listo;
+    Model.DoorsxUser LastDoor = ViewBag.LstD;
 }
 
 <style>
@@ -42,6 +43,10 @@
     .table th, .table td {
         vertical-align:middle!important;
     }
+
+    #HeaderOptions span{
+        color:#868ba1;
+    }
     </style>
 
 <div class="br-pageheader pd-y-15 pd-l-20">
@@ -66,7 +71,6 @@
                         <button disabled title="Massive order only available when you are logged in" id="btnLogo" class="Cursor btn btn-outline-success btn-block"><i class="fa fa-upload mg-r-10"></i> Massive Order</button>                                                
                     </div>
                 </div>
-
             }
             else
             {
@@ -87,11 +91,12 @@
                             <button data-toggle="modal" data-target="#ModalUpload" class="Cursor btn btn-outline-success btn-block"><i class="fa fa-upload mg-r-10"></i> Massive Order</button>
                         </div>
                     </div>
-                }
-
+                }               
             }
 
         </div>
+       
+        
 
         <table id="idOrderSummary" class="table table-responsive mg-b-0 tx-12">
             <thead>
@@ -149,7 +154,7 @@
                                 <td>@i.DoorStyle.Description</td>
                                 <td>@i.Material.Description</td>
                                 <td>@i.Panel.Description</td>
-                                <td>@i.DoorOption.Description</td>
+                                <td>@i.DoorType.Description</td>
                                 <td><span>$</span>@i.ItemCost.ToString().Replace(',', '.')</td>
                                 <td><span>$</span>@i.SubTotal.ToString().Replace(',', '.')</td>
                                 
@@ -498,7 +503,8 @@
         var urlConfirmOrder = '@Url.Action("ConfirmOrder", "OrderSummary")';
         var urlValidateSession = '@Url.Action("ValidateSession", "OrderSummary")';
         var urlGetOrderSumary = '@Url.Action("GetOrderSumary", "OrderSummary")';
-        
+        var urlGetLastDoor = '@Url.Action("GetLastDoor", "OrderSummary")';
+
         try {
             var listDOOR = JSON.parse('@Html.Raw(ViewBag.ListDoorsxUser)');
         } catch (e) {
