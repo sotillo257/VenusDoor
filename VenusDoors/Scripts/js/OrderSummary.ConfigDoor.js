@@ -45,7 +45,13 @@
     });
 
     $("#btnSaveShip").on('click', function () {
-        AddNewShippingAddress();
+        
+        if (ValidarCamposModalShipping()) {           
+            AddNewShippingAddress();       
+        } else {
+            $('#modalConfirmOrderSummary').modal('hide');
+            LlammarModal("Danger", "You must fill all the fields.", " ");
+        }
     });
 
     $(document).on('click', '.Details', function (event) {
@@ -181,6 +187,10 @@
         }
     });
     GetAllShippingAddress();
+
+    $(".btnModalSA").on('click', function () {
+        limpiarInputsShipping();
+    });
 });
 
 function SearchDoor(data) {
@@ -781,7 +791,8 @@ function GetAllShippingAddress() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
-                var option = '';
+                allShippingAddress = data;
+                var option = '<option value="0">Select</option>';
                 for (var i = 0; i < data.length; i++) {
                     if (data[i].Status.Id == 1) {
                         option += '<option value="' + data[i].Id + '">' + data[i].Name + '</option>';
@@ -793,10 +804,23 @@ function GetAllShippingAddress() {
                 LlammarModal("Danger", "Error obtaining Shipping Address", " ");
             }
         },
-        error: function (err) {
-            LlammarModal("Danger", "Error.", " ");
-        }
+        //error: function (err) {
+        //    LlammarModal("Danger", "Error.", " ");
+        //}
     });
+}
+
+function llenarComboShipping(pShipping) {
+    var option = '<option value="0">Select</option>';
+    for (var i = 0; i < allShippingAddress.length; i++) {
+        if (allShippingAddress[i].Status.Id == 1) {
+            option += '<option value="' + allShippingAddress[i].Id + '">' + allShippingAddress[i].Name + '</option>';
+        }
+    }
+    $("#cbShippingAddress").empty().append(option);
+    if (pShipping != 0) {
+        $("#cbShippingAddress").val(pShipping);
+    }
 }
 
 function AddNewShippingAddress() {
@@ -823,9 +847,12 @@ function AddNewShippingAddress() {
         success: function (result) {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
-            if (result == true) {
-                LlammarModal("ConfigM", "Congratulations! Your user ");
+            if (result != null) {
+                $('#ModalAddSA').modal('hide');
+                LlammarModal("ConfigM", "Congratulations, your new shipping address has been added successfully!");
                 GetAllShippingAddress();
+                var pShipping = result;
+                llenarComboShipping(pShipping);
             } else {
                 LlammarModal("Danger", "An error occurred during the process.");
             }
@@ -835,5 +862,69 @@ function AddNewShippingAddress() {
         },
 
     });
+}
+
+function limpiarInputsShipping() {
+    $('#inName').val(""),
+    $('#inContact').val(""),
+    $('#inResidence').val(""),
+    $('#inAddress').val(""),
+    $('#inCity').val(""),
+    $('#inStreet').val(""),
+    $('#inZipCode').val("")
+}
+
+function ValidarCamposModalShipping() {
+    var aux = true;
+    if ($('#inName').val() == "") {
+        $('#inName').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#inName').removeClass("is-invalid");
+    }
+
+    if ($('#inContact').val() == "") {
+        $('#inContact').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#inContact').removeClass("is-invalid");
+    }
+
+    if ($('#inResidence').val() == "") {
+        $('#inResidence').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#inResidence').removeClass("is-invalid");
+    }
+
+    if ($('#inAddress').val() == "") {
+        $('#inAddress').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#inAddress').removeClass("is-invalid");
+    }
+
+    if ($('#inCity').val() == "") {
+        $('#inCity').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#inCity').removeClass("is-invalid");
+    }
+
+    if ($('#inStreet').val() == "") {
+        $('#inStreet').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#inStreet').removeClass("is-invalid");
+    }
+
+    if ($('#inZipCode').val() == "") {
+        $('#inZipCode').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#inZipCode').removeClass("is-invalid");
+    }
+
+    return aux;
 }
 

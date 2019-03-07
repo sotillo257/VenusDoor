@@ -471,8 +471,10 @@ namespace VenusDoors.Controllers
                 {
                     BusinessLogic.lnOrder _LNO = new BusinessLogic.lnOrder();
                     Order CompleteOrder = _LNO.GetOrderById(ord.Id);
-                    SendOrderToUser(CompleteOrder);
-                    SendOrderToManage(CompleteOrder);                    
+                    CompleteOrder.Observations = ord.Observations;
+                    CompleteOrder.ShippingAddress = ord.ShippingAddress;
+                    //SendOrderToUser(CompleteOrder);
+                    //SendOrderToManage(CompleteOrder);                    
                     CloseOrder(CompleteOrder);
                     return Json(true, JsonRequestBehavior.AllowGet);
                     
@@ -528,8 +530,8 @@ namespace VenusDoors.Controllers
                 ShippingData.CreationDate = DateTime.Now;
                 ShippingData.ModificationDate = DateTime.Now;
                 ShippingData.LotBlock = "00000000";
-                var InsertNewSA = _LNSA.InsertShippingAddress(ShippingData);
-                return Json(true, JsonRequestBehavior.AllowGet);
+                var InsertNewSA = _LNSA.InsertShippingAddress(ShippingData);                
+                return Json(InsertNewSA, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {

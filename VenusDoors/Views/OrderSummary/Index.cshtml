@@ -119,7 +119,7 @@
                 <label for="width" style="margin-top: 25px;">Width: </label>
                 <div>
                     <div style="display:flex">
-                        <input style="width:50%!important" name="SoloNumeros" required class="required RequiereLlenar eventChange iptWidth form-control" type="number" maxlength="2" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="iptWidth">
+                        <input style="width:50%!important" name="SoloNumeros" required class="required RequiereLlenar eventChange iptWidth form-control" type="number" min="1" maxlength="2" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="iptWidth">
                         <select style="width:50%!important" class="form-control select2" id="cbDecimalsW"></select>
                     </div>
                     <label id="alertWidth" style="Color:red; font-size:10px; display:none;margin:0"></label>
@@ -129,7 +129,7 @@
                 <label for="inDescription" style="margin-top: 25px;">Height: </label>
                 <div>
                     <div style="display:flex">
-                        <input style="width:50%!important" name="SoloNumeros" required class="required RequiereLlenar eventChange iptHeight form-control" type="number" maxlength="3" max="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="iptHeight">
+                        <input style="width:50%!important" name="SoloNumeros" required class="required RequiereLlenar eventChange iptHeight form-control" type="number" min="1" maxlength="3" max="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="iptHeight">
                         <select style="width:50%!important" class="form-control select2" id="cbDecimalsH"></select>
                     </div>
                     <label id="alertHeight" style="Color:red; font-size:10px; margin:0"></label>
@@ -262,56 +262,37 @@
             {
                 if (ord == null)
                 {
+                    <div class="col-md-7">
+
+                    </div>
+                }
+                else if (ord.Status.Id == 4)
+                {
                     <div style="width:100%">
-                        @*<input hidden id="idorder" value="@ord.Id" />
+                        <input hidden id="idorder" value="@ord.Id" />
                         <input hidden id="idtotal" value="@ord.Total" />
-                        <input hidden id="idstatus" value="@ord.Status.Id" />*@
-                        <div class="col-md-10">
-                            <div style="display:flex">
-                                <h5 id="lblSubtotal" style="color:#7b7979">Sub-Total: @*<span>$</span>@ord.SubTotal.ToString().Replace(',', '.')*@</h5>
-                                <h5 id="lblTax" style="color:#7b7979; margin-left:15px">Tax: @*<span>$</span>@ord.Tax.ToString().Replace(',', '.')*@</h5>
-                                <h5 id="lblTotal" style="color:#000; margin-left:15px">Total Price: @*<span>$</span>@ord.Total.ToString().Replace(',', '.')*@</h5>
+                        <input hidden id="idstatus" value="@ord.Status.Id" />
+                        <div class="col-md-12">
+                            <div style="display:flex;float:right">
+                                <h5 id="lblSubtotal" style="color:#7b7979">Sub-Total: <span>$</span>@ord.SubTotal.ToString().Replace(',', '.')</h5>
+                                <h5 id="lblTax" style="color:#7b7979; margin-left:15px">Tax: <span>$</span>@ord.Tax.ToString().Replace(',', '.')</h5>
+                                <h5 id="lblTotal" style="color:#000; margin-left:15px">Total Price: <span>$</span>@ord.Total.ToString().Replace(',', '.')</h5>
                             </div>
-                            
-                            <div style="display:flex; width:100%">
-                                <div class="col-xs-3 col-md-8">
-                                    <label for="Observations" style="margin-top: 25px;">Observations: <i class="fa fa-info-circle" title="Here you can add an observation about this order"></i></label>
+
+                            <div style="display:flex; width:100%;">
+                                <div class="col-xs-3 col-md-7">
+                                    <label for="Observations" style="margin-top: 25px;">Observations: <i class="Cursor fa fa-info-circle" title="Here you can add an observation about this order. This note will be saved when confirming your order"></i></label>
                                     <textarea type="text" rows="4" id="inObservations" class="form-control" placeholder="Observations..."></textarea>
                                 </div><!-- form-group -->
-                                <div class="col-xs-4 col-md-6">
+                                <div class="col-xs-4 col-md-4">
                                     <label for="ShipppingAddress" style="margin-top: 25px;">Shipping Address: </label><div></div>
                                     <select style="width:100%" class="eventChange form-control select2" id="cbShippingAddress" data-placeholder=""></select>
                                 </div><!-- col -->
-                                <div class="col-xs-4 col-md-4">
-                                    <button style="margin-top: 55px;" type="button" data-toggle="modal" data-target="#ModalAddSA" class="Cursor btn btn-success tx-11 pd-y-12 pd-x-25 tx-mont tx-medium">Add new</button>
-                                </div><!-- col -->                                
+                                <div class="col-xs-4 col-md-2">
+                                    <button style="margin-top: 55px;" type="button" data-toggle="modal" data-target="#ModalAddSA" class="Cursor btnModalSA btn btn-success tx-11 pd-y-12 pd-x-25 tx-mont tx-medium">Add new</button>
+                                </div><!-- col -->
                             </div>
                         </div>
-                    </div>
-                }
-                else if(ord.Status.Id == 4 && ord.Total != 0)
-                {
-                    <input hidden id="idorder" value="@ord.Id" />
-                    <input hidden id="idtotal" value="@ord.Total" />
-                    <input hidden id="idstatus" value="@ord.Status.Id" />
-                    <div class="col-md-7">
-                        <h5 id="lblSubtotal" style="color:#7b7979">Sub-Total: <span>$</span>@ord.SubTotal.ToString().Replace(',', '.')</h5>
-                        <h5 id="lblTax" style="color:#7b7979">Tax: <span>$</span>@ord.Tax.ToString().Replace(',', '.')</h5>
-                        <h3 id="lblTotal" style="color:#000">Total Price: <span>$</span>@ord.Total.ToString().Replace(',', '.')</h3>
-                        <div style="display:flex; width:100%">
-                            <div class="col-xs-4 col-md-4">
-                                <label for="ShipppingAddress" style="margin-top: 25px;">Shipping Address: </label><div></div>
-                                <select style="width:100%" class="eventChange form-control select2" id="" data-placeholder=""></select>
-                            </div><!-- col --> 
-                            <div class="col-xs-4 col-md-4">                                
-                                <button style="margin-top: 55px;" type="button" class="Cursor btBuild btn btn-success tx-11 pd-y-12 pd-x-25 tx-mont tx-medium">Add new</button>
-                            </div><!-- col --> 
-
-                            <div class="col-xs-3 col-md-4">
-                                <label for="Observations" style="margin-top: 25px;">Observations: </label>
-                                <textarea type="text" rows="4" id="inObservations" class="form-control" placeholder=""></textarea>
-                            </div><!-- form-group -->
-                    </div>
                     </div>
                 }
                 else
@@ -321,9 +302,25 @@
                     </div>
                 }
             }
-                </div>
-                </div>
         </div>
+        <div id="tableFooter">
+            <center style="text-align: right; margin-top: 20px;">
+                @if (ord == null)
+                {
+                    <button id="btn-continue" style="margin-left: 10px;" disabled type="submit" src="#" class="Cursor btn btn-primary" title="">Send order</button>
+                }
+                else if(ord.Status.Id == 4)
+                {
+                    <button id="btn-continue" style="margin-left: 10px;" type="submit" src="#" class="Cursor btn btn-primary" title="">Send order</button>
+                }
+                else
+                {
+                    <button id="btn-continue" style="margin-left: 10px;" disabled type="submit" src="#" class="Cursor btn btn-primary" title="">Send order</button>
+                }
+            </center>
+        </div>
+   </div>
+</div>
 
 <div id="modalDelete" class="modal fade" aria-hidden="true" style="display: none;">
     <div class="modal-dialog modal-sm" role="document">
@@ -370,11 +367,13 @@
 </div>
 
 <div id="ModalAddSA" class="modal fade" aria-hidden="true" style="display: none;">
-    <div class="modal-dialog modal-lg" role="document" style="max-width: 100%; width: 72%;">
+    <div class="modal-dialog modal-lg" role="document" style="max-width: 100%; width: 60%;">
         <div class="modal-content bd-0 tx-14">
             <div class="modal-header pd-x-20">
-                <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Add a new shipping address</h6>
-                <p>Add a new shipping address where you want to receive your doors. You can select this address for future orders</p>
+                <div>
+                    <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Add a new shipping address</h6>
+                    <p style="margin-top: 10px; margin-bottom: 0;">Add a new shipping address where you want to receive your doors. You can select this address for future orders</p>
+                </div>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -384,49 +383,49 @@
                     <div class="col-lg-4">
                         <div class="form-group">
                             <label class="form-control-label">Name:</label>
-                            <input required title="Complete this field." class="required RequiereLlenar form-control" type="text" minlength="5" maxlength="30" id="inName" name="inptName" placeholder="Enter name">
+                            <input required title="Complete this field." class="required RequiereLlenar form-control" type="text" minlength="5" maxlength="30" id="inName" name="inptName" placeholder="Enter address name">
                         </div>
                     </div><!-- col-4 -->
                     <div class="col-lg-4">
                         <div class="form-group">
                             <label class="form-control-label">Contact:</label>
-                            <input required title="Complete this field." class="required RequiereLlenar form-control" type="text" minlength="5" maxlength="30" id="inContact" name="inptName" placeholder="Enter name">
+                            <input required title="Complete this field." class="required RequiereLlenar form-control" maxlength="12" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" id="inContact" name="contact" placeholder="Enter a contact number">
                         </div>
                     </div><!-- col-4 -->
                     <div class="col-lg-4">
                         <div class="form-group">
                             <label class="form-control-label">Residence:</label>
-                            <input required title="Complete this field." class="required RequiereLlenar form-control" type="text" minlength="5" maxlength="30" id="inResidence" name="inptName" placeholder="Enter name">
+                            <input required title="Complete this field." class="required RequiereLlenar form-control" type="text" minlength="5" maxlength="30" id="inResidence" name="inptName" placeholder="Enter residence">
                         </div>
                     </div><!-- col-4 -->
                     <div class="col-lg-4">
                         <div class="form-group">
                             <label class="form-control-label">Address:</label>
-                            <input required title="Complete this field." class="required RequiereLlenar form-control" type="text" minlength="5" maxlength="30" id="inAddress" name="inptName" placeholder="Enter name">
+                            <input required title="Complete this field." class="required RequiereLlenar form-control" type="text" minlength="5" maxlength="30" id="inAddress" name="inptName" placeholder="Enter address">
                         </div>
                     </div><!-- col-4 -->
                     <div class="col-lg-4">
                         <div class="form-group">
                             <label class="form-control-label">City:</label>
-                            <input required title="Complete this field." class="required RequiereLlenar form-control" type="text" minlength="5" maxlength="30" id="inCity" name="inptName" placeholder="Enter name">
+                            <input required title="Complete this field." class="required RequiereLlenar form-control" type="text" minlength="5" maxlength="30" id="inCity" name="inptName" placeholder="Enter city">
                         </div>
                     </div><!-- col-4 -->
                     <div class="col-lg-4">
                         <div class="form-group">
                             <label class="form-control-label">Street:</label>
-                            <input required title="Complete this field." class="required RequiereLlenar form-control" type="text" minlength="5" maxlength="30" id="inStreet" name="inptName" placeholder="Enter name">
+                            <input required title="Complete this field." class="required RequiereLlenar form-control" type="text" minlength="5" maxlength="30" id="inStreet" name="inptName" placeholder="Enter street">
                         </div>
                     </div><!-- col-4 -->
-                    <div class="col-lg-4">
+                    <div class="col-lg-2">
                         <div class="form-group">
                             <label class="form-control-label">Zip:</label>
-                            <input required title="Complete this field." class="required RequiereLlenar form-control" type="text" minlength="5" maxlength="30" id="inZipCode" name="inptName" placeholder="Enter name">
+                            <input required title="Complete this field." class="required RequiereLlenar form-control" type="text" minlength="4" maxlength="8" id="inZipCode" name="inptName" placeholder="Enter zip code">
                         </div>
                     </div><!-- col-4 -->
                 </div>  
             </div>
             <div class="modal-footer justify-content-rigth">
-                <button name="confirmButton" id="btnSaveShip" class="btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Save</button>
+                <button name="confirmButton" id="btnSaveShip" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Save</button>
                 <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>
             </div>
         </div>
