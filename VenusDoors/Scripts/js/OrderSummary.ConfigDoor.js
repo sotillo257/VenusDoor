@@ -793,9 +793,9 @@ function GetAllShippingAddress() {
                 LlammarModal("Danger", "Error obtaining Shipping Address", " ");
             }
         },
-        error: function (err) {
-            LlammarModal("Danger", "Error.", " ");
-        }
+        //error: function (err) {
+        //    LlammarModal("Danger", "Error.", " ");
+        //}
     });
 }
 
