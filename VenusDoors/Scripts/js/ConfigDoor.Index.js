@@ -911,10 +911,7 @@ function GetAllDoorOption() {
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
                     if (data[i].Status.Id == 1) {
-                        radioButt += '<label style="margin-left: 8px;">';
-                        radioButt += '<input style="margin-right:5px" name="radioOption" type="radio"  data-id="' + data[i].Id + '"></input>' + data[i].Description + '';
-                        radioButt += '</label>';
-                        $("#DivDoorOption").html(radioButt);
+                        option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
                     }
                 }                
                 $("#cbDoorOpt").empty().append(option);

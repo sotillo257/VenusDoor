@@ -264,8 +264,31 @@
             {
                 if (ord == null)
                 {
-                    <div class="col-md-7">
-                        
+                    <div style="width:100%">
+                        @*<input hidden id="idorder" value="@ord.Id" />
+                        <input hidden id="idtotal" value="@ord.Total" />
+                        <input hidden id="idstatus" value="@ord.Status.Id" />*@
+                        <div class="col-md-10">
+                            <div style="display:flex">
+                                <h5 id="lblSubtotal" style="color:#7b7979">Sub-Total: @*<span>$</span>@ord.SubTotal.ToString().Replace(',', '.')*@</h5>
+                                <h5 id="lblTax" style="color:#7b7979; margin-left:15px">Tax: @*<span>$</span>@ord.Tax.ToString().Replace(',', '.')*@</h5>
+                                <h5 id="lblTotal" style="color:#000; margin-left:15px">Total Price: @*<span>$</span>@ord.Total.ToString().Replace(',', '.')*@</h5>
+                            </div>
+                            
+                            <div style="display:flex; width:100%">
+                                <div class="col-xs-3 col-md-8">
+                                    <label for="Observations" style="margin-top: 25px;">Observations: <i class="fa fa-info-circle" title="Here you can add an observation about this order"></i></label>
+                                    <textarea type="text" rows="4" id="inObservations" class="form-control" placeholder="Observations..."></textarea>
+                                </div><!-- form-group -->
+                                <div class="col-xs-4 col-md-6">
+                                    <label for="ShipppingAddress" style="margin-top: 25px;">Shipping Address: </label><div></div>
+                                    <select style="width:100%" class="eventChange form-control select2" id="cbShippingAddress" data-placeholder=""></select>
+                                </div><!-- col -->
+                                <div class="col-xs-4 col-md-4">
+                                    <button style="margin-top: 55px;" type="button" data-toggle="modal" data-target="#ModalAddSA" class="Cursor btn btn-success tx-11 pd-y-12 pd-x-25 tx-mont tx-medium">Add new</button>
+                                </div><!-- col -->                                
+                            </div>
+                        </div>
                     </div>
                 }
                 else if(ord.Status.Id == 4 && ord.Total != 0)
@@ -280,11 +303,16 @@
                         <div style="display:flex; width:100%">
                             <div class="col-xs-4 col-md-4">
                                 <label for="ShipppingAddress" style="margin-top: 25px;">Shipping Address: </label><div></div>
-                                <select style="width:100%" class="eventChange form-control select2" id="cbShippingAddress" data-placeholder=""></select>
+                                <select style="width:100%" class="eventChange form-control select2" id="" data-placeholder=""></select>
                             </div><!-- col --> 
                             <div class="col-xs-4 col-md-4">                                
                                 <button style="margin-top: 55px;" type="button" class="Cursor btBuild btn btn-success tx-11 pd-y-12 pd-x-25 tx-mont tx-medium">Add new</button>
                             </div><!-- col --> 
+
+                            <div class="col-xs-3 col-md-4">
+                                <label for="Observations" style="margin-top: 25px;">Observations: </label>
+                                <textarea type="text" rows="4" id="inObservations" class="form-control" placeholder=""></textarea>
+                            </div><!-- form-group -->
                     </div>
                     </div>
                 }
@@ -343,6 +371,70 @@
     </div>
 </div>
 
+<div id="ModalAddSA" class="modal fade" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg" role="document" style="max-width: 100%; width: 72%;">
+        <div class="modal-content bd-0 tx-14">
+            <div class="modal-header pd-x-20">
+                <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Add a new shipping address</h6>
+                <p>Add a new shipping address where you want to receive your doors. You can select this address for future orders</p>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body pd-20"> 
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label class="form-control-label">Name:</label>
+                            <input required title="Complete this field." class="required RequiereLlenar form-control" type="text" minlength="5" maxlength="30" id="inName" name="inptName" placeholder="Enter name">
+                        </div>
+                    </div><!-- col-4 -->
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label class="form-control-label">Contact:</label>
+                            <input required title="Complete this field." class="required RequiereLlenar form-control" type="text" minlength="5" maxlength="30" id="inContact" name="inptName" placeholder="Enter name">
+                        </div>
+                    </div><!-- col-4 -->
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label class="form-control-label">Residence:</label>
+                            <input required title="Complete this field." class="required RequiereLlenar form-control" type="text" minlength="5" maxlength="30" id="inResidence" name="inptName" placeholder="Enter name">
+                        </div>
+                    </div><!-- col-4 -->
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label class="form-control-label">Address:</label>
+                            <input required title="Complete this field." class="required RequiereLlenar form-control" type="text" minlength="5" maxlength="30" id="inAddress" name="inptName" placeholder="Enter name">
+                        </div>
+                    </div><!-- col-4 -->
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label class="form-control-label">City:</label>
+                            <input required title="Complete this field." class="required RequiereLlenar form-control" type="text" minlength="5" maxlength="30" id="inCity" name="inptName" placeholder="Enter name">
+                        </div>
+                    </div><!-- col-4 -->
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label class="form-control-label">Street:</label>
+                            <input required title="Complete this field." class="required RequiereLlenar form-control" type="text" minlength="5" maxlength="30" id="inStreet" name="inptName" placeholder="Enter name">
+                        </div>
+                    </div><!-- col-4 -->
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label class="form-control-label">Zip:</label>
+                            <input required title="Complete this field." class="required RequiereLlenar form-control" type="text" minlength="5" maxlength="30" id="inZipCode" name="inptName" placeholder="Enter name">
+                        </div>
+                    </div><!-- col-4 -->
+                </div>  
+            </div>
+            <div class="modal-footer justify-content-rigth">
+                <button name="confirmButton" id="btnSaveShip" class="btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Save</button>
+                <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div id="modalInsert" class="modal fade effect-scale" aria-hidden="true" style="display: none;" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog" style="width: 65%!important;max-width: 100%" role="document">
         <div class="modal-content bd-0 rounded-0">
@@ -356,8 +448,8 @@
                             
                             <div class="pd-xs-x-15 pd-y-10">
                             <div style="display:flex">
-                                <h3 id="lblTitulo" class="tx-inverse  mg-b-5">Create a new door</h3>
-                                <a style="margin-left: 20px;" title="Click here to modify the door" href="#" id="btModify" class="btn btn-primary btn-icon">
+                                <h3 id="lblTitulo" class="tx-inverse  mg-b-5">Config Door</h3>
+                                <a style="margin-left: 20px;" title="Click here to change the configuration of your doors" href="#" id="btModify" class="btn btn-primary btn-icon">
                                 <div><i class="fa fa-edit"></i></div></a>
                                 </div>                                
                                 <p id="lblSubTitulo">Choose the the best door option that fit your needs.</p>
@@ -519,7 +611,9 @@
         var urlValidateSession = '@Url.Action("ValidateSession", "OrderSummary")';
         var urlGetOrderSumary = '@Url.Action("GetOrderSumary", "OrderSummary")';
         var urlGetLastDoor = '@Url.Action("GetLastDoor", "OrderSummary")';
-        var urlInsertDoorsxOrder = '@Url.Action("InsertDoorsxOrder", "ConfiDoor")';        
+        var urlInsertDoorsxOrder = '@Url.Action("InsertDoorsxOrder", "ConfiDoor")';
+        var urlGetAllShippingAddress = '@Url.Action("GetAllShippingAddressByUser", "OrderSummary")';
+        var urlInsertShipping = '@Url.Action("InsertShippingAddress", "OrderSummary")';
         
         try {
             var listDOOR = JSON.parse('@Html.Raw(ViewBag.ListDoorsxUser)');
@@ -561,7 +655,6 @@
 
 
 @Scripts.Render("~/Scripts/js/OrderSumm.js")
-@Scripts.Render("~/Scripts/js/envio.js")
 @Scripts.Render("~/Scripts/js/ConfigDoor.Index.js")
 @Scripts.Render("~/Scripts/js/OrderSummary.ConfigDoor.js")
 <script src="~/Content/lib/select2/js/select2.min.js"></script>
