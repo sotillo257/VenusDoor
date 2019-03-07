@@ -124,7 +124,7 @@ namespace DataAccess
                             Panel = new Panel() { Id = int.Parse(item["IdPanel"].ToString()), Description = item["DescripPanel"].ToString() },
                             PanelMaterial = new PanelMaterial() { Id = int.Parse(item["IdPanelMaterial"].ToString()), Description = item["DescripPanelMaterial"].ToString() },
                             DoorType = new DoorType() { Id = int.Parse(item["IdDoorType"].ToString()), Description = item["DescripDoorType"].ToString() },
-                            DoorOption = new DoorOption() { Id = int.Parse(item["IdDoorOption"].ToString()), Description = item["DescripDoorOption"].ToString() },
+                            DoorOption = new DoorOption() { Id = int.Parse(item["IdDoorOption"].ToString()) },
                             isOverlay = bool.Parse(item["isOverlay"].ToString()),
                             isFingerPull = bool.Parse(item["isFingerPull"].ToString()),
                         });

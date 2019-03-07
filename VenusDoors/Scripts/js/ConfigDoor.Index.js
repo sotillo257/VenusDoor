@@ -48,7 +48,15 @@
 	$("#bt-conf-log").on("click", function () {
 	    LlammarModal("MLogin", "Sign in to your account to process your order!", " ");
 	});
-
+    //AddDoor
+	$("#AddDoor").on('click', function () {
+	    if (ValidarCamposFront()) {
+	        InsertDoorsxOrder();
+	    } else {
+	        LlammarModal("Danger", "You must fill all the fields.", " ");
+	    }
+	    
+	});
 	$("#btnLogo").on('click', function () {
 	    $("#File1").trigger('click');
 	});
@@ -227,6 +235,59 @@ $(window).on('load', function () {
     $(".loader-page").css({ visibility: "hidden", opacity: "0" });
     $(".loader-page").css('z-index', 999999999999);
 });
+
+function ValidarCamposFront() {
+    var aux = true;
+
+    if ($('#cbDecimalsW').val() == 0) {
+        $('#cbDecimalsW').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#cbDecimalsW').removeClass("is-invalid");
+    }
+    if ($('#cbDecimalsH').val() == 0) {
+        $('#cbDecimalsH').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#cbDecimalsH').removeClass("is-invalid");
+    }
+
+    if ($('#iptWidth').val() == "") {
+        $('#iptWidth').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#iptWidth').removeClass("is-invalid");
+    }
+
+    if ($('#iptHeight').val() == "") {
+        $('#iptHeight').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#iptHeight').removeClass("is-invalid");
+    }
+
+    if ($('#iptQuantity').val() == "") {
+        $('#iptQuantity').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#iptQuantity').removeClass("is-invalid");
+    }
+
+    if ($('#cbPanel').val() == 0) {
+        $('#cbPanel').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#cbPanel').removeClass("is-invalid");
+    }
+
+    if ($('#cbDoorType').val() == 0) {
+        $('#cbDoorType').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#cbDoorType').removeClass("is-invalid");
+    }
+
+}
 
 function llenarComboPanel() {
 
@@ -616,7 +677,7 @@ function GetAllBottomRail() {
                     }
 
                 }
-                $("#cbBottomRail").empty().append(option);
+                $("#cbStileWidth").empty().append(option);
 
             }
             else {
@@ -646,7 +707,7 @@ function GetAllTopRail() {
                     }
 
                 }
-                $("#cbTopRail").empty().append(option);
+                $("#cbRailWidth").empty().append(option);
 
             }
             else {
@@ -675,7 +736,7 @@ function GetAllJoin() {
                         option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
                     }
                 }
-                $("#cbJoin").empty().append(option);
+                $("#cbDoorAssembly").empty().append(option);
 
             }
             else {
@@ -911,10 +972,7 @@ function GetAllDoorOption() {
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
                     if (data[i].Status.Id == 1) {
-                        radioButt += '<label style="margin-left: 8px;">';
-                        radioButt += '<input style="margin-right:5px" name="radioOption" type="radio"  data-id="' + data[i].Id + '"></input>' + data[i].Description + '';
-                        radioButt += '</label>';
-                        $("#DivDoorOption").html(radioButt);
+                        option += '<option value="' + allDoorOption[i].Id + '">' + allDoorOption[i].Description + '</option>';
                     }
                 }                
                 $("#cbDoorOpt").empty().append(option);
@@ -967,7 +1025,7 @@ function PrintDoorOverlay(pOverlay) {
 }
 
 
-
+var CodigoDoorxUser = 0;
 function InsertDoorsxUser() {
     var itemCost = parseFloat($("#iptCost").val());
     var DoorQuantity = $("#iptQuantity").val();
@@ -989,55 +1047,42 @@ function InsertDoorsxUser() {
         HingePositions = 2;
     }
     var datos =
-         {
-             
-             pDoorsxUser: {
-                 User: {Id: 1},
-                 Status: {Id: 1},
-                 Material: { Id: $("#cbMaterial").val() },                            
-                 DoorStyle: { Id: $("#cbDoorStyle").val() },                                                        
-                 TopRail: { Id: $("#cbRailWidth").val() },
-                 BottomRail: { Id: $("#cbStileWidth").val() },
-                 Preparation: { Id: 1 },
-                 Panel: { Id: $("#cbPanel").val() },
-                 PanelMaterial: { Id: $("#cbPanelMaterial").val() },
-                 IsOpeningMeasurement: ($("#cbIsOpeningMeasurement").val()==1)? false: true,
-                 Join: { Id: $("#cbDoorAssembly").val() },
-                 OutsideEdgeProfile: { Id: $("#cbOutsideEdgeProfile").val() },
-                 InsideEdgeProfile: { Id: $("#cbInsideEdgeProfile").val() },                            
-                 VerticalDivisions: { Id: $("#cbVerticalDivisions").val() },
-                 HorizontalDivisions: { Id: $("#cbHorizontalDivisions").val() },
-                 Width: parseFloat($("#iptWidth").val()),
-                 DecimalsWidth: { Id: $("#cbDecimalsW").val() },
-                 Height: parseFloat($("#iptHeight").val()),
-                 DecimalsHeight: { Id: $("#cbDecimalsH").val() },
-                 Quantity: DoorQuantity,
-                 ItemCost: itemCost,
-                 SubTotal: DoorSubTotal,
-                 Picture: $('#DoorPicture').attr('src'),
-                 ProfilePicture: $('#ProfilePicture').attr('src'),
-                 isDrill: drillingV,
-                 HingeDirection: { Id: HingeDirection },
-                 HingePositions: { Id: HingePositions },
-                 DoorType: { Id: $("#cbDoorType").val() },
-                 DoorOption: { Id: DoorOp },
-                 isOverlay: isOver,
-                 isFingerPull: ($("#cbFingerPull").val() == 1) ? false : true,
-             },
-                        
+         {    
              Ord:{
-                 SubTotal: OrdSubTotal,
-                 Tax: parseFloat(Taxes),
-                 Total: parseFloat(OrdTotal),
-             },
-
-             HingeP: {
-                 Position1: $("#HP1").val(),
-                 Position2: $("#HP2").val(),
-                 Position3: $("#HP3").val(),
-                 Position4: $("#HP4").val(),
-                 Position5: $("#HP5").val(),
-             },
+                   DoorxUser: {
+                     User: { Id: 0 },
+                     Status: { Id: 1 },
+                     Material: { Id: $("#cbMaterial").val() },
+                     DoorStyle: { Id: $("#cbDoorStyle").val() },
+                     TopRail: { Id: $("#cbRailWidth").val() },
+                     BottomRail: { Id: $("#cbStileWidth").val() },
+                     Preparation: { Id: 1 },
+                     Panel: { Id: $("#cbPanel").val() },
+                     PanelMaterial: { Id: $("#cbPanelMaterial").val() },
+                     IsOpeningMeasurement: ($("#cbIsOpeningMeasurement").val() == 1) ? false : true,
+                     Join: { Id: $("#cbDoorAssembly").val() },
+                     OutsideEdgeProfile: { Id: $("#cbOutsideEdgeProfile").val() },
+                     InsideEdgeProfile: { Id: $("#cbInsideEdgeProfile").val() },
+                     VerticalDivisions: { Id: $("#cbVerticalDivisions").val() },
+                     HorizontalDivisions: { Id: $("#cbHorizontalDivisions").val() },
+                     Width: parseFloat($("#iptWidth").val()),
+                     DecimalsWidth: { Id: $("#cbDecimalsW").val() },
+                     Height: parseFloat($("#iptHeight").val()),
+                     DecimalsHeight: { Id: $("#cbDecimalsH").val() },
+                     Quantity: DoorQuantity,
+                     ItemCost: itemCost,
+                     SubTotal: DoorSubTotal,
+                     Picture: '',
+                     ProfilePicture: '',
+                     isDrill: drillingV,
+                     HingeDirection: { Id: HingeDirection },
+                     HingePositions: { Id: HingePositions },
+                     DoorType: { Id: $("#cbDoorType").val() },
+                     DoorOption: { Id: 0 },
+                     isOverlay: isOver,
+                     isFingerPull: ($("#cbFingerPull").val() == 1) ? false : true,
+                 },
+             }
          };
                 $.ajax({
                     type: 'POST',
@@ -1048,11 +1093,11 @@ function InsertDoorsxUser() {
                     success: function (result) {
 
                         //Validar data para ver si mostrar error al guardar o exito al guardar
-                        if (result == true) {
+                        if (result != null) {
+                            CodigoDoorxUser = result.DoorxUser.Id;
                             $('#modalInsert').modal('hide');
                             $('#modalConfirmOrderSummary').modal('hide');
                             LlammarModal("ConfigM", "Successful door creation!", "Your door has been added successfully.");
-                            llenarTablaOrderSumary();
                             llenarheaderOrder();
                         } else {
                             $('#modalInsert').modal('hide');
@@ -1077,8 +1122,8 @@ function InsertDoorsxOrder() {
     var datos =
          {
 
-             pDoorsxOrder: {
-                 DoorsxUser: "Aqui Id DoorsxUser",
+             DoorxOrder: {
+                 DoorsxUser: CodigoDoorxUser,
                  Width: parseFloat($("#iptWidth").val()),
                  DecimalsWidth: { Id: $("#cbDecimalsW").val() },
                  Height: parseFloat($("#iptHeight").val()),
@@ -1757,7 +1802,7 @@ function llenarheaderOrder() {
         success: function (data) {
             var headerConfig = '';
             if (data.LastDoor != null) {                
-                headerConfig += '<div><h6>Door Style: <span>' + data.LastDoor.DoorStyle.Description + '</span></h6>';
+                headerConfig += '<h6>Door Style: <span>' + data.LastDoor.DoorStyle.Description + '</span></h6>';
                 headerConfig += '<h6 style="margin-left:15px">Material: <span>' + data.LastDoor.Material.Description + '</span></h6>';
                 headerConfig += '<h6 style="margin-left:15px">Panel Material: <span>' + data.LastDoor.PanelMaterial.Description + '</span></h6>';
                 if(data.LastDoor.isOverlay == false){

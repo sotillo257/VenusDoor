@@ -149,7 +149,7 @@
                 </select>
             </div>
             <div class="col-xs-1 col-md-1">
-                <button class="Cursor Details btn btn-success btn-icon" style="width: 37px;height: 37px; margin-top: 55px;" type="submit"><i class="fa fa-plus"></i></button>
+                <button class="btn btn-success btn-icon" id="AddDoor" style="width: 37px;height: 37px; margin-top: 55px;" type="submit"><i class="fa fa-plus"></i></button>
             </div>   <!-- form-group -->
 
             </div>
@@ -189,9 +189,7 @@
                     {
                         foreach (Model.DoorsxUser i in ViewBag.xUserDoors)
                         {
-                            decimal itemcost = (i.SubTotal / i.Quantity);
-                            
-                            <tr>
+                               <tr>
                                 <td><img style="width: 80px;" src="@i.Picture"></td>
                                 <td>@i.Quantity.ToString().Replace(',','.')</td>
                                 <td>@i.Width.ToString("N0")
@@ -526,8 +524,12 @@
         } catch (e) {
             var listDOOR = '';
         }
-
-        var doorDetail = JSON.parse('@Html.Raw(ViewBag.Door)');
+        try {
+            var doorDetail = JSON.parse('@Html.Raw(ViewBag.Door)');
+        } catch (e) {
+            var doorDetail = '';
+        }
+       
 
         $(function () {
             'use strict'
@@ -561,7 +563,6 @@
 
 
 @Scripts.Render("~/Scripts/js/OrderSumm.js")
-@Scripts.Render("~/Scripts/js/envio.js")
 @Scripts.Render("~/Scripts/js/ConfigDoor.Index.js")
 @Scripts.Render("~/Scripts/js/OrderSummary.ConfigDoor.js")
 <script src="~/Content/lib/select2/js/select2.min.js"></script>

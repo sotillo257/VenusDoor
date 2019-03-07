@@ -348,7 +348,7 @@ namespace VenusDoors.Controllers
         }
 
 
-        public ActionResult InsertDoorsxUser(DoorsxUser pDoorsxUser, HingePositions HingeP, Order Ord)
+        public ActionResult InsertDoorsxUser(Order Ord)
         {
             try
             {
@@ -360,8 +360,8 @@ namespace VenusDoors.Controllers
                 else
                 {
                     BusinessLogic.lnDoorsxUser ln = new BusinessLogic.lnDoorsxUser();
-
-                    return Json(ln.InsertarDoors(pDoorsxUser, HingeP, Ord, (int)Session["UserID"]), JsonRequestBehavior.AllowGet);
+                    Order ord = ln.CrearOrder(Ord, (int)Session["UserID"]);
+                    return Json(new { order = ord.Id, DoorxUser = ord.DoorxUser.Id }, JsonRequestBehavior.AllowGet);
                 }
 
             }

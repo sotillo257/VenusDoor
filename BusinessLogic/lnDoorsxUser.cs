@@ -433,6 +433,64 @@ namespace BusinessLogic
 
             return pDoorsxUser.HingePositions;
         }
+
+        public Order CrearOrder(Order pOrder, int pCodUsuario) {
+            try
+            {
+
+                lnOrder _LNOrder = new lnOrder();
+                Order item = _LNOrder.GetOrderByUser(pCodUsuario).Where(x => x.Status.Id == 4).FirstOrDefault();
+             
+                Order neworder = new Order()
+                {
+                    User = new Model.User() { Id = pCodUsuario },
+                    ShippingAddress = new Model.ShippingAddress() { Id = 1 },
+                    Status = new Model.Status() { Id = 4 },
+                    Type = new Model.Type() { Id = 1 },
+                    CreationDate = DateTime.Now,
+                    CreatorUser = pCodUsuario,
+                    ModificationDate = DateTime.Now,
+                    ModificationUser = pCodUsuario
+                };
+                if (item != null )
+                {
+                    neworder.Id = item.Id;
+                    _LNOrder.UpdateOrder(neworder);
+                }
+                else
+                {
+                    int IdOrder = _LNOrder.InsertOrder(neworder);
+                    neworder.Id = IdOrder;
+                }
+
+                DoorsxUser DU = GetAllDoorsxUser().Where(x => x.Order.Id == neworder.Id).FirstOrDefault();
+
+                pOrder.DoorxUser.CreatorUser = pCodUsuario;
+                pOrder.DoorxUser.ModificationUser = pCodUsuario;
+                pOrder.DoorxUser.CreationDate = DateTime.Now;
+                pOrder.DoorxUser.ModificationDate = DateTime.Now;
+                pOrder.DoorxUser.Order = neworder;
+                pOrder.DoorxUser.User.Id = pCodUsuario;
+
+                if (DU != null)
+                {
+                    pOrder.DoorxUser.Id = DU.Id;
+                    UpdateDoorsxUser(pOrder.DoorxUser);
+                }
+                else
+                {
+                    var updaOrDoor = InsertDoorsxUser(pOrder.DoorxUser);
+                    pOrder.DoorxUser.Id = updaOrDoor;
+                }
+                neworder.DoorxUser = pOrder.DoorxUser;
+                return neworder;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         public bool InsertarDoors(DoorsxUser pDoorsxUser, HingePositions HingeP, Order Ord, int CodUsuario)
         {
             try
