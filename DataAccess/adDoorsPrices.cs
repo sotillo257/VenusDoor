@@ -11,11 +11,11 @@ namespace DataAccess
 {
     public class adDoorsPrices : Connection
     {
-        public DoorsPrices GetDoorsPricesById(int Id)
+        public DoorsPrices GetDoorsPricesById(int Id, int IdDoorStyle, int IdMaterial, int IdRail)
         {
             DoorsPrices doorprice = new DoorsPrices();
-            string sql = @"[spGetDoorsPrices] '{0}' ";
-            sql = string.Format(sql, Id);
+            string sql = @"[spGetDoorsPrices] '{0}', '{1}','{2}', '{3}' ";
+            sql = string.Format(sql, Id, IdDoorStyle, IdMaterial, IdRail);
 
             try
             {

@@ -286,7 +286,7 @@ function ValidarCamposFront() {
     } else {
         $('#cbDoorType').removeClass("is-invalid");
     }
-
+    return aux;
 }
 
 function llenarComboPanel() {
@@ -1116,25 +1116,28 @@ function InsertDoorsxUser() {
 
 function InsertDoorsxOrder() {
     var itemCost = parseFloat($("#iptCost").val());
-    var DoorQuantity = $("#iptQuantity").val();
-    var DoorOp = $("#cbDoorOption").val();
+    var DoorQuantity = $("#CantidadFila").val();
+    var DoorOp = $("#cbDoorOpt").val();
 
     var datos =
          {
 
-             DoorxOrder: {
+             pDoorsxOrder: {
                  DoorsxUser: CodigoDoorxUser,
                  Width: parseFloat($("#iptWidth").val()),
                  DecimalsWidth: { Id: $("#cbDecimalsW").val() },
                  Height: parseFloat($("#iptHeight").val()),
                  DecimalsHeight: { Id: $("#cbDecimalsH").val() },
                  Quantity: DoorQuantity,
-                 ItemCost: itemCost,
-                 SubTotal: DoorSubTotal,
-                 Picture: $('#DoorPicture').attr('src'),
-                 ProfilePicture: $('#ProfilePicture').attr('src'),                
+                 ItemCost: 0,
+                 SubTotal: 0,
+                 Picture: '',
+                 ProfilePicture: '',
+                 Panel: { Id: $("#cbPanel").val() },
                  DoorType: { Id: $("#cbDoorType").val() },
-                 DoorOption: { Id: DoorOp }            
+                 DoorOption: { Id: DoorOp },
+                 User: { Id: 0 },
+                 Status : {Id: 1}
              }
          };
     $.ajax({
