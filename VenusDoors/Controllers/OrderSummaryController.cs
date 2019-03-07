@@ -743,7 +743,7 @@ namespace VenusDoors.Controllers
             try
             {
                 BusinessLogic.lnDoorsPrices _LN = new BusinessLogic.lnDoorsPrices();
-                return Json(_LN.GetDoorsPricesById(pId));
+                return Json(_LN.GetDoorsPricesById(pId,0,0,0));
             }
             catch
             {

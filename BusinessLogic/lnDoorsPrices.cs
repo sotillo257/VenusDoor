@@ -38,11 +38,11 @@ namespace BusinessLogic
         /// </summary>
         /// <param name="pId"></param>
         /// <returns></returns>
-        public DoorsPrices GetDoorsPricesById(int pId)
+        public DoorsPrices GetDoorsPricesById(int pId, int IdDoorStyle, int IdMaterial, int IdRail)
         {
             try
             {
-                return _AD.GetDoorsPricesById(pId);
+                return _AD.GetDoorsPricesById(pId, IdDoorStyle, IdMaterial, IdRail);
             }
             catch (Exception ex)
             {
