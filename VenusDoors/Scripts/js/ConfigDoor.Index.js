@@ -1750,25 +1750,31 @@ function llenarTablaOrderSumary() {
         async: false,
         contentType: "application/json; charset=utf-8",
         success: function (data) {
-            if (data.OrderSumary != null) {
-                listComp = data.OrderSumary;
+            if (data != null) {
+                listComp = data.Order;
                 var option = '';
-                for (var i = 0; i < data.OrderSumary.length; i++) {
-                    var itemcost = (parseFloat(data.OrderSumary[i].SubTotal) / parseFloat(data.OrderSumary[i].Quantity));
+                for (var i = 0; i < data.Order.DoorxUser.DoorsxOrder.length; i++) {
                     option += '<tr>';
-                    option += '<td><img style="width: 80px;" src="' + data.OrderSumary[i].Picture + '"></td>';
-                    option += '<td>' + data.OrderSumary[i].Quantity.toString().replace(',', '.') + '</td>';
-                    option += '<td>' + Math.trunc(data.OrderSumary[i].Width) + ' ' + data.OrderSumary[i].DecimalsWidth.Description + '</td>';
-                    option += '<td>' + Math.trunc(data.OrderSumary[i].Height) + ' ' + data.OrderSumary[i].DecimalsHeight.Description + '</td>';
-                    option += '<td>' + data.OrderSumary[i].DoorStyle.Description + '</td>';
-                    option += '<td>' + data.OrderSumary[i].Material.Description + '</td>';
-                    option += '<td>' + data.OrderSumary[i].Panel.Description + '</td>';
-                    option += '<td>' + data.OrderSumary[i].DoorOption.Description + '</td>';
-                    option += '<td><span>$</span>' + data.OrderSumary[i].ItemCost.toString().replace(',', '.') + '</td>';
-                    option += '<td><span>$</span>' + data.OrderSumary[i].SubTotal.toString().replace(',', '.') + '</td>';
-                    option += '<td id="tddelete" style="display: flex; padding-top: 35px;">';
-                    option += '  <button class="Cursor Details btn btn-primary btn-icon" data-toggle="modal" data-target="#modalInsert" data-id="' + data.OrderSumary[i].Id + '" style="width: 37px;height: 37px;" type="submit"><i class="fa fa-list"></i></button>';
-                    option += '<button class="Cursor btn btn-danger btn-icon btnn-dele" data-id="' + data.OrderSumary[i].Id + '" style="width: 37px;height: 37px; margin-left: 10px;" type="submit"><i class="fa fa-trash"></i></button>';
+                    option += '<td><img style="width: 80px;" src="' + data.Order.DoorxUser.DoorsxOrder[i].Picture + '"></td>';
+                    option += '<td>' + data.Order.DoorxUser.DoorsxOrder[i].Quantity.toString().replace(',', '.') + '</td>';
+                    option += '<td>' + Math.trunc(data.Order.DoorxUser.DoorsxOrder[i].Width); 
+                    if (data.Order.DoorxUser.DoorsxOrder[i].DecimalsWidth.Value != 0)
+                    {
+                        option +=' <span>'+data.Order.DoorxUser.DoorsxOrder[i].DecimalsWidth.Description+'</span>';
+                    }   
+                    option +='</td>';
+                    option += '<td>' + Math.trunc(data.Order.DoorxUser.DoorsxOrder[i].Height);
+                    if (data.Order.DoorxUser.DoorsxOrder[i].DecimalsHeight.Value != 0) {
+                        option += ' <span>' + data.Order.DoorxUser.DoorsxOrder[i].DecimalsHeight.Description + '</span>';
+                    }
+                    option += '</td>'; 
+                    option += '<td>' + data.Order.DoorxUser.DoorsxOrder[i].Panel.Description + '</td>';
+                    option += '<td>' + data.Order.DoorxUser.DoorsxOrder[i].DoorType.Description + '</td>';
+                    option += '<td>' + data.Order.DoorxUser.DoorsxOrder[i].DoorOption.Description + '</td>';
+                    option += '<td><span>$</span>' + data.Order.DoorxUser.DoorsxOrder[i].ItemCost.toString().replace(',', '.') + '</td>';
+                    option += '<td><span>$</span>' + data.Order.DoorxUser.DoorsxOrder[i].SubTotal.toString().replace(',', '.') + '</td>';
+                    option += '<td id="tddelete" style="display: flex; padding-top: 35px;">';                   
+                    option += '<button class="Cursor btn btn-danger btn-icon btnn-dele" data-id="' + data.Order.DoorxUser.DoorsxOrder[i].Id + '" style="width: 37px;height: 37px; margin-left: 10px;" type="submit"><i class="fa fa-trash"></i></button>';
                     option += '</td></tr>';                    
                 }
             } else {

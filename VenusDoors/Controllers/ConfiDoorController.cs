@@ -384,13 +384,15 @@ namespace VenusDoors.Controllers
                 {
                     BusinessLogic.lnDoorxOrder ln = new BusinessLogic.lnDoorxOrder();
                     pDoorsxOrder.User.Id = (int)Session["UserID"];
-                    return Json(ln.InsertDoorsxOrder(pDoorsxOrder), JsonRequestBehavior.AllowGet);
+                    ln.InsertDoorsxOrder(pDoorsxOrder);
+                   
+                    return Json(true, JsonRequestBehavior.AllowGet);
                 }
 
             }
             catch (Exception ex)
             {
-                return View("Error");
+                return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
 

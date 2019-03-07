@@ -59,7 +59,8 @@ namespace DataAccess
         public List<DoorxOrder> GetAllDoorxOrderByDoorxUser(int IdOrder)
         {
             List<DoorxOrder> doorxu = new List<DoorxOrder>();
-            string sql = @"[spGetAllDoorxOrderxDoorxUser] '{0}'";
+            string sql = @"[spGetAllDoorsxOrderDoorxUser] '{0}'";
+            sql = string.Format(sql, IdOrder);
             try
             {
                 DataSet ds = new DataSet();
@@ -71,7 +72,7 @@ namespace DataAccess
                         doorxu.Add(new DoorxOrder()
                         {
                             Id = int.Parse(item["Id"].ToString()),
-                            DoorxUser = new DoorsxUser() { Id = int.Parse(item["IdDoorsxUser"].ToString()) },
+                            DoorxUser = new DoorsxUser() { Id = int.Parse(item["IdDoorxUser"].ToString()) },
                             Width = decimal.Parse(item["Width"].ToString()),
                             DecimalsWidth = new Decimals() { Id = int.Parse(item["IdDecimalsWidth"].ToString()), Description = item["DescriptDW"].ToString(), Value = decimal.Parse(item["ValueDW"].ToString()) },
                             Height = decimal.Parse(item["Height"].ToString()),
