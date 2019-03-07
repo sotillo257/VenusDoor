@@ -138,5 +138,19 @@ namespace DataAccess
             }
         }
 
+        public void DeleteDoorsxOrder(int pId)
+        {
+            string sql = @"[spDeleteDoorsxOrder] '{0}'";
+            sql = string.Format(sql, pId);
+            try
+            {
+                _MB.EjecutarSQL(_CN, sql);
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
     }
 }
