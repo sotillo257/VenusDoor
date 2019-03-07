@@ -21,11 +21,19 @@
 
     $("#btn-continue").on("click", function () {
         LlammarModal("ConfirmOrdenSummary", "Confirm", "Do you want to process your order?",
-        '<button onclick="ConfirmOrder();" class="Cursor btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Confirm order</button>' +
+        '<button onclick="SendOrder();" class="Cursor btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Confirm order</button>' +
         '<button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>');
     });
-
+    
 });
+
+function SendOrder() {
+    if (ValidarShipping()) {
+        ConfirmOrder();
+    } else {
+        LlammarModal("Danger", "Select the shipping address or add a new one.", " ");
+    }
+}
 
 function DltItem() {
     var datos =
@@ -68,7 +76,9 @@ function ConfirmOrder() {
         ord: {
             Id: $("#idorder").val(),
             Total: $("#idtotal").val(),
-            Status: { Id: $("#idstatus").val() }
+            Status: { Id: $("#idstatus").val() },
+            Observations: $("#inObservations").val(),
+            ShippingAddress: { Id: $("#cbShippingAddress").val()}
         },
 
     };
@@ -87,6 +97,7 @@ function ConfirmOrder() {
             } else {
                 LlammarModal("Danger", "An error occurred during the process.", " ");
                 $("#btn-continue").prop('disabled', false);
+                $('#modalConfirmOrderSummary').modal('hide');
             }
         },
         error: function (err) {
@@ -95,4 +106,16 @@ function ConfirmOrder() {
         },
 
     });
+}
+
+function ValidarShipping() {
+    var aux = true;
+    if ($('#cbShippingAddress').val() == 0) {
+        $('#cbShippingAddress').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#cbShippingAddress').removeClass("is-invalid");
+    }
+
+    return aux;
 }
