@@ -8,11 +8,11 @@
         $("#btConfAdd").show();
         $("#btModify").hide();
         
-        var imggg =
-                   ' <center> <img style="height: 100px;width: 235px;margin-top: 20px;" id="ProfilePicture" src="/Content/img/Profile/img11.png">' +
-                              '<img style="width: 230px;height: 230px;" id="DoorPicture" src="/Content/img/Doors/img11.png">' +
-                              '</center>';
-        $('#Picture').html(imggg);
+        //var imggg =
+        //           ' <center> <img style="height: 100px;width: 235px;margin-top: 20px;" id="ProfilePicture" src="/Content/img/Profile/img11.png">' +
+        //                      '<img style="width: 230px;height: 230px;" id="DoorPicture" src="/Content/img/Doors/img11.png">' +
+        //                      '</center>';
+        //$('#Picture').html(imggg);
 
         $("select").prop('disabled', false);
         $("#iptQuantity").prop('disabled', false);
@@ -44,6 +44,10 @@
         $(".select2-selection").css('background-color', '#fff!important');
     });
 
+    $("#btnSaveShip").on('click', function () {
+        AddNewShippingAddress();
+    });
+
     $(document).on('click', '.Details', function (event) {
         $("#btModify").show();
         $("#btConfAdd").hide();
@@ -69,11 +73,11 @@
                 $("#idHingeP").val(listDOOR[i].HingePositions.Id),
                 $('#iptWidth').val(listDOOR[i].Width);
                 $('#iptHeight').val(listDOOR[i].Height);
-                var HTMLImage =                       
-                   ' <center> <img style="height: 100px;width: 235px;margin-top: 20px;" id="ProfilePicture" src="' + listDOOR[i].ProfilePicture + '">' +
-                              '<img style="width: 230px;height: 230px;" id="DoorPicture" src="' + listDOOR[i].Picture + '">' +
-                              '</center>';
-                $('#Picture').html(HTMLImage);
+                //var HTMLImage =                       
+                //   ' <center> <img style="height: 100px;width: 235px;margin-top: 20px;" id="ProfilePicture" src="' + listDOOR[i].ProfilePicture + '">' +
+                //              '<img style="width: 230px;height: 230px;" id="DoorPicture" src="' + listDOOR[i].Picture + '">' +
+                //              '</center>';
+                //$('#Picture').html(HTMLImage);
                 $('#iptQuantity').val(listDOOR[i].Quantity);
                 $('#iptCost').val(listDOOR[i].ItemCost);
                 var fingerPull = listDOOR[i].isFingerPull;
@@ -143,9 +147,9 @@
         '<button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>');
     });
     if (doorDetail != '') {
-        SearchDoor(doorDetail);
+    SearchDoor(doorDetail);
     }
-    
+
 
     $(document).on('change', '#iptWidth', function () {
         if ($('#iptWidth').val() < 5) {
@@ -176,18 +180,18 @@
             $("#alertHeight").css('display', 'none');
         }
     });
+    GetAllShippingAddress();
 });
 
 function SearchDoor(data) {
     if (data != null) {
         $('#modalInsert').modal('show');
-        console.log(data);
-        var HTMLImage =
+       // var HTMLImage =
 
-       ' <center> <img style="height: 100px;width: 235px;margin-top: 20px;" id="ProfilePicture" src="' + data.ProfilePicture + '">' +
-                  '<img style="width: 230px;height: 230px;" id="DoorPicture" src="' + data.Picture + '">' +
-                  '</center>';
-        $('#Picture').html(HTMLImage);
+       //' <center> <img style="height: 100px;width: 235px;margin-top: 20px;" id="ProfilePicture" src="' + data.ProfilePicture + '">' +
+       //           '<img style="width: 230px;height: 230px;" id="DoorPicture" src="' + data.Picture + '">' +
+       //           '</center>';
+       // $('#Picture').html(HTMLImage);
         $("#lblTitulo").text("Create a new door");
         $("#lblSubTitulo").text("Choose the the best door option that fit your needs.");
         $("#btConfSave").hide();
@@ -280,8 +284,8 @@ function GuardarMod() {
 }
 
 function AgregarD() {
-    if (ValidarCamposVacios()) {       
-            InsertDoorsxUser();         
+    if (ValidarCamposVacios()) {
+            InsertDoorsxUser();
     } else {
         $('#modalConfirmOrderSummary').modal('hide');
         LlammarModal("Danger", "You must fill all the fields.", " ");
@@ -673,7 +677,7 @@ function ValidarCamposVacios() {
         $('#cbPreparation').removeClass("is-invalid");
     }
 
-  
+
     if ($('#cbPanelMaterial').val() == 0) {
         $('#cbPanelMaterial').addClass("is-invalid");
         aux = false;
@@ -723,7 +727,7 @@ function ValidarCamposVacios() {
         $('#cbHorizontalDivisions').removeClass("is-invalid");
     }
 
-    
+
     if ($('#cbisDrill').val() == 0) {
         $('#cbisDrill').addClass("is-invalid");
         aux = false;
@@ -766,5 +770,70 @@ function ValidadWH() {
         $('#iptHeight').removeClass("is-invalid");
     }
     return aux;
+}
+
+function GetAllShippingAddress() {
+    $.ajax({
+        url: urlGetAllShippingAddress,
+        cache: false,
+        type: 'POST',
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        success: function (data) {
+            if (data != null) {
+                var option = '';
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i].Status.Id == 1) {
+                        option += '<option value="' + data[i].Id + '">' + data[i].Name + '</option>';
+                    }
+                }
+                $("#cbShippingAddress").empty().append(option);
+            }
+            else {
+                LlammarModal("Danger", "Error obtaining Shipping Address", " ");
+            }
+        },
+        error: function (err) {
+            LlammarModal("Danger", "Error.", " ");
+        }
+    });
+}
+
+function AddNewShippingAddress() {
+
+    var datos =
+        {
+            ShippingData: {
+                Name: $('#inName').val(),
+                Contact: $('#inContact').val(),
+                Residence: $('#inResidence').val(),
+                Address: $('#inAddress').val(),
+                City: $('#inCity').val(),
+                St: $('#inStreet').val(),
+                ZipCode: $('#inZipCode').val(),
+                Status: { Id: 1 },                
+            },          
+        };
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(datos),
+        url: urlInsertShipping,
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+
+            //Validar data para ver si mostrar error al guardar o exito al guardar
+            if (result == true) {
+                LlammarModal("ConfigM", "Congratulations! Your user ");
+                GetAllShippingAddress();
+            } else {
+                LlammarModal("Danger", "An error occurred during the process.");
+            }
+        },
+        error: function (err) {
+            LlammarModal("Danger", "An error occurred during the process.", "Check your internet connection I tried again");
+        },
+
+    });
 }
 

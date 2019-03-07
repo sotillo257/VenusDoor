@@ -51,6 +51,19 @@ namespace BusinessLogic
 
         }
 
+        public List<ShippingAddress> GetShippingAddressByIdUser(int pIdUser)
+        {
+            try
+            {
+                return _AD.GetShippingAddressByIdUser(pIdUser);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+        }
+
         public int InsertShippingAddress(ShippingAddress pShippingAddress)
         {
             try

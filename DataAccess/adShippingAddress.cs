@@ -55,9 +55,9 @@ namespace DataAccess
 
         }
 
-        public ShippingAddress GetShippingAddressByIdUser(int IdUser)
+        public List<ShippingAddress> GetShippingAddressByIdUser(int IdUser)
         {
-            ShippingAddress ShippingAddress = new ShippingAddress();
+            List<ShippingAddress> ShippinAList = new List<ShippingAddress>();
             string sql = @"[spGetShippingAddressByIdUser] '{0}' ";
             sql = string.Format(sql, IdUser);
 
@@ -69,7 +69,7 @@ namespace DataAccess
                 {
                     foreach (DataRow item in ds.Tables["ShippingAddress"].Rows)
                     {
-                        ShippingAddress = new ShippingAddress()
+                        ShippinAList.Add(new ShippingAddress()
                         {
                             Id = int.Parse(item["Id"].ToString()),
                             Name = item["Name"].ToString(),
@@ -87,10 +87,10 @@ namespace DataAccess
                             CreatorUser = int.Parse(item["CreatorUser"].ToString()),
                             ModificationUser = int.Parse(item["ModificationUser"].ToString()),
 
-                        };
+                        });
                     }
                 }
-                return ShippingAddress;
+                return ShippinAList;
             }
             catch (Exception)
             {

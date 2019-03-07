@@ -136,7 +136,7 @@ function CreateNewUser() {
             },
 
             ShippingData: {
-                Name: $('#inptName').val(),
+                Name: $('#inptResidence').val(),
                 Contact: $('#inptTelephone').val(),
                 Residence: $('#inptResidence').val(),
                 Address: $('#inptDirec').val(),

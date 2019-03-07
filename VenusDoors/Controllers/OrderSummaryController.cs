@@ -21,10 +21,10 @@ namespace VenusDoors.Controllers
         {
             try
             {
-            ViewBag.OrderSummary = "active";
+                ViewBag.OrderSummary = "active";
                 BusinessLogic.lnDoors _LNd = new BusinessLogic.lnDoors();
-            if (Session["UserID"] == null)
-            {
+                if (Session["UserID"] == null)
+                {
                     if (Id > 0)
                     {
                         var Door = _LNd.GetDoorsById(Id.Value);
@@ -33,8 +33,8 @@ namespace VenusDoors.Controllers
                     }
                     return View();
                 }
-            else
-            {
+                else
+                {
                     if (Id > 0)
                     {
                         var Door = _LNd.GetDoorsById(Id.Value);
@@ -493,6 +493,45 @@ namespace VenusDoors.Controllers
                 return Json(true, JsonRequestBehavior.AllowGet);
             }
             else
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult GetAllShippingAddressByUser()
+        {
+            if (Session["UserID"] != null)
+            {
+                BusinessLogic.lnShippingAddress _LNSA = new BusinessLogic.lnShippingAddress();
+                int userID = (int)Session["UserID"];
+                return Json(_LNSA.GetShippingAddressByIdUser(userID));                
+            }
+            else
+            {
+                return View();
+            }              
+        }
+
+        [HttpPost]
+        public ActionResult InsertShippingAddress(ShippingAddress ShippingData)
+        {
+            try
+            {
+                int userID = (int)Session["UserID"];
+                BusinessLogic.lnShippingAddress _LNSA = new BusinessLogic.lnShippingAddress();
+                BusinessLogic.lnUser _LNUS = new BusinessLogic.lnUser();
+                var getUser = _LNUS.GetUserById(userID);
+                ShippingData.User = getUser;
+                ShippingData.CreatorUser = userID;
+                ShippingData.ModificationUser = userID;
+                ShippingData.CreationDate = DateTime.Now;
+                ShippingData.ModificationDate = DateTime.Now;
+                ShippingData.LotBlock = "00000000";
+                var InsertNewSA = _LNSA.InsertShippingAddress(ShippingData);
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
             {
                 return Json(false, JsonRequestBehavior.AllowGet);
             }

@@ -55,7 +55,7 @@
 	    } else {
 	        LlammarModal("Danger", "You must fill all the fields.", " ");
 	    }
-	    
+
 	});
 	$("#btnLogo").on('click', function () {
 	    $("#File1").trigger('click');
@@ -1047,41 +1047,41 @@ function InsertDoorsxUser() {
         HingePositions = 2;
     }
     var datos =
-         {    
+         {
              Ord:{
                    DoorxUser: {
                      User: { Id: 0 },
                      Status: { Id: 1 },
-                     Material: { Id: $("#cbMaterial").val() },
-                     DoorStyle: { Id: $("#cbDoorStyle").val() },
-                     TopRail: { Id: $("#cbRailWidth").val() },
-                     BottomRail: { Id: $("#cbStileWidth").val() },
-                     Preparation: { Id: 1 },
-                     Panel: { Id: $("#cbPanel").val() },
-                     PanelMaterial: { Id: $("#cbPanelMaterial").val() },
+                 Material: { Id: $("#cbMaterial").val() },                            
+                 DoorStyle: { Id: $("#cbDoorStyle").val() },                                                        
+                 TopRail: { Id: $("#cbRailWidth").val() },
+                 BottomRail: { Id: $("#cbStileWidth").val() },
+                 Preparation: { Id: 1 },
+                 Panel: { Id: $("#cbPanel").val() },
+                 PanelMaterial: { Id: $("#cbPanelMaterial").val() },
                      IsOpeningMeasurement: ($("#cbIsOpeningMeasurement").val() == 1) ? false : true,
-                     Join: { Id: $("#cbDoorAssembly").val() },
-                     OutsideEdgeProfile: { Id: $("#cbOutsideEdgeProfile").val() },
-                     InsideEdgeProfile: { Id: $("#cbInsideEdgeProfile").val() },
-                     VerticalDivisions: { Id: $("#cbVerticalDivisions").val() },
-                     HorizontalDivisions: { Id: $("#cbHorizontalDivisions").val() },
-                     Width: parseFloat($("#iptWidth").val()),
-                     DecimalsWidth: { Id: $("#cbDecimalsW").val() },
-                     Height: parseFloat($("#iptHeight").val()),
-                     DecimalsHeight: { Id: $("#cbDecimalsH").val() },
-                     Quantity: DoorQuantity,
-                     ItemCost: itemCost,
-                     SubTotal: DoorSubTotal,
+                 Join: { Id: $("#cbDoorAssembly").val() },
+                 OutsideEdgeProfile: { Id: $("#cbOutsideEdgeProfile").val() },
+                 InsideEdgeProfile: { Id: $("#cbInsideEdgeProfile").val() },                            
+                 VerticalDivisions: { Id: $("#cbVerticalDivisions").val() },
+                 HorizontalDivisions: { Id: $("#cbHorizontalDivisions").val() },
+                 Width: parseFloat($("#iptWidth").val()),
+                 DecimalsWidth: { Id: $("#cbDecimalsW").val() },
+                 Height: parseFloat($("#iptHeight").val()),
+                 DecimalsHeight: { Id: $("#cbDecimalsH").val() },
+                 Quantity: DoorQuantity,
+                 ItemCost: itemCost,
+                 SubTotal: DoorSubTotal,
                      Picture: '',
                      ProfilePicture: '',
-                     isDrill: drillingV,
-                     HingeDirection: { Id: HingeDirection },
-                     HingePositions: { Id: HingePositions },
-                     DoorType: { Id: $("#cbDoorType").val() },
+                 isDrill: drillingV,
+                 HingeDirection: { Id: HingeDirection },
+                 HingePositions: { Id: HingePositions },
+                 DoorType: { Id: $("#cbDoorType").val() },
                      DoorOption: { Id: 0 },
-                     isOverlay: isOver,
-                     isFingerPull: ($("#cbFingerPull").val() == 1) ? false : true,
-                 },
+                 isOverlay: isOver,
+                 isFingerPull: ($("#cbFingerPull").val() == 1) ? false : true,
+             },
              }
          };
                 $.ajax({
