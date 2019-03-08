@@ -266,11 +266,11 @@ function ValidarCamposFront() {
         $('#iptHeight').removeClass("is-invalid");
     }
 
-    if ($('#iptQuantity').val() == "") {
-        $('#iptQuantity').addClass("is-invalid");
+    if ($('#CantidadFila').val() == "") {
+        $('#CantidadFila').addClass("is-invalid");
         aux = false;
     } else {
-        $('#iptQuantity').removeClass("is-invalid");
+        $('#CantidadFila').removeClass("is-invalid");
     }
 
     if ($('#cbPanel').val() == 0) {
@@ -1099,6 +1099,8 @@ function InsertDoorsxUser() {
                             $('#modalConfirmOrderSummary').modal('hide');
                             LlammarModal("ConfigM", "Successful door creation!", "Your door has been added successfully.");
                             llenarheaderOrder();
+                            var boton = '<button class="btn btn-success btn-icon Cursor" id="AddDoor" style="width: 37px;height: 37px; margin-top: 55px;" type="button"><i class="fa fa-plus"></i></button>';
+                            $("#btInsertDoorTable").html(boton);
                         } else {
                             $('#modalInsert').modal('hide');
                             $('#modalConfirmOrderSummary').modal('hide');
