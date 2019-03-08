@@ -1,25 +1,25 @@
 ﻿$(document).ready(function () {
 
-    $(".btnn-dele").on("click", function (e) {
+    $(document).on("click", ".btnn-dele", function (e) {
        // e.preventDefault();
         var id = $(this).parentsUntil('#id-table').find('.btnn-dele').attr('data-id');
         $('#modalDelete').modal('toggle');
         $('#deleteidhidden').val(id);
     });
 
-    $("#btnDelete").on("click", function () {
+    $(document).on("click", "#btnDelete", function () {
         DltItem();
     });
 
-    $("#button-cnt").on("click", function () {
+    $(document).on("click", "#button-cnt", function () {
         window.location.href = '/OrderStatus/Index';
     });
 
-    $("#btnupp").on('click', function () {
+    $(document).on('click', "#btnupp", function () {
         $("#File1").trigger('click');
     });
 
-    $("#btn-continue").on("click", function () {
+    $(document).on("click", "#btn-continue", function () {
         LlammarModal("ConfirmOrdenSummary", "Confirm", "Do you want to process your order?",
         '<button onclick="SendOrder();" class="Cursor btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Confirm order</button>' +
         '<button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>');

@@ -46,12 +46,13 @@ namespace BusinessLogic
                     pDoorsxOrder.ItemCost = result ;
                     pDoorsxOrder.SubTotal = result * pDoorsxOrder.Quantity;
                 }
-
                 pDoorsxOrder.DoorxUser = DoorUser;
                 pDoorsxOrder.CreationDate = DateTime.Now;
                 pDoorsxOrder.ModificationDate = DateTime.Now;
                 pDoorsxOrder.CreatorUser = pDoorsxOrder.User.Id;
                 pDoorsxOrder.ModificationUser = pDoorsxOrder.User.Id;
+                pDoorsxOrder.ProfilePicture = DU.BuscarProfilePicture(DoorUser.OutsideEdgeProfile.Id, DoorUser.InsideEdgeProfile.Id, pDoorsxOrder.Panel.Id);
+              //  pDoorsxOrder.Picture = DU.BuscarDoorPicture(DoorUser);
                int retorno = _AD.InsertDoorsxOrder(pDoorsxOrder);
                 item.SubTotal = item.SubTotal + pDoorsxOrder.SubTotal;
                 item.Tax = 0.0825m * item.SubTotal;
