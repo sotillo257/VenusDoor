@@ -792,7 +792,7 @@ function GetAllShippingAddress() {
         success: function (data) {
             if (data != null) {
                 allShippingAddress = data;
-                var option = '<option value="0">Select</option>';
+                var option = '<option value="0">No shipping</option>';
                 for (var i = 0; i < data.length; i++) {
                     if (data[i].Status.Id == 1) {
                         option += '<option value="' + data[i].Id + '">' + data[i].Name + '</option>';
@@ -811,7 +811,7 @@ function GetAllShippingAddress() {
 }
 
 function llenarComboShipping(pShipping) {
-    var option = '<option value="0">Select</option>';
+    var option = '<option value="0">No shipping</option>';
     for (var i = 0; i < allShippingAddress.length; i++) {
         if (allShippingAddress[i].Status.Id == 1) {
             option += '<option value="' + allShippingAddress[i].Id + '">' + allShippingAddress[i].Name + '</option>';
