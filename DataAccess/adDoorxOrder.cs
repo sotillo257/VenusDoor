@@ -103,6 +103,54 @@ namespace DataAccess
 
         }
 
+        public DoorxOrder GetDoorxOrderById(int Id)
+        {
+            DoorxOrder doorxu = new DoorxOrder();
+            string sql = @"[spGetDoorsxOrder] '{0}' ";
+            sql = string.Format(sql, Id);
+
+            try
+            {
+                DataSet ds = new DataSet();
+                ds = _MB.CreaDS(ds, "DoorsxOrder", sql, _CN);
+                if (ds.Tables["DoorsxOrder"].Rows.Count > 0)
+                {
+                    foreach (DataRow item in ds.Tables["DoorxOrder"].Rows)
+                    {
+                        doorxu = new DoorxOrder()
+                        {
+                            Id = int.Parse(item["Id"].ToString()),
+                            DoorxUser = new DoorsxUser() { Id = int.Parse(item["IdDoorsxUser"].ToString()) },
+                            Width = decimal.Parse(item["Width"].ToString()),
+                            DecimalsWidth = new Decimals() { Id = int.Parse(item["IdDecimalsWidth"].ToString()), Description = item["DescriptDW"].ToString(), Value = decimal.Parse(item["ValueDW"].ToString()) },
+                            Height = decimal.Parse(item["Height"].ToString()),
+                            DecimalsHeight = new Decimals() { Id = int.Parse(item["IdDecimalsHeight"].ToString()), Description = item["DescriptDH"].ToString(), Value = decimal.Parse(item["ValueDH"].ToString()) },
+                            Quantity = int.Parse(item["Quantity"].ToString()),
+                            ItemCost = decimal.Parse(item["ItemCost"].ToString()),
+                            SubTotal = decimal.Parse(item["SubTotal"].ToString()),
+                            User = new User() { Id = int.Parse(item["IdUser"].ToString()) },
+                            Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["DescripStatus"].ToString() },
+                            CreationDate = DateTime.Parse(item["CreationDate"].ToString()),
+                            ModificationDate = DateTime.Parse(item["ModificationDate"].ToString()),
+                            CreatorUser = int.Parse(item["CreatorUser"].ToString()),
+                            ModificationUser = int.Parse(item["ModificationUser"].ToString()),
+                            Picture = item["Picture"].ToString(),
+                            ProfilePicture = item["ProfilePicture"].ToString(),
+                            Panel = new Panel() { Id = int.Parse(item["IdPanel"].ToString()), Description = item["DescripPanel"].ToString() },
+                            DoorType = new DoorType() { Id = int.Parse(item["IdDoorType"].ToString()), Description = item["DescripDoorType"].ToString() },
+                            DoorOption = new DoorOption() { Id = int.Parse(item["IdDoorOption"].ToString()), Description = item["DescripDoorOption"].ToString() }
+                        };
+                    }
+                }
+                return doorxu;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
+
         public int InsertDoorsxOrder(DoorxOrder pDoorsxOrder)
         {
             decimal total = Convert.ToDecimal(pDoorsxOrder.ItemCost);

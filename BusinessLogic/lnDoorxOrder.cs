@@ -79,5 +79,33 @@ namespace BusinessLogic
 
         }
 
+        public DoorxOrder GetDoorsxOrderById(int pId)
+        {
+            try
+            {
+                return _AD.GetDoorxOrderById(pId);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+        }
+
+        public bool DeleteDoorsxOrder(int pId)
+        {
+            try
+            {
+                _AD.DeleteDoorsxOrder(pId);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+        }
+
     }
+
 }
