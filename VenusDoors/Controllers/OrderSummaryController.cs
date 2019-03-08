@@ -148,13 +148,12 @@ namespace VenusDoors.Controllers
             {
                 try
                 {
-                    BusinessLogic.lnDoorsxUser _LND = new BusinessLogic.lnDoorsxUser();
+                    BusinessLogic.lnDoorxOrder _LND = new BusinessLogic.lnDoorxOrder();
                     int userID = (int)Session["UserID"];
-                    int idU = userID;
                         BusinessLogic.lnOrder _LNO = new BusinessLogic.lnOrder();
                         Order upptOrd = _LNO.GetOrderById(orderid);
-                        var xDoor = _LND.GetDoorsxUserById(itemID);
-                        var delete = _LND.DeleteDoorsxUser(itemID);
+                        var xDoor = _LND.GetDoorsxOrderById(itemID);
+                        var delete = _LND.DeleteDoorsxOrder(itemID);
                         UpdateOrderExist(xDoor, upptOrd);
                         return Json(true, JsonRequestBehavior.AllowGet);
                     }
@@ -166,7 +165,7 @@ namespace VenusDoors.Controllers
         }
 
         [HttpPost]
-        public ActionResult UpdateOrderExist(DoorsxUser xDoor, Order upptOrd)
+        public ActionResult UpdateOrderExist(DoorxOrder xDoor, Order upptOrd)
         {
             if (Session["UserID"] == null)
             {
@@ -174,6 +173,8 @@ namespace VenusDoors.Controllers
             }
             else
             {
+                BusinessLogic.lnDoorxOrder _LNDoorx = new BusinessLogic.lnDoorxOrder();
+                BusinessLogic.lnDoorsxUser _LNDU = new BusinessLogic.lnDoorsxUser();
                 BusinessLogic.lnOrder _LNUPor = new BusinessLogic.lnOrder();
                 upptOrd.Quantity = upptOrd.Quantity - xDoor.Quantity;                
                 upptOrd.SubTotal = upptOrd.SubTotal - xDoor.SubTotal;
@@ -183,19 +184,21 @@ namespace VenusDoors.Controllers
                 decimal TotaltaxDoor = TaxRound + xDoor.SubTotal;
                 upptOrd.Total = upptOrd.Total - TotaltaxDoor;
                 upptOrd.ModificationDate = DateTime.Now;
-                BusinessLogic.lnDoorsxUser _LNDoorx = new BusinessLogic.lnDoorsxUser();
-                var searchDoors = _LNDoorx.GetAllDoorsxUser();
-                var DoorsByOrder = searchDoors.Where(x => x.Order.Id == upptOrd.Id).ToList();
-                ViewBag.DoorsxOrder = DoorsByOrder;
+                //var searchDoorsxUser = _LNDU.GetDoorsxUserById(upptOrd.DoorxUser.Id);
+                //var DoorsxOrderList = _LNDoorx.GetAllDoorxOrderByDoorxUser(upptOrd.DoorxUser.Id);
+                //ViewBag.DoorsxOrder = DoorsxOrderList;
 
-                if (ViewBag.DoorsxOrder == null || ViewBag.DoorsxOrder.Count == 0) 
-                {
-                    return Json(_LNUPor.DeleteOrder(upptOrd.Id));
-                }
-                else
-                {
-                    return Json(_LNUPor.UpdateOrder(upptOrd));
-                }
+                return Json(_LNUPor.UpdateOrder(upptOrd));
+
+                //if (ViewBag.DoorsxOrder == null || ViewBag.DoorsxOrder.Count == 0) 
+                //{
+                //    var Delete = _LNDU.DeleteDoorsxUser(upptOrd.DoorxUser.Id);
+                //    return Json(_LNUPor.DeleteOrder(upptOrd.Id));
+                //}
+                //else
+                //{
+                //    return Json(_LNUPor.UpdateOrder(upptOrd));
+                //}
             }
         }
 
