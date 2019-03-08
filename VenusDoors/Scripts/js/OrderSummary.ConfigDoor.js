@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
     $(".btBuild").on('click', function () {
-        $("#lblTitulo").text("Conig Door");
+        $("#lblTitulo").text("Config Door");
         $("#lblSubTitulo").text("Choose the the best door option that fit your needs.");
         $("#btConfSave").hide();
         $("#btxLeft").hide();
@@ -26,7 +26,7 @@
     });
 
     $("#btModify").on('click', function () {
-        $("#lblTitulo").text("Modifying the door");
+        $("#lblTitulo").text("Modifying the door options");
         $("#lblSubTitulo").text("After you make your changes remember to press \"Save\" to confirm your changes");
         $("#btConfSave").show();
         $("#btxLeft").show();
