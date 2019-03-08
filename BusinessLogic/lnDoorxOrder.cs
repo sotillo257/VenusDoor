@@ -52,7 +52,25 @@ namespace BusinessLogic
                 pDoorsxOrder.ModificationDate = DateTime.Now;
                 pDoorsxOrder.CreatorUser = pDoorsxOrder.User.Id;
                 pDoorsxOrder.ModificationUser = pDoorsxOrder.User.Id;
-                return _AD.InsertDoorsxOrder(pDoorsxOrder);
+               int retorno = _AD.InsertDoorsxOrder(pDoorsxOrder);
+                item.SubTotal = item.SubTotal + pDoorsxOrder.SubTotal;
+                item.Tax = 0.0825m * item.SubTotal;
+                item.Total = item.Tax + item.SubTotal;
+                _LNOrder.UpdateOrder(item);
+                return retorno;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+        }
+
+        public List<DoorxOrder> GetAllDoorxOrderByDoorxUser(int IdDoorUser)
+        {
+            try
+            {
+                return _AD.GetAllDoorxOrderByDoorxUser(IdDoorUser);
             }
             catch (Exception ex)
             {
@@ -89,4 +107,6 @@ namespace BusinessLogic
         }
 
     }
+
+}
 }

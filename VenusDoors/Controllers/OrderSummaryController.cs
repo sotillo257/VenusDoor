@@ -17,63 +17,89 @@ namespace VenusDoors.Controllers
         public IEnumerable<string> ConverExcel { get; private set; }
 
         // GET: OrderSummary
+        #region metodoComentado
+//             try
+//            {
+//                ViewBag.OrderSummary = "active";
+//                BusinessLogic.lnDoors _LNd = new BusinessLogic.lnDoors();
+//                if (Session["UserID"] == null)
+//                {
+//                    if (Id > 0)
+//                    {
+//                        var Door = _LNd.GetDoorsById(Id.Value);
+//        var serializar1 = new System.Web.Script.Serialization.JavaScriptSerializer();
+//        ViewBag.Door = serializar1.Serialize(Door);
+//                    }
+//                    return View();
+//}
+//                else
+//                {
+//                    if (Id > 0)
+//                    {
+//                        var Door = _LNd.GetDoorsById(Id.Value);
+//var serializar1 = new System.Web.Script.Serialization.JavaScriptSerializer();
+//ViewBag.Door = serializar1.Serialize(Door);
+//                    }
+//                BusinessLogic.lnOrder _LNOrder = new BusinessLogic.lnOrder();
+//int userID = (int)Session["UserID"];
+//int idU = userID;
+//var orderList = _LNOrder.GetOrderByUser(idU);
+//ViewBag.Listo = orderList.Where(x => x.Status.Id == 4).LastOrDefault();
+//Order item = ViewBag.Listo;
+//                if (item == null)
+//                {
+//                    return View();
+//                }
+//                else if (item.Status.Id == 4)
+//                {
+//                    BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
+//List<DoorsxUser> xDoorsU = _LN.GetAllDoorsxUser();
+//List<DoorsxUser> doorByOrder = xDoorsU.Where(x => x.Order.Id == item.Id).ToList();
+//ViewBag.xUserDoors = doorByOrder;
+//                    var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+//ViewBag.ListDoorsxUser = serializar.Serialize(doorByOrder);
+//                        DoorsxUser LastDoor = doorByOrder.OrderByDescending(x => x.ModificationDate).FirstOrDefault();
+//ViewBag.LstD = LastDoor;
+                        
+//                   return View();
+//                }
+//                else
+//                {
+//                    return View();
+//                }
+//                }
+//            }
+//            catch (Exception ex)
+//            {
+//                return View("Error");
+//            }    
+        #endregion
+
         public ActionResult Index(int? Id)
         {
             try
             {
                 ViewBag.OrderSummary = "active";
-                BusinessLogic.lnDoors _LNd = new BusinessLogic.lnDoors();
-                if (Session["UserID"] == null)
+                if (Session["UserID"] != null)
                 {
-                    if (Id > 0)
-                    {
-                        var Door = _LNd.GetDoorsById(Id.Value);
-                        var serializar1 = new System.Web.Script.Serialization.JavaScriptSerializer();
-                        ViewBag.Door = serializar1.Serialize(Door);
-                    }
-                    return View();
+                    BusinessLogic.lnDoorsxUser DU = new BusinessLogic.lnDoorsxUser();
+                    BusinessLogic.lnOrder _LNOrder = new BusinessLogic.lnOrder();
+                    BusinessLogic.lnDoorxOrder _LnDoorOrder = new BusinessLogic.lnDoorxOrder();
+                    Order item = _LNOrder.GetOrderByUser((int)Session["UserID"]).Where(x => x.Status.Id == 4).FirstOrDefault();
+                    item.DoorxUser = DU.GetAllDoorsxUser().Where(x => x.Order.Id == item.Id).FirstOrDefault();
+                    item.DoorxUser.DoorsxOrder = _LnDoorOrder.GetAllDoorxOrderByDoorxUser(item.DoorxUser.Id);
+                    ViewBag.Order = item;
+                    var serializar1 = new System.Web.Script.Serialization.JavaScriptSerializer();
+                    ViewBag.JsDoor = serializar1.Serialize(item);
                 }
-                else
-                {
-                    if (Id > 0)
-                    {
-                        var Door = _LNd.GetDoorsById(Id.Value);
-                        var serializar1 = new System.Web.Script.Serialization.JavaScriptSerializer();
-                        ViewBag.Door = serializar1.Serialize(Door);
-                    }
-                BusinessLogic.lnOrder _LNOrder = new BusinessLogic.lnOrder();
-                int userID = (int)Session["UserID"];
-                int idU = userID;
-                var orderList = _LNOrder.GetOrderByUser(idU);
-                    ViewBag.Listo = orderList.Where(x => x.Status.Id == 4).LastOrDefault();
-                Order item = ViewBag.Listo;
-                if (item == null)
-                {
-                    return View();
-                }
-                else if (item.Status.Id == 4)
-                {
-                    BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
-                    List<DoorsxUser> xDoorsU = _LN.GetAllDoorsxUser();
-                    List<DoorsxUser> doorByOrder = xDoorsU.Where(x => x.Order.Id == item.Id).ToList();
-                    ViewBag.xUserDoors = doorByOrder;
-                    var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-                    ViewBag.ListDoorsxUser = serializar.Serialize(doorByOrder);
-                        DoorsxUser LastDoor = doorByOrder.OrderByDescending(x => x.ModificationDate).FirstOrDefault();
-                        ViewBag.LstD = LastDoor;
-                        
-                   return View();
-                }
-                else
-                {
-                    return View();
-                }
-                }
+
+                return View();
             }
             catch (Exception ex)
             {
                 return View("Error");
-            }                       
+            }
+           
         }
 
         [HttpPost]
@@ -81,24 +107,16 @@ namespace VenusDoors.Controllers
         {
             try
                 {
+
+                BusinessLogic.lnDoorsxUser DU = new BusinessLogic.lnDoorsxUser();
                 BusinessLogic.lnOrder _LNOrder = new BusinessLogic.lnOrder();
-                var orderList = _LNOrder.GetOrderByUser((int)Session["UserID"]).Where(x => x.Status.Id == 4).LastOrDefault();
-                if (orderList == null)
-                {
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                }
-                else if (orderList.Status.Id == 4)
-                {
-                    BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
-                    List<DoorsxUser> xDoorsU = _LN.GetAllDoorsxUser();
-                    List<DoorsxUser> doorByOrder = xDoorsU.Where(x => x.Order.Id == orderList.Id).ToList();
-                    return Json(new { OrderSumary = doorByOrder, Order = orderList }, JsonRequestBehavior.AllowGet);
-                }
-                else
-                {
-                    return Json(null, JsonRequestBehavior.AllowGet);
-                }
+                BusinessLogic.lnDoorxOrder _LnDoorOrder = new BusinessLogic.lnDoorxOrder();
+                Order item = _LNOrder.GetOrderByUser((int)Session["UserID"]).Where(x => x.Status.Id == 4).FirstOrDefault();
+                item.DoorxUser = DU.GetAllDoorsxUser().Where(x => x.Order.Id == item.Id).FirstOrDefault();
+                item.DoorxUser.DoorsxOrder = _LnDoorOrder.GetAllDoorxOrderByDoorxUser(item.DoorxUser.Id);
                
+                return Json(new { Order = item }, JsonRequestBehavior.AllowGet);
+                             
                 }
                 catch
                 {

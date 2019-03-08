@@ -2,8 +2,8 @@
 @{
     ViewBag.Title = "Order Summary";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    Model.Order ord = ViewBag.Listo;
-    Model.DoorsxUser LastDoor = ViewBag.LstD;
+    Model.Order ord = ViewBag.Order;
+    Model.DoorsxUser LastDoor = ViewBag.Order.DoorxUser;
 }
 
 <style>
@@ -74,24 +74,12 @@
             }
             else
             {
-                if (ViewBag.xUserDoors == null)
-                {
-                    <div style="display: flex;justify-content: flex-end;width: 60%;">
-                        <button style="margin-right: 20px;" type="button" data-toggle="modal" data-target="#modalInsert" class="Cursor btBuild btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Create order</button>
-                        <div class="col-xs-4 col-md-4" style="">
-                            <button data-toggle="modal" data-target="#ModalUpload" class="Cursor btn btn-outline-success btn-block"><i class="fa fa-upload mg-r-10"></i> Massive Order</button>
-                        </div>
-                    </div>
-                }
-                else
-                {
                     <div style="display: flex;justify-content: flex-end;width: 60%;">
                         <button style="margin-right: 20px;" type="button" data-toggle="modal" data-target="#modalInsert" class="Cursor btBuild btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Config door</button>
                         <div class="col-xs-4 col-md-4" style="">
                             <button data-toggle="modal" data-target="#ModalUpload" class="Cursor btn btn-outline-success btn-block"><i class="fa fa-upload mg-r-10"></i> Massive Order</button>
                         </div>
                     </div>
-                }
             }
         </div>
         @if (LastDoor != null)
@@ -179,7 +167,7 @@
                 }
                 else
                 {
-                    if (ViewBag.xUserDoors == null)
+                    if (ViewBag.Order == null)
                     {
                         <tr class="odd">
                             <td valign="top" colspan="10" class="dataTables_empty">No data available in table. Click <a href="" class="btBuild"  data-toggle="modal" data-target="#modalInsert">here</a> to create a new door</td>
@@ -187,7 +175,7 @@
                     }
                     else
                     {
-                        foreach (Model.DoorsxUser i in ViewBag.xUserDoors)
+                        foreach (Model.DoorxOrder i in LastDoor.DoorsxOrder)
                         {
                                <tr>
                                 <td><img style="width: 80px;" src="@i.Picture"></td>
