@@ -44,12 +44,11 @@
 	//    }
 	//});
 
-
-	$("#bt-conf-log").on("click", function () {
+	$(document).on('click', "#bt-conf-log", function () {
 	    LlammarModal("MLogin", "Sign in to your account to process your order!", " ");
 	});
     //AddDoor
-	$("#AddDoor").on('click', function () {
+	$(document).on('click', ".AddDoor", function () {
 	    if (ValidarCamposFront()) {
 	        InsertDoorsxOrder();
 	    } else {
@@ -57,7 +56,7 @@
 	    }
 
 	});
-	$("#btnLogo").on('click', function () {
+	$(document).on('click', "#btnLogo", function () {
 	    $("#File1").trigger('click');
 	});
 
@@ -1099,8 +1098,8 @@ function InsertDoorsxUser() {
                             $('#modalConfirmOrderSummary').modal('hide');
                             LlammarModal("ConfigM", "Successful door creation!", "Your door has been added successfully.");
                             llenarheaderOrder();
-                            var boton = '<button class="btn btn-success btn-icon Cursor" id="AddDoor" style="width: 37px;height: 37px; margin-top: 55px;" type="button"><i class="fa fa-plus"></i></button>';
-                            $("#btInsertDoorTable").html(boton);
+                            var boton = '<button class="btn btn-success btn-icon AddDoor" style="width: 37px;height: 37px; margin-top: 55px;" type="button"><i class="fa fa-plus"></i></button>';
+                            $("#btInsertDoorTable").empty().append(boton);
                         } else {
                             $('#modalInsert').modal('hide');
                             $('#modalConfirmOrderSummary').modal('hide');
