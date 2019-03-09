@@ -121,7 +121,8 @@
             processData: false,
             success: function (data) {
                 if (data == true) {
-                    LlammarModal("Succes", "Successful door creation!", "You can go to see your order and specify your purchase or, you can create another door.");
+                    LlammarModal("ConfigM", "Successful doors creation!", "Your doors has been added successfully.");
+                    llenarTablaOrderSumary();
                 } else {
                     LlammarModal("Danger", "An error occurred during the process.", "Check your internet connection I tried again");
                 }
@@ -140,7 +141,7 @@
     $(document).on('change', '#cbDoorStyle', function () {
         var bandera = true;
         if ($("#cbDoorStyle").val() == 1002) {
-          var panelType =  $("#cbPanel").val();
+            var panelType = $("#cbPanel").val();
           option = '<option value="0">Select</option>';
                  for (var i = 0; i < AllPanelType.length; i++) {
                      if (AllPanelType[i].Status.Id == 1 && AllPanelType[i].Id != 2) {
@@ -305,6 +306,76 @@ function llenarComboPanel() {
     }
     $("#cbPanel").empty().append(option);
     $("#cbPanel").val(panelType);
+}
+
+function changeDoorStyle() {
+    var bandera = true;
+    if ($("#cbDoorStyle").val() == 1002) {
+        var panelType = $("#cbPanel").val();
+        option = '<option value="0">Select</option>';
+        for (var i = 0; i < AllPanelType.length; i++) {
+            if (AllPanelType[i].Status.Id == 1 && AllPanelType[i].Id != 2) {
+                option += '<option value="' + AllPanelType[i].Id + '">' + AllPanelType[i].Description + '</option>';
+    }
+        }
+    $("#cbPanel").empty().append(option);
+
+        if (panelType != 2) {
+    $("#cbPanel").val(panelType);
+        } else {
+            $("#cbPanel").val(0);
+        }
+
+        llenarComboInsideAndOutside();
+    } else if ($("#cbDoorStyle").val() == 1003) {
+
+        var panelType = $("#cbPanel").val();
+        var option = '<option value="0">Select</option>';
+        for (var i = 0; i < AllPanelType.length; i++) {
+            if (AllPanelType[i].Status.Id == 1 && AllPanelType[i].Id == 2) {
+                option += '<option value="' + AllPanelType[i].Id + '">' + AllPanelType[i].Description + '</option>';
+}
+        }
+        $("#cbPanel").empty().append(option);
+        $("#cbPanel").val(2);
+    } else if ($("#cbDoorStyle").val() == 1004) {
+
+        llenarComboPanel();
+    } else if ($("#cbDoorStyle").val() == 1005) {
+        llenarComboPanel();
+    }
+    else if ($("#cbDoorStyle").val() == 1006) {
+        llenarComboPanel();
+    } else if ($("#cbDoorStyle").val() == 1007) {
+        llenarComboPanel();
+    } else if ($("#cbDoorStyle").val() == 1008) {
+        llenarComboPanel();
+    } else if ($("#cbDoorStyle").val() == 1009) {
+        llenarComboInsideAndOutside();
+        var option = '<option value="0">Select</option>';
+        for (var i = 0; i < AllPanelType.length; i++) {
+            if (AllPanelType[i].Status.Id == 1 && AllPanelType[i].Id == 5) {
+                option += '<option value="' + AllPanelType[i].Id + '">' + AllPanelType[i].Description + '</option>';
+            }
+        }
+        $("#cbPanel").empty().append(option);
+        $("#cbPanel").val(5);
+    } else if ($("#cbDoorStyle").val() == 1010) {
+        //llenarComboInsideAndOutside();
+        //var option = '<option value="slab">Slab</option>';
+        //$("#cbPanel").empty().append(option);
+        //$("#cbInsideEdgeProfile").empty().append(option);
+        //$("#cbOutsideEdgeProfile").empty().append(option);
+        //$("#cbDoorAssembly").empty().append(option);
+        //$('#DoorPicture').attr('src', "/Content/img/Doors/slab.png");
+        //$('#ProfilePicture').attr('src', "/Content/img/Profile/slab.png");
+        //bandera = false;
+    }
+    if (bandera) {
+        //changeDoorPicture();
+        //ChangeProfile();
+    }
+
 }
 
 function llenarComboPanelMaterial(pMaterial) {
@@ -794,7 +865,7 @@ function GetAllPanel() {
         success: function (data) {
             if (data != null) {
                 AllPanelType = data;
-                var option = '';
+                var option = '<option value="0">Select</option>';
                 for (var i = 0; i < data.length; i++) {
                     if (data[i].Status.Id == 1) {
                         option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
@@ -943,7 +1014,7 @@ function GetAllDoorType() {
         success: function (data) {
             if (data != null) {
                 allDoorType = data;
-                var option = '';
+                var option = '<option value="0">Select</option>';
                 for (var i = 0; i < data.length; i++) {
                     if (data[i].Status.Id == 1) {
                         option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
@@ -973,7 +1044,7 @@ function GetAllDoorOption() {
         success: function (data) {
             if (data != null) {
                 allDoorOption = data;
-                var option = '';
+                var option = '<option value="0">Select</option>';
                 for (var i = 0; i < data.length; i++) {
                     if (data[i].Status.Id == 1) {
                         option += '<option value="' + allDoorOption[i].Id + '">' + allDoorOption[i].Description + '</option>';
@@ -1105,6 +1176,7 @@ function InsertDoorsxUser() {
                             llenarheaderOrder();
                             var boton = '<button class="btn btn-success btn-icon AddDoor" style="width: 37px;height: 37px; margin-top: 55px;" type="button"><i class="fa fa-plus"></i></button>';
                             $("#btInsertDoorTable").empty().append(boton);
+                            changeDoorStyle();
                         } else {
                             $('#modalInsert').modal('hide');
                             $('#modalConfirmOrderSummary').modal('hide');
@@ -1172,6 +1244,18 @@ function InsertDoorsxOrder() {
         },
 
     });
+}
+
+function LimpiarCamposRapidos() {
+    changeDoorStyle();
+    llenarComboDoorType(0)
+    selectDoorOption(0);
+    llenarComboDecimalW(0);
+    llenarComboDecimalH(0);
+    $("#iptWidth").val("");
+    $("#iptHeight").val("");
+    $("#CantidadFila").val("");
+    
 }
 
 function UpdateDoorsxUser() {
