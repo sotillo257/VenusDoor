@@ -504,7 +504,7 @@ function llenarComboHingeDirection(pDirection) {
 
 var allDoorType = '';
 function llenarComboDoorType(pdType) {
-    var option = '';
+    var option = '<option value="0">Select</option>';
     for (var i = 0; i < allDoorType.length; i++) {
         if (allDoorType[i].Status.Id == 1) {
             option += '<option value="' + allDoorType[i].Id + '">' + allDoorType[i].Description + '</option>';
@@ -518,7 +518,7 @@ function llenarComboDoorType(pdType) {
 
 var allDoorOption= '';
 function selectDoorOption(pOption) {
-    var option = '';
+    var option = '<option value="0">Select</option>';
     for (var i = 0; i < allDoorOption.length; i++) {
         if (allDoorOption[i].Status.Id == 1) {
             option += '<option value="' + allDoorOption[i].Id + '">' + allDoorOption[i].Description + '</option>';
@@ -574,7 +574,7 @@ function checkIsOverlay(pOverlay) {
 
 var allDoorOption = '';
 function llenarComboDoorOption(pDoorOp) {
-    var option = '';
+    var option = '<option value="0">Select</option>';
     for (var i = 0; i < allDoorOption.length; i++) {
         if (allDoorOption[i].Status.Id == 1) {           
             option += '<option value="' + allDoorOption[i].Id + '">' + allDoorOption[i].Description + '</option>';
