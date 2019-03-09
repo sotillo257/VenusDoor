@@ -527,6 +527,7 @@ function llenarComboDoorType(pdType) {
 
 var allDoorOption= '';
 function selectDoorOption(pOption) {
+    var option = '';
     for (var i = 0; i < allDoorOption.length; i++) {
         if (allDoorOption[i].Status.Id == 1) {
             option += '<option value="' + allDoorOption[i].Id + '">' + allDoorOption[i].Description + '</option>';

@@ -112,47 +112,28 @@ namespace BusinessLogic
         public bool UploadExcel(IExcelDataReader reader, int CodUsuario) { 
             try
             {
-                List<DoorsxUser> door = new List<DoorsxUser>();
+                List<DoorxOrder> door = new List<DoorxOrder>();
                 reader.Read();
                 while (reader.Read())
                 {
                     if (reader[0].ToString() != "Select")
                     {
-                        door.Add(new DoorsxUser()
+                        door.Add(new DoorxOrder()
                         {
-                            DoorStyle = new DoorStyle() { Id = 0, Description = reader[0].ToString() },
-                            Material = new Material() { Id = 0, Description = reader[1].ToString() },
-                            DoorOption = new DoorOption() { Id = 0, Description = reader[2].ToString() },
-                            isOverlay = (reader[3].ToString() == "Insert Door Type") ? false : true,
-                            TopRail = new TopRail() { Id = 0, Description = reader[4].ToString().Replace(".", "") },
-                            BottomRail = new BottomRail() { Id = 0, Description = reader[5].ToString().Replace(".", "") },
-                            Panel = new Panel() { Id = 0, Description = reader[6].ToString() },
-                            PanelMaterial = new PanelMaterial() { Id = 0, Description = reader[7].ToString() },
-                            Preparation = new Preparation() { Id = 0, Description = reader[8].ToString() },
-                            Join = new Join() { Id = 0, Description = reader[9].ToString() },
-                            OutsideEdgeProfile = new OutsideEdgeProfile() { Id = 0, Description = reader[10].ToString() },
-                            InsideEdgeProfile = new InsideEdgeProfile() { Id = 0, Description = reader[11].ToString() },
-                            VerticalDivisions = new VerticalDivisions() { Id = 0, Quantity = int.Parse(reader[12].ToString()), },
-                            HorizontalDivisions = new HorizontalDivisions() { Id = 0, Quantity = int.Parse(reader[13].ToString()), },
-                            Width = decimal.Parse(reader[14].ToString()),
-                            DecimalsWidth = new Decimals() { Id = 0, Description = reader[15].ToString().Replace(".", "") },
-                            Height = decimal.Parse(reader[16].ToString()),
-                            DecimalsHeight = new Decimals() { Id = 0, Description = reader[17].ToString().Replace(".", "") },
-                            isDrill = (reader[18].ToString() == "Drill") ? true : false,
-                            HingeDirection = new HingeDirection() { Id = 0, Direction = reader[19].ToString(), },
-                            IsOpeningMeasurement = (reader[20].ToString() == "Opening") ? true : false,
-                            DoorType = new DoorType() { Id = 0, Description = reader[21].ToString(), },
-                            isFingerPull = (reader[22].ToString() == "Yes") ? true : false,
-                            Quantity = int.Parse(reader[23].ToString()),
+                            Panel = new Panel() { Id = 0, Description = reader[0].ToString() },
+                            DoorOption = new DoorOption() { Id = 0, Description = reader[1].ToString() },
+                            DoorType = new DoorType() { Id = 0, Description = reader[2].ToString(), },
+                            Width = decimal.Parse(reader[3].ToString()),
+                            DecimalsWidth = new Decimals() { Id = 0, Description = reader[4].ToString().Replace(".", "") },
+                            Height = decimal.Parse(reader[5].ToString()),
+                            DecimalsHeight = new Decimals() { Id = 0, Description = reader[6].ToString().Replace(".", "") },                           
+                            Quantity = int.Parse(reader[7].ToString()),
                             Status = new Status() { Id = 1 },
                             CreationDate = DateTime.Now,
                             ModificationDate = DateTime.Now,
                             CreatorUser = CodUsuario,
-                            ModificationUser = CodUsuario,
-                            Picture = "",
-                            ProfilePicture = "",
+                            ModificationUser = CodUsuario,                           
                             User = new User() { Id = CodUsuario }
-
                         });
                     }
                     else
@@ -164,19 +145,8 @@ namespace BusinessLogic
 
                 foreach (var item in door)
                 {
-                    BusinessLogic.lnDoorStyle _LN = new BusinessLogic.lnDoorStyle();
-                    var _listDoorStyle = _LN.GetAllDoorStyle().Where(x => x.Description.Trim() == item.DoorStyle.Description.Trim()).FirstOrDefault();
-                    if (_listDoorStyle != null)
-                    {
-                        item.DoorStyle.Id = _listDoorStyle.Id;
-                    }
+                  
 
-                    BusinessLogic.lnMaterial _LNMaterial = new BusinessLogic.lnMaterial();
-                    var _listMateriale = _LNMaterial.GetAllMaterial().Where(x => x.Description.Trim() == item.Material.Description.Trim()).FirstOrDefault();
-                    if (_listMateriale != null)
-                    {
-                        item.Material.Id = _listMateriale.Id;
-                    }
 
                     BusinessLogic.lnDoorOption _LNDoorOption = new BusinessLogic.lnDoorOption();
                     var _listDoorOption = _LNDoorOption.GetAllDoorOption().Where(x => x.Description.Trim() == item.DoorOption.Description.Trim()).FirstOrDefault();
@@ -184,72 +154,12 @@ namespace BusinessLogic
                     {
                         item.DoorOption.Id = _listDoorOption.Id;
                     }
-                    BusinessLogic.lnTopRail _LNTopRail = new BusinessLogic.lnTopRail();
-                    var _listTopRail = _LNTopRail.GetAllTopRail().Where(x => x.Description.Trim() == item.TopRail.Description.Trim().Replace(',', '.')).FirstOrDefault();
-                    if (_listTopRail != null)
-                    {
-                        item.TopRail.Id = _listTopRail.Id;
-                    }
-                    BusinessLogic.lnBottomRail _LNBottomRail = new BusinessLogic.lnBottomRail();
-                    var _listBottomRail = _LNBottomRail.GetAllBottomRail().Where(x => x.Description.Trim() == item.BottomRail.Description.Trim().Replace(',', '.')).FirstOrDefault();
-                    if (_listBottomRail != null)
-                    {
-                        item.BottomRail.Id = _listBottomRail.Id;
-                    }
                     BusinessLogic.lnPanel _LNPanel = new BusinessLogic.lnPanel();
                     var _listPanel = _LNPanel.GetAllPanel().Where(x => x.Description.Trim() == item.Panel.Description.Trim()).FirstOrDefault();
                     if (_listPanel != null)
                     {
                         item.Panel.Id = _listPanel.Id;
-                    }
-                    BusinessLogic.lnPanelMaterial _LNPanelMaterial = new BusinessLogic.lnPanelMaterial();
-                    var _listPanelMaterial = _LNPanelMaterial.GetAllPanelMaterial().Where(x => x.Description.Trim() == item.PanelMaterial.Description.Trim()).FirstOrDefault();
-                    if (_listPanelMaterial != null)
-                    {
-                        item.PanelMaterial.Id = _listPanelMaterial.Id;
-                    }
-                    BusinessLogic.lnPreparation _LNPreparation = new BusinessLogic.lnPreparation();
-                    var _listPreparation = _LNPreparation.GetAllPreparation().Where(x => x.Description.Trim() == item.Preparation.Description.Trim()).FirstOrDefault();
-                    if (_listPreparation != null)
-                    {
-                        item.Preparation.Id = _listPreparation.Id;
-                    }
-                    BusinessLogic.lnJoin _LNJoin = new BusinessLogic.lnJoin();
-                    var _listJoin = _LNJoin.GetAllJoin().Where(x => x.Description.Trim() == item.Join.Description.Trim()).FirstOrDefault();
-                    if (_listJoin != null)
-                    {
-                        item.Join.Id = _listJoin.Id;
-                    }
-                    BusinessLogic.lnOutsideEdgeProfile _LNOutsideEdgeProfile = new BusinessLogic.lnOutsideEdgeProfile();
-                    var _listOutsideEdgeProfile = _LNOutsideEdgeProfile.GetAllOutsideEdgeProfile().Where(x => x.Description.Trim() == item.OutsideEdgeProfile.Description.Trim()).FirstOrDefault();
-                    if (_listOutsideEdgeProfile != null)
-                    {
-                        item.OutsideEdgeProfile.Id = _listOutsideEdgeProfile.Id;
-                    }
-                    BusinessLogic.lnInsideEdgeProfile _LNInsideEdgeProfile = new BusinessLogic.lnInsideEdgeProfile();
-                    var _listInsideEdgeProfile = _LNInsideEdgeProfile.GetAllInsideEdgeProfile().Where(x => x.Description.Trim() == item.InsideEdgeProfile.Description.Trim()).FirstOrDefault();
-                    if (_listInsideEdgeProfile != null)
-                    {
-                        item.InsideEdgeProfile.Id = _listInsideEdgeProfile.Id;
-                    }
-                    BusinessLogic.lnVerticalDivisions _LNVerticalDivisions = new BusinessLogic.lnVerticalDivisions();
-                    var _listVerticalDivisions = _LNVerticalDivisions.GetAllVerticalDivisions().Where(x => x.Quantity == item.VerticalDivisions.Quantity).FirstOrDefault();
-                    if (_listVerticalDivisions != null)
-                    {
-                        item.VerticalDivisions.Id = _listVerticalDivisions.Id;
-                    }
-                    BusinessLogic.lnHorizontalDivisions _LNHorizontalDivisions = new BusinessLogic.lnHorizontalDivisions();
-                    var _listHorizontalDivisions = _LNHorizontalDivisions.GetAllHorizontalDivisions().Where(x => x.Quantity == item.VerticalDivisions.Quantity).FirstOrDefault();
-                    if (_listHorizontalDivisions != null)
-                    {
-                        item.HorizontalDivisions.Id = _listHorizontalDivisions.Id;
-                    }
-                    BusinessLogic.lnHingeDirection _LNHingeDirection = new BusinessLogic.lnHingeDirection();
-                    var _listHingeDirection = _LNHingeDirection.GetAllHingeDirection().Where(x => x.Direction == item.HingeDirection.Direction).FirstOrDefault();
-                    if (_listHingeDirection != null)
-                    {
-                        item.HingeDirection.Id = _listHingeDirection.Id;
-                    }
+                    }    
                     BusinessLogic.lnDoorType _LNDoorType = new BusinessLogic.lnDoorType();
                     var _listDoorType = _LNDoorType.GetAllDoorType().Where(x => x.Description.Trim() == item.DoorType.Description.Trim()).FirstOrDefault();
                     if (_listDoorType != null)
@@ -270,22 +180,20 @@ namespace BusinessLogic
 
                     }
 
-                    item.HingePositions = CalcularPosicionHing(item);
-                    item.ProfilePicture = BuscarProfilePicture(item.OutsideEdgeProfile.Id, item.InsideEdgeProfile.Id, item.Panel.Id);
-                    item.ItemCost = GetPricesDoor(item.Material, item.Panel, item.Height, item.Width, item.TopRail, item.BottomRail);
-                   // item.Picture = BuscarDoorPicture(item);
+                    //  item.HingePositions = CalcularPosicionHing(item);
+                    //item.ProfilePicture = BuscarProfilePicture(item.OutsideEdgeProfile.Id, item.InsideEdgeProfile.Id, item.Panel.Id);
+                    //  item.ItemCost = GetPricesDoor(item.Material, item.Panel, item.Height, item.Width, item.TopRail, item.BottomRail);
+                    // item.Picture = BuscarDoorPicture(item);
 
-                    Order newOrder = new Order();
-                    newOrder.SubTotal = item.ItemCost * item.Quantity;
-                    item.SubTotal = newOrder.SubTotal;
-                    decimal Tx = 0.0825m;
-                    newOrder.Tax = newOrder.SubTotal * Tx;
-                    newOrder.Total = newOrder.SubTotal + newOrder.Tax;
-                    newOrder.Observations = "Here you can add an observation about this order";
-                    newOrder.ShippingAddress.Id = 1;
-                    InsertarDoors(item, item.HingePositions, newOrder, CodUsuario);
+                    lnDoorxOrder DO = new lnDoorxOrder();
+                    DO.InsertDoorsxOrder(item);
 
                 }
+
+            
+                //CrearOrder(newOrder, CodUsuario); 
+               // InsertarDoors(door.FirstOrDefault(), door.FirstOrDefault().HingePositions, newOrder, CodUsuario);              
+               
                 reader.Close();
                 return true;
             }
