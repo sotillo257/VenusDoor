@@ -166,28 +166,30 @@ namespace VenusDoors.Controllers
         [HttpPost]
         public ActionResult DeleteItem(int itemID, int orderid)
         {
-            if(Session["UserID"] == null)
+           
+            try
             {
-                return View();
-            }
-            else
-            {
-                try
-                {
-                    BusinessLogic.lnDoorxOrder _LND = new BusinessLogic.lnDoorxOrder();
-                    int userID = (int)Session["UserID"];
-                        BusinessLogic.lnOrder _LNO = new BusinessLogic.lnOrder();
-                        Order upptOrd = _LNO.GetOrderById(orderid);
-                        var xDoor = _LND.GetDoorsxOrderById(itemID);
-                        var delete = _LND.DeleteDoorsxOrder(itemID);
-                        UpdateOrderExist(xDoor, upptOrd);
-                        return Json(true, JsonRequestBehavior.AllowGet);
-                    }
-                catch
+                if (Session["UserID"] == null)
                 {
                     return Json(false, JsonRequestBehavior.AllowGet);
                 }
-            }         
+                else
+                {
+                    BusinessLogic.lnDoorxOrder _LND = new BusinessLogic.lnDoorxOrder();
+                    int userID = (int)Session["UserID"];
+                    BusinessLogic.lnOrder _LNO = new BusinessLogic.lnOrder();
+                    Order upptOrd = _LNO.GetOrderById(orderid);
+                    var xDoor = _LND.GetDoorsxOrderById(itemID);
+                    var delete = _LND.DeleteDoorsxOrder(itemID);
+                    UpdateOrderExist(xDoor, upptOrd);
+                    return Json(true, JsonRequestBehavior.AllowGet);
+                }
+               
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
         }
 
         [HttpPost]

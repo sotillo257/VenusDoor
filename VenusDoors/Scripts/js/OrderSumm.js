@@ -63,8 +63,8 @@ function DltItem() {
     var datos =
                     {
                         itemID: $('#deleteidhidden').val(),
-                        orderid: $("#idorder").val(),                            
-                     }
+                        orderid: $("#idorder").val(),
+                    };
               
     $.ajax({
         type: 'POST',
