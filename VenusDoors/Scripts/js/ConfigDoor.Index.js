@@ -50,7 +50,12 @@
     //AddDoor
 	$(document).on('click', ".AddDoor", function () {
 	    if (ValidarCamposFront()) {
+	        if (ValidadWH()) {
 	        InsertDoorsxOrder();
+	        } else {
+	            $('#modalConfirmOrderSummary').modal('hide');
+	            LlammarModal("Danger", "The inches are not within our limits.", " ");
+	        }
 	    } else {
 	        LlammarModal("Danger", "You must fill all the fields.", " ");
 	    }
@@ -1751,7 +1756,7 @@ function llenarTablaOrderSumary() {
         async: false,
         contentType: "application/json; charset=utf-8",
         success: function (data) {
-            if (data != null) {
+            if (data != null && data.Order.DoorxUser.DoorsxOrder.length != 0) {
                 listComp = data.Order;
                 var option = '';
                 for (var i = 0; i < data.Order.DoorxUser.DoorsxOrder.length; i++) {
@@ -1779,16 +1784,20 @@ function llenarTablaOrderSumary() {
                     option += '</td></tr>';                    
                 }
             } else {
-                option += '<tr class="odd"><td valign="top" colspan="10" class="dataTables_empty">No data available in table. Click <a href="" class="btBuild"  data-toggle="modal" data-target="#modalInsert">here</a> to create a new door</td></tr>';
+                option += '<tr class="odd"><td valign="top" colspan="10" class="dataTables_empty">No data available in table.</td></tr>';
             }
             var result = '';
-            result +='<input hidden id="idorder" value="'+data.Order.Id+'" />';
-            result +='<input hidden id="idtotal" value="'+data.Order.Total+'" />';
-            result +='<input hidden id="idstatus" value="'+data.Order.Status.Id+'" />';            
-            result +='<h5 id="lblSubtotal" style="color:#7b7979">Sub-Total: <span>$</span>'+ data.Order.SubTotal.toString().replace(',', '.')+'</h5>';
-            result +='<h5 id="lblTax" style="color:#7b7979">Tax: <span>$</span>'+ data.Order.Tax.toString().replace(',', '.')+'</h5>';
-            result += '<h5 id="lblTotal" style="color:#000">Total Price: <span>$</span>' + data.Order.Total.toString().replace(',', '.') + '</h5>';            
+            if(data.Order.SubTotal <= 0 || data.Order.Total <= 0){
 
+            } else {
+                result += '<input hidden id="idorder" value="' + data.Order.Id + '" />';
+                result += '<input hidden id="idtotal" value="' + data.Order.Total + '" />';
+                result += '<input hidden id="idstatus" value="' + data.Order.Status.Id + '" />';
+                result += '<h5 id="lblSubtotal" style="color:#7b7979">Sub-Total: <span>$</span>' + data.Order.SubTotal.toString().replace(',', '.') + '</h5>';
+                result += '<h5 id="lblTax" style="color:#7b7979">Tax: <span>$</span>' + data.Order.Tax.toString().replace(',', '.') + '</h5>';
+                result += '<h5 id="lblTotal" style="color:#000">Total Price: <span>$</span>' + data.Order.Total.toString().replace(',', '.') + '</h5>';
+            }
+             
             $("#Resultados").html(result);
             $("#idOrderSummary > tbody").empty().append(option);
 

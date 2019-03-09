@@ -501,7 +501,10 @@ namespace VenusDoors.Controllers
                     BusinessLogic.lnOrder _LNO = new BusinessLogic.lnOrder();
                     Order CompleteOrder = _LNO.GetOrderById(ord.Id);
                     CompleteOrder.Observations = ord.Observations;
-                    CompleteOrder.ShippingAddress = ord.ShippingAddress;
+                    if(ord.ShippingAddress.Id != 0)
+                    {
+                        CompleteOrder.ShippingAddress = ord.ShippingAddress;
+                    }                   
                     //SendOrderToUser(CompleteOrder);
                     //SendOrderToManage(CompleteOrder);                    
                     CloseOrder(CompleteOrder);

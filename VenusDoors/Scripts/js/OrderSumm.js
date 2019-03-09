@@ -27,12 +27,36 @@
     
 });
 
+$(function () {
+    'use strict';
+
+    $('#idOrderSummary').DataTable({
+        ordering: false,
+        responsive: true,
+        language: {
+            searchPlaceholder: 'Search...',
+            sSearch: '',
+            lengthMenu: '_MENU_ items/page',
+        }
+    });
+
+    $('#datatable2').DataTable({
+        bLengthChange: false,
+        searching: false,
+        responsive: true
+    });
+
+    // Select2
+    $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
+
+});
+
 function SendOrder() {
-    if (ValidarShipping()) {
+    //if (ValidarShipping()) {
         ConfirmOrder();
-    } else {
-        LlammarModal("Danger", "Select the shipping address or add a new one.", " ");
-    }
+    //} else {
+    //    LlammarModal("Danger", "Select the shipping address or add a new one.", " ");
+    //}
 }
 
 function DltItem() {
@@ -108,14 +132,38 @@ function ConfirmOrder() {
     });
 }
 
-function ValidarShipping() {
-    var aux = true;
-    if ($('#cbShippingAddress').val() == 0) {
-        $('#cbShippingAddress').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#cbShippingAddress').removeClass("is-invalid");
-    }
+//function ValidarShipping() {
+//    var aux = true;
+//    if ($('#cbShippingAddress').val() == 0) {
+//        $('#cbShippingAddress').addClass("is-invalid");
+//        aux = false;
+//    } else {
+//        $('#cbShippingAddress').removeClass("is-invalid");
+//    }
 
-    return aux;
-}
+//    return aux;
+//}
+
+$(function () {
+    'use strict';
+
+    $('#datatable1').DataTable({
+        ordering: false,
+        responsive: true,
+        language: {
+            searchPlaceholder: 'Search...',
+            sSearch: '',
+            lengthMenu: '_MENU_ items/page',
+        }
+    });
+
+    $('#datatable2').DataTable({
+        bLengthChange: false,
+        searching: false,
+        responsive: true
+    });
+
+    // Select2
+    $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
+
+});
