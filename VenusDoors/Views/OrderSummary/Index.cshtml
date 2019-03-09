@@ -80,12 +80,25 @@
             }
             else
             {
-                <div style="display: flex;justify-content: flex-end;width: 60%;">
-                    <button style="margin-right: 20px;" type="button" data-toggle="modal" data-target="#modalInsert" class="Cursor btBuild btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Config door</button>
-                    <div class="col-xs-4 col-md-4" style="">
-                        <button data-toggle="modal" data-target="#ModalUpload" class="Cursor btn btn-outline-success btn-block"><i class="fa fa-upload mg-r-10"></i> Massive Order</button>
+                if (LastDoor == null)
+                {
+                    <div style="display: flex;justify-content: flex-end;width: 60%;">
+                        <button style="margin-right: 20px;" type="button" data-toggle="modal" data-target="#modalInsert" class="Cursor btBuild btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Config door</button>
+                        <div class="col-xs-4 col-md-4" style="">
+                            <button data-toggle="modal" data-target="#ModalUpload" class="Cursor btn btn-outline-success btn-block"><i class="fa fa-upload mg-r-10"></i> Massive Order</button>
+                        </div>
                     </div>
-                </div>
+                }
+                else
+                {
+                    <div style="display: flex;justify-content: flex-end;width: 60%;">
+                        <button style="margin-right: 20px;" type="button" data-toggle="modal" data-target="#modalInsert" data-id="@LastDoor.Id" class="Cursor ModDoorxUser btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Config door</button>
+                        <div class="col-xs-4 col-md-4" style="">
+                            <button data-toggle="modal" data-target="#ModalUpload" class="Cursor btn btn-outline-success btn-block"><i class="fa fa-upload mg-r-10"></i> Massive Order</button>
+                        </div>
+                    </div>
+                }
+
             }
         </div>
         @if (LastDoor != null)
@@ -409,17 +422,20 @@
                 </div>
                 <div id="tableFooter">
                     <center style="text-align: right; margin-top: 20px;">
-                        @if (ord == null)
+                        @if (Session["UserID"] != null)
                         {
-                            <button id="btn-continue" style="margin-left: 10px;" disabled type="submit" src="#" class="Cursor btn btn-primary" title="">Send order</button>
-                        }
-                        else if (ord.Status.Id == 4)
-                        {
-                            <button id="btn-continue" style="margin-left: 10px;" type="submit" src="#" class="Cursor btn btn-primary" title="">Send order</button>
+                            if (ViewBag.Order == null || LastDoor.DoorsxOrder.Count == 0)
+                            {
+                                <button style="margin-left: 10px;" disabled type="submit" src="#" class="Cursor btn-continue btn btn-primary" title="">Send order</button>
+                            }
+                            else
+                            {
+                                <button style="margin-left: 10px;" type="submit" src="#" class="Cursor btn-continue btn btn-primary" title="">Send order</button>
+                            }
                         }
                         else
                         {
-                            <button id="btn-continue" style="margin-left: 10px;" disabled type="submit" src="#" class="Cursor btn btn-primary" title="">Send order</button>
+                            <button style="margin-left: 10px;" disabled type="submit" src="#" class="Cursor btn-continue btn btn-primary" title="">Send order</button>
                         }
                     </center>
                 </div>
@@ -564,12 +580,12 @@
                                                         <div class="row" style="width: 100%;">
                                                             <div class="col-xs-4 col-md-3">
                                                                 <label for="Material" style="margin-top: 25px;">Wood Species: </label>
-                                                                <select style="width:100%" class="eventChange form-control select2" id="cbMaterial" data-placeholder=""></select>
+                                                                <select style="width:100%" class="eventChange selectModal form-control select2" id="cbMaterial" data-placeholder=""></select>
                                                             </div><!-- col -->
 
                                                             <div class="col-xs-4 col-md-3">
                                                                 <label for="DoorStyle" style="margin-top: 25px;">Door Style: </label>
-                                                                <select style="width:100%" class="eventChange form-control select2 Doors" id="cbDoorStyle" data-placeholder=""></select>
+                                                                <select style="width:100%" class="eventChange selectModal form-control select2 Doors" id="cbDoorStyle" data-placeholder=""></select>
                                                             </div><!-- col -->
 
                                                             <div class="col-xs-3 col-md-5">
@@ -581,37 +597,37 @@
 
                                                             <div class="col-xs-4 col-md-3">
                                                                 <label for="InsideEdgeProfile" style="margin-top: 25px;">Inside Edge Profile: </label>
-                                                                <select style="width:100%" class="form-control select2 Profile Doors" id="cbInsideEdgeProfile" data-placeholder=""></select>
+                                                                <select style="width:100%" class="form-control selectModal select2 Profile Doors" id="cbInsideEdgeProfile" data-placeholder=""></select>
                                                             </div><!-- col -->
 
                                                             <div class="col-xs-4 col-md-3">
                                                                 <label for="OutsideEdgeProfile" style="margin-top: 25px;">Outside Edge Profile: </label>
-                                                                <select style="width:100%" class="form-control select2 Profile Doors" id="cbOutsideEdgeProfile" data-placeholder=""></select>
+                                                                <select style="width:100%" class="form-control selectModal select2 Profile Doors" id="cbOutsideEdgeProfile" data-placeholder=""></select>
                                                             </div><!-- col -->
 
                                                             <div class="col-xs-4 col-md-3">
                                                                 <label for="BottomRail" style="margin-top: 25px;">Stile Width: </label>
-                                                                <select style="width:100%" class="eventChange form-control select2 Doors" id="cbStileWidth" data-placeholder=""></select>
+                                                                <select style="width:100%" class="eventChange selectModal form-control select2 Doors" id="cbStileWidth" data-placeholder=""></select>
                                                             </div><!-- col -->
 
                                                             <div class="col-xs-4 col-md-3">
                                                                 <label for="TopRail" style="margin-top: 25px;">Rail Width:</label>
-                                                                <select style="width:100%" class="eventChange form-control select2 Doors" id="cbRailWidth" data-placeholder=""></select>
+                                                                <select style="width:100%" class="eventChange selectModal form-control select2 Doors" id="cbRailWidth" data-placeholder=""></select>
                                                             </div><!-- col -->
 
                                                             <div class="col-xs-4 col-md-3">
                                                                 <label for="Join" style="margin-top: 25px;">Door Assembly: </label>
-                                                                <select style="width:100%" class="form-control select2 Doors" id="cbDoorAssembly" data-placeholder=""></select>
+                                                                <select style="width:100%" class="form-control selectModal select2 Doors" id="cbDoorAssembly" data-placeholder=""></select>
                                                             </div><!-- col -->
 
                                                             <div class="col-xs-4 col-md-3">
                                                                 <label for="PanelMaterial" style="margin-top: 25px;">Panel Material: </label>
-                                                                <select style="width:100%" class="form-control select2" id="cbPanelMaterial" data-placeholder=""></select>
+                                                                <select style="width:100%" class="form-control selectModal select2" id="cbPanelMaterial" data-placeholder=""></select>
                                                             </div><!-- col -->
 
                                                             <div class="col-xs-4 col-md-3">
                                                                 <label for="IsOpeningMeasurement" style="margin-top: 25px;">Opening for Glass: </label>
-                                                                <select style="width:100%" class="form-control select2" id="cbIsOpeningMeasurement" data-placeholder="">
+                                                                <select style="width:100%" class="form-control selectModal select2" id="cbIsOpeningMeasurement" data-placeholder="">
                                                                     <option value="1">No Opening </option>
                                                                     <option value="2">Opening</option>
                                                                 </select>
@@ -619,17 +635,17 @@
 
                                                             <div class="col-xs-4 col-md-3">
                                                                 <label for="VerticalDivisions" style="margin-top: 25px;">Vertical Divisions: </label>
-                                                                <select style="width:100%" class="form-control select2" id="cbVerticalDivisions" data-placeholder=""></select>
+                                                                <select style="width:100%" class="form-control selectModal select2" id="cbVerticalDivisions" data-placeholder=""></select>
                                                             </div><!-- col -->
 
                                                             <div class="col-xs-4 col-md-3">
                                                                 <label for="HorizontalDivisions" style="margin-top: 25px;">Horizontal Divisions: </label>
-                                                                <select style="width:100%" class="form-control select2" id="cbHorizontalDivisions" data-placeholder=""></select>
+                                                                <select style="width:100%" class="form-control selectModal select2" id="cbHorizontalDivisions" data-placeholder=""></select>
                                                             </div><!-- col -->
 
                                                             <div class="col-xs-4 col-md-3">
                                                                 <label for="isDrill" style="margin-top: 25px;">Hinge Drilling: </label>
-                                                                <select style="width:100%" class="form-control select2" id="cbisDrill" data-placeholder="">
+                                                                <select style="width:100%" class="form-control selectModal select2" id="cbisDrill" data-placeholder="">
                                                                     <option value="1">No Drill</option>
                                                                     <option value="2">Drill</option>
                                                                 </select>
@@ -637,7 +653,7 @@
 
                                                             <div id="HingeDirectionDiv" style="display:none" class="target col-xs-4 col-md-3">
                                                                 <label for="HingeDirection" style="margin-top: 25px;">Hinge Direction: </label>
-                                                                <select style="width:100%" value="true" class="select2 form-control" id="cbHingeDirection" data-placeholder=""></select>
+                                                                <select style="width:100%" value="true" class="select2 selectModal form-control" id="cbHingeDirection" data-placeholder=""></select>
                                                             </div><!-- col -->
 
                                                             <div id="HingePositionsDiv" style="display:none" class="target col-xs-4 col-md-3">
@@ -648,7 +664,7 @@
 
                                                             <div class="col-xs-3 col-md-3">
                                                                 <label for="FingerPull" style="margin-top: 25px;">Finger Pull: </label>
-                                                                <select style="width:100%" class="form-control select2" id="cbFingerPull">
+                                                                <select style="width:100%" class="form-control selectModal select2" id="cbFingerPull">
                                                                     <option value="1">No</option>
                                                                     <option value="2">Yes</option>
                                                                 </select>
@@ -718,7 +734,7 @@
                 var urlInsertShipping = '@Url.Action("InsertShippingAddress", "OrderSummary")';
 
                 try {
-                    var listDOOR = JSON.parse('@Html.Raw(ViewBag.ListDoorsxUser)');
+                    var listDOOR = JSON.parse('@Html.Raw(ViewBag.JsDoor)');
                 } catch (e) {
                     var listDOOR = '';
                 }

@@ -19,7 +19,7 @@
         $("#File1").trigger('click');
     });
 
-    $(document).on("click", "#btn-continue", function () {
+    $(document).on("click", ".btn-continue", function () {
         LlammarModal("ConfirmOrdenSummary", "Confirm", "Do you want to process your order?",
         '<button onclick="SendOrder();" class="Cursor btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Confirm order</button>' +
         '<button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>');

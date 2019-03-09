@@ -1843,6 +1843,7 @@ function llenarTablaOrderSumary() {
         success: function (data) {
             if (data != null && data.Order.DoorxUser.DoorsxOrder.length != 0) {
                 listComp = data.Order;
+                $(".btn-continue").prop('disabled', false);
                 var option = '';
                 for (var i = 0; i < data.Order.DoorxUser.DoorsxOrder.length; i++) {
                     option += '<tr>';
@@ -1869,6 +1870,7 @@ function llenarTablaOrderSumary() {
                     option += '</td></tr>';                    
                 }
             } else {
+                $(".btn-continue").prop('disabled', true);
                 option += '<tr class="odd"><td valign="top" colspan="10" class="dataTables_empty">No data available in table.</td></tr>';
             }
             var result = '';
@@ -1884,8 +1886,7 @@ function llenarTablaOrderSumary() {
             }
              
             $("#Resultados").html(result);
-            $("#idOrderSummary > tbody").empty().append(option);
-
+            $("#idOrderSummary > tbody").empty().append(option);            
         },
         error: function (err) {
             LlammarModal("Danger", "Error.", " ");

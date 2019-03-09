@@ -35,17 +35,13 @@
         $("#btModify").hide();
         HingeShow();
 
-        $("select").prop('disabled', false);
-        $("#iptQuantity").prop('disabled', false);
-        $("#iptWidth").prop('disabled', false);
-        $("#iptHeight").prop('disabled', false);
-        $("input[name=radioOption]").attr("disabled", false);
+              
         $("input[name=radioOver]").attr("disabled", false);
-        $(".select2-selection").css('background-color', '#fff!important');
+        $(".selectModal").prop('disabled', false);
+        $(".selectModal > .select2-selection").css('background-color', '#fff!important');
     });
 
-    $("#btnSaveShip").on('click', function () {
-        
+    $("#btnSaveShip").on('click', function () {       
         if (ValidarCamposModalShipping()) {           
             AddNewShippingAddress();       
         } else {
@@ -54,39 +50,31 @@
         }
     });
 
-    $(document).on('click', '.Details', function (event) {
+    $(document).on('click', '.ModDoorxUser', function (event) {
         $("#btModify").show();
         $("#btConfAdd").hide();
         $("#btConfSave").hide();
         $("#btxLeft").hide();
         $("#btXclose").show();
-        $("#lblTitulo").text("Details of the door");
-        $("#lblSubTitulo").text("You can change the configuration of this door by clicking on the modify button");
+        $("#lblTitulo").text("General config");
+        $("#lblSubTitulo").text("You can change the general settings by clicking on the Modify button.");
         
 
-        $("select").prop('disabled', true);
-        $("#iptQuantity").prop('disabled', true);
-        $("#iptWidth").prop('disabled', true);
-        $("#iptHeight").prop('disabled', true);        
-        $("input[name=radioOption]").attr("disabled", true);
+        $(".selectModal").prop('disabled', true);                     
         $("input[name=radioOver]").attr("disabled", true);
-        $(".select2-selection").css('background-color', '#eee!important');
+        $(".selectModal > .select2-selection").css('background-color', '#eee!important');
  
-        for (var i = 0; i < listDOOR.length; i++) {
-            if (listDOOR[i].Id == $(this).attr('data-id')) {
+        
+            if (listDOOR != null) {
                 
-                $('#idDoor').val(listDOOR[i].Id);
-                $("#idHingeP").val(listDOOR[i].HingePositions.Id),
-                $('#iptWidth').val(listDOOR[i].Width);
-                $('#iptHeight').val(listDOOR[i].Height);
+                $('#idDoor').val(listDOOR.Id);
+                $("#idHingeP").val(listDOOR.HingePositions.Id);
                 //var HTMLImage =                       
                 //   ' <center> <img style="height: 100px;width: 235px;margin-top: 20px;" id="ProfilePicture" src="' + listDOOR[i].ProfilePicture + '">' +
                 //              '<img style="width: 230px;height: 230px;" id="DoorPicture" src="' + listDOOR[i].Picture + '">' +
                 //              '</center>';
                 //$('#Picture').html(HTMLImage);
-                $('#iptQuantity').val(listDOOR[i].Quantity);
-                $('#iptCost').val(listDOOR[i].ItemCost);
-                var fingerPull = listDOOR[i].isFingerPull;
+                var fingerPull = listDOOR.isFingerPull;
                 if (fingerPull == false) {
                     fingerPull = 1;
                 } else {
@@ -94,7 +82,7 @@
                 }
                 llenarComboFinger(fingerPull);
 
-                var isDrill = listDOOR[i].isDrill;
+                var isDrill = listDOOR.isDrill;
                 if (isDrill == false) {
                     isDrill = 1;                    
                 } else {
@@ -104,7 +92,7 @@
                 HingeCalculate();
                 HingeShow();
 
-                var isOpen = listDOOR[i].IsOpeningMeasurement;
+                var isOpen = listDOOR.IsOpeningMeasurement;
                 if (isOpen == false) {
                     isOpen = 1;
                 } else {
@@ -112,33 +100,27 @@
                 }
                 llenarComboIsOpen(isOpen);
 
-                var isOver = listDOOR[i].isOverlay;
+                var isOver = listDOOR.isOverlay;
                 if(isOver == false){
                     isOver = 1;
                 }else{
                     isOver = 2;
                 }
                 checkIsOverlay(isOver);
-                //llenarComboDecimales(listDOOR[i].Decimales.Id);
-                llenarComboMaterial(listDOOR[i].Material.Id);
-                llenarComboDoorStyle(listDOOR[i].DoorStyle.Id);
-                llenarComboIEP(listDOOR[i].InsideEdgeProfile.Id);
-                llenarComboOEP(listDOOR[i].OutsideEdgeProfile.Id);
-                llenarComboStileWidth(listDOOR[i].BottomRail.Id);
-                llenarComboRailWidth(listDOOR[i].TopRail.Id);
-                llenarComboDoorAssembly(listDOOR[i].Join.Id);
-                llenarComboPanelStyle(listDOOR[i].Panel.Id);
-                llenarComboPanelMaterial(listDOOR[i].Material.Id);                
-                llenarComboVerticalDivisions(listDOOR[i].VerticalDivisions.Id);
-                llenarComboHorizontalDivisions(listDOOR[i].HorizontalDivisions.Id);                
-                llenarComboHingeDirection(listDOOR[i].HingeDirection.Id);
-                llenarComboDoorType(listDOOR[i].DoorType.Id);
-                llenarComboDecimalW(listDOOR[i].DecimalsWidth.Id);
-                llenarComboDecimalH(listDOOR[i].DecimalsHeight.Id);
-                llenarComboDoorOption(listDOOR[i].DoorOption.Id);
-                break;
+                //llenarComboDecimales(listDOOR.Decimales.Id);
+                llenarComboMaterial(listDOOR.Material.Id);
+                llenarComboDoorStyle(listDOOR.DoorStyle.Id);
+                llenarComboIEP(listDOOR.InsideEdgeProfile.Id);
+                llenarComboOEP(listDOOR.OutsideEdgeProfile.Id);
+                llenarComboStileWidth(listDOOR.BottomRail.Id);
+                llenarComboRailWidth(listDOOR.TopRail.Id);
+                llenarComboDoorAssembly(listDOOR.Join.Id);                
+                llenarComboPanelMaterial(listDOOR.Material.Id);                
+                llenarComboVerticalDivisions(listDOOR.VerticalDivisions.Id);
+                llenarComboHorizontalDivisions(listDOOR.HorizontalDivisions.Id);                
+                llenarComboHingeDirection(listDOOR.HingeDirection.Id);                                               
             }
-        }
+        
     });
 
     $("#btConfAdd").on("click", function () {
@@ -149,7 +131,7 @@
 
     $("#btConfSave").on("click", function () {
         LlammarModal("ConfirmOrdenSummary", "Confirm", "Do you want to save your new changes?",
-        '<button onclick="GuardarMod();" class="Cursor btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Save Changes</button>' +
+        '<button onclick="AgregarD();" class="Cursor btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Save Changes</button>' +
         '<button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>');
     });
     if (doorDetail != '') {
@@ -279,19 +261,19 @@ function SearchDoor(data) {
 
 
 
-function GuardarMod() {
-    if (ValidarCamposVacios()) {
-        //if (ValidadWH()) {
-            UpdateDoorsxUser();
-        //} else {
-        //    $('#modalConfirmOrderSummary').modal('hide');
-        //    LlammarModal("Danger", "The inches are not within our limits.", " ");
-        //} 
-    } else {
-        $('#modalConfirmOrderSummary').modal('hide');
-        LlammarModal("Danger", "You must fill all the fields.", " ");
-    }
-}
+//function GuardarMod() {
+//    if (ValidarCamposVacios()) {
+//        //if (ValidadWH()) {
+//            UpdateDoorsxUser();
+//        //} else {
+//        //    $('#modalConfirmOrderSummary').modal('hide');
+//        //    LlammarModal("Danger", "The inches are not within our limits.", " ");
+//        //} 
+//    } else {
+//        $('#modalConfirmOrderSummary').modal('hide');
+//        LlammarModal("Danger", "You must fill all the fields.", " ");
+//    }
+//}
 
 function AgregarD() {
     if (ValidarCamposVacios()) {

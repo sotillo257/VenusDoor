@@ -90,10 +90,11 @@ namespace VenusDoors.Controllers
                     if (item != null)
                     {
                         item.DoorxUser = DU.GetAllDoorsxUser().Where(x => x.Order.Id == item.Id).FirstOrDefault();
-                        item.DoorxUser.DoorsxOrder = _LnDoorOrder.GetAllDoorxOrderByDoorxUser(item.DoorxUser.Id);
+                        item.DoorxUser.DoorsxOrder = _LnDoorOrder.GetAllDoorxOrderByDoorxUser(item.DoorxUser.Id).OrderByDescending(x => x.ModificationDate).ToList();
+                        
                         ViewBag.Order = item;
                         var serializar1 = new System.Web.Script.Serialization.JavaScriptSerializer();
-                        ViewBag.JsDoor = serializar1.Serialize(item);
+                        ViewBag.JsDoor = serializar1.Serialize(item.DoorxUser);
                     }
                     else {
                         ViewBag.Order = null;
