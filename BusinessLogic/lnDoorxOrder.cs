@@ -57,6 +57,7 @@ namespace BusinessLogic
                 item.SubTotal = item.SubTotal + pDoorsxOrder.SubTotal;
                 item.Tax = 0.0825m * item.SubTotal;
                 item.Total = item.Tax + item.SubTotal;
+                item.Quantity = item.Quantity + pDoorsxOrder.Quantity;
                 _LNOrder.UpdateOrder(item);
                 return retorno;
             }
