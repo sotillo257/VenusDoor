@@ -366,126 +366,126 @@ namespace VenusDoors.Controllers
             }
         }
 
-        public void SendOrderToManage(Order CompleteOrder)
-        {
-            int userID = (int)Session["UserID"];
-            int idU = userID;
-            var date = DateTime.Now;
-            BusinessLogic.lnUser _LN = new BusinessLogic.lnUser();
-            User use = _LN.GetUserById(idU);
-            BusinessLogic.lnPerson _LNPR = new BusinessLogic.lnPerson();
-            Person per = _LNPR.GetPersonById(use.Person.Id);
+        //public void SendOrderToManage(Order CompleteOrder)
+        //{
+        //    int userID = (int)Session["UserID"];
+        //    var date = DateTime.Now;
+        //    BusinessLogic.lnUser _LN = new BusinessLogic.lnUser();
+        //    User use = _LN.GetUserById(userID);
+        //    BusinessLogic.lnPerson _LNPR = new BusinessLogic.lnPerson();
+        //    Person per = _LNPR.GetPersonById(use.Person.Id);
 
-            string NameUser = per.Name;
-            string Lastuser = per.Lastname;
-            string To = use.Email;
-            MailMessage mail = new MailMessage();
-            SmtpClient SmtpServer = new SmtpClient("smtp.ionos.com");
-            mail.From = new MailAddress("orders@venuscabinetdoors.com", "A new order has been received");
-            mail.To.Add(new MailAddress("orders@venuscabinetdoors.com"));
-            mail.Subject = "New order by "+ NameUser + " " + Lastuser;
+        //    string NameUser = per.Name;
+        //    string Lastuser = per.Lastname;
+        //    string To = use.Email;
+        //    MailMessage mail = new MailMessage();
+        //    SmtpClient SmtpServer = new SmtpClient("smtp.ionos.com");
+        //    mail.From = new MailAddress("orders@venuscabinetdoors.com", "A new order has been received");
+        //    mail.To.Add(new MailAddress("orders@venuscabinetdoors.com"));
+        //    mail.Subject = "New order by "+ NameUser + " " + Lastuser;
 
-            BusinessLogic.lnDoorsxUser _LNDU = new BusinessLogic.lnDoorsxUser();
-            List<DoorsxUser> allD = _LNDU.GetAllDoorsxUser();
-            List<DoorsxUser> puertas = allD.Where(x => x.Order.Id == CompleteOrder.Id).ToList();
-            ViewBag.TusPuertas = puertas;
-
-            string cuerpo = "<p>Please review the estimate below.Feel free to contact us if you have any questions."+
-                "<br>We look forward to working with you.</p>"+
-                "<p>Thanks for your business!<br><b>Venus Doors<b></p>"+
-                "<table width='400px' style='border: solid 1px;border-radius: 16px;padding: 15px;background: #e6e0c0; '>" +
-                "<thead>" +
-                "<tr style='text-align:center'>" +
-                    "<p>------ Order ref: #" + CompleteOrder.Id + " ------</p>" +
-                "</tr>" +
-                "<tr style='text-align:left'>" +
-                    "<p>Name : " + per.Name + " "+ per.Lastname +"</p>" +
-                "</tr>" +
-                "<tr style='text-align:left'>" +
-                    "<p>Phone number: " + per.Telephone + "</p>" +
-                "</tr>" +
-                "<tr style='text-align:left'>" +
-                    "<p>Email: " + use.Email + "</p>" +
-                "</tr>" +
-                "<tr style='text-align:left'>" +
-                    "<p>Address: " + per.Direction + "</p>" +
-                "</tr>" +
-                "<tr style='text-align:left'>" +
-                    "<p>Estimate date: " + date + "</p>" +
-                "</tr>" +
-                "<tr style='text-align:left'>" +
-                    "<p>Quantity of products: " + CompleteOrder.Quantity + "</p>" +
-                "</tr>" +
-                "<tr style='text-align:left'>" +
-                    "<p>SubTotal: $" + CompleteOrder.SubTotal + "</p>" +
-                "</tr>" +
-                "<tr style='text-align:left'>" +
-                    "<p>Tax: $" + CompleteOrder.Tax + "</p>" +
-                "</tr>" +
-                "<tr style='text-align:left'>" +
-                    "<p>Total: $" + CompleteOrder.Total + "</p>" +
-                "</tr>" +
-                "<tr style='text-align:center'>" +
-                    "<p>---------------------------</p>" +
-                "</tr>" +
-                "</thead>" +
-            "</table>";
-            cuerpo += "<table>"+
-                    "<thead>"+
-                        "<tr>"+
-                            "<th>Door Style</th>"+
-                            "<th>Material</th>"+
-                            "<th>Rails</th>"+
-                            "<th>Stiles Width</th>"+
-                            "<th>Grade</th>"+
-                            "<th>Join</th>"+
-                            "<th>Outside Profile</th>"+
-                            "<th>Inside Profile</th>"+
-                            "<th>Vertical Divisions</th>"+
-                            "<th>Horizontal Divisions</th>"+
-                            "<th>Hinge Direction</th>"+
-                            "<th>Drill</th>"+
-                            "<th>Width</th>"+
-                            "<th>Height</th>"+
-                            "<th>Opening Measurement</th>"+
-                            "<th>Quantity</th>"+
-                            "<th>Item Cost</th>"+
-                            "<th>SubTotal</th>"+
-                        "</tr>"+
-                    "</thead>"+
-            "<tbody>";
-            foreach (DoorsxUser item in ViewBag.TusPuertas)
-            {
-                cuerpo += "<tr>"+
-                    "<td>" + item.DoorStyle.Description + "</td>"+
-                    "<td>" + item.Material.Description + "</td>"+
-                    "<td>" + item.TopRail.Description + "</td>"+
-                    "<td>" + item.BottomRail.Description + "</td>"+
-                    "<td>" + item.Preparation.Description + "</td>"+
-                    "<td>" + item.Join.Description + "</td>"+
-                    "<td>" + item.OutsideEdgeProfile.Description + "</td>"+
-                    "<td>" + item.InsideEdgeProfile.Description + "</td>"+
-                    "<td>" + item.VerticalDivisions.Quantity + "</td>"+
-                    "<td>" + item.HorizontalDivisions.Quantity + "</td>"+
-                    "<td>" + item.HingeDirection.Direction + "</td>"+                    
-                    "<td>" + item.isDrill + "</td>"+
-                    "<td>" + item.Width + "</td>"+
-                    "<td>" + item.Height + "</td>"+
-                    "<td>" + item.IsOpeningMeasurement + "</td>"+
-                    "<td>" + item.Quantity + "</td>"+
-                    "<td>$" + item.ItemCost + "</td>"+
-                    "<td>$" + item.SubTotal + "</td>"+
-               "</tr>";
-            }
-            cuerpo += "</tbody></table>";
-            mail.Body = cuerpo;   
-            mail.IsBodyHtml = true;
-            SmtpServer.Port = 587;
-            SmtpServer.Credentials = new System.Net.NetworkCredential("orders@venuscabinetdoors.com", "venusCD2019*");
-            SmtpServer.EnableSsl = true;
-            SmtpServer.Send(mail);
+        //    BusinessLogic.lnDoorsxUser _LNDU = new BusinessLogic.lnDoorsxUser();
+        //    BusinessLogic.lnDoorxOrder _LNDO = new BusinessLogic.lnDoorxOrder();
+        //    var getDoorxu = _LNDU.GetDoorsxUserById(CompleteOrder.DoorxUser.Id);
+        //    List<DoorxOrder> ListaDoorsxO = _LNDO.GetAllDoorxOrderByDoorxUser(getDoorxu.Id);
             
-        }
+
+        //    string cuerpo = "<p>Please review the estimate below.Feel free to contact us if you have any questions."+
+        //        "<br>We look forward to working with you.</p>"+
+        //        "<p>Thanks for your business!<br><b>Venus Doors<b></p>"+
+        //        "<table width='400px' style='border: solid 1px;border-radius: 16px;padding: 15px;background: #e6e0c0; '>" +
+        //        "<thead>" +
+        //        "<tr style='text-align:center'>" +
+        //            "<p>------ Order ref: #" + CompleteOrder.Id + " ------</p>" +
+        //        "</tr>" +
+        //        "<tr style='text-align:left'>" +
+        //            "<p>Name : " + per.Name + " "+ per.Lastname +"</p>" +
+        //        "</tr>" +
+        //        "<tr style='text-align:left'>" +
+        //            "<p>Phone number: " + per.Telephone + "</p>" +
+        //        "</tr>" +
+        //        "<tr style='text-align:left'>" +
+        //            "<p>Email: " + use.Email + "</p>" +
+        //        "</tr>" +
+        //        "<tr style='text-align:left'>" +
+        //            "<p>Address: " + per.Direction + "</p>" +
+        //        "</tr>" +
+        //        "<tr style='text-align:left'>" +
+        //            "<p>Estimate date: " + date + "</p>" +
+        //        "</tr>" +
+        //        "<tr style='text-align:left'>" +
+        //            "<p>Quantity of products: " + CompleteOrder.Quantity + "</p>" +
+        //        "</tr>" +
+        //        "<tr style='text-align:left'>" +
+        //            "<p>SubTotal: $" + CompleteOrder.SubTotal + "</p>" +
+        //        "</tr>" +
+        //        "<tr style='text-align:left'>" +
+        //            "<p>Tax: $" + CompleteOrder.Tax + "</p>" +
+        //        "</tr>" +
+        //        "<tr style='text-align:left'>" +
+        //            "<p>Total: $" + CompleteOrder.Total + "</p>" +
+        //        "</tr>" +
+        //        "<tr style='text-align:center'>" +
+        //            "<p>---------------------------</p>" +
+        //        "</tr>" +
+        //        "</thead>" +
+        //    "</table>";
+        //    cuerpo += "<table>"+
+        //            "<thead>"+
+        //                "<tr>"+
+        //                    "<th>Door Style</th>"+
+        //                    "<th>Material</th>"+
+        //                    "<th>Rails</th>"+
+        //                    "<th>Stiles Width</th>"+
+        //                    "<th>Grade</th>"+
+        //                    "<th>Join</th>"+
+        //                    "<th>Outside Profile</th>"+
+        //                    "<th>Inside Profile</th>"+
+        //                    "<th>Vertical Divisions</th>"+
+        //                    "<th>Horizontal Divisions</th>"+
+        //                    "<th>Hinge Direction</th>"+
+        //                    "<th>Drill</th>"+
+        //                    "<th>Width</th>"+
+        //                    "<th>Height</th>"+
+        //                    "<th>Opening Measurement</th>"+
+        //                    "<th>Quantity</th>"+
+        //                    "<th>Item Cost</th>"+
+        //                    "<th>SubTotal</th>"+
+        //                "</tr>"+
+        //            "</thead>"+
+        //    "<tbody>";
+        //    foreach (DoorsxUser item in ViewBag.TusPuertas)
+        //    {
+        //        cuerpo += "<tr>"+
+        //            "<td>" + item.DoorStyle.Description + "</td>"+
+        //            "<td>" + item.Material.Description + "</td>"+
+        //            "<td>" + item.TopRail.Description + "</td>"+
+        //            "<td>" + item.BottomRail.Description + "</td>"+
+        //            "<td>" + item.Preparation.Description + "</td>"+
+        //            "<td>" + item.Join.Description + "</td>"+
+        //            "<td>" + item.OutsideEdgeProfile.Description + "</td>"+
+        //            "<td>" + item.InsideEdgeProfile.Description + "</td>"+
+        //            "<td>" + item.VerticalDivisions.Quantity + "</td>"+
+        //            "<td>" + item.HorizontalDivisions.Quantity + "</td>"+
+        //            "<td>" + item.HingeDirection.Direction + "</td>"+                    
+        //            "<td>" + item.isDrill + "</td>"+
+        //            "<td>" + item.Width + "</td>"+
+        //            "<td>" + item.Height + "</td>"+
+        //            "<td>" + item.IsOpeningMeasurement + "</td>"+
+        //            "<td>" + item.Quantity + "</td>"+
+        //            "<td>$" + item.ItemCost + "</td>"+
+        //            "<td>$" + item.SubTotal + "</td>"+
+        //       "</tr>";
+        //    }
+        //    cuerpo += "</tbody></table>";
+        //    mail.Body = cuerpo;   
+        //    mail.IsBodyHtml = true;
+        //    SmtpServer.Port = 587;
+        //    SmtpServer.Credentials = new System.Net.NetworkCredential("orders@venuscabinetdoors.com", "venusCD2019*");
+        //    SmtpServer.EnableSsl = true;
+        //    SmtpServer.Send(mail);
+            
+        //}
 
         [HttpPost]
         public ActionResult ConfirmOrder (Order ord)

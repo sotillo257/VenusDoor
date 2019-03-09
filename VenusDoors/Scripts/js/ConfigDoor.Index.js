@@ -1101,7 +1101,7 @@ function InsertDoorsxUser() {
                             CodigoDoorxUser = result.DoorxUser.Id;
                             $('#modalInsert').modal('hide');
                             $('#modalConfirmOrderSummary').modal('hide');
-                            LlammarModal("ConfigM", "Successful door creation!", "Your door has been added successfully.");
+                            LlammarModal("ConfigM", "General configuration of doors successfully saved!", "");
                             llenarheaderOrder();
                             var boton = '<button class="btn btn-success btn-icon AddDoor" style="width: 37px;height: 37px; margin-top: 55px;" type="button"><i class="fa fa-plus"></i></button>';
                             $("#btInsertDoorTable").empty().append(boton);
@@ -1156,8 +1156,9 @@ function InsertDoorsxOrder() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
+                LlammarModal("ConfigM", "General configuration of the doors successfully modified!", "");
                 llenarTablaOrderSumary();
-              //  llenarheaderOrder();
+                llenarheaderOrder();
             } else {
                 $('#modalInsert').modal('hide');
                 $('#modalConfirmOrderSummary').modal('hide');
@@ -1819,14 +1820,62 @@ function llenarheaderOrder() {
         success: function (data) {
             var headerConfig = '';
             if (data.LastDoor != null) {                
-                headerConfig += '<h6>Door Style: <span>' + data.LastDoor.DoorStyle.Description + '</span></h6>';
-                headerConfig += '<h6 style="margin-left:15px">Material: <span>' + data.LastDoor.Material.Description + '</span></h6>';
-                headerConfig += '<h6 style="margin-left:15px">Panel Material: <span>' + data.LastDoor.PanelMaterial.Description + '</span></h6>';
-                if(data.LastDoor.isOverlay == false){
-                    headerConfig += '<h6 style="margin-left:15px">Door Type: <span>Insert Door Type</span></h6></div>';
-                } else {
-                    headerConfig += '<h6 style="margin-left:15px">Door Type: <span>Overlay Door Type</span></h6></div>';
+                
+                headerConfig += '<div class="col-xs-4 col-md-3"><label id="Material" style="margin-top: 25px;">Wood Species: <span>'+ data.LastDoor.Material.Description +'</span></label></div>';
+                headerConfig += '<div class="col-xs-4 col-md-3"><label id="DoorStyle" style="margin-top: 25px;">Door Style: <span>'+ data.LastDoor.DoorStyle.Description +'</span></label></div>';
+                headerConfig += '<div class="col-xs-4 col-md-3">';
+                if (data.LastDoor.isOverlay == false)
+                {
+                    headerConfig += '<label for="Overlay" style="margin-top: 25px;">Door Place: <span>Insert Door Type</span></label>';
                 }
+                else
+                {
+                    headerConfig += '<label for="Overlay" style="margin-top: 25px;">Door Place: <span>Overlay Door Type</span></label>';
+                }
+                headerConfig += '</div>';
+                headerConfig += '<div class="col-xs-4 col-md-3"><label for="InsideProfile" style="margin-top: 25px;">Inside Edge Profile: <span>'+ data.LastDoor.InsideEdgeProfile.Description +'</span></label></div>';
+                headerConfig += '<div class="col-xs-4 col-md-3"><label for="OutsideProfile" style="margin-top: 25px;">Outside Edge Profile: <span>'+ data.LastDoor.OutsideEdgeProfile.Description +'</span></label></div>';
+                headerConfig += '<div class="col-xs-4 col-md-3"><label for="StileWidth" style="margin-top: 25px;">Stile Width: <span>'+ data.LastDoor.BottomRail.Description +'</span></label></div>';
+                headerConfig += '<div class="col-xs-4 col-md-3"><label for="RailWidth" style="margin-top: 25px;">Rail Width: <span>'+ data.LastDoor.TopRail.Description +'</span></label></div>';
+                headerConfig += '<div class="col-xs-4 col-md-3"><label for="DoorAssembly" style="margin-top: 25px;">Door Assembly: <span>'+ data.LastDoor.Join.Description +'</span></label></div>';
+                headerConfig += '<div class="col-xs-4 col-md-3"><label for="PanelMaterial" style="margin-top: 25px;">Panel Material: <span>'+ data.LastDoor.PanelMaterial.Description +'</span></label></div>';
+                headerConfig += '<div class="col-xs-4 col-md-3">';
+                if (data.LastDoor.IsOpeningMeasurement == false)
+                {
+                    headerConfig += '<label for="Openeing" style="margin-top: 25px;">Opening Measurement: <span>No Opening</span></label>';
+                }
+                else
+                {
+                    headerConfig += '<label for="Openeing" style="margin-top: 25px;">Opening Measurement: <span>Is Opening</span></label>';
+                }
+                headerConfig += '</div>';
+                headerConfig += '<div class="col-xs-4 col-md-3"><label for="VerticalD" style="margin-top: 25px;">Vertical Divisions: <span>'+ data.LastDoor.VerticalDivisions.Quantity +'</span></label></div>';
+                headerConfig += '<div class="col-xs-4 col-md-3"><label for="HorizontalD" style="margin-top: 25px;">Horizontal Divisions: <span>'+ data.LastDoor.HorizontalDivisions.Quantity +'</span></label></div>';
+                headerConfig += '<div class="col-xs-4 col-md-3">';
+                if (data.LastDoor.isDrill == false)
+                {
+                    headerConfig += '<label for="Drill" style="margin-top: 25px;">Hinge Drilling: <span>No Drill</span></label>';
+                }
+                else
+                {
+                    headerConfig += '<label for="Drill" style="margin-top: 25px;">Hinge Drilling: <span>Is Drill</span></label>';
+                }
+                headerConfig += '</div>';
+                if (data.LastDoor.isDrill == true)
+                {
+                    headerConfig += '<div class="col-xs-4 col-md-3"><label for="HingeDirection" style="margin-top: 25px;">Hinge Direction: <span>'+ data.LastDoor.HingeDirection.Direction +'</span></label></div>';
+                }
+                headerConfig += '<div class="col-xs-4 col-md-3">';
+                if (data.LastDoor.isFingerPull == false)
+                {
+                    headerConfig += '<label for="Finger" style="margin-top: 25px;">Finger Pull: <span>No</span></label>';
+                }
+                else
+                {
+                    headerConfig += '<label for="Finger" style="margin-top: 25px;">Finger Pull: <span>Yes</span></label>';
+                }
+                headerConfig += '</div>';
+
             } else {
                 headerConfig += '';
             }
