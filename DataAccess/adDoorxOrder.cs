@@ -115,12 +115,12 @@ namespace DataAccess
                 ds = _MB.CreaDS(ds, "DoorsxOrder", sql, _CN);
                 if (ds.Tables["DoorsxOrder"].Rows.Count > 0)
                 {
-                    foreach (DataRow item in ds.Tables["DoorxOrder"].Rows)
+                    foreach (DataRow item in ds.Tables["DoorsxOrder"].Rows)
                     {
                         doorxu = new DoorxOrder()
                         {
                             Id = int.Parse(item["Id"].ToString()),
-                            DoorxUser = new DoorsxUser() { Id = int.Parse(item["IdDoorsxUser"].ToString()) },
+                            DoorxUser = new DoorsxUser() { Id = int.Parse(item["IdDoorxUser"].ToString()) },
                             Width = decimal.Parse(item["Width"].ToString()),
                             DecimalsWidth = new Decimals() { Id = int.Parse(item["IdDecimalsWidth"].ToString()), Description = item["DescriptDW"].ToString(), Value = decimal.Parse(item["ValueDW"].ToString()) },
                             Height = decimal.Parse(item["Height"].ToString()),
@@ -144,7 +144,7 @@ namespace DataAccess
                 }
                 return doorxu;
             }
-            catch (Exception)
+            catch (Exception err)
             {
                 throw;
             }

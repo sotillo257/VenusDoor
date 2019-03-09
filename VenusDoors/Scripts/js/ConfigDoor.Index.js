@@ -1784,12 +1784,10 @@ function llenarTablaOrderSumary() {
             var result = '';
             result +='<input hidden id="idorder" value="'+data.Order.Id+'" />';
             result +='<input hidden id="idtotal" value="'+data.Order.Total+'" />';
-            result +='<input hidden id="idstatus" value="'+data.Order.Status.Id+'" />';
-            result +='<div class="col-md-7">';
+            result +='<input hidden id="idstatus" value="'+data.Order.Status.Id+'" />';            
             result +='<h5 id="lblSubtotal" style="color:#7b7979">Sub-Total: <span>$</span>'+ data.Order.SubTotal.toString().replace(',', '.')+'</h5>';
             result +='<h5 id="lblTax" style="color:#7b7979">Tax: <span>$</span>'+ data.Order.Tax.toString().replace(',', '.')+'</h5>';
-            result += '<h3 id="lblTotal" style="color:#000">Total Price: <span>$</span>' + data.Order.Total.toString().replace(',', '.') + '</h3>';
-            result += '</div>';
+            result += '<h5 id="lblTotal" style="color:#000">Total Price: <span>$</span>' + data.Order.Total.toString().replace(',', '.') + '</h5>';            
 
             $("#Resultados").html(result);
             $("#idOrderSummary > tbody").empty().append(option);

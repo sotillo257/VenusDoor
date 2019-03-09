@@ -56,6 +56,7 @@ function DltItem() {
                 //llenarheaderOrder();
                 $('#modalDelete').modal('hide');
                 LlammarModal("CongDelete", "Success! It has been removed correctly.", " ");
+                llenarTablaOrderSumary();
             } else {
                 $('#modalDelete').modal('hide');
                 LlammarModal("Danger", "Error! An error occurred while deleting..", " ");

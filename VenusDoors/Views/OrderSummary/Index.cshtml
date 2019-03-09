@@ -50,7 +50,7 @@
         vertical-align:middle!important;
     }
 
-    #HeaderOptions h6 span {
+    #HeaderOptions label span {
         color:#868ba1;
     }
     </style>
@@ -90,21 +90,102 @@
         </div>
         @if (LastDoor != null)
             {
-            <div id="HeaderOptions" style="color:#000;margin-top: 15px; display:flex">
-                <h6>Door Style: <span>@LastDoor.DoorStyle.Description</span></h6>
-                <h6 style="margin-left:15px">Material: <span>@LastDoor.Material.Description</span></h6>
-                <h6 style="margin-left:15px">Panel Material: <span>@LastDoor.PanelMaterial.Description</span></h6>  
-                @if (LastDoor.isOverlay == false)
+            <div id="HeaderOptions" style="color:#000;margin-top: 15px; border-bottom:#dee2e6 solid 1px;" class="row">
+                <div class="col-xs-4 col-md-3">
+                    <label for="Material" style="margin-top: 25px;">Wood Species: <span>@LastDoor.Material.Description</span></label>                                     
+                </div><!-- col -->  
+                   
+                <div class="col-xs-4 col-md-3">
+                    <label for="DoorStyle" style="margin-top: 25px;">Door Style: <span>@LastDoor.DoorStyle.Description</span></label>
+                </div><!-- col -->  
+                 
+                <div class="col-xs-4 col-md-3">
+                    @if (LastDoor.isOverlay == false)
+                    {
+                        <label for="Overlay" style="margin-top: 25px;">Door Place: <span>Insert Door Type</span></label>
+                    }
+                    else
+                    {
+                        <label for="Overlay" style="margin-top: 25px;">Door Place: <span>Overlay Door Type</span></label>                        
+                    }                   
+                </div><!-- col -->     
+                
+                <div class="col-xs-4 col-md-3">
+                    <label for="InsideProfile" style="margin-top: 25px;">Inside Edge Profile: <span>@LastDoor.InsideEdgeProfile.Description</span></label>
+                </div><!-- col -->      
+
+                <div class="col-xs-4 col-md-3">
+                    <label for="OutsideProfile" style="margin-top: 25px;">Outside Edge Profile: <span>@LastDoor.OutsideEdgeProfile.Description</span></label>
+                </div><!-- col --> 
+                
+                <div class="col-xs-4 col-md-3">
+                    <label for="StileWidth" style="margin-top: 25px;">Stile Width: <span>@LastDoor.BottomRail.Description</span></label>
+                </div><!-- col -->  
+
+                <div class="col-xs-4 col-md-3">
+                    <label for="RailWidth" style="margin-top: 25px;">Rail Width: <span>@LastDoor.TopRail.Description</span></label>
+                </div><!-- col -->
+                
+                <div class="col-xs-4 col-md-3">
+                    <label for="DoorAssembly" style="margin-top: 25px;">Door Assembly: <span>@LastDoor.Join.Description</span></label>
+                </div><!-- col -->   
+
+                <div class="col-xs-4 col-md-3">
+                    <label for="PanelMaterial" style="margin-top: 25px;">Panel Material: <span>@LastDoor.PanelMaterial.Description</span></label>
+                </div><!-- col -->  
+
+                <div class="col-xs-4 col-md-3">
+                    @if (LastDoor.IsOpeningMeasurement == false)
+                    {
+                        <label for="Openeing" style="margin-top: 25px;">Opening Measurement: <span>No Opening</span></label>
+                    }
+                    else
+                    {
+                        <label for="Openeing" style="margin-top: 25px;">Opening Measurement: <span>Is Opening</span></label>
+                    }
+                </div><!-- col -->   
+
+                <div class="col-xs-4 col-md-3">
+                    <label for="VerticalD" style="margin-top: 25px;">Vertical Divisions: <span>@LastDoor.VerticalDivisions.Quantity</span></label>
+                </div><!-- col -->  
+
+                <div class="col-xs-4 col-md-3">
+                    <label for="HorizontalD" style="margin-top: 25px;">Horizontal Divisions: <span>@LastDoor.HorizontalDivisions.Quantity</span></label>
+                </div><!-- col -->
+
+                <div class="col-xs-4 col-md-3">
+                    @if (LastDoor.isDrill == false)
+                    {
+                        <label for="Drill" style="margin-top: 25px;">Hinge Drilling: <span>No Drill</span></label>
+                    }
+                    else
+                    {
+                        <label for="Drill" style="margin-top: 25px;">Hinge Drilling: <span>Is Drill</span></label>
+                    }
+                </div><!-- col -->
+
+                @if (LastDoor.isDrill == true)
                 {
-                    <h6 style="margin-left:15px">Door Place: <span>Insert Door Type</span></h6>
+                    <div class="col-xs-4 col-md-3">
+                        <label for="HingeDirection" style="margin-top: 25px;">Hinge Direction: <span>@LastDoor.HingeDirection.Direction</span></label>
+                    </div><!-- col -->
                 }
-                else
-                {
-                    <h6 style="margin-left:15px">Door Place: <span>Overlay Door Type</span></h6>
-                }
+
+               
+                <div class="col-xs-4 col-md-3">
+                    @if (LastDoor.isFingerPull == false)
+                    {
+                        <label for="Finger" style="margin-top: 25px;">Finger Pull: <span>No</span></label>
+                    }
+                    else
+                    {
+                        <label for="Finger" style="margin-top: 25px;">Finger Pull: <span>Yes</span></label>
+                    }
+                </div><!-- col -->
+               
             </div>
         }
-        <div class="row" style="display:flex; width:100%">
+        <div class="row" style="display:flex; width:100%;border-bottom: #dee2e6 solid 1px; padding-bottom:20px">
             <div class="col-xs-1 col-md-1">
                 <label for="Material" style="margin-top: 25px;">Quantity: </label>
                 <input style="width:100%!important" name="SoloNumeros" required class="required RequiereLlenar form-control" type="number" maxlength="2" min="1" id="CantidadFila">
@@ -253,7 +334,7 @@
             </tbody>
         </table>
 
-        <div class="row" id="Resultados">
+        <div class="row">
             @if (Session["UserID"] == null)
             {
                 <div class="col-md-7">
@@ -270,12 +351,12 @@
                 }
                 else if (ord.Status.Id == 4)
                 {
-                    <div style="width:100%">
-                        <input hidden id="idorder" value="@ord.Id" />
-                        <input hidden id="idtotal" value="@ord.Total" />
-                        <input hidden id="idstatus" value="@ord.Status.Id" />
+                    <div style="width:100%">                        
                         <div class="col-md-12">
-                            <div style="display:flex;float:right">
+                            <div id="Resultados" style="text-align: right;">
+                                <input hidden id="idorder" value="@ord.Id" />
+                                <input hidden id="idtotal" value="@ord.Total" />
+                                <input hidden id="idstatus" value="@ord.Status.Id" />
                                 <h5 id="lblSubtotal" style="color:#7b7979">Sub-Total: <span>$</span>@ord.SubTotal.ToString().Replace(',', '.')</h5>
                                 <h5 id="lblTax" style="color:#7b7979; margin-left:15px">Tax: <span>$</span>@ord.Tax.ToString().Replace(',', '.')</h5>
                                 <h5 id="lblTotal" style="color:#000; margin-left:15px">Total Price: <span>$</span>@ord.Total.ToString().Replace(',', '.')</h5>
@@ -287,8 +368,9 @@
                                     <textarea type="text" rows="4" id="inObservations" class="form-control" placeholder="Observations..."></textarea>
                                 </div><!-- form-group -->
                                 <div class="col-xs-4 col-md-4">
-                                    <label for="ShipppingAddress" style="margin-top: 25px;">Shipping Address: </label><div></div>
+                                    <label for="ShipppingAddress" style="margin-top: 25px;">Shipping Address: <i class="Cursor fa fa-info-circle" title="If you want to send your doors select one of your shipping addresses or create a new one. (The delivery has an additional cost)."></i></label><div></div>
                                     <select style="width:100%" class="eventChange form-control select2" id="cbShippingAddress" data-placeholder=""></select>
+                                <p>The delivery has an additional cost</p>
                                 </div><!-- col -->
                                 <div class="col-xs-4 col-md-2">
                                     <button style="margin-top: 55px;" type="button" data-toggle="modal" data-target="#ModalAddSA" class="Cursor btnModalSA btn btn-success tx-11 pd-y-12 pd-x-25 tx-mont tx-medium">Add new</button>
