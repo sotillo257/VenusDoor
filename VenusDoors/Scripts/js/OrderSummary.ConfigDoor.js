@@ -255,20 +255,11 @@ function SearchDoor(data) {
         llenarComboStileWidth(data.BottomRail.Id);
         llenarComboRailWidth(data.TopRail.Id);
         llenarComboDoorAssembly(data.Join.Id);
-        llenarComboPanelStyle(data.Panel.Id);
         llenarComboPanelMaterial(data.Material.Id);
         llenarComboVerticalDivisions(data.VerticalDivisions.Id);
         llenarComboHorizontalDivisions(data.HorizontalDivisions.Id);
         llenarComboHingeDirection(data.HingeDirection.Id);
-        llenarComboDoorType(data.DoorType.Id);
-        llenarComboDecimalW(data.DecimalsWidth.Id);
-        llenarComboDecimalH(data.DecimalsHeight.Id);
-        $("#iptWidth").val(data.Width);
-        $("#iptHeight").val(data.Height);
-        $("#iptQuantity").val(1);
         //$("#iptCost").val(data.ItemCost);
-        GetPrices();
-        $("input[name=radioOption]").attr("disabled", false);
         $("input[name=radioOver]").attr("disabled", false);
         window.history.replaceState({}, document.title, "/" + "../OrderSummary");
     } else {
