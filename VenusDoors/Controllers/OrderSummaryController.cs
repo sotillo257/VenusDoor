@@ -90,8 +90,7 @@ namespace VenusDoors.Controllers
                     if (item != null)
                     {
                         item.DoorxUser = DU.GetAllDoorsxUser().Where(x => x.Order.Id == item.Id).FirstOrDefault();
-                        item.DoorxUser.DoorsxOrder = _LnDoorOrder.GetAllDoorxOrderByDoorxUser(item.DoorxUser.Id).OrderByDescending(x => x.ModificationDate).ToList();
-                        
+                        item.DoorxUser.DoorsxOrder = _LnDoorOrder.GetAllDoorxOrderByDoorxUser(item.DoorxUser.Id).OrderByDescending(x => x.Id).ToList();
                         ViewBag.Order = item;
                         var serializar1 = new System.Web.Script.Serialization.JavaScriptSerializer();
                         ViewBag.JsDoor = serializar1.Serialize(item.DoorxUser);
@@ -122,7 +121,7 @@ namespace VenusDoors.Controllers
                 BusinessLogic.lnDoorxOrder _LnDoorOrder = new BusinessLogic.lnDoorxOrder();
                 Order item = _LNOrder.GetOrderByUser((int)Session["UserID"]).Where(x => x.Status.Id == 4).FirstOrDefault();
                 item.DoorxUser = DU.GetAllDoorsxUser().Where(x => x.Order.Id == item.Id).FirstOrDefault();
-                item.DoorxUser.DoorsxOrder = _LnDoorOrder.GetAllDoorxOrderByDoorxUser(item.DoorxUser.Id);
+                item.DoorxUser.DoorsxOrder = _LnDoorOrder.GetAllDoorxOrderByDoorxUser(item.DoorxUser.Id).OrderByDescending(x => x.Id).ToList();
                
                 return Json(new { Order = item }, JsonRequestBehavior.AllowGet);
                              
@@ -167,14 +166,15 @@ namespace VenusDoors.Controllers
         [HttpPost]
         public ActionResult DeleteItem(int itemID, int orderid)
         {
-            if(Session["UserID"] == null)
+           
+            try
             {
-                return View();
+                if (Session["UserID"] == null)
+            {
+                    return Json(false, JsonRequestBehavior.AllowGet);
             }
             else
             {
-                try
-                {
                     BusinessLogic.lnDoorxOrder _LND = new BusinessLogic.lnDoorxOrder();
                     int userID = (int)Session["UserID"];
                         BusinessLogic.lnOrder _LNO = new BusinessLogic.lnOrder();
@@ -184,12 +184,13 @@ namespace VenusDoors.Controllers
                         UpdateOrderExist(xDoor, upptOrd);
                         return Json(true, JsonRequestBehavior.AllowGet);
                     }
+               
+            }
                 catch
                 {
                     return Json(false, JsonRequestBehavior.AllowGet);
                 }
             }         
-        }
 
         [HttpPost]
         public ActionResult UpdateOrderExist(DoorxOrder xDoor, Order upptOrd)

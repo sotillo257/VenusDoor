@@ -1230,6 +1230,7 @@ function InsertDoorsxOrder() {
             if (result == true) {
                 LlammarModal("ConfigM", "General configuration of the doors successfully modified!", "");
                 llenarTablaOrderSumary();
+                LimpiarCamposRapidos();
                 llenarheaderOrder();
             } else {
                 $('#modalInsert').modal('hide');

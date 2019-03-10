@@ -26,8 +26,17 @@ namespace BusinessLogic
                 {
                     Rail = 2;
                 }
+                int panel = 5;
+                if (pDoorsxOrder.Panel.Id == 2)
+                {
+                    panel = pDoorsxOrder.Panel.Id;
+                }
+                if (DoorUser.DoorStyle.Id == 1010)
+                {
+                    panel = 2;
+                }
                
-                DoorsPrices DoorPrice = dp.GetDoorsPricesById(0, pDoorsxOrder.Panel.Id, DoorUser.Material.Id, Rail);
+                DoorsPrices DoorPrice = dp.GetDoorsPricesById(0, panel, DoorUser.Material.Id, Rail);
                 decimal deciW = listDeci.Where(x => x.Id == pDoorsxOrder.DecimalsWidth.Id).FirstOrDefault().Value;
                 decimal deciH = listDeci.Where(x => x.Id == pDoorsxOrder.DecimalsHeight.Id).FirstOrDefault().Value;
                 decimal Width = pDoorsxOrder.Width + deciW;

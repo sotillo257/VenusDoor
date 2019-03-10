@@ -1092,7 +1092,7 @@ namespace BusinessLogic
             }
             if (pDoorxOrder.Panel.Id == 6)
             {
-                if (pDoorxOrder.DoorxUser.DoorStyle.Id != 1010)
+                if (pDoorxOrder.DoorxUser.DoorStyle.Id == 1010)
                 {
                     respuesta = "/Content/img/Doors/slab.png";
                 }
