@@ -624,9 +624,9 @@ namespace VenusDoors.Controllers
                     if(ord.ShippingAddress.Id != 0)
                     {
                         CompleteOrder.ShippingAddress = ord.ShippingAddress;
-                    }                   
-                    //SendOrderToUser(CompleteOrder);
-                    //SendOrderToManage(CompleteOrder);                    
+                    }
+                    SendOrderToUser(CompleteOrder);
+                    SendOrderToManage(CompleteOrder);
                     CloseOrder(CompleteOrder);
                     return Json(true, JsonRequestBehavior.AllowGet);
                     

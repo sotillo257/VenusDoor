@@ -1900,7 +1900,7 @@ function llenarTablaOrderSumary() {
             }
              
             $("#Resultados").html(result);
-            $("#idOrderSummary > tbody").empty().append(option);
+            $("#idOrderSummary > tbody").empty().append(option);            
             
         },
         error: function (err) {
