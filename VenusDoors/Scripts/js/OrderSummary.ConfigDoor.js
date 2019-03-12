@@ -124,19 +124,19 @@
     });
 
     $("#btConfAdd").on("click", function () {
-        LlammarModal("ConfirmOrdenSummary", "Confirm", "Do you want to add this door to your order?",
+        LlammarModal("ConfirmOrdenSummary", "Confirm", "Do you want to save this configuration?",
         '<button onclick="AgregarD();" class="Cursor btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Save</button>' +
         '<button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>');
     });
 
     $("#btConfSave").on("click", function () {
-        LlammarModal("ConfirmOrdenSummary", "Confirm", "Do you want to save your new changes?",
-        '<button onclick="AgregarD();" class="Cursor btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Save Changes</button>' +
+        LlammarModal("ConfirmOrdenSummary", "Do you want to save your new changes?", "The doors added to your order will undergo changes. Do you want to proceed with this operation?.<br>(This could take a little time).",
+        '<button onclick="NuevosCambiosDXU();" id="btnSaveChanges" class="Cursor btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Confirm</button>' +
         '<button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>');
     });
 
         SearchDoor(DoorDashboard);
-    
+
 
 
     $(document).on('change', '#iptWidth', function () {
@@ -176,7 +176,7 @@
 });
 
 function SearchDoor(data) {
-   
+
     if (DoorDashboard != '' && listDOOR == '') {
         $('#modalInsert').modal('show');
         $("#btModify").hide();
@@ -187,54 +187,54 @@ function SearchDoor(data) {
         $("#lblTitulo").text("Config Door");
         $("#lblSubTitulo").text("Choose the the best door option that fit your needs.");
         if (listDOOR == '') {
-            var fingerPull = data.isFingerPull;
-            if (fingerPull == false) {
-                fingerPull = 1;
-            } else {
-                fingerPull = 2;
-            }
-            llenarComboFinger(fingerPull);
+        var fingerPull = data.isFingerPull;
+        if (fingerPull == false) {
+            fingerPull = 1;
+        } else {
+            fingerPull = 2;
+        }
+        llenarComboFinger(fingerPull);
 
-            var isDrill = data.isDrill;
-            if (isDrill == false) {
-                isDrill = 1;
-            } else {
-                isDrill = 2;
-            }
-            llenarComboIsDrill(isDrill);
-            HingeCalculate();
-            HingeShow();
+        var isDrill = data.isDrill;
+        if (isDrill == false) {
+            isDrill = 1;
+        } else {
+            isDrill = 2;
+        }
+        llenarComboIsDrill(isDrill);
+        HingeCalculate();
+        HingeShow();
 
-            var isOpen = data.IsOpeningMeasurement;
-            if (isOpen == false) {
-                isOpen = 1;
-            } else {
-                isOpen = 2;
-            }
-            llenarComboIsOpen(isOpen);
+        var isOpen = data.IsOpeningMeasurement;
+        if (isOpen == false) {
+            isOpen = 1;
+        } else {
+            isOpen = 2;
+        }
+        llenarComboIsOpen(isOpen);
 
-            var isOver = data.isOverlay;
-            if (isOver == false) {
-                isOver = 1;
-            } else {
-                isOver = 2;
-            }
-            checkIsOverlay(isOver);
-            // checkDoorOption(data.DoorOption.Id);
-            llenarComboMaterial(data.Material.Id);
-            llenarComboDoorStyle(data.DoorStyle.Id);
-            llenarComboIEP(data.InsideEdgeProfile.Id);
-            llenarComboOEP(data.OutsideEdgeProfile.Id);
-            llenarComboStileWidth(data.BottomRail.Id);
-            llenarComboRailWidth(data.TopRail.Id);
-            llenarComboDoorAssembly(data.Join.Id);
-            llenarComboPanelMaterial(data.Material.Id);
-            llenarComboVerticalDivisions(data.VerticalDivisions.Id);
-            llenarComboHorizontalDivisions(data.HorizontalDivisions.Id);
-            llenarComboHingeDirection(data.HingeDirection.Id);
-            //$("#iptCost").val(data.ItemCost);
-            $("input[name=radioOver]").attr("disabled", false);
-            window.history.replaceState({}, document.title, "/" + "../OrderSummary");
+        var isOver = data.isOverlay;
+        if (isOver == false) {
+            isOver = 1;
+        } else {
+            isOver = 2;
+        }
+        checkIsOverlay(isOver);
+       // checkDoorOption(data.DoorOption.Id);
+        llenarComboMaterial(data.Material.Id);
+        llenarComboDoorStyle(data.DoorStyle.Id);
+        llenarComboIEP(data.InsideEdgeProfile.Id);
+        llenarComboOEP(data.OutsideEdgeProfile.Id);
+        llenarComboStileWidth(data.BottomRail.Id);
+        llenarComboRailWidth(data.TopRail.Id);
+        llenarComboDoorAssembly(data.Join.Id);
+        llenarComboPanelMaterial(data.Material.Id);
+        llenarComboVerticalDivisions(data.VerticalDivisions.Id);
+        llenarComboHorizontalDivisions(data.HorizontalDivisions.Id);
+        llenarComboHingeDirection(data.HingeDirection.Id);
+        //$("#iptCost").val(data.ItemCost);
+        $("input[name=radioOver]").attr("disabled", false);
+        window.history.replaceState({}, document.title, "/" + "../OrderSummary");
         }
      
     } else {
@@ -259,9 +259,20 @@ function SearchDoor(data) {
 //    }
 //}
 
+
+
 function AgregarD() {
     if (ValidarCamposVacios()) {
             InsertDoorsxUser();
+    } else {
+        $('#modalConfirmOrderSummary').modal('hide');
+        LlammarModal("Danger", "You must fill all the fields.", " ");
+    }
+}
+
+function NuevosCambiosDXU() {
+    if (ValidarCamposVacios()) {
+        UpdateDoorsxUser();
     } else {
         $('#modalConfirmOrderSummary').modal('hide');
         LlammarModal("Danger", "You must fill all the fields.", " ");

@@ -1093,6 +1093,7 @@ function InsertDoorsxUser() {
                             $('#modalConfirmOrderSummary').modal('hide');
                             LlammarModal("ConfigM", "General configuration of doors successfully saved!", "");
                             llenarheaderOrder();
+                            $("#btnConfigDoor").removeClass("btBuild").addClass("ModDoorxUser");
                             var boton = '<button class="btn btn-success btn-icon AddDoor" style="width: 37px;height: 37px; margin-top: 55px;" type="button"><i class="fa fa-plus"></i></button>';
                             $("#btInsertDoorTable").empty().append(boton);
                             changeDoorStyle();
@@ -1109,6 +1110,97 @@ function InsertDoorsxUser() {
                     },
               
                 });
+}
+
+function UpdateDoorsxUser() {
+    var itemCost = parseFloat($("#iptCost").val());
+    var DoorQuantity = $("#iptQuantity").val();
+    var DoorSubTotal = itemCost * DoorQuantity;
+    var OrdSubTotal = DoorSubTotal;
+    var Tx = parseFloat(0.0825);
+    var Taxes = (parseFloat(OrdSubTotal) * Tx).toFixed(2);
+    var OrdTotal = (parseFloat(OrdSubTotal) + parseFloat(Taxes)).toFixed(2);
+    var DoorOp = $('input[name=radioOption]:checked').attr("data-id");
+    var isOver = ($('input[name=radioOver]:checked').attr("data-id") == 1) ? false : true;
+    var drillingV = ($("#cbisDrill").val() == 1) ? false : true;
+    var HingeDirection = $("#cbHingeDirection").val();
+    var HingePositions;
+    if (drillingV == true) {
+        HingeDirection = $("#cbHingeDirection").val();
+        HingePositions = 0;
+    } else {
+        HingeDirection = 3;
+        HingePositions = 2;
+    }
+    var datos =
+         {
+             Ord: {
+                 DoorxUser: {
+                     Id: $('#idDoor').val(),
+                     User: { Id: 0 },
+                     Status: { Id: 1 },
+                     Material: { Id: $("#cbMaterial").val() },
+                     DoorStyle: { Id: $("#cbDoorStyle").val() },
+                     TopRail: { Id: $("#cbRailWidth").val() },
+                     BottomRail: { Id: $("#cbStileWidth").val() },
+                     Preparation: { Id: 1 },
+                     Panel: { Id: $("#cbPanel").val() },
+                     PanelMaterial: { Id: $("#cbPanelMaterial").val() },
+                     IsOpeningMeasurement: ($("#cbIsOpeningMeasurement").val() == 1) ? false : true,
+                     Join: { Id: $("#cbDoorAssembly").val() },
+                     OutsideEdgeProfile: { Id: $("#cbOutsideEdgeProfile").val() },
+                     InsideEdgeProfile: { Id: $("#cbInsideEdgeProfile").val() },
+                     VerticalDivisions: { Id: $("#cbVerticalDivisions").val() },
+                     HorizontalDivisions: { Id: $("#cbHorizontalDivisions").val() },
+                     Width: parseFloat($("#iptWidth").val()),
+                     DecimalsWidth: { Id: $("#cbDecimalsW").val() },
+                     Height: parseFloat($("#iptHeight").val()),
+                     DecimalsHeight: { Id: $("#cbDecimalsH").val() },
+                     Quantity: DoorQuantity,
+                     ItemCost: itemCost,
+                     SubTotal: DoorSubTotal,
+                     Picture: '',
+                     ProfilePicture: '',
+                     isDrill: drillingV,
+                     HingeDirection: { Id: HingeDirection },
+                     HingePositions: { Id: HingePositions },
+                     DoorType: { Id: $("#cbDoorType").val() },
+                     DoorOption: { Id: 0 },
+                     isOverlay: isOver,
+                     isFingerPull: ($("#cbFingerPull").val() == 1) ? false : true,
+                 },
+             }
+         };
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(datos),
+        url: urlUpdateDoorsxUser,
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+
+            //Validar data para ver si mostrar error al guardar o exito al guardar
+            if (result != null) {
+                CodigoDoorxUser = result.DoorxUser.Id;
+                $('#modalInsert').modal('hide');
+                $('#modalConfirmOrderSummary').modal('hide');
+                LlammarModal("ConfigM", "General configuration of doors successfully saved!", "");
+                llenarheaderOrder();
+                $("#btnConfigDoor").removeClass("btBuild").addClass("ModDoorxUser");
+                var boton = '<button class="btn btn-success btn-icon AddDoor" style="width: 37px;height: 37px; margin-top: 55px;" type="button"><i class="fa fa-plus"></i></button>';
+                $("#btInsertDoorTable").empty().append(boton);
+                changeDoorStyle();
+            } else {
+                $('#modalInsert').modal('hide');
+                LlammarModal("Danger", "An error occurred during the process.", "Check your internet connection I tried again");
+            }
+        },
+        error: function (err) {
+            $('#modalConfirmOrderSummary').modal('hide');
+            LlammarModal("Danger", "An error occurred during the process.");
+        },
+
+    });
 }
 
 function InsertDoorsxOrder() {
@@ -1178,116 +1270,116 @@ function LimpiarCamposRapidos() {
     
 }
 
-function UpdateDoorsxUser() {
-    var itemCost = parseFloat($("#iptCost").val());
-    var DoorQuantity = $("#iptQuantity").val();
-    var DoorSubTotal = itemCost * DoorQuantity;
-    var OrdSubTotal = DoorSubTotal;
-    var Tx = parseFloat(0.0825);
-    var Taxes = (parseFloat(OrdSubTotal) * Tx).toFixed(2);
-    var OrdTotal = (parseFloat(OrdSubTotal) + parseFloat(Taxes)).toFixed(2);
-    var DoorOp = $('input[name=radioOption]:checked').attr("data-id");
-    var isOver = ($('input[name=radioOver]:checked').attr("data-id") == 1) ? false : true;
-    var drillingV = ($("#cbisDrill").val() == 1) ? false : true;
-    var HingeDirection = $("#cbHingeDirection").val();
-    var HingePositions;
-    if (drillingV == true) {
-        HingeDirection = $("#cbHingeDirection").val();
-        if ($("#idHingeP").val() == 2 ) {
-            HingePositions = 0;
-        } else {
-            HingePositions = $("#idHingeP").val();
-        }
-    } else {
-        HingeDirection = 3;
-        HingePositions = 2;
-    }
-    var datos =
-         {
+//function UpdateDoorsxUser() {
+//    var itemCost = parseFloat($("#iptCost").val());
+//    var DoorQuantity = $("#iptQuantity").val();
+//    var DoorSubTotal = itemCost * DoorQuantity;
+//    var OrdSubTotal = DoorSubTotal;
+//    var Tx = parseFloat(0.0825);
+//    var Taxes = (parseFloat(OrdSubTotal) * Tx).toFixed(2);
+//    var OrdTotal = (parseFloat(OrdSubTotal) + parseFloat(Taxes)).toFixed(2);
+//    var DoorOp = $('input[name=radioOption]:checked').attr("data-id");
+//    var isOver = ($('input[name=radioOver]:checked').attr("data-id") == 1) ? false : true;
+//    var drillingV = ($("#cbisDrill").val() == 1) ? false : true;
+//    var HingeDirection = $("#cbHingeDirection").val();
+//    var HingePositions;
+//    if (drillingV == true) {
+//        HingeDirection = $("#cbHingeDirection").val();
+//        if ($("#idHingeP").val() == 2 ) {
+//            HingePositions = 0;
+//        } else {
+//            HingePositions = $("#idHingeP").val();
+//        }
+//    } else {
+//        HingeDirection = 3;
+//        HingePositions = 2;
+//    }
+//    var datos =
+//         {
              
-             pDoorsxUser: {
-                 Id: $("#idDoor").val(),
-                 User: { Id: 1 },
-                 Order: {Id: $("#idorder").val()},
-                 Status: {Id: 1},
-                 Material: { Id: $("#cbMaterial").val() },                            
-                 DoorStyle: { Id: $("#cbDoorStyle").val() },                                                        
-                 TopRail: { Id: $("#cbRailWidth").val() },
-                 BottomRail: { Id: $("#cbStileWidth").val() },
-                 Preparation: { Id: 1 },
-                 Panel: { Id: $("#cbPanel").val() },
-                 PanelMaterial: { Id: $("#cbPanelMaterial").val() },
-                 IsOpeningMeasurement: ($("#cbIsOpeningMeasurement").val() == 1) ? false : true,
-                 Join: { Id: $("#cbDoorAssembly").val() },
-                 OutsideEdgeProfile: { Id: $("#cbOutsideEdgeProfile").val() },
-                 InsideEdgeProfile: { Id: $("#cbInsideEdgeProfile").val() },                            
-                 VerticalDivisions: { Id: $("#cbVerticalDivisions").val() },
-                 HorizontalDivisions: { Id: $("#cbHorizontalDivisions").val() },
-                 Width: parseFloat($("#iptWidth").val()),
-                 DecimalsWidth: { Id: $("#cbDecimalsW").val() },
-                 Height: parseFloat($("#iptHeight").val()),
-                 DecimalsHeight: { Id: $("#cbDecimalsH").val() },
-                 Quantity: DoorQuantity,
-                 ItemCost: itemCost,
-                 SubTotal: DoorSubTotal,
-                 Picture: $('#DoorPicture').attr('src'),
-                 ProfilePicture: $('#ProfilePicture').attr('src'),
-                 isDrill: drillingV,
-                 HingeDirection: { Id: HingeDirection },
-                 HingePositions: { Id: HingePositions },
-                 DoorType: { Id: $("#cbDoorType").val() },
-                 DoorOption: { Id: DoorOp },
-                 isOverlay: isOver,
-                 isFingerPull: ($("#cbFingerPull").val() == 1) ? false : true,
-             },
+//             pDoorsxUser: {
+//                 Id: $("#idDoor").val(),
+//                 User: { Id: 1 },
+//                 Order: {Id: $("#idorder").val()},
+//                 Status: {Id: 1},
+//                 Material: { Id: $("#cbMaterial").val() },                            
+//                 DoorStyle: { Id: $("#cbDoorStyle").val() },                                                        
+//                 TopRail: { Id: $("#cbRailWidth").val() },
+//                 BottomRail: { Id: $("#cbStileWidth").val() },
+//                 Preparation: { Id: 1 },
+//                 Panel: { Id: $("#cbPanel").val() },
+//                 PanelMaterial: { Id: $("#cbPanelMaterial").val() },
+//                 IsOpeningMeasurement: ($("#cbIsOpeningMeasurement").val() == 1) ? false : true,
+//                 Join: { Id: $("#cbDoorAssembly").val() },
+//                 OutsideEdgeProfile: { Id: $("#cbOutsideEdgeProfile").val() },
+//                 InsideEdgeProfile: { Id: $("#cbInsideEdgeProfile").val() },                            
+//                 VerticalDivisions: { Id: $("#cbVerticalDivisions").val() },
+//                 HorizontalDivisions: { Id: $("#cbHorizontalDivisions").val() },
+//                 Width: parseFloat($("#iptWidth").val()),
+//                 DecimalsWidth: { Id: $("#cbDecimalsW").val() },
+//                 Height: parseFloat($("#iptHeight").val()),
+//                 DecimalsHeight: { Id: $("#cbDecimalsH").val() },
+//                 Quantity: DoorQuantity,
+//                 ItemCost: itemCost,
+//                 SubTotal: DoorSubTotal,
+//                 Picture: $('#DoorPicture').attr('src'),
+//                 ProfilePicture: $('#ProfilePicture').attr('src'),
+//                 isDrill: drillingV,
+//                 HingeDirection: { Id: HingeDirection },
+//                 HingePositions: { Id: HingePositions },
+//                 DoorType: { Id: $("#cbDoorType").val() },
+//                 DoorOption: { Id: DoorOp },
+//                 isOverlay: isOver,
+//                 isFingerPull: ($("#cbFingerPull").val() == 1) ? false : true,
+//             },
                         
-             Ord: {
-                 Id: $("#idorder").val(),
-                 SubTotal: OrdSubTotal,
-                 Tax: parseFloat(Taxes),
-                 Total: parseFloat(OrdTotal),
-             },
+//             Ord: {
+//                 Id: $("#idorder").val(),
+//                 SubTotal: OrdSubTotal,
+//                 Tax: parseFloat(Taxes),
+//                 Total: parseFloat(OrdTotal),
+//             },
 
-             HingeP: {
-                 Id: $("#idHingeP").val(),
-                 Status: { Id: 1 },
-                 Position1: $("#HP1").val(),
-                 Position2: $("#HP2").val(),
-                 Position3: $("#HP3").val(),
-                 Position4: $("#HP4").val(),
-                 Position5: $("#HP5").val(),
-             },
-         };
-                $.ajax({
-                    type: 'POST',
-                    data: JSON.stringify(datos),
-                    url: urlUpdateDoorsxUser,
-                    dataType: "json",
-                    contentType: 'application/json; charset=utf-8',
-                    success: function (result) {
+//             HingeP: {
+//                 Id: $("#idHingeP").val(),
+//                 Status: { Id: 1 },
+//                 Position1: $("#HP1").val(),
+//                 Position2: $("#HP2").val(),
+//                 Position3: $("#HP3").val(),
+//                 Position4: $("#HP4").val(),
+//                 Position5: $("#HP5").val(),
+//             },
+//         };
+//                $.ajax({
+//                    type: 'POST',
+//                    data: JSON.stringify(datos),
+//                    url: urlUpdateDoorsxUser,
+//                    dataType: "json",
+//                    contentType: 'application/json; charset=utf-8',
+//                    success: function (result) {
 
-                        //Validar data para ver si mostrar error al guardar o exito al guardar
-                        if (result == true) {
-                            llenarTablaOrderSumary();
-                            llenarheaderOrder();
-                            $('#modalInsert').modal('hide');
-                            $('#modalConfirmOrderSummary').modal('hide');
-                            LlammarModal("ConfigM", "Successful modification!", "Your door has been modified successfully.");
+//                        //Validar data para ver si mostrar error al guardar o exito al guardar
+//                        if (result == true) {
+//                            //llenarTablaOrderSumary();
+//                            llenarheaderOrder();
+//                            $('#modalInsert').modal('hide');
+//                            $('#modalConfirmOrderSummary').modal('hide');
+//                            LlammarModal("ConfigM", "Successful modification!", "The general configuration has been modified successfully.");
                             
-                        } else {
-                            $('#modalInsert').modal('hide');
-                            $('#modalConfirmOrderSummary').modal('hide');
-                            LlammarModal("Danger", "An error occurred during the process.");
-                        }
-                    },
-                    error: function (err) {
-                        $('#modalInsert').modal('hide');
-                        $('#modalConfirmOrderSummary').modal('hide');
-                        LlammarModal("Danger", "An error occurred during the process.", "Check your internet connection I tried again");
-                    },
+//                        } else {
+//                            $('#modalInsert').modal('hide');
+//                            $('#modalConfirmOrderSummary').modal('hide');
+//                            LlammarModal("Danger", "An error occurred during the process.");
+//                        }
+//                    },
+//                    error: function (err) {
+//                        $('#modalInsert').modal('hide');
+//                        $('#modalConfirmOrderSummary').modal('hide');
+//                        LlammarModal("Danger", "An error occurred during the process.", "Check your internet connection I tried again");
+//                    },
               
-                });
-}
+//                });
+//}
 
 $(document).on('change', '.eventChange', function () {
     //alert('This action is working');
