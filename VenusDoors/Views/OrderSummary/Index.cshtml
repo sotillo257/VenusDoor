@@ -72,7 +72,7 @@
             @if (Session["UserID"] == null)
             {
                 <div style="display: flex;justify-content: flex-end;width: 60%;">
-                    <button disabled style="margin-right: 20px;" type="button" data-toggle="modal" data-target="#modalInsert" class="Cursor btBuild btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Create order</button>
+                    <button disabled style="margin-right: 20px;" type="button" data-toggle="modal" data-target="#modalInsert" class="Cursor btBuild btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Config door</button>
                     <div class="col-xs-4 col-md-4" style="">
                         <button disabled title="Massive order only available when you are logged in" id="btnLogo" class="Cursor btn btn-outline-success btn-block"><i class="fa fa-upload mg-r-10"></i> Massive Order</button>
                     </div>
@@ -83,7 +83,7 @@
                 if (LastDoor == null)
                 {
                     <div style="display: flex;justify-content: flex-end;width: 60%;">
-                        <button style="margin-right: 20px;" type="button" data-toggle="modal" data-target="#modalInsert" class="Cursor btBuild btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Config door</button>
+                        <button style="margin-right: 20px;" type="button" data-toggle="modal" id="btnConfigDoor" data-target="#modalInsert" class="Cursor btBuild btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Config door</button>
                         <div class="col-xs-4 col-md-4" style="">
                             <button data-toggle="modal" data-target="#ModalUpload" class="Cursor btn btn-outline-success btn-block"><i class="fa fa-upload mg-r-10"></i> Massive Order</button>
                         </div>
@@ -721,7 +721,6 @@
                 var urlGetAllDoorOption = '@Url.Action("GetAllDoorOption", "ConfiDoor")';
                 var urlGetAllDecimals = '@Url.Action("GetAllDecimals", "ConfiDoor")';
                 var urlInsertDoorsxUser = '@Url.Action("InsertDoorsxUser", "ConfiDoor")';
-                var urlUpdateDoorsxUser = '@Url.Action("UpdateDoorsxUser", "ConfiDoor")';
                 var urlGetPrices = '@Url.Action("GetPrices", "ConfiDoor")';
                 var urlUploadExcel = '@Url.Action("UploadExcel", "ConfiDoor")';
                 var urlDeleteItem = '@Url.Action("DeleteItem", "OrderSummary")';
@@ -732,6 +731,7 @@
                 var urlInsertDoorsxOrder = '@Url.Action("InsertDoorsxOrder", "ConfiDoor")';
                 var urlGetAllShippingAddress = '@Url.Action("GetAllShippingAddressByUser", "OrderSummary")';
                 var urlInsertShipping = '@Url.Action("InsertShippingAddress", "OrderSummary")';
+                var urlUpdateDoorsxUser = '@Url.Action("UpdateDoorsxUser", "ConfiDoor")';
 
                 try {
                     var listDOOR = JSON.parse('@Html.Raw(ViewBag.JsDoor)');

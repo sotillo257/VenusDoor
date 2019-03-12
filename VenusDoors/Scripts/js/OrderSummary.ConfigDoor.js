@@ -124,16 +124,17 @@
     });
 
     $("#btConfAdd").on("click", function () {
-        LlammarModal("ConfirmOrdenSummary", "Confirm", "Do you want to add this door to your order?",
+        LlammarModal("ConfirmOrdenSummary", "Confirm", "Do you want to save this configuration?",
         '<button onclick="AgregarD();" class="Cursor btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Save</button>' +
         '<button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>');
     });
 
     $("#btConfSave").on("click", function () {
-        LlammarModal("ConfirmOrdenSummary", "Confirm", "Do you want to save your new changes?",
-        '<button onclick="AgregarD();" class="Cursor btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Save Changes</button>' +
+        LlammarModal("ConfirmOrdenSummary", "Do you want to save your new changes?", "The doors added to your order will undergo changes. Do you want to proceed with this operation?.<br>(This could take a little time).",
+        '<button onclick="NuevosCambiosDXU();" id="btnSaveChanges" class="Cursor btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Confirm</button>' +
         '<button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>');
     });
+
     if (doorDetail != '') {
     SearchDoor(doorDetail);
     }
@@ -266,9 +267,20 @@ function SearchDoor(data) {
 //    }
 //}
 
+
+
 function AgregarD() {
     if (ValidarCamposVacios()) {
             InsertDoorsxUser();
+    } else {
+        $('#modalConfirmOrderSummary').modal('hide');
+        LlammarModal("Danger", "You must fill all the fields.", " ");
+    }
+}
+
+function NuevosCambiosDXU() {
+    if (ValidarCamposVacios()) {
+        UpdateDoorsxUser();
     } else {
         $('#modalConfirmOrderSummary').modal('hide');
         LlammarModal("Danger", "You must fill all the fields.", " ");
