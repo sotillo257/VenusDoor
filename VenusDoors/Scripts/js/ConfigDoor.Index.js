@@ -1088,7 +1088,7 @@ function InsertDoorsxUser() {
 
                         //Validar data para ver si mostrar error al guardar o exito al guardar
                         if (result != null) {
-                            CodigoDoorxUser = result.DoorxUser.Id;
+                            llenarTablaOrderSumary()
                             $('#modalInsert').modal('hide');
                             $('#modalConfirmOrderSummary').modal('hide');
                             LlammarModal("ConfigM", "General configuration of doors successfully saved!", "");
