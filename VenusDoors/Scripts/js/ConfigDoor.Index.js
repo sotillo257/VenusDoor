@@ -1270,7 +1270,7 @@ function UpdateDoorsxUser() {
                 $("#btnConfigDoor").removeClass("btBuild").addClass("ModDoorxUser");
                 var boton = '<button class="btn btn-success btn-icon AddDoor" style="width: 37px;height: 37px; margin-top: 55px;" type="button"><i class="fa fa-plus"></i></button>';
                 $("#btInsertDoorTable").empty().append(boton);
-                changeDoorStyle();
+                changeDoorStyle();                
             } else {
                 $('#modalInsert').modal('hide');
                 LlammarModal("Danger", "An error occurred during the process.", "Check your internet connection I tried again");
@@ -1323,7 +1323,8 @@ function InsertDoorsxOrder() {
                 LlammarModal("ConfigM", "General configuration of the doors successfully modified!", "");
                 llenarTablaOrderSumary();
                 LimpiarCamposRapidos();
-                llenarheaderOrder();
+                llenarheaderOrder();               
+                
             } else {
                 $('#modalInsert').modal('hide');
                 $('#modalConfirmOrderSummary').modal('hide');
@@ -1979,7 +1980,8 @@ function llenarTablaOrderSumary() {
             }
              
             $("#Resultados").html(result);
-            $("#idOrderSummary > tbody").empty().append(option);            
+            $("#idOrderSummary > tbody").empty().append(option);
+            
         },
         error: function (err) {
             LlammarModal("Danger", "Error.", " ");
