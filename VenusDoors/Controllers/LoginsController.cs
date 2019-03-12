@@ -318,6 +318,7 @@ namespace VenusDoors.Controllers
                     PersonData.ModificationDate = DateTime.Now;
                     int IdPerson = _LNP.InsertPerson(PersonData);
                     PersonData.Id = IdPerson;
+                    UserData.Status.Id = 2;
                     UserData.Person = PersonData;
                     UserData.CreationDate = DateTime.Now;
                     UserData.ModificationDate = DateTime.Now;
