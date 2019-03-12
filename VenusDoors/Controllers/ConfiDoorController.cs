@@ -347,7 +347,7 @@ namespace VenusDoors.Controllers
 
         }
 
-
+        [HttpPost]
         public ActionResult InsertDoorsxUser(Order Ord)
         {
             try
@@ -360,7 +360,9 @@ namespace VenusDoors.Controllers
                 else
                 {
                     BusinessLogic.lnDoorsxUser ln = new BusinessLogic.lnDoorsxUser();
+                    BusinessLogic.lnDoorxOrder _LN = new BusinessLogic.lnDoorxOrder();
                     Order ord = ln.CrearOrder(Ord, (int)Session["UserID"]);
+                    _LN.UpdateDoorsxOrder(ord);
                     return Json(new { order = ord.Id, DoorxUser = ord.DoorxUser.Id }, JsonRequestBehavior.AllowGet);
                 }
 
@@ -370,7 +372,7 @@ namespace VenusDoors.Controllers
                 return View("Error");
             }
         }
-
+        [HttpPost]
         public ActionResult UpdateDoorsxUser(Order Ord)
         {
             try

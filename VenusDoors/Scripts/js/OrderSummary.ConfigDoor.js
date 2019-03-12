@@ -272,7 +272,7 @@ function AgregarD() {
 
 function NuevosCambiosDXU() {
     if (ValidarCamposVacios()) {
-        UpdateDoorsxUser();
+        InsertDoorsxUser();
     } else {
         $('#modalConfirmOrderSummary').modal('hide');
         LlammarModal("Danger", "You must fill all the fields.", " ");
@@ -510,7 +510,7 @@ function selectDoorOption(pOption) {
             option += '<option value="' + allDoorOption[i].Id + '">' + allDoorOption[i].Description + '</option>';
         }
     }
-    $("#cbDoorType").empty().append(option);
+    $("#cbDoorOpt").empty().append(option);
     if (pOption != 0) {
         $("#cbDoorType").val(pOption);
     }
