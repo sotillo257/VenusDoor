@@ -19,31 +19,6 @@
 	PrintDoorOverlay();
 	ValidateSession();
 
-	//$("#btConfirm").on("click", function () {
-	//    if (ValidarCamposVacios()) {
-	//    InsertDoorsxUser();
-	//    } else {
-	//        LlammarModal("Danger", "You must fill all the fields.", " ");
-	//    }
-
-    //});
-
-	//$(".iptHeight").keyup(function () {
-	//    if ($(this).val() > 96) {
-	//        HeightInchesMax();
-	//    } else {
-	//        HingeCalculate();
-	//    }
-	//});
-
-	//$(document).on('change', '.iptHeight', function () {
-	//    if($(this).val() < 5){
-	//        HeightInchesMin();
-	//    }else{
-	//        HingeCalculate();
-	//    }
-	//});
-
 	$(document).on('click', "#bt-conf-log", function () {
 	    LlammarModal("MLogin", "Sign in to your account to process your order!", " ");
 	});
@@ -61,6 +36,7 @@
 	    }
 
 	});
+
 	$(document).on('click', "#btnLogo", function () {
 	    $("#File1").trigger('click');
 	});
@@ -78,33 +54,14 @@
         llenarComboPanelMaterial(pMaterial)
     });
 
-
-    //$(document).on('change', '.iptWidth', function () {
-    //    var Width = parseFloat($(this).val())
-    //    if ($(this).val() < 5) {
-
-    //        LlammarModal("Danger", "Error: Minimum is 5 inches", " ");
-    //        Width = 5;
-    //        $('.iptWidth').val(Width);
-    //        GetPrices();
-
-    //    }
-    //    else if ($(this).val() > 42) {
-
-    //        //$('#modalMaximo').modal('toggle');
-    //        LlammarModal("Danger", "Error: Max is 42 inches", " ");
-    //        Width = 42;
-    //        $('.iptWidth').val(Width);
-    //        GetPrices();
-    //    }
-    //});
-
     $(document).on('change', '.Profile', function () {
         ChangeProfile();
     });
+
     $(document).on('change', '.Doors', function () {
         changeDoorPicture();
     });
+
     $(document).on('change', '#File1', function () {
         var compania = new Array();
         var formData = new FormData();
@@ -416,6 +373,7 @@ function llenarComboPanelMaterial(pMaterial) {
     $("#cbPanelMaterial").empty().append(option);
     $("#cbPanelMaterial").val(pPanelMaterial);
 }
+
 function llenarInsideAndOutsideEspecificos(pInside, pOutside) {
     var inside = $("#cbInsideEdgeProfile").val();
     var outside = $("#cbOutsideEdgeProfile").val();
@@ -438,6 +396,7 @@ function llenarInsideAndOutsideEspecificos(pInside, pOutside) {
     $("#cbOutsideEdgeProfile").empty().append(option);
     $("#cbOutsideEdgeProfile").val(pOutside);
 }
+
 function llenarComboInsideAndOutside() {
 
     var inside = $("#cbInsideEdgeProfile").val();
@@ -461,53 +420,6 @@ function llenarComboInsideAndOutside() {
     $("#cbOutsideEdgeProfile").empty().append(option);
     $("#cbOutsideEdgeProfile").val(outside);
 }
-
-//function HeightInchesMin() {
-//    Height = $('.iptHeight').val();
-//    var ip1 = 3.5;
-//    var ip2 = Height - 3.5;    
-//    GetPrices();
-
-//    $(".hp1").css('display', 'block');
-//    $(".hp2").css('display', 'block');
-//    $(".hp3").css('display', 'none');
-//    $(".hp4").css('display', 'none');
-//    $(".hp5").css('display', 'none');
-//    $("#HingePositionsDiv").removeClass("col-md-4").addClass("col-md-3");
-//    $("#HingePositionsDiv").removeClass("col-md-5");
-//    $("#HingePositionsDiv").removeClass("col-md-6");
-
-//    $('.HPinpt1').val(ip1);
-//    $('.HPinpt2').val(ip2);
-//    $('.HPinpt3').val("No hinge");
-//    $('.HPinpt4').val("No hinge");
-//    $('.HPinpt5').val("No hinge");
-//}
-
-//function HeightInchesMax() {
-//    Height = $('.iptHeight').val();
-//    var ip1 = 3.5;
-//    var ip2 = 3.5 + (((Height / 2) - 3.5) / 2);
-//    var ip3 = Height / 2;
-//    var ip4 = Height - (3.5 + (((Height / 2) - 3.5) / 2));
-//    var ip5 = Height - 3.5;
-//    GetPrices();
-
-//    $(".hp1").css('display', 'block');
-//    $(".hp2").css('display', 'block');
-//    $(".hp3").css('display', 'block');
-//    $(".hp4").css('display', 'block');
-//    $(".hp5").css('display', 'block');
-//    $("#HingePositionsDiv").removeClass("col-md-5").addClass("col-md-6");
-//    $("#HingePositionsDiv").removeClass("col-md-3");
-//    $("#HingePositionsDiv").removeClass("col-md-4");
-
-//    $('.HPinpt1').val(ip1);
-//    $('.HPinpt2').val(ip2);
-//    $('.HPinpt3').val(ip3);
-//    $('.HPinpt4').val(ip4);
-//    $('.HPinpt5').val(ip5);
-//}
 
 function HingeCalculate() {
         var Height = parseFloat($(".iptHeight").val())
@@ -674,7 +586,9 @@ function GetAllDoorStyle() {
 		}
 	});
 }
+
 var AllInsideEdgeProfile = "";
+
 function GetAllInsideEdgeProfile() {
     $.ajax({
         url: urlGetAllInsideEdgeProfile,
@@ -704,7 +618,9 @@ function GetAllInsideEdgeProfile() {
         }
     });
 }
+
 var AllOutsideEdgeProfile = "";
+
 function GetAllOutsideEdgeProfile() {
     $.ajax({
         url: urlGetAllOutsideEdgeProfile,
@@ -855,6 +771,7 @@ function GetAllPreparation() {
 }
 
 var AllPanelType = "";
+
 function GetAllPanel() {
     $.ajax({
         url: urlGetAllPanel,
@@ -884,7 +801,9 @@ function GetAllPanel() {
         }
     });
 }
+
 var AllPanelMaterial = '';
+
 function GetAllPanelMaterial() {
     $.ajax({
         url: urlGetAllPanelMaterial,
@@ -1099,8 +1018,8 @@ function PrintDoorOverlay(pOverlay) {
     $("#isOverlay").html(lbl);    
 }
 
-
 var CodigoDoorxUser = 0;
+
 function InsertDoorsxUser() {
     var itemCost = parseFloat($("#iptCost").val());
     var DoorQuantity = $("#iptQuantity").val();
@@ -1370,12 +1289,10 @@ function UpdateDoorsxUser() {
                 });
 }
 
-
 $(document).on('change', '.eventChange', function () {
     //alert('This action is working');
     GetPrices();
 });
-
 
 function GetPrices() {
 
@@ -1403,6 +1320,7 @@ function ValidateSession() {
         },
     });
 }
+
 function ChangeProfile() {
     var Outside = $('#cbOutsideEdgeProfile').val();
     var Inside = $('#cbInsideEdgeProfile').val();
@@ -1492,6 +1410,7 @@ function FlatPanel(Outside, Inside) {
     }
     $('#ProfilePicture').attr('src', urlFolder + ProfileUrl);
 }
+
 function FlatPanelBeaded(Outside, Inside) {
     var ProfileUrl = "img11.png";
     var urlFolder = "/Content/img/Profile/";
@@ -1564,6 +1483,7 @@ function FlatPanelBeaded(Outside, Inside) {
     }
     $('#ProfilePicture').attr('src', urlFolder + ProfileUrl);
 }
+
 function RaisedPanel(Outside, Inside) {
     var ProfileUrl = "img11.png";
     var urlFolder = "/Content/img/Profile/";

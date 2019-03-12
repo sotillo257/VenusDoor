@@ -77,6 +77,81 @@ namespace BusinessLogic
 
         }
 
+        public bool UpdateDoorsxOrder(Order Order)
+        {
+            try
+            {
+                lnDecimals deci = new lnDecimals();
+                List<Decimals> listDeci = deci.GetAllDecimals();
+                lnDoorsPrices dp = new lnDoorsPrices();
+                List<DoorxOrder> listDoorOrders = GetAllDoorxOrderByDoorxUser(Order.DoorxUser.Id);
+                lnDoorsxUser DU = new lnDoorsxUser();
+                Order.SubTotal = 0;
+                lnOrder _LNOrder = new lnOrder();
+                foreach (DoorxOrder item in listDoorOrders)
+                {
+                    int Rail = 1;
+                    if (Order.DoorxUser.TopRail.Id == 3 || Order.DoorxUser.BottomRail.Id == 3 || Order.DoorxUser.DoorStyle.Id == 1009 || Order.DoorxUser.DoorStyle.Id == 1008)
+                    {
+                        Rail = 2;
+                    }
+                    int panel = 5;
+                    if (Order.DoorxUser.DoorStyle.Id == 1002)
+                    {
+                        item.Panel.Id = 5;
+                    }
+                    else if (Order.DoorxUser.DoorStyle.Id == 1003)
+                    {
+                        item.Panel.Id = 2;
+                    }
+                    if (item.Panel.Id == 2)
+                    {
+                        panel = item.Panel.Id;
+                    }
+                    if (Order.DoorxUser.DoorStyle.Id == 1010)
+                    {
+                        panel = 2;
+                    }
+                    DoorsPrices DoorPrice = dp.GetDoorsPricesById(0, panel, Order.DoorxUser.Material.Id, Rail);
+                    decimal deciW = listDeci.Where(x => x.Id == item.DecimalsWidth.Id).FirstOrDefault().Value;
+                    decimal deciH = listDeci.Where(x => x.Id == item.DecimalsHeight.Id).FirstOrDefault().Value;
+                    decimal Width = item.Width + deciW;
+                    decimal Height = item.Height + deciH;
+                    decimal result = (((((Width * Height) / 12m) / 12m) - 1.5m) * DoorPrice.AdditionalSFPrice) + DoorPrice.BasePrice;
+                    if (result < DoorPrice.BasePrice)
+                    {
+                        result = DoorPrice.BasePrice * 2;
+                        item.ItemCost = result;
+                        item.SubTotal = result * item.Quantity;
+                    }
+                    else
+                    {
+                        result = result * 2;
+                        item.ItemCost = result;
+                        item.SubTotal = result * item.Quantity;
+                    }
+                    item.DoorxUser = Order.DoorxUser;
+                    item.ModificationDate = DateTime.Now;
+                    item.ModificationUser = item.User.Id;
+                    item.ProfilePicture = DU.BuscarProfilePicture(Order.DoorxUser.OutsideEdgeProfile.Id, Order.DoorxUser.InsideEdgeProfile.Id, item.Panel.Id);
+                    item.Picture = DU.BuscarDoorPicture(item);
+                    int retorno = _AD.InsertDoorsxOrder(item);
+                    Order.SubTotal = Order.SubTotal + item.SubTotal;
+                    Order.Tax = 0.0825m * Order.SubTotal;
+                    Order.Total = Order.Tax + Order.SubTotal;
+                    Order.Quantity = Order.Quantity + item.Quantity;
+                    _LNOrder.UpdateOrder(Order);
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+        }
+
         public List<DoorxOrder> GetAllDoorxOrderByDoorxUser(int IdDoorUser)
         {
             try

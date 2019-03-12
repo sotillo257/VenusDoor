@@ -739,10 +739,11 @@
                     var listDOOR = '';
                 }
                 try {
-                    var doorDetail = JSON.parse('@Html.Raw(ViewBag.Door)');
+                    var DoorDashboard = JSON.parse('@Html.Raw(ViewBag.DoorDashboard)');
                 } catch (e) {
-                    var doorDetail = '';
+                    var DoorDashboard = '';
                 }
+               
 
 
                 $(function () {
