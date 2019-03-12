@@ -135,9 +135,8 @@
         '<button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>');
     });
 
-    if (doorDetail != '') {
-    SearchDoor(doorDetail);
-    }
+        SearchDoor(DoorDashboard);
+
 
 
     $(document).on('change', '#iptWidth', function () {
@@ -177,26 +176,17 @@
 });
 
 function SearchDoor(data) {
-    if (data != null) {
-        $('#modalInsert').modal('show');
-       // var HTMLImage =
 
-       //' <center> <img style="height: 100px;width: 235px;margin-top: 20px;" id="ProfilePicture" src="' + data.ProfilePicture + '">' +
-       //           '<img style="width: 230px;height: 230px;" id="DoorPicture" src="' + data.Picture + '">' +
-       //           '</center>';
-       // $('#Picture').html(HTMLImage);
-        $("#lblTitulo").text("Create a new door");
-        $("#lblSubTitulo").text("Choose the the best door option that fit your needs.");
+    if (DoorDashboard != '' && listDOOR == '') {
+        $('#modalInsert').modal('show');
+        $("#btModify").hide();
+        $("#btConfAdd").show();
         $("#btConfSave").hide();
         $("#btxLeft").hide();
         $("#btXclose").show();
-        $("#btConfAdd").show();
-        $("#btModify").hide();
-        $("select").prop('disabled', false);
-        $("#iptQuantity").prop('disabled', false);
-        $("#iptWidth").prop('disabled', false);
-        $("#iptHeight").prop('disabled', false);       
-
+        $("#lblTitulo").text("Config Door");
+        $("#lblSubTitulo").text("Choose the the best door option that fit your needs.");
+        if (listDOOR == '') {
         var fingerPull = data.isFingerPull;
         if (fingerPull == false) {
             fingerPull = 1;
@@ -245,6 +235,8 @@ function SearchDoor(data) {
         //$("#iptCost").val(data.ItemCost);
         $("input[name=radioOver]").attr("disabled", false);
         window.history.replaceState({}, document.title, "/" + "../OrderSummary");
+        }
+     
     } else {
 
     }

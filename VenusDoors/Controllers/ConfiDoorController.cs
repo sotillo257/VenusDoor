@@ -371,6 +371,31 @@ namespace VenusDoors.Controllers
             }
         }
 
+        public ActionResult UpdateDoorsxUser(Order Ord)
+        {
+            try
+            {
+                if (Session["UserID"] == null)
+                {
+
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    BusinessLogic.lnDoorsxUser ln = new BusinessLogic.lnDoorsxUser();
+                    BusinessLogic.lnDoorxOrder _LN = new BusinessLogic.lnDoorxOrder();
+                    Order ord = ln.CrearOrder(Ord, (int)Session["UserID"]);
+                    _LN.UpdateDoorsxOrder(ord);
+                    return Json(new { order = ord.Id, DoorxUser = ord.DoorxUser.Id }, JsonRequestBehavior.AllowGet);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return View("Error");
+            }
+        }
+
         public ActionResult InsertDoorsxOrder(DoorxOrder pDoorsxOrder)
         {
             try

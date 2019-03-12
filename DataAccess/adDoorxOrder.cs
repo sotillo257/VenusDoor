@@ -186,6 +186,42 @@ namespace DataAccess
             }
         }
 
+        public int UpdateDoorsxOrder(DoorxOrder pDoorsxOrder)
+        {
+            decimal total = Convert.ToDecimal(pDoorsxOrder.ItemCost);
+            decimal subto = Convert.ToDecimal(pDoorsxOrder.SubTotal);
+            string sql = @"[spUpdateDoorsxOrder]  '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}'";
+            sql = string.Format(sql,
+                pDoorsxOrder.Id,
+                pDoorsxOrder.DoorxUser.Id,
+                pDoorsxOrder.Width.ToString().Replace(',', '.'),
+                pDoorsxOrder.DecimalsWidth.Id,
+                pDoorsxOrder.Height.ToString().Replace(',', '.'),
+                pDoorsxOrder.DecimalsHeight.Id,
+                pDoorsxOrder.Quantity,
+                total.ToString().Replace(',', '.'),
+                subto.ToString().Replace(',', '.'),
+                pDoorsxOrder.User.Id,
+                pDoorsxOrder.Status.Id,
+                pDoorsxOrder.CreationDate.ToString("yyyyMMdd HH:mm:ss"),
+                pDoorsxOrder.CreatorUser,
+                pDoorsxOrder.ModificationDate.ToString("yyyyMMdd HH:mm:ss"),
+                pDoorsxOrder.ModificationUser,
+                pDoorsxOrder.Picture,
+                pDoorsxOrder.ProfilePicture,
+                pDoorsxOrder.Panel.Id,
+                pDoorsxOrder.DoorType.Id,
+                pDoorsxOrder.DoorOption.Id);
+            try
+            {
+                return _MB.EjecutarSQL(_CN, sql);
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+        }
+
         public void DeleteDoorsxOrder(int pId)
         {
             string sql = @"[spDeleteDoorsxOrder] '{0}'";

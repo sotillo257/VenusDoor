@@ -79,10 +79,19 @@ namespace VenusDoors.Controllers
         public ActionResult Index(int? Id)
         {
             try
-            {
+            {   
                 ViewBag.OrderSummary = "active";
+               
                 if (Session["UserID"] != null)
                 {
+                    int val = 0;
+                    var serializar1 = new System.Web.Script.Serialization.JavaScriptSerializer();
+                    if (int.TryParse(Id.ToString(), out val))
+                    {
+                        BusinessLogic.lnDoors Door = new BusinessLogic.lnDoors();
+                        Doors D = Door.GetDoorsById(int.Parse(Id.ToString()));
+                        ViewBag.DoorDashboard = serializar1.Serialize(D);
+                    }
                     BusinessLogic.lnDoorsxUser DU = new BusinessLogic.lnDoorsxUser();
                     BusinessLogic.lnOrder _LNOrder = new BusinessLogic.lnOrder();
                     BusinessLogic.lnDoorxOrder _LnDoorOrder = new BusinessLogic.lnDoorxOrder();
@@ -92,7 +101,7 @@ namespace VenusDoors.Controllers
                         item.DoorxUser = DU.GetAllDoorsxUser().Where(x => x.Order.Id == item.Id).FirstOrDefault();
                         item.DoorxUser.DoorsxOrder = _LnDoorOrder.GetAllDoorxOrderByDoorxUser(item.DoorxUser.Id).OrderByDescending(x => x.Id).ToList();
                         ViewBag.Order = item;
-                        var serializar1 = new System.Web.Script.Serialization.JavaScriptSerializer();
+                      
                         ViewBag.JsDoor = serializar1.Serialize(item.DoorxUser);
                     }
                     else {
