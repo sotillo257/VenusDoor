@@ -63,6 +63,7 @@ namespace BusinessLogic
                 pDoorsxOrder.ProfilePicture = DU.BuscarProfilePicture(DoorUser.OutsideEdgeProfile.Id, DoorUser.InsideEdgeProfile.Id, pDoorsxOrder.Panel.Id);
                 pDoorsxOrder.Picture = DU.BuscarDoorPicture(pDoorsxOrder);
                int retorno = _AD.InsertDoorsxOrder(pDoorsxOrder);
+                item.Quantity = item.Quantity + pDoorsxOrder.Quantity;
                 item.SubTotal = item.SubTotal + pDoorsxOrder.SubTotal;
                 item.Tax = 0.0825m * item.SubTotal;
                 item.Total = item.Tax + item.SubTotal;
@@ -87,6 +88,7 @@ namespace BusinessLogic
                 List<DoorxOrder> listDoorOrders = GetAllDoorxOrderByDoorxUser(Order.DoorxUser.Id);
                 lnDoorsxUser DU = new lnDoorsxUser();
                 Order.SubTotal = 0;
+                Order.Quantity = 0;
                 lnOrder _LNOrder = new lnOrder();
                 foreach (DoorxOrder item in listDoorOrders)
                 {
@@ -136,6 +138,7 @@ namespace BusinessLogic
                     item.ProfilePicture = DU.BuscarProfilePicture(Order.DoorxUser.OutsideEdgeProfile.Id, Order.DoorxUser.InsideEdgeProfile.Id, item.Panel.Id);
                     item.Picture = DU.BuscarDoorPicture(item);
                     int retorno = _AD.UpdateDoorsxOrder(item);
+                    Order.Quantity = Order.Quantity + item.Quantity;
                     Order.SubTotal = Order.SubTotal + item.SubTotal;
                     Order.Tax = 0.0825m * Order.SubTotal;
                     Order.Total = Order.Tax + Order.SubTotal;
