@@ -30,8 +30,17 @@ namespace VenusDoors
                     if (!String.IsNullOrEmpty(encTicket))
                     {
                         var ticket = FormsAuthentication.Decrypt(encTicket);
-                        var id = new UserIdentity(ticket);
-
+                        UserIdentity id = new UserIdentity(ticket);
+                        if (ticket.Expired)
+                        {
+                           // id.IsAuthenticated = false;
+                           // Controllers.LoginsController Log = new Controllers.LoginsController();
+                          //  Log.LogOut();
+                        }
+                        else
+                        {
+                            FormsAuthentication.RenewTicketIfOld(ticket);
+                        }
                         //int CodCompania = int.Parse(HttpContext.Current.Session["CodCompania"].ToString());
                         var userRoles = Roles.GetRolesForUser(id.AuthenticationType);
                         var prin = new GenericPrincipal(id, userRoles);

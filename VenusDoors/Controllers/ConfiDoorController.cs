@@ -363,7 +363,7 @@ namespace VenusDoors.Controllers
                     BusinessLogic.lnDoorxOrder _LN = new BusinessLogic.lnDoorxOrder();
                     Order ord = ln.CrearOrder(Ord, (int)Session["UserID"]);
                     _LN.UpdateDoorsxOrder(ord);
-                    return Json(new { order = ord.Id, DoorxUser = ord.DoorxUser.Id }, JsonRequestBehavior.AllowGet);
+                    return Json(true, JsonRequestBehavior.AllowGet);
                 }
 
             }

@@ -42,9 +42,13 @@ namespace VenusDoors.Controllers
                     if (item != null)
                     {
                         item.DoorxUser = DU.GetAllDoorsxUser().Where(x => x.Order.Id == item.Id).FirstOrDefault();
-                        item.DoorxUser.DoorsxOrder = _LnDoorOrder.GetAllDoorxOrderByDoorxUser(item.DoorxUser.Id).OrderByDescending(x => x.Id).ToList();
-                        ViewBag.Order = item;
-                        GetLastDoor();
+                        if (item.DoorxUser != null)
+                        {
+                            item.DoorxUser.DoorsxOrder = _LnDoorOrder.GetAllDoorxOrderByDoorxUser(item.DoorxUser.Id).OrderByDescending(x => x.Id).ToList();
+                            ViewBag.Order = item;
+                            GetLastDoor();
+                        }
+                       
                     }
                     else {
                         ViewBag.Order = null;
@@ -71,9 +75,11 @@ namespace VenusDoors.Controllers
                 BusinessLogic.lnOrder _LNOrder = new BusinessLogic.lnOrder();
                 BusinessLogic.lnDoorxOrder _LnDoorOrder = new BusinessLogic.lnDoorxOrder();
                 Order item = _LNOrder.GetOrderByUser((int)Session["UserID"]).Where(x => x.Status.Id == 4).FirstOrDefault();
-                item.DoorxUser = DU.GetAllDoorsxUser().Where(x => x.Order.Id == item.Id).FirstOrDefault();
-                item.DoorxUser.DoorsxOrder = _LnDoorOrder.GetAllDoorxOrderByDoorxUser(item.DoorxUser.Id).OrderByDescending(x => x.Id).ToList();
-               
+                if (item != null)
+                {
+                    item.DoorxUser = DU.GetAllDoorsxUser().Where(x => x.Order.Id == item.Id).FirstOrDefault();
+                    item.DoorxUser.DoorsxOrder = _LnDoorOrder.GetAllDoorxOrderByDoorxUser(item.DoorxUser.Id).OrderByDescending(x => x.Id).ToList();
+                }
                 return Json(new { Order = item }, JsonRequestBehavior.AllowGet);
                              
                 }
@@ -564,7 +570,7 @@ namespace VenusDoors.Controllers
                 try
                 {
                     BusinessLogic.lnOrder _LNO = new BusinessLogic.lnOrder();
-                    Order CompleteOrder = _LNO.GetOrderById(ord.Id);
+                    Order CompleteOrder = _LNO.GetOrderByUser((int)Session["UserID"]).Where(x => x.Status.Id == 4).FirstOrDefault();
                     CompleteOrder.Observations = ord.Observations;
                     if(ord.ShippingAddress.Id != 0)
                     {
