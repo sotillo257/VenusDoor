@@ -404,6 +404,7 @@
                                         <input hidden id="idstatus" value="@ord.Status.Id" />
                                         <h5 id="lblSubtotal" style="color:#7b7979">Sub-Total: <span>$</span>@ord.SubTotal.ToString().Replace(',', '.')</h5>
                                             <h5 id="lblTax" style="color:#7b7979; margin-left:15px">Tax: <span>$</span>@ord.Tax.ToString().Replace(',', '.')</h5>
+                                            <h5 id="lblShippingCost" style="display:none;color:#7b7979; margin-left:15px">Cost of shipping: <span>$</span></h5>
                                             <h5 id="lblTotal" style="color:#000; margin-left:15px">Total Price: <span>$</span>@ord.Total.ToString().Replace(',', '.')</h5>
                                     }
 
