@@ -103,10 +103,12 @@ namespace VenusDoors.Controllers
             //var getOrderData = _LNO.GetOrderById(idOrder);
             //ViewBag.OrderDetails = getOrderData;
             BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
-            List<DoorsxUser> xDoors = _LN.GetAllDoorsxUser();
-            List<DoorsxUser> doorsByOrder = xDoors.Where(x => x.Order.Id == idOrder).ToList();
+            DoorsxUser xDoors = _LN.GetAllDoorsxUser().Where(x => x.Order.Id == idOrder).ToList().FirstOrDefault();
+            BusinessLogic.lnDoorxOrder Ord = new BusinessLogic.lnDoorxOrder();
+            var list = Ord.GetAllDoorxOrderByDoorxUser(xDoors.Id);
             // ViewBag.DoorsOrder = doorsByOrder;
-            return Json(doorsByOrder);
+            return Json(list);
+
 
         }
     }
