@@ -6,22 +6,6 @@
     Model.Order ord = ViewBag.LastOrder;
 }
 
-<style>
-
-    .orderreff{
-    background: #007d69;
-    color: #fff!important;
-    border-radius: 2px;
-    border: solid 1px #01483d;
-    padding: 5px;
-    }
-
-    .orderreff:hover{
-        cursor:pointer;
-        background:#014d41;
-    }
-</style>
-
 <div class="br-pageheader pd-y-15 pd-l-20">
     <nav class="breadcrumb pd-0 mg-0 tx-12">
         <a class="breadcrumb-item" href="/">Venus Doors</a>
@@ -88,12 +72,7 @@
                                             <td>@ordenes.ModificationDate</td>
                                             <td class="">
                                                 <center>
-                                                    <a class="orderreff" data-id="@ordenes.Id" title="Click here for more details of your order">
-                                                        <i class="fa fa-list"></i>
-                                                    </a>
-                                                    <a class="orderreff btn btn-primary btn-icon" data-id="@ordenes.Id" title="Click here for more details of your order">
-                                                        <div><i class="fa fa-list"></i></div>
-                                                    </a>
+                                                    <button class="Cursor btn btn-primary btn-icon orderreff" data-id="@ordenes.Id" style="width: 37px;height: 37px; margin-left: 10px;" type="submit"><i class="fa fa-list"></i></button>
                                                 </center>
                                             </td>
                                         </tr>
@@ -235,10 +214,8 @@ else
                                             </td>
                                             <td>@ordenes.ModificationDate</td>
                                             <td class="">
-                                                <center>
-                                                    <a class="orderreff" data-id="@ordenes.Id" title="Click here for more details of your order">
-                                                        <i class="fa fa-list"></i>
-                                                    </a>
+                                                <center>                                                    
+                                                    <button class="Cursor btn btn-primary btn-icon orderreff" data-id="@ordenes.Id" style="width: 37px;height: 37px; margin-left: 10px;" type="submit"><i class="fa fa-list"></i></button>
                                                 </center>
                                             </td>
                                         </tr>
