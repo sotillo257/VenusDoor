@@ -19,7 +19,7 @@ function GetDoorsByOrder(id) {
         type: 'POST',
         async: false,
         contentType: 'application/json; charset=utf-8',
-        success: function (data) {
+        success: function (Result) {
             var head = '<h5 class="modal-title" id="exampleModalLabel">Details of the order <span style="color:#014d41">#' + id + '</span></h5>'
             var option = '<table width="100%"><thead><tr>';
             option += '<th>PREVIEW</th><th>QUANTITY</th>' +
@@ -30,7 +30,8 @@ function GetDoorsByOrder(id) {
             '<th>DOOR OPTION</th>' +
             '<th>U. PRICE</th>'+
                 '<th>TOTAL</th>';
-            option += '</tr></thead><tbody>';
+            option += '</tr></thead><tbody>';           
+            data = Result.DoorsxOrder;
             for (var i = 0; i < data.length; i++) {
                 option += '<tr><td><img width="65px" src="' + data[i].Picture + '"/></td>';
 
