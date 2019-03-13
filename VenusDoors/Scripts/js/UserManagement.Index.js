@@ -72,7 +72,7 @@ function ApprovedUser(id) {
     });
 }
 function RefuseUser(id) {
-    var status = 3;
+    var status = 12;
     var datos =
     {
         modUser: {
@@ -124,7 +124,10 @@ function llenarTablaUserManegement() {
                     option += '<td>' + data[i].Status.Description + '</td>';
                     option += '<td>';
                     option += '<button value="' + data[i].Id + '" style="margin-right: 5px;" class="Approved Cursor btn btn-primary btn-icon"><div><i class="fa fa-check"></i></div></button>';
-                    option += '<button value="' + data[i].Id + '" style="margin-right: 5px;" class="Refuse Cursor btn btn-danger btn-icon"><div><i class="fa fa-close"></i></div></button>';
+                    if (data[i].Status.Id != 12) {
+                        option += '<button value="' + data[i].Id + '" style="margin-right: 5px;" class="Refuse Cursor btn btn-danger btn-icon"><div><i class="fa fa-close"></i></div></button>';
+                    }      
+                  
                     option += '</td></tr>';
 
                 }

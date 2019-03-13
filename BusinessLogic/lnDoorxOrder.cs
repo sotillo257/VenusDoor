@@ -63,7 +63,6 @@ namespace BusinessLogic
                 pDoorsxOrder.ProfilePicture = DU.BuscarProfilePicture(DoorUser.OutsideEdgeProfile.Id, DoorUser.InsideEdgeProfile.Id, pDoorsxOrder.Panel.Id);
                 pDoorsxOrder.Picture = DU.BuscarDoorPicture(pDoorsxOrder);
                int retorno = _AD.InsertDoorsxOrder(pDoorsxOrder);
-                item.Quantity = item.Quantity + pDoorsxOrder.Quantity;
                 item.SubTotal = item.SubTotal + pDoorsxOrder.SubTotal;
                 item.Tax = 0.0825m * item.SubTotal;
                 item.Total = item.Tax + item.SubTotal;

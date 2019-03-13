@@ -50,9 +50,13 @@
                                     <button value="@item.Id" class="Approved Cursor btn btn-primary btn-icon">
                                         <div><i class="fa fa-check"></i></div>
                                     </button>
-                                    <button value="@item.Id" class="Refuse Cursor btn btn-danger btn-icon">
-                                        <div><i class="fa fa-close"></i></div>
-                                    </button>
+                                    @if (item.Status.Id != 12)
+                                    {
+                                        <button value="@item.Id" class="Refuse Cursor btn btn-danger btn-icon">
+                                            <div><i class="fa fa-close"></i></div>
+                                        </button>
+                                    }
+                                  
                                 </center>
                             </td>
                         </tr>

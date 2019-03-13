@@ -1097,6 +1097,7 @@ function InsertDoorsxUser() {
                             var boton = '<button class="btn btn-success btn-icon AddDoor" style="width: 37px;height: 37px; margin-top: 55px;" type="button"><i class="fa fa-plus"></i></button>';
                             $("#btInsertDoorTable").empty().append(boton);
                             changeDoorStyle();
+                        
                         } else {
                             $('#modalInsert').modal('hide');
                             $('#modalConfirmOrderSummary').modal('hide');
@@ -1243,7 +1244,7 @@ function InsertDoorsxOrder() {
                 llenarTablaOrderSumary();
                 LimpiarCamposRapidos();
                 llenarheaderOrder();               
-                
+                llenarDivShipping();
             } else {
                 $('#modalInsert').modal('hide');
                 $('#modalConfirmOrderSummary').modal('hide');
@@ -1986,4 +1987,23 @@ function llenarheaderOrder() {
             LlammarModal("Danger", "Error.", " ");
         }
     });
+}
+
+function llenarDivShipping() {
+
+    var DivShipping = '';
+    DivShipping += '<div class="col-xs-3 col-md-7">';
+    DivShipping += '<label for="Observations" style="margin-top: 25px;">Observations: <i class="Cursor fa fa-info-circle" title="Here you can add an observation about this order. This note will be saved when confirming your order"></i></label>';
+    DivShipping += '<textarea type="text" rows="4" id="inObservations" class="form-control" placeholder="Observations..."></textarea>';
+    DivShipping += '</div><!-- form-group -->';
+    DivShipping += '<div class="col-xs-4 col-md-4">';
+    DivShipping += '<label for="ShipppingAddress" style="margin-top: 25px;">Shipping Address: <i class="Cursor fa fa-info-circle" title="If you want to send your doors select one of your shipping addresses or create a new one. (The delivery has an additional cost)."></i></label><div></div>';
+    DivShipping += '<select style="width:100%" class="eventChange form-control select2" id="cbShippingAddress" data-placeholder=""></select>';
+    DivShipping += '<p>The delivery has an additional cost</p>';
+    DivShipping += '</div><!-- col -->';
+    DivShipping += '<div class="col-xs-4 col-md-1">';
+    DivShipping += '<button style="margin-top: 55px;" type="button" data-toggle="modal" title="Add a new shipping address" data-target="#ModalAddSA" class="Cursor btnModalSA btn btn-success tx-11 pd-y-12 pd-x-25 tx-mont tx-medium">Add</button>';
+    DivShipping += '</div><!-- col -->';
+    $("#DivConshipping").html(DivShipping);
+    GetAllShippingAddress();
 }

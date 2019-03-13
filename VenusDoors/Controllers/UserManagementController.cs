@@ -18,7 +18,7 @@ namespace VenusDoors.Controllers
         {
 
             List<User> Usuarios = _LNU.GetAllUserByCompany((int)Session["IdCompany"], (int)Session["IdTypeCompany"]);
-            List<User> ListaUsuarios = Usuarios.Where(x => x.Status.Id == 2).OrderByDescending(x => x.ModificationDate).ToList();
+            List<User> ListaUsuarios = Usuarios.Where(x => x.Status.Id == 2 || x.Status.Id == 12).OrderByDescending(x => x.ModificationDate).ToList();
             ViewBag.UserList = ListaUsuarios;
             return View();
             
@@ -65,7 +65,7 @@ namespace VenusDoors.Controllers
                 {
                     BusinessLogic.lnUser _LNU = new BusinessLogic.lnUser();
                     List<User> Usuarios = _LNU.GetAllUserByCompany((int)Session["IdCompany"], (int)Session["IdTypeCompany"]);
-                    List<User> ListaUsuarios = Usuarios.Where(x => x.Status.Id == 2).OrderByDescending(x => x.ModificationDate).ToList();
+                    List<User> ListaUsuarios = Usuarios.Where(x => x.Status.Id == 2 || x.Status.Id == 12).OrderByDescending(x => x.ModificationDate).ToList();
                     return Json(ListaUsuarios, JsonRequestBehavior.AllowGet);
 
                 }
