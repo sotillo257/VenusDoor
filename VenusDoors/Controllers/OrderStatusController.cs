@@ -10,6 +10,7 @@ namespace VenusDoors.Controllers
     public class OrderStatusController : Controller
     {
         // GET: OrderStatus
+        [Authorize]
         public ActionResult Index()
         {
             try
@@ -59,8 +60,9 @@ namespace VenusDoors.Controllers
                 throw;
             }
         }
-        
 
+
+        [Authorize]
         [HttpPost]
         public ActionResult GetDoorsByOrder(int idOrder)
         {

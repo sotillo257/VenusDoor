@@ -17,64 +17,7 @@ namespace VenusDoors.Controllers
         public IEnumerable<string> ConverExcel { get; private set; }
 
         // GET: OrderSummary
-        #region metodoComentado
-        //             try
-        //            {
-        //                ViewBag.OrderSummary = "active";
-        //                BusinessLogic.lnDoors _LNd = new BusinessLogic.lnDoors();
-        //                if (Session["UserID"] == null)
-        //                {
-        //                    if (Id > 0)
-        //                    {
-        //                        var Door = _LNd.GetDoorsById(Id.Value);
-        //        var serializar1 = new System.Web.Script.Serialization.JavaScriptSerializer();
-        //        ViewBag.Door = serializar1.Serialize(Door);
-        //                    }
-        //                    return View();
-        //}
-        //                else
-        //                {
-        //                    if (Id > 0)
-        //                    {
-        //                        var Door = _LNd.GetDoorsById(Id.Value);
-        //var serializar1 = new System.Web.Script.Serialization.JavaScriptSerializer();
-        //ViewBag.Door = serializar1.Serialize(Door);
-        //                    }
-        //                BusinessLogic.lnOrder _LNOrder = new BusinessLogic.lnOrder();
-        //int userID = (int)Session["UserID"];
-        //int idU = userID;
-        //var orderList = _LNOrder.GetOrderByUser(idU);
-        //ViewBag.Listo = orderList.Where(x => x.Status.Id == 4).LastOrDefault();
-        //Order item = ViewBag.Listo;
-        //                if (item == null)
-        //                {
-        //                    return View();
-        //                }
-        //                else if (item.Status.Id == 4)
-        //                {
-        //                    BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
-        //List<DoorsxUser> xDoorsU = _LN.GetAllDoorsxUser();
-        //List<DoorsxUser> doorByOrder = xDoorsU.Where(x => x.Order.Id == item.Id).ToList();
-        //ViewBag.xUserDoors = doorByOrder;
-        //                    var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
-        //ViewBag.ListDoorsxUser = serializar.Serialize(doorByOrder);
-        //                        DoorsxUser LastDoor = doorByOrder.OrderByDescending(x => x.ModificationDate).FirstOrDefault();
-        //ViewBag.LstD = LastDoor;
-
-        //                   return View();
-        //                }
-        //                else
-        //                {
-        //                    return View();
-        //                }
-        //                }
-        //            }
-        //            catch (Exception ex)
-        //            {
-        //                return View("Error");
-        //            }    
-        #endregion
-
+    
         [Authorize]
         public ActionResult Index(int? Id)
         {
@@ -118,7 +61,7 @@ namespace VenusDoors.Controllers
 
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult GetOrderSumary()
         {
             try
@@ -140,7 +83,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult GetLastDoor()
         {
             try
@@ -173,7 +116,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult DeleteItem(int itemID, int orderid)
         {
            
@@ -202,7 +145,7 @@ namespace VenusDoors.Controllers
                 }
             }         
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult UpdateOrderExist(DoorxOrder xDoor, Order upptOrd)
         {
             if (Session["UserID"] == null)
@@ -240,6 +183,7 @@ namespace VenusDoors.Controllers
             }
         }
 
+        [Authorize] [HttpPost]
         public ActionResult CloseOrder(Order CompleteOrder)
         {
             if(Session["UserID"] == null)
@@ -268,7 +212,7 @@ namespace VenusDoors.Controllers
                 
             }            
         }
-
+        [Authorize]
         public void SendOrderToUser(Order CompleteOrder)
         {
             try
@@ -442,7 +386,7 @@ namespace VenusDoors.Controllers
                 throw;
             }
         }
-
+        [Authorize]
         public void SendOrderToManage(Order CompleteOrder)
         {
             int userID = (int)Session["UserID"];
@@ -608,7 +552,7 @@ namespace VenusDoors.Controllers
 
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult ConfirmOrder (Order ord)
         {
             if (Session["UserID"] == null)
@@ -641,7 +585,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult ValidateSession()
         {
 
@@ -655,7 +599,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult GetAllShippingAddressByUser()
         {
             if (Session["UserID"] != null)
@@ -670,7 +614,7 @@ namespace VenusDoors.Controllers
             }              
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult InsertShippingAddress(ShippingAddress ShippingData)
         {
             try
@@ -696,7 +640,7 @@ namespace VenusDoors.Controllers
 
 
         #region BottomRail 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult InsertBottomRail(BottomRail pBottomRail)
 
         {
@@ -712,7 +656,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult UpdateBottomRail(BottomRail pBottomRail)
 
         {
@@ -728,7 +672,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult GetAllBottomRail()
         {
             try
@@ -742,7 +686,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult GetBottomRailById(int pId)
         {
             try
@@ -756,7 +700,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult DeleteBottomRail(int pId)
         {
             try
@@ -772,7 +716,7 @@ namespace VenusDoors.Controllers
         #endregion
 
         #region Doors
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult InsertDoors(Doors pDoors)
 
         {
@@ -788,7 +732,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult UpdateDoors(Doors pDoors)
 
         {
@@ -804,7 +748,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult GetAllDoors()
         {
             try
@@ -818,7 +762,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult GetDoorsById(int pId)
         {
             try
@@ -832,7 +776,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult DeleteDoors(int pId)
         {
             try
@@ -848,7 +792,7 @@ namespace VenusDoors.Controllers
         #endregion
 
         #region DoorsPrices
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult InsertDoorsPrices(DoorsPrices pDoorsPrices)
 
         {
@@ -864,7 +808,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult UpdateDoorsPrices(DoorsPrices pDoorsPrices)
 
         {
@@ -880,7 +824,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult GetAllDoorsPrices()
         {
             try
@@ -894,7 +838,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult GetDoorsPricesById(int pId)
         {
             try
@@ -908,7 +852,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult DeleteDoorsPrices(int pId)
         {
             try
@@ -924,7 +868,7 @@ namespace VenusDoors.Controllers
         #endregion
 
         #region DoorStyle 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult InsertDoorStyle(DoorStyle pDoorStyle)
 
         {
@@ -940,7 +884,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult UpdateDoorStyle(DoorStyle pDoorStyle)
 
         {
@@ -956,7 +900,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult GetAllDoorStyle()
         {
             try
@@ -970,7 +914,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult GetDoorStyleById(int pId)
         {
             try
@@ -984,7 +928,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult DeleteDoorStyle(int pId)
         {
             try
@@ -1000,7 +944,7 @@ namespace VenusDoors.Controllers
         #endregion
 
         #region DoorStylexInsideEdgeProfile
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult InsertDoorStylexInsideEdgeProfile(DoorStylexInsideEdgeProfile pDoorStylexInsideEdgeProfile)
 
         {
@@ -1016,7 +960,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult UpdateDoorStylexInsideEdgeProfile(DoorStylexInsideEdgeProfile pDoorStylexInsideEdgeProfile)
 
         {
@@ -1032,7 +976,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult GetAllDoorStylexInsideEdgeProfile()
         {
             try
@@ -1046,7 +990,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult GetDoorStylexInsideEdgeProfileById(int pId)
         {
             try
@@ -1060,7 +1004,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult DeleteDoorStylexInsideEdgeProfile(int pId)
         {
             try
@@ -1076,7 +1020,7 @@ namespace VenusDoors.Controllers
         #endregion
 
         #region DoorStylexOutsideEdgeProfile
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult InsertDoorStylexOutsideEdgeProfile(DoorStylexOutsideEdgeProfile pDoorStylexOutsideEdgeProfile)
 
         {
@@ -1092,7 +1036,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult UpdateDoorStylexOutsideEdgeProfile(DoorStylexOutsideEdgeProfile pDoorStylexOutsideEdgeProfile)
 
         {
@@ -1108,7 +1052,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult GetAllDoorStylexOutsideEdgeProfile()
         {
             try
@@ -1122,7 +1066,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult GetDoorStylexOutsideEdgeProfileById(int pId)
         {
             try
@@ -1136,7 +1080,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult DeleteDoorStylexOutsideEdgeProfile(int pId)
         {
             try
@@ -1152,7 +1096,7 @@ namespace VenusDoors.Controllers
         #endregion
 
         #region DoorsxUser
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult InsertDoorsxUser(DoorsxUser pDoorsxUser)
 
         {
@@ -1168,7 +1112,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult UpdateDoorsxUser(DoorsxUser pDoorsxUser)
 
         {
@@ -1184,7 +1128,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult GetAllDoorsxUser()
         {
             try
@@ -1198,7 +1142,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult GetDoorsxUserById(int pId)
         {
             try
@@ -1212,7 +1156,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult DeleteDoorsxUser(int pId)
         {
             try
@@ -1228,7 +1172,7 @@ namespace VenusDoors.Controllers
         #endregion
 
         #region Group
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult InsertGroup(Group pGroup)
 
         {
@@ -1244,7 +1188,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult UpdateGroup(Group pGroup)
 
         {
@@ -1260,7 +1204,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult GetAllGroup()
         {
             try
@@ -1274,7 +1218,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult GetGroupById(int pId)
         {
             try
@@ -1288,7 +1232,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult DeleteGroup(int pId)
         {
             try
@@ -1304,7 +1248,7 @@ namespace VenusDoors.Controllers
         #endregion
 
         #region HingeDirection
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult InsertHingeDirection(HingeDirection pHingeDirection)
 
         {
@@ -1320,7 +1264,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult UpdateHingeDirection(HingeDirection pHingeDirection)
 
         {
@@ -1336,7 +1280,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult GetAllHingeDirection()
         {
             try
@@ -1350,7 +1294,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult GetHingeDirectionById(int pId)
         {
             try
@@ -1364,7 +1308,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult DeleteHingeDirection(int pId)
         {
             try
@@ -1380,7 +1324,7 @@ namespace VenusDoors.Controllers
         #endregion
 
         #region HingePositions
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult InsertHingePositions(HingePositions pHingePositions)
 
         {
@@ -1396,7 +1340,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult UpdateHingePositions(HingePositions pHingePositions)
 
         {
@@ -1412,7 +1356,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult GetAllHingePositions()
         {
             try
@@ -1426,7 +1370,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult GetHingePositionsById(int pId)
         {
             try
@@ -1440,7 +1384,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult DeleteHingePositions(int pId)
         {
             try
@@ -1456,7 +1400,7 @@ namespace VenusDoors.Controllers
         #endregion
 
         #region HorizontalDivisions
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult InsertHorizontalDivisions(HorizontalDivisions pHorizontalDivisions)
 
         {
@@ -1472,7 +1416,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult UpdateHorizontalDivisions(HorizontalDivisions pHorizontalDivisions)
 
         {
@@ -1488,7 +1432,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult GetAllHorizontalDivisions()
         {
             try
@@ -1502,7 +1446,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult GetHorizontalDivisionsById(int pId)
         {
             try
@@ -1516,7 +1460,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult DeleteHorizontalDivisions(int pId)
         {
             try
@@ -1532,7 +1476,7 @@ namespace VenusDoors.Controllers
         #endregion
 
         #region InsideEdgeProfile
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult InsertInsideEdgeProfile(InsideEdgeProfile pInsideEdgeProfile)
 
         {
@@ -1548,7 +1492,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult UpdateInsideEdgeProfile(InsideEdgeProfile pInsideEdgeProfile)
 
         {
@@ -1564,7 +1508,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult GetAllInsideEdgeProfile()
         {
             try
@@ -1578,7 +1522,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult GetInsideEdgeProfileById(int pId)
         {
             try
@@ -1592,7 +1536,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult DeleteInsideEdgeProfile(int pId)
         {
             try
@@ -1608,7 +1552,7 @@ namespace VenusDoors.Controllers
         #endregion
 
         #region Join
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult InsertJoin(Join pJoin)
 
         {
@@ -1624,7 +1568,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult UpdateJoin(Join pJoin)
 
         {
@@ -1640,7 +1584,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult GetAllJoin()
         {
             try
@@ -1654,7 +1598,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult GetJoinById(int pId)
         {
             try
@@ -1668,7 +1612,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult DeleteJoin(int pId)
         {
             try
@@ -1684,7 +1628,7 @@ namespace VenusDoors.Controllers
         #endregion
 
         #region Material
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult InsertMaterial(Material pMaterial)
 
         {
@@ -1700,7 +1644,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult UpdateMaterial(Material pMaterial)
 
         {
@@ -1716,7 +1660,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult GetAllMaterial()
         {
             try
@@ -1730,7 +1674,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult GetMaterialById(int pId)
         {
             try
@@ -1744,7 +1688,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult DeleteMaterial(int pId)
         {
             try
@@ -1760,7 +1704,7 @@ namespace VenusDoors.Controllers
         #endregion
 
         #region MaterialxBottomRail
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult InsertMaterialxBottomRail(MaterialxBottomRail pMaterialxBottomRail)
 
         {
@@ -1776,7 +1720,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult UpdateMaterialxBottomRail(MaterialxBottomRail pMaterialxBottomRail)
 
         {
@@ -1792,7 +1736,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult GetAllMaterialxBottomRail()
         {
             try
@@ -1806,7 +1750,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult GetMaterialxBottomRailById(int pId)
         {
             try
@@ -1820,7 +1764,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult DeleteMaterialxBottomRail(int pId)
         {
             try
@@ -1836,7 +1780,7 @@ namespace VenusDoors.Controllers
         #endregion
 
         #region Order
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult InsertOrder(Order pOrder)
 
         {
@@ -1852,7 +1796,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult UpdateOrder(Order pOrder)
 
         {
@@ -1868,7 +1812,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult GetAllOrder()
         {
             try
@@ -1882,7 +1826,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult GetOrderById(int pId)
         {
             try
@@ -1896,7 +1840,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult DeleteOrder(int pId)
         {
             try
@@ -1912,7 +1856,7 @@ namespace VenusDoors.Controllers
         #endregion
 
         #region OutsideEdgeProfile
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult InsertOutsideEdgeProfile(OutsideEdgeProfile pOutsideEdgeProfile)
 
         {
@@ -1928,7 +1872,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult UpdateOutsideEdgeProfile(OutsideEdgeProfile pOutsideEdgeProfile)
 
         {
@@ -1944,7 +1888,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult GetAllOutsideEdgeProfile()
         {
             try
@@ -1958,7 +1902,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult GetOutsideEdgeProfileById(int pId)
         {
             try
@@ -1972,7 +1916,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult DeleteOutsideEdgeProfile(int pId)
         {
             try
@@ -1988,7 +1932,7 @@ namespace VenusDoors.Controllers
         #endregion
 
         #region Panel
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult InsertPanel(Panel pPanel)
 
         {
@@ -2004,7 +1948,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult UpdtePanel(Panel pPanel)
 
         {
@@ -2020,7 +1964,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult GetAllPanel()
         {
             try
@@ -2034,7 +1978,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult GetPanelById(int pId)
         {
             try
@@ -2048,7 +1992,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult DeletePanel(int pId)
         {
             try
@@ -2064,7 +2008,7 @@ namespace VenusDoors.Controllers
         #endregion
 
         #region PanelMaterial
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult InsertPanelMaterial(PanelMaterial pPanelMaterial)
 
         {
@@ -2080,7 +2024,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult UpdatePanelMaterial(PanelMaterial pPanelMaterial)
 
         {
@@ -2096,7 +2040,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult GetAllPanelMaterial()
         {
             try
@@ -2110,7 +2054,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult GetPanelMaterialById(int pId)
         {
             try
@@ -2124,7 +2068,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult DeletePanelMaterial(int pId)
         {
             try
@@ -2140,7 +2084,7 @@ namespace VenusDoors.Controllers
         #endregion
 
         #region Person
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult InsertPerson(Person pPerson)
 
         {
@@ -2156,7 +2100,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult UpdatePerson(Person pPerson)
 
         {
@@ -2172,7 +2116,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult GetAllPerson()
         {
             try
@@ -2186,7 +2130,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult GetPersonById(int pId)
         {
             try
@@ -2200,7 +2144,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult DeletePerson(int pId)
         {
             try
@@ -2216,7 +2160,7 @@ namespace VenusDoors.Controllers
         #endregion
 
         #region Preparation
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult InsertPreparation(Preparation pPreparation)
 
         {
@@ -2232,7 +2176,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult UpdatePreparation(Preparation pPreparation)
 
         {
@@ -2248,7 +2192,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult GetAllPreparation()
         {
             try
@@ -2262,7 +2206,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult GetPreparationByID(int pId)
         {
             try
@@ -2276,7 +2220,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult DeletePreparation(int pId)
         {
             try
@@ -2292,7 +2236,7 @@ namespace VenusDoors.Controllers
         #endregion
 
         #region Status
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult InsertStatus(Status pStatus)
 
         {
@@ -2308,7 +2252,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult UpdateStatus(Status pStatus)
 
         {
@@ -2324,7 +2268,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult GetAllStatus()
         {
             try
@@ -2338,7 +2282,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult GetStatusById(int pId)
         {
             try
@@ -2352,7 +2296,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult DeleteStatus(int pId)
         {
             try
@@ -2368,7 +2312,7 @@ namespace VenusDoors.Controllers
         #endregion
 
         #region TopRail
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult InsertTopRail(TopRail pTopRail)
 
         {
@@ -2384,7 +2328,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult UpdateTopRail(TopRail pTopRail)
 
         {
@@ -2400,7 +2344,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult GetAllTopRail()
         {
             try
@@ -2414,7 +2358,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult GetTopRailById(int pId)
         {
             try
@@ -2428,7 +2372,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult DeleteTopRail(int pId)
         {
             try
@@ -2444,7 +2388,7 @@ namespace VenusDoors.Controllers
         #endregion
 
         #region TopRailxHorizontalDivisions
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult InsertTopRailxHorizontalDivisions(TopRailxHorizontalDivisions pTopRailxHorizontalDivisions)
 
         {
@@ -2460,7 +2404,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult UpdateTopRailxHorizontalDivisions(TopRailxHorizontalDivisions pTopRailxHorizontalDivisions)
 
         {
@@ -2476,7 +2420,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult GetAllTopRailxHorizontalDivisions()
         {
             try
@@ -2490,7 +2434,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult GetTopRailxHorizontalDivisionsById(int pId)
         {
             try
@@ -2504,7 +2448,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult DeleteTopRailxHorizontalDivisions(int pId)
         {
             try
@@ -2520,7 +2464,7 @@ namespace VenusDoors.Controllers
         #endregion
 
         #region TopRailxJoin
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult InsertTopRailxJoin(TopRailxJoin pTopRailxJoin)
 
         {
@@ -2536,7 +2480,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult UpdateTopRailxJoin(TopRailxJoin pTopRailxJoin)
 
         {
@@ -2552,7 +2496,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult GetAllTopRailxJoin()
         {
             try
@@ -2566,7 +2510,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult GetTopRailxJoinById(int pId)
         {
             try
@@ -2580,7 +2524,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult DeleteTopRailxJoin(int pId)
         {
             try
@@ -2596,7 +2540,7 @@ namespace VenusDoors.Controllers
         #endregion
 
         #region TopRailxVerticalDivisions
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult InsertTopRailxVerticalDivisions(TopRailxVerticalDivisions pTopRailxVerticalDivisions)
 
         {
@@ -2612,7 +2556,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult UpdateTopRailxVerticalDivisions(TopRailxVerticalDivisions pTopRailxVerticalDivisions)
 
         {
@@ -2628,7 +2572,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult GetAllTopRailxVerticalDivisions()
         {
             try
@@ -2642,7 +2586,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult GetTopRailxVerticalDivisionsById(int pId)
         {
             try
@@ -2656,7 +2600,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize] [HttpPost]
         public ActionResult DeleteTopRailxVerticalDivisions(int pId)
         {
             try

@@ -52,20 +52,7 @@ namespace VenusDoors.Controllers
            
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-
+        [Authorize]
         public ActionResult Dashboard(int? Id)
         {
             try
@@ -292,6 +279,7 @@ namespace VenusDoors.Controllers
 
         }
 
+        [Authorize]
         public ActionResult Doors() {
             try
             {
@@ -311,6 +299,7 @@ namespace VenusDoors.Controllers
            
         }
 
+        [Authorize]
         public ActionResult DashboardUser()
         {
             try
