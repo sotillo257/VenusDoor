@@ -28,11 +28,11 @@
                 <table id="datatable1" style="width: 100%;" class="table display responsive nowrap dataTable no-footer dtr-inline" role="grid" aria-describedby="datatable1_info">
                     <thead>
                         <tr>
-                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="First name: activate to sort column ascending">Reference number</th>
-                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Number of items</th>
-                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Total</th>
-                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Status</th>
-                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" style="text-align: center" aria-label="Last name: activate to sort column ascending"><i class="fa fa-flash"></i></th>
+                            <th class="pd-y-5 sorting_disabled">Reference number</th>
+                            <th class="pd-y-5 sorting_disabled">Number of items</th>
+                            <th class="pd-y-5 sorting_disabled">Total</th>
+                            <th class="pd-y-5 sorting_disabled">Status</th>
+                            <th class="pd-y-5 sorting_disabled"><i class="fa fa-flash"></i></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -61,24 +61,24 @@
 
                                     <td class="">
 
-                                        <button href="#" data-id="@item.Id" id="" value="" class="Detalle Cursor btn btn-info btn-icon">
-                                            <div><i class="fa fa-eye"></i></div>
+                                        <button href="#" data-id="@item.Id" id="" value="" class="Detalle Cursor btn btn-info btn-icon" style="width: 25px;height: 25px; margin-left: 10px;">
+                                            <i class="fa fa-eye"></i>
                                         </button>
                                         @if (item.Status.Id == 5)
-                                        { <a href="#" data-target="" id="" title="Approve order." value="@item.Id" class="Approved btn btn-primary btn-icon">
-                                    <div><i class="fa fa-check"></i></div>
-                                </a>
-                                    <a href="#" data-toggle="modal" data-target="" id="" title="Remove order." value="@item.Id" class="Remove btn btn-danger btn-icon">
-                                        <div><i class="fa fa-close"></i></div>
-                                    </a>}
+                                        { <button href="#" data-target="" id="" title="Approve order." value="@item.Id" class="Approved btn btn-primary btn-icon" style="width: 25px;height: 25px; margin-left: 10px;">
+                                    <i class="fa fa-check"></i>
+                                </button>
+                                    <button href="#" data-toggle="modal" data-target="" id="" title="Remove order." value="@item.Id" class="Remove btn btn-danger btn-icon" style="width: 25px;height: 25px; margin-left: 10px;">
+                                        <i class="fa fa-close"></i>
+                                    </button>}
                                         else if (item.Status.Id == 6)
-                                        {<a href="#" data-target="" id="" title="Process order." value="@item.Id" class="Process btn btn-warning btn-icon">
-                                    <div><i class="fa fa-check"></i></div>
-                                </a> }
+                                        {<button href="#" data-target="" id="" title="Process order." value="@item.Id" class="Process btn btn-warning btn-icon" style="width: 25px;height: 25px; margin-left: 10px;">
+                                    <i class="fa fa-check"></i>
+                                </button> }
                                         else if (item.Status.Id == 7)
-                                        {<a href="#" data-target="" id="" title="Complete order." value="@item.Id" class="Completed btn btn-success btn-icon">
-                                    <div><i class="fa fa-check"></i></div>
-                                </a> }
+                                        {<button href="#" data-target="" id="" title="Complete order." value="@item.Id" class="Completed btn btn-success btn-icon" style="width: 25px;height: 25px; margin-left: 10px;">
+                                    <i class="fa fa-check"></i>
+                                </button> }
                                     </td>
                                 </tr>
                             }

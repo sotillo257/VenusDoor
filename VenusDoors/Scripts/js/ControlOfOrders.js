@@ -46,13 +46,15 @@ $(function () {
             searchPlaceholder: 'Search...',
             sSearch: '',
             lengthMenu: '_MENU_ items/page',
-        }
+        },
+        ordering: false,
     });
 
     $('#datatable2').DataTable({
         bLengthChange: false,
         searching: false,
-        responsive: true
+        responsive: true,
+        ordering: false,
     });
 
     // Select2
@@ -347,16 +349,16 @@ function llenarTablaOrderControl() {
                     }
                     option += data[i].Status.Description + '</td>';
                     option += '<td>';
-                    option += '<button href="#" data-id="' + data[i].Id + '" id="" value="" class="Detalle Cursor btn btn-info btn-icon" style="margin-right: 5px;" ><div><i class="fa fa-eye" ></i></div></button>';
+                    option += '<button href="#" data-id="' + data[i].Id + '" id="" value="" class="Detalle Cursor btn btn-info btn-icon" s style="width: 25px;height: 25px; margin-left: 10px;" ><i class="fa fa-eye" ></i></button>';
                     if (data[i].Status.Id == 5)
                     {
-                        option += '<button title="Approve order." value="' + data[i].Id + '" class="Approved Cursor btn btn-primary btn-icon" style="margin-right: 5px;"><div><i class="fa fa-check"></i></div></button>';
-                        option += '<button  data-toggle="modal" data-target="" id="" title="Remove order." value="' + data[i].Id + '" style="margin-right: 5px;" class="Remove Cursor btn btn-danger btn-icon"><div><i class="fa fa-close"></i></div></button>';
+                        option += '<button title="Approve order." value="' + data[i].Id + '" class="Approved Cursor btn btn-primary btn-icon" style="width: 25px;height: 25px; margin-left: 10px;"><i class="fa fa-check"></i></button>';
+                        option += '<button  data-toggle="modal" data-target="" id="" title="Remove order." value="' + data[i].Id + '" class="Remove Cursor btn btn-danger btn-icon" style="width: 25px;height: 25px; margin-left: 10px; "><i class="fa fa-close"></i></button>';
                     }
                     else if (data[i].Status.Id == 6)
-                    { option += '<button title="Process order." value="' + data[i].Id + '" class="Process Cursor btn btn-warning btn-icon" style="margin-right: 5px;" > <div> <i class="fa fa-check"></i> </div> </button>'; }
+                    { option += '<button title="Process order." value="' + data[i].Id + '" class="Process Cursor btn btn-warning btn-icon"  style="width: 25px;height: 25px; margin-left: 10px;"> <i class="fa fa-check"></i> </button>'; }
                     else if (data[i].Status.Id == 7)
-                    { option += '<button title="Complete order." value="' + data[i].Id + '" class="Completed Cursor btn btn-success btn-icon" style="margin-right: 5px;" > <div> <i class="fa fa-check"></i> </div> </button>'; }
+                    { option += '<button title="Complete order." value="' + data[i].Id + '" class="Completed Cursor btn btn-success btn-icon"  style="width: 25px;height: 25px; margin-left: 10px;"> <i class="fa fa-check"></i>  </button>'; }
                    
                     option += '</td></tr>';
 
