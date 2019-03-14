@@ -357,7 +357,7 @@ namespace VenusDoors.Controllers
             FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(1,
                                     Usuario.Person.Name,
                                     DateTime.Now,
-                                    DateTime.Now.AddMinutes(30),
+                                    DateTime.Now.AddMinutes(1),
                                     persistanceFlag,
                                     Usuario.Id.ToString());
 

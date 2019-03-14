@@ -59,7 +59,7 @@
 </div>*@
 <div class="pd-30">
     <h4 class="tx-gray-800 mg-b-5">Dashboard</h4>
-    <p class="mg-b-0"></p>
+    <p class="mg-b-0">General summary of the company</p>
 </div>
 <div class="br-pagebody mg-t-5 pd-x-30">
     <div class="row row-sm">
@@ -140,7 +140,8 @@
                     <div class="progress-bar bg-info @ViewBag.Completed" role="progressbar" aria-valuenow="@ViewBag.Doors.Completed" aria-valuemin="0" aria-valuemax="@ViewBag.totalOrdenes"></div>
                 </div>
                 <div class="mg-t-20 tx-13">
-                    <a href="" class="tx-gray-600 hover-info">View Orders</a>
+                    @Html.ActionLink("View Orders", "Index", "OrderControl", new { area = "" }, new { @class = "tx-gray-600 hover-info" })
+                 
                 </div>
             </div><!-- card -->
         </div><!-- col-3 -->
@@ -161,7 +162,7 @@
                             <h3 class="tx-lato tx-white mg-b-0">
                                 @ViewBag.Mes
                                 @if (ViewBag.Estado)
-                                {
+                            {
                                     <i class="icon ion-android-arrow-up tx-white-5"></i>
                                 }
                                 else { <i class="icon ion-android-arrow-down tx-white-5"></i> }

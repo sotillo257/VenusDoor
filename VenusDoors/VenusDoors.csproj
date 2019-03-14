@@ -1150,8 +1150,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
@@ -1178,13 +1176,9 @@
     <Content Include="Views\OrderSummary\Index.cshtml" />
     <Content Include="Scripts\js\ConfigDoor.Index.js" />
     <Content Include="Views\OrderStatus\Index.cshtml" />
-    <Content Include="Views\ConfiDoor\Index - Copia.cshtml" />
     <Content Include="Views\Masters\DoorsPrices.cshtml" />
     <Content Include="Views\Masters\Doors.cshtml" />
     <Content Include="Views\Masters\BottomRail.cshtml" />
-    <Content Include="Views\Masters\DoorStyleByInsideEdgeProfile.cshtml" />
-    <Content Include="Views\Masters\DoorStyleByOutsideEdgeProfile.cshtml" />
-    <Content Include="Views\Masters\DoorByUser.cshtml" />
     <Content Include="Views\Masters\Group.cshtml" />
     <Content Include="Views\Masters\HingeDirection.cshtml" />
     <Content Include="Views\Masters\HingePositions.cshtml" />
@@ -1192,7 +1186,6 @@
     <Content Include="Views\Masters\InsideEdgeProfile.cshtml" />
     <Content Include="Views\Masters\Join.cshtml" />
     <Content Include="Views\Masters\Material.cshtml" />
-    <Content Include="Views\Masters\MaterialxBottomRail.cshtml" />
     <Content Include="Views\Masters\Order.cshtml" />
     <Content Include="Views\Masters\OutsideEdgeProfile.cshtml" />
     <Content Include="Views\Masters\Panel.cshtml" />
@@ -1201,9 +1194,6 @@
     <Content Include="Views\Masters\Preparation.cshtml" />
     <Content Include="Views\Masters\Status.cshtml" />
     <Content Include="Views\Masters\TopRail.cshtml" />
-    <Content Include="Views\Masters\TopRailByHorizontalDivisions.cshtml" />
-    <Content Include="Views\Masters\TopRailByJoin.cshtml" />
-    <Content Include="Views\Masters\TopRailByVerticalDivisions.cshtml" />
     <Content Include="Views\Masters\Type.cshtml" />
     <Content Include="Views\Masters\Usuario.cshtml" />
     <Content Include="Views\Masters\VerticalDivisions.cshtml" />

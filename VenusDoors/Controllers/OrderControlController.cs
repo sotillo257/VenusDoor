@@ -12,6 +12,7 @@ namespace VenusDoors.Controllers
         BusinessLogic.lnOrder _LNOR = new BusinessLogic.lnOrder();
 
         // GET: OrderControl
+        [Authorize]
         public ActionResult Index()
         {            
             if (Session["UserID"] != null && (int)Session["UserType"] == 1)
@@ -29,6 +30,7 @@ namespace VenusDoors.Controllers
             }
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult ModifiyOrder()
         {
@@ -43,6 +45,7 @@ namespace VenusDoors.Controllers
             }
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult UpdateOrderStatus(Order modOrder)
         {
@@ -70,6 +73,7 @@ namespace VenusDoors.Controllers
             }
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult GetAllOrderControl()
         {
@@ -96,6 +100,7 @@ namespace VenusDoors.Controllers
             }
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult GetDoorsByOrder(int idOrder)
         {           
