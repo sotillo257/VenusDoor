@@ -98,15 +98,15 @@ namespace VenusDoors.Controllers
 
         [HttpPost]
         public ActionResult GetDoorsByOrder(int idOrder)
-        {
-            //BusinessLogic.lnOrder _LNO = new BusinessLogic.lnOrder();
+        {           
             //var getOrderData = _LNO.GetOrderById(idOrder);
             //ViewBag.OrderDetails = getOrderData;
             BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
             DoorsxUser xDoors = _LN.GetAllDoorsxUser().Where(x => x.Order.Id == idOrder).ToList().FirstOrDefault();
             BusinessLogic.lnDoorxOrder Ord = new BusinessLogic.lnDoorxOrder();
             xDoors.DoorsxOrder = Ord.GetAllDoorxOrderByDoorxUser(xDoors.Id);
-
+            BusinessLogic.lnOrder _LNO = new BusinessLogic.lnOrder();
+            xDoors.Order = _LNO.GetOrderById(idOrder);
             // ViewBag.DoorsOrder = doorsByOrder;
             return Json(xDoors);
 
