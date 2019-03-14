@@ -35,7 +35,6 @@
         '<button type="button" class="Cursor btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>');
         $('#deleteidhidden').val(id);
     });
-
 });
 
 $(function () {
@@ -74,17 +73,7 @@ function GetDoorsByOrder(id) {
         type: 'POST',
         async: false,
         contentType: 'application/json; charset=utf-8',
-        success: function (Result) {  
-            var headBtn = '';
-            if (Result.Order.Status.Id == 5 || Result.Order.Status.Id == 11) {
-                headBtn += '<h3 id="lblTitulo" class="tx-inverse mg-b-5">Details of the order #<span style="color:#014d41">' + id + '</span></h3>';
-                headBtn += '<a style="margin-left: 20px;" title="Click here to change the configuration of your doors" data-toggle="tab" href="#modalDoorConfiguration" class="btModify btn btn-primary btn-icon">';
-                headBtn += '<div><i class="fa fa-edit"></i></div></a>';
-            }
-            else
-            {
-                headBtn += '<h3 id="lblTitulo" class="tx-inverse mg-b-5">Details of the order #<span style="color:#014d41">' + id + '</span></h3>';
-            }
+        success: function (Result) {              
             var dxu = '';
             dxu += '<div class="col-xs-4 col-md-3">';
             dxu += '<label id="Material" style="margin-top: 10px;">Wood Species: <span style="color: #868ba1" style="color: #868ba1">' + Result.Material.Description + '</span></label>';
@@ -186,7 +175,7 @@ function GetDoorsByOrder(id) {
                 option += '<td><span>$</span>' + data[i].SubTotal.toString().replace(',', '.') + '</td>';
             }
             option += '</tbody></table>';
-            $("#tituloConBTNEdit").html(headBtn);
+            $("#orreff").text(id);
             $("#ordertable").html(option);
             $('#ModalOrderInfo').modal('toggle');
             $("#HeaderOptions").html(dxu);

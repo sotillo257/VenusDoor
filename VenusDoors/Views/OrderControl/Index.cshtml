@@ -91,63 +91,147 @@
 </div>
 <div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div>
 
-<div class="tab-content">
-    <div id="home" class="tab-pane fade in active">
-        <h3>HOME</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    </div>
-    <div id="menu1" class="tab-pane fade">
-        <h3>Menu 1</h3>
-        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    </div>
-    <div id="menu2" class="tab-pane fade">
-        <h3>Menu 2</h3>
-        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-    </div>
-    <div id="menu3" class="tab-pane fade">
-        <h3>Menu 3</h3>
-        <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-    </div>
-</div>
-
-<div class="modal fade" id="ModalOrderInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="ModalOrderInfo" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" id="mdialTamanio" style="width: 80%!important; max-width:100%">
         <div class="modal-content">
-            @*<div style="border-bottom: 1px solid #e9ecef; padding: 15px" id="orderhead">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
+            <div class="modal-header">
                 <div style="display:flex" id="tituloConBTNEdit">
+                    <h3 id="lblTitulo" class="tx-inverse mg-b-5">Details of the order #<span id="orreff" style="color:#014d41"></span></h3>
                     
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#infoPanel" role="tab">Info</a>
+                        <li>
+                        <li class="nav-item">                           
+                            <a style="margin-left: 20px;" title="Click here to change the configuration of your doors" data-toggle="tab" href="#ads" role="tab"class="nav-link btn btn-primary btn-icon">
+                                <div><i class="fa fa-edit"></i></div>
+                            </a>
+                        <li>
+                    </ul>
                 </div>
-                <p id="lblSubTitulo" style="margin-bottom:0; font-size:17px">Here you can see your general settings and your list of doors added to your order.</p>
-                <div id="HeaderOptions" style="color:#000;margin-right: 0; padding:10px" class="row">
-
-                </div>  
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-            <div class="modal-body" id="ordertable" style="overflow-y:scroll; height:265px">
+            <div class="modal-body">               
+                <div class="tab-content mt-2">
+                    <div class="tab-pane fade show active" id="infoPanel" role="tabpanel">
+                        <div id="HeaderOptions" style="color:#000;margin-right: 0; padding:10px" class="row">
 
+                        </div>
+                        <div id="ordertable" style="overflow-y:scroll; height:265px">
+
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="ads" role="tabpanel">
+                        <div class="row" style="margin-right: 0;">
+                            <div class="col-md-12" style="padding-right:0">
+                                <div style="display:flex; width:100%">
+                                    <div class="row" style="width:100%; max-height: 380px;">
+                                        <input id="idDoor" hidden />
+                                        <div class="row" style="width: 100%;">
+                                            <div class="col-xs-4 col-md-3">
+                                                <label for="Material" style="margin-top: 25px;">Wood Species: </label>
+                                                <select style="width:100%" class="eventChange selectModal form-control select2" id="cbMaterial" data-placeholder=""></select>
+                                            </div><!-- col -->
+
+                                            <div class="col-xs-4 col-md-3">
+                                                <label for="DoorStyle" style="margin-top: 25px;">Door Style: </label>
+                                                <select style="width:100%" class="eventChange selectModal form-control select2 Doors" id="cbDoorStyle" data-placeholder=""></select>
+                                            </div><!-- col -->
+
+                                            <div class="col-xs-3 col-md-5">
+                                                <label for="inDescription" style="margin-top: 25px;">Door Place: </label>
+                                                <div class="radio" id="isOverlay" style="display:flex">
+
+                                                </div>
+                                            </div><!-- form-group -->
+
+                                            <div class="col-xs-4 col-md-3">
+                                                <label for="InsideEdgeProfile" style="margin-top: 25px;">Inside Edge Profile: </label>
+                                                <select style="width:100%" class="form-control selectModal select2 Profile Doors" id="cbInsideEdgeProfile" data-placeholder=""></select>
+                                            </div><!-- col -->
+
+                                            <div class="col-xs-4 col-md-3">
+                                                <label for="OutsideEdgeProfile" style="margin-top: 25px;">Outside Edge Profile: </label>
+                                                <select style="width:100%" class="form-control selectModal select2 Profile Doors" id="cbOutsideEdgeProfile" data-placeholder=""></select>
+                                            </div><!-- col -->
+
+                                            <div class="col-xs-4 col-md-3">
+                                                <label for="BottomRail" style="margin-top: 25px;">Stile Width: </label>
+                                                <select style="width:100%" class="eventChange selectModal form-control select2 Doors" id="cbStileWidth" data-placeholder=""></select>
+                                            </div><!-- col -->
+
+                                            <div class="col-xs-4 col-md-3">
+                                                <label for="TopRail" style="margin-top: 25px;">Rail Width:</label>
+                                                <select style="width:100%" class="eventChange selectModal form-control select2 Doors" id="cbRailWidth" data-placeholder=""></select>
+                                            </div><!-- col -->
+
+                                            <div class="col-xs-4 col-md-3">
+                                                <label for="Join" style="margin-top: 25px;">Door Assembly: </label>
+                                                <select style="width:100%" class="form-control selectModal select2 Doors" id="cbDoorAssembly" data-placeholder=""></select>
+                                            </div><!-- col -->
+
+                                            <div class="col-xs-4 col-md-3">
+                                                <label for="PanelMaterial" style="margin-top: 25px;">Panel Material: </label>
+                                                <select style="width:100%" class="form-control selectModal select2" id="cbPanelMaterial" data-placeholder=""></select>
+                                            </div><!-- col -->
+
+                                            <div class="col-xs-4 col-md-3">
+                                                <label for="IsOpeningMeasurement" style="margin-top: 25px;">Opening for Glass: </label>
+                                                <select style="width:100%" class="form-control selectModal select2" id="cbIsOpeningMeasurement" data-placeholder="">
+                                                    <option value="1">No Opening </option>
+                                                    <option value="2">Opening</option>
+                                                </select>
+                                            </div><!-- col -->
+
+                                            <div class="col-xs-4 col-md-3">
+                                                <label for="VerticalDivisions" style="margin-top: 25px;">Vertical Divisions: </label>
+                                                <select style="width:100%" class="form-control selectModal select2" id="cbVerticalDivisions" data-placeholder=""></select>
+                                            </div><!-- col -->
+
+                                            <div class="col-xs-4 col-md-3">
+                                                <label for="HorizontalDivisions" style="margin-top: 25px;">Horizontal Divisions: </label>
+                                                <select style="width:100%" class="form-control selectModal select2" id="cbHorizontalDivisions" data-placeholder=""></select>
+                                            </div><!-- col -->
+
+                                            <div class="col-xs-4 col-md-3">
+                                                <label for="isDrill" style="margin-top: 25px;">Hinge Drilling: </label>
+                                                <select style="width:100%" class="form-control selectModal select2" id="cbisDrill" data-placeholder="">
+                                                    <option value="1">No Drill</option>
+                                                    <option value="2">Drill</option>
+                                                </select>
+                                            </div><!-- col -->
+
+                                            <div id="HingeDirectionDiv" style="display:none" class="target col-xs-4 col-md-3">
+                                                <label for="HingeDirection" style="margin-top: 25px;">Hinge Direction: </label>
+                                                <select style="width:100%" value="true" class="select2 selectModal form-control" id="cbHingeDirection" data-placeholder=""></select>
+                                            </div><!-- col -->
+
+                                            <div id="HingePositionsDiv" style="display:none" class="target col-xs-4 col-md-3">
+                                                <input id="idHingeP" hidden />
+                                                <label for="HingePositions" value="true" style="margin-top: 25px;">Hinge Positions: </label>
+                                                <div style="display:flex"><span class="hp1">1: </span><input id="HP1" disabled class="form-control HPinpt1 hp1" /><span class="hp2">2: </span><input id="HP2" disabled class="form-control HPinpt2 hp2" /><span class="hp3">3: </span><input id="HP3" disabled class="form-control HPinpt3 hp3" /><span class="hp4">4: </span><input id="HP4" disabled class="form-control HPinpt4 hp4" /><span class="hp5">5: </span><input id="HP5" disabled class="form-control HPinpt5 hp5" /></div>
+                                            </div><!-- col -->
+
+                                            <div class="col-xs-3 col-md-3">
+                                                <label for="FingerPull" style="margin-top: 25px;">Finger Pull: </label>
+                                                <select style="width:100%" class="form-control selectModal select2" id="cbFingerPull">
+                                                    <option value="1">No</option>
+                                                    <option value="2">Yes</option>
+                                                </select>
+                                            </div><!-- form-group -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- pd-20 -->
+                        </div><!-- col-6 -->
+                    </div>
+                </div>                
             </div>
             <div class="modal-footer">
-                <button type="button" class="Cursor btn btn-default" data-dismiss="modal">Cerrar</button>
-            </div>*@
-            <div class="tab-content">
-                <div id="home" class="tab-pane fade in active">
-                    <h3>HOME</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                </div>
-                <div id="menu1" class="tab-pane fade">
-                    <h3>Menu 1</h3>
-                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                </div>
-                <div id="menu2" class="tab-pane fade">
-                    <h3>Menu 2</h3>
-                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-                </div>
-                <div id="menu3" class="tab-pane fade">
-                    <h3>Menu 3</h3>
-                    <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-                </div>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary">Save for later</button>
             </div>
         </div>
     </div>
@@ -182,6 +266,10 @@
         } catch (e) {
             var listDOOR = "";
         }
+
+    
+
+           
       
     </script>
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
