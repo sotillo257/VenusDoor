@@ -1884,8 +1884,8 @@ function llenarTablaOrderSumary() {
                     option += '<td>' + data.Order.DoorxUser.DoorsxOrder[i].DoorOption.Description + '</td>';
                     option += '<td><span>$</span>' + data.Order.DoorxUser.DoorsxOrder[i].ItemCost.toString().replace(',', '.') + '</td>';
                     option += '<td><span>$</span>' + data.Order.DoorxUser.DoorsxOrder[i].SubTotal.toString().replace(',', '.') + '</td>';
-                    option += '<td id="tddelete" style="display: flex; padding-top: 35px;">';                   
-                    option += '<button class="Cursor btn btn-danger btn-icon btnn-dele" data-id="' + data.Order.DoorxUser.DoorsxOrder[i].Id + '" style="width: 37px;height: 37px; margin-left: 10px;" type="submit"><i class="fa fa-trash"></i></button>';
+                    option += '<td id="tddelete" >';                   
+                    option += '<button class="Cursor btn btn-danger btn-icon btnn-dele" data-id="' + data.Order.DoorxUser.DoorsxOrder[i].Id + '" style="width: 25px;height: 25px; margin-left: 10px;" type="submit"><i class="fa fa-trash"></i></button>';
                     option += '</td></tr>';                    
                 }
             } else {
