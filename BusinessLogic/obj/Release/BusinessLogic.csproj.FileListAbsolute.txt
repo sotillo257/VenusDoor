@@ -45,3 +45,16 @@ C:\Users\jesus\Source\Repos\copia venus 333\BusinessLogic\bin\Release\ExcelDataR
 C:\Users\jesus\Source\Repos\copia venus 333\BusinessLogic\bin\Release\ExcelDataReader.xml
 C:\Users\Lenovo\Source\Repos\VenusDoor\BusinessLogic\bin\Release\ExcelDataReader.dll
 C:\Users\Lenovo\Source\Repos\VenusDoor\BusinessLogic\bin\Release\ExcelDataReader.xml
+C:\Users\jesus\Source\Repos\Solo local\BusinessLogic\bin\Release\BusinessLogic.dll
+C:\Users\jesus\Source\Repos\Solo local\BusinessLogic\bin\Release\BusinessLogic.pdb
+C:\Users\jesus\Source\Repos\Solo local\BusinessLogic\bin\Release\DataAccess.dll
+C:\Users\jesus\Source\Repos\Solo local\BusinessLogic\bin\Release\ExcelDataReader.dll
+C:\Users\jesus\Source\Repos\Solo local\BusinessLogic\bin\Release\Model.dll
+C:\Users\jesus\Source\Repos\Solo local\BusinessLogic\bin\Release\MetodosDB.dll
+C:\Users\jesus\Source\Repos\Solo local\BusinessLogic\bin\Release\DataAccess.pdb
+C:\Users\jesus\Source\Repos\Solo local\BusinessLogic\bin\Release\Model.pdb
+C:\Users\jesus\Source\Repos\Solo local\BusinessLogic\bin\Release\ExcelDataReader.xml
+C:\Users\jesus\Source\Repos\Solo local\BusinessLogic\bin\Release\MetodosDB.pdb
+C:\Users\jesus\Source\Repos\Solo local\BusinessLogic\obj\Release\BusinessLogic.csprojResolveAssemblyReference.cache
+C:\Users\jesus\Source\Repos\Solo local\BusinessLogic\obj\Release\BusinessLogic.dll
+C:\Users\jesus\Source\Repos\Solo local\BusinessLogic\obj\Release\BusinessLogic.pdb

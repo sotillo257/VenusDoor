@@ -31,7 +31,7 @@ function GetDoorsByOrder(id) {
             dxu += '<div class="col-xs-4 col-md-3">';
             if (Result.isOverlay == false)
             {
-                dxu += '<label for="Overlay" style="margin-top: 10px;">Door Place: <span style="color: #868ba1">Insert Door Type</span></label>';
+                dxu += '<label for="Overlay" style="margin-top: 10px;">Door Place: <span style="color: #868ba1">Inset Door Type</span></label>';
             }
             else
             {
