@@ -758,8 +758,15 @@
                 } catch (e) {
                     var DoorDashboard = '';
                 }
-               
 
+                    try {
+                        var _DoorSt = '@ViewBag.IDDoorStyle';
+                          
+
+                    } catch (e) {
+                        var _DoorSt = 0;
+                    }
+               
 
                 $(function () {
                     'use strict'

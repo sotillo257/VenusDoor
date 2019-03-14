@@ -46,7 +46,8 @@ namespace VenusDoors.Controllers
                         {
                             item.DoorxUser.DoorsxOrder = _LnDoorOrder.GetAllDoorxOrderByDoorxUser(item.DoorxUser.Id).OrderByDescending(x => x.Id).ToList();
                             ViewBag.Order = item;
-                            GetLastDoor();
+                            ViewBag.IDDoorStyle = item.DoorxUser.DoorStyle.Id;
+                           // GetLastDoor();
                         }
                        
                     }
