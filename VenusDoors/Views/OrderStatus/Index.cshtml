@@ -230,16 +230,22 @@ else
         </div>
   }
 
-<div class="modal fade" id="ModalOrderInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    
-    <div class="modal-dialog modal-lg" id="mdialTamanio" style="width: 80%!important">
+<div class="modal fade" id="ModalOrderInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">   
+    <div class="modal-dialog modal-lg" id="mdialTamanio" style="width: 80%!important; max-width:100%">
         <div class="modal-content">
-            <div class="modal-header" id="orderhead">
+            <div id="orderhead" style="border-bottom: 1px solid #e9ecef; padding: 15px">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
-                </button>              
+                </button>
+                <div style="display:flex">
+                    <h3 id="lblTitulo" class="tx-inverse mg-b-5">Details of your order #<span id="spanOrderReff" style="color:#014d41"></span></h3>                   
+                </div>
+                <p id="lblSubTitulo" style="margin-bottom:0; font-size:17px">Here you can see your general settings and your list of doors added to your order.</p>
+                <div id="HeaderOptions" style="color:#000;margin-right: 0; padding:10px" class="row">
+
+                </div>             
             </div>
-            <div class="modal-body" id="ordertable">
+            <div class="modal-body" id="ordertable" style="overflow-y:scroll; height:265px">
                 
             </div>
             <div class="modal-footer">
@@ -251,8 +257,7 @@ else
 
 @section scripts{
 <script type="text/javascript">
-    var urlGetDoorsByOrder = '@Url.Action("GetDoorsByOrder", "OrderStatus")';  
-    
+    var urlGetDoorsByOrder = '@Url.Action("GetDoorsByOrder", "OrderStatus")';    
     $(function () {
         'use strict';
 

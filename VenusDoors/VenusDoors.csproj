@@ -1211,6 +1211,7 @@
     <Content Include="Views\UserManagement\Index.cshtml" />
     <Content Include="Views\OrderControl\Index.cshtml" />
     <Content Include="Scripts\js\InsertDoor.OrderSumary.js" />
+    <Content Include="Scripts\js\OrderStatus.FillingOfCombos.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
