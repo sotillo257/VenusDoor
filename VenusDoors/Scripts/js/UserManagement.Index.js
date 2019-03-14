@@ -123,9 +123,9 @@ function llenarTablaUserManegement() {
                     option += '<td>' + data[i].Company.Name + '</td>';
                     option += '<td>' + data[i].Status.Description + '</td>';
                     option += '<td>';
-                    option += '<button value="' + data[i].Id + '" style="margin-right: 5px;" class="Approved Cursor btn btn-primary btn-icon"><div><i class="fa fa-check"></i></div></button>';
+                    option += '<button value="' + data[i].Id + '" class="Approved Cursor btn btn-primary btn-icon"  style="width: 25px;height: 25px; margin-left: 10px;"><i class="fa fa-check"></i></button>';
                     if (data[i].Status.Id != 12) {
-                        option += '<button value="' + data[i].Id + '" style="margin-right: 5px;" class="Refuse Cursor btn btn-danger btn-icon"><div><i class="fa fa-close"></i></div></button>';
+                        option += '<button value="' + data[i].Id + '"  class="Refuse Cursor btn btn-danger btn-icon"  style="width: 25px;height: 25px; margin-left: 10px;"><i class="fa fa-close"></i></button>';
                     }      
                   
                     option += '</td></tr>';
