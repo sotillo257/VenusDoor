@@ -203,13 +203,20 @@ else
                                             </td>
                                             <td class="tx-12">
                                                 @if (ordenes.Status.Id == 4)
-                                                { <span class="square-8 bg-success mg-r-5 rounded-circle"></span> }
+                                                {  <span class="square-8 bg-warning mg-r-5 rounded-circle"></span> }
+                                                else if (ordenes.Status.Id == 5)
+                                                {<span class="square-8 bg-pink mg-r-5 rounded-circle"></span>}
+                                                else if (ordenes.Status.Id == 6)
+                                                { <span class="square-8 btn-purple mg-r-5 rounded-circle"></span> }
+                                                else if (ordenes.Status.Id == 7)
+                                                {
+                                                  <span class="square-8 bg-success mg-r-5 rounded-circle"></span>
+                                                }
                                                 else if (ordenes.Status.Id == 8)
-                                                { <span class="square-8 bg-teal mg-r-5 rounded-circle"></span> }
-                                                else if (ordenes.Status.Id == 9)
-                                                { <span class="square-8 bg-primary mg-r-5 rounded-circle"></span> }
-                                                else
-                                                { <span class="square-8 bg-warning mg-r-5 rounded-circle"></span> }
+                                                {
+                                                    <span class="square-8 bg-info mg-r-5 rounded-circle"></span>
+                                                }else
+                                                { <span class="square-8 bg-danger mg-r-5 rounded-circle"></span> }
                                                 @ordenes.Status.Description
                                             </td>
                                             <td>@ordenes.ModificationDate</td>

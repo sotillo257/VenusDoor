@@ -241,17 +241,26 @@ function ValidarCamposFront() {
     }
 
     if ($('#cbPanel').val() == 0) {
-        $('#cbPanel').addClass("is-invalid");
+       // $('#cbPanel').addClass("cbError");
+        
+        $('#select2-cbPanel-container').addClass("cbError");
         aux = false;
     } else {
-        $('#cbPanel').removeClass("is-invalid");
+       // $('#cbPanel').addClass("cbError");
+        $('#select2-cbPanel-container').removeClass("cbError");
     }
 
     if ($('#cbDoorType').val() == 0) {
-        $('#cbDoorType').addClass("is-invalid");
+        $('#select2-cbDoorType-container').addClass("cbError");
         aux = false;
     } else {
-        $('#cbDoorType').removeClass("is-invalid");
+        $('#select2-cbDoorType-container').removeClass("cbError");
+    }
+    if ($('#cbDoorOpt').val() == 0) {
+        $('#select2-cbDoorOpt-container').addClass("cbError");
+        aux = false;
+    } else {
+        $('#select2-cbDoorOpt-container').removeClass("cbError");
     }
     return aux;
 }
@@ -908,12 +917,11 @@ function GetAllHingeDirection() {
         success: function (data) {
             AllHingeDirection = data;
             if (data != null) {
-                var option = '';
+                var option = '<option value="0">Select</option>';
                 for (var i = 0; i < data.length; i++) {
-    
-                    option += '<option value="' + data[i].Id + '">' + data[i].Direction + '</option>';
-
-
+                    if (AllHingeDirection[i].Id != 3) {
+                        option += '<option value="' + AllHingeDirection[i].Id + '">' + AllHingeDirection[i].Direction + '</option>';
+                    }
                 }
                 $("#cbHingeDirection").empty().append(option);
 
@@ -1275,117 +1283,6 @@ function LimpiarCamposRapidos() {
     $("#CantidadFila").val("");
     
 }
-
-//function UpdateDoorsxUser() {
-//    var itemCost = parseFloat($("#iptCost").val());
-//    var DoorQuantity = $("#iptQuantity").val();
-//    var DoorSubTotal = itemCost * DoorQuantity;
-//    var OrdSubTotal = DoorSubTotal;
-//    var Tx = parseFloat(0.0825);
-//    var Taxes = (parseFloat(OrdSubTotal) * Tx).toFixed(2);
-//    var OrdTotal = (parseFloat(OrdSubTotal) + parseFloat(Taxes)).toFixed(2);
-//    var DoorOp = $('input[name=radioOption]:checked').attr("data-id");
-//    var isOver = ($('input[name=radioOver]:checked').attr("data-id") == 1) ? false : true;
-//    var drillingV = ($("#cbisDrill").val() == 1) ? false : true;
-//    var HingeDirection = $("#cbHingeDirection").val();
-//    var HingePositions;
-//    if (drillingV == true) {
-//        HingeDirection = $("#cbHingeDirection").val();
-//        if ($("#idHingeP").val() == 2 ) {
-//            HingePositions = 0;
-//        } else {
-//            HingePositions = $("#idHingeP").val();
-//        }
-//    } else {
-//        HingeDirection = 3;
-//        HingePositions = 2;
-//    }
-//    var datos =
-//         {
-             
-//             pDoorsxUser: {
-//                 Id: $("#idDoor").val(),
-//                 User: { Id: 1 },
-//                 Order: {Id: $("#idorder").val()},
-//                 Status: {Id: 1},
-//                 Material: { Id: $("#cbMaterial").val() },                            
-//                 DoorStyle: { Id: $("#cbDoorStyle").val() },                                                        
-//                 TopRail: { Id: $("#cbRailWidth").val() },
-//                 BottomRail: { Id: $("#cbStileWidth").val() },
-//                 Preparation: { Id: 1 },
-//                 Panel: { Id: $("#cbPanel").val() },
-//                 PanelMaterial: { Id: $("#cbPanelMaterial").val() },
-//                 IsOpeningMeasurement: ($("#cbIsOpeningMeasurement").val() == 1) ? false : true,
-//                 Join: { Id: $("#cbDoorAssembly").val() },
-//                 OutsideEdgeProfile: { Id: $("#cbOutsideEdgeProfile").val() },
-//                 InsideEdgeProfile: { Id: $("#cbInsideEdgeProfile").val() },                            
-//                 VerticalDivisions: { Id: $("#cbVerticalDivisions").val() },
-//                 HorizontalDivisions: { Id: $("#cbHorizontalDivisions").val() },
-//                 Width: parseFloat($("#iptWidth").val()),
-//                 DecimalsWidth: { Id: $("#cbDecimalsW").val() },
-//                 Height: parseFloat($("#iptHeight").val()),
-//                 DecimalsHeight: { Id: $("#cbDecimalsH").val() },
-//                 Quantity: DoorQuantity,
-//                 ItemCost: itemCost,
-//                 SubTotal: DoorSubTotal,
-//                 Picture: $('#DoorPicture').attr('src'),
-//                 ProfilePicture: $('#ProfilePicture').attr('src'),
-//                 isDrill: drillingV,
-//                 HingeDirection: { Id: HingeDirection },
-//                 HingePositions: { Id: HingePositions },
-//                 DoorType: { Id: $("#cbDoorType").val() },
-//                 DoorOption: { Id: DoorOp },
-//                 isOverlay: isOver,
-//                 isFingerPull: ($("#cbFingerPull").val() == 1) ? false : true,
-//             },
-                        
-//             Ord: {
-//                 Id: $("#idorder").val(),
-//                 SubTotal: OrdSubTotal,
-//                 Tax: parseFloat(Taxes),
-//                 Total: parseFloat(OrdTotal),
-//             },
-
-//             HingeP: {
-//                 Id: $("#idHingeP").val(),
-//                 Status: { Id: 1 },
-//                 Position1: $("#HP1").val(),
-//                 Position2: $("#HP2").val(),
-//                 Position3: $("#HP3").val(),
-//                 Position4: $("#HP4").val(),
-//                 Position5: $("#HP5").val(),
-//             },
-//         };
-//                $.ajax({
-//                    type: 'POST',
-//                    data: JSON.stringify(datos),
-//                    url: urlUpdateDoorsxUser,
-//                    dataType: "json",
-//                    contentType: 'application/json; charset=utf-8',
-//                    success: function (result) {
-
-//                        //Validar data para ver si mostrar error al guardar o exito al guardar
-//                        if (result == true) {
-//                            //llenarTablaOrderSumary();
-//                            llenarheaderOrder();
-//                            $('#modalInsert').modal('hide');
-//                            $('#modalConfirmOrderSummary').modal('hide');
-//                            LlammarModal("ConfigM", "Successful modification!", "The general configuration has been modified successfully.");
-                            
-//                        } else {
-//                            $('#modalInsert').modal('hide');
-//                            $('#modalConfirmOrderSummary').modal('hide');
-//                            LlammarModal("Danger", "An error occurred during the process.");
-//                        }
-//                    },
-//                    error: function (err) {
-//                        $('#modalInsert').modal('hide');
-//                        $('#modalConfirmOrderSummary').modal('hide');
-//                        LlammarModal("Danger", "An error occurred during the process.", "Check your internet connection I tried again");
-//                    },
-              
-//                });
-//}
 
 $(document).on('change', '.eventChange', function () {
     //alert('This action is working');
