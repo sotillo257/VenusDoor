@@ -140,14 +140,10 @@ namespace BusinessLogic
                     {
                         break;
                     }
-
                 }
 
                 foreach (var item in door)
-                {
-                  
-
-
+                {                 
                     BusinessLogic.lnDoorOption _LNDoorOption = new BusinessLogic.lnDoorOption();
                     var _listDoorOption = _LNDoorOption.GetAllDoorOption().Where(x => x.Description.Trim() == item.DoorOption.Description.Trim()).FirstOrDefault();
                     if (_listDoorOption != null)
