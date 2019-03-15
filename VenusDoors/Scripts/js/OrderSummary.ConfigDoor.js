@@ -7,13 +7,7 @@
         $("#btXclose").show();
         $("#btConfAdd").show();
         $("#btModify").hide();
-        
-        //var imggg =
-        //           ' <center> <img style="height: 100px;width: 235px;margin-top: 20px;" id="ProfilePicture" src="/Content/img/Profile/img11.png">' +
-        //                      '<img style="width: 230px;height: 230px;" id="DoorPicture" src="/Content/img/Doors/img11.png">' +
-        //                      '</center>';
-        //$('#Picture').html(imggg);
-
+        QuitarClaseErrorACombos();
         $("select").prop('disabled', false);
         $("#iptQuantity").prop('disabled', false);
         $("#iptWidth").prop('disabled', false);
@@ -52,6 +46,7 @@
 
     $(document).on('click', '.ModDoorxUser', function (event) {
         GetDoorxUser();
+        QuitarClaseErrorACombos();
         $("#btModify").show();
         $("#btConfAdd").hide();
         $("#btConfSave").hide();
@@ -415,17 +410,16 @@ function llenarComboHorizontalDivisions(pHorizontal) {
 var AllHingeDirection = '';
 function llenarComboHingeDirection(pDirection) {
 
-    var option = '';
+    var option = '<option value="0">Select</option>';
     for (var i = 0; i < AllHingeDirection.length; i++) {
-        if (AllHingeDirection[i].Status.Id == 1) {
+        if (AllHingeDirection[i].Id != 3) {
             option += '<option value="' + AllHingeDirection[i].Id + '">' + AllHingeDirection[i].Direction + '</option>';
         }
     }
     $("#cbHingeDirection").empty().append(option);
     if (pDirection != 0) {
         if (pDirection == 3) {
-            pDirection = 0;
-             $("#cbHingeDirection").val(pDirection);
+             $("#cbHingeDirection").val(0);
         } else {
             $("#cbHingeDirection").val(pDirection);
         }
@@ -570,108 +564,133 @@ function LimpiarCombos() {
     llenarComboDecimalH(0);
 }
 
+function QuitarClaseErrorACombos() {
+    $('#select2-cbMaterial-container').removeClass("cbError");
+    $('#select2-cbDoorStyle-container').removeClass("cbError");
+    $('#select2-cbTopRail-container').removeClass("cbError");
+    $('#select2-cbBottomRail-container').removeClass("cbError");
+    $('#select2-cbPreparation-container').removeClass("cbError");
+    $('#select2-cbPanelMaterial-container').removeClass("cbError");
+    $('#select2-cbIsOpeningMeasurement-container').removeClass("cbError");
+    $('#select2-cbDoorAssembly-container').removeClass("cbError");
+    $('#select2-cbOutsideEdgeProfile-container').removeClass("cbError");
+    $('#select2-cbInsideEdgeProfile-container').removeClass("cbError");
+    $('#select2-cbVerticalDivisions-container').removeClass("cbError");
+    $('#select2-cbHorizontalDivisions-container').removeClass("cbError");
+    $('#select2-cbHingeDirection-container').removeClass("cbError");    
+    $('#select2-cbisDrill-container').removeClass("cbError");
+    $('#select2-cbFingerPull-container').removeClass("cbError");
+}
+
 function ValidarCamposVacios() {
     var aux = true;
+
     if ($('#cbMaterial').val() == 0) {
-        $('#cbMaterial').addClass("is-invalid");
+        $('#select2-cbMaterial-container').addClass("cbError");
         aux = false;
     } else {
-        $('#cbMaterial').removeClass("is-invalid");
+        $('#select2-cbMaterial-container').removeClass("cbError");
     }
 
-   
-
     if ($('#cbDoorStyle').val() == 0) {
-        $('#cbDoorStyle').addClass("is-invalid");
+        $('#select2-cbDoorStyle-container').addClass("cbError");
         aux = false;
     } else {
-        $('#cbDoorStyle').removeClass("is-invalid");
+        $('#select2-cbDoorStyle-container').removeClass("cbError");
     }
 
     if ($('#cbTopRail').val() == 0) {
-        $('#cbTopRail').addClass("is-invalid");
+        $('#select2-cbTopRail-container').addClass("cbError");
         aux = false;
     } else {
-        $('#cbTopRail').removeClass("is-invalid");
+        $('#select2-cbTopRail-container').removeClass("cbError");
     }
 
     if ($('#cbBottomRail').val() == 0) {
-        $('#cbBottomRail').addClass("is-invalid");
+        $('#select2-cbBottomRail-container').addClass("cbError");
         aux = false;
     } else {
-        $('#cbBottomRail').removeClass("is-invalid");
+        $('#select2-cbBottomRail-container').removeClass("cbError");
     }
 
     if ($('#cbPreparation').val() == 0) {
-        $('#cbPreparation').addClass("is-invalid");
+        $('#select2-cbPreparation-container').addClass("cbError");
         aux = false;
     } else {
-        $('#cbPreparation').removeClass("is-invalid");
+        $('#select2-cbPreparation-container').removeClass("cbError");
     }
 
 
     if ($('#cbPanelMaterial').val() == 0) {
-        $('#cbPanelMaterial').addClass("is-invalid");
+        $('#select2-cbPanelMaterial-container').addClass("cbError");
         aux = false;
     } else {
-        $('#cbPanelMaterial').removeClass("is-invalid");
+        $('#select2-cbPanelMaterial-container').removeClass("cbError");
     }
 
     if ($('#cbIsOpeningMeasurement').val() == 0) {
-        $('#cbIsOpeningMeasurement').addClass("is-invalid");
+        $('#select2-cbIsOpeningMeasurement-container').addClass("cbError");
         aux = false;
     } else {
-        $('#cbIsOpeningMeasurement').removeClass("is-invalid");
+        $('#select2-cbIsOpeningMeasurement-container').removeClass("cbError");
     }
 
     if ($('#cbDoorAssembly').val() == 0) {
-        $('#cbDoorAssembly').addClass("is-invalid");
+        $('#select2-cbDoorAssembly-container').addClass("cbError");
         aux = false;
     } else {
-        $('#cbDoorAssembly').removeClass("is-invalid");
+        $('#select2-cbDoorAssembly-container').removeClass("cbError");
     }
 
     if ($('#cbOutsideEdgeProfile').val() == 0) {
-        $('#cbOutsideEdgeProfile').addClass("is-invalid");
+        $('#select2-cbOutsideEdgeProfile-container').addClass("cbError");
         aux = false;
     } else {
-        $('#cbOutsideEdgeProfile').removeClass("is-invalid");
+        $('#select2-cbOutsideEdgeProfile-container').removeClass("cbError");
     }
 
     if ($('#cbInsideEdgeProfile').val() == 0) {
-        $('#cbInsideEdgeProfile').addClass("is-invalid");
+        $('#select2-cbInsideEdgeProfile-container').addClass("cbError");
         aux = false;
     } else {
-        $('#cbInsideEdgeProfile').removeClass("is-invalid");
+        $('#select2-cbInsideEdgeProfile-container').removeClass("cbError");
     }
 
     if ($('#cbVerticalDivisions').val() == 0) {
-        $('#cbVerticalDivisions').addClass("is-invalid");
+        $('#select2-cbVerticalDivisions-container').addClass("cbError");
         aux = false;
     } else {
-        $('#cbVerticalDivisions').removeClass("is-invalid");
+        $('#select2-cbVerticalDivisions-container').removeClass("cbError");
     }
 
     if ($('#cbHorizontalDivisions').val() == 0) {
-        $('#cbHorizontalDivisions').addClass("is-invalid");
+        $('#select2-cbHorizontalDivisions-container').addClass("cbError");
         aux = false;
     } else {
-        $('#cbHorizontalDivisions').removeClass("is-invalid");
+        $('#select2-cbHorizontalDivisions-container').removeClass("cbError");
     }
 
 
     if ($('#cbisDrill').val() == 0) {
-        $('#cbisDrill').addClass("is-invalid");
+        $('#select2-cbisDrill-container').addClass("cbError");
         aux = false;
     } else {
-        $('#cbisDrill').removeClass("is-invalid");
+        if ($('#cbisDrill').val() == 2) {
+            if ($('#cbHingeDirection').val() == 0) {
+                $('#select2-cbHingeDirection-container').addClass("cbError");
+                aux = false;
+            } else {
+                $('#select2-cbHingeDirection-container').removeClass("cbError");
+            }
+        }
+        $('#select2-cbisDrill-container').removeClass("cbError");
     }
 
     if ($('#cbFingerPull').val() == 0) {
-        $('#cbFingerPull').addClass("is-invalid");
+        $('#select2-cbFingerPull-container').addClass("cbError");
         aux = false;
     } else {
-        $('#cbFingerPull').removeClass("is-invalid");
+        $('#select2-cbFingerPull-container').removeClass("cbError");
     }
 
    

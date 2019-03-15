@@ -58954,3 +58954,11 @@ a.hover-white-8:hover, a.hover-white-8:focus {
 .mx-wd-1350 {
   max-width: 1350px;
 }
+
+.cbError{
+    border-color: #e82d2d;
+    border-radius: 3px!important;
+    border-style: solid;
+    border-width: 1px!important;
+
+}
