@@ -512,7 +512,7 @@ namespace VenusDoors.Controllers
 
                 ViewBag.mRailThickness = _LNRT.GetAllRailThickness();
                 ViewBag.mStatus = _LNStatus.GetAllStatus();
-                ViewBag.cbDoorStyle = _LNDoorStile.GetAllDoorStyle();
+                ViewBag.cbDoorStyle = _LNPanel.GetAllPanel();
                 ViewBag.cbMatarial = _LNMaterial.GetAllMaterial();
                 return View();
             }
@@ -566,6 +566,8 @@ namespace VenusDoors.Controllers
 
                 uDoorPrice.ModificationDate = DateTime.Now;
                 uDoorPrice.ModificationUser = userID;
+                uDoorPrice.Picture = "Picture";
+                uDoorPrice.ProfilePicture = "Picture";
                 BusinessLogic.lnDoorsPrices _LP = new BusinessLogic.lnDoorsPrices();
                 var modDP = _LP.UpdateDoorsPrices(uDoorPrice);
                 return Json(true, JsonRequestBehavior.AllowGet);

@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    GetAllDoorStyle();
+    GetAllPanel();
     GetAllMaterial();
     GetAllStatus();
     GetAllRailThickness();
@@ -35,9 +35,9 @@
         for (var i = 0; i < listDoorP.length; i++) {
             if (listDoorP[i].Id == $(this).attr('value')) {
                 var aux = listDoorP[i].Id;
-                var aux1 = listDoorP[i].DoorStyle.Id;
+                var aux1 = listDoorP[i].PanelType.Id;
                 var aux2 = listDoorP[i].Material.Id;
-                var aux3 = listDoorP[i].RailThickness;
+                var aux3 = listDoorP[i].RailThickness.Id;
                 var aux4 = listDoorP[i].BasePrice;
                 var aux5 = listDoorP[i].AdditionalSFPrice;
                 var aux6 = listDoorP[i].Status.Id;
@@ -49,9 +49,9 @@
                 var aux12 = listDoorP[i].HorizontalAdditionalInchPrice;
 
                 $('#inId').val(listDoorP[i].Id);
-                llenarComboDoorStyle(listDoorP[i].DoorStyle.Id);
+                llenarComboPanel(listDoorP[i].PanelType.Id);
                 llenarCombolMaterial(listDoorP[i].Material.Id);
-                llenarCombRailThickness(listDoorP[i].RailThickness);
+                llenarCombRailThickness(listDoorP[i].RailThickness.Id);
                 $('#inBasePrice').val(listDoorP[i].BasePrice);
                 $('#inAdditionalSFPrice').val(listDoorP[i].AdditionalSFPrice);
                 llenarComboEstatus(listDoorP[i].Status.Id);
@@ -110,7 +110,7 @@ function Limpiar() {
 
     $('#inId').val(0);
     $('#inDoorStyle').removeClass("is-invalid");
-    llenarComboDoorStyle(0);
+    llenarComboPanel(0);
 
     $('#inMaterial').removeClass("is-invalid");
     llenarCombolMaterial(0);
@@ -221,7 +221,7 @@ function InsertDoorsPrices() {
     var datos =
     {
         pDoorsPrices: {
-            DoorStyle: { Id: $("#inDoorStyle").val() },
+            PanelType: { Id: $("#inDoorStyle").val() },
             Material: { Id: $("#inMaterial").val() },
             RailThickness: { Id: $("#inRailThickness").val() },
             BasePrice: parseFloat($("#inBasePrice").val()),
@@ -264,11 +264,11 @@ function UpdateDoorPrice() {
     {
         uDoorPrice: {
             Id: $("#inId").val(),
-            DoorStyle: { Id: $("#inDoorStyle").val() },
-            Matarial: { Id: $("#inMaterial").val() },
+            PanelType: { Id: $("#inDoorStyle").val() },
+            Material: { Id: $("#inMaterial").val() },
             RailThickness: { Id: $("#inRailThickness").val() },
             BasePrice: parseFloat($("#inBasePrice").val()),
-            AdditinalSFPrice: parseFloat($("#inAdditionalSFPrice").val()),
+            AdditionalSFPrice: parseFloat($("#inAdditionalSFPrice").val()),
             Status: { Id: $("#inStatus").val() },
             Picture: $("#inPicture").val(),
             ProfilePicture: $("#inProfilePicture").val(),
@@ -303,32 +303,32 @@ function UpdateDoorPrice() {
     });
 }
 
-var allDoorStyle = '';
-function llenarComboDoorStyle(pDoorStyle) {
+var allPanelType = '';
+function llenarComboPanel(pPanelType) {
 
     var option = '<option value="0" id="">Select</option>';
-    for (var i = 0; i < allDoorStyle.length; i++) {
-        if (allDoorStyle[i].Status.Id == 1) {
-            option += '<option value="' + allDoorStyle[i].Id + '">' + allDoorStyle[i].Description + '</option>';
+    for (var i = 0; i < allPanelType.length; i++) {
+        if (allPanelType[i].Status.Id == 1) {
+            option += '<option value="' + allPanelType[i].Id + '">' + allPanelType[i].Description + '</option>';
         }
 
 
     }
     $("#inDoorStyle").empty().append(option);
-    if (pDoorStyle != 0) {
-        $("#inDoorStyle").val(pDoorStyle);
+    if (pPanelType != 0) {
+        $("#inDoorStyle").val(pPanelType);
     }
 }
-function GetAllDoorStyle() {
+function GetAllPanel() {
     $.ajax({
-        url: urlGetAllDoorStyle,
+        url: urlGetAllPanel,
         cache: false,
         type: 'POST',
         async: false,
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
-                allDoorStyle = data;
+                allPanelType = data;
                 var option = '';
                 for (var i = 0; i < data.length; i++) {
                     option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';

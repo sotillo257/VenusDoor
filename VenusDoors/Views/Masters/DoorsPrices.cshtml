@@ -90,7 +90,7 @@
                                             </div><!-- form-group -->
 
                                             <div class="col-xs-4 col-md-3">
-                                                <label for="inDoorStyle" style="margin-top: 25px;">Door Style: </label>
+                                                <label for="inDoorStyle" style="margin-top: 25px;">Panel Style: </label>
                                                 <select style="width:100%" class="form-control select2" id="inDoorStyle" data-placeholder="">
                                                 </select>
                                             </div><!-- form-group -->
@@ -121,30 +121,7 @@
                                                 <label for="inStatus" style="margin-top: 25px;">Status: </label>
                                                 <select style="width:100%" class="form-control select2" onkeypress="return soloAndNumeros(event)" maxlength="6" id="inStatus" data-placeholder="">
                                                 </select>
-                                            </div><!-- form-group -->
-
-                                            <div class="col-xs-4 col-md-3">
-                                                @using (Html.BeginForm("subir", "home", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                                                {
-                                                    <label for="Picture" style="margin-top: 25px;">Picture: </label>
-                                                    <div style="padding-bottom: 12px;padding-top: 12px;height: 43px;" id="inPicture" class="form-control bd bd-dashed d-flex align-items-center justify-content-center rounded bg-gray-300">
-                                                        <p id="texto">Add file</p>
-                                                        <input id="btn_enviar" name="file" type="file">
-                                                    </div>
-                                                }
-                                            </div><!-- form-group -->
-
-
-                                            <div class="col-xs-4 col-md-3" style="padding-top: 20px;">
-                                                @using (Html.BeginForm("subir", "home", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                                                {
-                                                    <label for="ProfilePicture" style="margin-top: 25px;">Profile Picture: </label>
-                                                    <div style="padding-bottom: 12px;padding-top: 12px;height: 43px;" id="inProfilePicture" class="form-control bd bd-dashed d-flex align-items-center justify-content-center rounded bg-gray-300">
-                                                        <p id="texto">Add file</p>
-                                                        <input id="btn_enviar" name="file" type="file">
-                                                    </div>
-                                                }
-                                            </div><!-- form-group -->
+                                            </div><!-- form-group -->                                            
 
                                             <div class="col-xs-4 col-md-3">
                                                 <label for="inVerticalBase1FLPrice" style="margin-top: 25px;">Vertical Base1 FL Price: </label>
@@ -185,7 +162,7 @@
 
 @section scripts{
     <script type="text/javascript">
-        var urlGetAllDoorStyle = '@Url.Action("GetDoorStyle", "Masters")';
+        var urlGetAllPanel = '@Url.Action("GetPanel", "Masters")';
         var urlGetAllMaterial = '@Url.Action("GetMaterial", "Masters")';
         var urlGetAllStatus = '@Url.Action("GetStatus", "Masters")';
         var urlGetAllRailThickness = '@Url.Action("GetRailThickness", "Masters")';
