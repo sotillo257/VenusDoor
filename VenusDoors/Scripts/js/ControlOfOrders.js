@@ -1,6 +1,7 @@
 ﻿$(document).ready(function () {
     $(document).on('click', '.Detalle', function (event) { 
         var id = $(this).attr('data-id');
+        _IdOrderModificar = id;
         $("#editDXU").show();
         $("#editBCK").hide();
         $("#btnsave").hide();

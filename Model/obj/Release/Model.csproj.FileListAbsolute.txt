@@ -19,3 +19,11 @@ C:\Users\jesus\Source\Repos\copia venus 333\Model\bin\Release\EntityFramework.xm
 C:\Users\jesus\Source\Repos\copia venus 333\Model\obj\Release\Model.csprojResolveAssemblyReference.cache
 C:\Users\jesus\Source\Repos\copia venus 333\Model\obj\Release\Model.dll
 C:\Users\jesus\Source\Repos\copia venus 333\Model\obj\Release\Model.pdb
+C:\Users\jesus\Source\Repos\Solo local\Model\bin\Release\Model.dll.config
+C:\Users\jesus\Source\Repos\Solo local\Model\bin\Release\Model.dll
+C:\Users\jesus\Source\Repos\Solo local\Model\bin\Release\Model.pdb
+C:\Users\jesus\Source\Repos\Solo local\Model\bin\Release\EntityFramework.dll
+C:\Users\jesus\Source\Repos\Solo local\Model\bin\Release\EntityFramework.xml
+C:\Users\jesus\Source\Repos\Solo local\Model\obj\Release\Model.csprojResolveAssemblyReference.cache
+C:\Users\jesus\Source\Repos\Solo local\Model\obj\Release\Model.dll
+C:\Users\jesus\Source\Repos\Solo local\Model\obj\Release\Model.pdb

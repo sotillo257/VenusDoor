@@ -370,8 +370,9 @@ namespace BusinessLogic
                 };
                 if (item != null )
                 {
-                    neworder.Id = item.Id;
-                    _LNOrder.UpdateOrder(neworder);
+                    item.ModificationDate = neworder.ModificationDate;
+                    item.ModificationUser = neworder.ModificationUser;
+                    _LNOrder.UpdateOrder(item);
                 }
                 else
                 {
