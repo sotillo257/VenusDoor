@@ -52,15 +52,6 @@ C:\Users\jesus\Source\Repos\copia venus 333\DataAccess\bin\Debug\MetodosDB.pdb
 C:\Users\jesus\Source\Repos\copia venus 333\DataAccess\obj\Debug\DataAccess.csprojResolveAssemblyReference.cache
 C:\Users\jesus\Source\Repos\copia venus 333\DataAccess\obj\Debug\DataAccess.dll
 C:\Users\jesus\Source\Repos\copia venus 333\DataAccess\obj\Debug\DataAccess.pdb
-C:\Users\Lenovo\Source\Repos\VenusDoor\DataAccess\bin\Debug\DataAccess.dll
-C:\Users\Lenovo\Source\Repos\VenusDoor\DataAccess\bin\Debug\DataAccess.pdb
-C:\Users\Lenovo\Source\Repos\VenusDoor\DataAccess\bin\Debug\MetodosDB.dll
-C:\Users\Lenovo\Source\Repos\VenusDoor\DataAccess\bin\Debug\Model.dll
-C:\Users\Lenovo\Source\Repos\VenusDoor\DataAccess\bin\Debug\Model.pdb
-C:\Users\Lenovo\Source\Repos\VenusDoor\DataAccess\bin\Debug\MetodosDB.pdb
-C:\Users\Lenovo\Source\Repos\VenusDoor\DataAccess\obj\Debug\DataAccess.csprojResolveAssemblyReference.cache
-C:\Users\Lenovo\Source\Repos\VenusDoor\DataAccess\obj\Debug\DataAccess.dll
-C:\Users\Lenovo\Source\Repos\VenusDoor\DataAccess\obj\Debug\DataAccess.pdb
 C:\Users\jesus\Source\Repos\Solo local\DataAccess\bin\Debug\DataAccess.dll
 C:\Users\jesus\Source\Repos\Solo local\DataAccess\bin\Debug\DataAccess.pdb
 C:\Users\jesus\Source\Repos\Solo local\DataAccess\bin\Debug\MetodosDB.dll
@@ -70,3 +61,12 @@ C:\Users\jesus\Source\Repos\Solo local\DataAccess\bin\Debug\MetodosDB.pdb
 C:\Users\jesus\Source\Repos\Solo local\DataAccess\obj\Debug\DataAccess.csprojResolveAssemblyReference.cache
 C:\Users\jesus\Source\Repos\Solo local\DataAccess\obj\Debug\DataAccess.dll
 C:\Users\jesus\Source\Repos\Solo local\DataAccess\obj\Debug\DataAccess.pdb
+C:\Users\Lenovo\Source\Repos\VenusDoor\DataAccess\bin\Debug\DataAccess.dll
+C:\Users\Lenovo\Source\Repos\VenusDoor\DataAccess\bin\Debug\DataAccess.pdb
+C:\Users\Lenovo\Source\Repos\VenusDoor\DataAccess\bin\Debug\MetodosDB.dll
+C:\Users\Lenovo\Source\Repos\VenusDoor\DataAccess\bin\Debug\Model.dll
+C:\Users\Lenovo\Source\Repos\VenusDoor\DataAccess\bin\Debug\Model.pdb
+C:\Users\Lenovo\Source\Repos\VenusDoor\DataAccess\bin\Debug\MetodosDB.pdb
+C:\Users\Lenovo\Source\Repos\VenusDoor\DataAccess\obj\Debug\DataAccess.csprojResolveAssemblyReference.cache
+C:\Users\Lenovo\Source\Repos\VenusDoor\DataAccess\obj\Debug\DataAccess.dll
+C:\Users\Lenovo\Source\Repos\VenusDoor\DataAccess\obj\Debug\DataAccess.pdb

@@ -398,6 +398,7 @@ namespace VenusDoors.Controllers
             }
         }
 
+        [HttpPost]
         public ActionResult InsertDoorsxOrder(DoorxOrder pDoorsxOrder)
         {
             try
@@ -419,7 +420,7 @@ namespace VenusDoors.Controllers
             }
             catch (Exception ex)
             {
-                return Json(false, JsonRequestBehavior.AllowGet);
+                return Json(new { Error = ex.Message }, JsonRequestBehavior.AllowGet);
             }
         }
 
