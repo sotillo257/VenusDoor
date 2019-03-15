@@ -345,9 +345,17 @@ namespace BusinessLogic
         public Order CrearOrder(Order pOrder, int pCodUsuario) {
             try
             {
-
+                Order item = null;
                 lnOrder _LNOrder = new lnOrder();
-                Order item = _LNOrder.GetOrderByUser(pCodUsuario).Where(x => x.Status.Id == 4).FirstOrDefault();
+                if (pOrder.Id > 0)
+                {
+                     item = _LNOrder.GetOrderById(pOrder.Id);
+                }
+                else
+                {
+                     item = _LNOrder.GetOrderByUser(pCodUsuario).Where(x => x.Status.Id == 4).FirstOrDefault();
+                }
+                
              
                 Order neworder = new Order()
                 {
