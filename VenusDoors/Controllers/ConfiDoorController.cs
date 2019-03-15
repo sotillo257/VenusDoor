@@ -279,13 +279,13 @@ namespace VenusDoors.Controllers
         }
 
         [HttpPost]
-        public ActionResult GetPrices(RailThickness RailThick, Material pMaterial, DoorStyle pDoorstyle)
+        public ActionResult GetPrices(RailThickness RailThick, Material pMaterial, Panel pPanel)
         {
             try
             {
                 BusinessLogic.lnDoorsPrices _DP = new BusinessLogic.lnDoorsPrices();
                 List<DoorsPrices> xDoorsP = _DP.GetAllDoorsPrices();
-                List<DoorsPrices> xDP = xDoorsP.Where(x => x.RailThickness.Id == RailThick.Id && x.Material.Id == pMaterial.Id && x.DoorStyle.Id == pDoorstyle.Id).ToList();
+                List<DoorsPrices> xDP = xDoorsP.Where(x => x.RailThickness.Id == RailThick.Id && x.Material.Id == pMaterial.Id && x.PanelType.Id == pPanel.Id).ToList();
                 ViewBag.d = xDP;
                 return Json(xDP);
             }

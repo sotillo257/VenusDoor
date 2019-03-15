@@ -9,7 +9,7 @@ namespace Model
     public class DoorsPrices
     {
         public int Id { get; set; }
-        public DoorStyle DoorStyle { get; set; }
+        public Panel PanelType { get; set; }
         public Material Material { get; set; }
         public RailThickness RailThickness { get; set; }
         public decimal BasePrice { get; set; }
