@@ -1,7 +1,9 @@
-﻿$(document).ready(function () {
+﻿var _IdOrderModificar = 0;
+$(document).ready(function () {
     $(".orderreff").click(function (e) {
         //e.preventDefault();
         var id = $(this).attr('data-id');
+        _IdOrderModificar = id;
         GetDoorsByOrder(id);
     });
 });
