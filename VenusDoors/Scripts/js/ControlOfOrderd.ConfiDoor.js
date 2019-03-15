@@ -338,6 +338,7 @@ function InsertDoorsxUser() {
     var datos =
          {
              Ord: {
+                 Id: _IdOrderModificar,
                  DoorxUser: {
                      User: { Id: 0 },
                      Status: { Id: 1 },
