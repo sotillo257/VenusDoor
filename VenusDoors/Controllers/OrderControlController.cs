@@ -103,20 +103,20 @@ namespace VenusDoors.Controllers
         [Authorize]
         [HttpPost]
         public ActionResult GetDoorsByOrder(int idOrder)
-        {           
-            //var getOrderData = _LNO.GetOrderById(idOrder);
-            //ViewBag.OrderDetails = getOrderData;
+        {                       
             BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
-            DoorsxUser xDoors = _LN.GetAllDoorsxUser().Where(x => x.Order.Id == idOrder).ToList().FirstOrDefault();
             BusinessLogic.lnDoorxOrder Ord = new BusinessLogic.lnDoorxOrder();
-            xDoors.DoorsxOrder = Ord.GetAllDoorxOrderByDoorxUser(xDoors.Id);
             BusinessLogic.lnOrder _LNO = new BusinessLogic.lnOrder();
+            BusinessLogic.lnUser _LNU = new BusinessLogic.lnUser();
+            BusinessLogic.lnPerson _LNP = new BusinessLogic.lnPerson();
+
+            DoorsxUser xDoors = _LN.GetAllDoorsxUser().Where(x => x.Order.Id == idOrder).ToList().FirstOrDefault();
+                       
+            xDoors.DoorsxOrder = Ord.GetAllDoorxOrderByDoorxUser(xDoors.Id);           
             xDoors.Order = _LNO.GetOrderById(idOrder);
-            // ViewBag.DoorsOrder = doorsByOrder;
-            return Json(xDoors);
-
-
-
+            xDoors.User = _LNU.GetUserById(xDoors.User.Id);
+            xDoors.User.Person = _LNP.GetPersonById(xDoors.User.Person.Id);       
+            return Json(xDoors);            
         }
     }
 }

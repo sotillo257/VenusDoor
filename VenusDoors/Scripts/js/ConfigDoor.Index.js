@@ -1,5 +1,4 @@
 ﻿$(document).ready(function () {
-
     GetAllMaterial();
     GetAllInsideEdgeProfile();
     GetAllOutsideEdgeProfile();

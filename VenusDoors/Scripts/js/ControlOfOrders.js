@@ -1,8 +1,13 @@
 ﻿$(document).ready(function () {
     $(document).on('click', '.Detalle', function (event) { 
         var id = $(this).attr('data-id');
+        $("#editDXU").show();
+        $("#editBCK").hide();
+        $("#btnsave").hide();
+        $('#editDXU').removeClass("active");        
+        $("#editBCK").trigger("click");
         GetDoorsByOrder(id);
-    });
+    });    
 
     $(document).on('click', '.Approved', function (event) {
         var id = $(this).attr('value');
@@ -66,8 +71,7 @@ function GetDoorsByOrder(id) {
     var datos =
                     {
                         IdOrder: id,
-                    }
-
+                    }    
     $.ajax({
         data: JSON.stringify(datos),
         url: urlGetDoorsByOrder,
@@ -75,7 +79,67 @@ function GetDoorsByOrder(id) {
         type: 'POST',
         async: false,
         contentType: 'application/json; charset=utf-8',
-        success: function (Result) {              
+        success: function (Result) {
+            $('#idDoor').val(Result.Id);            
+            var fingerPull = Result.isFingerPull;
+            if (fingerPull == false) {
+                fingerPull = 1;
+            } else {
+                fingerPull = 2;
+            }
+            llenarComboFinger(fingerPull);
+
+            var isDrill = Result.isDrill;
+            if (isDrill == false) {
+                isDrill = 1;
+            } else {
+                isDrill = 2;
+            }
+            llenarComboIsDrill(isDrill);
+            HingeCalculate();
+            HingeShow();
+
+            var isOpen = Result.IsOpeningMeasurement;
+            if (isOpen == false) {
+                isOpen = 1;
+            } else {
+                isOpen = 2;
+            }
+            llenarComboIsOpen(isOpen);
+
+            var isOver = Result.isOverlay;
+            if (isOver == false) {
+                isOver = 1;
+            } else {
+                isOver = 2;
+            }
+            checkIsOverlay(isOver);
+            llenarComboMaterial(Result.Material.Id);
+            llenarComboDoorStyle(Result.DoorStyle.Id);
+            llenarComboIEP(Result.InsideEdgeProfile.Id);
+            llenarComboOEP(Result.OutsideEdgeProfile.Id);
+            llenarComboStileWidth(Result.BottomRail.Id);
+            llenarComboRailWidth(Result.TopRail.Id);
+            llenarComboDoorAssembly(Result.Join.Id);
+            llenarComboPanelMaterial(Result.Material.Id);
+            llenarComboVerticalDivisions(Result.VerticalDivisions.Id);
+            llenarComboHorizontalDivisions(Result.HorizontalDivisions.Id);
+            llenarComboHingeDirection(Result.HingeDirection.Id);
+
+            var info = "";
+            info += '<div class="col-xs-4 col-md-3">';
+            info += '<label id="Email" style="margin-top: 10px;">Name: <span style="color: #868ba1" style="color: #868ba1">' + Result.User.Person.Name + ' '+  Result.User.Person.Lastname +'</span></label>';
+            info += '</div><!-- col -->';
+            info += '<div class="col-xs-4 col-md-3">';
+            info += '<label id="Email" style="margin-top: 10px;">Email: <span style="color: #868ba1" style="color: #868ba1">' + Result.User.Email + '</span></label>';
+            info += '</div><!-- col -->';
+            info += '<div class="col-xs-4 col-md-3">';
+            info += '<label id="Email" style="margin-top: 10px;">Phone: <span style="color: #868ba1" style="color: #868ba1">' + Result.User.Person.Telephone + '</span></label>';
+            info += '</div><!-- col -->';
+            info += '<div class="col-xs-4 col-md-3">';
+            info += '<label id="Email" style="margin-top: 10px;">Address: <span style="color: #868ba1" style="color: #868ba1">' + Result.User.Person.Direction + '</span></label>';
+            info += '</div><!-- col -->';
+
             var dxu = '';
             dxu += '<div class="col-xs-4 col-md-3">';
             dxu += '<label id="Material" style="margin-top: 10px;">Wood Species: <span style="color: #868ba1" style="color: #868ba1">' + Result.Material.Description + '</span></label>';
@@ -181,6 +245,7 @@ function GetDoorsByOrder(id) {
             $("#ordertable").html(option);
             $('#ModalOrderInfo').modal('toggle');
             $("#HeaderOptions").html(dxu);
+            $("#UserOrderInfo").html(info);
             //$("#ordertable > tbody").empty().append(option);            
         },
     });
