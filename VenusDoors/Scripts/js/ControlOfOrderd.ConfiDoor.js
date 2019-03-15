@@ -1,125 +1,40 @@
 ﻿$(document).ready(function () {
-    $(".btBuild").on('click', function () {
-        $("#lblTitulo").text("Create a new door");
-        $("#lblSubTitulo").text("Choose the the best door option that fit your needs.");
-        $("#btConfSave").hide();
-        $("#btxLeft").hide();
-        $("#btXclose").show();
-        $("#btConfAdd").show();
-        $("#btModify").hide();
+    
+    $("#editDXU").on('click', function () {
+        $('#editBCK').removeClass("active");
+        $("#editDXU").hide();
+        $("#editBCK").show();
+        $("#btnsave").show();       
+        $('#editBCK').removeClass("active");
+       
 
         $("select").prop('disabled', false);
-        $("#iptQuantity").prop('disabled', false);
-        $("#iptWidth").prop('disabled', false);
-        $("#iptHeight").prop('disabled', false);
-        $(".select2-selection").css('background-color', '#fff!important');
-        LimpiarCombos();
-    });
-
-    $("#btModify").on('click', function () {
-        $("#lblTitulo").text("Modifying the door");
-        $("#lblSubTitulo").text("After you make your changes remember to press \"Save\" to confirm your changes");
-        $("#btConfSave").show();
-        $("#btxLeft").show();
-        $("#btXclose").hide();
-        $("#btConfAdd").hide();
-        $("#btModify").hide();
-
-        $("select").prop('disabled', false);
-        $("#iptQuantity").prop('disabled', false);
-        $("#iptWidth").prop('disabled', false);
-        $("#iptHeight").prop('disabled', false);
-        $("input[name=radioOption]").attr("disabled", false);
         $("input[name=radioOver]").attr("disabled", false);
         $(".select2-selection").css('background-color', '#fff!important');
     });
-    $(document).on('click', '#Details', function (event) {
-        $("#btModify").show();
-        $("#btConfAdd").hide();
-        $("#btConfSave").hide();
-        $("#btxLeft").hide();
-        $("#btXclose").show();
-        $("#lblTitulo").text("Details of the door");
-        //$("#lblSubTitulo").text("You can change the configuration of this door by clicking on the modify button");
 
-        $("select").prop('disabled', true);
-        $("#iptQuantity").prop('disabled', true);
-        $("#iptWidth").prop('disabled', true);
-        $("#iptHeight").prop('disabled', true);
-        $("input[name=radioOption]").attr("disabled", true);
+    $("#editBCK").on('click', function () {
+        $("#editDXU").show();
+        $("#editBCK").hide();
+        $("#btnsave").hide();
+        $('#editDXU').removeClass("active");
+
+        $("select").prop('disabled', true);       
         $("input[name=radioOver]").attr("disabled", true);
         $(".select2-selection").css('background-color', '#eee!important');
+    });
 
-        for (var i = 0; i < listDOOR.length; i++) {
-            if (listDOOR[i].Id == $(this).attr('data-id')) {
-                var aux = listDOOR[i].isFingerPull;
-
-                $('#idDoor').val(listDOOR[i].Id);
-                $("#idHingeP").val(listDOOR[i].HingePositions.Id),
-                $('#iptWidth').val(listDOOR[i].Width);
-                $('#iptHeight').val(listDOOR[i].Height);
-                var HTMLImage =
-                   ' <center> <img style="height: 100px;width: 235px;margin-top: 20px;" id="ProfilePicture" src="' + listDOOR[i].ProfilePicture + '">' +
-                              '<img style="width: 230px;height: 230px;" id="DoorPicture" src="' + listDOOR[i].Picture + '">' +
-                              '</center>';
-                $('#Picture').html(HTMLImage);
-                $('#iptQuantity').val(listDOOR[i].Quantity);
-                $('#iptCost').val(listDOOR[i].ItemCost);
-                var fingerPull = listDOOR[i].isFingerPull;
-                if (fingerPull == false) {
-                    fingerPull = 1;
-                } else {
-                    fingerPull = 2;
-                }
-                llenarComboFinger(fingerPull);
-
-                var isDrill = listDOOR[i].isDrill;
-                if (isDrill == false) {
-                    isDrill = 1;
-                    HingeCalculate();
-                    HingeShow();
-                } else {
-                    isDrill = 2;
-                    HingeCalculate();
-                    HingeShow();
-                }
-                llenarComboIsDrill(isDrill);
-
-                var isOpen = listDOOR[i].IsOpeningMeasurement;
-                if (isOpen == false) {
-                    isOpen = 1;
-                } else {
-                    isOpen = 2;
-                }
-                llenarComboIsOpen(isOpen);
-
-                var isOver = listDOOR[i].isOverlay;
-                if (isOver == false) {
-                    isOver = 1;
-                } else {
-                    isOver = 2;
-                }
-                checkIsOverlay(isOver);
-                checkDoorOption(listDOOR[i].DoorOption.Id);
-                //llenarComboDecimales(listDOOR[i].Decimales.Id);
-                llenarComboMaterial(listDOOR[i].Material.Id);
-                llenarComboDoorStyle(listDOOR[i].DoorStyle.Id);
-                llenarComboIEP(listDOOR[i].InsideEdgeProfile.Id);
-                llenarComboOEP(listDOOR[i].OutsideEdgeProfile.Id);
-                llenarComboStileWidth(listDOOR[i].BottomRail.Id);
-                llenarComboRailWidth(listDOOR[i].TopRail.Id);
-                llenarComboDoorAssembly(listDOOR[i].Join.Id);
-                llenarComboPanelStyle(listDOOR[i].Panel.Id);
-                llenarComboPanelMaterial(listDOOR[i].Material.Id);
-                llenarComboVerticalDivisions(listDOOR[i].VerticalDivisions.Id);
-                llenarComboHorizontalDivisions(listDOOR[i].HorizontalDivisions.Id);
-                llenarComboHingeDirection(listDOOR[i].HingeDirection.Id);
-                llenarComboDoorType(listDOOR[i].DoorType.Id);
-                break;
-            }
-        }
+    $("#btnsave").on("click", function () {
+        LlammarModal("ConfirmOrdenSummary", "Confirm", "Do you want to save this configuration?",
+        '<button onclick="NuevosCambiosDXU();" class="Cursor btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Save</button>' +
+        '<button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>');
     });
 });
+
+function NuevosCambiosDXU() {
+     InsertDoorsxUser();   
+}
+
 var allMaterial = '';
 function llenarComboMaterial(pMaterial) {
 
@@ -392,7 +307,7 @@ function llenarComboIsOpen(pOpen) {
 }
 
 function checkIsOverlay(pOverlay) {
-    var lbl = '<label><input disabled style="margin-right: 8px;" type="radio" name="radioOver" data-id="1">Insert Door Type</label>';
+    var lbl = '<label><input disabled style="margin-right: 8px;" type="radio" name="radioOver" data-id="1">Inset Door Type</label>';
     lbl += '<label style="margin-left: 10px;"><input disabled style="margin-right: 8px;" type="radio" name="radioOver" data-id="2">Overlay Door Type</label>';
     $("#isOverlay").html(lbl);
     if (pOverlay != 0) {
@@ -400,42 +315,92 @@ function checkIsOverlay(pOverlay) {
     }
 }
 
-function checkDoorOption(pDoorOp) {
-    var radioButt = '';
-    for (var i = 0; i < allDoorOption.length; i++) {
-        if (allDoorOption[i].Status.Id == 1) {
-            
-            radioButt += '<label style="margin-left: 8px;">';
-            radioButt += '<input disabled style="margin-right:5px" name="radioOption" type="radio" data-id="' + allDoorOption[i].Id + '"></input>' + allDoorOption[i].Description + '';
-            radioButt += '</label>';
-            $("#DivDoorOption").html(radioButt);
-        }
+function InsertDoorsxUser() {
+    var itemCost = parseFloat($("#iptCost").val());
+    var DoorQuantity = $("#iptQuantity").val();
+    var DoorSubTotal = itemCost * DoorQuantity;
+    var OrdSubTotal = DoorSubTotal;
+    var Tx = parseFloat(0.0825);
+    var Taxes = (parseFloat(OrdSubTotal) * Tx).toFixed(2);
+    var OrdTotal = (parseFloat(OrdSubTotal) + parseFloat(Taxes)).toFixed(2);
+    var DoorOp = $('input[name=radioOption]:checked').attr("data-id");
+    var isOver = ($('input[name=radioOver]:checked').attr("data-id") == 1) ? false : true;
+    var drillingV = ($("#cbisDrill").val() == 1) ? false : true;
+    var HingeDirection = $("#cbHingeDirection").val();
+    var HingePositions;
+    if (drillingV == true) {
+        HingeDirection = $("#cbHingeDirection").val();
+        HingePositions = 0;
+    } else {
+        HingeDirection = 3;
+        HingePositions = 2;
     }
-    if (pDoorOp != 0) {
-        $("input[name=radioOption][data-id='" + pDoorOp + "']").prop("checked", true);
-    }
-}
+    var datos =
+         {
+             Ord: {
+                 DoorxUser: {
+                     User: { Id: 0 },
+                     Status: { Id: 1 },
+                     Material: { Id: $("#cbMaterial").val() },
+                     DoorStyle: { Id: $("#cbDoorStyle").val() },
+                     TopRail: { Id: $("#cbRailWidth").val() },
+                     BottomRail: { Id: $("#cbStileWidth").val() },
+                     Preparation: { Id: 1 },
+                     Panel: { Id: 0 },
+                     PanelMaterial: { Id: $("#cbPanelMaterial").val() },
+                     IsOpeningMeasurement: ($("#cbIsOpeningMeasurement").val() == 1) ? false : true,
+                     Join: { Id: $("#cbDoorAssembly").val() },
+                     OutsideEdgeProfile: { Id: $("#cbOutsideEdgeProfile").val() },
+                     InsideEdgeProfile: { Id: $("#cbInsideEdgeProfile").val() },
+                     VerticalDivisions: { Id: $("#cbVerticalDivisions").val() },
+                     HorizontalDivisions: { Id: $("#cbHorizontalDivisions").val() },
+                     Width: parseFloat($("#iptWidth").val()),
+                     DecimalsWidth: { Id: 0 },
+                     Height: parseFloat($("#iptHeight").val()),
+                     DecimalsHeight: { Id:0 },
+                     Quantity: DoorQuantity,
+                     ItemCost: itemCost,
+                     SubTotal: DoorSubTotal,
+                     Picture: '',
+                     ProfilePicture: '',
+                     isDrill: drillingV,
+                     HingeDirection: { Id: HingeDirection },
+                     HingePositions: { Id: HingePositions },
+                     DoorType: { Id: 0 },
+                     DoorOption: { Id: 0 },
+                     isOverlay: isOver,
+                     isFingerPull: ($("#cbFingerPull").val() == 1) ? false : true,
+                 },
+             }
+         };
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(datos),
+        url: urlInsertDoorsxUser,
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
 
-function LimpiarCombos() {
-    $('input').val("");
-    $("input[name=radioOption]").prop("checked", false);
-    $("input[name=radioOver]").prop("checked", false);
-    //llenarComboDecimales(0);
-    llenarComboMaterial(0);
-    llenarComboDoorStyle(0);
-    llenarComboIEP(0);
-    llenarComboOEP(0);
-    llenarComboStileWidth(0);
-    llenarComboRailWidth(0);
-    llenarComboDoorAssembly(0);
-    llenarComboPanelStyle(0);
-    llenarComboPanelMaterial(0);
-    llenarComboIsOpen(0);
-    llenarComboVerticalDivisions(0);
-    llenarComboHorizontalDivisions(0);
-    llenarComboIsDrill(0);
-    llenarComboHingeDirection(0);
-    llenarComboDoorType(0);
-    llenarComboDoorType(0);
-    llenarComboFinger(0);
+            //Validar data para ver si mostrar error al guardar o exito al guardar
+            if (result != null) {
+                $('#ModalOrderInfo').modal('hide');
+                $('#modalConfirmOrderSummary').modal('hide');
+                LlammarModal("ConfigM", "General configuration of doors successfully saved!", "");
+                llenarTablaOrderControl();
+
+                changeDoorStyle();
+                $("#editBCK").trigger("click");
+
+            } else {                
+                $('#modalConfirmOrderSummary').modal('hide');
+                LlammarModal("Danger", "Error in the process.", "An error occurred when saving the general settings.");
+            }
+        },
+        error: function (err) {
+            $('#modalInsert').modal('hide');
+            $('#modalConfirmOrderSummary').modal('hide');
+            LlammarModal("Danger", "An error occurred during the process.", "Check your internet connection I tried again");
+        },
+
+    });
 }
