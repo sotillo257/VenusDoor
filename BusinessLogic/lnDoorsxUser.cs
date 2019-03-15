@@ -376,7 +376,7 @@ namespace BusinessLogic
                     neworder.Id = IdOrder;
                 }
 
-                DoorsxUser DU = GetAllDoorsxUser().Where(x => x.Order.Id == neworder.Id).FirstOrDefault();
+                DoorsxUser DU = GetAllDoorsxUser().Where(x => x.Order.Id == item.Id).FirstOrDefault();
 
                 pOrder.DoorxUser.CreatorUser = pCodUsuario;
                 pOrder.DoorxUser.ModificationUser = pCodUsuario;
