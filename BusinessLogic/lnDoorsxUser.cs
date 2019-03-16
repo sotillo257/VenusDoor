@@ -367,12 +367,14 @@ namespace BusinessLogic
                     CreatorUser = pCodUsuario,
                     ModificationDate = DateTime.Now,
                     ModificationUser = pCodUsuario
+
                 };
                 if (item != null )
                 {
                     item.ModificationDate = neworder.ModificationDate;
                     item.ModificationUser = neworder.ModificationUser;
                     _LNOrder.UpdateOrder(item);
+                    neworder = item;
                 }
                 else
                 {
@@ -380,7 +382,7 @@ namespace BusinessLogic
                     neworder.Id = IdOrder;
                 }
 
-                DoorsxUser DU = GetAllDoorsxUser().Where(x => x.Order.Id == item.Id).FirstOrDefault();
+                DoorsxUser DU = GetAllDoorsxUser().Where(x => x.Order.Id == neworder.Id).FirstOrDefault();
 
                 pOrder.DoorxUser.CreatorUser = pCodUsuario;
                 pOrder.DoorxUser.ModificationUser = pCodUsuario;
