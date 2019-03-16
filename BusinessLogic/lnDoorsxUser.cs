@@ -354,7 +354,7 @@ namespace BusinessLogic
                 
              
                 Order neworder = new Order()
-                {
+                {                    
                     User = new Model.User() { Id = pCodUsuario },
                     ShippingAddress = new Model.ShippingAddress() { Id = 1 },
                     Status = new Model.Status() { Id = 4 },
@@ -385,7 +385,7 @@ namespace BusinessLogic
                 pOrder.DoorxUser.CreationDate = DateTime.Now;
                 pOrder.DoorxUser.ModificationDate = DateTime.Now;
                 pOrder.DoorxUser.Order = neworder;
-                pOrder.DoorxUser.User.Id = pCodUsuario;
+                pOrder.DoorxUser.User.Id = neworder.User.Id;
 
                 if (DU != null)
                 {
