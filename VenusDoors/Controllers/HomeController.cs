@@ -52,7 +52,7 @@ namespace VenusDoors.Controllers
            
         }
 
-        [Authorize]
+        [Authorize(Roles = "1, 2")]
         public ActionResult Dashboard(int? Id)
         {
             try
@@ -65,15 +65,18 @@ namespace VenusDoors.Controllers
                 {
                     if (Id != null)
                     {
-                        if (Id > 0)
+                        if ((int)Session["UserType"] == 1)
                         {
-                          
-                            System.Web.HttpContext.Current.Session["CompanyActive"] = Id;
-                            BusinessLogic.lnCompany comp = new BusinessLogic.lnCompany();
-                            Company company = comp.GetCompanyById((int)Id);
-                            System.Web.HttpContext.Current.Session["NameCompany"] = company.Name;
-                            System.Web.HttpContext.Current.Session["IdCompany"] = company.Id;
-                            System.Web.HttpContext.Current.Session["IdTypeCompany"] = 2;
+                            if (Id > 0)
+                        {
+                           
+                                System.Web.HttpContext.Current.Session["CompanyActive"] = Id;
+                                BusinessLogic.lnCompany comp = new BusinessLogic.lnCompany();
+                                Company company = comp.GetCompanyById((int)Id);
+                                System.Web.HttpContext.Current.Session["NameCompany"] = company.Name;
+                                System.Web.HttpContext.Current.Session["IdCompany"] = company.Id;
+                                System.Web.HttpContext.Current.Session["IdTypeCompany"] = 2;
+                            
                         }
                         else
                         {
@@ -83,7 +86,7 @@ namespace VenusDoors.Controllers
                             System.Web.HttpContext.Current.Session["IdCompany"] = _user.Company.Id;
                             System.Web.HttpContext.Current.Session["IdTypeCompany"] = 1;
                         }
-                   
+                        }
 
                     }
                 DateTime hoy = DateTime.Now;

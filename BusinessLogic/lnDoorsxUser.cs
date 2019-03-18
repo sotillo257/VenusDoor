@@ -1113,6 +1113,10 @@ namespace BusinessLogic
             {
                 respuesta = RaisedPanel(pDoorxOrder);
             }
+            if (pDoorxOrder.Panel.Id == 3)
+            {
+                respuesta = "/Content/img/Doors/slab.png";
+            }
             return respuesta;
         }
         public string FlatPanel(DoorxOrder pDoorxOrder) {
