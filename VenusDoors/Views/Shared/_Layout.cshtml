@@ -263,7 +263,7 @@
                         </div><!-- media-list -->
                     </div><!-- dropdown-menu -->
                 </div><!-- dropdown -->
-                <div class="dropdown">
+                <div class="dropdown" style="display:none;">
                     <a href="" class="nav-link pd-x-7 pos-relative" data-toggle="dropdown">
                         <i class="icon ion-ios-home-outline tx-24"></i>
                         @if (Session["NameCompany"] != null)
@@ -322,30 +322,52 @@
                     </div><!-- dropdown-menu -->
                 </div><!-- dropdown -->
                 <div class="dropdown">
-                    <a href="" class="nav-link nav-link-profile" data-toggle="dropdown">
-                        <span class="logged-name hidden-md-dow">
-                            @if (Session["UserName"] == null)
-                            {
+                    <a href="" class="nav-link nav-link-profile d-flex align-items-center" data-toggle="dropdown">
+                        <div class="mg-r-10 text-right">
+                            <p class="lh-1 mg-b-2 tx-14 tx-bold tx-lato">
+                                @if (Session["NameCompany"] != null)
+                                {
+                                    string name = Session["NameCompany"].ToString();
+                                    @name;
+                                }
+                            </p>
+                            <span class="tx-12 tx-roboto">
+                                @if (Session["UserName"] == null)
+                                {
 
-                            }
-                            else
-                            {
-                                string person = Session["UserName"].ToString();
-                            @person
-
-                        }
-                        </span>
-                        <img src="http://via.placeholder.com/64x64" class="wd-32 rounded-circle" alt="">
-                        <span class="square-10 bg-success"></span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-header wd-200">
+                                }
+                                else
+                                {
+                                    string person = Session["UserName"].ToString();
+                                    @person
+                                }
+                            </span>
+                        </div>
+                            <img src="@Session["CompanyLogo"].ToString()" class="wd-32 rounded-circle" alt="">
+                            <span class="square-10 bg-success"></span>
+</a>
+                    <div class="dropdown-menu dropdown-menu-header wd-230">
                         <ul class="list-unstyled user-profile-nav">
-                            @*<li><a href=""><i class="icon ion-ios-person"></i> Edit Profile</a></li>*@
-                            @*<li><a href=""><i class="icon ion-ios-gear"></i> Settings</a></li>
-                            <li><a href=""><i class="icon ion-ios-download"></i> Downloads</a></li>
-                            <li><a href=""><i class="icon ion-ios-star"></i> Favorites</a></li>
-                            <li><a href=""><i class="icon ion-ios-folder"></i> Collections</a></li>*@
-                            <li><a class="Cursor" onclick="location.href='@Url.Action("LogOut","Logins")'"><i class="icon ion-power"></i> Sign Out</a></li>
+                                                        @if (Session["ListCompany"] != null)
+                                                        {
+                                                            <li>
+                                                                <a href="/Home/Dashboard/0" class="Cursor"><i class="icon ion-ios-home-outline tx-24"></i>All Company</a>
+</li>
+                                                            List<Model.Company> list = (List<Model.Company>)Session["ListCompany"];
+                                                            foreach (Model.Company item in list)
+                                                            {
+                                                                <li>
+                                                                    <a href="/Home/Dashboard/@item.Id" class="Cursor"><i class="icon ion-ios-home-outline tx-24"></i>@item.Name
+                                                                    </a>
+                                                                </li>
+                                                                    }
+                                                                    }
+                                                                    @*<li><a href=""><i class="icon ion-ios-person"></i> Edit Profile</a></li>*@
+                                                                    @*<li><a href=""><i class="icon ion-ios-gear"></i> Settings</a></li>
+                                                <li><a href=""><i class="icon ion-ios-download"></i> Downloads</a></li>
+                                                <li><a href=""><i class="icon ion-ios-star"></i> Favorites</a></li>
+                                                <li><a href=""><i class="icon ion-ios-folder"></i> Collections</a></li>*@
+                                <li><a class="Cursor" onclick="location.href='@Url.Action("LogOut","Logins")'"><i class="icon ion-power"></i> Sign Out</a></li>
                         </ul>
                     </div><!-- dropdown-menu -->
                 </div><!-- dropdown -->

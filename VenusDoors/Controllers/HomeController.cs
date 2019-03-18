@@ -75,13 +75,15 @@ namespace VenusDoors.Controllers
                                 Company company = comp.GetCompanyById((int)Id);
                                 System.Web.HttpContext.Current.Session["NameCompany"] = company.Name;
                                 System.Web.HttpContext.Current.Session["IdCompany"] = company.Id;
+                                System.Web.HttpContext.Current.Session["CompanyLogo"] = company.Logo;
                                 System.Web.HttpContext.Current.Session["IdTypeCompany"] = 2;
                             
                         }
                         else
                         {
                             System.Web.HttpContext.Current.Session["NameCompany"] = "All Companies";
-                            BusinessLogic.lnUser user = new BusinessLogic.lnUser();
+                                System.Web.HttpContext.Current.Session["CompanyLogo"] = "/Content/img/img11.jpg";
+                                BusinessLogic.lnUser user = new BusinessLogic.lnUser();
                             Model.User _user = user.GetUserById((int)Session["UserID"]);
                             System.Web.HttpContext.Current.Session["IdCompany"] = _user.Company.Id;
                             System.Web.HttpContext.Current.Session["IdTypeCompany"] = 1;
