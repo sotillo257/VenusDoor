@@ -12,10 +12,10 @@ namespace VenusDoors.Controllers
         BusinessLogic.lnOrder _LNOR = new BusinessLogic.lnOrder();
 
         // GET: OrderControl
-        [Authorize]
+        [Authorize(Roles = "1, 2")]
         public ActionResult Index()
         {            
-            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            if (Session["UserID"] != null)
             {
                 ViewBag.OrderControl = "active";
 
@@ -30,7 +30,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [Authorize]
+        [Authorize(Roles = "1, 2")]
         [HttpPost]
         public ActionResult ModifiyOrder()
         {
@@ -45,7 +45,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [Authorize]
+        [Authorize(Roles = "1, 2")]
         [HttpPost]
         public ActionResult UpdateOrderStatus(Order modOrder)
         {
@@ -73,7 +73,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [Authorize]
+        [Authorize(Roles = "1, 2")]
         [HttpPost]
         public ActionResult GetAllOrderControl()
         {
@@ -100,7 +100,7 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [Authorize]
+        [Authorize(Roles = "1, 2")]
         [HttpPost]
         public ActionResult GetDoorsByOrder(int idOrder)
         {                       
