@@ -181,11 +181,17 @@ function ChangeDoorStylePanel(pIdDoorStyle) {
         $("#cbPanel").val(5);
     } else if ($("#cbDoorStyle").val() == 1010) {
         llenarComboInsideAndOutside();
-        var option = '<option value="slab">Slab</option>';
+        var option = '<option value="3">Slab</option>';
         $("#cbPanel").empty().append(option);
+        $("#cbPanel").hide();
+        option = '<option value="1">Slab</option>';
         $("#cbInsideEdgeProfile").empty().append(option);
+        $("#cbInsideEdgeProfile").hide();
         $("#cbOutsideEdgeProfile").empty().append(option);
+        $("#cbOutsideEdgeProfile").hide();
+        option = '<option value="7">Slab</option>';
         $("#cbDoorAssembly").empty().append(option);
+        $("#cbDoorAssembly").hide();
         $('#DoorPicture').attr('src', "/Content/img/Doors/slab.png");
         $('#ProfilePicture').attr('src', "/Content/img/Profile/slab.png");
         bandera = false;

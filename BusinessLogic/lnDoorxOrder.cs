@@ -136,8 +136,7 @@ namespace BusinessLogic
                     item.ModificationUser = item.User.Id;
                     item.ProfilePicture = DU.BuscarProfilePicture(Order.DoorxUser.OutsideEdgeProfile.Id, Order.DoorxUser.InsideEdgeProfile.Id, item.Panel.Id);
                     item.Picture = DU.BuscarDoorPicture(item);
-                    int retorno = _AD.UpdateDoorsxOrder(item);
-                    Order.Quantity = Order.Quantity + item.Quantity;
+                    int retorno = _AD.UpdateDoorsxOrder(item);                   
                     Order.SubTotal = Order.SubTotal + item.SubTotal;
                     Order.Tax = 0.0825m * Order.SubTotal;
                     Order.Total = Order.Tax + Order.SubTotal;

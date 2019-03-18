@@ -920,7 +920,8 @@ function GetDoorxUser() {
                 checkIsOverlay(isOver);
                 //llenarComboDecimales(data.LastDoor.Decimales.Id);
                 llenarComboMaterial(data.LastDoor.Material.Id);
-                llenarComboDoorStyle(data.LastDoor.DoorStyle.Id);
+               
+                
                 llenarComboIEP(data.LastDoor.InsideEdgeProfile.Id);
                 llenarComboOEP(data.LastDoor.OutsideEdgeProfile.Id);
                 llenarComboStileWidth(data.LastDoor.BottomRail.Id);
@@ -930,6 +931,23 @@ function GetDoorxUser() {
                 llenarComboVerticalDivisions(data.LastDoor.VerticalDivisions.Id);
                 llenarComboHorizontalDivisions(data.LastDoor.HorizontalDivisions.Id);
                 llenarComboHingeDirection(data.LastDoor.HingeDirection.Id);
+                if (data.LastDoor.DoorStyle.Id == 1010) {
+                    var option = '<option value="3">Slab</option>';
+                    $("#cbPanel").empty().append(option);
+                    $("#cbPanel").hide();
+                    option = '<option value="1">Slab</option>';
+                    $("#cbInsideEdgeProfile").empty().append(option);
+                    $("#cbInsideEdgeProfile").hide();
+                    $("#cbOutsideEdgeProfile").empty().append(option);
+                    $("#cbOutsideEdgeProfile").hide();
+                    option = '<option value="7">Slab</option>';
+                    $("#cbDoorAssembly").empty().append(option);
+                    $("#cbDoorAssembly").hide();
+                    $('#DoorPicture').attr('src', "/Content/img/Doors/slab.png");
+                    $('#ProfilePicture').attr('src', "/Content/img/Profile/slab.png");
+                } else {
+                    llenarComboDoorStyle(data.LastDoor.DoorStyle.Id);
+                }
             }
             else {
                 LlammarModal("Danger", "Error obtaining your general configuration", " ");

@@ -389,6 +389,12 @@ function UpdateOrderStatus3(id) {
     });
 }
 
+function PruebaTabla() {
+  
+
+     
+}
+
 function llenarTablaOrderControl() {
     $.ajax({
         url: urlGetAllOrderControl,
@@ -399,13 +405,11 @@ function llenarTablaOrderControl() {
         success: function (data) {
             if (data != null) {
                 id = data;
-                var option = '';
+                
+                var t = $('#datatable1').DataTable();
+                t.rows().remove().draw(false);
                 for (var i = 0; i < data.length; i++) {
-                    option += '<tr role="row" class="odd">';
-                    option += '<td tabindex="0"  >' + data[i].Id + '</td>';
-                    option += '<td>' + data[i].Quantity + '</td>';
-                    option += '<td>' + data[i].Total + '</td>';
-                    option += '<td>';
+                    var option = '';
                     if (data[i].Status.Id == 7) {
                         option += '<span class="square-8 bg-success mg-r-5 rounded-circle"></span>';
                     } else if (data[i].Status.Id == 6) {
@@ -413,23 +417,24 @@ function llenarTablaOrderControl() {
                     } else if (data[i].Status.Id == 5) {
                         option += '<span class="square-8 bg-warning mg-r-5 rounded-circle"></span>';
                     }
-                    option += data[i].Status.Description + '</td>';
-                    option += '<td>';
-                    option += '<button href="#" data-id="' + data[i].Id + '" id="" value="" class="Detalle Cursor btn btn-info btn-icon" s style="width: 25px;height: 25px; margin-left: 10px;" ><i class="fa fa-eye" ></i></button>';
-                    if (data[i].Status.Id == 5)
-                    {
-                        option += '<button title="Approve order." value="' + data[i].Id + '" class="Approved Cursor btn btn-primary btn-icon" style="width: 25px;height: 25px; margin-left: 10px;"><i class="fa fa-check"></i></button>';
-                        option += '<button  data-toggle="modal" data-target="" id="" title="Remove order." value="' + data[i].Id + '" class="Remove Cursor btn btn-danger btn-icon" style="width: 25px;height: 25px; margin-left: 10px; "><i class="fa fa-close"></i></button>';
+                    var Botones = '<button href="#" data-id="1" id="' + data[i].Id + '" value="" class="Detalle Cursor btn btn-info btn-icon" s style="width: 25px;height: 25px; margin-left: 10px;" ><i class="fa fa-eye" ></i></button>';
+                    if (data[i].Status.Id == 5) {
+                        Botones += '<button title="Approve order." value="' + data[i].Id + '" class="Approved Cursor btn btn-primary btn-icon" style="width: 25px;height: 25px; margin-left: 10px;"><i class="fa fa-check"></i></button>';
+                        Botones += '<button  data-toggle="modal" data-target="" id="" title="Remove order." value="' + data[i].Id + '" class="Remove Cursor btn btn-danger btn-icon" style="width: 25px;height: 25px; margin-left: 10px; "><i class="fa fa-close"></i></button>';
                     }
                     else if (data[i].Status.Id == 6)
-                    { option += '<button title="Process order." value="' + data[i].Id + '" class="Process Cursor btn btn-warning btn-icon"  style="width: 25px;height: 25px; margin-left: 10px;"> <i class="fa fa-check"></i> </button>'; }
-                    else if (data[i].Status.Id == 7)
-                    { option += '<button title="Complete order." value="' + data[i].Id + '" class="Completed Cursor btn btn-success btn-icon"  style="width: 25px;height: 25px; margin-left: 10px;"> <i class="fa fa-check"></i>  </button>'; }
-                   
-                    option += '</td></tr>';
-
+                    { Botones += '<button title="Process order." value="' + data[i].Id + '" class="Process Cursor btn btn-warning btn-icon"  style="width: 25px;height: 25px; margin-left: 10px;"> <i class="fa fa-check"></i> </button>'; }
+                    else if (data[i].Status.Id == 7) {
+                        Botones += '<button title="Complete order." value="' + data[i].Id + '" class="Completed Cursor btn btn-success btn-icon"  style="width: 25px;height: 25px; margin-left: 10px;"> <i class="fa fa-check"></i>  </button>';
+                    }
+                    t.row.add([
+                         data[i].Id,
+                        data[i].Quantity,
+                        data[i].Total,
+                        option + ' ' + data[i].Status.Description,
+                        Botones                       
+                    ]).draw(false);
                 }
-                $("#datatable1 > tbody").empty().append(option);
             }
             else {
                 LlammarModal("Danger", "Error obtaining Type", " ");
