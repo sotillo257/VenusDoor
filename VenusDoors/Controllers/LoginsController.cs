@@ -275,10 +275,12 @@ namespace VenusDoors.Controllers
                         System.Web.HttpContext.Current.Session["IdTypeCompany"] = userDetails.Company.Type.Id;
                         System.Web.HttpContext.Current.Session["NameCompany"] = userDetails.Company.Name;
                         System.Web.HttpContext.Current.Session["CompanyActive"] = userDetails.Company.Id;
+                        System.Web.HttpContext.Current.Session["CompanyLogo"] = userDetails.Company.Logo;
                         if (userDetails.Company.Type.Id == 1 && userDetails.Type.Id == 1)
                         {
                          List<Company> _CompanyList =  _Company.GetAllCompany();
                             System.Web.HttpContext.Current.Session["NameCompany"] = "All Companies";
+                            System.Web.HttpContext.Current.Session["CompanyLogo"] = "/Content/img/img11.jpg";
                             System.Web.HttpContext.Current.Session["CompanyActive"] = 0;
                             System.Web.HttpContext.Current.Session["ListCompany"] = _CompanyList;
                         }

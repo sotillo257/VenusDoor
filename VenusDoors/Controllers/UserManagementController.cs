@@ -13,7 +13,7 @@ namespace VenusDoors.Controllers
     {
         BusinessLogic.lnUser _LNU = new BusinessLogic.lnUser();
         // GET: UserManagement
-        
+        [Authorize(Roles = "1, 2")]
         public ActionResult Index()
         {
 
@@ -23,7 +23,7 @@ namespace VenusDoors.Controllers
             return View();
             
         }
-
+        [Authorize(Roles = "1, 2")]
         [HttpPost]
         public ActionResult UpdateUserStatus(User modUser)
         {
@@ -50,7 +50,7 @@ namespace VenusDoors.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
-
+        [Authorize(Roles = "1, 2")]
         [HttpPost]
         public ActionResult GetAllUserManagement()
         {
