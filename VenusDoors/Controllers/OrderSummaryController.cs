@@ -305,7 +305,7 @@ namespace VenusDoors.Controllers
                 cuerpo += "<div class='col-xs-4 col-md-3'>";
                 if (getDoorxu.isOverlay == false)
                 {
-                    cuerpo += "<label style='margin-top: 25px;'>Door Place: <span>Insert Door Type</span></label>";
+                    cuerpo += "<label style='margin-top: 25px;'>Door Place: <span>Inset Door Type</span></label>";
                 }
                 else
                 {
@@ -476,7 +476,7 @@ namespace VenusDoors.Controllers
             cuerpo += "<div class='col-xs-4 col-md-3'>";
             if (getDoorxu.isOverlay == false)
             {
-                cuerpo += "<label style='margin-top: 25px;'>Door Place: <span>Insert Door Type</span></label>";
+                cuerpo += "<label style='margin-top: 25px;'>Door Place: <span>Inset Door Type</span></label>";
             }
             else
             {
