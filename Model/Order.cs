@@ -23,5 +23,6 @@ namespace Model
         public int ModificationUser { get; set; }
         public string Observations { get; set; }
         public DoorsxUser DoorxUser { get; set; }
+        public int Descuento { get; set; }
     }
 }

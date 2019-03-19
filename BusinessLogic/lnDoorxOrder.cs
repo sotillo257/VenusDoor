@@ -41,6 +41,23 @@ namespace BusinessLogic
                 decimal deciH = listDeci.Where(x => x.Id == pDoorsxOrder.DecimalsHeight.Id).FirstOrDefault().Value;
                 decimal Width = pDoorsxOrder.Width + deciW;
                 decimal Height = pDoorsxOrder.Height + deciH;
+                decimal a = 1;
+                decimal b = 1;
+                decimal aux = 1;
+                while (!(aux == deciW))
+                    {
+                    aux = a / b;
+                    if (aux < deciW)
+                    {
+                        a++;
+                    }
+                    else if (aux > deciW)
+                    {
+                        a--;
+                        b++;
+                    }
+                }
+                string fracc = a.ToString() + "/" + b.ToString();
 
                 decimal result = (((((Width * Height) / 12m) / 12m) - 1.5m) * DoorPrice.AdditionalSFPrice) + DoorPrice.BasePrice;
                 if (result < DoorPrice.BasePrice)
@@ -55,6 +72,7 @@ namespace BusinessLogic
                     pDoorsxOrder.ItemCost = result ;
                     pDoorsxOrder.SubTotal = result * pDoorsxOrder.Quantity;
                 }
+                pDoorsxOrder.Descuento = 0;
                 pDoorsxOrder.DoorxUser = DoorUser;
                 pDoorsxOrder.CreationDate = DateTime.Now;
                 pDoorsxOrder.ModificationDate = DateTime.Now;
@@ -119,18 +137,25 @@ namespace BusinessLogic
                     decimal Width = item.Width + deciW;
                     decimal Height = item.Height + deciH;
                     decimal result = (((((Width * Height) / 12m) / 12m) - 1.5m) * DoorPrice.AdditionalSFPrice) + DoorPrice.BasePrice;
+                    decimal desc = 1;
+                    if (Order.Descuento > 0)
+                    {
+                        desc = Order.Descuento / 100;
+                    }
                     if (result < DoorPrice.BasePrice)
                     {
-                        result = DoorPrice.BasePrice * 2;
+                        result = (DoorPrice.BasePrice * 2) * desc;
                         item.ItemCost = result;
                         item.SubTotal = result * item.Quantity;
                     }
                     else
                     {
-                        result = result * 2;
+                        result = (result * 2) * desc;
                         item.ItemCost = result;
                         item.SubTotal = result * item.Quantity;
                     }
+               
+
                     item.DoorxUser = Order.DoorxUser;
                     item.ModificationDate = DateTime.Now;
                     item.ModificationUser = item.User.Id;

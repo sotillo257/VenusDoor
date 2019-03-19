@@ -415,6 +415,7 @@ namespace VenusDoors.Controllers
                     pDoorsxOrder.User.Id = (int)Session["UserID"];
                     ln.InsertDoorsxOrder(pDoorsxOrder);
                    
+                   
                     return Json(true, JsonRequestBehavior.AllowGet);
                 }
 
