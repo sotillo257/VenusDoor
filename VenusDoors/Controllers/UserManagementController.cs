@@ -84,7 +84,7 @@ namespace VenusDoors.Controllers
                 {                
                     BusinessLogic.lnUser _LNU = new BusinessLogic.lnUser();
                     var modOrderStatus = _LNU.UpdateDescuentoUser(IdUser,Descuento, (int)Session["UserID"]);
-                    return Json(true, JsonRequestBehavior.AllowGet);
+                    return Json(modOrderStatus, JsonRequestBehavior.AllowGet);
 
                 }
                 catch
