@@ -75,5 +75,24 @@ namespace VenusDoors.Controllers
                 }
             }
         }
+
+        [Authorize(Roles = "1, 2")]
+        [HttpPost]
+        public ActionResult UpdateUserDescuento(int IdUser, int Descuento)
+        {          
+                try
+                {                
+                    BusinessLogic.lnUser _LNU = new BusinessLogic.lnUser();
+                    var modOrderStatus = _LNU.UpdateDescuentoUser(IdUser,Descuento, (int)Session["UserID"]);
+                    return Json(true, JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }          
+        }
+
+
     }
 }

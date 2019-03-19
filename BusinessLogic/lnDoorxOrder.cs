@@ -35,7 +35,9 @@ namespace BusinessLogic
                 {
                     panel = 2;
                 }
-               
+                lnUser _LNUser = new lnUser();
+                User u = new User();
+                u = _LNUser.GetUserById(pDoorsxOrder.User.Id);
                 DoorsPrices DoorPrice = dp.GetDoorsPricesById(0, panel, DoorUser.Material.Id, Rail);
                 decimal deciW = listDeci.Where(x => x.Id == pDoorsxOrder.DecimalsWidth.Id).FirstOrDefault().Value;
                 decimal deciH = listDeci.Where(x => x.Id == pDoorsxOrder.DecimalsHeight.Id).FirstOrDefault().Value;
@@ -58,17 +60,38 @@ namespace BusinessLogic
                     }
                 }
                 string fracc = a.ToString() + "/" + b.ToString();
-
+                pDoorsxOrder.User = u;
                 decimal result = (((((Width * Height) / 12m) / 12m) - 1.5m) * DoorPrice.AdditionalSFPrice) + DoorPrice.BasePrice;
                 if (result < DoorPrice.BasePrice)
                 {
+
                     result = DoorPrice.BasePrice * 2;
+                    if (pDoorsxOrder.User.Descuento > 0)
+                    {
+                        decimal des = decimal.Parse(pDoorsxOrder.User.Descuento.ToString()) / 100m;
+                        result = result - (des * result);
+                    }
+                    if (pDoorsxOrder.Descuento > 0)
+                    {
+                        decimal des = decimal.Parse(pDoorsxOrder.Descuento.ToString()) / 100m;
+                        result = result - (des * result);
+                    }                    
                     pDoorsxOrder.ItemCost = result;
                     pDoorsxOrder.SubTotal = result * pDoorsxOrder.Quantity;
                 }
                 else
                 {
                     result = result * 2;
+                    if (pDoorsxOrder.User.Descuento > 0)
+                    {
+                        decimal des = decimal.Parse(pDoorsxOrder.User.Descuento.ToString()) / 100m;
+                        result = result - (des * result);
+                    }
+                    if (pDoorsxOrder.Descuento > 0)
+                    {
+                        decimal des = decimal.Parse(pDoorsxOrder.Descuento.ToString()) / 100m;
+                        result = result - (des * result);
+                    }
                     pDoorsxOrder.ItemCost = result ;
                     pDoorsxOrder.SubTotal = result * pDoorsxOrder.Quantity;
                 }
@@ -107,6 +130,9 @@ namespace BusinessLogic
                 Order.SubTotal = 0;
                 Order.Quantity = 0;
                 lnOrder _LNOrder = new lnOrder();
+                lnUser _LNUser = new lnUser();
+                User u = new User();
+                u = _LNUser.GetUserById(Order.User.Id);
                 foreach (DoorxOrder item in listDoorOrders)
                 {
                     int Rail = 1;
@@ -131,6 +157,7 @@ namespace BusinessLogic
                     {
                         panel = 2;
                     }
+                    item.User = u;
                     DoorsPrices DoorPrice = dp.GetDoorsPricesById(0, panel, Order.DoorxUser.Material.Id, Rail);
                     decimal deciW = listDeci.Where(x => x.Id == item.DecimalsWidth.Id).FirstOrDefault().Value;
                     decimal deciH = listDeci.Where(x => x.Id == item.DecimalsHeight.Id).FirstOrDefault().Value;
@@ -145,14 +172,34 @@ namespace BusinessLogic
                     
                     if (result < DoorPrice.BasePrice)
                     {
-                        result = DoorPrice.BasePrice - ((DoorPrice.BasePrice * 2) * desc);
+                        result = (DoorPrice.BasePrice * 2);
+                        if (item.User.Descuento > 0)
+                        {
+                            decimal des = decimal.Parse(item.User.Descuento.ToString())/ 100m;
+                            result = result - (des * result);
+                        }
+                        if (item.Descuento > 0)
+                        {
+                            decimal des = decimal.Parse(item.Descuento.ToString()) / 100m;
+                            result = result - (des * result);
+                        }
                         item.TotalDescuento = (DoorPrice.BasePrice * 2) * desc; 
                         item.ItemCost = result;
                         item.SubTotal = result * item.Quantity;
                     }
                     else
                     {
-                        result = result - ((result * 2) * desc);
+                        result = result * 2;
+                        if (item.User.Descuento > 0)
+                        {
+                            decimal des = decimal.Parse(item.User.Descuento.ToString()) / 100m;
+                            result = result - (des * result);
+                        }
+                        if (item.Descuento > 0)
+                        {
+                            decimal des = decimal.Parse(item.Descuento.ToString()) / 100m;
+                            result = result - (des * result);
+                        }
                         item.TotalDescuento = (result * 2) * desc;
                         item.ItemCost = result;
                         item.SubTotal = result * item.Quantity;

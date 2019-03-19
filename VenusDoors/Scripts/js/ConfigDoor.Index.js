@@ -959,7 +959,7 @@ function GetAllDoorType() {
 
                 }
                 $("#cbDoorType").empty().append(option);
-
+                $("#cbDoorType").val(2);
             }
             else {
                 LlammarModal("Danger", "Error obtaining DoorType", " ");
@@ -988,6 +988,7 @@ function GetAllDoorOption() {
                     }
                 }                
                 $("#cbDoorOpt").empty().append(option);
+                $("#cbDoorOpt").val(1);
             }
             else {
                 LlammarModal("Danger", "Error obtaining DoorOption", " ");
@@ -1279,8 +1280,8 @@ function InsertDoorsxOrder() {
 
 function LimpiarCamposRapidos() {
     changeDoorStyle();
-    llenarComboDoorType(0)
-    selectDoorOption(0);
+    llenarComboDoorType(2)
+    selectDoorOption(1);
     llenarComboDecimalW(0);
     llenarComboDecimalH(0);
     $("#iptWidth").val("");
