@@ -1106,7 +1106,7 @@ function InsertDoorsxUser() {
 
                         //Validar data para ver si mostrar error al guardar o exito al guardar
                         if (result != null) {
-                            llenarTablaOrderSumary()
+                            llenarTablaOrderSumary();
                             $('#modalInsert').modal('hide');
                             $('#modalConfirmOrderSummary').modal('hide');
                             LlammarModal("ConfigM", "General configuration of doors successfully saved!", "");
@@ -1762,38 +1762,35 @@ function llenarTablaOrderSumary() {
         async: false,
         contentType: "application/json; charset=utf-8",
         success: function (data) {
-            if (data != null && data.Order.DoorxUser.DoorsxOrder.length != 0) {
-                listComp = data.Order;
+            if (data != null) {
                 $(".btn-continue").prop('disabled', false);
-                var option = '';
-                for (var i = 0; i < data.Order.DoorxUser.DoorsxOrder.length; i++) {
-                    option += '<tr>';
-                    option += '<td><img style="width: 80px;" src="' + data.Order.DoorxUser.DoorsxOrder[i].Picture + '"></td>';
-                    option += '<td>' + data.Order.DoorxUser.DoorsxOrder[i].Quantity.toString().replace(',', '.') + '</td>';
-                    option += '<td>' + Math.trunc(data.Order.DoorxUser.DoorsxOrder[i].Width); 
-                    if (data.Order.DoorxUser.DoorsxOrder[i].DecimalsWidth.Value != 0)
-                    {
-                        option +=' <span>'+data.Order.DoorxUser.DoorsxOrder[i].DecimalsWidth.Description+'</span>';
-                    }   
-                    option +='</td>';
-                    option += '<td>' + Math.trunc(data.Order.DoorxUser.DoorsxOrder[i].Height);
-                    if (data.Order.DoorxUser.DoorsxOrder[i].DecimalsHeight.Value != 0) {
-                        option += ' <span>' + data.Order.DoorxUser.DoorsxOrder[i].DecimalsHeight.Description + '</span>';
-                    }
-                    option += '</td>'; 
-                    option += '<td>' + data.Order.DoorxUser.DoorsxOrder[i].Panel.Description + '</td>';
-                    option += '<td>' + data.Order.DoorxUser.DoorsxOrder[i].DoorType.Description + '</td>';
-                    option += '<td>' + data.Order.DoorxUser.DoorsxOrder[i].DoorOption.Description + '</td>';
-                    option += '<td><span>$</span>' + data.Order.DoorxUser.DoorsxOrder[i].ItemCost.toString().replace(',', '.') + '</td>';
-                    option += '<td><span>$</span>' + data.Order.DoorxUser.DoorsxOrder[i].SubTotal.toString().replace(',', '.') + '</td>';
-                    option += '<td id="tddelete" >';                   
-                    option += '<button class="Cursor btn btn-danger btn-icon btnn-dele" data-id="' + data.Order.DoorxUser.DoorsxOrder[i].Id + '" style="width: 25px;height: 25px; margin-left: 10px;" type="submit"><i class="fa fa-trash"></i></button>';
-                    option += '</td></tr>';                    
+                id = data;
+                DxO = data.Order.DoorxUser.DoorsxOrder;
+                
+                var t = $('#idOrderSummary').DataTable();
+                t.rows().remove().draw(false);
+                for (var i = 0; i < DxO.length; i++) {
+                    var Imagen = '<img style="width: 80px;" src="' + DxO[i].Picture + '">';
+                    var Botones = '<button class="Cursor btn btn-danger btn-icon btnn-dele" data-id="' + DxO[i].Id + '" style="width: 25px;height: 25px; margin-left: 10px;" type="submit"><i class="fa fa-trash"></i></button>';
+                    t.row.add([
+                        Imagen,
+                        DxO[i].Quantity,
+                        DxO[i].Width,
+                        DxO[i].Height,
+                        DxO[i].Panel.Description,
+                        DxO[i].DoorType.Description,
+                        DxO[i].DoorOption.Description,
+                        DxO[i].ItemCost,
+                        DxO[i].SubTotal,
+                        Botones                       
+                    ]).draw(false);
                 }
+               
             } else {
                 $(".btn-continue").prop('disabled', true);
-                option += '<tr class="odd"><td valign="top" colspan="10" class="dataTables_empty">No data available in table.</td></tr>';
+                LlammarModal("Danger", "Error al llenar la tabla", "ConfigDoor.Index.js line:1813");
             }
+
             var result = '';
             if(data.Order.SubTotal <= 0 || data.Order.Total <= 0){
 
@@ -1806,9 +1803,7 @@ function llenarTablaOrderSumary() {
                 result += '<h5 id="lblTotal" style="color:#000">Total Price: <span>$</span>' + data.Order.Total.toString().replace(',', '.') + '</h5>';
             }
              
-            $("#Resultados").html(result);
-            $("#idOrderSummary > tbody").empty().append(option);            
-            
+            $("#Resultados").html(result);                     
         },
         error: function (err) {
             LlammarModal("Danger", "Error.", " ");

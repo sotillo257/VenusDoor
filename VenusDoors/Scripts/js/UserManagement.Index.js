@@ -114,27 +114,26 @@ function llenarTablaUserManegement() {
         success: function (data) {
             if (data != null) {
                 id = data;
-                var option = '';
-                for (var i = 0; i < data.length; i++) {
-                    option += '<tr role="row" class="odd">';
-                    option += '<td tabindex="0"  >' + data[i].Id + '</td>';
-                    option += '<td>' + data[i].Email + '</td>';
-                    option += '<td>' + data[i].Person.Name + '</td>';
-                    option += '<td>' + data[i].Company.Name + '</td>';
-                    option += '<td>' + data[i].Status.Description + '</td>';
-                    option += '<td>';
-                    option += '<button value="' + data[i].Id + '" class="Approved Cursor btn btn-primary btn-icon"  style="width: 25px;height: 25px; margin-left: 10px;"><i class="fa fa-check"></i></button>';
+                
+                var t = $('#datatable1').DataTable();
+                t.rows().remove().draw(false);
+                for (var i = 0; i < data.length; i++) {                    
+                    var Botones = '<button value="' + data[i].Id + '" class="Approved Cursor btn btn-primary btn-icon"  style="width: 25px;height: 25px; margin-left: 10px;"><i class="fa fa-check"></i></button>';
                     if (data[i].Status.Id != 12) {
-                        option += '<button value="' + data[i].Id + '"  class="Refuse Cursor btn btn-danger btn-icon"  style="width: 25px;height: 25px; margin-left: 10px;"><i class="fa fa-close"></i></button>';
-                    }      
-                  
-                    option += '</td></tr>';
-
+                        Botones += '<button value="' + data[i].Id + '"  class="Refuse Cursor btn btn-danger btn-icon"  style="width: 25px;height: 25px; margin-left: 10px;"><i class="fa fa-close"></i></button>';
+                    }  
+                    t.row.add([
+                        data[i].Id,
+                        data[i].Email,
+                        data[i].Person.Name,
+                        data[i].Company.Name,
+                        data[i].Status.Description,
+                        Botones                       
+                    ]).draw(false);
                 }
-                $("#datatable1 > tbody").empty().append(option);
-            }
+            }            
             else {
-                LlammarModal("Danger", "Error obtaining Type", " ");
+                LlammarModal("Danger", "Error al llenar la tabla", "UserManagement.Index.js line:136");
             }
         },
         error: function (err) {

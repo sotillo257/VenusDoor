@@ -30,8 +30,8 @@
                         <tr>
                             <th class="pd-y-5 sorting_disabled">Reference number</th>
                             <th class="pd-y-5 sorting_disabled">Number of items</th>
-                            <th class="pd-y-5 sorting_disabled">Total</th>
                             <th class="pd-y-5 sorting_disabled">Status</th>
+                            <th class="pd-y-5 sorting_disabled">Total</th>                           
                             <th class="pd-y-5 sorting_disabled"><i class="fa fa-flash"></i></th>
                         </tr>
                     </thead>
@@ -47,8 +47,7 @@
                             {
                                 <tr role="row" class="odd">
                                     <td tabindex="0" class="">@item.Id</td>
-                                    <td class="">@item.Quantity</td>
-                                    <td class="">@item.Total</td>
+                                    <td class="">@item.Quantity</td>                                   
                                     <td class="tx-12">
                                         @if (item.Status.Id == 7)
                                         { <span class="square-8 bg-success mg-r-5 rounded-circle"></span> }
@@ -59,6 +58,7 @@
                                         else {  <span class="square-8 bg-danger mg-r-5 rounded-circle"></span>  }
                                         @item.Status.Description
                                     </td>
+                                    <td class="">@item.Total</td>
 
                                     <td class="">
 

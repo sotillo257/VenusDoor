@@ -430,8 +430,8 @@ function llenarTablaOrderControl() {
                     t.row.add([
                          data[i].Id,
                         data[i].Quantity,
-                        data[i].Total,
-                        option + ' ' + data[i].Status.Description,
+                         option + ' ' + data[i].Status.Description,
+                        data[i].Total,                       
                         Botones                       
                     ]).draw(false);
                 }
