@@ -28,5 +28,7 @@ namespace Model
         public Panel Panel { get; set; }
         public DoorType DoorType { get; set; }
         public DoorOption DoorOption { get; set; }
+        public int Descuento { get; set; }
+        public decimal TotalDescuento { get; set; }
     }
 }

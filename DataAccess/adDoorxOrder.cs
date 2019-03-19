@@ -236,5 +236,33 @@ namespace DataAccess
             }
         }
 
+        public decimal GetTotalDoorxOrderByDoorxUser(int Id)
+        {
+            DoorxOrder doorxu = new DoorxOrder();
+            string sql = @"[spGetTotalDoorOrderxDoorUser] '{0}' ";
+            sql = string.Format(sql, Id);
+
+            try
+            {
+                DataSet ds = new DataSet();
+                ds = _MB.CreaDS(ds, "DoorsxOrder", sql, _CN);
+                if (ds.Tables["DoorsxOrder"].Rows.Count > 0)
+                {
+                    foreach (DataRow item in ds.Tables["DoorsxOrder"].Rows)
+                    {
+                        return decimal.Parse(item["Total"].ToString());
+                           
+                    }
+                }
+                return 0;
+            }
+            catch (Exception err)
+            {
+                return 0;
+            }
+
+        }
+
+
     }
 }
