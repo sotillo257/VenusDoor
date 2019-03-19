@@ -898,7 +898,7 @@ function GetAllDecimals() {
 }
 
 function PrintDoorOverlay(pOverlay) {
-	var lbl = '<label><input style="margin-right: 8px;" type="radio" name="radioOver" data-id="1">Insert Door Type</label>';
+	var lbl = '<label><input style="margin-right: 8px;" type="radio" name="radioOver" data-id="1">Inset Door Type</label>';
 	lbl += '<label style="margin-left: 10px;"><input style="margin-right: 8px;" type="radio" name="radioOver" data-id="2">Overlay Door Type</label>';
 	$("#isOverlay").html(lbl);
 }

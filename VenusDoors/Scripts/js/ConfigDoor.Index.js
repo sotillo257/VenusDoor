@@ -1031,7 +1031,7 @@ function GetAllDecimals() {
 }
 
 function PrintDoorOverlay(pOverlay) {
-    var lbl = '<label><input style="margin-right: 8px;" type="radio" name="radioOver" data-id="1">Insert Door Type</label>';
+    var lbl = '<label><input style="margin-right: 8px;" type="radio" name="radioOver" data-id="1">Inset Door Type</label>';
     lbl += '<label style="margin-left: 10px;"><input style="margin-right: 8px;" type="radio" name="radioOver" data-id="2">Overlay Door Type</label>';
     $("#isOverlay").html(lbl);    
 }
@@ -1828,7 +1828,7 @@ function llenarheaderOrder() {
                 headerConfig += '<div class="col-xs-4 col-md-3">';
                 if (data.LastDoor.isOverlay == false)
                 {
-                    headerConfig += '<label for="Overlay" style="margin-top: 25px;">Door Place: <span>Insert Door Type</span></label>';
+                    headerConfig += '<label for="Overlay" style="margin-top: 25px;">Door Place: <span>Inset Door Type</span></label>';
                 }
                 else
                 {
