@@ -19,6 +19,13 @@
                     <div class="col-md-11 pd-sm-bottom-30">
                         <h4 class="tx-gray-800 mg-b-5">@ViewBag.Title</h4>
                         <p class="mg-b-0">Here you can have control of all incoming orders and in process, in addition to changing the status of the order, add observations or discounts..</p>
+                        <div class="row"  > 
+                            <div class="col-xs-2 col-md-2">
+                                <label for="Panel" style="margin-top: 25px;">Search: </label>
+                                <select style="width:100%;" class="form-control select2 " id="cbSearch"></select>
+                            </div><!-- col -->
+                            
+                        </div>
                     </div>
                 </div>
             </div>
@@ -240,6 +247,8 @@
 @section scripts{
     <script type="text/javascript">
         var _IdOrderModificar = 0;
+        var urlGetOrderxStatus = '@Url.Action("GetOrderxStatus", "OrderControl")';
+        var urlGetAllStatus = '@Url.Action("GetAllStatus", "ConfiDoor")';
         var urlGetDoorsByOrder = '@Url.Action("GetDoorsByOrder", "OrderControl")';
         var urlGetAllMaterial = '@Url.Action("GetAllMaterial", "ConfiDoor")';
         var urlGetAllDecimals = '@Url.Action("GetAllDecimals", "ConfiDoor")';
