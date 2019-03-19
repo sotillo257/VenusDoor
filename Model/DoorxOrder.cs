@@ -29,5 +29,6 @@ namespace Model
         public DoorType DoorType { get; set; }
         public DoorOption DoorOption { get; set; }
         public int Descuento { get; set; }
+        public decimal TotalDescuento { get; set; }
     }
 }
