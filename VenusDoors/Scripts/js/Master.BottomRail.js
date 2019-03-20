@@ -32,7 +32,7 @@
         $("#lblSubTitulo").text("You can modify a new article below");
         // Limpiar();
             for (var i = 0; i < listBTR.length; i++) {
-                if (listBTR[i].Id == $(this).attr('value')) {
+                if (listBTR[i].Id == $(this).attr('data-id')) {
                    
                   var aux = listBTR[i].Id;
                 var aux1 = listBTR[i].Status.Id;

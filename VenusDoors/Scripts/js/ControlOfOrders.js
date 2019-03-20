@@ -7,6 +7,7 @@
         $("#btnsave").hide();
         $('#editDXU').removeClass("active");        
         $("#editBCK").trigger("click");
+        $('#dxoPanel').removeClass("active");     
         GetDoorsByOrder(id);
     });    
 
@@ -189,28 +190,28 @@ function GetDoorsByOrder(id) {
             }         
             dxu += '</tr>';
 
-            var option = '';            
-            data = Result.DoorsxOrder;
-            for (var i = 0; i < data.length; i++) {
-                option += '<tr><td><img width="65px" src="' + data[i].Picture + '"/></td>';
+            var option = '';   
+            DxOl = Result.DoorsxOrder;
+            for (var i = 0; i < Result.DoorsxOrder.length; i++) {
+                option += '<tr><td><img width="65px" src="' + Result.DoorsxOrder[i].Picture + '"/></td>';
 
-                option += '<td>' + data[i].Quantity.toString().replace(',', '.') + '</td>';
-                option += '<td>' + Math.trunc(data[i].Width);
-                if (data[i].DecimalsWidth.Value != 0) {
-                    option += ' <span>' + data[i].DecimalsWidth.Description + '</span>';
+                option += '<td>' + Result.DoorsxOrder[i].Quantity.toString().replace(',', '.') + '</td>';
+                option += '<td>' + Math.trunc(Result.DoorsxOrder[i].Width);
+                if (Result.DoorsxOrder[i].DecimalsWidth.Value != 0) {
+                    option += ' <span>' + Result.DoorsxOrder[i].DecimalsWidth.Description + '</span>';
                 }
                 option += '</td>';
-                option += '<td>' + Math.trunc(data[i].Height);
-                if (data[i].DecimalsHeight.Value != 0) {
-                    option += ' <span>' + data[i].DecimalsHeight.Description + '</span>';
+                option += '<td>' + Math.trunc(Result.DoorsxOrder[i].Height);
+                if (Result.DoorsxOrder[i].DecimalsHeight.Value != 0) {
+                    option += ' <span>' + Result.DoorsxOrder[i].DecimalsHeight.Description + '</span>';
                 }
                 option += '</td>';
-                option += '<td>' + data[i].Panel.Description + '</td>';
-                option += '<td>' + data[i].DoorType.Description + '</td>';
-                option += '<td>' + data[i].DoorOption.Description + '</td>';
-                option += '<td><span>$</span>' + data[i].ItemCost.toString().replace(',', '.') + '</td>';
-                option += '<td><span>$</span>' + data[i].SubTotal.toString().replace(',', '.') + '</td>';
-                option += '<td><button title="Edit Door" value="' + data[i].Id + '" class="Cursor btn btn-primary btn-icon"  style="width: 25px;height: 25px; margin-left: 10px;"> <i class="fa fa-edit"></i></button></td>';
+                option += '<td>' + Result.DoorsxOrder[i].Panel.Description + '</td>';
+                option += '<td>' + Result.DoorsxOrder[i].DoorType.Description + '</td>';
+                option += '<td>' + Result.DoorsxOrder[i].DoorOption.Description + '</td>';
+                option += '<td><span>$</span>' + Result.DoorsxOrder[i].ItemCost.toString().replace(',', '.') + '</td>';
+                option += '<td><span>$</span>' + Result.DoorsxOrder[i].SubTotal.toString().replace(',', '.') + '</td>';
+                option += '<td><button title="Edit Door" data-id="' + Result.DoorsxOrder[i].Id + '"data-toggle="tab" href="#dxoPanel" role="tab"  class="editDoor Cursor btn btn-primary btn-icon"  style="width: 25px;height: 25px; margin-left: 10px;"> <i class="fa fa-edit"></i></button></td>';
             }
             option += '</tbody></table>';
             $("#orreff").text(id);
