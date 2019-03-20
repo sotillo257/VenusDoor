@@ -55,6 +55,7 @@
                 llenarComboPerson(ListUsuario[i].Person.Id);
                 llenarComboCompany(ListUsuario[i].Company.Id);
                 llenarComboEstatus(ListUsuario[i].Status.Id);
+                $('#descU').val(ListUsuario[i].Descuento);
             }
         }
     });
@@ -85,10 +86,13 @@ $(function () {
 function Limpiar() {
     $('#inId').val(0);
     $('#inEmail').removeClass("is-invalid");
-    $('#inEmail').val(" ");
+    $('#inEmail').val("");
+
+    $('#descU').removeClass("is-invalid");
+    $('#descU').val(0);
 
     $('#inPassword').removeClass("is-invalid");
-    $('#inPassword').val(" ");
+    $('#inPassword').val("");
 
     $('#inType').removeClass("is-invalid");
     llenarComboType(0);
@@ -118,6 +122,12 @@ function ValidarCamposVacios() {
         aux = false;
     } else {
         $('#Email').removeClass("is-invalid");
+    }
+    if ($('#descU').val() == "") {
+        $('#descU').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#descU').removeClass("is-invalid");
     }
 
     if ($('#inPassword').val() == " ") {
@@ -162,7 +172,7 @@ function InsertUser() {
             Person: { Id: $("#inPerson").val() },
             Company: { Id: $("#inCompany").val() },
             Status: { Id: $("#inStatus").val() },
-
+            Descuento: $("#descU").val()
         }
     };
     $.ajax({
@@ -199,7 +209,7 @@ function UpdateUser() {
             Person: { Id: $("#inPerson").val() },
             Company: { Id: $("#inCompany").val() },
             Status: { Id: $("#inStatus").val() },
-
+            Descuento: $("#descU").val()
         }
     };
     $.ajax({

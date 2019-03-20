@@ -34,7 +34,6 @@
                         <tr>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="First name: activate to sort column ascending">Id</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Email</th>
-                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Password</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Type</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Person</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Company</th>
@@ -48,7 +47,6 @@
                             <tr role="row" class="odd">
                                 <td tabindex="0" class="">@item.Id</td>
                                 <td class="">@item.Email</td>
-                                <td class="">@item.Password</td>
                                 <td class="">@item.Type.Description</td>
                                 <td class="">@item.Person.Name</td>
                                 <td class="">@item.Company.Name</td>
@@ -119,6 +117,14 @@
                                                 <label for="inStatus" style="margin-top: 25px;">Status: </label>
                                                 <select style="width:100%" class="form-control select2" id="inStatus" data-placeholder="">
                                                 </select>
+                                            </div><!-- form-group -->
+                                            <div class="col-xs-4 col-md-4 ">
+                                                <label for="inStatus" style="margin-top: 25px;">Discount: </label>
+                                                <div class="input-group" style="width: 53%!important;">
+                                                    <input style="width:50%!important" name="SoloNumeros" required="" class="form-control" type="number" min="1" maxlength="2" max="99" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="descU">
+                                                    <span class="input-group-addon tx-size-sm lh-2">%</span>
+                                                </div>
+                                               
                                             </div><!-- form-group -->
                                         </div>
                                     </div><!-- pd-20 -->

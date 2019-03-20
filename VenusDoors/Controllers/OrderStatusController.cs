@@ -36,6 +36,8 @@ namespace VenusDoors.Controllers
                         BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
                         var xDoorsU = _LN.GetAllDoorsxUser();
                         DoorsxUser doorByOrder = xDoorsU.Where(x => x.Order.Id == LastOrder.Id).OrderByDescending(x => x.CreationDate).FirstOrDefault();
+                        BusinessLogic.lnDoorxOrder _LNOrder = new BusinessLogic.lnDoorxOrder();
+                        doorByOrder.DoorsxOrder = _LNOrder.GetAllDoorxOrderByDoorxUser(doorByOrder.Id);
                         ViewBag.xUserDoors = doorByOrder;
                     }
 
