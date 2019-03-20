@@ -131,5 +131,23 @@ namespace BusinessLogic
         {
             throw new NotImplementedException();
         }
+
+        public bool UpdateDescuentoUser(int IdUser,int IdDescuento, int IdUserAdmin) {
+            try
+            {
+                User u = GetUserById(IdUser);
+                u.Descuento = IdDescuento;
+                u.ModificationDate = DateTime.Now;
+                u.ModificationUser = IdUserAdmin;
+                UpdateUser(u);
+                return true;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+        }
     }
 }

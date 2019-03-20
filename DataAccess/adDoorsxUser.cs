@@ -88,7 +88,8 @@ namespace DataAccess
                 {
                     foreach (DataRow item in ds.Tables["DoorsxUser"].Rows)
                     {
-                        doorxu.Add(new DoorsxUser()
+                      
+                            doorxu.Add(new DoorsxUser()
                         {
                             Id = int.Parse(item["Id"].ToString()),
                             Order = new Order() { Id = int.Parse(item["IdOrder"].ToString()) },

@@ -20,7 +20,8 @@ namespace VenusDoors.Controllers
                 ViewBag.OrderControl = "active";
 
                 List<Order> ListOrders = _LNOR.GetAllOrderByCompany((int)Session["IdCompany"], (int)Session["IdTypeCompany"]);
-                List<Order> ListaOrdenada = ListOrders.Where(x=> x.Status.Id != 8 && x.Status.Id != 4).OrderBy(x => x.Status.Id).ToList();
+                List<Order> ListaOrdenada = ListOrders.Where(x=> x.Status.Id == 5).OrderBy(x => x.Status.Id).ToList();
+                System.Web.HttpContext.Current.Session["StatusOrder"] = 5;
                 ViewBag.Ordenes = ListaOrdenada;
                 return View();
             }
@@ -89,7 +90,16 @@ namespace VenusDoors.Controllers
                     
                     BusinessLogic.lnOrder _LNOR = new BusinessLogic.lnOrder();
                     List<Order> ListOrders = _LNOR.GetAllOrderByCompany((int)Session["IdCompany"], (int)Session["IdTypeCompany"]);
-                    List<Order> ListaOrdenada = ListOrders.Where(x => x.Status.Id != 8 && x.Status.Id != 4).OrderBy(x => x.Status.Id).ToList();
+                    List<Order> ListaOrdenada = null;
+                    if ((int)Session["StatusOrder"] > 0)
+                    {
+                         ListaOrdenada = ListOrders.Where(x => x.Status.Id == (int)Session["StatusOrder"]).OrderBy(x => x.Status.Id).ToList();
+                    }
+                    else
+                    {
+                         ListaOrdenada = ListOrders.OrderBy(x => x.Status.Id).ToList();
+                    }
+                   
                     return Json(ListaOrdenada, JsonRequestBehavior.AllowGet);
 
                 }
@@ -117,6 +127,35 @@ namespace VenusDoors.Controllers
             xDoors.User = _LNU.GetUserById(xDoors.User.Id);
             xDoors.User.Person = _LNP.GetPersonById(xDoors.User.Person.Id);       
             return Json(xDoors);            
+        }
+
+        [Authorize(Roles = "1, 2")]
+        [HttpPost]
+        public ActionResult GetOrderxStatus(int IdStatus)
+        {
+            try
+            {
+                BusinessLogic.lnOrder _LNOR = new BusinessLogic.lnOrder();
+                List<Order> ListOrders = _LNOR.GetAllOrderByCompany((int)Session["IdCompany"], (int)Session["IdTypeCompany"]);
+                List<Order> ListaOrdenada = null;
+                System.Web.HttpContext.Current.Session["StatusOrder"] = IdStatus;
+                if (IdStatus > 0)
+                {
+                    ListaOrdenada = ListOrders.Where(x => x.Status.Id == IdStatus).OrderBy(x => x.Status.Id).ToList();
+                }
+                else
+                {
+                    ListaOrdenada = ListOrders.OrderBy(x => x.Status.Id).ToList();
+                }
+                
+
+                return Json(new { Error = false, Data = ListaOrdenada , Mensaje = "" } , JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Error = true, Mensaje = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+           
         }
     }
 }

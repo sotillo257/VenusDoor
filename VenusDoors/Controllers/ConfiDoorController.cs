@@ -250,6 +250,21 @@ namespace VenusDoors.Controllers
             }
         }
 
+
+        [HttpPost]
+        public ActionResult GetAllStatus()
+        {
+            try
+            {
+                BusinessLogic.lnStatus _LN = new BusinessLogic.lnStatus();
+                return Json(_LN.GetAllStatus().Where(x => x.Group.Id == 2));
+            }
+            catch
+            {
+                return Json(false);
+            }
+        }
+
         [HttpPost]
         public ActionResult GetAllDoorOption()
         {

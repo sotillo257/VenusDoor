@@ -1,4 +1,5 @@
 ﻿$(document).ready(function () {
+     
     $(document).on('click', '.Detalle', function (event) { 
         var id = $(this).attr('data-id');
         _IdOrderModificar = id;
@@ -42,6 +43,9 @@
         '<button type="button" class="Cursor btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>');
         $('#deleteidhidden').val(id);
     });
+    $(document).on('change', '#cbSearch', function (event) {
+        llenarTablaOrderControlxUser($("#cbSearch").val());
+});
 });
 
 $(function () {
@@ -52,9 +56,11 @@ $(function () {
         language: {
             searchPlaceholder: 'Search...',
             sSearch: '',
-            lengthMenu: '_MENU_ items/page',
+            lengthMenu: '_MENU_  '// <label for="Panel" style="margin-top: 25px;">Search: </label><select style="width:100%;" class="form-control select2 " id="cbSearch"></select>',
         },
         ordering: false,
+        searching: false,
+        bLengthChange: false,
     });
 
     $('#datatable2').DataTable({
@@ -63,7 +69,7 @@ $(function () {
         responsive: true,
         ordering: false,
     });
-
+    GetAllStatus();
     // Select2
     $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
 
@@ -146,7 +152,7 @@ function GetDoorsByOrder(id) {
             }
             else {
                 dxu += '<td>Door Place: <span style="color: #868ba1">Overlay Door Type</span></td>';                
-            }            
+            }
             dxu += '<td>Stile Width: <span style="color: #868ba1">' + Result.BottomRail.Description + '</span></td>';
             dxu += '</tr>';
 
@@ -179,7 +185,7 @@ function GetDoorsByOrder(id) {
             else {
                 dxu += '<td>Hinge Drilling: <span style="color: #868ba1">Is Drill</span></td>';
             }
-            if (Result.isDrill == true) {               
+            if (Result.isDrill == true) {
                 dxu += '<td">Hinge Direction: <span style="color: #868ba1">' + Result.HingeDirection.Direction + '</span></td>';                
             }
             if (Result.isFingerPull == false) {
@@ -187,7 +193,7 @@ function GetDoorsByOrder(id) {
             }
             else {
                 dxu += '<td style="border-right: 1px solid #ADADAD;">Finger Pull: <span style="color: #868ba1">Yes</span></td>';
-            }         
+            }
             dxu += '</tr>';
 
             var option = '';   
@@ -407,6 +413,99 @@ function llenarTablaOrderControl() {
         },
         error: function (err) {
             LlammarModal("Danger", "Error.", " ");
+        }
+    });
+
+}
+
+function GetAllStatus() {
+    $.ajax({
+        url: urlGetAllStatus,
+        cache: false,
+        type: 'POST',
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        success: function (data) {
+            if (data != null) {
+                AllRailWidth = data;
+                var option = '<option value="0">All Order</option>';
+                for (var i = 0; i < data.length; i++) {
+                        option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
+
+                }
+                $("#cbSearch").empty().append(option);
+                $("#cbSearch").val(5);
+
+            }
+            else {
+                LlammarModal("Danger", "Error obtaining Status.", " ");
+            }
+        },
+        error: function (err) {
+            LlammarModal("Danger", "Internal Error obtaining Status.", " ");
+        }
+    });
+}
+
+function llenarTablaOrderControlxUser(pIdStatus) {
+    var datos =
+   {
+       IdStatus: pIdStatus
+   };
+    $.ajax({
+        url: urlGetOrderxStatus,
+        data: JSON.stringify(datos),
+        cache: false,
+        type: 'POST',
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        success: function (Result) {
+
+            if (!Result.Error) {
+                var data = Result.Data;
+
+                var t = $('#datatable1').DataTable();
+                t.rows().remove().draw(false);
+                for (var i = 0; i < data.length; i++) {
+                    var option = '';
+                    if (data[i].Status.Id == 4) {
+                        option += ' <span class="square-8 bg-warning mg-r-5 rounded-circle"></span>';
+                    } else if (data[i].Status.Id == 5) {
+                        option += '<span class="square-8 bg-pink mg-r-5 rounded-circle"></span>';
+                    } else if (data[i].Status.Id == 6) {
+                        option += '<span class="square-8 btn-purple mg-r-5 rounded-circle"></span> ';
+                    } else if (data[i].Status.Id == 7) {
+                        option += '<span class="square-8 bg-success mg-r-5 rounded-circle"></span>';
+                    } else if (data[i].Status.Id == 8) {
+                        option += '<span class="square-8 bg-info mg-r-5 rounded-circle"></span>';
+                    } else if (data[i].Status.Id == 11) {
+                        option += '<span class="square-8 bg-danger mg-r-5 rounded-circle"></span>';
+                    }
+                    var Botones = '<button href="#" data-id="1" id="' + data[i].Id + '" value="" class="Detalle Cursor btn btn-info btn-icon" s style="width: 25px;height: 25px; margin-left: 10px;" ><i class="fa fa-eye" ></i></button>';
+                    if (data[i].Status.Id == 5) {
+                        Botones += '<button title="Approve order." value="' + data[i].Id + '" class="Approved Cursor btn btn-primary btn-icon" style="width: 25px;height: 25px; margin-left: 10px;"><i class="fa fa-check"></i></button>';
+                        Botones += '<button  data-toggle="modal" data-target="" id="" title="Remove order." value="' + data[i].Id + '" class="Remove Cursor btn btn-danger btn-icon" style="width: 25px;height: 25px; margin-left: 10px; "><i class="fa fa-close"></i></button>';
+                    }
+                    else if (data[i].Status.Id == 6)
+                    { Botones += '<button title="Process order." value="' + data[i].Id + '" class="Process Cursor btn btn-warning btn-icon"  style="width: 25px;height: 25px; margin-left: 10px;"> <i class="fa fa-check"></i> </button>'; }
+                    else if (data[i].Status.Id == 7) {
+                        Botones += '<button title="Complete order." value="' + data[i].Id + '" class="Completed Cursor btn btn-success btn-icon"  style="width: 25px;height: 25px; margin-left: 10px;"> <i class="fa fa-check"></i>  </button>';
+                    }
+                    t.row.add([
+                         data[i].Id,
+                        data[i].Quantity,
+                         option + ' ' + data[i].Status.Description,
+                        data[i].Total,
+                        Botones
+                    ]).draw(false);
+                }
+            }
+            else {
+                LlammarModal("Danger", "Error obtaining Type", Result.Mensaje);
+            }
+        },
+        error: function (err) {
+            LlammarModal("Danger", "Error.", err.Mensaje);
         }
     });
 

@@ -20,5 +20,6 @@ namespace Model
         public int CreatorUser { get; set; }
         public DateTime ModificationDate { get; set; }
         public int ModificationUser { get; set; }
+        public int Descuento { get; set; }
     }
 }
