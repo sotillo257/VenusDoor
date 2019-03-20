@@ -183,10 +183,7 @@ function GetDoorsByOrder(idOrden) {
                 dxu += '<td>Hinge Drilling: <span style="color: #868ba1">No Drill</span></td>';
             }
             else {
-                dxu += '<td>Hinge Drilling: <span style="color: #868ba1">Is Drill</span></td>';
-            }
-            if (Result.isDrill == true) {
-                dxu += '<td">Hinge Direction: <span style="color: #868ba1">' + Result.HingeDirection.Direction + '</span></td>';                
+                dxu += '<td>Hinge Drilling: <span style="color: #868ba1">Drill (' + Result.HingeDirection.Direction + ')</span></td>';
             }
             if (Result.isFingerPull == false) {
                 dxu += '<td style="border-right: 1px solid #ADADAD;">Finger Pull: <span style="color: #868ba1">No</span></td>';
@@ -194,6 +191,7 @@ function GetDoorsByOrder(idOrden) {
             else {
                 dxu += '<td style="border-right: 1px solid #ADADAD;">Finger Pull: <span style="color: #868ba1">Yes</span></td>';
             }
+            dxu += '<td colspan="2">Observations: ' + Result.Order.Observations + '</td>';
             dxu += '</tr>';
 
             var option = '<table id="ordertable" style="width:100%">';
@@ -237,8 +235,8 @@ function GetDoorsByOrder(idOrden) {
                 if (Result.Order.Status.Id == 5) {
                 option += '<td><button title="Edit Door" data-id="' + Result.DoorsxOrder[i].Id + '"data-toggle="tab" href="#dxoPanel" role="tab"  class="editDoor Cursor btn btn-primary btn-icon"  style="width: 25px;height: 25px; margin-left: 10px;"> <i class="fa fa-edit"></i></button></td>';
                 } else {
-                    option += '<td><button title="Edit Door" disabled data-id="" data-toggle="tab" href="#dxoPanel" role="tab"  class="editDoor btn btn-primary btn-icon"  style="width: 25px;height: 25px; margin-left: 10px;"> <i class="fa fa-edit"></i></button></td>';
-                }
+                    option += '<td><button title="Not available" disabled data-id="" data-toggle="tab" href="#dxoPanel" role="tab"  class="editDoor btn btn-primary btn-icon"  style="width: 25px;height: 25px; margin-left: 10px;"> <i class="fa fa-edit"></i></button></td>';
+                }               
                 option += '</tr>';
             }
             option += '</tbody></table>';

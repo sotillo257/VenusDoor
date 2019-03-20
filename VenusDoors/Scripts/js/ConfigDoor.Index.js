@@ -1776,8 +1776,8 @@ function llenarTablaOrderSumary() {
                     t.row.add([
                         Imagen,
                         DxO[i].Quantity,
-                        DxO[i].Width,
-                        DxO[i].Height,
+                        DxO[i].Width +' '+ DxO[i].DecimalsWidth.Description,
+                        DxO[i].Height +' '+ DxO[i].DecimalsHeight.Description,
                         DxO[i].Panel.Description,
                         DxO[i].DoorType.Description,
                         DxO[i].DoorOption.Description,

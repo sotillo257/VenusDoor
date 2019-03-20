@@ -30,21 +30,15 @@
 
         for (var i = 0; i < DxOl.length; i++) {
             if (DxOl[i].Id == $(this).attr('data-id')) {
-                
-                var aux1 = DxOl[i].Id;
-                var aux2 = DxOl[i].Width;
-                var aux3 = DxOl[i].Panel.Id;
-                var aux4 = DxOl[i].DoorType.Id;
-                var aux5 = DxOl[i].DoorOption.Id;
-                var aux6 = DxOl[i].DecimalsWidth.Id;
-                var aux7 = DxOl[i].DecimalsHeight.Id;
+                               
 
                 var PictureProfile = '<img style="height: 100px;width: 235px;margin-top: 20px;" id="ProfilePicture" src="' + DxOl[i].ProfilePicture + '">';
                 var PicturePanel = '<img style="width: 230px;height: 230px;" id="DoorPicture" src="' + DxOl[i].Picture + '">';
                 $('#PictureProfile').html(PictureProfile);
                 $('#PicturePanel').html(PicturePanel);
 
-                $('#idDxO').val(DxOl[i].Id);
+                $('#idDoorxO').val(DxOl[i].Id);
+                $('#idDxuXO').val(DxOl[i].DoorxUser.Id);
                 $('#descDXO').val(DxOl[i].Descuento.Id);
                 $('#iptWidth').val(DxOl[i].Width);
                 $('#iptHeight').val(DxOl[i].Height);
@@ -55,7 +49,6 @@
                 selectDoorOption(DxOl[i].DoorOption.Id);
                 llenarComboDecimalW(DxOl[i].DecimalsWidth.Id);
                 llenarComboDecimalH(DxOl[i].DecimalsHeight.Id);
-
                 break;
             }
         }
@@ -125,7 +118,7 @@ function NuevosCambiosDXU() {
 
 function NuevosCambiosDXO() {
     if (ValidarCamposVaciosDXO()) {
-        UpdateDoorsxOrder();
+        UpdateDoorxOrder();
     } else {
         $('#modalConfirmOrderSummary').modal('hide');
         LlammarModal("Danger", "You must fill all the fields.", " ");
@@ -548,16 +541,17 @@ function InsertDoorsxUser() {
     });
 }
 
-function UpdateDoorsxOrder() {
+function UpdateDoorxOrder() {
     var itemCost = parseFloat($("#iptCost").val());
     var DoorQuantity = $("#CantidadFila").val();
     var DoorOp = $("#cbDoorOpt").val();
 
     var datos =
          {
-
+             idOrder: _IdOrderModificar,
              pDoorsxOrder: {
-                 DoorsxUser: CodigoDoorxUser,
+                 Id: $("#idDoorxO").val(),
+                 DoorxUser: $("#idDxuXO").val(),
                  Width: parseFloat($("#iptWidth").val()),
                  DecimalsWidth: { Id: $("#cbDecimalsW").val() },
                  Height: parseFloat($("#iptHeight").val()),
@@ -578,17 +572,18 @@ function UpdateDoorsxOrder() {
     $.ajax({
         type: 'POST',
         data: JSON.stringify(datos),
-        url: urlUpdateDoorsxOrder,
+        url: urlUpdateDoorxOrder,
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function (result) {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
-                LlammarModal("ConfigM", "The door has been created successfully!", "");
-                llenarTablaOrderSumary();
-                LimpiarCamposRapidos();
-                llenarheaderOrder();
+                LlammarModal("ConfigM", "The door has been modified successfully!", "");
+                GetDoorsByOrder(idDxUorder);
+                changeDoorStyle();
+                $("#editBCK").trigger("click");
+                llenarTablaOrderControl();
             } else {
                 $('#modalInsert').modal('hide');
                 $('#modalConfirmOrderSummary').modal('hide');
