@@ -249,7 +249,7 @@ namespace DataAccess
                 pDoorsxOrder.DoorType.Id,
                 pDoorsxOrder.DoorOption.Id,
                 pDoorsxOrder.Descuento,
-                pDoorsxOrder.TotalDescuento );
+                pDoorsxOrder.TotalDescuento.ToString().Replace(',', '.'));
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
