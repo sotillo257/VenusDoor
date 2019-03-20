@@ -78,7 +78,7 @@
 
 
 
-    $(document).on('change', '#iptWidth', function () {
+     $(document).on('change', '#iptWidth', function () {
         if ($('#iptWidth').val() < 5) {
             $('#iptWidth').addClass("is-invalid");
             $("#alertWidth").css('display', 'block');
@@ -89,7 +89,7 @@
             $("#alertWidth").text("Maximum is 42 inches.");
         } else {
             $('#iptWidth').removeClass("is-invalid");
-            $("#alertWidth").css('display', 'none');
+            $("#alertWidth").text("");
         }
     });
 
@@ -104,7 +104,7 @@
             $("#alertHeight").text("Maximum is 100 inches.");
         } else {
             $('#iptHeight').removeClass("is-invalid");
-            $("#alertHeight").css('display', 'none');
+            $("#alertHeight").text("");
         }
     });
     GetAllShippingAddress();
