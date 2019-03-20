@@ -22,14 +22,24 @@ namespace DataAccess
                 {
                     foreach (DataRow item in ds.Tables["DoorxOrder"].Rows)
                     {
+                        int val = 0;
+                        if (int.TryParse(item["Descuentos"].ToString(), out val))
+                        {
+                            val = int.Parse(item["Descuentos"].ToString());
+                        }
+                        decimal valu = 0;
+                        if (int.TryParse(item["TotalDescuento"].ToString(), out val))
+                        {
+                            valu = int.Parse(item["TotalDescuento"].ToString());
+                        }
                         doorxu.Add(new DoorxOrder()
                         {
                             Id = int.Parse(item["Id"].ToString()),
-                            DoorxUser = new DoorsxUser() { Id = int.Parse(item["IdDoorsxUser"].ToString()) },                         
+                            DoorxUser = new DoorsxUser() { Id = int.Parse(item["IdDoorxUser"].ToString()) },
                             Width = decimal.Parse(item["Width"].ToString()),
                             DecimalsWidth = new Decimals() { Id = int.Parse(item["IdDecimalsWidth"].ToString()), Description = item["DescriptDW"].ToString(), Value = decimal.Parse(item["ValueDW"].ToString()) },
                             Height = decimal.Parse(item["Height"].ToString()),
-                            DecimalsHeight = new Decimals() { Id = int.Parse(item["IdDecimalsHeight"].ToString()), Description = item["DescriptDH"].ToString(), Value = decimal.Parse(item["ValueDH"].ToString()) },                           
+                            DecimalsHeight = new Decimals() { Id = int.Parse(item["IdDecimalsHeight"].ToString()), Description = item["DescriptDH"].ToString(), Value = decimal.Parse(item["ValueDH"].ToString()) },
                             Quantity = int.Parse(item["Quantity"].ToString()),
                             ItemCost = decimal.Parse(item["ItemCost"].ToString()),
                             SubTotal = decimal.Parse(item["SubTotal"].ToString()),
@@ -43,7 +53,9 @@ namespace DataAccess
                             ProfilePicture = item["ProfilePicture"].ToString(),
                             Panel = new Panel() { Id = int.Parse(item["IdPanel"].ToString()), Description = item["DescripPanel"].ToString() },
                             DoorType = new DoorType() { Id = int.Parse(item["IdDoorType"].ToString()), Description = item["DescripDoorType"].ToString() },
-                            DoorOption = new DoorOption() { Id = int.Parse(item["IdDoorOption"].ToString()), Description = item["DescripDoorOption"].ToString() }                         
+                            DoorOption = new DoorOption() { Id = int.Parse(item["IdDoorOption"].ToString()), Description = item["DescripDoorOption"].ToString() },
+                            Descuento = val,
+                            TotalDescuento = valu
                         });
                     }
                 }
@@ -69,6 +81,16 @@ namespace DataAccess
                 {
                     foreach (DataRow item in ds.Tables["DoorxOrder"].Rows)
                     {
+                        int val = 0;
+                        if (int.TryParse(item["Descuentos"].ToString(), out val))
+                        {
+                            val = int.Parse(item["Descuentos"].ToString());
+                        }
+                        decimal valu = 0;
+                        if (int.TryParse(item["TotalDescuento"].ToString(), out val))
+                        {
+                            valu = int.Parse(item["TotalDescuento"].ToString());
+                        }
                         doorxu.Add(new DoorxOrder()
                         {
                             Id = int.Parse(item["Id"].ToString()),
@@ -90,7 +112,9 @@ namespace DataAccess
                             ProfilePicture = item["ProfilePicture"].ToString(),
                             Panel = new Panel() { Id = int.Parse(item["IdPanel"].ToString()), Description = item["DescripPanel"].ToString() },
                             DoorType = new DoorType() { Id = int.Parse(item["IdDoorType"].ToString()), Description = item["DescripDoorType"].ToString() },
-                            DoorOption = new DoorOption() { Id = int.Parse(item["IdDoorOption"].ToString()), Description = item["DescripDoorOption"].ToString() }
+                            DoorOption = new DoorOption() { Id = int.Parse(item["IdDoorOption"].ToString()), Description = item["DescripDoorOption"].ToString() },
+                            Descuento = val,
+                            TotalDescuento = valu
                         });
                     }
                 }
@@ -117,6 +141,16 @@ namespace DataAccess
                 {
                     foreach (DataRow item in ds.Tables["DoorsxOrder"].Rows)
                     {
+                        int val = 0;
+                        if (int.TryParse(item["Descuentos"].ToString(), out val))
+                        {
+                            val = int.Parse(item["Descuentos"].ToString());
+                        }
+                        decimal valu = 0;
+                        if (int.TryParse(item["TotalDescuento"].ToString(), out val))
+                        {
+                            valu = int.Parse(item["TotalDescuento"].ToString());
+                        }
                         doorxu = new DoorxOrder()
                         {
                             Id = int.Parse(item["Id"].ToString()),
@@ -138,7 +172,9 @@ namespace DataAccess
                             ProfilePicture = item["ProfilePicture"].ToString(),
                             Panel = new Panel() { Id = int.Parse(item["IdPanel"].ToString()), Description = item["DescripPanel"].ToString() },
                             DoorType = new DoorType() { Id = int.Parse(item["IdDoorType"].ToString()), Description = item["DescripDoorType"].ToString() },
-                            DoorOption = new DoorOption() { Id = int.Parse(item["IdDoorOption"].ToString()), Description = item["DescripDoorOption"].ToString() }
+                            DoorOption = new DoorOption() { Id = int.Parse(item["IdDoorOption"].ToString()), Description = item["DescripDoorOption"].ToString() },
+                            Descuento = val,
+                            TotalDescuento = valu
                         };
                     }
                 }
@@ -190,7 +226,7 @@ namespace DataAccess
         {
             decimal total = Convert.ToDecimal(pDoorsxOrder.ItemCost);
             decimal subto = Convert.ToDecimal(pDoorsxOrder.SubTotal);
-            string sql = @"[spUpdateDoorsxOrder]  '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}'";
+            string sql = @"[spUpdateDoorsxOrder]  '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}', '{20}', '{21}'";
             sql = string.Format(sql,
                 pDoorsxOrder.Id,
                 pDoorsxOrder.DoorxUser.Id,
@@ -211,7 +247,9 @@ namespace DataAccess
                 pDoorsxOrder.ProfilePicture,
                 pDoorsxOrder.Panel.Id,
                 pDoorsxOrder.DoorType.Id,
-                pDoorsxOrder.DoorOption.Id);
+                pDoorsxOrder.DoorOption.Id,
+                pDoorsxOrder.Descuento,
+                pDoorsxOrder.TotalDescuento.ToString().Replace(',', '.'));
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);

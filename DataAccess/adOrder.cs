@@ -25,6 +25,16 @@ namespace DataAccess
                 {
                     foreach (DataRow item in ds.Tables["Order"].Rows)
                     {
+                        int val = 0;
+                        if (int.TryParse(item["Descuento"].ToString(), out val))
+                        {
+                            val = int.Parse(item["Descuento"].ToString());
+                        }
+                        decimal valu = 0;
+                        if (int.TryParse(item["TotalDescuento"].ToString(), out val))
+                        {
+                            valu = int.Parse(item["TotalDescuento"].ToString());
+                        }
                         ord = new Order()
                         {
                             Id = int.Parse(item["Id"].ToString()),
@@ -41,7 +51,8 @@ namespace DataAccess
                             CreatorUser = int.Parse(item["CreatorUser"].ToString()),
                             ModificationUser = int.Parse(item["ModificationUser"].ToString()),
                             Observations = item["Observations"].ToString(),
-
+                            Descuento = val,
+                            TotalDescuento = valu
                         };
                     }
                 }
@@ -68,6 +79,16 @@ namespace DataAccess
                 {
                     foreach (DataRow item in ds.Tables["Order"].Rows)
                     {
+                        int val = 0;
+                        if (int.TryParse(item["Descuento"].ToString(), out val))
+                        {
+                            val = int.Parse(item["Descuento"].ToString());
+                        }
+                        decimal valu = 0;
+                        if (int.TryParse(item["TotalDescuento"].ToString(), out val))
+                        {
+                            valu = int.Parse(item["TotalDescuento"].ToString());
+                        }
                         ord.Add( new Order()
                         {
                             Id = int.Parse(item["Id"].ToString()),
@@ -84,7 +105,8 @@ namespace DataAccess
                             CreatorUser = int.Parse(item["CreatorUser"].ToString()),
                             ModificationUser = int.Parse(item["ModificationUser"].ToString()),
                             Observations = item["Observations"].ToString(),
-
+                            Descuento = val,
+                            TotalDescuento = valu
                         });
                     }
                 }
@@ -109,6 +131,16 @@ namespace DataAccess
                 {
                     foreach (DataRow item in ds.Tables["Order"].Rows)
                     {
+                        int val = 0;
+                        if (int.TryParse(item["Descuento"].ToString(), out val))
+                        {
+                            val = int.Parse(item["Descuento"].ToString());
+                        }
+                        decimal valu = 0;
+                        if (int.TryParse(item["TotalDescuento"].ToString(), out val))
+                        {
+                            valu = int.Parse(item["TotalDescuento"].ToString());
+                        }
                         ord.Add(new Order()
                         {
                             Id = int.Parse(item["Id"].ToString()),
@@ -125,7 +157,8 @@ namespace DataAccess
                             CreatorUser = int.Parse(item["CreatorUser"].ToString()),
                             ModificationUser = int.Parse(item["ModificationUser"].ToString()),
                             Observations = item["Observations"].ToString(),
-
+                            Descuento = val,
+                            TotalDescuento = valu
                         });
                     }
                 }
@@ -152,6 +185,16 @@ namespace DataAccess
                 {
                     foreach (DataRow item in ds.Tables["Order"].Rows)
                     {
+                        int val = 0;
+                        if (int.TryParse(item["Descuento"].ToString(), out val))
+                        {
+                            val = int.Parse(item["Descuento"].ToString());
+                        }
+                        decimal valu = 0;
+                        if (int.TryParse(item["TotalDescuento"].ToString(), out val))
+                        {
+                            valu = int.Parse(item["TotalDescuento"].ToString());
+                        }
                         ord.Add(new Order()
                         {
                             Id = int.Parse(item["Id"].ToString()),
@@ -168,7 +211,8 @@ namespace DataAccess
                             CreatorUser = int.Parse(item["CreatorUser"].ToString()),
                             ModificationUser = int.Parse(item["ModificationUser"].ToString()),
                             Observations = item["Observations"].ToString(),
-
+                            Descuento = val,
+                            TotalDescuento = valu
                         });
                     }
                 }
@@ -288,10 +332,10 @@ namespace DataAccess
             decimal subtotal = Convert.ToDecimal(pOrder.SubTotal);
             decimal tax = Convert.ToDecimal(pOrder.Tax);
             decimal total = Convert.ToDecimal(pOrder.Total);
-            string sql = @"[spUpdateOrder] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}'";
+            string sql = @"[spUpdateOrder] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}'";
 
             sql = string.Format(sql, pOrder.Id, pOrder.User.Id, pOrder.Quantity, subtotal.ToString().Replace(',', '.'), tax.ToString().Replace(',', '.'), total.ToString().Replace(',', '.'), pOrder.ShippingAddress.Id, pOrder.Type.Id, pOrder.Status.Id, pOrder.ModificationDate.ToString("yyyyMMdd HH:mm:ss"),
-                pOrder.ModificationUser, pOrder.Observations);
+                pOrder.ModificationUser, pOrder.Observations, pOrder.Descuento, pOrder.TotalDescuento);
             try
             {
                 _MB.EjecutarSQL(_CN, sql);

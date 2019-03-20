@@ -115,6 +115,11 @@ namespace DataAccess
                 {
                     foreach (DataRow item in ds.Tables["User"].Rows)
                     {
+                        int val = 0;
+                        if (int.TryParse(item["Descuento"].ToString(), out val))
+                        {
+                            val = int.Parse(item["Descuento"].ToString());
+                        }
                         usr.Add(new User()
                         {
                             Id = int.Parse(item["Id"].ToString()),
@@ -129,7 +134,7 @@ namespace DataAccess
                             ModificationDate = DateTime.Parse(item["ModificationDate"].ToString()),
                             CreatorUser = int.Parse(item["CreatorUser"].ToString()),
                             ModificationUser = int.Parse(item["ModificationUser"].ToString()),
-
+                            Descuento = val
                         });
                     }
                 }
