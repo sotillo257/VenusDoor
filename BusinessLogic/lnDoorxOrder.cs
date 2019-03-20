@@ -305,7 +305,7 @@ namespace BusinessLogic
                 Order.DoorxUser.DoorsxOrder.FirstOrDefault().DoorxUser = Order.DoorxUser;
                 Order.DoorxUser.DoorsxOrder.FirstOrDefault().ModificationDate = DateTime.Now;
                 Order.DoorxUser.DoorsxOrder.FirstOrDefault().ModificationUser = pIdUser;
-                Order.DoorxUser.DoorsxOrder.FirstOrDefault().ProfilePicture = DU.BuscarProfilePicture(Order.DoorxUser.OutsideEdgeProfile.Id, Order.DoorxUser.InsideEdgeProfile.Id, item.Panel.Id);
+                Order.DoorxUser.DoorsxOrder.FirstOrDefault().ProfilePicture = DU.BuscarProfilePicture(Order.DoorxUser.OutsideEdgeProfile.Id, Order.DoorxUser.InsideEdgeProfile.Id, pDoorsOrder.Panel.Id);
                 Order.DoorxUser.DoorsxOrder.FirstOrDefault().Picture = DU.BuscarDoorPicture(Order.DoorxUser.DoorsxOrder.FirstOrDefault());
                 int retorno = _AD.UpdateDoorsxOrder(Order.DoorxUser.DoorsxOrder.FirstOrDefault());
 
