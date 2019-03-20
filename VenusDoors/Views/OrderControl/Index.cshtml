@@ -301,7 +301,8 @@
                             </div>
                             <div id="DivCombos" style="width:67%;">
                                 <div class="row" style="margin-right: 0;">
-                                    <input id="idDxO" hidden/>
+                                    <input id="idDoorxO" hidden/>
+                                    <input id="idDxuXO" hidden />
                                     <div class="col-xs-3 col-md-4">
                                         <label for="Panel" style="margin-top: 25px;">Panel Style: </label>
                                         <select style="width:100%;" class="form-control select2 Profile Doors" id="cbPanel"></select>
@@ -396,6 +397,7 @@
         var urlUpdateOrderStatus = '@Url.Action("UpdateOrderStatus", "OrderControl")';
         var urlGetAllOrderControl = '@Url.Action("GetAllOrderControl", "OrderControl")';
         var urlInsertDoorsxUser = '@Url.Action("InsertDoorsxUser", "ConfiDoor")';
+        var urlUpdateDoorxOrder = '@Url.Action("UpdateDoorxOrder", "ConfiDoor")';
         try {
             var listDOOR = JSON.parse('@Html.Raw(ViewBag.ListDoorsxUser)');
         } catch (e) {
