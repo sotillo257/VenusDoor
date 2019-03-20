@@ -1,15 +1,14 @@
 ﻿$(document).ready(function () {
      
     $(document).on('click', '.Detalle', function (event) { 
-        var id = $(this).attr('data-id');
-        _IdOrderModificar = id;
-        $("#editDXU").show();
+        var idGETOr = $(this).attr('data-id');
+        _IdOrderModificar = idGETOr;      
         $("#editBCK").hide();
         $("#btnsave").hide();
         $('#editDXU').removeClass("active");        
         $("#editBCK").trigger("click");
         $('#dxoPanel').removeClass("active");     
-        GetDoorsByOrder(id);
+        GetDoorsByOrder(idGETOr);
     });    
 
     $(document).on('click', '.Approved', function (event) {
@@ -75,10 +74,10 @@ $(function () {
 
 });
 
-function GetDoorsByOrder(id) {
+function GetDoorsByOrder(idOrden) {
     var datos =
                     {
-                        IdOrder: id,
+                        IdOrder: idOrden,
                     }    
     $.ajax({
         data: JSON.stringify(datos),
@@ -88,7 +87,8 @@ function GetDoorsByOrder(id) {
         async: false,
         contentType: 'application/json; charset=utf-8',
         success: function (Result) {
-            $('#idDoor').val(Result.Id);            
+            $('#idDxUorder').val(Result.Order.Id);
+            $('#descDXU').val(Result.Order.Descuento);
             var fingerPull = Result.isFingerPull;
             if (fingerPull == false) {
                 fingerPull = 1;
@@ -217,14 +217,22 @@ function GetDoorsByOrder(id) {
                 option += '<td>' + Result.DoorsxOrder[i].DoorOption.Description + '</td>';
                 option += '<td><span>$</span>' + Result.DoorsxOrder[i].ItemCost.toString().replace(',', '.') + '</td>';
                 option += '<td><span>$</span>' + Result.DoorsxOrder[i].SubTotal.toString().replace(',', '.') + '</td>';
-                option += '<td><button title="Edit Door" data-id="' + Result.DoorsxOrder[i].Id + '"data-toggle="tab" href="#dxoPanel" role="tab"  class="editDoor Cursor btn btn-primary btn-icon"  style="width: 25px;height: 25px; margin-left: 10px;"> <i class="fa fa-edit"></i></button></td>';
+                if (Result.Order.Status.Id == 5) {
+                    option += '<td><button title="Edit Door" data-id="' + Result.DoorsxOrder[i].Id + '"data-toggle="tab" href="#dxoPanel" role="tab"  class="editDoor Cursor btn btn-primary btn-icon"  style="width: 25px;height: 25px; margin-left: 10px;"> <i class="fa fa-edit"></i></button></td>';
+                } else {
+                    option += '<td><button title="Edit Door" disabled data-id="" data-toggle="tab" href="#dxoPanel" role="tab"  class="editDoor btn btn-primary btn-icon"  style="width: 25px;height: 25px; margin-left: 10px;"> <i class="fa fa-edit"></i></button></td>';
+                }               
             }
             option += '</tbody></table>';
-            $("#orreff").text(id);
+            $("#orreff").text(idOrden);
             $("#ordertable > tbody").empty().append(option);
-            $('#ModalOrderInfo').modal('toggle');
             $("#HeaderOptions > tbody").empty().append(dxu);
-            $("#UserOrderInfo > tbody").empty().append(info);           
+            $("#UserOrderInfo > tbody").empty().append(info);
+            if(Result.Order.Status.Id == 5){
+                $("#editDXU").show();
+            }else{
+                $("#editDXU").hide();
+            }
         },
     });
 }
@@ -388,7 +396,7 @@ function llenarTablaOrderControl() {
                     } else if (data[i].Status.Id == 5) {
                         option += '<span class="square-8 bg-warning mg-r-5 rounded-circle"></span>';
                     }
-                    var Botones = '<button href="#" data-id="1" id="' + data[i].Id + '" value="" class="Detalle Cursor btn btn-info btn-icon" s style="width: 25px;height: 25px; margin-left: 10px;" ><i class="fa fa-eye" ></i></button>';
+                    var Botones = '<button href="#" data-id="' + data[i].Id + '" value="" data-toggle="modal" data-target=".ModalOrderInfo" class="Detalle Cursor btn btn-info btn-icon" s style="width: 25px;height: 25px; margin-left: 10px;" ><i class="fa fa-eye" ></i></button>';
                     if (data[i].Status.Id == 5) {
                         Botones += '<button title="Approve order." value="' + data[i].Id + '" class="Approved Cursor btn btn-primary btn-icon" style="width: 25px;height: 25px; margin-left: 10px;"><i class="fa fa-check"></i></button>';
                         Botones += '<button  data-toggle="modal" data-target="" id="" title="Remove order." value="' + data[i].Id + '" class="Remove Cursor btn btn-danger btn-icon" style="width: 25px;height: 25px; margin-left: 10px; "><i class="fa fa-close"></i></button>';
@@ -481,7 +489,7 @@ function llenarTablaOrderControlxUser(pIdStatus) {
                     } else if (data[i].Status.Id == 11) {
                         option += '<span class="square-8 bg-danger mg-r-5 rounded-circle"></span>';
                     }
-                    var Botones = '<button href="#" data-id="1" id="' + data[i].Id + '" value="" class="Detalle Cursor btn btn-info btn-icon" s style="width: 25px;height: 25px; margin-left: 10px;" ><i class="fa fa-eye" ></i></button>';
+                    var Botones = '<button href="#" data-id="' + data[i].Id + '" value="" data-toggle="modal" data-target=".ModalOrderInfo" class="Detalle Cursor btn btn-info btn-icon" s style="width: 25px;height: 25px; margin-left: 10px;" ><i class="fa fa-eye" ></i></button>';
                     if (data[i].Status.Id == 5) {
                         Botones += '<button title="Approve order." value="' + data[i].Id + '" class="Approved Cursor btn btn-primary btn-icon" style="width: 25px;height: 25px; margin-left: 10px;"><i class="fa fa-check"></i></button>';
                         Botones += '<button  data-toggle="modal" data-target="" id="" title="Remove order." value="' + data[i].Id + '" class="Remove Cursor btn btn-danger btn-icon" style="width: 25px;height: 25px; margin-left: 10px; "><i class="fa fa-close"></i></button>';

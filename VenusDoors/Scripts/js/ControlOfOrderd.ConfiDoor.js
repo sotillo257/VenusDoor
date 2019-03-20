@@ -45,6 +45,7 @@
                 $('#PicturePanel').html(PicturePanel);
 
                 $('#idDxO').val(DxOl[i].Id);
+                $('#descDXO').val(DxOl[i].Descuento.Id);
                 $('#iptWidth').val(DxOl[i].Width);
                 $('#iptHeight').val(DxOl[i].Height);
                 $('#CantidadFila').val(DxOl[i].Quantity);
@@ -456,6 +457,7 @@ function llenarComboDecimalH(pDecimalH) {
 }
 
 function InsertDoorsxUser() {
+    var idDxUorder = $('#idDxUorder').val();
     var itemCost = parseFloat($("#iptCost").val());
     var DoorQuantity = $("#iptQuantity").val();
     var DoorSubTotal = itemCost * DoorQuantity;
@@ -479,6 +481,7 @@ function InsertDoorsxUser() {
          {
              Ord: {
                  Id: _IdOrderModificar,
+                 Descuento: $("#descDXU").val(),
                  DoorxUser: {
                      User: { Id: 0 },
                      Order: { Id: _IdOrderModificar},
@@ -527,19 +530,17 @@ function InsertDoorsxUser() {
             if (result != null) {              
                 $('#modalConfirmOrderSummary').modal('hide');
                 LlammarModal("ConfigM", "General configuration of doors successfully saved!", "");
-                $("#editBCK").trigger("click");
-                llenarTablaOrderControl();
-
+                GetDoorsByOrder(idDxUorder);
                 changeDoorStyle();
                 $("#editBCK").trigger("click");
+                llenarTablaOrderControl();                
 
             } else {                
                 $('#modalConfirmOrderSummary').modal('hide');
                 LlammarModal("Danger", "Error in the process.", "An error occurred when saving the general settings.");
             }
         },
-        error: function (err) {
-            $('#modalInsert').modal('hide');
+        error: function (err) {            
             $('#modalConfirmOrderSummary').modal('hide');
             LlammarModal("Danger", "An error occurred during the process.", "Check your internet connection I tried again");
         },
@@ -570,7 +571,8 @@ function UpdateDoorsxOrder() {
                  DoorType: { Id: $("#cbDoorType").val() },
                  DoorOption: { Id: DoorOp },
                  User: { Id: 0 },
-                 Status: { Id: 1 }
+                 Status: { Id: 1 },
+                 Descuento: $("#descDXO").val()
              }
          };
     $.ajax({
@@ -992,13 +994,6 @@ function ValidarCamposVacios() {
         aux = false;
     }
 
-    if ($('#descDXU').val() == "" || $('#descDXU').val() == 0) {
-        $('#descDXU').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#descDXU').removeClass("is-invalid");
-    }
-
     return aux;
 }
 
@@ -1046,13 +1041,6 @@ function ValidarCamposVaciosDXO() {
         $('#CantidadFila').removeClass("is-invalid");
     }
 
-    if ($('#descDXO').val() == "" || $('#descDXO').val() == 0) {
-        $('#descDXO').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#descDXO').removeClass("is-invalid");
-    }
-
     return aux;
 }
 
@@ -1071,9 +1059,7 @@ function QuitarClaseErrorACombos() {
     $('#select2-cbHorizontalDivisions-container').removeClass("cbError");
     $('#select2-cbHingeDirection-container').removeClass("cbError");
     $('#select2-cbisDrill-container').removeClass("cbError");
-    $('#select2-cbFingerPull-container').removeClass("cbError");
-    $('#descDXU').removeClass("is-invalid");
-    $('#descDXO').removeClass("is-invalid");
+    $('#select2-cbFingerPull-container').removeClass("cbError");    
     $('#CantidadFila').removeClass("is-invalid");
     $('#iptHeight').removeClass("is-invalid");
     $('#iptWidth').removeClass("is-invalid");
