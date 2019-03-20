@@ -314,25 +314,25 @@ namespace BusinessLogic
                     int panel = 5;
                     if (Order.DoorxUser.DoorStyle.Id == 1002)
                     {
-                        Order.DoorxUser.DoorsxOrder.FirstOrDefault().Panel.Id = 5;
+                        pDoorsOrder.Panel.Id = 5;
                     }
                     else if (Order.DoorxUser.DoorStyle.Id == 1003)
                     {
-                    Order.DoorxUser.DoorsxOrder.FirstOrDefault().Panel.Id = 2;
+                    pDoorsOrder.Panel.Id = 2;
                     }
-                    if (Order.DoorxUser.DoorsxOrder.FirstOrDefault().Panel.Id == 2)
+                    if (pDoorsOrder.Panel.Id == 2)
                     {
-                        panel = Order.DoorxUser.DoorsxOrder.FirstOrDefault().Panel.Id;
+                        panel = pDoorsOrder.Panel.Id;
                     }
                     if (Order.DoorxUser.DoorStyle.Id == 1010)
                     {
                         panel = 2;
                     }
                     DoorsPrices DoorPrice = dp.GetDoorsPricesById(0, panel, Order.DoorxUser.Material.Id, Rail);
-                    decimal deciW = listDeci.Where(x => x.Id == Order.DoorxUser.DoorsxOrder.FirstOrDefault().DecimalsWidth.Id).FirstOrDefault().Value;
-                    decimal deciH = listDeci.Where(x => x.Id == Order.DoorxUser.DoorsxOrder.FirstOrDefault().DecimalsHeight.Id).FirstOrDefault().Value;
-                    decimal Width = Order.DoorxUser.DoorsxOrder.FirstOrDefault().Width + deciW;
-                    decimal Height = Order.DoorxUser.DoorsxOrder.FirstOrDefault().Height + deciH;
+                    decimal deciW = listDeci.Where(x => x.Id == pDoorsOrder.DecimalsWidth.Id).FirstOrDefault().Value;
+                    decimal deciH = listDeci.Where(x => x.Id == pDoorsOrder.DecimalsHeight.Id).FirstOrDefault().Value;
+                    decimal Width = pDoorsOrder.Width + deciW;
+                    decimal Height = pDoorsOrder.Height + deciH;
                     decimal result = (((((Width * Height) / 12m) / 12m) - 1.5m) * DoorPrice.AdditionalSFPrice) + DoorPrice.BasePrice;
                     decimal desc = 1;
                     if (Order.Descuento > 0)
@@ -342,26 +342,48 @@ namespace BusinessLogic
 
                     if (result < DoorPrice.BasePrice)
                     {
-                        result = DoorPrice.BasePrice - ((DoorPrice.BasePrice * 2) * desc);
-                    Order.DoorxUser.DoorsxOrder.FirstOrDefault().TotalDescuento = (DoorPrice.BasePrice * 2) * desc;
-                    Order.DoorxUser.DoorsxOrder.FirstOrDefault().ItemCost = result;
-                    Order.DoorxUser.DoorsxOrder.FirstOrDefault().SubTotal = result * Order.DoorxUser.DoorsxOrder.FirstOrDefault().Quantity;
-                    }
+                        result = DoorPrice.BasePrice * 2;
+                        if (pDoorsOrder.User.Descuento > 0)
+                        {
+                            decimal des = decimal.Parse(pDoorsOrder.User.Descuento.ToString()) / 100m;
+                            pDoorsOrder.TotalDescuento = (result * 2) * des;
+                            result = result - (des * result);
+                        }
+                        if (pDoorsOrder.Descuento > 0)
+                        {
+                            decimal des = decimal.Parse(pDoorsOrder.Descuento.ToString()) / 100m;
+                            pDoorsOrder.TotalDescuento = (result * 2) * des;
+                            result = result - (des * result);
+                        }
+                        pDoorsOrder.ItemCost = result;
+                        pDoorsOrder.SubTotal = result * pDoorsOrder.Quantity;
+                     }
                     else
                     {
-                        result = result - ((result * 2) * desc);
-                    Order.DoorxUser.DoorsxOrder.FirstOrDefault().TotalDescuento = (result * 2) * desc;
-                    Order.DoorxUser.DoorsxOrder.FirstOrDefault().ItemCost = result;
-                    Order.DoorxUser.DoorsxOrder.FirstOrDefault().SubTotal = result * Order.DoorxUser.DoorsxOrder.FirstOrDefault().Quantity;
+                    result = result * 2;
+                    if (pDoorsOrder.User.Descuento > 0)
+                    {
+                        decimal des = decimal.Parse(pDoorsOrder.User.Descuento.ToString()) / 100m;
+                        pDoorsOrder.TotalDescuento = (result * 2) * des;
+                        result = result - (des * result);
+                    }
+                    if (pDoorsOrder.Descuento > 0)
+                    {
+                        decimal des = decimal.Parse(pDoorsOrder.Descuento.ToString()) / 100m;
+                        pDoorsOrder.TotalDescuento = (result * 2) * des;
+                        result = result - (des * result);
+                    }
+                    pDoorsOrder.ItemCost = result;
+                    pDoorsOrder.SubTotal = result * pDoorsOrder.Quantity;
                     }
 
-                Order.DoorxUser.DoorsxOrder.FirstOrDefault().Descuento = Order.Descuento;
-                Order.DoorxUser.DoorsxOrder.FirstOrDefault().DoorxUser = Order.DoorxUser;
-                Order.DoorxUser.DoorsxOrder.FirstOrDefault().ModificationDate = DateTime.Now;
-                Order.DoorxUser.DoorsxOrder.FirstOrDefault().ModificationUser = pIdUser;
-                Order.DoorxUser.DoorsxOrder.FirstOrDefault().ProfilePicture = DU.BuscarProfilePicture(Order.DoorxUser.OutsideEdgeProfile.Id, Order.DoorxUser.InsideEdgeProfile.Id, pDoorsOrder.Panel.Id);
-                Order.DoorxUser.DoorsxOrder.FirstOrDefault().Picture = DU.BuscarDoorPicture(Order.DoorxUser.DoorsxOrder.FirstOrDefault());
-                int retorno = _AD.UpdateDoorsxOrder(Order.DoorxUser.DoorsxOrder.FirstOrDefault());
+                pDoorsOrder.Descuento = Order.Descuento;
+                pDoorsOrder.DoorxUser = Order.DoorxUser;
+                pDoorsOrder.ModificationDate = DateTime.Now;
+                pDoorsOrder.ModificationUser = pIdUser;
+                pDoorsOrder.ProfilePicture = DU.BuscarProfilePicture(Order.DoorxUser.OutsideEdgeProfile.Id, Order.DoorxUser.InsideEdgeProfile.Id, pDoorsOrder.Panel.Id);
+                pDoorsOrder.Picture = DU.BuscarDoorPicture(pDoorsOrder);
+                int retorno = _AD.UpdateDoorsxOrder(pDoorsOrder);
 
                  decimal subTotal = _AD.GetTotalDoorxOrderByDoorxUser(Order.DoorxUser.Id);
                 int cantidad = _AD.GetAllDoorxOrderByDoorxUser(Order.DoorxUser.Id).Sum(x => x.Quantity);

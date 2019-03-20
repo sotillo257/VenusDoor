@@ -381,14 +381,20 @@ function llenarTablaOrderControl() {
                 t.rows().remove().draw(false);
                 for (var i = 0; i < data.length; i++) {
                     var option = '';
-                    if (data[i].Status.Id == 7) {
-                        option += '<span class="square-8 bg-success mg-r-5 rounded-circle"></span>';
-                    } else if (data[i].Status.Id == 6) {
-                        option += '<span class="square-8 btn-primary mg-r-5 rounded-circle"></span>';
+                    if (data[i].Status.Id == 4) {
+                        option += '<span class="square-8 bg-pink mg-r-5 rounded-circle"></span>';
                     } else if (data[i].Status.Id == 5) {
                         option += '<span class="square-8 bg-warning mg-r-5 rounded-circle"></span>';
+                    } else if (data[i].Status.Id == 6) {
+                        option += '<span class="square-8 btn-purple mg-r-5 rounded-circle"></span> ';
+                    } else if (data[i].Status.Id == 7) {
+                        option += '<span class="square-8 bg-success mg-r-5 rounded-circle"></span>';
+                    } else if (data[i].Status.Id == 8) {
+                        option += '<span class="square-8 bg-info mg-r-5 rounded-circle"></span>';
+                    } else if (data[i].Status.Id == 11) {
+                        option += '<span class="square-8 bg-danger mg-r-5 rounded-circle"></span>';
                     }
-                    var Botones = '<button href="#" data-id="1" id="' + data[i].Id + '" value="" class="Detalle Cursor btn btn-info btn-icon" s style="width: 25px;height: 25px; margin-left: 10px;" ><i class="fa fa-eye" ></i></button>';
+                    var Botones = '<button href="#" data-id="' + data[i].Id + '" id="" value="" class="Detalle Cursor btn btn-info btn-icon" s style="width: 25px;height: 25px; margin-left: 10px;" ><i class="fa fa-eye" ></i></button>';
                     if (data[i].Status.Id == 5) {
                         Botones += '<button title="Approve order." value="' + data[i].Id + '" class="Approved Cursor btn btn-primary btn-icon" style="width: 25px;height: 25px; margin-left: 10px;"><i class="fa fa-check"></i></button>';
                         Botones += '<button  data-toggle="modal" data-target="" id="" title="Remove order." value="' + data[i].Id + '" class="Remove Cursor btn btn-danger btn-icon" style="width: 25px;height: 25px; margin-left: 10px; "><i class="fa fa-close"></i></button>';
@@ -469,9 +475,9 @@ function llenarTablaOrderControlxUser(pIdStatus) {
                 for (var i = 0; i < data.length; i++) {
                     var option = '';
                     if (data[i].Status.Id == 4) {
-                        option += ' <span class="square-8 bg-warning mg-r-5 rounded-circle"></span>';
-                    } else if (data[i].Status.Id == 5) {
                         option += '<span class="square-8 bg-pink mg-r-5 rounded-circle"></span>';
+                    } else if (data[i].Status.Id == 5) {
+                        option += '<span class="square-8 bg-warning mg-r-5 rounded-circle"></span>';
                     } else if (data[i].Status.Id == 6) {
                         option += '<span class="square-8 btn-purple mg-r-5 rounded-circle"></span> ';
                     } else if (data[i].Status.Id == 7) {
@@ -481,7 +487,7 @@ function llenarTablaOrderControlxUser(pIdStatus) {
                     } else if (data[i].Status.Id == 11) {
                         option += '<span class="square-8 bg-danger mg-r-5 rounded-circle"></span>';
                     }
-                    var Botones = '<button href="#" data-id="1" id="' + data[i].Id + '" value="" class="Detalle Cursor btn btn-info btn-icon" s style="width: 25px;height: 25px; margin-left: 10px;" ><i class="fa fa-eye" ></i></button>';
+                    var Botones = '<button href="#" data-id="' + data[i].Id + '" id="" value="" class="Detalle Cursor btn btn-info btn-icon" s style="width: 25px;height: 25px; margin-left: 10px;" ><i class="fa fa-eye" ></i></button>';
                     if (data[i].Status.Id == 5) {
                         Botones += '<button title="Approve order." value="' + data[i].Id + '" class="Approved Cursor btn btn-primary btn-icon" style="width: 25px;height: 25px; margin-left: 10px;"><i class="fa fa-check"></i></button>';
                         Botones += '<button  data-toggle="modal" data-target="" id="" title="Remove order." value="' + data[i].Id + '" class="Remove Cursor btn btn-danger btn-icon" style="width: 25px;height: 25px; margin-left: 10px; "><i class="fa fa-close"></i></button>';
