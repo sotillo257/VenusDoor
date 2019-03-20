@@ -6,10 +6,7 @@
         $("#editBCK").show();
         $("#btnsave").show();
         $("#btnsaveDxO").hide();
-       
-        $("select").prop('disabled', false);
-        $("input[name=radioOver]").attr("disabled", false);
-        $(".select2-selection").css('background-color', '#fff!important');
+        QuitarClaseErrorACombos();
     });
 
     $("#editBCK").on('click', function () {
@@ -18,12 +15,7 @@
         $("#btnsave").hide();
         $("#btnsaveDxO").hide();
         $('#editDXU').removeClass("active");
-        $('#dxoPanel').removeClass("active");
-
-        $("select").prop('disabled', true);       
-        $("input[name=radioOver]").attr("disabled", true);
-        $(".select2-selection").css('background-color', '#eee!important');
-        
+        $('#dxoPanel').removeClass("active");  
     });
 
     $(document).on('click', '.editDoor', function (event) {
@@ -33,10 +25,8 @@
         $("#btnsave").hide();
         $('#editBCK').removeClass("active");
         $("#btnsaveDxO").show();
+        QuitarClaseErrorACombos();
 
-        $("select").prop('disabled', false);
-        $("input[name=radioOver]").attr("disabled", false);
-        $(".select2-selection").css('background-color', '#fff!important');
 
         for (var i = 0; i < DxOl.length; i++) {
             if (DxOl[i].Id == $(this).attr('data-id')) {
@@ -78,16 +68,82 @@
         changeDoorPicture();
     });
 
+    $(document).on('change', '.form-control', function () {
+        GetPrices();
+    });
+
+    $(document).on('change', '#iptWidth', function () {
+        if ($('#iptWidth').val() < 5) {
+            $('#iptWidth').addClass("is-invalid");
+            $("#alertWidth").css('display', 'block');
+            $("#alertWidth").text("Minimum is 5 inches.");
+        } else if ($('#iptWidth').val() > 42) {
+            $('#iptWidth').addClass("is-invalid");
+            $("#alertWidth").css('display', 'block');
+            $("#alertWidth").text("Maximum is 42 inches.");
+        } else {
+            $('#iptWidth').removeClass("is-invalid");
+            $("#alertWidth").text("");
+        }
+    });
+
+    $(document).on('change', '#iptHeight', function () {
+        if ($('#iptHeight').val() < 5) {
+            $('#iptHeight').addClass("is-invalid");
+            $("#alertHeight").text("Minimum is 5 inches.");
+        } else if ($('#iptHeight').val() > 100) {
+            $('#iptHeight').addClass("is-invalid");
+            $("#alertHeight").text("Maximum is 100 inches.");
+        } else {
+            $('#iptHeight').removeClass("is-invalid");
+            $("#alertHeight").text("");
+        }
+    });
+
     $("#btnsave").on("click", function () {
         LlammarModal("ConfirmOrdenSummary", "Confirm", "Do you want to save this configuration?",
         '<button onclick="NuevosCambiosDXU();" class="Cursor btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Save</button>' +
         '<button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>');
     });
+
+    $("#btnsaveDxO").on("click", function () {
+        LlammarModal("ConfirmOrdenSummary", "Confirm", "Do you want to save this configuration?",
+        '<button onclick="NuevosCambiosDXO();" class="Cursor btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Save</button>' +
+        '<button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>');
+    });
 });
 
 function NuevosCambiosDXU() {
-     InsertDoorsxUser();   
+    if (ValidarCamposVacios()) {
+        InsertDoorsxUser();
+    } else {
+        $('#modalConfirmOrderSummary').modal('hide');
+        LlammarModal("Danger", "You must fill all the fields.", " ");
+    }
 }
+
+function NuevosCambiosDXO() {
+    if (ValidarCamposVaciosDXO()) {
+        UpdateDoorsxOrder();
+    } else {
+        $('#modalConfirmOrderSummary').modal('hide');
+        LlammarModal("Danger", "You must fill all the fields.", " ");
+    }
+}
+
+function GetPrices() {
+
+    var TR = $("#cbTopRail").val();
+    var BR = $("#cbBottomRail").val();
+    var RT;
+    var H = parseFloat($("#iptHeight").val()) + parseFloat($("#cbDecimalsH").val());
+    var W = parseFloat($("#iptWidth").val()) + parseFloat($("#cbDecimalsW").val());
+    $("#iptCost").val(!isNaN(getPriceDoor($("#cbMaterial").val(), $("#cbPanel").val(), H, W, TR, BR)) ? getPriceDoor($("#cbMaterial").val(), $("#cbPanel").val(), H, W, TR, BR) : '0.00');
+}
+
+$(document).on('change', '.eventChange', function () {    
+    GetPrices();
+});
 
 var allMaterial = '';
 function llenarComboMaterial(pMaterial) {
@@ -362,8 +418,8 @@ function llenarComboIsOpen(pOpen) {
 }
 
 function checkIsOverlay(pOverlay) {
-    var lbl = '<label><input disabled style="margin-right: 8px;" type="radio" name="radioOver" data-id="1">Inset Door Type</label>';
-    lbl += '<label style="margin-left: 10px;"><input disabled style="margin-right: 8px;" type="radio" name="radioOver" data-id="2">Overlay Door Type</label>';
+    var lbl = '<label><input style="margin-right: 8px;" type="radio" name="radioOver" data-id="1">Inset Door Type</label>';
+    lbl += '<label style="margin-left: 10px;"><input style="margin-right: 8px;" type="radio" name="radioOver" data-id="2">Overlay Door Type</label>';
     $("#isOverlay").html(lbl);
     if (pOverlay != 0) {
         $("input[name=radioOver][data-id='" + pOverlay + "']").prop("checked", true);
@@ -468,10 +524,10 @@ function InsertDoorsxUser() {
         success: function (result) {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
-            if (result != null) {
-                $('#ModalOrderInfo').modal('hide');
+            if (result != null) {              
                 $('#modalConfirmOrderSummary').modal('hide');
                 LlammarModal("ConfigM", "General configuration of doors successfully saved!", "");
+                $("#editBCK").trigger("click");
                 llenarTablaOrderControl();
 
                 changeDoorStyle();
@@ -480,6 +536,61 @@ function InsertDoorsxUser() {
             } else {                
                 $('#modalConfirmOrderSummary').modal('hide');
                 LlammarModal("Danger", "Error in the process.", "An error occurred when saving the general settings.");
+            }
+        },
+        error: function (err) {
+            $('#modalInsert').modal('hide');
+            $('#modalConfirmOrderSummary').modal('hide');
+            LlammarModal("Danger", "An error occurred during the process.", "Check your internet connection I tried again");
+        },
+
+    });
+}
+
+function UpdateDoorsxOrder() {
+    var itemCost = parseFloat($("#iptCost").val());
+    var DoorQuantity = $("#CantidadFila").val();
+    var DoorOp = $("#cbDoorOpt").val();
+
+    var datos =
+         {
+
+             pDoorsxOrder: {
+                 DoorsxUser: CodigoDoorxUser,
+                 Width: parseFloat($("#iptWidth").val()),
+                 DecimalsWidth: { Id: $("#cbDecimalsW").val() },
+                 Height: parseFloat($("#iptHeight").val()),
+                 DecimalsHeight: { Id: $("#cbDecimalsH").val() },
+                 Quantity: DoorQuantity,
+                 ItemCost: 0,
+                 SubTotal: 0,
+                 Picture: '',
+                 ProfilePicture: '',
+                 Panel: { Id: $("#cbPanel").val() },
+                 DoorType: { Id: $("#cbDoorType").val() },
+                 DoorOption: { Id: DoorOp },
+                 User: { Id: 0 },
+                 Status: { Id: 1 }
+             }
+         };
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(datos),
+        url: urlUpdateDoorsxOrder,
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+
+            //Validar data para ver si mostrar error al guardar o exito al guardar
+            if (result == true) {
+                LlammarModal("ConfigM", "The door has been created successfully!", "");
+                llenarTablaOrderSumary();
+                LimpiarCamposRapidos();
+                llenarheaderOrder();
+            } else {
+                $('#modalInsert').modal('hide');
+                $('#modalConfirmOrderSummary').modal('hide');
+                LlammarModal("Danger", "Error in the process.", "An error occurred when creating the door.");
             }
         },
         error: function (err) {
@@ -758,5 +869,215 @@ function RaisedPanelDoor(Style) {
 
     }
     $('#DoorPicture').attr('src', urlFolder + DoorUrl);
+}
 
+function ValidarCamposVacios() {
+    var aux = true;
+
+    if ($('#cbMaterial').val() == 0) {
+        $('#select2-cbMaterial-container').addClass("cbError");
+        aux = false;
+    } else {
+        $('#select2-cbMaterial-container').removeClass("cbError");
+    }
+
+    if ($('#cbDoorStyle').val() == 0) {
+        $('#select2-cbDoorStyle-container').addClass("cbError");
+        aux = false;
+    } else {
+        $('#select2-cbDoorStyle-container').removeClass("cbError");
+    }
+
+    if ($('#cbStileWidth').val() == 0) {
+        $('#select2-cbStileWidth-container').addClass("cbError");
+        aux = false;
+    } else {
+        $('#select2-cbStileWidth-container').removeClass("cbError");
+    }
+
+    if ($('#cbRailWidth').val() == 0) {
+        $('#select2-cbRailWidth-container').addClass("cbError");
+        aux = false;
+    } else {
+        $('#select2-cbRailWidth-container').removeClass("cbError");
+    }
+
+    if ($('#cbPreparation').val() == 0) {
+        $('#select2-cbPreparation-container').addClass("cbError");
+        aux = false;
+    } else {
+        $('#select2-cbPreparation-container').removeClass("cbError");
+    }
+
+
+    if ($('#cbPanelMaterial').val() == 0) {
+        $('#select2-cbPanelMaterial-container').addClass("cbError");
+        aux = false;
+    } else {
+        $('#select2-cbPanelMaterial-container').removeClass("cbError");
+    }
+
+    if ($('#cbIsOpeningMeasurement').val() == 0) {
+        $('#select2-cbIsOpeningMeasurement-container').addClass("cbError");
+        aux = false;
+    } else {
+        $('#select2-cbIsOpeningMeasurement-container').removeClass("cbError");
+    }
+
+    if ($('#cbDoorAssembly').val() == 0) {
+        $('#select2-cbDoorAssembly-container').addClass("cbError");
+        aux = false;
+    } else {
+        $('#select2-cbDoorAssembly-container').removeClass("cbError");
+    }
+
+    if ($('#cbOutsideEdgeProfile').val() == 0) {
+        $('#select2-cbOutsideEdgeProfile-container').addClass("cbError");
+        aux = false;
+    } else {
+        $('#select2-cbOutsideEdgeProfile-container').removeClass("cbError");
+    }
+
+    if ($('#cbInsideEdgeProfile').val() == 0) {
+        $('#select2-cbInsideEdgeProfile-container').addClass("cbError");
+        aux = false;
+    } else {
+        $('#select2-cbInsideEdgeProfile-container').removeClass("cbError");
+    }
+
+    if ($('#cbVerticalDivisions').val() == 0) {
+        $('#select2-cbVerticalDivisions-container').addClass("cbError");
+        aux = false;
+    } else {
+        $('#select2-cbVerticalDivisions-container').removeClass("cbError");
+    }
+
+    if ($('#cbHorizontalDivisions').val() == 0) {
+        $('#select2-cbHorizontalDivisions-container').addClass("cbError");
+        aux = false;
+    } else {
+        $('#select2-cbHorizontalDivisions-container').removeClass("cbError");
+    }
+
+
+    if ($('#cbisDrill').val() == 0) {
+        $('#select2-cbisDrill-container').addClass("cbError");
+        aux = false;
+    } else {
+        if ($('#cbisDrill').val() == 2) {
+            if ($('#cbHingeDirection').val() == 0) {
+                $('#select2-cbHingeDirection-container').addClass("cbError");
+                aux = false;
+            } else {
+                $('#select2-cbHingeDirection-container').removeClass("cbError");
+            }
+        }
+        $('#select2-cbisDrill-container').removeClass("cbError");
+    }
+
+    if ($('#cbFingerPull').val() == 0) {
+        $('#select2-cbFingerPull-container').addClass("cbError");
+        aux = false;
+    } else {
+        $('#select2-cbFingerPull-container').removeClass("cbError");
+    }
+
+
+
+    if ($("input[name=radioOver]").is(':checked')) {
+        $("input[name=radioOver]").removeClass("is-invalid");
+
+    } else {
+        $("input[name=radioOver]").addClass("is-invalid");
+        aux = false;
+    }
+
+    if ($('#descDXU').val() == "" || $('#descDXU').val() == 0) {
+        $('#descDXU').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#descDXU').removeClass("is-invalid");
+    }
+
+    return aux;
+}
+
+function ValidarCamposVaciosDXO() {
+    var aux = true;
+
+    if ($('#cbPanel').val() == 0) {
+        $('#select2-cbPanel-container').addClass("cbError");
+        aux = false;
+    } else {
+        $('#select2-cbPanel-container').removeClass("cbError");
+    }
+
+    if ($('#cbDoorType').val() == 0) {
+        $('#select2-cbDoorType-container').addClass("cbError");
+        aux = false;
+    } else {
+        $('#select2-cbDoorType-container').removeClass("cbError");
+    }
+
+    if ($('#cbDoorOpt').val() == 0) {
+        $('#select2-cbDoorOpt-container').addClass("cbError");
+        aux = false;
+    } else {
+        $('#select2-cbDoorOpt-container').removeClass("cbError");
+    }
+    if ($('#iptWidth').val() == "" || $('#iptWidth').val() == 0) {
+        $('#iptWidth').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#iptWidth').removeClass("is-invalid");
+    }
+
+    if ($('#iptHeight').val() == "" || $('#iptHeight').val() == 0) {
+        $('#iptHeight').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#iptHeight').removeClass("is-invalid");
+    }
+
+    if ($('#CantidadFila').val() == "" || $('#CantidadFila').val() == 0) {
+        $('#CantidadFila').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#CantidadFila').removeClass("is-invalid");
+    }
+
+    if ($('#descDXO').val() == "" || $('#descDXO').val() == 0) {
+        $('#descDXO').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#descDXO').removeClass("is-invalid");
+    }
+
+    return aux;
+}
+
+function QuitarClaseErrorACombos() {
+    $('#select2-cbMaterial-container').removeClass("cbError");
+    $('#select2-cbDoorStyle-container').removeClass("cbError");
+    $('#select2-cbStileWidth-container').removeClass("cbError");
+    $('#select2-cbRailWidth-container').removeClass("cbError");
+    $('#select2-cbPreparation-container').removeClass("cbError");
+    $('#select2-cbPanelMaterial-container').removeClass("cbError");
+    $('#select2-cbIsOpeningMeasurement-container').removeClass("cbError");
+    $('#select2-cbDoorAssembly-container').removeClass("cbError");
+    $('#select2-cbOutsideEdgeProfile-container').removeClass("cbError");
+    $('#select2-cbInsideEdgeProfile-container').removeClass("cbError");
+    $('#select2-cbVerticalDivisions-container').removeClass("cbError");
+    $('#select2-cbHorizontalDivisions-container').removeClass("cbError");
+    $('#select2-cbHingeDirection-container').removeClass("cbError");
+    $('#select2-cbisDrill-container').removeClass("cbError");
+    $('#select2-cbFingerPull-container').removeClass("cbError");
+    $('#descDXU').removeClass("is-invalid");
+    $('#descDXO').removeClass("is-invalid");
+    $('#CantidadFila').removeClass("is-invalid");
+    $('#iptHeight').removeClass("is-invalid");
+    $('#iptWidth').removeClass("is-invalid");
+    $('#select2-cbPanel-container').removeClass("cbError");
+    $('#select2-cbDoorType-container').removeClass("cbError");
+    $('#select2-cbDoorOpt-container').removeClass("cbError");
 }
