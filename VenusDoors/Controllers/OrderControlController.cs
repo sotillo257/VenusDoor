@@ -122,7 +122,11 @@ namespace VenusDoors.Controllers
 
             DoorsxUser xDoors = _LN.GetAllDoorsxUser().Where(x => x.Order.Id == idOrder).ToList().FirstOrDefault();
                        
-            xDoors.DoorsxOrder = Ord.GetAllDoorxOrderByDoorxUser(xDoors.Id);           
+            xDoors.DoorsxOrder = Ord.GetAllDoorxOrderByDoorxUser(xDoors.Id);
+            if (xDoors.DoorsxOrder.Sum(x => x.Descuento) > 0)
+            {
+                xDoors.DescuentoActivos = true;
+            }           
             xDoors.Order = _LNO.GetOrderById(idOrder);
             xDoors.User = _LNU.GetUserById(xDoors.User.Id);
             xDoors.User.Person = _LNP.GetPersonById(xDoors.User.Person.Id);       

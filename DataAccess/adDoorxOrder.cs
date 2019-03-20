@@ -28,9 +28,9 @@ namespace DataAccess
                             val = int.Parse(item["Descuentos"].ToString());
                         }
                         decimal valu = 0;
-                        if (int.TryParse(item["TotalDescuento"].ToString(), out val))
+                        if (decimal.TryParse(item["TotalDescuento"].ToString(), out valu))
                         {
-                            valu = int.Parse(item["TotalDescuento"].ToString());
+                            valu = decimal.Parse(item["TotalDescuento"].ToString());
                         }
                         doorxu.Add(new DoorxOrder()
                         {
@@ -87,9 +87,9 @@ namespace DataAccess
                             val = int.Parse(item["Descuentos"].ToString());
                         }
                         decimal valu = 0;
-                        if (int.TryParse(item["TotalDescuento"].ToString(), out val))
+                        if (decimal.TryParse(item["TotalDescuento"].ToString(), out valu))
                         {
-                            valu = int.Parse(item["TotalDescuento"].ToString());
+                            valu = decimal.Parse(item["TotalDescuento"].ToString());
                         }
                         doorxu.Add(new DoorxOrder()
                         {
@@ -147,9 +147,9 @@ namespace DataAccess
                             val = int.Parse(item["Descuentos"].ToString());
                         }
                         decimal valu = 0;
-                        if (int.TryParse(item["TotalDescuento"].ToString(), out val))
+                        if (decimal.TryParse(item["TotalDescuento"].ToString(), out valu))
                         {
-                            valu = int.Parse(item["TotalDescuento"].ToString());
+                            valu = decimal.Parse(item["TotalDescuento"].ToString());
                         }
                         doorxu = new DoorxOrder()
                         {

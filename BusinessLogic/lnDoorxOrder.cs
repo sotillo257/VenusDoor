@@ -168,11 +168,6 @@ namespace BusinessLogic
                     decimal Width = item.Width + deciW;
                     decimal Height = item.Height + deciH;
                     decimal result = (((((Width * Height) / 12m) / 12m) - 1.5m) * DoorPrice.AdditionalSFPrice) + DoorPrice.BasePrice;
-                    decimal desc = 1;
-                    if (Order.Descuento > 0)
-                    {
-                        desc = Order.Descuento / 100;
-                    }
                     
                     if (result < DoorPrice.BasePrice)
                     {
@@ -180,14 +175,26 @@ namespace BusinessLogic
                         if (item.User.Descuento > 0)
                         {
                             decimal des = decimal.Parse(item.User.Descuento.ToString())/ 100m;
-                            item.TotalDescuento = (result * 2) * desc;
+                            item.TotalDescuento = (result * 2) * des;
                             result = result - (des * result);
                         }
                         if (item.Descuento > 0)
                         {
                             decimal des = decimal.Parse(item.Descuento.ToString()) / 100m;
-                            item.TotalDescuento = (result * 2) * desc;
+                            item.TotalDescuento = (result * 2) * des;
                             result = result - (des * result);
+                        }
+                        else
+                        {
+                            decimal desc = 1;
+
+                            if (Order.Descuento > 0)
+                            {
+                                decimal des = decimal.Parse(Order.Descuento.ToString()) / 100m;
+                                item.Descuento = Order.Descuento;
+                                item.TotalDescuento = (result * 2) * desc;
+                                result = result - (des * result);
+                            }
                         }
                         item.ItemCost = result;
                         item.SubTotal = result * item.Quantity;
@@ -198,21 +205,30 @@ namespace BusinessLogic
                         if (item.User.Descuento > 0)
                         {
                             decimal des = decimal.Parse(item.User.Descuento.ToString()) / 100m;
-                            item.TotalDescuento = (result * 2) * desc;
+                            item.TotalDescuento = (result * 2) * des;
                             result = result - (des * result);
                         }
                         if (item.Descuento > 0)
                         {
                             decimal des = decimal.Parse(item.Descuento.ToString()) / 100m;
-                            item.TotalDescuento = (result * 2) * desc;
+                            item.TotalDescuento = (result * 2) * des;
                             result = result - (des * result);
+                        }
+                        else
+                        {
+                            if (Order.Descuento > 0)
+                            {
+                                decimal des = decimal.Parse(Order.Descuento.ToString()) / 100m;
+                                item.Descuento = Order.Descuento;
+                                item.TotalDescuento = (result * 2) * des;
+                                result = result - (des * result);
+                            }
                         }
                        
                         item.ItemCost = result;
                         item.SubTotal = result * item.Quantity;
                     }
-
-                    item.Descuento = Order.Descuento;
+                    
                     item.DoorxUser = Order.DoorxUser;
                     item.ModificationDate = DateTime.Now;
                     item.ModificationUser = item.User.Id;

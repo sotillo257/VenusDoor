@@ -196,7 +196,21 @@ function GetDoorsByOrder(idOrden) {
             }
             dxu += '</tr>';
 
-            var option = '';   
+            var option = '<table id="ordertable" style="width:100%">';
+            option += '<thead><tr>';
+            option += '<th>PREVIEW</th>';
+            option += '<th>QUANTITY</th>';
+            option += '<th>WIDHT</th>';
+            option += '<th>HEIGHT</th>';
+            option += '<th>PANEL STYLE</th>';
+            option += '<th>DOOR TYPE</th>';
+            option += '<th>DOOR OPTION</th>';
+            option += '<th>U. PRICE</th>';
+            if (Result.DescuentoActivos) {
+                option += '<th>DISCOUNT</th>';
+            }
+            option += '<th>TOTAL</th>';
+            option += '<th><i class="fa fa-flash"></i></th></tr></thead><tbody>';   
             DxOl = Result.DoorsxOrder;
             for (var i = 0; i < Result.DoorsxOrder.length; i++) {
                 option += '<tr><td><img width="65px" src="' + Result.DoorsxOrder[i].Picture + '"/></td>';
@@ -216,16 +230,20 @@ function GetDoorsByOrder(idOrden) {
                 option += '<td>' + Result.DoorsxOrder[i].DoorType.Description + '</td>';
                 option += '<td>' + Result.DoorsxOrder[i].DoorOption.Description + '</td>';
                 option += '<td><span>$</span>' + Result.DoorsxOrder[i].ItemCost.toString().replace(',', '.') + '</td>';
+                if (Result.DescuentoActivos) {
+                    option += '<td>' + Result.DoorsxOrder[i].Descuento + '%</td>';
+                }
                 option += '<td><span>$</span>' + Result.DoorsxOrder[i].SubTotal.toString().replace(',', '.') + '</td>';
                 if (Result.Order.Status.Id == 5) {
                 option += '<td><button title="Edit Door" data-id="' + Result.DoorsxOrder[i].Id + '"data-toggle="tab" href="#dxoPanel" role="tab"  class="editDoor Cursor btn btn-primary btn-icon"  style="width: 25px;height: 25px; margin-left: 10px;"> <i class="fa fa-edit"></i></button></td>';
                 } else {
                     option += '<td><button title="Edit Door" disabled data-id="" data-toggle="tab" href="#dxoPanel" role="tab"  class="editDoor btn btn-primary btn-icon"  style="width: 25px;height: 25px; margin-left: 10px;"> <i class="fa fa-edit"></i></button></td>';
-                }               
+                }
+                option += '</tr>';
             }
             option += '</tbody></table>';
             $("#orreff").text(idOrden);
-            $("#ordertable > tbody").empty().append(option);
+            $("#divTable").empty().append(option);
             $("#HeaderOptions > tbody").empty().append(dxu);
             $("#UserOrderInfo > tbody").empty().append(info);           
             if(Result.Order.Status.Id == 5){
