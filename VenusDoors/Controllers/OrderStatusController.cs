@@ -73,8 +73,11 @@ namespace VenusDoors.Controllers
             DoorsxUser xDoors = _LN.GetAllDoorsxUser().Where(x => x.Order.Id == idOrder).ToList().FirstOrDefault();
             BusinessLogic.lnDoorxOrder Ord = new BusinessLogic.lnDoorxOrder();
             xDoors.DoorsxOrder = Ord.GetAllDoorxOrderByDoorxUser(xDoors.Id);
-           
-           // ViewBag.DoorsOrder = doorsByOrder;
+            if (xDoors.DoorsxOrder.Sum(x => x.Descuento) > 0)
+            {
+                xDoors.DescuentoActivos = true;
+            }
+            // ViewBag.DoorsOrder = doorsByOrder;
             return Json(xDoors);
 
         }

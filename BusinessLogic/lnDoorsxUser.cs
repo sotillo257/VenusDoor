@@ -362,11 +362,13 @@ namespace BusinessLogic
                     CreationDate = DateTime.Now,
                     CreatorUser = pCodUsuario,
                     ModificationDate = DateTime.Now,
-                    ModificationUser = pCodUsuario
+                    ModificationUser = pCodUsuario,
+                    Descuento = pOrder.Descuento
 
                 };
                 if (item != null )
                 {
+                    item.Descuento = pOrder.Descuento;
                     item.ModificationDate = neworder.ModificationDate;
                     item.ModificationUser = neworder.ModificationUser;
                     _LNOrder.UpdateOrder(item);

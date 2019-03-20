@@ -106,8 +106,11 @@ function GetDoorsByOrder(id) {
             '<th>PANEL STYLE</th>' +
             '<th>DOOR TYPE</th>' +
             '<th>DOOR OPTION</th>' +
-            '<th>U. PRICE</th>'+
-                '<th>TOTAL</th>';
+            '<th>U. PRICE</th>';
+            if (Result.DescuentoActivos) {
+                option += '<th>DISCOUNT</th>';
+            }
+            option += '<th>TOTAL</th>';
             option += '</tr></thead><tbody>';           
             data = Result.DoorsxOrder;
             for (var i = 0; i < data.length; i++) {
@@ -128,6 +131,9 @@ function GetDoorsByOrder(id) {
                 option += '<td>' + data[i].DoorType.Description + '</td>';
                 option += '<td>' + data[i].DoorOption.Description + '</td>';
                 option += '<td><span>$</span>' + data[i].ItemCost.toString().replace(',', '.') + '</td>';
+                if (Result.DescuentoActivos) {
+                    option += '<td>' + data[i].Descuento + '%</td>';
+                }
                 option += '<td><span>$</span>' + data[i].SubTotal.toString().replace(',', '.') + '</td>';
             }
             option += '</tbody></table>';

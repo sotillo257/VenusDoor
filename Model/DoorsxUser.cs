@@ -46,5 +46,7 @@ namespace Model
         public bool isOverlay { get; set; }
         public bool isFingerPull { get; set; }
         public List<DoorxOrder> DoorsxOrder { get; set; }
+
+        public bool DescuentoActivos { get; set; }
     }
 }
