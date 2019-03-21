@@ -450,7 +450,7 @@ function selectDoorOption(pOption) {
     }
     $("#cbDoorOpt").empty().append(option);
     if (pOption != 0) {
-        $("#cbDoorType").val(pOption);
+        $("#cbDoorOpt").val(pOption);
     }
 }
 

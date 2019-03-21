@@ -36,7 +36,6 @@
                 var PicturePanel = '<img style="width: 230px;height: 230px;" id="DoorPicture" src="' + DxOl[i].Picture + '">';
                 $('#PictureProfile').html(PictureProfile);
                 $('#PicturePanel').html(PicturePanel);
-
                 $('#idDoorxO').val(DxOl[i].Id);
                 $('#idDxuXO').val(DxOl[i].DoorxUser.Id);
                 $('#descDXO').val(DxOl[i].Descuento);
