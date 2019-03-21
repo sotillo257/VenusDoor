@@ -44,7 +44,10 @@
                 $('#iptHeight').val(DxOl[i].Height);
                 $('#CantidadFila').val(DxOl[i].Quantity);
                 //$('#descDXO').val(DxOl[i].Descuento);
-                llenarComboPanelStyle(DxOl[i].Panel.Id);
+                if ($('#cbDoorStyle').val()!=1010) {
+                    llenarComboPanelStyle(DxOl[i].Panel.Id);
+                }
+               
                 llenarComboDoorType(DxOl[i].DoorType.Id);
                 selectDoorOption(DxOl[i].DoorOption.Id);
                 llenarComboDecimalW(DxOl[i].DecimalsWidth.Id);
@@ -744,6 +747,8 @@ function RaisedPanel(Outside, Inside) {
     }
     $('#ProfilePicture').attr('src', urlFolder + ProfileUrl);
 }
+
+
 
 function changeDoorPicture() {
     var Style = $('#cbDoorStyle').val();

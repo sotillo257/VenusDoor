@@ -357,7 +357,7 @@ namespace BusinessLogic
                         result = DoorPrice.BasePrice * 2;
                         if (Order.User.Descuento > 0)
                         {
-                            decimal des = decimal.Parse(pDoorsOrder.User.Descuento.ToString()) / 100m;
+                            decimal des = decimal.Parse(Order.User.Descuento.ToString()) / 100m;
                             pDoorsOrder.TotalDescuento = result * des;
                             result = result - (des * result);
                         }
