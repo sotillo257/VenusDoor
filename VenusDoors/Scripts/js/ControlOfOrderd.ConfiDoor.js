@@ -39,7 +39,7 @@
 
                 $('#idDoorxO').val(DxOl[i].Id);
                 $('#idDxuXO').val(DxOl[i].DoorxUser.Id);
-                $('#descDXO').val(DxOl[i].Descuento.Id);
+                $('#descDXO').val(DxOl[i].Descuento);
                 $('#iptWidth').val(DxOl[i].Width);
                 $('#iptHeight').val(DxOl[i].Height);
                 $('#CantidadFila').val(DxOl[i].Quantity);
@@ -579,6 +579,7 @@ function UpdateDoorxOrder() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
+                $('#modalConfirmOrderSummary').modal('hide');
                 LlammarModal("ConfigM", "The door has been modified successfully!", "");
                 GetDoorsByOrder(_IdDoorxUser);
                 changeDoorStyle();
@@ -595,7 +596,6 @@ function UpdateDoorxOrder() {
             $('#modalConfirmOrderSummary').modal('hide');
             LlammarModal("Danger", "An error occurred during the process.", "Check your internet connection I tried again");
         },
-
     });
 }
 
