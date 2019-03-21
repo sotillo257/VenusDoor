@@ -523,7 +523,7 @@ function InsertDoorsxUser() {
             if (result != null) {              
                 $('#modalConfirmOrderSummary').modal('hide');
                 LlammarModal("ConfigM", "General configuration of doors successfully saved!", "");
-                GetDoorsByOrder(idDxUorder);
+                GetDoorsByOrder(_IdDoorxUser);
                 changeDoorStyle();
                 $("#editBCK").trigger("click");
                 llenarTablaOrderControl();                
@@ -580,7 +580,7 @@ function UpdateDoorxOrder() {
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
                 LlammarModal("ConfigM", "The door has been modified successfully!", "");
-                GetDoorsByOrder(idDxUorder);
+                GetDoorsByOrder(_IdDoorxUser);
                 changeDoorStyle();
                 $("#editBCK").trigger("click");
                 llenarTablaOrderControl();

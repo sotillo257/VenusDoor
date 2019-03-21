@@ -87,6 +87,7 @@ function GetDoorsByOrder(idOrden) {
         async: false,
         contentType: 'application/json; charset=utf-8',
         success: function (Result) {
+            _IdDoorxUser = Result.Order.Id;
             $('#idDxUorder').val(Result.Order.Id);
             $('#descDXU').val(Result.Order.Descuento);
             var fingerPull = Result.isFingerPull;
