@@ -70,7 +70,7 @@ namespace VenusDoors
             Exception exc = Server.GetLastError();
             if (exc != null)
             {
-                string oPath = Server.MapPath("~/App_Data/Log.txt");
+                string oPath = Server.MapPath("~/Content/Log.txt");
                 using (StreamWriter mylogs = File.AppendText(oPath))         //se crea el archivo
                 {
                     DateTime dateTime = new DateTime();
