@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.Security;
+using System.IO;
 
 namespace VenusDoors
 {
@@ -16,13 +17,14 @@ namespace VenusDoors
         {
             this.PostAuthenticateRequest +=
                  new EventHandler(MvcApplication_PostAuthenticateRequest);
+            this.PostAuthenticateRequest += new EventHandler(Application_Error);
             base.Init();
         }
         void MvcApplication_PostAuthenticateRequest(object sender, EventArgs e)
         {
             try
             {
-                
+
                 HttpCookie authCookie = HttpContext.Current.Request.Cookies["VenusCabinetDoorsCookie"];
                 if (authCookie != null)
                 {
@@ -33,9 +35,9 @@ namespace VenusDoors
                         UserIdentity id = new UserIdentity(ticket);
                         if (ticket.Expired)
                         {
-                           // id.IsAuthenticated = false;
-                           // Controllers.LoginsController Log = new Controllers.LoginsController();
-                          //  Log.LogOut();
+                            // id.IsAuthenticated = false;
+                            // Controllers.LoginsController Log = new Controllers.LoginsController();
+                            //  Log.LogOut();
                         }
                         else
                         {
@@ -50,10 +52,10 @@ namespace VenusDoors
             }
             catch (Exception ex)
             {
-                 HttpContext.Current.Request.Cookies.Remove("VenusCabinetDoorsCookie");
+                HttpContext.Current.Request.Cookies.Remove("VenusCabinetDoorsCookie");
                 // throw;
             }
-          
+
 
         }
         protected void Application_Start()
@@ -62,6 +64,32 @@ namespace VenusDoors
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+        }
+        void Application_Error(object sender, EventArgs e)
+        {
+            Exception exc = Server.GetLastError();
+            if (exc != null)
+            {
+                string oPath = Server.MapPath("~/App_Data/Log.txt");
+                using (StreamWriter mylogs = File.AppendText(oPath))         //se crea el archivo
+                {
+                    DateTime dateTime = new DateTime();
+                    dateTime = DateTime.Now;
+                    string strDate = Convert.ToDateTime(dateTime).ToString("yyyy-MM-dd HH:ss");
+                    mylogs.WriteLine("---------------------------------------------------------------------------------------------------");
+                    mylogs.WriteLine("Error: " + exc.Message);
+                    mylogs.WriteLine("Metodo: " + exc.TargetSite.Name);
+                    mylogs.WriteLine("Controller: " + exc.TargetSite.DeclaringType.FullName);
+                    mylogs.WriteLine("UserName: " + HttpContext.Current.Session["UserName"]);
+                    mylogs.WriteLine("UserID: " + HttpContext.Current.Session["UserID"]);
+                    mylogs.WriteLine("Date: " + strDate);
+                    mylogs.WriteLine("Origen :" +exc.StackTrace);
+                    mylogs.Close();
+                }
+            }
+            
+          
+
         }
     }
 }
