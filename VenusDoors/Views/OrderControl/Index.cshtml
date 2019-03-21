@@ -76,7 +76,7 @@
                                         else {  <span class="square-8 bg-danger mg-r-5 rounded-circle"></span>  }
                                         @item.Status.Description
                                     </td>
-                                    <td class="">@item.Total</td>
+                                    <td class=""><span>$</span>@item.Total</td>
 
                                     <td class="">
 
@@ -157,7 +157,7 @@
                                 </table>
                             </div>
                         </div>
-                        <div style="overflow-y:scroll; height:208px" id="divTable">
+                        <div style="overflow-y:auto; height: 235px;" id="divTable">
                             @*<table id="ordertable" style="width:100%">
                                 <thead>
                                     <tr>
@@ -360,7 +360,8 @@
                 </div>                
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button id="btnClose" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button id="btnBack" type="button" class="btn btn-secondary">Back</button>
                 <button id="btnsave" type="button" class="Cursor btn btn-primary">Save changes</button>
                 <button id="btnsaveDxO" type="button" class="Cursor btn btn-primary">Save changes</button>
             </div>

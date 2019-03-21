@@ -434,17 +434,17 @@ function llenarTablaOrderControl() {
                          data[i].Id,
                         data[i].Quantity,
                          option + ' ' + data[i].Status.Description,
-                        data[i].Total,                       
+                        '$' + data[i].Total,                       
                         Botones                       
                     ]).draw(false);
                 }
             }
             else {
-                LlammarModal("Danger", "Error obtaining Type", " ");
+                LlammarModal("Danger", "Error llenando la tabla orden", " ");
             }
         },
         error: function (err) {
-            LlammarModal("Danger", "Error.", " ");
+            LlammarModal("Danger", "Error.", "Fatal error al llenar la tabla orden");
         }
     });
 
@@ -527,13 +527,13 @@ function llenarTablaOrderControlxUser(pIdStatus) {
                          data[i].Id,
                         data[i].Quantity,
                          option + ' ' + data[i].Status.Description,
-                        data[i].Total,
+                        '$' + data[i].Total,
                         Botones
                     ]).draw(false);
                 }
             }
             else {
-                LlammarModal("Danger", "Error obtaining Type", Result.Mensaje);
+                LlammarModal("Danger", "Error cargando la tabla por status", Result.Mensaje);
             }
         },
         error: function (err) {

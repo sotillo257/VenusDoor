@@ -1,11 +1,17 @@
 ﻿$(document).ready(function () {
     
+    $("#btnBack").on('click', function () {
+        $("#editBCK").trigger("click");
+    });
+
     $("#editDXU").on('click', function () {
         $('#editBCK').removeClass("active");
         $("#editDXU").hide();
         $("#editBCK").show();
         $("#btnsave").show();
         $("#btnsaveDxO").hide();
+        $("#btnBack").show();
+        $("#btnClose").hide();
         QuitarClaseErrorACombos();
     });
 
@@ -14,6 +20,8 @@
         $("#editBCK").hide();
         $("#btnsave").hide();
         $("#btnsaveDxO").hide();
+        $("#btnBack").hide();
+        $("#btnClose").show();
         $('#editDXU').removeClass("active");
         $('#dxoPanel').removeClass("active");  
     });
@@ -23,6 +31,8 @@
         $("#editDXU").hide();
         $("#editBCK").show();
         $("#btnsave").hide();
+        $("#btnBack").show();
+        $("#btnClose").hide();
         $('#editBCK').removeClass("active");
         $("#btnsaveDxO").show();
         QuitarClaseErrorACombos();

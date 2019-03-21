@@ -1773,11 +1773,19 @@ function llenarTablaOrderSumary() {
                 for (var i = 0; i < DxO.length; i++) {
                     var Imagen = '<img style="width: 80px;" src="' + DxO[i].Picture + '">';
                     var Botones = '<button class="Cursor btn btn-danger btn-icon btnn-dele" data-id="' + DxO[i].Id + '" style="width: 25px;height: 25px; margin-left: 10px;" type="submit"><i class="fa fa-trash"></i></button>';
+                    var WDecimal = DxO[i].DecimalsWidth.Description;
+                    var HDecimal = DxO[i].DecimalsHeight.Description;
+                    if (WDecimal == "0" || WDecimal == 0) {
+                        WDecimal = "";
+                    }
+                    if (HDecimal == "0" || HDecimal == 0) {
+                        HDecimal = "";
+                    }
                     t.row.add([
                         Imagen,
                         DxO[i].Quantity,
-                        DxO[i].Width +' '+ DxO[i].DecimalsWidth.Description,
-                        DxO[i].Height +' '+ DxO[i].DecimalsHeight.Description,
+                        DxO[i].Width + ' ' + WDecimal,
+                        DxO[i].Height + ' ' + HDecimal,
                         DxO[i].Panel.Description,
                         DxO[i].DoorType.Description,
                         DxO[i].DoorOption.Description,
