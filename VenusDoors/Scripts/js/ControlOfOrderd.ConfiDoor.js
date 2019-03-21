@@ -46,7 +46,6 @@
                 var PicturePanel = '<img style="width: 230px;height: 230px;" id="DoorPicture" src="' + DxOl[i].Picture + '">';
                 $('#PictureProfile').html(PictureProfile);
                 $('#PicturePanel').html(PicturePanel);
-
                 $('#idDoorxO').val(DxOl[i].Id);
                 $('#idDxuXO').val(DxOl[i].DoorxUser.Id);
                 $('#descDXO').val(DxOl[i].Descuento);
@@ -54,7 +53,10 @@
                 $('#iptHeight').val(DxOl[i].Height);
                 $('#CantidadFila').val(DxOl[i].Quantity);
                 //$('#descDXO').val(DxOl[i].Descuento);
-                llenarComboPanelStyle(DxOl[i].Panel.Id);
+                if ($('#cbDoorStyle').val()!=1010) {
+                    llenarComboPanelStyle(DxOl[i].Panel.Id);
+                }
+               
                 llenarComboDoorType(DxOl[i].DoorType.Id);
                 selectDoorOption(DxOl[i].DoorOption.Id);
                 llenarComboDecimalW(DxOl[i].DecimalsWidth.Id);
@@ -754,6 +756,8 @@ function RaisedPanel(Outside, Inside) {
     }
     $('#ProfilePicture').attr('src', urlFolder + ProfileUrl);
 }
+
+
 
 function changeDoorPicture() {
     var Style = $('#cbDoorStyle').val();

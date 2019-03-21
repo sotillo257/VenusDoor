@@ -727,6 +727,10 @@ namespace BusinessLogic
             {
                 respuesta = RaisedPanel(pOutsideEdgeProfile, pInsideEdgeProfile);
             }
+            if (pPanel == 3)
+            {
+                respuesta = "/Content/img/Profile/slab.png";
+            }
             return respuesta;
         }
         public string FlatPanel(int Outside, int Inside)

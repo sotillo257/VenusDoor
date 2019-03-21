@@ -134,6 +134,7 @@ function GetDoorsByOrder(idOrden) {
             llenarComboVerticalDivisions(Result.VerticalDivisions.Id);
             llenarComboHorizontalDivisions(Result.HorizontalDivisions.Id);
             llenarComboHingeDirection(Result.HingeDirection.Id);
+            ChangeDoorStylePanel(Result.DoorStyle.Id);
 
             var info = "";
             info += '<tr>';
