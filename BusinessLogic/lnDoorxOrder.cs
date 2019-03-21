@@ -317,6 +317,8 @@ namespace BusinessLogic
                 lnDoorsxUser DU = new lnDoorsxUser();
                 lnOrder _LNOrder = new lnOrder();
                 Order Order = _LNOrder.GetOrderById(pIdOrder);
+                lnUser _LNUser = new lnUser();
+                Order.User = _LNUser.GetUserById(Order.User.Id);
                 Order.DoorxUser = DU.GetAllDoorsxUser().Where(x => x.Order.Id == Order.Id).FirstOrDefault();
                 Order.SubTotal = 0;
                 Order.Quantity = 0;
@@ -353,7 +355,7 @@ namespace BusinessLogic
                     if (result < DoorPrice.BasePrice)
                     {
                         result = DoorPrice.BasePrice * 2;
-                        if (pDoorsOrder.User.Descuento > 0)
+                        if (Order.User.Descuento > 0)
                         {
                             decimal des = decimal.Parse(pDoorsOrder.User.Descuento.ToString()) / 100m;
                             pDoorsOrder.TotalDescuento = result * des;
