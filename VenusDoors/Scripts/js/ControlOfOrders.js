@@ -192,7 +192,7 @@ function GetDoorsByOrder(idOrden) {
             else {
                 dxu += '<td style="border-right: 1px solid #ADADAD;">Finger Pull: <span style="color: #868ba1">Yes</span></td>';
             }
-            dxu += '<td colspan="2">Observations: ' + Result.Order.Observations + '</td>';
+            dxu += '<td colspan="2"><textarea disabled rows="1" style="background: #fff!important" class="form-control">Observations: <span style="color: #868ba1">' + Result.Order.Observations + '</span></textarea></td>';
             dxu += '</tr>';
 
             var option = '<table id="ordertable" style="width:100%">';
