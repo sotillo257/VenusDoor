@@ -10,6 +10,7 @@ namespace VenusDoors.Controllers
     public class OrderControlController : Controller
     {
         BusinessLogic.lnOrder _LNOR = new BusinessLogic.lnOrder();
+        BusinessLogic.lnSendMail _SEND = new BusinessLogic.lnSendMail();
 
         // GET: OrderControl
         [Authorize(Roles = "1, 2")]
@@ -55,11 +56,46 @@ namespace VenusDoors.Controllers
                 int userID = (int)Session["UserID"];
                 try
                 {
+                    BusinessLogic.lnOrder _LNOR = new BusinessLogic.lnOrder();
+                    BusinessLogic.lnUser _LNU = new BusinessLogic.lnUser();
+                    BusinessLogic.lnPerson _LNP = new BusinessLogic.lnPerson();
 
                     modOrder.ModificationDate = DateTime.Now;
-                    modOrder.ModificationUser = userID;
-                    BusinessLogic.lnOrder _LNOR = new BusinessLogic.lnOrder();
+                    modOrder.ModificationUser = userID;                    
                     var modOrderStatus = _LNOR.UpdateOrderStatus(modOrder);
+
+                    Order GetOrder = _LNOR.GetOrderById(modOrder.Id);
+                    User pUser = _LNU.GetUserById(GetOrder.User.Id);
+                    int idPerson = pUser.Person.Id;
+                    pUser.Person = _LNP.GetPersonById(idPerson);        
+                    string message = "";
+                    string subject = "The status of your order #"+ GetOrder.Id +" has changed";
+                    string FromTittle = "Venus Cabinet Doors Administration";
+                    string typeMessage = "OrderControl";
+                    if (modOrder.Status.Id == 6)
+                    {
+                        message += "<p style='width: 80%;'>Hi, " + pUser.Person.Name + " " + pUser.Person.Lastname + ".<br><br>Your order #" + GetOrder.Id + " has been approved. Shortly we will contact you to process your payment and continue with the process of your order.</p>";
+                    }
+                    else if(modOrder.Status.Id == 7)
+                    {
+                        message += "<p style='width: 80%;'>Hi, " + pUser.Person.Name + " " + pUser.Person.Lastname + ".<br><br>The status of your order #" + GetOrder.Id + " has changed. We are in the process of building your doors, we will send you another email when your order is complete.</p>";
+                    }
+                    else if (modOrder.Status.Id == 8)
+                    {
+                        if (GetOrder.ShippingAddress.Id == 1)
+                        {
+                            message += "<p style='width: 80%;'>Hi, " + pUser.Person.Name + " " + pUser.Person.Lastname + ".<br><br>Your order #" + GetOrder.Id + " has been completed. You can pass by dispatching it.</p>";
+                        }
+                        else
+                        {
+                            message += "<p style='width: 80%;'>Hi, " + pUser.Person.Name + " " + pUser.Person.Lastname + ".<br><br>Your order #" + GetOrder.Id + " has been completed. Your doors will be sent to the shipping address you provided when confirming your order.</p>";
+                        }
+                    }
+                    else if (modOrder.Status.Id == 11)
+                    {
+                        message += "<p style='width: 80%;'>Hi, " + pUser.Person.Name + " " + pUser.Person.Lastname + ".<br><br>Your order #" + GetOrder.Id + " has been rejected.</p>";
+                    }                    
+                    _SEND.SendMail(pUser, subject, FromTittle, message, typeMessage);
                     return Json(true, JsonRequestBehavior.AllowGet);
 
                 }
