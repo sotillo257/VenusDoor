@@ -17,6 +17,7 @@ namespace VenusDoors.Controllers
             {
                 if (Session["UserID"] == null)
                 {
+                   // var x = System.Configuration.ConfigurationManager.ConnectionStrings["ssss"].ConnectionString;
                     return RedirectToAction("Index", "Home");
                 }
                 else
