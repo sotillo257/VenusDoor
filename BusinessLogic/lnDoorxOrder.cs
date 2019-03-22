@@ -69,7 +69,6 @@ namespace BusinessLogic
                     if (pDoorsxOrder.User.Descuento > 0)
                     {
                         decimal des = decimal.Parse(pDoorsxOrder.User.Descuento.ToString()) / 100m;
-                        pDoorsxOrder.TotalDescuento = result * des;
                         result = result - (des * result);
                     }
                     if (pDoorsxOrder.Descuento > 0)
@@ -99,7 +98,6 @@ namespace BusinessLogic
                     pDoorsxOrder.ItemCost = result ;
                     pDoorsxOrder.SubTotal = result * pDoorsxOrder.Quantity;
                 }
-                pDoorsxOrder.Descuento = 0;
                 pDoorsxOrder.DoorxUser = DoorUser;
                 pDoorsxOrder.CreationDate = DateTime.Now;
                 pDoorsxOrder.ModificationDate = DateTime.Now;
