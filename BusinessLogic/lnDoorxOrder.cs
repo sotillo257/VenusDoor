@@ -383,9 +383,9 @@ namespace BusinessLogic
                     else
                     {
                     result = result * 2;
-                    if (pDoorsOrder.User.Descuento > 0)
+                    if (Order.User.Descuento > 0)
                     {
-                        decimal des = decimal.Parse(pDoorsOrder.User.Descuento.ToString()) / 100m;
+                        decimal des = decimal.Parse(Order.User.Descuento.ToString()) / 100m;
                         pDoorsOrder.TotalDescuento = result * des;
                         result = result - (des * result);
                     }
