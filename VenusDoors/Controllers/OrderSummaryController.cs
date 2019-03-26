@@ -235,7 +235,7 @@ namespace VenusDoors.Controllers
             User pUser = _LNU.GetUserById(CompleteOrder.User.Id);
             int idPerson = pUser.Person.Id;
             pUser.Person = _LNP.GetPersonById(idPerson);
-            string subject = "Order summary";
+            string subject = "Order summary #"+ CompleteOrder.Id;
             string FromTittle = "Venus Cabinet Doors";
             string message = "";
             string typeMessage = "OrderSumm";
