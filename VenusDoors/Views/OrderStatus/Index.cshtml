@@ -159,7 +159,11 @@ else
                             </p>
                         </div><!-- col-6 -->
                         <div style="padding-left: 60px; padding-right: 0px;" class="col-sm-6 mg-t-20 mg-sm-t-0 d-flex align-items-end justify-content-center">
-                            <img style="width: 185px;" src="@LastDoor.DoorsxOrder.FirstOrDefault().Picture" />
+                        @if (LastDoor.DoorsxOrder.Count > 0)
+                        {
+                            <img style="width: 185px;" src="@LastDoor.DoorsxOrder.FirstOrDefault().Picture" /> /**/
+                        }
+                           
                         </div><!-- col-6 -->
 
                     </div><!-- row -->

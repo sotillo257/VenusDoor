@@ -245,19 +245,20 @@ function llenarTablaBottomRail() {
         success: function (data) {
             if (data != null) {
                 listBTR = data;
-                var option = '';
-                for (var i = 0; i < data.length; i++) {
-                    option += '<tr role="row" class="odd">';
-                    option += '<td tabindex="0"  >' + data[i].Id + '</td>';
-                    option += '<td>' + data[i].Description + '</td>';
-                    option += '<td>' + data[i].Status.Description + '</td>';
-                    option += '<td>';
-                    option += '<center>';
-                    option += '<a href="#" data-toggle="modal" data-target="#modalInsert" value="' + data[i].Id + '" class="Modificar btn btn-primary btn-icon">';
-                    option += '<div><i class="fa fa-edit"></i></div></a></center></td></tr>';
 
-                }
-                $("#datatable1 > tbody").empty().append(option);
+                var t = $('#datatable1').DataTable();
+                t.rows().remove().draw(false);
+               
+                for (var i = 0; i < data.length; i++) {
+                    var Botones = '<center><button data-toggle="modal" data-target="#modalInsert" value="' + data[i].Id + '" style="width: 25px;height: 25px; margin-left: 10px;" class="Modificar btn btn-primary btn-icon"><i class="fa fa-edit"></i></button></center>';
+
+                    t.row.add([
+                        data[i].Id,
+                        data[i].Description,
+                        data[i].Status.Description,
+                       Botones
+                    ]).draw(false);
+                }               
                 $("#modalInsert").modal("hide");
             }
             else {

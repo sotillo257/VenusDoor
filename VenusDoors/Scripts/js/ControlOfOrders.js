@@ -513,7 +513,7 @@ function llenarTablaOrderControlxUser(pIdStatus) {
                     } else if (data[i].Status.Id == 11) {
                         option += '<span class="square-8 bg-danger mg-r-5 rounded-circle"></span>';
                     }
-                    var Botones = '<button href="#" data-id="' + data[i].Id + '" value="" data-toggle="modal" data-target=".ModalOrderInfo" class="Detalle Cursor btn btn-info btn-icon" s style="width: 25px;height: 25px; margin-left: 10px;" ><i class="fa fa-eye" ></i></button>';
+                    var Botones = '<button href="#" data-id="' + data[i].Id + '" value="" data-toggle="modal" data-target=".ModalOrderInfo" class="Detalle Cursor btn btn-info btn-icon" style="width: 25px;height: 25px; margin-left: 10px;" ><i class="fa fa-eye" ></i></button>';
                     if (data[i].Status.Id == 5) {
                         Botones += '<button title="Approve order." value="' + data[i].Id + '" class="Approved Cursor btn btn-primary btn-icon" style="width: 25px;height: 25px; margin-left: 10px;"><i class="fa fa-check"></i></button>';
                         Botones += '<button  data-toggle="modal" data-target="" id="" title="Remove order." value="' + data[i].Id + '" class="Remove Cursor btn btn-danger btn-icon" style="width: 25px;height: 25px; margin-left: 10px; "><i class="fa fa-close"></i></button>';
