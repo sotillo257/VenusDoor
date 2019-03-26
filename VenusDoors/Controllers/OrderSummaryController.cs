@@ -219,345 +219,127 @@ namespace VenusDoors.Controllers
                 
             }            
         }
+
         [Authorize]
-        public void SendOrderToUser(Order CompleteOrder)
+        public void SentOrderSummaryEstimate(Order CompleteOrder)
         {
-            try
-            {           
-            int userID = (int)Session["UserID"];         
-            var date = DateTime.Now;
-            BusinessLogic.lnUser _LN = new BusinessLogic.lnUser();
-            User use = _LN.GetUserById(userID);
-            BusinessLogic.lnPerson _LNPR = new BusinessLogic.lnPerson();
-            Person per = _LNPR.GetPersonById(use.Person.Id);
-
-            string NameUser = per.Name;
-            string To = use.Email;
-            MailMessage mail = new MailMessage();
-            SmtpClient SmtpServer = new SmtpClient("smtp.ionos.com");
-            mail.From = new MailAddress("orders@venuscabinetdoors.com", "Venus Cabinet Doors");
-            mail.Bcc.Add(new MailAddress(To));
-
-            mail.Subject = "Order summary";
-
-                BusinessLogic.lnDoorsxUser _LNDU = new BusinessLogic.lnDoorsxUser();
-                BusinessLogic.lnDoorxOrder _LNDO = new BusinessLogic.lnDoorxOrder();
-                BusinessLogic.lnShippingAddress _LNSA = new BusinessLogic.lnShippingAddress();
-                var getDoorxu = CompleteOrder.DoorxUser;
-                var getSA = _LNSA.GetShippingAddressById(CompleteOrder.ShippingAddress.Id);
-                List<DoorxOrder> ListaDoorsxO = _LNDO.GetAllDoorxOrderByDoorxUser(getDoorxu.Id);
-                ViewBag.DxOLst = ListaDoorsxO;
-
-                string cuerpo = "<p>Dear " + NameUser + ",</p>"+
-            "<p>Please review the estimate below.Feel free to contact us if you have any questions.<br>"+
-            "We look forward to working with you.</p>"+
-            "<p>Thanks for your business!"+
-            "<br><b>Venus Doors<b></p>"+
-            "<table width='400px' style='border: solid 1px;border-radius: 16px;padding: 15px;background: #e6e0c0; '>" +
-                "<thead>" +
-                "<tr style='text-align:center'>" +
-                    "<p>------ Order ref: #" + CompleteOrder.Id + " ------</p>" +
-                "</tr>" +
-                "<tr style='text-align:left'>" +
-                    "<p>Name : " + per.Name + " " + per.Lastname + "</p>" +
-                "</tr>" +
-                "<tr style='text-align:left'>" +
-                    "<p>Phone number: " + per.Telephone + "</p>" +
-                "</tr>" +
-                "<tr style='text-align:left'>" +
-                    "<p>Email: " + use.Email + "</p>" +
-                "</tr>" +
-                "<tr style='text-align:left'>" +
-                    "<p>Address: " + per.Direction + "</p>" +
-                "</tr>" +
-                "<tr style='text-align:left'>" +
-                    "<p>Estimate date: " + date + "</p>" +
-                "</tr>" +
-                "<tr style='text-align:left'>" +
-                    "<p>Quantity of products: " + CompleteOrder.Quantity + "</p>" +
-                "</tr>" +
-                "<tr style='text-align:left'>" +
-                    "<p>SubTotal: $" + CompleteOrder.SubTotal + "</p>" +
-                "</tr>" +
-                "<tr style='text-align:left'>" +
-                    "<p>Tax: $" + CompleteOrder.Tax + "</p>" +
-                "</tr>" +
-                "<tr style='text-align:left'>" +
-                    "<p>Total: $" + CompleteOrder.Total + "</p>" +
-                "</tr>" +
-                "<tr style='text-align:center'>" +
-                    "<p>---------------------------</p>" +
-                "</tr>" +
-                "</thead>" +
-            "</table>";
-                if (CompleteOrder.ShippingAddress.Id != 1)
-                {
-                    cuerpo += "<h6 style='margin-top:15px'>Shipping address selected: "+ getSA.Name +"</h6>";
-                    cuerpo += "<p>Address: " + getSA.Address + "</p>";
-                    cuerpo += "<p>Residence: " + getSA.Residence + "</p>";
-                    cuerpo += "<p>City: " + getSA.City + "</p>";
-                    cuerpo += "<p>Street: " + getSA.St + "</p>";
-                    cuerpo += "<p>Zip: " + getSA.ZipCode + "</p>";
-                }
-                cuerpo += "<div>";
-                cuerpo += "<div class='col-xs-4 col-md-3'><label style='margin-top: 25px;'>Wood Species: <span>" + getDoorxu.Material.Description + "</span></label></div>";
-                cuerpo += "<div class='col-xs-4 col-md-3'><label style='margin-top: 25px;'>Door Style: <span>" + getDoorxu.DoorStyle.Description + "</span></label></div>";
-                cuerpo += "<div class='col-xs-4 col-md-3'>";
-                if (getDoorxu.isOverlay == false)
-                {
-                    cuerpo += "<label style='margin-top: 25px;'>Door Place: <span>Inset Door Type</span></label>";
-                }
-                else
-                {
-                    cuerpo += "<label style='margin-top: 25px;'>Door Place: <span>Overlay Door Type</span></label>";
-                }
-                cuerpo += "</div>";
-                cuerpo += "<div class='col-xs-4 col-md-3'><label style='margin-top: 25px;'>Inside Edge Profile: <span>" + getDoorxu.InsideEdgeProfile.Description + "</span></label></div>";
-                cuerpo += "<div class='col-xs-4 col-md-3'><label style='margin-top: 25px;'>Outside Edge Profile: <span>" + getDoorxu.OutsideEdgeProfile.Description + "</span></label></div>";
-                cuerpo += "<div class='col-xs-4 col-md-3'><label style='margin-top: 25px;'>Stile Width: <span>" + getDoorxu.BottomRail.Description + "</span></label></div>";
-                cuerpo += "<div class='col-xs-4 col-md-3'><label style='margin-top: 25px;'>Rail Width: <span>" + getDoorxu.TopRail.Description + "</span></label></div>";
-                cuerpo += "<div class='col-xs-4 col-md-3'><label style='margin-top: 25px;'>Door Assembly: <span>" + getDoorxu.Join.Description + "</span></label></div>";
-                cuerpo += "<div class='col-xs-4 col-md-3'><label style='margin-top: 25px;'>Panel Material: <span>" + getDoorxu.PanelMaterial.Description + "</span></label></div>";
-                cuerpo += "<div class='col-xs-4 col-md-3'>";
-                if (getDoorxu.IsOpeningMeasurement == false)
-                {
-                    cuerpo += "<label style='margin-top: 25px;'>Opening Measurement: <span>No Opening</span></label>";
-                }
-                else
-                {
-                    cuerpo += "<label style='margin-top: 25px;'>Opening Measurement: <span>Is Opening</span></label>";
-                }
-                cuerpo += "</div>";
-                cuerpo += "<div class='col-xs-4 col-md-3'><label style='margin-top: 25px;'>Vertical Divisions: <span>" + getDoorxu.VerticalDivisions.Quantity + "</span></label></div>";
-                cuerpo += "<div class='col-xs-4 col-md-3'><label style='margin-top: 25px;'>Horizontal Divisions: <span>" + getDoorxu.HorizontalDivisions.Quantity + "</span></label></div>";
-                cuerpo += "<div class='col-xs-4 col-md-3'>";
-                if (getDoorxu.isDrill == false)
-                {
-                    cuerpo += "<label style='margin-top: 25px;'>Hinge Drilling: <span>No Drill</span></label>";
-                }
-                else
-                {
-                    cuerpo += "<label style='margin-top: 25px;'>Hinge Drilling: <span>Is Drill</span></label>";
-                }
-                cuerpo += "</div>";
-                if (getDoorxu.isDrill == true)
-                {
-                    cuerpo += "<div class='col-xs-4 col-md-3'><label style='margin-top: 25px;'>Hinge Direction: <span>" + getDoorxu.HingeDirection.Direction + "</span></label></div>";
-                }
-                cuerpo += "<div class='col-xs-4 col-md-3'>";
-                if (getDoorxu.isFingerPull == false)
-                {
-                    cuerpo += "<label style='margin-top: 25px;'>Finger Pull: <span>No</span></label>";
-                }
-                else
-                {
-                    cuerpo += "<label style='margin-top: 25px;'>Finger Pull: <span>Yes</span></label>";
-                }
-                cuerpo += "</div>";
-                cuerpo += "</div>";
-                cuerpo += "<table>" +
-                        "<thead>" +
-                            "<tr>" +
-                                "<th>Panel Style</th>" +
-                                "<th>Door Type</th>" +
-                                "<th>door Option</th>" +
-                                "<th>U. Price</th>" +
-                                "<th>Quantity</th>" +
-                                "<th>Total</th>" +
-                            "</tr>" +
-                        "</thead>" +
-                "<tbody>";
-                foreach (DoorxOrder item in ViewBag.DxOLst)
-                {
-                    cuerpo += "<tr>" +
-                        "<td>" + item.Panel.Description + "</td>" +
-                        "<td>" + item.DoorType.Description + "</td>" +
-                        "<td>" + item.DoorOption.Description + "</td>" +
-                        "<td>" + item.ItemCost + "</td>" +
-                        "<td>" + item.Quantity + "</td>" +
-                        "<td>" + item.SubTotal + "</td>" +
-                   "</tr>";
-                }
-                cuerpo += "</tbody></table>";
-                mail.Body = cuerpo;
-            //mail.Attachments.Add(new Attachment("C:/Users/jesus/Source/Repos/ordersummary.pdf"));
-            mail.IsBodyHtml = true;
-            SmtpServer.Port = 587;
-            SmtpServer.Credentials = new System.Net.NetworkCredential("orders@venuscabinetdoors.com", "venusCBD2019*");
-            SmtpServer.EnableSsl = true;
-            SmtpServer.Send(mail);
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
-        }
-        [Authorize]
-        public void SendOrderToManage(Order CompleteOrder)
-        {
-            int userID = (int)Session["UserID"];
-            var date = DateTime.Now;
-            BusinessLogic.lnUser _LN = new BusinessLogic.lnUser();
-            User use = _LN.GetUserById(userID);
-            BusinessLogic.lnPerson _LNPR = new BusinessLogic.lnPerson();
-            Person per = _LNPR.GetPersonById(use.Person.Id);
-
-            string NameUser = per.Name;
-            string Lastuser = per.Lastname;
-            string To = use.Email;
-            MailMessage mail = new MailMessage();
-            SmtpClient SmtpServer = new SmtpClient("smtp.ionos.com");
-            mail.From = new MailAddress("orders@venuscabinetdoors.com", "A new order has been received");
-            mail.To.Add(new MailAddress("orders@venuscabinetdoors.com"));
-            mail.Subject = "New order by " + NameUser + " " + Lastuser;
-
+            BusinessLogic.lnSendMail _SEND = new BusinessLogic.lnSendMail();
+            BusinessLogic.lnUser _LNU = new BusinessLogic.lnUser();
+            BusinessLogic.lnPerson _LNP = new BusinessLogic.lnPerson();
             BusinessLogic.lnDoorsxUser _LNDU = new BusinessLogic.lnDoorsxUser();
             BusinessLogic.lnDoorxOrder _LNDO = new BusinessLogic.lnDoorxOrder();
-            BusinessLogic.lnShippingAddress _LNSA = new BusinessLogic.lnShippingAddress();
+
             var getDoorxu = CompleteOrder.DoorxUser;
-            var getSA = _LNSA.GetShippingAddressById(CompleteOrder.ShippingAddress.Id);
             List<DoorxOrder> ListaDoorsxO = _LNDO.GetAllDoorxOrderByDoorxUser(getDoorxu.Id);
-            ViewBag.DxOLst = ListaDoorsxO;
 
+            User pUser = _LNU.GetUserById(CompleteOrder.User.Id);
+            int idPerson = pUser.Person.Id;
+            pUser.Person = _LNP.GetPersonById(idPerson);
+            string subject = "Order summary";
+            string FromTittle = "Venus Cabinet Doors";
+            string message = "";
+            string typeMessage = "OrderSumm";
 
-            string cuerpo = "<p>Details of the order of:" + per.Name +" "+ per.Lastname +" order." +               
-                "<p>Contact information<b></p>" +
-                "<table width='400px' style='border: solid 1px;border-radius: 16px;padding: 15px;background: #e6e0c0; '>" +
-                "<thead>" +
-                "<tr style='text-align:center'>" +
-                    "<p>------ Order ref: #" + CompleteOrder.Id + " ------</p>" +
-                "</tr>" +
-                "<tr style='text-align:left'>" +
-                    "<p>Name : " + per.Name + " " + per.Lastname + "</p>" +
-                "</tr>" +
-                "<tr style='text-align:left'>" +
-                    "<p>Phone number: " + per.Telephone + "</p>" +
-                "</tr>" +
-                "<tr style='text-align:left'>" +
-                    "<p>Email: " + use.Email + "</p>" +
-                "</tr>" +
-                "<tr style='text-align:left'>" +
-                    "<p>Address: " + per.Direction + "</p>" +
-                "</tr>" +
-                "<tr style='text-align:left'>" +
-                    "<p>Estimate date: " + date + "</p>" +
-                "</tr>" +
-                "<tr style='text-align:left'>" +
-                    "<p>Quantity of products: " + CompleteOrder.Quantity + "</p>" +
-                "</tr>" +
-                "<tr style='text-align:left'>" +
-                    "<p>SubTotal: $" + CompleteOrder.SubTotal + "</p>" +
-                "</tr>" +
-                "<tr style='text-align:left'>" +
-                    "<p>Tax: $" + CompleteOrder.Tax + "</p>" +
-                "</tr>" +
-                "<tr style='text-align:left'>" +
-                    "<p>Total: $" + CompleteOrder.Total + "</p>" +
-                "</tr>" +
-                "<tr style='text-align:center'>" +
-                    "<p>---------------------------</p>" +
-                "</tr>" +
-                "</thead>" +
-            "</table>";
-            if (CompleteOrder.ShippingAddress.Id != 1)
-            {
-                cuerpo += "<h6 style='margin-top:15px'>Shipping Address</h6>";
-                cuerpo += "<p>Address: "+ getSA.Address + "</p>";
-                cuerpo += "<p>Residence: " + getSA.Residence + "</p>";
-                cuerpo += "<p>City: " + getSA.City + "</p>";
-                cuerpo += "<p>Street: " + getSA.St + "</p>";
-                cuerpo += "<p>Zip: " + getSA.ZipCode + "</p>";
-                cuerpo += "<p>Contact number: " + getSA.Contact + "</p>";
-            }
-            cuerpo += "<div>";
-            cuerpo += "<div class='col-xs-4 col-md-3'><label style='margin-top: 25px;'>Wood Species: <span>" + getDoorxu.Material.Description + "</span></label></div>";
-            cuerpo += "<div class='col-xs-4 col-md-3'><label style='margin-top: 25px;'>Door Style: <span>" + getDoorxu.DoorStyle.Description + "</span></label></div>";
-            cuerpo += "<div class='col-xs-4 col-md-3'>";
+            message += "<div><h4 style='margin:0; text-align:center'>Order ref: #" + CompleteOrder.Id + "</h4><div class='datagrid' style='font: normal 12px/150% Arial, Helvetica, sans-serif; background: #fff; overflow: hidden; border: 1px solid #014D41; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;'>" +
+           "<table style='border-collapse: collapse; text-align: left; width: 100%;'><tbody>" +
+           "<tr>" +
+               "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Name: " + pUser.Person.Name + " " + pUser.Person.Lastname + "</td>" +
+               "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Phone: " + pUser.Person.Telephone + "</td>" +
+               "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Email: " + pUser.Email + "</td>" +
+               "</tr>" +
+           "<tr>" +
+               "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Address: " + pUser.Person.Direction + "</td>" +
+               "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Estimate date: " + DateTime.Now + "</td>" +
+               "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Quantity of products: " + CompleteOrder.Quantity + "</td>" +
+           "</tr>" +
+           "<tr>" +
+               "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Sub-Total: $" + CompleteOrder.SubTotal + "</td>" +
+               "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Tax: $" + CompleteOrder.Tax + "</td>" +
+               "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Total: $" + CompleteOrder.Total + "</td>" +
+           "</tr></tbody></table></div>" +
+           "<h4 style = 'margin:0; text-align:center' >General Configuration</h4>" +
+           "<div class='datagrid' style='font: normal 12px/150% Arial, Helvetica, sans-serif; background: #fff; overflow: hidden; border: 1px solid #014D41; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;'>" +
+           "<table style='border-collapse: collapse; text-align: left; width: 100%;'><tbody>" +
+           "<tr>" +
+               "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Wood Species: <span style = 'color: #868ba1'>" + getDoorxu.Material.Description + "</span></td>" +
+               "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Door Style: <span style = 'color: #868ba1'>" + getDoorxu.DoorStyle.Description + "</span></td>";
             if (getDoorxu.isOverlay == false)
             {
-                cuerpo += "<label style='margin-top: 25px;'>Door Place: <span>Inset Door Type</span></label>";
+                message += "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Door Place: <span style = 'color: #868ba1'>Inset Door Type</span></td>";
             }
             else
             {
-                cuerpo += "<label style='margin-top: 25px;'>Door Place: <span>Overlay Door Type</span></label>";
+                message += "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Door Place: <span style = 'color: #868ba1'>Overlay Door Type</span></td>";
             }
-            cuerpo += "</div>";
-            cuerpo += "<div class='col-xs-4 col-md-3'><label style='margin-top: 25px;'>Inside Edge Profile: <span>" + getDoorxu.InsideEdgeProfile.Description + "</span></label></div>";
-            cuerpo += "<div class='col-xs-4 col-md-3'><label style='margin-top: 25px;'>Outside Edge Profile: <span>" + getDoorxu.OutsideEdgeProfile.Description + "</span></label></div>";
-            cuerpo += "<div class='col-xs-4 col-md-3'><label style='margin-top: 25px;'>Stile Width: <span>" + getDoorxu.BottomRail.Description + "</span></label></div>";
-            cuerpo += "<div class='col-xs-4 col-md-3'><label style='margin-top: 25px;'>Rail Width: <span>" + getDoorxu.TopRail.Description + "</span></label></div>";
-            cuerpo += "<div class='col-xs-4 col-md-3'><label style='margin-top: 25px;'>Door Assembly: <span>" + getDoorxu.Join.Description + "</span></label></div>";
-            cuerpo += "<div class='col-xs-4 col-md-3'><label style='margin-top: 25px;'>Panel Material: <span>" + getDoorxu.PanelMaterial.Description + "</span></label></div>";
-            cuerpo += "<div class='col-xs-4 col-md-3'>";
+            message += "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Inside Edge Profile: <span style = 'color: #868ba1'> " + getDoorxu.InsideEdgeProfile.Description + "</span></td>" +
+            "</tr>" +
+            "<tr>" +
+                "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Outside Edge Profile: <span style = 'color: #868ba1'>" + getDoorxu.OutsideEdgeProfile.Description + "</span></td>" +
+                "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Stile Width: <span style = 'color: #868ba1'>" + getDoorxu.BottomRail.Description + "</span></td>" +
+                "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Rail Width: <span style = 'color: #868ba1'>" + getDoorxu.TopRail.Description + "</span></td>" +
+                "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Door Assembly: <span style = 'color: #868ba1'> " + getDoorxu.Join.Description + "</span></td>" +
+            "</tr>" +
+            "<tr>" +
+            "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Panel Material: <span style = 'color: #868ba1'>" + getDoorxu.PanelMaterial.Description + "</span></td>";
             if (getDoorxu.IsOpeningMeasurement == false)
             {
-                cuerpo += "<label style='margin-top: 25px;'>Opening Measurement: <span>No Opening</span></label>";
+                message += "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Opening Measurement: <span style = 'color: #868ba1'>No</span></td>";
             }
             else
             {
-                cuerpo += "<label style='margin-top: 25px;'>Opening Measurement: <span>Is Opening</span></label>";
+                message += "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Opening Measurement: <span style = 'color: #868ba1'>Yes</span></td>";
             }
-            cuerpo += "</div>";
-            cuerpo += "<div class='col-xs-4 col-md-3'><label style='margin-top: 25px;'>Vertical Divisions: <span>" + getDoorxu.VerticalDivisions.Quantity + "</span></label></div>";
-            cuerpo += "<div class='col-xs-4 col-md-3'><label style='margin-top: 25px;'>Horizontal Divisions: <span>" + getDoorxu.HorizontalDivisions.Quantity + "</span></label></div>";
-            cuerpo += "<div class='col-xs-4 col-md-3'>";
-            if (getDoorxu.isDrill == false)
+            message += "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Vertical Divisions: <span style = 'color: #868ba1'> " + getDoorxu.VerticalDivisions.Quantity + "</span></td>" +
+            "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Horizontal Divisions: <span style = 'color: #868ba1'> " + getDoorxu.HorizontalDivisions.Quantity + "</span></td>" +
+            "</tr>" +
+            "<tr>";
+            if(getDoorxu.isDrill == false)
             {
-                cuerpo += "<label style='margin-top: 25px;'>Hinge Drilling: <span>No Drill</span></label>";
+                message += "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Hinge Drilling: <span style = 'color: #868ba1'>No drill</span></td>";
             }
             else
             {
-                cuerpo += "<label style='margin-top: 25px;'>Hinge Drilling: <span>Is Drill</span></label>";
+                message += "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Hinge Drilling: <span style = 'color: #868ba1'>Drill(" + getDoorxu.HingeDirection.Direction +")</span></td>";
             }
-            cuerpo += "</div>";
-            if (getDoorxu.isDrill == true)
-            {
-                cuerpo += "<div class='col-xs-4 col-md-3'><label style='margin-top: 25px;'>Hinge Direction: <span>" + getDoorxu.HingeDirection.Direction + "</span></label></div>";
-            }
-            cuerpo += "<div class='col-xs-4 col-md-3'>";
             if (getDoorxu.isFingerPull == false)
             {
-                cuerpo += "<label style='margin-top: 25px;'>Finger Pull: <span>No</span></label>";
+                message += "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Finger Pull: <span style = 'color: #868ba1'>No</span></td>";
             }
             else
             {
-                cuerpo += "<label style='margin-top: 25px;'>Finger Pull: <span>Yes</span></label>";
+                message += "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Finger Pull: <span style = 'color: #868ba1'>Yes</span></td>";
             }
-            cuerpo += "</div>";
-            cuerpo += "</div>";
-            cuerpo += "<table>" +
-                    "<thead>" +
-                        "<tr>" +
-                            "<th>Panel Style</th>" +
-                            "<th>Door Type</th>" +
-                            "<th>door Option</th>" +
-                            "<th>U. Price</th>" +
-                            "<th>Quantity</th>" +
-                            "<th>Total</th>" +                            
-                        "</tr>" +
-                    "</thead>" +
+            message += "</tr>" +
+            "</tbody></table></div>" +
+            "<h4 style = 'margin:0; text-align:center' >List of doors</h4>" +
+            "<div class='datagrid' style='font: normal 12px/150% Arial, Helvetica, sans-serif; background: #fff; overflow: hidden; border: 1px solid #014D41; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;'><table style='border-collapse: collapse; text-align: left; width: 100%;'><thead>" +
+            "<tr>" +
+                "<th style='padding: 3px 10px; background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #014D41), color-stop(1, #027D69) );background:-moz-linear-gradient( center top, #014D41 5%, #027D69 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#014D41', endColorstr='#027D69');background-color:#014D41; color:#FFFFFF; font-size: 11px; font-weight: bold; border-left: 1px solid #0070A8;'>Width</th>" +
+                "<th style='padding: 3px 10px; background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #014D41), color-stop(1, #027D69) );background:-moz-linear-gradient( center top, #014D41 5%, #027D69 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#014D41', endColorstr='#027D69');background-color:#014D41; color:#FFFFFF; font-size: 11px; font-weight: bold; border-left: 1px solid #0070A8;'>Height</th>" +
+                "<th style='padding: 3px 10px; background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #014D41), color-stop(1, #027D69) );background:-moz-linear-gradient( center top, #014D41 5%, #027D69 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#014D41', endColorstr='#027D69');background-color:#014D41; color:#FFFFFF; font-size: 11px; font-weight: bold; border-left: 1px solid #0070A8;'>Panel Style</th>" +
+                "<th style='padding: 3px 10px; background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #014D41), color-stop(1, #027D69) );background:-moz-linear-gradient( center top, #014D41 5%, #027D69 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#014D41', endColorstr='#027D69');background-color:#014D41; color:#FFFFFF; font-size: 11px; font-weight: bold; border-left: 1px solid #0070A8;'>Door Type</th>" +
+                "<th style='padding: 3px 10px; background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #014D41), color-stop(1, #027D69) );background:-moz-linear-gradient( center top, #014D41 5%, #027D69 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#014D41', endColorstr='#027D69');background-color:#014D41; color:#FFFFFF; font-size: 11px; font-weight: bold; border-left: 1px solid #0070A8;'>Door Option</th>" +
+                "<th style='padding: 3px 10px; background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #014D41), color-stop(1, #027D69) );background:-moz-linear-gradient( center top, #014D41 5%, #027D69 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#014D41', endColorstr='#027D69');background-color:#014D41; color:#FFFFFF; font-size: 11px; font-weight: bold; border-left: 1px solid #0070A8;'>U.Price</th>" +
+                "<th style='padding: 3px 10px; background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #014D41), color-stop(1, #027D69) );background:-moz-linear-gradient( center top, #014D41 5%, #027D69 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#014D41', endColorstr='#027D69');background-color:#014D41; color:#FFFFFF; font-size: 11px; font-weight: bold; border-left: 1px solid #0070A8;'>Quantity</th>" +
+                "<th style='padding: 3px 10px; background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #014D41), color-stop(1, #027D69) );background:-moz-linear-gradient( center top, #014D41 5%, #027D69 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#014D41', endColorstr='#027D69');background-color:#014D41; color:#FFFFFF; font-size: 11px; font-weight: bold; border-left: 1px solid #0070A8;'>Total</th>" +
+            "</tr></thead>" +
             "<tbody>";
-            foreach (DoorxOrder item in ViewBag.DxOLst)
+            foreach (DoorxOrder item in ListaDoorsxO)
             {
-                cuerpo += "<tr>" +
-                    "<td>" + item.Panel.Description + "</td>" +
-                    "<td>" + item.DoorType.Description + "</td>" +
-                    "<td>" + item.DoorOption.Description + "</td>" +
-                    "<td>" + item.ItemCost + "</td>" +
-                    "<td>" + item.Quantity + "</td>" +
-                    "<td>" + item.SubTotal + "</td>" +                                       
+                message += "<tr>" +
+                    "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>" + item.Width + " "+ item.DecimalsWidth.Description +"</td>" +
+                    "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>" + item.Height + " " + item.DecimalsHeight.Description + "</td>" +
+                    "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>" + item.Panel.Description + "</td>" +                    
+                    "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>" + item.DoorType.Description + "</td>" +
+                    "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>" + item.DoorOption.Description + "</td>" +
+                    "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>" + item.ItemCost + "</td>" +
+                    "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>" + item.Quantity + "</td>" +
+                    "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>" + item.SubTotal + "</td>" +
                "</tr>";
             }
-            cuerpo += "</tbody></table>";
-            mail.Body = cuerpo;
-            mail.IsBodyHtml = true;
-            SmtpServer.Port = 587;
-            SmtpServer.Credentials = new System.Net.NetworkCredential("orders@venuscabinetdoors.com", "venusCBD2019*");
-            SmtpServer.EnableSsl = true;
-            SmtpServer.Send(mail);
-
-        }
+            message += "</tbody></table></div></div>";            
+            _SEND.SendMail(pUser, subject, FromTittle, message, typeMessage);
+        }       
 
         [Authorize] [HttpPost]
         public ActionResult ConfirmOrder (Order ord)
@@ -579,11 +361,9 @@ namespace VenusDoors.Controllers
                     }
                     BusinessLogic.lnDoorsxUser DU = new BusinessLogic.lnDoorsxUser();
                     CompleteOrder.DoorxUser = DU.GetAllDoorsxUser().Where(x => x.Order.Id == CompleteOrder.Id).FirstOrDefault();
-                    SendOrderToUser(CompleteOrder);
-                    SendOrderToManage(CompleteOrder);
+                    SentOrderSummaryEstimate(CompleteOrder);
                     CloseOrder(CompleteOrder);
-                    return Json(true, JsonRequestBehavior.AllowGet);
-                    
+                    return Json(true, JsonRequestBehavior.AllowGet);                    
                 }
                 catch
                 {
