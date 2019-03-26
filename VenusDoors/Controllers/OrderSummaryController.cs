@@ -240,7 +240,7 @@ namespace VenusDoors.Controllers
             string message = "";
             string typeMessage = "OrderSumm";
 
-            message += "<div><h4 style='margin:0; text-align:center'> ------Order ref: #" + CompleteOrder.Id + " ------</h4><div class='datagrid' style='font: normal 12px/150% Arial, Helvetica, sans-serif; background: #fff; overflow: hidden; border: 1px solid #014D41; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;'>" +
+            message += "<div><h4 style='margin:0; text-align:center'>Order ref: #" + CompleteOrder.Id + "</h4><div class='datagrid' style='font: normal 12px/150% Arial, Helvetica, sans-serif; background: #fff; overflow: hidden; border: 1px solid #014D41; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;'>" +
            "<table style='border-collapse: collapse; text-align: left; width: 100%;'><tbody>" +
            "<tr>" +
                "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Name: " + pUser.Person.Name + " " + pUser.Person.Lastname + "</td>" +
@@ -257,7 +257,7 @@ namespace VenusDoors.Controllers
                "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Tax: $" + CompleteOrder.Tax + "</td>" +
                "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Total: $" + CompleteOrder.Total + "</td>" +
            "</tr></tbody></table></div>" +
-           "<h4 style = 'margin:0; text-align:center' > ------General Configuration ------</h4>" +
+           "<h4 style = 'margin:0; text-align:center' >General Configuration</h4>" +
            "<div class='datagrid' style='font: normal 12px/150% Arial, Helvetica, sans-serif; background: #fff; overflow: hidden; border: 1px solid #014D41; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;'>" +
            "<table style='border-collapse: collapse; text-align: left; width: 100%;'><tbody>" +
            "<tr>" +
@@ -311,7 +311,7 @@ namespace VenusDoors.Controllers
             }
             message += "</tr>" +
             "</tbody></table></div>" +
-            "<h4 style = 'margin:0; text-align:center' > ------List of doors ------</h4>" +
+            "<h4 style = 'margin:0; text-align:center' >List of doors</h4>" +
             "<div class='datagrid' style='font: normal 12px/150% Arial, Helvetica, sans-serif; background: #fff; overflow: hidden; border: 1px solid #014D41; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;'><table style='border-collapse: collapse; text-align: left; width: 100%;'><thead>" +
             "<tr>" +
                 "<th style='padding: 3px 10px; background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #014D41), color-stop(1, #027D69) );background:-moz-linear-gradient( center top, #014D41 5%, #027D69 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#014D41', endColorstr='#027D69');background-color:#014D41; color:#FFFFFF; font-size: 11px; font-weight: bold; border-left: 1px solid #0070A8;'>Width</th>" +
@@ -329,8 +329,7 @@ namespace VenusDoors.Controllers
                 message += "<tr>" +
                     "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>" + item.Width + " "+ item.DecimalsWidth.Description +"</td>" +
                     "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>" + item.Height + " " + item.DecimalsHeight.Description + "</td>" +
-                    "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>" + item.Panel.Description + "</td>" +
-                    "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>" + item.Panel.Description + "</td>" +
+                    "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>" + item.Panel.Description + "</td>" +                    
                     "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>" + item.DoorType.Description + "</td>" +
                     "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>" + item.DoorOption.Description + "</td>" +
                     "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>" + item.ItemCost + "</td>" +
