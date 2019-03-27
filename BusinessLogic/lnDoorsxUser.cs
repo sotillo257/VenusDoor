@@ -116,7 +116,7 @@ namespace BusinessLogic
                 reader.Read();
                 while (reader.Read())
                 {
-                    if (reader[0].ToString() != "Select")
+                    if (reader[7].ToString() != "0" )
                     {
                         door.Add(new DoorxOrder()
                         {
