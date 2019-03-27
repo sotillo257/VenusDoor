@@ -13,9 +13,8 @@ namespace VenusDoors.Controllers
 {
     public class ConfiDoorController : Controller
     {
-
-        //String path;
-        //MailMessage mail = new MailMessage();
+       
+        BusinessLogic.lnSendMail _SEND = new BusinessLogic.lnSendMail();
 
         // GET: ConfiDoor
 
