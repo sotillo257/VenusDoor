@@ -397,8 +397,8 @@
         var urlGetPrices = '@Url.Action("GetPrices", "ConfiDoor")';
         var urlUpdateOrderStatus = '@Url.Action("UpdateOrderStatus", "OrderControl")';
         var urlGetAllOrderControl = '@Url.Action("GetAllOrderControl", "OrderControl")';
-        var urlInsertDoorsxUser = '@Url.Action("InsertDoorsxUser", "ConfiDoor")';
-        var urlUpdateDoorxOrder = '@Url.Action("UpdateDoorxOrder", "ConfiDoor")';
+        var urlInsertDoorsxUser = '@Url.Action("UpdateDoorxUser", "OrderControl")';
+        var urlUpdateDoorxOrder = '@Url.Action("UpdateDoorxOrder", "OrderControl")';
         try {
             var listDOOR = JSON.parse('@Html.Raw(ViewBag.ListDoorsxUser)');
         } catch (e) {

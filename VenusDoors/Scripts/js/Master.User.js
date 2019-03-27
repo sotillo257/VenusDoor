@@ -416,24 +416,24 @@ function llenarTablaGetAllUser() {
         success: function (data) {
             if (data != null) {
                 ListUsuario = data;
-                var option = '';
-                for (var i = 0; i < data.length; i++) {
-                    option += '<tr role="row" class="odd">';
-                    option += '<td tabindex="0"  >' + data[i].Id + '</td>';
-                    option += '<td>' + data[i].Email + '</td>';
-                    option += '<td>' + data[i].Password + '</td>';
-                    option += '<td>' + data[i].Type.Description + '</td>';
-                    option += '<td>' + data[i].Person.Name + '</td>';
-                    option += '<td>' + data[i].Company.Name + '</td>';
-                    option += '<td>' + data[i].Status.Description + '</td>';
-                    option += '<td>';
-                    option += '<center>';
-                    option += '<a href="#" data-toggle="modal" data-target="#modalInsert" value="' + data[i].Id + '" class="Modificar btn btn-primary btn-icon">';
-                    option += '<div><i class="fa fa-edit"></i></div></a></center></td></tr>';
 
-                }
-                $("#datatable1 > tbody").empty().append(option);
+                var t = $('#datatable1').DataTable();
+                t.rows().remove().draw(false);
                 $("#modalInsert").modal("hide");
+
+                for (var i = 0; i < data.length; i++) {
+                    var Botones = '<a href="#" data-toggle="modal" data-target="#modalInsert" value="' + data[i].Id + '" class="Modificar Cursor btn btn-primary btn-icon"><div><i class="fa fa-edit"></i></div></a>';
+                    t.row.add([
+                        data[i].Id,
+                        data[i].Email,
+                        data[i].Type.Description,
+                        data[i].Person.Name,
+                        data[i].Company.Name,
+                        data[i].Descuento + "%",
+                        data[i].Status.Description,
+                        Botones
+                    ]).draw(false);
+                }               
             }
             else {
                 LlammarModal("Danger", "Error obtaining Type", " ");
@@ -443,5 +443,4 @@ function llenarTablaGetAllUser() {
             LlammarModal("Danger", "Error.", " ");
         }
     });
-
 }

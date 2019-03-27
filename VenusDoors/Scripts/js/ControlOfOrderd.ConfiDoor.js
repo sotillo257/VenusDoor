@@ -484,7 +484,7 @@ function InsertDoorsxUser() {
     }
     var datos =
          {
-             Ord: {
+             Orden: {
                  Id: _IdOrderModificar,
                  Descuento: $("#descDXU").val(),
                  DoorxUser: {

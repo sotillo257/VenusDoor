@@ -197,5 +197,123 @@ namespace VenusDoors.Controllers
             }
            
         }
+        
+        [HttpPost]
+        public ActionResult UpdateDoorxOrder(DoorxOrder pDoorsxOrder, int idOrder)
+        {
+            try
+            {
+                if (Session["UserID"] == null)
+                {
+
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    BusinessLogic.lnDoorxOrder ln = new BusinessLogic.lnDoorxOrder();
+                    int uss = (int)Session["UserID"];
+                    ln.UpdateDoorxOrder(idOrder, pDoorsxOrder, uss);
+
+                    return Json(true, JsonRequestBehavior.AllowGet);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Error = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+               
+        [HttpPost]
+        public ActionResult UpdateDoorxUser(Order Orden)
+        {
+            try
+            {
+                if (Session["UserID"] == null)
+                {
+
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    BusinessLogic.lnDoorsxUser ln = new BusinessLogic.lnDoorsxUser();
+                    BusinessLogic.lnDoorxOrder _LN = new BusinessLogic.lnDoorxOrder();
+                    BusinessLogic.lnUser _LNU = new BusinessLogic.lnUser();
+                    BusinessLogic.lnPerson _LNP = new BusinessLogic.lnPerson();
+
+                    Order ord = ln.CrearOrder(Orden, (int)Session["UserID"]);
+                    _LN.UpdateDoorsxOrder(ord);
+
+                    User pUser = _LNU.GetUserById(ord.User.Id);
+                    int idPerson = pUser.Person.Id;
+                    pUser.Person = _LNP.GetPersonById(idPerson);
+                    string message = "<p>We have made some modifications to the configuration of your order.<br>The following shows how the general configuration was after being modified:</p>" +
+                    "<div style='width:100%'>"+
+                    "<h4 style = 'margin:0; text-align:center' >General Configuration</h4>" +
+                    "<div class='datagrid' style='font: normal 12px/150% Arial, Helvetica, sans-serif; background: #fff; overflow: hidden; border: 1px solid #014D41; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; width:100%'>" +
+                    "<table style='border-collapse: collapse; text-align: left; width: 100%;'><tbody>" +
+                    "<tr>" +
+                    "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Wood Species: <span style = 'color: #868ba1'>" + Orden.DoorxUser.Material.Description + "</span></td>" +
+                    "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Door Style: <span style = 'color: #868ba1'>" + Orden.DoorxUser.DoorStyle.Description + "</span></td>";
+                    if (Orden.DoorxUser.isOverlay == false)
+                    {
+                        message += "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Door Place: <span style = 'color: #868ba1'>Inset Door Type</span></td>";
+                    }
+                    else
+                    {
+                        message += "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Door Place: <span style = 'color: #868ba1'>Overlay Door Type</span></td>";
+                    }
+                    message += "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Inside Edge Profile: <span style = 'color: #868ba1'> " + Orden.DoorxUser.InsideEdgeProfile.Description + "</span></td>" +
+                    "</tr>" +
+                    "<tr>" +
+                        "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Outside Edge Profile: <span style = 'color: #868ba1'>" + Orden.DoorxUser.OutsideEdgeProfile.Description + "</span></td>" +
+                        "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Stile Width: <span style = 'color: #868ba1'>" + Orden.DoorxUser.BottomRail.Description + "</span></td>" +
+                        "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Rail Width: <span style = 'color: #868ba1'>" + Orden.DoorxUser.TopRail.Description + "</span></td>" +
+                        "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Door Assembly: <span style = 'color: #868ba1'> " + Orden.DoorxUser.Join.Description + "</span></td>" +
+                    "</tr>" +
+                    "<tr>" +
+                    "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Panel Material: <span style = 'color: #868ba1'>" + Orden.DoorxUser.PanelMaterial.Description + "</span></td>";
+                    if (Orden.DoorxUser.IsOpeningMeasurement == false)
+                    {
+                        message += "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Opening Measurement: <span style = 'color: #868ba1'>No</span></td>";
+                    }
+                    else
+                    {
+                        message += "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Opening Measurement: <span style = 'color: #868ba1'>Yes</span></td>";
+                    }
+                    message += "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Vertical Divisions: <span style = 'color: #868ba1'> " + Orden.DoorxUser.VerticalDivisions.Quantity + "</span></td>" +
+                    "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Horizontal Divisions: <span style = 'color: #868ba1'> " + Orden.DoorxUser.HorizontalDivisions.Quantity + "</span></td>" +
+                    "</tr>" +
+                    "<tr>";
+                    if (Orden.DoorxUser.isDrill == false)
+                    {
+                        message += "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Hinge Drilling: <span style = 'color: #868ba1'>No drill</span></td>";
+                    }
+                    else
+                    {
+                        message += "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Hinge Drilling: <span style = 'color: #868ba1'>Drill(" + Orden.DoorxUser.HingeDirection.Direction + ")</span></td>";
+                    }
+                    if (Orden.DoorxUser.isFingerPull == false)
+                    {
+                        message += "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Finger Pull: <span style = 'color: #868ba1'>No</span></td>";
+                    }
+                    else
+                    {
+                        message += "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Finger Pull: <span style = 'color: #868ba1'>Yes</span></td>";
+                    }
+                    message += "</tr></tbody></table></div></div>";
+                    string subject = "Your order #" + Orden.Id + " has been modified";
+                    string FromTittle = "Venus Cabinet Doors";
+                    string typeMessage = "OrderControl";
+                    _SEND.SendMail(pUser, subject, FromTittle, message, typeMessage);
+                    return Json(true, JsonRequestBehavior.AllowGet);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return View("Error");
+            }
+        }
     }
 }
