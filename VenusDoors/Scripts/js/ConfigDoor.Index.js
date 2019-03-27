@@ -79,6 +79,7 @@
                 if (data == true) {
                     LlammarModal("ConfigM", "Successful doors creation!", "Your doors has been added successfully.");
                     llenarTablaOrderSumary();
+                    $("#ModalUpload").modal("hide");
                 } else {
                     LlammarModal("Danger", "An error occurred during the process.", "Check your internet connection I tried again");
                 }
@@ -102,6 +103,7 @@
 
 function ChangeDoorStylePanel(pIdDoorStyle) {
     var bandera = true;
+    llenarComboDoorAssembly($("#cbDoorAssembly").val());
     if (pIdDoorStyle == 1002) {
         var panelType = $("#cbPanel").val();
         option = '<option value="0">Select</option>';
@@ -211,41 +213,41 @@ $(window).on('load', function () {
 function ValidarCamposFront() {
     var aux = true;
 
-    if ($('#cbDecimalsW').val() == 0) {
+    if ($('#cbDecimalsW').val() == 0 || $('#cbDecimalsW').val() == null) {
         $('#cbDecimalsW').addClass("is-invalid");
         aux = false;
     } else {
         $('#cbDecimalsW').removeClass("is-invalid");
     }
-    if ($('#cbDecimalsH').val() == 0) {
+    if ($('#cbDecimalsH').val() == 0 || $('#cbDecimalsH').val() == null) {
         $('#cbDecimalsH').addClass("is-invalid");
         aux = false;
     } else {
         $('#cbDecimalsH').removeClass("is-invalid");
     }
 
-    if ($('#iptWidth').val() == "") {
+    if ($('#iptWidth').val() == "" || $('#iptWidth').val() == null) {
         $('#iptWidth').addClass("is-invalid");
         aux = false;
     } else {
         $('#iptWidth').removeClass("is-invalid");
     }
 
-    if ($('#iptHeight').val() == "") {
+    if ($('#iptHeight').val() == "" || $('#iptHeight').val() == null) {
         $('#iptHeight').addClass("is-invalid");
         aux = false;
     } else {
         $('#iptHeight').removeClass("is-invalid");
     }
 
-    if ($('#CantidadFila').val() == "") {
+    if ($('#CantidadFila').val() == "" || $('#CantidadFila').val() == null) {
         $('#CantidadFila').addClass("is-invalid");
         aux = false;
     } else {
         $('#CantidadFila').removeClass("is-invalid");
     }
 
-    if ($('#cbPanel').val() == 0) {
+    if ($('#cbPanel').val() == 0 || $('#cbPanel').val() == null) {
        // $('#cbPanel').addClass("cbError");
         
         $('#select2-cbPanel-container').addClass("cbError");
@@ -255,13 +257,13 @@ function ValidarCamposFront() {
         $('#select2-cbPanel-container').removeClass("cbError");
     }
 
-    if ($('#cbDoorType').val() == 0) {
+    if ($('#cbDoorType').val() == 0 || $('#cbDoorType').val() == null) {
         $('#select2-cbDoorType-container').addClass("cbError");
         aux = false;
     } else {
         $('#select2-cbDoorType-container').removeClass("cbError");
     }
-    if ($('#cbDoorOpt').val() == 0) {
+    if ($('#cbDoorOpt').val() == 0 || $('#cbDoorOpt').val() == null) {
         $('#select2-cbDoorOpt-container').addClass("cbError");
         aux = false;
     } else {
@@ -286,6 +288,7 @@ function llenarComboPanel() {
 
 function changeDoorStyle() {
     var bandera = true;
+    
     if ($("#cbDoorStyle").val() == 1002) {
         var panelType = $("#cbPanel").val();
         option = '<option value="0">Select</option>';
@@ -428,8 +431,10 @@ function llenarComboInsideAndOutside() {
     }
     $("#cbInsideEdgeProfile").empty().append(option);
  
-        $("#cbInsideEdgeProfile").val(inside);
- 
+       
+    if (inside != 1) {
+            $("#cbInsideEdgeProfile").val(inside);
+        }
     option = '<option value="0">Select</option>';
     for (var i = 0; i < AllOutsideEdgeProfile.length; i++) {
         if (AllOutsideEdgeProfile[i].Status.Id == 1) {
@@ -437,7 +442,11 @@ function llenarComboInsideAndOutside() {
         }
     }
     $("#cbOutsideEdgeProfile").empty().append(option);
-    $("#cbOutsideEdgeProfile").val(outside);
+    if (outside != 1) {
+       
+        $("#cbOutsideEdgeProfile").val(outside);
+    }
+  
 }
 
 function HingeCalculate() {

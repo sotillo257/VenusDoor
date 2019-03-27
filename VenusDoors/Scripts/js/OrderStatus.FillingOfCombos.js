@@ -47,6 +47,7 @@
 
 function ChangeDoorStylePanel(pIdDoorStyle) {
     var bandera = true;
+    llenarComboDoorAssembly($("#cbDoorAssembly").val());
     if (pIdDoorStyle == 1002) {
         var panelType = $("#cbPanel").val();
         option = '<option value="0">Select</option>';
@@ -306,7 +307,9 @@ function llenarComboInsideAndOutside() {
 	}
 	$("#cbInsideEdgeProfile").empty().append(option);
 
-	$("#cbInsideEdgeProfile").val(inside);
+	if (inside != 1) {
+	    $("#cbInsideEdgeProfile").val(inside);
+	}
 
 	option = '<option value="0">Select</option>';
 	for (var i = 0; i < AllOutsideEdgeProfile.length; i++) {
@@ -315,7 +318,10 @@ function llenarComboInsideAndOutside() {
 		}
 	}
 	$("#cbOutsideEdgeProfile").empty().append(option);
-	$("#cbOutsideEdgeProfile").val(outside);
+	 if (outside != 1) {
+       
+        $("#cbOutsideEdgeProfile").val(outside);
+    }
 }
 
 function HingeCalculate() {
