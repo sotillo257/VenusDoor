@@ -127,7 +127,7 @@
                 </a><!-- br-menu-link -->
                 <ul class="br-menu-sub nav flex-column">
                     <li class="nav-item">@Html.ActionLink("Company", "Company", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Company })</li>
-                    <li class="nav-item">@Html.ActionLink("Doors", "Doors", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Doors })</li>
+                    @*<li class="nav-item">@Html.ActionLink("Doors", "Doors", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Doors })</li>*@
                     <li class="nav-item">@Html.ActionLink("Doors Prices", "DoorsPrices", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.DoorPrice })</li>
                     <li class="nav-item">@Html.ActionLink("Doors Style", "Index", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.DoorStyle })</li>
                     <li class="nav-item">@Html.ActionLink("Group", "Group", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Group })</li>

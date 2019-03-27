@@ -70,7 +70,7 @@ namespace VenusDoors.Controllers
                     pUser.Person = _LNP.GetPersonById(idPerson);        
                     string message = "";
                     string subject = "The status of your order #"+ GetOrder.Id +" has changed";
-                    string FromTittle = "Venus Cabinet Doors Administration";
+                    string FromTittle = "Venus Cabinet Doors";
                     string typeMessage = "OrderControl";
                     if (modOrder.Status.Id == 6)
                     {
@@ -84,7 +84,7 @@ namespace VenusDoors.Controllers
                     {
                         if (GetOrder.ShippingAddress.Id == 1)
                         {
-                            message += "<p style='width: 80%;'>Hi, " + pUser.Person.Name + " " + pUser.Person.Lastname + ".<br><br>Your order #" + GetOrder.Id + " has been completed. You can pass by dispatching it.</p>";
+                            message += "<p style='width: 80%;'>Hi, " + pUser.Person.Name + " " + pUser.Person.Lastname + ".<br><br>Your order #" + GetOrder.Id + " has been completed and ready to pick up.</p>";
                         }
                         else
                         {
