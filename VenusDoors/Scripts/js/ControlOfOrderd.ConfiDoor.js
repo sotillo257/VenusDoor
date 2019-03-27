@@ -416,7 +416,7 @@ function llenarComboIsOpen(pOpen) {
 
     var option = '<option value="0">Select</option>';
     option += '<option value="1">No opening</option>';
-    option += '<option value="2">Is opening</option>';
+    option += '<option value="2">Opening</option>';
     $("#cbIsOpeningMeasurement").empty().append(option);
     if (pOpen != 0) {
         $("#cbIsOpeningMeasurement").val(pOpen);

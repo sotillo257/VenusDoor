@@ -365,7 +365,7 @@ namespace VenusDoors.Controllers
                     CloseOrder(CompleteOrder);
                     return Json(true, JsonRequestBehavior.AllowGet);                    
                 }
-                catch
+                catch (Exception ex)
                 {
                     return Json(false, JsonRequestBehavior.AllowGet);
                 }

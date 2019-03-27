@@ -161,7 +161,7 @@ function SearchDoor(data) {
         checkIsOverlay(isOver);
        // checkDoorOption(data.DoorOption.Id);
         llenarComboMaterial(data.Material.Id);
-        llenarComboDoorStyle(data.DoorStyle.Id);
+       
         llenarComboIEP(data.InsideEdgeProfile.Id);
         llenarComboOEP(data.OutsideEdgeProfile.Id);
         llenarComboStileWidth(data.BottomRail.Id);
@@ -171,6 +171,23 @@ function SearchDoor(data) {
         llenarComboVerticalDivisions(data.VerticalDivisions.Id);
         llenarComboHorizontalDivisions(data.HorizontalDivisions.Id);
         llenarComboHingeDirection(data.HingeDirection.Id);
+        if (data.DoorStyle.Id == 1010) {
+            llenarComboDoorStyle(data.DoorStyle.Id);
+            var option = '<option value="3">Slab</option>';
+            $("#cbPanel").empty().append(option);
+            $("#cbPanel").hide();
+            option = '<option value="1">Slab</option>';
+            $("#cbInsideEdgeProfile").empty().append(option);
+            $("#cbOutsideEdgeProfile").empty().append(option);
+            option = '<option value="7">Slab</option>';
+            $("#cbDoorAssembly").empty().append(option);
+            $("#cbDoorAssembly").hide();
+            $('#DoorPicture').attr('src', "/Content/img/Doors/slab.png");
+            $('#ProfilePicture').attr('src', "/Content/img/Profile/slab.png");
+
+        } else {
+            llenarComboDoorStyle(data.DoorStyle.Id);
+        }
         //$("#iptCost").val(data.ItemCost);
         $("input[name=radioOver]").attr("disabled", false);
         window.history.replaceState({}, document.title, "/" + "../OrderSummary");
@@ -181,24 +198,6 @@ function SearchDoor(data) {
     }
 
 }
-
-
-
-//function GuardarMod() {
-//    if (ValidarCamposVacios()) {
-//        //if (ValidadWH()) {
-//            UpdateDoorsxUser();
-//        //} else {
-//        //    $('#modalConfirmOrderSummary').modal('hide');
-//        //    LlammarModal("Danger", "The inches are not within our limits.", " ");
-//        //} 
-//    } else {
-//        $('#modalConfirmOrderSummary').modal('hide');
-//        LlammarModal("Danger", "You must fill all the fields.", " ");
-//    }
-//}
-
-
 
 function AgregarD() {
     if (ValidarCamposVacios()) {
@@ -480,7 +479,7 @@ function llenarComboIsOpen(pOpen) {
 
     var option = '';
     option += '<option value="1">No opening</option>';
-    option += '<option value="2">Is opening</option>';
+    option += '<option value="2">Opening</option>';
     $("#cbIsOpeningMeasurement").empty().append(option);
     if (pOpen != 0) {
         $("#cbIsOpeningMeasurement").val(pOpen);
