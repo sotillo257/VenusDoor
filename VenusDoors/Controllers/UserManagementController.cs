@@ -45,7 +45,7 @@ namespace VenusDoors.Controllers
                     pUser.Person = _LNP.GetPersonById(idPerson);
                     string message = "";
                     string subject = "Account registration process";
-                    string FromTittle = "Venus Cabinet Doors Administration";
+                    string FromTittle = "Venus Cabinet Doors";
                     string typeMessage = "UserControl";
                     if (modUser.Status.Id == 1)
                     {
