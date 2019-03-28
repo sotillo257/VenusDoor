@@ -40,7 +40,7 @@ namespace DataAccess
                             VerticalDivisions = new VerticalDivisions() {Id = int.Parse(item["IdVerticalDivisions"].ToString()), Quantity = int.Parse(item["VerticalDivision"].ToString()) },
                             HorizontalDivisions = new HorizontalDivisions() { Id = int.Parse(item["IdHorizontalDivisions"].ToString()), Quantity = int.Parse(item["HorizontalDivision"].ToString()) },
                             HingeDirection = new HingeDirection() { Id = int.Parse(item["IdHingeDirection"].ToString()), Direction = item["HingerDirection"].ToString(), },
-                            HingePositions = new HingePositions() { Id = int.Parse(item["IdHingePositions"].ToString()), Position1 = item["HP1"].ToString(), Position2 = item["HP2"].ToString(), Position3 = item["HP3"].ToString(), Position4 = item["HP4"].ToString(), Position5 = item["HP5"].ToString(), },
+                          //  HingePositions = new HingePositions() { Id = int.Parse(item["IdHingePositions"].ToString()), Position1 = item["HP1"].ToString(), Position2 = item["HP2"].ToString(), Position3 = item["HP3"].ToString(), Position4 = item["HP4"].ToString(), Position5 = item["HP5"].ToString(), },
                             isDrill = bool.Parse(item["isDrill"].ToString()),
                             Width = decimal.Parse(item["Width"].ToString()),
                             DecimalsWidth = new Decimals() { Id = int.Parse(item["IdDecimalsWidth"].ToString()), Description = item["DescriptDW"].ToString(), Value = decimal.Parse(item["ValueDW"].ToString()) },
