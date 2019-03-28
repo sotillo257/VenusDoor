@@ -198,7 +198,7 @@ function Signin() {
             } else if(result == 3){
                 LlammarModal("Danger", "Invalid password", "If you forgot your password you can restore it <a href='"+urlRecoverPassword+"'> here</a>");             
             } else {
-                LlammarModal("Danger", "That email is not associated with any account in our records.", "<a href='"+urlSingUp+"' >Do you want to create one?</a>");
+                LlammarModal("Danger", "That email is not associated with any account in our records.", "<a href='"+urlSingUp+"' >Sing up</a>");
             }
         },
         error: function (err) {
