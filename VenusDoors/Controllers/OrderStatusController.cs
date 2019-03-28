@@ -73,19 +73,24 @@ namespace VenusDoors.Controllers
         [HttpPost]
         public ActionResult GetDoorsByOrder(int idOrder)
         {
-            //BusinessLogic.lnOrder _LNO = new BusinessLogic.lnOrder();
-            //var getOrderData = _LNO.GetOrderById(idOrder);
-            //ViewBag.OrderDetails = getOrderData;
-            BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
-            DoorsxUser xDoors = _LN.GetAllDoorsxUser().Where(x => x.Order.Id == idOrder).ToList().FirstOrDefault();
-            BusinessLogic.lnDoorxOrder Ord = new BusinessLogic.lnDoorxOrder();
-            xDoors.DoorsxOrder = Ord.GetAllDoorxOrderByDoorxUser(xDoors.Id);
-            if (xDoors.DoorsxOrder.Sum(x => x.Descuento) > 0)
+            try
             {
-                xDoors.DescuentoActivos = true;
+                BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
+                DoorsxUser xDoors = _LN.GetAllDoorsxUser().Where(x => x.Order.Id == idOrder).ToList().FirstOrDefault();
+                BusinessLogic.lnDoorxOrder Ord = new BusinessLogic.lnDoorxOrder();
+                xDoors.DoorsxOrder = Ord.GetAllDoorxOrderByDoorxUser(xDoors.Id);
+                if (xDoors.DoorsxOrder.Sum(x => x.Descuento) > 0)
+                {
+                    xDoors.DescuentoActivos = true;
+                }
+                // ViewBag.DoorsOrder = doorsByOrder;
+                return Json(xDoors);
             }
-            // ViewBag.DoorsOrder = doorsByOrder;
-            return Json(xDoors);
+            catch (Exception ex )
+            {
+                return Json(null);
+            }
+            
 
         }
 

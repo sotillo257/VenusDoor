@@ -435,7 +435,7 @@ function llenarTablaOrderControl() {
                     else if (data[i].Status.Id == 7) {
                         Botones += '<button title="Complete order." value="' + data[i].Id + '" class="Completed Cursor btn btn-success btn-icon"  style="width: 25px;height: 25px; margin-left: 10px;"> <i class="fa fa-check"></i>  </button>';
                     }
-                    Botones += ' <button class="Cursor btn btn-secondary btn-icon Descarga" data-id="' + data[i].Id + '" style="width: 25px; height: 25px;  margin-left: 10px;"><i class="fa fa-download"></i></button>';
+                 //   Botones += ' <button class="Cursor btn btn-secondary btn-icon Descarga" data-id="' + data[i].Id + '" style="width: 25px; height: 25px;  margin-left: 10px;"><i class="fa fa-download"></i></button>';
                     t.row.add([
                          data[i].Id,
                         data[i].Quantity,
@@ -529,7 +529,7 @@ function llenarTablaOrderControlxUser(pIdStatus) {
                     else if (data[i].Status.Id == 7) {
                         Botones += '<button title="Complete order." value="' + data[i].Id + '" class="Completed Cursor btn btn-success btn-icon"  style="width: 25px;height: 25px; margin-left: 10px;"> <i class="fa fa-check"></i>  </button>';
                     }
-                    Botones += ' <button class="Cursor btn btn-secondary btn-icon Descarga" data-id="' + data[i].Id + '" style="width: 25px; height: 25px; margin-left: 10px;"><i class="fa fa-download"></i></button>';
+                   // Botones += ' <button class="Cursor btn btn-secondary btn-icon Descarga" data-id="' + data[i].Id + '" style="width: 25px; height: 25px; margin-left: 10px;"><i class="fa fa-download"></i></button>';
                     t.row.add([
                          data[i].Id,
                         data[i].Quantity,
