@@ -169,7 +169,12 @@ namespace BusinessLogic
         {
             try
             {
-
+                string path = mapPach + "/Content/PDF";
+                foreach (var item in Directory.GetFiles(path, "*.*"))
+                {
+                    File.SetAttributes(item, FileAttributes.Normal);
+                    File.Delete(item);
+                }
 
                 BusinessLogic.lnOrder LNOrder = new BusinessLogic.lnOrder();
                 BusinessLogic.lnUser LNUser = new BusinessLogic.lnUser();
@@ -187,7 +192,7 @@ namespace BusinessLogic
                 var doc1 = new Document();
                 //use a variable to let my code fit across the page...
 
-                string path = mapPach + "/Content/PDF";
+               
                 string ruta = "/Content/PDF" + "/" + IdOrder + ".pdf";
                 PdfWriter.GetInstance(doc1, new FileStream(path + "/" + IdOrder + ".pdf", FileMode.Create));
 
