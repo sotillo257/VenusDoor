@@ -69,7 +69,7 @@ namespace DataAccess
                 }
                 return doorxu;
             }
-            catch (Exception)
+            catch (Exception err)
             {
                 throw;
             }
