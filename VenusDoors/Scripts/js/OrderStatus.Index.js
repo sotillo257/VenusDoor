@@ -4,6 +4,10 @@
         var id = $(this).attr('data-id');       
         GetDoorsByOrder(id);
     });
+    $(document).on('click', '.Descarga', function (event) {
+        var id = $(this).attr('data-id');
+        DescargarOderPDF(id);
+    });
 });
 
 function GetDoorsByOrder(id) {
@@ -143,5 +147,33 @@ function GetDoorsByOrder(id) {
             $('#ModalOrderInfo').modal('toggle');
             //$("#ordertable > tbody").empty().append(option);            
         },
+    });
+}
+
+function DescargarOderPDF(id) {
+    var datos ={ idOrder: id };
+
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(datos),
+        url: urlDescargarOderPDF,      
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        success: function (data) {
+            if (data != null) {              
+                //window.location.href = data;
+                var link = document.createElement("a");
+                link.download = "Order "+ id+".pdf";
+                link.href = data;
+                link.click();
+            }
+            else {
+                LlammarModal("Danger", "Error Download PDF", " ");
+            }
+        },
+        error: function (err) {
+            console.log(err);
+            LlammarModal("Danger", "Error.", "");
+        }
     });
 }
