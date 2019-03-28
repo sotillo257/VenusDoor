@@ -221,94 +221,117 @@ namespace BusinessLogic
 
                 //leave a gap before and after the table
 
-                table.SpacingBefore = 20f;
+                //table.SpacingBefore = 20f;
 
-                table.SpacingAfter = 30f;
+                //table.SpacingAfter = 30f;
+
+                PdfPCell cell = new PdfPCell(new Phrase("General Configuration", FontFactory.GetFont("Arial", 12)));
+                cell.Colspan = 4;
+                cell.HorizontalAlignment = 1;
+                cell.Border = 0;
+                cell.PaddingBottom = 10f;
+                table.AddCell(cell);
 
 
-                PdfPCell cell = new PdfPCell(new Phrase("Wood Species: " + doorsxUser.Material.Description, FontFactory.GetFont("Arial", 9)));
+                cell = new PdfPCell(new Phrase("Wood Species: " + doorsxUser.Material.Description, FontFactory.GetFont("Arial", 9)));
                 cell.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
                 cell.Border = 0;
+                cell.PaddingBottom = 5f;
                 table.AddCell(cell);
 
                 cell = new PdfPCell(new Phrase("Door Style: " + doorsxUser.DoorStyle.Description, FontFactory.GetFont("Arial", 9)));
                 cell.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
                 cell.Border = 0;
+                cell.PaddingBottom = 5f;
                 table.AddCell(cell);
 
                 string overlay = (doorsxUser.isOverlay == true) ? "Overlay Door Type" : "Inset Door Type";
                 cell = new PdfPCell(new Phrase("Door Place: " + overlay, FontFactory.GetFont("Arial", 9)));
                 cell.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
                 cell.Border = 0;
+                cell.PaddingBottom = 5f;
                 table.AddCell(cell);
 
                 cell = new PdfPCell(new Phrase("Stile Width: " + doorsxUser.TopRail.Description, FontFactory.GetFont("Arial", 9)));
                 cell.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
                 cell.Border = 0;
+                cell.PaddingBottom = 5f;
                 table.AddCell(cell);
 
                 cell = new PdfPCell(new Phrase("Rail Width: " + doorsxUser.BottomRail.Description, FontFactory.GetFont("Arial", 9)));
                 cell.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
                 cell.Border = 0;
+                cell.PaddingBottom = 5f;
                 table.AddCell(cell);
 
                 cell = new PdfPCell(new Phrase("Inside Profile: " + doorsxUser.InsideEdgeProfile.Description, FontFactory.GetFont("Arial", 9)));
                 cell.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
                 cell.Border = 0;
+                cell.PaddingBottom = 5f;
                 table.AddCell(cell);
 
                 cell = new PdfPCell(new Phrase("Outside Profile: " + doorsxUser.OutsideEdgeProfile.Description, FontFactory.GetFont("Arial", 9)));
                 cell.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
                 cell.Border = 0;
+                cell.PaddingBottom = 5f;
                 table.AddCell(cell);
 
                 cell = new PdfPCell(new Phrase("Door Assembly: " + doorsxUser.Join.Description, FontFactory.GetFont("Arial", 9)));
                 cell.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
                 cell.Border = 0;
+                cell.PaddingBottom = 5f;
                 table.AddCell(cell);
 
                 cell = new PdfPCell(new Phrase("Panel Material: " + doorsxUser.PanelMaterial.Description, FontFactory.GetFont("Arial", 9)));
                 cell.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
                 cell.Border = 0;
+                cell.PaddingBottom = 5f;
                 table.AddCell(cell);
 
                 string OpeningMeasurement = (doorsxUser.IsOpeningMeasurement == true) ? "Yes" : "No";
                 cell = new PdfPCell(new Phrase("Opening Measurement: " + OpeningMeasurement, FontFactory.GetFont("Arial", 9)));
                 cell.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
                 cell.Border = 0;
+                cell.PaddingBottom = 5f;
                 table.AddCell(cell);
 
                 cell = new PdfPCell(new Phrase("Vertical Divisions: " + doorsxUser.VerticalDivisions.Quantity.ToString(), FontFactory.GetFont("Arial", 9)));
                 cell.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
                 cell.Border = 0;
+                cell.PaddingBottom = 5f;
                 table.AddCell(cell);
 
 
                 cell = new PdfPCell(new Phrase("Horizontal Divisions: " + doorsxUser.HorizontalDivisions.Quantity.ToString(), FontFactory.GetFont("Arial", 9)));
                 cell.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
                 cell.Border = 0;
+                cell.PaddingBottom = 5f;
                 table.AddCell(cell);
 
                 string Drill = (doorsxUser.isDrill == true) ? "Yes (" + doorsxUser.HingeDirection.Direction + ")" : "No";
                 cell = new PdfPCell(new Phrase("No Drill: " + Drill, FontFactory.GetFont("Arial", 9)));
                 cell.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
                 cell.Border = 0;
+                cell.PaddingBottom = 5f;
                 table.AddCell(cell);
 
                 string FingerPull = (doorsxUser.isFingerPull == true) ? "Yes" : "No";
                 cell = new PdfPCell(new Phrase("Finger Pull: " + FingerPull, FontFactory.GetFont("Arial", 9)));
                 cell.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
                 cell.Border = 0;
+                cell.PaddingBottom = 5f;
                 table.AddCell(cell);
 
                 cell = new PdfPCell(new Phrase(" ", FontFactory.GetFont("Arial", 9)));
                 cell.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
                 cell.Border = 0;
+                cell.PaddingBottom = 5f;
                 table.AddCell(cell);
 
                 cell = new PdfPCell(new Phrase(" ", FontFactory.GetFont("Arial", 9)));
                 cell.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
                 cell.Border = 0;
+                cell.PaddingBottom = 5f;
                 table.AddCell(cell);
 
                 image.ScaleAbsoluteWidth(150);
@@ -327,6 +350,12 @@ namespace BusinessLogic
                 TableDoor.HorizontalAlignment = 0;
                 TableDoor.SpacingBefore = 20f;
                 TableDoor.SpacingAfter = 30f;
+                cell = new PdfPCell(new Phrase("Door List", FontFactory.GetFont("Arial", 12)));
+                cell.Colspan = descu;
+                cell.HorizontalAlignment = 1;
+                cell.Border = 0;
+                cell.PaddingBottom = 10f;
+                TableDoor.AddCell(cell);
                 cell = new PdfPCell(new Phrase("Door", FontFactory.GetFont("Arial", 10)));
                 TableDoor.AddCell(cell);
                 cell = new PdfPCell(new Phrase("Quantity", FontFactory.GetFont("Arial", 10)));
@@ -395,17 +424,25 @@ namespace BusinessLogic
                 footer.Add(total);
                 footer.Alignment = 2;
 
-                Chunk Name = new Chunk("Name: " + person.Name + " " + person.Lastname + " \n",
-                                 FontFactory.GetFont("Arial", 12));
-                Chunk Email = new Chunk("Email: " + user.Email + " \n",
-                                FontFactory.GetFont("Arial", 12));
-                Chunk Telephone = new Chunk("Telephone: " + person.Telephone + " \n",
-                                FontFactory.GetFont("Arial", 12));
-                Paragraph head = new Paragraph();
-                head.Add(Name);
-                head.Add(Email);
-                head.Add(Telephone);
-                head.Alignment = 0;
+                PdfPTable TableUser = new PdfPTable(1);
+                TableUser.TotalWidth = 526f;
+                TableUser.LockedWidth = true;
+                TableUser.HorizontalAlignment = 0;
+                TableUser.SpacingBefore = 20f;
+                TableUser.SpacingAfter = 30f;
+                cell = new PdfPCell(new Phrase("Name: " + person.Name + " " + person.Lastname + " \n",
+                                 FontFactory.GetFont("Arial", 10)));
+                cell.Border = 0;
+                TableUser.AddCell(cell);
+                cell = new PdfPCell(new Phrase("Email: " + user.Email + " \n",
+                                FontFactory.GetFont("Arial", 10)));
+                cell.Border = 0;
+                TableUser.AddCell(cell);
+                cell = new PdfPCell(new Phrase("Telephone: " + person.Telephone + " \n",
+                                FontFactory.GetFont("Arial", 10)));
+                cell.Border = 0;
+                TableUser.AddCell(cell);
+               
 
                 PdfPTable TableHeader = new PdfPTable(2);
                 TableHeader.TotalWidth = 526f;
@@ -432,7 +469,7 @@ namespace BusinessLogic
                 //  doc1.Add(p);
                 // doc1.Add(image);
                 doc1.Add(TableHeader);
-                doc1.Add(head);
+                doc1.Add(TableUser);
                 doc1.Add(table);
                 doc1.Add(TableDoor);
                 doc1.Add(footer);
