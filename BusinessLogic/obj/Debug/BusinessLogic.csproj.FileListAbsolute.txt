@@ -96,3 +96,5 @@ C:\Users\Lenovo\Source\Repos\VenusDoor\BusinessLogic\obj\Debug\BusinessLogic.dll
 C:\Users\Lenovo\Source\Repos\VenusDoor\BusinessLogic\obj\Debug\BusinessLogic.pdb
 C:\Users\Lenovo\Source\Repos\VenusDoor\BusinessLogic\bin\Debug\itextsharp.dll
 C:\Users\Lenovo\Source\Repos\VenusDoor\BusinessLogic\bin\Debug\itextsharp.xml
+C:\Users\jesus\Source\Repos\Solo local\BusinessLogic\bin\Debug\itextsharp.dll
+C:\Users\jesus\Source\Repos\Solo local\BusinessLogic\bin\Debug\itextsharp.xml
