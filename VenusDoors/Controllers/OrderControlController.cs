@@ -223,10 +223,10 @@ namespace VenusDoors.Controllers
                     User pUser = _LNU.GetUserById(ordr.User.Id);
                     int idPerson = pUser.Person.Id;
                     pUser.Person = _LNP.GetPersonById(idPerson);
-                    string message = "<p>Hi " + pUser.Person.Name + ", we have modified the settings of the door #"+ pDoorsxOrder.Id +" as follows:</p>";
+                    string message = "<p>Hi " + pUser.Person.Name + ", we have modified one of the doors of your order #" + ordr.Id +".</p>";
                     message += "<div style='width:100%'>"+
-                    "<div class='datagrid' style='font: normal 12px/150% Arial, Helvetica, sans-serif; background: #fff; overflow: hidden; border: 1px solid #014D41; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; width:100%'>";
-                    message += "<table style='border-collapse: collapse; text-align: left; width: 100%;'><thead>" +
+                    "<div class='datagrid' style=' width: 100%; font: normal 12px/150% Arial, Helvetica, sans-serif; background: #fff; overflow: hidden; border: 1px solid #014D41; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; width:100%'>"+
+                    "<table style='border-collapse: collapse; text-align: left; width:100%'><thead>" +
                     "<tr>" +
                         "<th style='padding: 3px 10px; background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #014D41), color-stop(1, #027D69) );background:-moz-linear-gradient( center top, #014D41 5%, #027D69 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#014D41', endColorstr='#027D69');background-color:#014D41; color:#FFFFFF; font-size: 11px; font-weight: bold; border-left: 1px solid #0070A8;'>Width</th>" +
                         "<th style='padding: 3px 10px; background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #014D41), color-stop(1, #027D69) );background:-moz-linear-gradient( center top, #014D41 5%, #027D69 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#014D41', endColorstr='#027D69');background-color:#014D41; color:#FFFFFF; font-size: 11px; font-weight: bold; border-left: 1px solid #0070A8;'>Height</th>" +
@@ -236,8 +236,7 @@ namespace VenusDoors.Controllers
                         "<th style='padding: 3px 10px; background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #014D41), color-stop(1, #027D69) );background:-moz-linear-gradient( center top, #014D41 5%, #027D69 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#014D41', endColorstr='#027D69');background-color:#014D41; color:#FFFFFF; font-size: 11px; font-weight: bold; border-left: 1px solid #0070A8;'>U.Price</th>" +
                         "<th style='padding: 3px 10px; background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #014D41), color-stop(1, #027D69) );background:-moz-linear-gradient( center top, #014D41 5%, #027D69 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#014D41', endColorstr='#027D69');background-color:#014D41; color:#FFFFFF; font-size: 11px; font-weight: bold; border-left: 1px solid #0070A8;'>Quantity</th>" +
                         "<th style='padding: 3px 10px; background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #014D41), color-stop(1, #027D69) );background:-moz-linear-gradient( center top, #014D41 5%, #027D69 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#014D41', endColorstr='#027D69');background-color:#014D41; color:#FFFFFF; font-size: 11px; font-weight: bold; border-left: 1px solid #0070A8;'>Total</th>" +
-                    "</tr></thead>"+
-                    "<tbody>";
+                    "</tr></thead><tbody>";
                     var decimalH = "";
                     var decimalW = "";
                     if (dxo.DecimalsHeight.Description == "0")
@@ -263,14 +262,14 @@ namespace VenusDoors.Controllers
                         "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>" + dxo.Panel.Description + "</td>" +
                         "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>" + dxo.DoorType.Description + "</td>" +
                         "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>" + dxo.DoorOption.Description + "</td>" +
-                        "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>" + dxo.ItemCost.ToString("N0") + "</td>" +
+                        "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>" + dxo.ItemCost + "</td>" +
                         "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>" + dxo.Quantity + "</td>" +
-                        "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>" + dxo.SubTotal.ToString("N0") + "</td>" +
+                        "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>" + dxo.SubTotal + "</td>" +
                     "</tr>";
-                    message += "</tbody></table></div></div>";
-                    string subject = "Your door #" + pDoorsxOrder.Id + " has been modified";
+                    message += "</tbody></table></div></div>";                    
+                    string subject = "One of your doors was modified (Order #"+ ordr.Id + ")";
                     string FromTittle = "Venus Cabinet Doors";
-                    string typeMessage = "OrderControl";
+                    string typeMessage = "OrderControl";                  
                     _SEND.SendMail(pUser, subject, FromTittle, message, typeMessage);
                     return Json(true, JsonRequestBehavior.AllowGet);
                 }
@@ -306,7 +305,7 @@ namespace VenusDoors.Controllers
                     int idPerson = pUser.Person.Id;
                     pUser.Person = _LNP.GetPersonById(idPerson);
                     DoorsxUser dxu = ln.GetDoorsxUserById(Orden.DoorxUser.Id);
-                    string message = "<p>Hi "+ pUser.Person.Name +", we have made some modifications to the configuration of your order.<br>The following shows how the general configuration was after being modified:</p>" +
+                    string message = "<p>Hi "+ pUser.Person.Name +", we have made some modifications to the configuration of your order.<br>The following shows how the general configuration was after being modified:</p><br>" +
                     "<div style='width:100%'>"+
                     "<h4 style = 'margin:0; text-align:center' >General Configuration</h4>" +
                     "<div class='datagrid' style='font: normal 12px/150% Arial, Helvetica, sans-serif; background: #fff; overflow: hidden; border: 1px solid #014D41; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; width:100%'>" +
