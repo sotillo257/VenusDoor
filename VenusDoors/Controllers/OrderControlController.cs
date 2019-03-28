@@ -219,11 +219,13 @@ namespace VenusDoors.Controllers
                     ln.UpdateDoorxOrder(idOrder, pDoorsxOrder, uss);
 
                     Order ordr = _LNORDER.GetOrderById(idOrder);
+                    DoorxOrder dxo = ln.GetDoorsxOrderById(pDoorsxOrder.Id);
                     User pUser = _LNU.GetUserById(ordr.User.Id);
                     int idPerson = pUser.Person.Id;
                     pUser.Person = _LNP.GetPersonById(idPerson);
-                    string message = "<p>Hi " + pUser.Person.Name + ", we have modified the settings of the door #"+ pDoorsxOrder.Id +"as follows:</p>";
-                    message += "<div style='width:100%'><div class='datagrid' style='font: normal 12px/150% Arial, Helvetica, sans-serif; background: #fff; overflow: hidden; border: 1px solid #014D41; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; width:100%'>";
+                    string message = "<p>Hi " + pUser.Person.Name + ", we have modified the settings of the door #"+ pDoorsxOrder.Id +" as follows:</p>";
+                    message += "<div style='width:100%'>"+
+                    "<div class='datagrid' style='font: normal 12px/150% Arial, Helvetica, sans-serif; background: #fff; overflow: hidden; border: 1px solid #014D41; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; width:100%'>";
                     message += "<table style='border-collapse: collapse; text-align: left; width: 100%;'><thead>" +
                     "<tr>" +
                         "<th style='padding: 3px 10px; background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #014D41), color-stop(1, #027D69) );background:-moz-linear-gradient( center top, #014D41 5%, #027D69 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#014D41', endColorstr='#027D69');background-color:#014D41; color:#FFFFFF; font-size: 11px; font-weight: bold; border-left: 1px solid #0070A8;'>Width</th>" +
@@ -238,32 +240,32 @@ namespace VenusDoors.Controllers
                     "<tbody>";
                     var decimalH = "";
                     var decimalW = "";
-                    if (pDoorsxOrder.DecimalsHeight.Description == "0")
+                    if (dxo.DecimalsHeight.Description == "0")
                     {
                         decimalH = "";
                     }
                     else
                     {
-                        decimalH = pDoorsxOrder.DecimalsHeight.Description;
+                        decimalH = dxo.DecimalsHeight.Description;
                     }
 
-                    if (pDoorsxOrder.DecimalsWidth.Description == "0")
+                    if (dxo.DecimalsWidth.Description == "0")
                     {
                         decimalW = "";
                     }
                     else
                     {
-                        decimalW = pDoorsxOrder.DecimalsWidth.Description;
+                        decimalW = dxo.DecimalsWidth.Description;
                     }
                     message += "<tr>" +
-                        "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>" + pDoorsxOrder.Width.ToString("N0") + " " + decimalW + "</td>" +
-                        "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>" + pDoorsxOrder.Height.ToString("N0") + " " + decimalH + "</td>" +
-                        "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>" + pDoorsxOrder.Panel.Description + "</td>" +
-                        "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>" + pDoorsxOrder.DoorType.Description + "</td>" +
-                        "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>" + pDoorsxOrder.DoorOption.Description + "</td>" +
-                        "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>" + pDoorsxOrder.ItemCost + "</td>" +
-                        "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>" + pDoorsxOrder.Quantity + "</td>" +
-                        "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>" + pDoorsxOrder.SubTotal + "</td>" +
+                        "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>" + dxo.Width.ToString("N0") + " " + decimalW + "</td>" +
+                        "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>" + dxo.Height.ToString("N0") + " " + decimalH + "</td>" +
+                        "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>" + dxo.Panel.Description + "</td>" +
+                        "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>" + dxo.DoorType.Description + "</td>" +
+                        "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>" + dxo.DoorOption.Description + "</td>" +
+                        "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>" + dxo.ItemCost.ToString("N0") + "</td>" +
+                        "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>" + dxo.Quantity + "</td>" +
+                        "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>" + dxo.SubTotal.ToString("N0") + "</td>" +
                     "</tr>";
                     message += "</tbody></table></div></div>";
                     string subject = "Your door #" + pDoorsxOrder.Id + " has been modified";
@@ -303,15 +305,16 @@ namespace VenusDoors.Controllers
                     User pUser = _LNU.GetUserById(ord.User.Id);
                     int idPerson = pUser.Person.Id;
                     pUser.Person = _LNP.GetPersonById(idPerson);
+                    DoorsxUser dxu = ln.GetDoorsxUserById(Orden.DoorxUser.Id);
                     string message = "<p>Hi "+ pUser.Person.Name +", we have made some modifications to the configuration of your order.<br>The following shows how the general configuration was after being modified:</p>" +
                     "<div style='width:100%'>"+
                     "<h4 style = 'margin:0; text-align:center' >General Configuration</h4>" +
                     "<div class='datagrid' style='font: normal 12px/150% Arial, Helvetica, sans-serif; background: #fff; overflow: hidden; border: 1px solid #014D41; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; width:100%'>" +
                     "<table style='border-collapse: collapse; text-align: left; width: 100%;'><tbody>" +
                     "<tr>" +
-                    "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Wood Species: <span style = 'color: #868ba1'>" + Orden.DoorxUser.Material.Description + "</span></td>" +
-                    "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Door Style: <span style = 'color: #868ba1'>" + Orden.DoorxUser.DoorStyle.Description + "</span></td>";
-                    if (Orden.DoorxUser.isOverlay == false)
+                    "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Wood Species: <span style = 'color: #868ba1'>" + dxu.Material.Description + "</span></td>" +
+                    "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Door Style: <span style = 'color: #868ba1'>" + dxu.DoorStyle.Description + "</span></td>";
+                    if (dxu.isOverlay == false)
                     {
                         message += "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Door Place: <span style = 'color: #868ba1'>Inset Door Type</span></td>";
                     }
@@ -319,17 +322,17 @@ namespace VenusDoors.Controllers
                     {
                         message += "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Door Place: <span style = 'color: #868ba1'>Overlay Door Type</span></td>";
                     }
-                    message += "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Inside Edge Profile: <span style = 'color: #868ba1'> " + Orden.DoorxUser.InsideEdgeProfile.Description + "</span></td>" +
+                    message += "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Inside Edge Profile: <span style = 'color: #868ba1'> " + dxu.InsideEdgeProfile.Description + "</span></td>" +
                     "</tr>" +
                     "<tr>" +
-                        "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Outside Edge Profile: <span style = 'color: #868ba1'>" + Orden.DoorxUser.OutsideEdgeProfile.Description + "</span></td>" +
-                        "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Stile Width: <span style = 'color: #868ba1'>" + Orden.DoorxUser.BottomRail.Description + "</span></td>" +
-                        "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Rail Width: <span style = 'color: #868ba1'>" + Orden.DoorxUser.TopRail.Description + "</span></td>" +
-                        "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Door Assembly: <span style = 'color: #868ba1'> " + Orden.DoorxUser.Join.Description + "</span></td>" +
+                        "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Outside Edge Profile: <span style = 'color: #868ba1'>" + dxu.OutsideEdgeProfile.Description + "</span></td>" +
+                        "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Stile Width: <span style = 'color: #868ba1'>" + dxu.BottomRail.Description + "</span></td>" +
+                        "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Rail Width: <span style = 'color: #868ba1'>" + dxu.TopRail.Description + "</span></td>" +
+                        "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Door Assembly: <span style = 'color: #868ba1'> " + dxu.Join.Description + "</span></td>" +
                     "</tr>" +
                     "<tr>" +
-                    "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Panel Material: <span style = 'color: #868ba1'>" + Orden.DoorxUser.PanelMaterial.Description + "</span></td>";
-                    if (Orden.DoorxUser.IsOpeningMeasurement == false)
+                    "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Panel Material: <span style = 'color: #868ba1'>" + dxu.PanelMaterial.Description + "</span></td>";
+                    if (dxu.IsOpeningMeasurement == false)
                     {
                         message += "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Opening Measurement: <span style = 'color: #868ba1'>No</span></td>";
                     }
@@ -337,19 +340,19 @@ namespace VenusDoors.Controllers
                     {
                         message += "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Opening Measurement: <span style = 'color: #868ba1'>Yes</span></td>";
                     }
-                    message += "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Vertical Divisions: <span style = 'color: #868ba1'> " + Orden.DoorxUser.VerticalDivisions.Quantity + "</span></td>" +
-                    "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Horizontal Divisions: <span style = 'color: #868ba1'> " + Orden.DoorxUser.HorizontalDivisions.Quantity + "</span></td>" +
+                    message += "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Vertical Divisions: <span style = 'color: #868ba1'> " + dxu.VerticalDivisions.Quantity + "</span></td>" +
+                    "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Horizontal Divisions: <span style = 'color: #868ba1'> " + dxu.HorizontalDivisions.Quantity + "</span></td>" +
                     "</tr>" +
                     "<tr>";
-                    if (Orden.DoorxUser.isDrill == false)
+                    if (dxu.isDrill == false)
                     {
                         message += "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Hinge Drilling: <span style = 'color: #868ba1'>No drill</span></td>";
                     }
                     else
                     {
-                        message += "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Hinge Drilling: <span style = 'color: #868ba1'>Drill(" + Orden.DoorxUser.HingeDirection.Direction + ")</span></td>";
+                        message += "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Hinge Drilling: <span style = 'color: #868ba1'>Drill(" + dxu.HingeDirection.Direction + ")</span></td>";
                     }
-                    if (Orden.DoorxUser.isFingerPull == false)
+                    if (dxu.isFingerPull == false)
                     {
                         message += "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Finger Pull: <span style = 'color: #868ba1'>No</span></td>";
                     }

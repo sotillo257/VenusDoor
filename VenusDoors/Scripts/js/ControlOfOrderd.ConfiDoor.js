@@ -488,6 +488,7 @@ function InsertDoorsxUser() {
                  Id: _IdOrderModificar,
                  Descuento: $("#descDXU").val(),
                  DoorxUser: {
+                     Id: idDxUorder,
                      User: { Id: 0 },
                      Order: { Id: _IdOrderModificar},
                      Status: { Id: 1 },
@@ -600,7 +601,7 @@ function UpdateDoorxOrder() {
             } else {
                 $('#modalInsert').modal('hide');
                 $('#modalConfirmOrderSummary').modal('hide');
-                LlammarModal("Danger", "Error in the process.", "An error occurred when creating the door.");
+                LlammarModal("Danger", "Error in the process.", "An error occurred when modifing the door.");
             }
         },
         error: function (err) {
@@ -912,14 +913,6 @@ function ValidarCamposVacios() {
     } else {
         $('#select2-cbStileWidth-container').removeClass("cbError");
     }
-
-    if ($('#cbPreparation').val() == 0 || $('#cbPreparation').val() == null) {
-        $('#select2-cbPreparation-container').addClass("cbError");
-        aux = false;
-    } else {
-        $('#select2-cbPreparation-container').removeClass("cbError");
-    }
-
 
     if ($('#cbPanelMaterial').val() == 0 || $('#cbPanelMaterial').val() == null) {
         $('#select2-cbPanelMaterial-container').addClass("cbError");
