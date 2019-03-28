@@ -94,3 +94,5 @@ C:\Users\Lenovo\Source\Repos\VenusDoor\BusinessLogic\bin\Debug\MetodosDB.pdb
 C:\Users\Lenovo\Source\Repos\VenusDoor\BusinessLogic\obj\Debug\BusinessLogic.csprojResolveAssemblyReference.cache
 C:\Users\Lenovo\Source\Repos\VenusDoor\BusinessLogic\obj\Debug\BusinessLogic.dll
 C:\Users\Lenovo\Source\Repos\VenusDoor\BusinessLogic\obj\Debug\BusinessLogic.pdb
+C:\Users\Lenovo\Source\Repos\VenusDoor\BusinessLogic\bin\Debug\itextsharp.dll
+C:\Users\Lenovo\Source\Repos\VenusDoor\BusinessLogic\bin\Debug\itextsharp.xml

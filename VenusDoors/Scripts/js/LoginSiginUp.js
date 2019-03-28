@@ -196,9 +196,9 @@ function Signin() {
             } else if (result == 2) {
                 LlammarModal("Danger", "Error! Your account has not been activated.", "If it is an error or we have delayed the activation of your account, please contact us to solve the problem.");                
             } else if(result == 3){
-                LlammarModal("Danger", "Invalid password", "If you forgot your password you can restore it here");             
+                LlammarModal("Danger", "Invalid password", "If you forgot your password you can restore it <a href='"+urlRecoverPassword+"'> here</a>");             
             } else {
-                LlammarModal("Danger", "That email is not associated with any account in our records.", "Do you want to create one?");
+                LlammarModal("Danger", "That email is not associated with any account in our records.", "<a href='"+urlSingUp+"' >Do you want to create one?</a>");
             }
         },
         error: function (err) {

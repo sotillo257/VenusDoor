@@ -69,10 +69,11 @@
                                                 { <span class="square-8 bg-warning mg-r-5 rounded-circle"></span> }
                                                 @ordenes.Status.Description
                                             </td>
-                                            <td>@ordenes.ModificationDate</td>
+                                            <td>@ordenes.CreationDate</td>
                                             <td class="">
                                                 <center>
                                                     <button class="Cursor btn btn-primary btn-icon orderreff" data-id="@ordenes.Id" style="width: 25px; height: 25px;"><i class="fa fa-list"></i></button>
+                                                    <button class="Cursor btn btn-secondary btn-icon Descarga" data-id="@ordenes.Id" style="width: 25px; height: 25px;"><i class="fa fa-download"></i></button>
                                                 </center>
                                             </td>
                                         </tr>
@@ -223,11 +224,12 @@ else
                                                 { <span class="square-8 bg-danger mg-r-5 rounded-circle"></span> }
                                                 @ordenes.Status.Description
                                             </td>
-                                            <td>@ordenes.ModificationDate</td>
+                                            <td>@ordenes.CreationDate</td>
                                             <td class="">
                                                 <center>                                                    
                                                     <button class="Cursor btn btn-primary btn-icon orderreff" data-id="@ordenes.Id" style="width: 25px;height: 25px; " ><i class="fa fa-list"></i></button>
-                                                </center>
+                                                    <button class="Cursor btn btn-success btn-icon Descarga" data-id="@ordenes.Id" style="width: 25px; height: 25px;"><i class="fa fa-download"></i></button>
+                                                 </center>
                                             </td>
                                         </tr>
                                     }
@@ -268,7 +270,9 @@ else
 
 @section scripts{
 <script type="text/javascript">
-    var urlGetDoorsByOrder = '@Url.Action("GetDoorsByOrder", "OrderStatus")';    
+   
+    var urlGetDoorsByOrder = '@Url.Action("GetDoorsByOrder", "OrderStatus")';
+    var urlDescargarOderPDF = '@Url.Action("DescargarOrderPDF", "OrderStatus")';
     $(function () {
         'use strict';
 
