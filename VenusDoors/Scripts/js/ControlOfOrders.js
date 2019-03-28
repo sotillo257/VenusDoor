@@ -372,7 +372,7 @@ function UpdateOrderStatus3(id) {
     $.ajax({
         type: 'POST',
         data: JSON.stringify(datos),
-        url: urlUpdateOrderStatus,
+        url: urlUpdateStatusDP,
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function (result) {

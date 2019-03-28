@@ -19,7 +19,6 @@
                 <div class="row">
                     <div class="col-md-11 pd-sm-bottom-30">
                         <h4 class="tx-gray-800 mg-b-5">@ViewBag.Title</h4>
-                        <p class="mg-b-0">Modals are streamlined, but flexible, dialog prompts with the minimum required functionality and smart defaults.</p>
                     </div>
                     <div class="col-md-1">
                         <button type="button" id="btInsert" data-toggle="modal" data-target="#modalInsert" class="Cursor btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Insert</button>
@@ -37,8 +36,7 @@
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Name</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Email</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Direction</th>
-                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Telephone</th>                            
-                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Type</th>
+                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Telephone</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Status</th>
                             <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" style="text-align: center" aria-label="Last name: activate to sort column ascending"><i class="fa fa-flash"></i></th>
                         </tr>
@@ -53,13 +51,15 @@
                                 <td class="">@item.Email</td>
                                 <td class="">@item.Direction</td>                                
                                 <td class="">@item.Telephone</td>                                 
-                                <td class="">@item.Type.Description</td> 
                                 <td class="">@item.Status.Description</td> 
                                 <td class="">
                                     <center>
-                                        <a href="#" data-toggle="modal" data-target="#modalInsert" value="@item.Id" class="Modificar btn btn-primary btn-icon">
-                                            <div><i class="fa fa-edit"></i></div>
-                                        </a>
+                                        <button data-toggle="modal" data-target="#modalInsert" style="width: 25px;height: 25px; margin-left: 10px;" value="@item.Id" class="Modificar btn btn-primary btn-icon">
+                                            <i class="fa fa-edit"></i>
+                                        </button>
+                                        <button href="#" data-toggle="modal" data-target="" id="" title="Remove" value="@item.Id" class="Remove Cursor btn btn-danger btn-icon" style="width: 25px;height: 25px; margin-left: 10px;">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
                                     </center>
                                 </td>
                             </tr>
@@ -142,14 +142,14 @@
 @section scripts{
     <script>
         var urlGetAllStatus = '@Url.Action("GetStatus", "Masters")';
-        var urlGetAllType = '@Url.Action("GetAllType", "Masters")';        
+        var urlGetAllType = '@Url.Action("GetAllType", "Masters")';
         var urlInsertCompany = '@Url.Action("InsertCompany", "Masters")';
         var urlUpdateCompany = '@Url.Action("UpdateCompany", "Masters")';
         var urlGetAllCompany = '@Url.Action("GetAllCompany", "Masters")';
         var listComp = JSON.parse('@Html.Raw(ViewBag.ListCompany)');
+        var urlUpdateStatusCompany = '@Url.Action("UpdateStatusCompany", "Masters")';
 
 
-      
     </script>
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>
