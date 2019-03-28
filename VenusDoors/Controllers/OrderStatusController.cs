@@ -100,8 +100,8 @@ namespace VenusDoors.Controllers
         {
             try
             {
-                BusinessLogic.lnOrder LNOrder = new BusinessLogic.lnOrder();
-                return Json(LNOrder.DescargarPDF(idOrder, Server.MapPath("~")), JsonRequestBehavior.AllowGet);
+               // BusinessLogic.lnOrder LNOrder = new BusinessLogic.lnOrder();
+                return Json(DescargarPDF(idOrder), JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
@@ -112,9 +112,15 @@ namespace VenusDoors.Controllers
 
         public string DescargarPDF(int IdOrder)
         {
+            var doc1 = new Document();
             try
             {
-             
+                string path = Server.MapPath("~/Content/PDF");
+                foreach (var item in Directory.GetFiles(path, "*.*"))
+                {
+                   System.IO.File.SetAttributes(item, FileAttributes.Normal);
+                    System.IO.File.Delete(item);
+                }
 
                 BusinessLogic.lnOrder LNOrder = new BusinessLogic.lnOrder();
                 BusinessLogic.lnUser LNUser = new BusinessLogic.lnUser();
@@ -129,10 +135,10 @@ namespace VenusDoors.Controllers
                 DoorsxUser doorsxUser = LNDoorUser.GetAllDoorsxUser().Where(x => x.Order.Id == IdOrder).FirstOrDefault();
                 List<DoorxOrder> DO = LNDoorOrder.GetAllDoorxOrderByDoorxUser(doorsxUser.Id);
 
-                var doc1 = new Document();
+               
                 //use a variable to let my code fit across the page...
 
-                string path = Server.MapPath("~/Content/PDF");
+               
                 string ruta = "/Content/PDF" + "/" + IdOrder + ".pdf";
                 PdfWriter.GetInstance(doc1, new FileStream(path + "/" + IdOrder + ".pdf", FileMode.Create));
 
@@ -155,7 +161,7 @@ namespace VenusDoors.Controllers
                 //fix the absolute width of the table
 
                 table.LockedWidth = true;
-                
+
                 //relative col widths in proportions - 1/3 and 2/3
 
                 float[] widths = new float[] { 1f, 1f, 1f, 1f };
@@ -166,94 +172,117 @@ namespace VenusDoors.Controllers
 
                 //leave a gap before and after the table
 
-                table.SpacingBefore = 20f;
+                //table.SpacingBefore = 20f;
 
-                table.SpacingAfter = 30f;
+                //table.SpacingAfter = 30f;
 
-
-                PdfPCell cell = new PdfPCell(new Phrase("Wood Species: " + doorsxUser.Material.Description, FontFactory.GetFont("Arial", 10)));
-                cell.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
-               cell.Border = 0;
+                PdfPCell cell = new PdfPCell(new Phrase("General Configuration", FontFactory.GetFont("Arial", 12)));
+                cell.Colspan = 4;
+                cell.HorizontalAlignment = 1;
+                cell.Border = 0;
+                cell.PaddingBottom = 10f;
                 table.AddCell(cell);
 
-                cell = new PdfPCell(new Phrase("Door Style: " + doorsxUser.DoorStyle.Description, FontFactory.GetFont("Arial", 10)));
+
+                cell = new PdfPCell(new Phrase("Wood Species: " + doorsxUser.Material.Description, FontFactory.GetFont("Arial", 9)));
                 cell.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
-               cell.Border = 0;
+                cell.Border = 0;
+                cell.PaddingBottom = 5f;
+                table.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase("Door Style: " + doorsxUser.DoorStyle.Description, FontFactory.GetFont("Arial", 9)));
+                cell.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
+                cell.Border = 0;
+                cell.PaddingBottom = 5f;
                 table.AddCell(cell);
 
                 string overlay = (doorsxUser.isOverlay == true) ? "Overlay Door Type" : "Inset Door Type";
-                cell = new PdfPCell(new Phrase("Door Place: " + overlay, FontFactory.GetFont("Arial", 10)));
+                cell = new PdfPCell(new Phrase("Door Place: " + overlay, FontFactory.GetFont("Arial", 9)));
                 cell.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
-               cell.Border = 0;
+                cell.Border = 0;
+                cell.PaddingBottom = 5f;
                 table.AddCell(cell);
 
-                cell = new PdfPCell(new Phrase("Stile Width: " + doorsxUser.TopRail.Description, FontFactory.GetFont("Arial", 10)));
+                cell = new PdfPCell(new Phrase("Stile Width: " + doorsxUser.TopRail.Description, FontFactory.GetFont("Arial", 9)));
                 cell.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
-               cell.Border = 0;
+                cell.Border = 0;
+                cell.PaddingBottom = 5f;
                 table.AddCell(cell);
 
-                cell = new PdfPCell(new Phrase("Rail Width: " + doorsxUser.BottomRail.Description, FontFactory.GetFont("Arial", 10)));
+                cell = new PdfPCell(new Phrase("Rail Width: " + doorsxUser.BottomRail.Description, FontFactory.GetFont("Arial", 9)));
                 cell.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
-               cell.Border = 0;
+                cell.Border = 0;
+                cell.PaddingBottom = 5f;
                 table.AddCell(cell);
 
-                cell = new PdfPCell(new Phrase("Inside Edge Profile: " + doorsxUser.InsideEdgeProfile.Description, FontFactory.GetFont("Arial", 10)));
+                cell = new PdfPCell(new Phrase("Inside Profile: " + doorsxUser.InsideEdgeProfile.Description, FontFactory.GetFont("Arial", 9)));
                 cell.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
-               cell.Border = 0;
+                cell.Border = 0;
+                cell.PaddingBottom = 5f;
                 table.AddCell(cell);
 
-                cell = new PdfPCell(new Phrase("Outside Edge Profile: " + doorsxUser.OutsideEdgeProfile.Description, FontFactory.GetFont("Arial", 10)));
+                cell = new PdfPCell(new Phrase("Outside Profile: " + doorsxUser.OutsideEdgeProfile.Description, FontFactory.GetFont("Arial", 9)));
                 cell.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
-               cell.Border = 0;
+                cell.Border = 0;
+                cell.PaddingBottom = 5f;
                 table.AddCell(cell);
 
-                cell = new PdfPCell(new Phrase("Door Assembly: " + doorsxUser.Join.Description, FontFactory.GetFont("Arial", 10)));
+                cell = new PdfPCell(new Phrase("Door Assembly: " + doorsxUser.Join.Description, FontFactory.GetFont("Arial", 9)));
                 cell.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
-               cell.Border = 0;
+                cell.Border = 0;
+                cell.PaddingBottom = 5f;
                 table.AddCell(cell);
 
-                cell = new PdfPCell(new Phrase("Panel Material: " + doorsxUser.PanelMaterial.Description, FontFactory.GetFont("Arial", 10)));
+                cell = new PdfPCell(new Phrase("Panel Material: " + doorsxUser.PanelMaterial.Description, FontFactory.GetFont("Arial", 9)));
                 cell.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
-               cell.Border = 0;
+                cell.Border = 0;
+                cell.PaddingBottom = 5f;
                 table.AddCell(cell);
 
                 string OpeningMeasurement = (doorsxUser.IsOpeningMeasurement == true) ? "Yes" : "No";
-                cell = new PdfPCell(new Phrase("Opening Measurement: " + OpeningMeasurement, FontFactory.GetFont("Arial", 10)));
+                cell = new PdfPCell(new Phrase("Opening Measurement: " + OpeningMeasurement, FontFactory.GetFont("Arial", 9)));
                 cell.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
-               cell.Border = 0;
+                cell.Border = 0;
+                cell.PaddingBottom = 5f;
                 table.AddCell(cell);
 
-                cell = new PdfPCell(new Phrase("Vertical Divisions: " + doorsxUser.VerticalDivisions.Quantity.ToString(), FontFactory.GetFont("Arial", 10)));
+                cell = new PdfPCell(new Phrase("Vertical Divisions: " + doorsxUser.VerticalDivisions.Quantity.ToString(), FontFactory.GetFont("Arial", 9)));
                 cell.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
-               cell.Border = 0;
+                cell.Border = 0;
+                cell.PaddingBottom = 5f;
                 table.AddCell(cell);
 
 
-                cell = new PdfPCell(new Phrase("Horizontal Divisions: " + doorsxUser.HorizontalDivisions.Quantity.ToString(), FontFactory.GetFont("Arial", 10)));
+                cell = new PdfPCell(new Phrase("Horizontal Divisions: " + doorsxUser.HorizontalDivisions.Quantity.ToString(), FontFactory.GetFont("Arial", 9)));
                 cell.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
-               cell.Border = 0;
+                cell.Border = 0;
+                cell.PaddingBottom = 5f;
                 table.AddCell(cell);
 
-                string Drill = (doorsxUser.isDrill == true) ? "Yes ("+ doorsxUser.HingeDirection.Direction+")" : "No";
-                cell = new PdfPCell(new Phrase("No Drill: " + Drill, FontFactory.GetFont("Arial", 10)));
+                string Drill = (doorsxUser.isDrill == true) ? "Yes (" + doorsxUser.HingeDirection.Direction + ")" : "No";
+                cell = new PdfPCell(new Phrase("No Drill: " + Drill, FontFactory.GetFont("Arial", 9)));
                 cell.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
-               cell.Border = 0;
+                cell.Border = 0;
+                cell.PaddingBottom = 5f;
                 table.AddCell(cell);
-                
+
                 string FingerPull = (doorsxUser.isFingerPull == true) ? "Yes" : "No";
-                cell = new PdfPCell(new Phrase("Finger Pull: " + FingerPull, FontFactory.GetFont("Arial", 10)));
-                cell.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
-               cell.Border = 0;
-                table.AddCell(cell);
-
-                cell = new PdfPCell(new Phrase(" ", FontFactory.GetFont("Arial", 10)));
+                cell = new PdfPCell(new Phrase("Finger Pull: " + FingerPull, FontFactory.GetFont("Arial", 9)));
                 cell.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
                 cell.Border = 0;
+                cell.PaddingBottom = 5f;
                 table.AddCell(cell);
 
-                cell = new PdfPCell(new Phrase(" ", FontFactory.GetFont("Arial", 10)));
+                cell = new PdfPCell(new Phrase(" ", FontFactory.GetFont("Arial", 9)));
                 cell.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
                 cell.Border = 0;
+                cell.PaddingBottom = 5f;
+                table.AddCell(cell);
+
+                cell = new PdfPCell(new Phrase(" ", FontFactory.GetFont("Arial", 9)));
+                cell.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
+                cell.Border = 0;
+                cell.PaddingBottom = 5f;
                 table.AddCell(cell);
 
                 image.ScaleAbsoluteWidth(150);
@@ -272,6 +301,12 @@ namespace VenusDoors.Controllers
                 TableDoor.HorizontalAlignment = 0;
                 TableDoor.SpacingBefore = 20f;
                 TableDoor.SpacingAfter = 30f;
+                cell = new PdfPCell(new Phrase("Door List", FontFactory.GetFont("Arial", 12)));
+                cell.Colspan = descu;
+                cell.HorizontalAlignment = 1;
+                cell.Border = 0;
+                cell.PaddingBottom = 10f;
+                TableDoor.AddCell(cell);
                 cell = new PdfPCell(new Phrase("Door", FontFactory.GetFont("Arial", 10)));
                 TableDoor.AddCell(cell);
                 cell = new PdfPCell(new Phrase("Quantity", FontFactory.GetFont("Arial", 10)));
@@ -308,7 +343,7 @@ namespace VenusDoors.Controllers
                     cell = new PdfPCell(new Phrase(wit, FontFactory.GetFont("Arial", 10)));
                     TableDoor.AddCell(cell);
 
-                    string dh = (item.DecimalsHeight.Id == 2) ? "": item.DecimalsHeight.Description;
+                    string dh = (item.DecimalsHeight.Id == 2) ? "" : item.DecimalsHeight.Description;
                     string hei = item.Height.ToString().Split(',')[0] + " " + dh;
                     cell = new PdfPCell(new Phrase(hei, FontFactory.GetFont("Arial", 10)));
                     TableDoor.AddCell(cell);
@@ -318,7 +353,7 @@ namespace VenusDoors.Controllers
                     TableDoor.AddCell(cell);
                     cell = new PdfPCell(new Phrase(item.DoorOption.Description, FontFactory.GetFont("Arial", 10)));
                     TableDoor.AddCell(cell);
-                    cell = new PdfPCell(new Phrase("$"+item.ItemCost.ToString().Replace(',', '.'), FontFactory.GetFont("Arial", 10)));
+                    cell = new PdfPCell(new Phrase("$" + item.ItemCost.ToString().Replace(',', '.'), FontFactory.GetFont("Arial", 10)));
                     TableDoor.AddCell(cell);
                     if (doorsxUser.DescuentoActivos)
                     {
@@ -340,17 +375,25 @@ namespace VenusDoors.Controllers
                 footer.Add(total);
                 footer.Alignment = 2;
 
-                Chunk Name = new Chunk("Name: " + person.Name + " " + person.Lastname + " \n",
-                                 FontFactory.GetFont("Arial", 12));
-                Chunk Email = new Chunk("Email: " + user.Email + " \n",
-                                FontFactory.GetFont("Arial", 12));
-                Chunk Telephone = new Chunk("Telephone: " + person.Telephone + " \n",
-                                FontFactory.GetFont("Arial", 12));
-                Paragraph head = new Paragraph();
-                head.Add(Name);
-                head.Add(Email);
-                head.Add(Telephone);
-                head.Alignment = 0;
+                PdfPTable TableUser = new PdfPTable(1);
+                TableUser.TotalWidth = 526f;
+                TableUser.LockedWidth = true;
+                TableUser.HorizontalAlignment = 0;
+                TableUser.SpacingBefore = 20f;
+                TableUser.SpacingAfter = 30f;
+                cell = new PdfPCell(new Phrase("Name: " + person.Name + " " + person.Lastname + " \n",
+                                 FontFactory.GetFont("Arial", 10)));
+                cell.Border = 0;
+                TableUser.AddCell(cell);
+                cell = new PdfPCell(new Phrase("Email: " + user.Email + " \n",
+                                FontFactory.GetFont("Arial", 10)));
+                cell.Border = 0;
+                TableUser.AddCell(cell);
+                cell = new PdfPCell(new Phrase("Telephone: " + person.Telephone + " \n",
+                                FontFactory.GetFont("Arial", 10)));
+                cell.Border = 0;
+                TableUser.AddCell(cell);
+
 
                 PdfPTable TableHeader = new PdfPTable(2);
                 TableHeader.TotalWidth = 526f;
@@ -364,34 +407,36 @@ namespace VenusDoors.Controllers
                 TableHeader.AddCell(cell);
                 p.Add(c);
                 p.Add(order.CreationDate.ToString("MM/dd/yyyy") + " \n");
-                
-               
+
+
                 p.Alignment = 2;
                 cell = new PdfPCell(new Phrase(p));
                 cell.HorizontalAlignment = 2; //0=Left, 1=Centre, 2=Right
                 cell.Border = 0;
                 TableHeader.AddCell(cell);
 
-               
+
 
                 //  doc1.Add(p);
                 // doc1.Add(image);
                 doc1.Add(TableHeader);
-                doc1.Add(head);
+                doc1.Add(TableUser);
                 doc1.Add(table);
                 doc1.Add(TableDoor);
                 doc1.Add(footer);
                 doc1.Close();
                 //-------------------------------
                 return ruta;
-              //  return Json(true);
+                //  return Json(true);
             }
             catch (Exception ex)
             {
+                doc1.Close();
                 return "";
-               // return Json(false);
+                // return Json(false);
             }
 
         }
+        // 
     }
 } 
