@@ -4,8 +4,7 @@
         var id = $(this).attr('data-id');       
         GetDoorsByOrder(id);
     });
-    $(".Descarga").click(function (e) {
-        //e.preventDefault();
+    $(document).on('click', '.Descarga', function (event) {
         var id = $(this).attr('data-id');
         DescargarOderPDF(id);
     });
