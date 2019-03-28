@@ -776,6 +776,23 @@ function changeDoorPicture() {
         }
 }
 
+function ChangeProfile() {
+    var Outside = $('#cbOutsideEdgeProfile').val();
+    var Inside = $('#cbInsideEdgeProfile').val();
+    var Panel = $('#cbPanel').val();
+
+    if (Panel == 5) {
+       FlatPanel(Outside, Inside);
+    }
+    if (Panel == 6) {
+        FlatPanelBeaded(Outside, Inside);
+    }
+    if (Panel == 2) {
+        RaisedPanel(Outside, Inside);
+    }
+   
+}
+
 function FlatPanelDoor(Style) {
     var stile = $('#cbTopRail').val();
     var rail = $('#cbBottomRail').val();
