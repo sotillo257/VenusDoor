@@ -73,23 +73,44 @@ namespace VenusDoors.Controllers
         [HttpPost]
         public ActionResult GetDoorsByOrder(int idOrder)
         {
-            //BusinessLogic.lnOrder _LNO = new BusinessLogic.lnOrder();
-            //var getOrderData = _LNO.GetOrderById(idOrder);
-            //ViewBag.OrderDetails = getOrderData;
-            BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
-            DoorsxUser xDoors = _LN.GetAllDoorsxUser().Where(x => x.Order.Id == idOrder).ToList().FirstOrDefault();
-            BusinessLogic.lnDoorxOrder Ord = new BusinessLogic.lnDoorxOrder();
-            xDoors.DoorsxOrder = Ord.GetAllDoorxOrderByDoorxUser(xDoors.Id);
-            if (xDoors.DoorsxOrder.Sum(x => x.Descuento) > 0)
+            try
             {
-                xDoors.DescuentoActivos = true;
+                BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
+                DoorsxUser xDoors = _LN.GetAllDoorsxUser().Where(x => x.Order.Id == idOrder).ToList().FirstOrDefault();
+                BusinessLogic.lnDoorxOrder Ord = new BusinessLogic.lnDoorxOrder();
+                xDoors.DoorsxOrder = Ord.GetAllDoorxOrderByDoorxUser(xDoors.Id);
+                if (xDoors.DoorsxOrder.Sum(x => x.Descuento) > 0)
+                {
+                    xDoors.DescuentoActivos = true;
+                }
+                // ViewBag.DoorsOrder = doorsByOrder;
+                return Json(xDoors);
             }
-            // ViewBag.DoorsOrder = doorsByOrder;
-            return Json(xDoors);
+            catch (Exception ex )
+            {
+                return Json(null);
+            }
+            
 
         }
 
-        public void DescargarPDF(int IdOrder)
+        [Authorize]
+        [HttpPost]
+        public ActionResult DescargarOrderPDF(int idOrder)
+        {
+            try
+            {
+                BusinessLogic.lnOrder LNOrder = new BusinessLogic.lnOrder();
+                return Json(LNOrder.DescargarPDF(idOrder, Server.MapPath("~")), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+
+        }
+
+        public string DescargarPDF(int IdOrder)
         {
             try
             {
@@ -112,8 +133,8 @@ namespace VenusDoors.Controllers
                 //use a variable to let my code fit across the page...
 
                 string path = Server.MapPath("~/Content/PDF");
-
-                PdfWriter.GetInstance(doc1, new FileStream(path + "/"+ IdOrder +".pdf", FileMode.Create));
+                string ruta = "/Content/PDF" + "/" + IdOrder + ".pdf";
+                PdfWriter.GetInstance(doc1, new FileStream(path + "/" + IdOrder + ".pdf", FileMode.Create));
 
                 doc1.Open();
 
@@ -186,7 +207,7 @@ namespace VenusDoors.Controllers
                cell.Border = 0;
                 table.AddCell(cell);
 
-                cell = new PdfPCell(new Phrase("Door Assembly: " + doorsxUser.Join, FontFactory.GetFont("Arial", 10)));
+                cell = new PdfPCell(new Phrase("Door Assembly: " + doorsxUser.Join.Description, FontFactory.GetFont("Arial", 10)));
                 cell.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
                cell.Border = 0;
                 table.AddCell(cell);
@@ -225,12 +246,12 @@ namespace VenusDoors.Controllers
                cell.Border = 0;
                 table.AddCell(cell);
 
-                cell = new PdfPCell(new Phrase("" + FingerPull, FontFactory.GetFont("Arial", 10)));
+                cell = new PdfPCell(new Phrase(" ", FontFactory.GetFont("Arial", 10)));
                 cell.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
                 cell.Border = 0;
                 table.AddCell(cell);
 
-                cell = new PdfPCell(new Phrase("" + FingerPull, FontFactory.GetFont("Arial", 10)));
+                cell = new PdfPCell(new Phrase(" ", FontFactory.GetFont("Arial", 10)));
                 cell.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
                 cell.Border = 0;
                 table.AddCell(cell);
@@ -251,7 +272,7 @@ namespace VenusDoors.Controllers
                 TableDoor.HorizontalAlignment = 0;
                 TableDoor.SpacingBefore = 20f;
                 TableDoor.SpacingAfter = 30f;
-                cell = new PdfPCell(new Phrase("Preview", FontFactory.GetFont("Arial", 12)));
+                cell = new PdfPCell(new Phrase("Door", FontFactory.GetFont("Arial", 10)));
                 TableDoor.AddCell(cell);
                 cell = new PdfPCell(new Phrase("Quantity", FontFactory.GetFont("Arial", 10)));
                 TableDoor.AddCell(cell);
@@ -342,7 +363,7 @@ namespace VenusDoors.Controllers
                 cell.Border = 0;
                 TableHeader.AddCell(cell);
                 p.Add(c);
-                p.Add(DateTime.Now.ToString("MM/dd/yyyy") + " \n");
+                p.Add(order.CreationDate.ToString("MM/dd/yyyy") + " \n");
                 
                
                 p.Alignment = 2;
@@ -362,12 +383,12 @@ namespace VenusDoors.Controllers
                 doc1.Add(footer);
                 doc1.Close();
                 //-------------------------------
-
+                return ruta;
               //  return Json(true);
             }
             catch (Exception ex)
             {
-
+                return "";
                // return Json(false);
             }
 

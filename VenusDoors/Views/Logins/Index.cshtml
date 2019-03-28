@@ -94,7 +94,7 @@
 
                         <button id="ingresarbtn" onclick = "doSomething();" class="Cursor ingresar btn btn-primary pd-y-12 btn-block">Sign In</button>
 
-                        <div class="mg-t-30 mg-b-20 tx-12">Don't have an account yet? @Html.ActionLink("Create one!", "sing_up", "Logins")</div>
+                        <div class="mg-t-30 mg-b-20 tx-12">Don't have an account yet? @Html.ActionLink("Sign up!", "sing_up", "Logins")</div>
 
                         @*<p class="tx-11 tx-uppercase tx-spacing-2">Or Sign In With</p>
                         <a href="#" class="btn btn-primary btn-icon">
@@ -147,5 +147,7 @@ function carousel() {
     <script type="text/javascript">
         var urlAutherize = '@Url.Action("Autherize", "Logins")';
         var urlGetAllCompanys = '@Url.Action("GetAllCompany", "Logins")';
+        var urlSingUp = '@Url.Action("sing_up", "Logins")';
+        var urlRecoverPassword = '@Url.Action("Recover_Password", "Logins")';
     </script>
 }

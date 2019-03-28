@@ -598,27 +598,19 @@ function ValidarCamposVacios() {
         $('#select2-cbDoorStyle-container').removeClass("cbError");
     }
 
-    if ($('#cbTopRail').val() == 0 || $('#cbTopRail').val() == null) {
-        $('#select2-cbTopRail-container').addClass("cbError");
+    if ($('#cbRailWidth').val() == 0 || $('#cbRailWidth').val() == null) {
+        $('#select2-cbRailWidth-container').addClass("cbError");
         aux = false;
     } else {
-        $('#select2-cbTopRail-container').removeClass("cbError");
+        $('#select2-cbRailWidth-container').removeClass("cbError");
     }
 
-    if ($('#cbBottomRail').val() == 0 || $('#cbBottomRail').val() == null) {
-        $('#select2-cbBottomRail-container').addClass("cbError");
+    if ($('#cbStileWidth').val() == 0 || $('#cbStileWidth').val() == null) {
+        $('#select2-cbStileWidth-container').addClass("cbError");
         aux = false;
     } else {
-        $('#select2-cbBottomRail-container').removeClass("cbError");
+        $('#select2-cbStileWidth-container').removeClass("cbError");
     }
-
-    if ($('#cbPreparation').val() == 0 || $('#cbPreparation').val() == null) {
-        $('#select2-cbPreparation-container').addClass("cbError");
-        aux = false;
-    } else {
-        $('#select2-cbPreparation-container').removeClass("cbError");
-    }
-
 
     if ($('#cbPanelMaterial').val() == 0 || $('#cbPanelMaterial').val() == null) {
         $('#select2-cbPanelMaterial-container').addClass("cbError");

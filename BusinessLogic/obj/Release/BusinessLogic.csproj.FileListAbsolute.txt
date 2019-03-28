@@ -58,3 +58,5 @@ C:\Users\jesus\Source\Repos\Solo local\BusinessLogic\bin\Release\MetodosDB.pdb
 C:\Users\jesus\Source\Repos\Solo local\BusinessLogic\obj\Release\BusinessLogic.csprojResolveAssemblyReference.cache
 C:\Users\jesus\Source\Repos\Solo local\BusinessLogic\obj\Release\BusinessLogic.dll
 C:\Users\jesus\Source\Repos\Solo local\BusinessLogic\obj\Release\BusinessLogic.pdb
+C:\Users\jesus\Source\Repos\Solo local\BusinessLogic\bin\Release\itextsharp.dll
+C:\Users\jesus\Source\Repos\Solo local\BusinessLogic\bin\Release\itextsharp.xml

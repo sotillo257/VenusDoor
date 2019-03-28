@@ -9,7 +9,12 @@
         $("#editBCK").trigger("click");
         $('#dxoPanel').removeClass("active");     
         GetDoorsByOrder(idGETOr);
-    });    
+    });
+    
+    $(document).on('click', '.Descarga', function (event) {
+        var id = $(this).attr('data-id');
+        DescargarOderPDF(id);
+    });
 
     $(document).on('click', '.Approved', function (event) {
         var id = $(this).attr('value');
@@ -88,7 +93,7 @@ function GetDoorsByOrder(idOrden) {
         contentType: 'application/json; charset=utf-8',
         success: function (Result) {
             _IdDoorxUser = Result.Order.Id;
-            $('#idDxUorder').val(Result.Order.Id);
+            $('#idDxUorder').val(Result.Id);
             $('#descDXU').val(Result.Order.Descuento);
             var fingerPull = Result.isFingerPull;
             if (fingerPull == false) {
@@ -430,6 +435,7 @@ function llenarTablaOrderControl() {
                     else if (data[i].Status.Id == 7) {
                         Botones += '<button title="Complete order." value="' + data[i].Id + '" class="Completed Cursor btn btn-success btn-icon"  style="width: 25px;height: 25px; margin-left: 10px;"> <i class="fa fa-check"></i>  </button>';
                     }
+                 //   Botones += ' <button class="Cursor btn btn-secondary btn-icon Descarga" data-id="' + data[i].Id + '" style="width: 25px; height: 25px;  margin-left: 10px;"><i class="fa fa-download"></i></button>';
                     t.row.add([
                          data[i].Id,
                         data[i].Quantity,
@@ -523,6 +529,7 @@ function llenarTablaOrderControlxUser(pIdStatus) {
                     else if (data[i].Status.Id == 7) {
                         Botones += '<button title="Complete order." value="' + data[i].Id + '" class="Completed Cursor btn btn-success btn-icon"  style="width: 25px;height: 25px; margin-left: 10px;"> <i class="fa fa-check"></i>  </button>';
                     }
+                   // Botones += ' <button class="Cursor btn btn-secondary btn-icon Descarga" data-id="' + data[i].Id + '" style="width: 25px; height: 25px; margin-left: 10px;"><i class="fa fa-download"></i></button>';
                     t.row.add([
                          data[i].Id,
                         data[i].Quantity,
@@ -542,3 +549,31 @@ function llenarTablaOrderControlxUser(pIdStatus) {
     });
 
 }
+function DescargarOderPDF(id) {
+    var datos = { idOrder: id };
+
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(datos),
+        url: urlDescargarOderPDF,
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        success: function (data) {
+            if (data != null) {
+                //window.location.href = data;
+                var link = document.createElement("a");
+                link.download = "Order " + id + ".pdf";
+                link.href = data;
+                link.click();
+            }
+            else {
+                LlammarModal("Danger", "Error Download PDF", " ");
+            }
+        },
+        error: function (err) {
+            console.log(err);
+            LlammarModal("Danger", "Error.", "");
+        }
+    });
+}
+
