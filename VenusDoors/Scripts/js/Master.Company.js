@@ -23,7 +23,16 @@
         $("#btUpdateCompany").hide();
         $("#btnInsertCompany").show();
         Limpiar();
-    });       
+    });
+
+    $(document).on('click', '.Remove', function (event) {
+        var id = $(this).attr('value');
+        LlammarModal("modalConfim", "Warning!", "You are about to delete an article. What would you like to do?",
+        '<button onclick="UpdateStatus3(id)" class="Cursor btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal" aria-label="Close">Remove</button>' +
+        '<button type="button" class="Cursor btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>');
+        $('#deleteidhidden').val(id);
+    });
+
     $(document).on('click', '.Modificar', function (event) {
     	$("#btUpdateCompany").show();
         $("#btnInsertCompany").hide();
@@ -254,6 +263,40 @@ function UpdateCompany() {
     });
 }
 
+function UpdateStatus3(id) {
+    var status = 3;
+    var datos =
+    {
+        modCom: {
+            Id: $('#deleteidhidden').val(),
+            Status: { Id: status }
+
+        }
+    };
+
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(datos),
+        url: urlUpdateStatusCompany,
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+
+            //Validar data para ver si mostrar error al guardar o exito al guardar
+            if (result == true) {
+                LlammarModal("Congratuletions", "Congratulations! It has been modified correctly.", " ");
+                llenarTablaCompany();
+            } else {
+                LlammarModal("Danger", "Error: An error occurred while modifying.", " ");
+            }
+        },
+        error: function (err) {
+            LlammarModal("Danger", "Error.", " ");
+        },
+
+    });
+}
+
 var allEstatus = '';
 function llenarComboEstatus(pStatus) {
 
@@ -355,24 +398,27 @@ function llenarTablaCompany() {
         success: function (data) {
             if (data != null) {
                 listComp = data;
-                var option = '';
+
+                var t = $('#datatable1').DataTable();
+                t.rows().remove().draw(false);
+
                 for (var i = 0; i < data.length; i++) {
-                    option += '<tr role="row" class="odd">';
-                    option += '<td tabindex="0"  >' + data[i].Id + '</td>';
-                    option += ' <td><img style="width: 80px;" src="' + data[i].Logo + '"></td>';
-                    option += '<td>'+data[i].Name+'</td>';
-                    option += '<td>'+data[i].Email+'</td>';
-                    option += '<td>'+data[i].Direction+'</td>';                                
-                    option += '<td>'+data[i].Telephone+'</td>';  
-                    option += '<td>'+data[i].Type.Description+'</td>'; 
-                    option += '<td>'+data[i].Status.Description+'</td>'; 
-                    option += '<td>';
-                    option += '<center>';
-                    option += '<a href="#" data-toggle="modal" data-target="#modalInsert" value="'+data[i].Id+'" class="Modificar btn btn-primary btn-icon">';
-                    option += '<div><i class="fa fa-edit"></i></div></a></center></td></tr>';
-                   
+                    var Botones = '<center><button data-toggle="modal" data-target="#modalInsert" value="' + data[i].Id + '" style="width: 25px;height: 25px; margin-left: 10px;" class="Modificar btn btn-primary btn-icon"><i class="fa fa-edit"></i></button>' +
+                    '<button href="#" data-toggle="modal" data-target="" id="" title="Remove" value="' + data[i].Id + '" class="Remove Cursor btn btn-danger btn-icon" style="width: 25px;height: 25px; margin-left: 10px;"><i class="fa fa-trash"></i></button>' +
+                        '</center>';
+                    var Logo = '<img style="width: 80px;" src="' + data[i].Logo + '">';
+
+                    t.row.add([
+                        data[i].Id,
+                        Logo,
+                        data[i].Name,
+                        data[i].Email,
+                        data[i].Direction,
+                        data[i].Telephone,
+                        data[i].Status.Description,
+                       Botones
+                    ]).draw(false);
                 }
-                $("#datatable1 > tbody").empty().append(option);
                 $("#modalInsert").modal("hide");
             }
             else {

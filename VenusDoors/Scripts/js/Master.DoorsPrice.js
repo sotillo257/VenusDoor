@@ -26,6 +26,14 @@
         Limpiar();
     });
 
+    $(document).on('click', '.Remove', function (event) {
+        var id = $(this).attr('value');
+        LlammarModal("modalConfim", "Warning!", "You are about to delete an article. What would you like to do?",
+        '<button onclick="UpdateStatus3(id)" class="Cursor btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal" aria-label="Close">Remove</button>' +
+        '<button type="button" class="Cursor btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>');
+        $('#deleteidhidden').val(id);
+    });
+
     $(document).on('click', '.Modificar', function (event) {
         $("#btUpdateDoorPrice").show();
         $("#btnInsertDP").hide();
@@ -303,6 +311,40 @@ function UpdateDoorPrice() {
     });
 }
 
+function UpdateStatus3(id) {
+    var status = 3;
+    var datos =
+    {
+        moddp: {
+            Id: $('#deleteidhidden').val(),
+            Status: { Id: status }
+
+        }
+    };
+
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(datos),
+        url: urlUpdateOrderStatus,
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+
+            //Validar data para ver si mostrar error al guardar o exito al guardar
+            if (result == true) {
+                LlammarModal("Congratuletions", "Congratulations! It has been modified correctly.", " ");
+                llenarTablaDoorsPrices();
+            } else {
+                LlammarModal("Danger", "Error: An error occurred while modifying.", " ");
+            }
+        },
+        error: function (err) {
+            LlammarModal("Danger", "Error.", " ");
+        },
+
+    });
+}
+
 var allPanelType = '';
 function llenarComboPanel(pPanelType) {
 
@@ -485,22 +527,25 @@ function llenarTablaDoorsPrices() {
         success: function (data) {
             if (data != null) {
                 listDoorP = data;
-                var option = '';
-                for (var i = 0; i < data.length; i++) {
-                    option += '<tr role="row" class="odd">';
-                    option += '<td tabindex="0"  >' + data[i].Id + '</td>';
-                    option += '<td>' + data[i].BasePrice + '</td>';
-                    option += '<td>' + data[i].AdditionalSFPrice + '</td>';
-                    option += '<td>' + data[i].VerticalAdditionalInchPrice + '</td>';
-                    option += '<td>' + data[i].HorizontalBase1FLPrice + '</td>';
-                    option += '<td>' + data[i].Status.Description + '</td>';
-                    option += '<td>';
-                    option += '<center>';
-                    option += '<a href="#" data-toggle="modal" data-target="#modalInsert" value="' + data[i].Id + '" class="Modificar btn btn-primary btn-icon">';
-                    option += '<div><i class="fa fa-edit"></i></div></a></center></td></tr>';
+                
+                var t = $('#datatable1').DataTable();
+                t.rows().remove().draw(false);
 
+                for (var i = 0; i < data.length; i++) {
+                    var Botones = '<center><button data-toggle="modal" data-target="#modalInsert" value="' + data[i].Id + '" style="width: 25px;height: 25px; margin-left: 10px;" class="Modificar btn btn-primary btn-icon"><i class="fa fa-edit"></i></button>' +
+                        '<button href="#" data-toggle="modal" data-target="" id="" title="Remove" value="' + data[i].Id + '" class="Remove Cursor btn btn-danger btn-icon" style="width: 25px;height: 25px; margin-left: 10px;"><i class="fa fa-trash"></i></button>' +
+                        '</center>';
+
+                    t.row.add([
+                        data[i].Id,
+                        data[i].BasePrice,
+                        data[i].AdditionalSFPrice,
+                        data[i].VerticalAdditionalInchPrice,
+                        data[i].HorizontalBase1FLPrice,
+                        data[i].Status.Description,
+                       Botones
+                    ]).draw(false);
                 }
-                $("#datatable1 > tbody").empty().append(option);
                 $("#modalInsert").modal("hide");
             }
             else {

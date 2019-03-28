@@ -19,7 +19,7 @@
                 <div class="row">
                     <div class="col-md-11 pd-sm-bottom-30">
                         <h4 class="tx-gray-800 mg-b-5">@ViewBag.Title</h4>
-                        <p class="mg-b-0">Modals are streamlined, but flexible, dialog prompts with the minimum required functionality and smart defaults.</p>
+                        
                     </div>
                     <div class="col-md-1">
                         <button type="button" data-toggle="modal" data-target="#modalInsert" id="btInsert" class="Cursor btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Insert</button>
@@ -49,6 +49,9 @@
                                     <center>
                                         <button  data-toggle="modal" data-target="#modalInsert" style="width: 25px;height: 25px; margin-left: 10px;" value="@item.Id" class="Modificar btn btn-primary btn-icon">
                                             <i class="fa fa-edit"></i>
+                                        </button>
+                                        <button href="#" data-toggle="modal" data-target="" id="" title="Remove" value="@item.Id" class="Remove Cursor btn btn-danger btn-icon" style="width: 25px;height: 25px; margin-left: 10px;">
+                                            <i class="fa fa-trash"></i>
                                         </button>
                                     </center>
                                 </td>
@@ -118,7 +121,7 @@
         var urlGetStatus = '@Url.Action("GetStatus", "Masters")';
         var urlGetAllBottomRail = '@Url.Action("GetAllBottomRail", "Masters")';
         var listBTR = JSON.parse('@Html.Raw(ViewBag.ListBottomRail)');
-
+        var urlUpdateStatusBR = '@Url.Action("UpdateStatusBR", "Masters")';
     </script>
 
 <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>

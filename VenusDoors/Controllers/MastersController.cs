@@ -160,6 +160,38 @@ namespace VenusDoors.Controllers
             }
         }
 
+        [Authorize(Roles = "1")]
+        [HttpPost]
+        public ActionResult UpdateStatusBR(BottomRail modBR)
+        {
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                int userID = (int)Session["UserID"];
+                try
+                {
+                    BusinessLogic.lnBottomRail _LNBR = new BusinessLogic.lnBottomRail();
+
+                    modBR.ModificationDate = DateTime.Now;
+                    modBR.ModificationUser = userID;
+                    BottomRail br = _LNBR.GetBottomRailById(modBR.Id);
+                    br.Status.Id = modBR.Status.Id;
+                    var upbr = _LNBR.UpdateBottomRail(br);
+
+
+                    return Json(true, JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
         #endregion
 
         #region Company
@@ -347,6 +379,38 @@ namespace VenusDoors.Controllers
                 {
                     return Json(false, JsonRequestBehavior.AllowGet);
                 }
+            }
+        }
+
+        [Authorize(Roles = "1")]
+        [HttpPost]
+        public ActionResult UpdateStatusCompany(Company modCom)
+        {
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                int userID = (int)Session["UserID"];
+                try
+                {
+                    BusinessLogic.lnCompany _LNCOM = new BusinessLogic.lnCompany();
+
+                    modCom.ModificationDate = DateTime.Now;
+                    modCom.ModificationUser = userID;
+                    Company com = _LNCOM.GetCompanyById(modCom.Id);
+                    com.Status.Id = modCom.Status.Id;
+                    var upcom = _LNCOM.UpdateCompany(com);
+
+
+                    return Json(true, JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
             }
         }
         #endregion
@@ -604,6 +668,39 @@ namespace VenusDoors.Controllers
                 }
             }
         }
+
+
+        //[Authorize(Roles = "1")]
+        //[HttpPost]
+        //public ActionResult UpdateStatusDP(DoorsPrices moddp)
+        //{
+        //    if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+        //    {
+        //        int userID = (int)Session["UserID"];
+        //        try
+        //        {
+        //            BusinessLogic.lnDoorsPrices _LNdp = new BusinessLogic.lnDoorsPrices();
+
+        //            moddp.ModificationDate = DateTime.Now;
+        //            moddp.ModificationUser = userID;
+        //            DoorsPrices dp = _LNdp.GetDoorsPricesById(moddp.Id);
+        //            dp.Status.Id = moddp.Status.Id;
+        //            var updp = _LNdp.UpdateDoorsPrices(dp);
+
+
+        //            return Json(true, JsonRequestBehavior.AllowGet);
+
+        //        }
+        //        catch
+        //        {
+        //            return Json(false, JsonRequestBehavior.AllowGet);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        return RedirectToAction("Index", "Home");
+        //    }
+        //}
         #endregion
 
         #region DoorStyle
@@ -2704,6 +2801,7 @@ namespace VenusDoors.Controllers
             }
         }
         #endregion
+
 
         [Authorize(Roles = "1")] [HttpPost]
         public ActionResult GetStatus()
