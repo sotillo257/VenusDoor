@@ -62,37 +62,49 @@
     });
 
     $(document).on('change', '#File1', function () {
-        var compania = new Array();
-        var formData = new FormData();
-        if ($("#File1")[0].files.length > 0) {
-            //alert($("#File1")[0].files[0].name);
-            formData.append('Files', $("#File1")[0].files[0], $("#File1")[0].files[0].name);
-        }
-        compania.push(formData);
-        $.ajax({
-            url: urlUploadExcel,
-            type: 'POST',
-            data: compania[0],
-            contentType: false,
-            processData: false,
-            success: function (data) {
-                if (data == true) {
-                    LlammarModal("ConfigM", "Successful doors creation!", "Your doors has been added successfully.");
-                    llenarTablaOrderSumary();
-                    $("#ModalUpload").modal("hide");
-                } else {
-                    LlammarModal("Danger", "An error occurred during the process.", "Check your internet connection I tried again");
-                }
-
-            },
-            error: function (err) {
-
-            },
-            complete: function (data) {
-                $("#btnCerrarModalCompania").prop("disabled", false);
-                $("#btnAgregarComapania").button('reset');
+        $('input[type=file][data-max-size]').each(function () {
+            if (typeof this.files[0] !== 'undefined') {
+                var maxSize = parseInt($(this).attr('max-size'), 10),
+                size = this.files[0].size;
+                isOk = maxSize > size;
+                return isOk;
             }
         });
+        if (!isOk) {
+            LlammarModal("Danger", "Image size execeeds maximun allowable size", "Maximun file size 5MB");
+        } else {
+            var compania = new Array();
+            var formData = new FormData();
+            if ($("#File1")[0].files.length > 0) {
+                //alert($("#File1")[0].files[0].name);
+                formData.append('Files', $("#File1")[0].files[0], $("#File1")[0].files[0].name);
+            }
+            compania.push(formData);
+            $.ajax({
+                url: urlUploadExcel,
+                type: 'POST',
+                data: compania[0],
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    if (data == true) {
+                        LlammarModal("ConfigM", "Successful doors creation!", "Your doors has been added successfully.");
+                        llenarTablaOrderSumary();
+                        $("#ModalUpload").modal("hide");
+                    } else {
+                        LlammarModal("Danger", "An error occurred during the process.", "Check your internet connection I tried again");
+                    }
+
+                },
+                error: function (err) {
+
+                },
+                complete: function (data) {
+                    $("#btnCerrarModalCompania").prop("disabled", false);
+                    $("#btnAgregarComapania").button('reset');
+                }
+            });
+        }
     });
 
     $(document).on('change', '#cbDoorStyle', function () {
