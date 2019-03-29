@@ -60,3 +60,5 @@ C:\Users\jesus\Source\Repos\Solo local\BusinessLogic\obj\Release\BusinessLogic.d
 C:\Users\jesus\Source\Repos\Solo local\BusinessLogic\obj\Release\BusinessLogic.pdb
 C:\Users\jesus\Source\Repos\Solo local\BusinessLogic\bin\Release\itextsharp.dll
 C:\Users\jesus\Source\Repos\Solo local\BusinessLogic\bin\Release\itextsharp.xml
+C:\Users\Lenovo\Source\Repos\VenusDoor\BusinessLogic\bin\Release\itextsharp.dll
+C:\Users\Lenovo\Source\Repos\VenusDoor\BusinessLogic\bin\Release\itextsharp.xml
