@@ -181,7 +181,7 @@ function ChangeDoorStylePanel(pIdDoorStyle) {
         }
         $("#cbPanel").empty().append(option);
         $("#cbPanel").val(5);
-    } else if ($("#cbDoorStyle").val() == 1010) {
+    } else if (pIdDoorStyle == 1010) {
         llenarComboInsideAndOutside();
         var option = '<option value="3">Slab</option>';
         $("#cbPanel").empty().append(option);
@@ -1798,8 +1798,8 @@ function llenarTablaOrderSumary() {
                         DxO[i].Panel.Description,
                         DxO[i].DoorType.Description,
                         DxO[i].DoorOption.Description,
-                        DxO[i].ItemCost,
-                        DxO[i].SubTotal,
+                        "<span>$</span>"+ DxO[i].ItemCost,
+                        "<span>$</span>" + DxO[i].SubTotal,
                         Botones                       
                     ]).draw(false);
                 }
