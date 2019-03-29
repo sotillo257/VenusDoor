@@ -1874,11 +1874,11 @@ function llenarheaderOrder() {
                 headerConfig += '<div class="col-xs-4 col-md-3">';
                 if (data.LastDoor.isDrill == false)
                 {
-                    headerConfig += '<label for="Drill" style="margin-top: 25px;">Hinge Drilling: <span>No Drill</span></label>';
+                    headerConfig += '<label for="Drill" style="margin-top: 25px;">Hinge Drilling: <span>No</span></label>';
                 }
                 else
                 {
-                    headerConfig += '<label for="Drill" style="margin-top: 25px;">Hinge Drilling: <span>Is Drill</span></label>';
+                    headerConfig += '<label for="Drill" style="margin-top: 25px;">Hinge Drilling: <span>Yes</span></label>';
                 }
                 headerConfig += '</div>';
                 if (data.LastDoor.isDrill == true)

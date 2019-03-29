@@ -187,10 +187,10 @@ function GetDoorsByOrder(idOrden) {
             //Cuarta fila
             dxu += '<tr>';
             if (Result.isDrill == false) {
-                dxu += '<td>Hinge Drilling: <span style="color: #868ba1">No Drill</span></td>';
+                dxu += '<td>Hinge Drilling: <span style="color: #868ba1">No</span></td>';
             }
             else {
-                dxu += '<td>Hinge Drilling: <span style="color: #868ba1">Drill (' + Result.HingeDirection.Direction + ')</span></td>';
+                dxu += '<td>Hinge Drilling: <span style="color: #868ba1">Yes (' + Result.HingeDirection.Direction + ')</span></td>';
             }
             if (Result.isFingerPull == false) {
                 dxu += '<td style="border-right: 1px solid #ADADAD;">Finger Pull: <span style="color: #868ba1">No</span></td>';
