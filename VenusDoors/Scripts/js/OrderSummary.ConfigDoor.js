@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
     $(".btBuild").on('click', function () {
         $("#lblTitulo").text("Config Door");
-        $("#lblSubTitulo").text("Choose the the best door option that fit your needs.");
+        $("#lblSubTitulo").text("Choose the best door option that fit your needs.");
         $("#btConfSave").hide();
         $("#btxLeft").hide();
         $("#btXclose").show();
@@ -21,7 +21,7 @@
 
     $("#btModify").on('click', function () {
         $("#lblTitulo").text("Modifying the door options");
-        $("#lblSubTitulo").text("After you make your changes remember to press \"Save\" to confirm your changes");
+        $("#lblSubTitulo").text("After you make your changes remember to click \"Save\" to confirm your changes");
         $("#btConfSave").show();
         $("#btxLeft").show();
         $("#btXclose").hide();
@@ -69,7 +69,7 @@
     });
 
     $("#btConfSave").on("click", function () {
-        LlammarModal("ConfirmOrdenSummary", "Do you want to save your new changes?", "The doors added to your order will undergo changes. Do you want to proceed with this operation?.<br>(This could take a little time).",
+        LlammarModal("ConfirmOrdenSummary", "Do you want to save your new changes?", "The doors added to your order will suffer some changes. Do you want to proceed with this operation?.<br>(This could take a little time).",
         '<button onclick="NuevosCambiosDXU();" id="btnSaveChanges" class="Cursor btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Confirm</button>' +
         '<button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>');
     });

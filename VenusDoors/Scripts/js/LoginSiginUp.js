@@ -158,9 +158,9 @@ function CreateNewUser() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == 1) {
-                LlammarModal("Sing", "Congratulations! Your user has been created successfully.", "Your account will be activated by one of our administrators. An email will be sent to you when the process has finished.");
+                LlammarModal("Sing", "Congratulations! Your user has been successfully created.", "Your account will be activated by one of our administrators. An email will be sent to you when the process has finished.");
             } else if(result == 2){
-                LlammarModal("Danger", "There is already a registered user with this email!", "Did you forget your password?. Click on the button below to recover your password");
+                LlammarModal("Danger", "There is already a registered user with this email!", "Did you forget your password?. Click <a href='" + urlRecoverPassword + "'>here</a> to recover your password");
             } else {
                 LlammarModal("Danger", "An error occurred during the process.");
             }
@@ -198,7 +198,7 @@ function Signin() {
             } else if(result == 3){
                 LlammarModal("Danger", "Invalid password", "If you forgot your password you can restore it <a href='"+urlRecoverPassword+"'> here</a>");             
             } else {
-                LlammarModal("Danger", "That email is not associated with any account in our records.", "<a href='"+urlSingUp+"' >Do you want to create one?</a>");
+                LlammarModal("Danger", "That email is not associated with any account in our records.", "Don't have an account yet? <a href='" + urlSingUp + "' >Sign up!</a>");
             }
         },
         error: function (err) {

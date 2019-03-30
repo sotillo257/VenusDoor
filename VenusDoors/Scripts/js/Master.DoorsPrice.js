@@ -280,10 +280,10 @@ function UpdateDoorPrice() {
             Status: { Id: $("#inStatus").val() },
             Picture: $("#inPicture").val(),
             ProfilePicture: $("#inProfilePicture").val(),
-            VerticalBase1FLPrice: $("#inVerticalBase1FLPrice").val(),
-            VerticalAdditionalInchPrice: $("#inVerticalAdditionalInchPrice").val(),
-            HorizontalBase1FLPrice: $("#inHorizontalBase1FLPrice").val(),
-            HorizontalAdditionalInchPrice: $("#inHorizontalAdditionalInchPrice").val(),
+            VerticalBase1FLPrice: 0,
+            VerticalAdditionalInchPrice: 0,
+            HorizontalBase1FLPrice: 0,
+            HorizontalAdditionalInchPrice: 0,
 
         }
     };
@@ -325,7 +325,7 @@ function UpdateStatus3(id) {
     $.ajax({
         type: 'POST',
         data: JSON.stringify(datos),
-        url: urlUpdateOrderStatus,
+        url: urlDeleteDoorPrice,
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function (result) {

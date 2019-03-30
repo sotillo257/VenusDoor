@@ -51,6 +51,19 @@ namespace BusinessLogic
 
         }
 
+        public DoorsPrices GetDoorPriceById(int pId)
+        {
+            try
+            {
+                return _AD.GetDoorPriceById(pId);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+        }
+
         public int InsertDoorsPrices(DoorsPrices pDoorsPrices)
         {
             try

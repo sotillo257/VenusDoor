@@ -18,7 +18,7 @@
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-11 pd-sm-bottom-30">
-                        <h4 class="tx-gray-800 mg-b-5">Doors</h4>
+                        <h4 class="tx-gray-800 mg-b-5">Standard Doors</h4>
                     </div>
                     <div class="col-md-1">
                         <button type="button" data-toggle="modal" data-target="#modalInsert" id="btInsert" class="Cursor btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Insert</button>
@@ -54,14 +54,13 @@
                                 <td class="">@item.Status.Description</td>
                                 <td class="">
                                     <center>
-                                        <a href="#" data-toggle="modal" data-target="#modalInsert" class="Modificar btn btn-primary btn-icon">
+                                        <a href="#" value="@item.Id" data-toggle="modal" data-target="#modalInsert" class="Modificar btn btn-primary btn-icon">
                                             <div><i class="fa fa-edit"></i></div>
                                         </a>
                                     </center>
                                 </td>
                             </tr>
                         }
-
                     </tbody>
                 </table>
             </div>
@@ -83,183 +82,99 @@
                             </button>
                             <div class="pd-xs-x-15 pd-y-10">
                                 <h3 id="lblTitulo" class="tx-inverse  mg-b-5">Insert new</h3>
-                                <p id="lblSubTitulo">You can create a new article below</p>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="row">
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="inId" style="margin-top: 25px;">Id: </label>
-                                                <input type="text" id="inId" class="form-control" readonly placeholder="">
-                                            </div><!-- form-group -->
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="inDoorStyle" style="margin-top: 25px;">Door Style: </label>
-                                                <select style="width:100%" class="form-control select2" id="inDoorStyle" data-placeholder="Select">
-                                                </select>
-                                            </div><!-- form-group -->
+                                <p id="lblSubTitulo">Select the configuration of the new door</p>
+                                <div class="row" style="margin:0">
+                                <div id="divContenedor" style="display:flex; height: 360px">                                    
+                                        <div style="overflow-y: auto;height: 100%;">
+                                            <div class="row" style="margin:0">
+                                                <input hidden id="inId"/>
+                                                <div class="col-xs-4 col-md-5">
+                                                    <label for="cbMaterial" style="margin-top: 25px;">Wood Species: </label>
+                                                    <select style="width:100%" class="form-control select2" id="cbMaterial" data-placeholder="Select"></select>
+                                                </div><!-- form-group -->
 
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="inMaterial" style="margin-top: 25px;">Material: </label>
-                                                <select style="width:100%" class="form-control select2" id="inMaterial" data-placeholder="Select">
-                                                </select>
-                                            </div><!-- form-group -->
+                                                <div class="col-xs-4 col-md-5">
+                                                    <label for="inDoorStyle" style="margin-top: 25px;">Door Style: </label>
+                                                    <select style="width:100%" class="form-control select2 Doors" id="cbDoorStyle" data-placeholder="Select"></select>
+                                                </div><!-- form-group -->
 
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="inTopRail" style="margin-top: 25px;">Stile Width: </label>
-                                                <select style="width:100%" class="form-control select2" id="inTopRail" data-placeholder="Select">
-                                                </select>
-                                            </div><!-- form-group -->
+                                                <div class="col-xs-3 col-md-9">
+                                                    <label for="inDescription" style="margin-top: 25px;">Door Place: </label>
+                                                    <div class="radio" id="isOverlay" style="display:flex">
 
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="inBottomRail" style="margin-top: 25px;">Rail Width: </label>
-                                                <select style="width:100%" class="form-control select2" id="inBottomRail" data-placeholder="Select">
-                                                </select>
-                                            </div><!-- form-group -->
+                                                    </div>
+                                                </div><!-- form-group -->
 
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="inPreparation" style="margin-top: 25px;">Grade: </label>
-                                                <select style="width:100%" class="form-control select2" id="inPreparation" data-placeholder="Select">
-                                                </select>
-                                            </div><!-- form-group -->
+                                                <div class="col-xs-4 col-md-4">
+                                                    <label for="inInsideEdgeProfile" style="margin-top: 25px;">Inside Edge P.: </label>
+                                                    <select style="width:100%" class="form-control select2 Profile Doors" id="cbInsideEdgeProfile" data-placeholder="Select"></select>
+                                                </div><!-- form-group -->
 
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="inJoin" style="margin-top: 25px;">Join: </label>
-                                                <select style="width:100%" class="form-control select2" id="inJoin" data-placeholder="Select">
-                                                </select>
-                                            </div><!-- form-group -->
+                                                <div class="col-xs-4 col-md-4">
+                                                    <label for="inOutsideEdgeProfile" style="margin-top: 25px;">Outside Edge P.: </label>
+                                                    <select style="width:100%" class="form-control select2 Profile Doors" id="cbOutsideEdgeProfile" data-placeholder="Select"></select>
+                                                </div><!-- form-group -->   
 
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="inOutsideEdgeProfile" style="margin-top: 25px;">Outside Edge Profile: </label>
-                                                <select style="width:100%" class="form-control select2" id="inOutsideEdgeProfile" data-placeholder="Select">
-                                                </select>
-                                            </div><!-- form-group -->
+                                                <div class="col-xs-4 col-md-3">
+                                                    <label for="inTopRail" style="margin-top: 25px;">Stile Width: </label>
+                                                    <select style="width:100%" class="form-control select2 Doors" id="cbStileWidth" data-placeholder="Select"></select>
+                                                </div><!-- form-group -->
 
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="inInsideEdgeProfile" style="margin-top: 25px;">Inside Edge Profile: </label>
-                                                <select style="width:100%" class="form-control select2" id="inInsideEdgeProfile" data-placeholder="Select">
-                                                </select>
-                                            </div><!-- form-group -->
+                                                <div class="col-xs-4 col-md-3">
+                                                    <label for="inBottomRail" style="margin-top: 25px;">Rail Width: </label>
+                                                    <select style="width:100%" class="form-control select2 Doors" id="cbRailWidth" data-placeholder="Select"></select>
+                                                </div><!-- form-group -->
 
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="inVerticalDivisions" style="margin-top: 25px;">Vertical Divisions: </label>
-                                                <select style="width:100%" class="form-control select2" id="inVerticalDivisions" data-placeholder="Select">
-                                                </select>
-                                            </div><!-- form-group -->
+                                                <div class="col-xs-4 col-md-4">
+                                                    <label for="inJoin" style="margin-top: 25px;">Door Assembly: </label>
+                                                    <select style="width:100%" class="form-control select2 Doors" id="cbDoorAssembly" data-placeholder="Select"></select>
+                                                </div><!-- form-group -->                                                                                                                                         
 
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="inHorizontalDivisions" style="margin-top: 25px;">Horizontal Divisions: </label>
-                                                <select style="width:100%" class="form-control select2" id="inHorizontalDivisions" data-placeholder="Select">
-                                                </select>
-                                            </div><!-- form-group -->
+                                                <div class="col-xs-4 col-md-4">
+                                                    <label for="inPanel" style="margin-top: 25px;">Panel: </label>
+                                                    <select style="width:100%" class="form-control select2 Doors" id="cbPanel" data-placeholder="Select"></select>
+                                                </div><!-- form-group -->
 
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="inPanel" style="margin-top: 25px;">Panel: </label>
-                                                <select style="width:100%" class="form-control select2" id="inPanel" data-placeholder="Select">
-                                                </select>
-                                            </div><!-- form-group -->
+                                                <div class="col-xs-4 col-md-4">
+                                                    <label for="inPanelMaterial" style="margin-top: 25px;">Panel Material: </label>
+                                                    <select style="width:100%" class="form-control select2" id="cbPanelMaterial" data-placeholder="Select"></select>
+                                                </div><!-- form-group -->
 
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="inPanelMaterial" style="margin-top: 25px;">Panel Material: </label>
-                                                <select style="width:100%" class="form-control select2" id="inPanelMaterial" data-placeholder="Select">
-                                                </select>
-                                            </div><!-- form-group -->
+                                                <div class="col-xs-3 col-md-3">
+                                                    <label for="FingerPull" style="margin-top: 25px;">Finger Pull: </label>
+                                                    <select style="width:100%" class="form-control selectModal select2" id="cbFingerPull">
+                                                        <option value="1">No</option>
+                                                        <option value="2">Yes</option>
+                                                    </select>
+                                                </div><!-- form-group -->
 
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="inWidth" style="margin-top: 25px;">Width: </label>
-                                                <input type="text" id="inWidth" onkeypress="return soloAndNumeros(event)" maxlength="6" name="inWidth" class="form-control" placeholder="">
-                                            </div><!-- form-group -->
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="inHeight" style="margin-top: 25px;">Height: </label>
-                                                <input type="text" id="inHeight" onkeypress="return soloAndNumeros(event)" maxlength="6" name="inHeight" class="txtHeight form-control" placeholder="">
-                                            </div><!-- form-group -->
+                                                <div class="col-xs-4 col-md-4">
+                                                    <label for="inVerticalDivisions" style="margin-top: 25px;">Vertical Divisions: </label>
+                                                    <select style="width:100%" class="form-control select2" id="cbVerticalDivisions" data-placeholder="Select"></select>
+                                                </div><!-- form-group -->
 
-                                            @*<div class="col-xs-4 col-md-3">
-                                                <label for="isDrill" style="margin-top: 25px;">Drill: </label>
-                                                <select style="width:100%" class="form-control select2" id="inDrill" data-placeholder="Select">
-                                                    <option label="Select"></option>
-                                                    <option value="false">No Drill</option>
-                                                    <option value="true">Drill</option>
-                                                </select>
-                                            </div><!-- form-group -->
+                                                <div class="col-xs-4 col-md-5">
+                                                    <label for="inHorizontalDivisions" style="margin-top: 25px;">Horizontal Divisions: </label>
+                                                    <select style="width:100%" class="form-control select2" id="cbHorizontalDivisions" data-placeholder="Select"></select>
+                                                </div><!-- form-group -->                                               
 
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="cbHingeDirection" style="margin-top: 25px;">Hinge Direction: </label>
-                                                <select style="width:100%" class="form-control select2" id="inHingeDirection" data-placeholder="Select">
-                                                    <option label="Select"></option>
-                                                    <option hidden selected value="3">No hinge</option>
-                                                    <option value="1">Right</option>
-                                                    <option value="2">Left</option>
-                                                </select>
-                                            </div><!-- form-group -->
-
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="HingePositions1" style="margin-top: 25px;">Hinge Position 1: </label>
-                                                <input disabled type="text" id="HingePositions1" class="form-control" placeholder="">
-                                            </div><!-- form-group -->
-
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="HingePositions2" style="margin-top: 25px;">Hinge Position 2: </label>
-                                                <input disabled type="text" id="HingePositions2" class="form-control" placeholder="">
-                                            </div><!-- form-group -->
-
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="HingePositions3" style="margin-top: 25px;">Hinge Position 3: </label>
-                                                <input disabled type="text" id="HingePositions3" class="form-control" placeholder="">
-                                            </div><!-- form-group -->
-
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="HingePositions4" style="margin-top: 25px;">Hinge Position 4: </label>
-                                                <input disabled type="text" id="HingePositions4" class="form-control" placeholder="">
-                                            </div><!-- form-group -->
-
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="HingePositions5" style="margin-top: 25px;">Hinge Position 5: </label>
-                                                <input disabled type="text" id="HingePositions5" class="form-control" placeholder="">
-                                            </div><!-- form-group -->*@
-
-                                            
-                                            <div class="col-xs-4 col-md-3">
-                                                @*@using (Html.BeginForm("subir", "home", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                                                {
-                                                <label for="Picture" style="margin-top: 25px;">Picture: </label>
-                                                <div style="padding-bottom: 12px;padding-top: 12px;height: 43px;" id="inPicture" class="form-control bd bd-dashed d-flex align-items-center justify-content-center rounded bg-gray-300">
-                                                    <p id="texto">Add file</p>
-                                                    <input id="btn_enviar" name="file" type="file">
-                                                </div>
-                                                }*@
-                                                <label for="inPicture" style="margin-top: 25px;">Picture</label>
-                                                <input type="text" id="inPicture" class="form-control" placeholder="" />
-                                            </div><!-- form-group -->
-                                            
-                                            <div class="col-xs-4 col-md-3" style="padding-top: 20px;">
-                                                @*@using (Html.BeginForm("subir", "home", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                                                {
-                                                <label for="ProfilePicture" style="margin-top: 25px;">Profile Picture: </label>
-                                                <div style="padding-bottom: 12px;padding-top: 12px;height: 43px;" id="inProfilePicture" class="form-control bd bd-dashed d-flex align-items-center justify-content-center rounded bg-gray-300">
-                                                    <p id="texto">Add file</p>
-                                                    <input id="btn_enviar" name="file" type="file">
-                                                </div>
-                                                }*@
-                                                <label for="inProfilePicture" style="margin-top: 25px;">Profile picture</label>
-                                                <input type="text" id="inProfilePicture" class="form-control" placeholder="" />
-                                            </div><!-- form-group -->
-
-                                            <div class="col-xs-4 col-md-3" style="padding-top: 20px;">
-                                                <label for="inStatus" style="margin-top: 25px;">Status: </label>
-                                                <select style="width:100%" class="form-control select2" id="inStatus" data-placeholder="Select">
-                                                </select>
-                                            </div><!-- form-group -->
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="inOpeningMeasurement" style="margin-top: 25px;">Opening Measurement: </label>
-                                                <select style="width:100%" class="form-control select2" id="inOpeningMeasurement" data-placeholder="Select">
-                                                    <option label="Select"></option>
-                                                    <option value="true">Opening</option>
-                                                    <option value="false">No Opening</option>
-                                                </select>
-                                            </div><!-- form-group -->
-
-
+                                                <div class="col-xs-4 col-md-3">
+                                                    <label for="inStatus" style="margin-top: 25px;">Status: </label>
+                                                    <select style="width:100%" class="form-control select2" id="cbStatus" data-placeholder="Select"></select>
+                                                </div><!-- form-group -->
+                                            </div>
+                                        </div><!-- pd-20 -->
+                                    
+                                    <div style="display:flex; justify-content:center; align-items:center">
+                                        <div class="row" id="rowIMG" style="margin:0">
+                                            <div id="Picture" class="row" style="margin-right: 0px;">
+                                                <center>
+                                                    <img style="width: 230px;height: 230px;" id="DoorPicture" src="~/Content/img/Doors/img11.png"/>                                                    
+                                                </center>
+                                            </div>
                                         </div>
-                                    </div><!-- pd-20 -->
+                                    </div>
+                                </div>                                   
                                 </div><!-- col-6 -->
                             </div><!-- row -->
                             <div class="modal-footer justify-content-lg-end">

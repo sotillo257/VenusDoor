@@ -127,7 +127,7 @@
                 </a><!-- br-menu-link -->
                 <ul class="br-menu-sub nav flex-column">
                     <li class="nav-item">@Html.ActionLink("Company", "Company", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Company })</li>
-                    @*<li class="nav-item">@Html.ActionLink("Doors", "Doors", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Doors })</li>*@
+                    <li class="nav-item">@Html.ActionLink("Standard Doors", "Doors", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Doors })</li>
                     <li class="nav-item">@Html.ActionLink("Doors Prices", "DoorsPrices", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.DoorPrice })</li>
                     <li class="nav-item">@Html.ActionLink("Doors Style", "Index", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.DoorStyle })</li>
                     <li class="nav-item">@Html.ActionLink("Group", "Group", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Group })</li>
@@ -143,7 +143,7 @@
                     <li class="nav-item">@Html.ActionLink("Panel", "Panel", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Panel })</li>
                     <li class="nav-item">@Html.ActionLink("Panel Material", "PanelMaterial", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.PanelMaterial })</li>
                     <li class="nav-item">@Html.ActionLink("Person", "Person", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Person })</li>
-                    <li class="nav-item">@Html.ActionLink("Preparation", "Preparation", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Preparation })</li>
+                    @*<li class="nav-item">@Html.ActionLink("Preparation", "Preparation", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Preparation })</li>*@
                     <li class="nav-item">@Html.ActionLink("Rail Thickness", "RailThickness", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.RailThickness })</li>
                     <li class="nav-item">@Html.ActionLink("Rail Width", "BottomRail", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.BottomRail })</li>
                     <li class="nav-item">@Html.ActionLink("Status", "Status", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Status })</li>
@@ -897,7 +897,7 @@
                 <h4 class="tx-danger  tx-semibold mg-b-20" id="TituloDanger"></h4>
                 <p class="mg-b-20 mg-x-20" id="MensageDanger"></p>
                 <button type="button" class="Cursor btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">
-                    Continue
+                    Back
                 </button>
             </div><!-- modal-body -->
         </div><!-- modal-content -->

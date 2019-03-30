@@ -34,8 +34,8 @@
                                 <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="First name: activate to sort column ascending">Id</th>
                                 <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Base Price</th>
                                 <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Additional SF Price</th>
-                                <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Vertical Base1 FL Price</th>
-                                <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Horizontal Base1 FL Price</th>
+                                <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Rail Thickness</th>
+                                <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Material</th>
                                 <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Status</th>
                                 <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" style="text-align: center" aria-label="Last name: activate to sort column ascending"><i class="fa fa-flash"></i></th>
                             </tr>
@@ -45,10 +45,10 @@
                             {
                                 <tr role="row" class="odd">
                                     <td tabindex="0" class="">@item.Id</td>
-                                    <td class="">@item.BasePrice</td>
-                                    <td class="">@item.AdditionalSFPrice</td>
-                                    <td class="">@item.VerticalAdditionalInchPrice</td>
-                                    <td class="">@item.HorizontalBase1FLPrice</td>
+                                    <td class=""><span>$</span>@item.BasePrice.ToString().Replace(',', '.')</td>
+                                    <td class=""><span>$</span>@item.AdditionalSFPrice.ToString().Replace(',', '.')</td>
+                                    <td class="">@item.RailThickness.Description</td>
+                                    <td class="">@item.Material.Description</td>
                                     <td class="">@item.Status.Description</td>
                                     <td class="">
                                         <center>
@@ -125,27 +125,7 @@
                                                 <label for="inStatus" style="margin-top: 25px;">Status: </label>
                                                 <select style="width:100%" class="form-control select2" onkeypress="return soloAndNumeros(event)" maxlength="6" id="inStatus" data-placeholder="">
                                                 </select>
-                                            </div><!-- form-group -->                                            
-
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="inVerticalBase1FLPrice" style="margin-top: 25px;">Vertical Base1 FL Price: </label>
-                                                <input type="text" name="id" id="inVerticalBase1FLPrice" onkeypress="return soloAndNumeros(event)" maxlength="6" class="form-control" placeholder="">
-                                            </div><!-- form-group -->
-
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="inVerticalAdditionalInchPrice" style="margin-top: 25px;">Vertical Additional Inch Price: </label>
-                                                <input type="text" name="id" id="inVerticalAdditionalInchPrice" onkeypress="return soloAndNumeros(event)" maxlength="6" class="form-control" placeholder="">
-                                            </div><!-- form-group -->
-
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="inHorizontalBase1FLPrice" style="margin-top: 25px;">Horizontal Base1 FL Price: </label>
-                                                <input type="text" name="id" id="inHorizontalBase1FLPrice" onkeypress="return soloAndNumeros(event)" maxlength="6" class="form-control" placeholder="">
-                                            </div><!-- form-group -->
-
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="inHorizontalAdditionalInchPrice" style="margin-top: 25px;">Horizontal Additional Inch Price: </label>
-                                                <input type="text" name="id" id="inHorizontalAdditionalInchPrice" onkeypress="return soloAndNumeros(event)" maxlength="6" class="form-control" placeholder="">
-                                            </div><!-- form-group -->
+                                            </div><!-- form-group -->                                                                                       
                                         </div>
                                     </div><!-- pd-20 -->
                                 </div><!-- col-6 -->
@@ -174,7 +154,7 @@
         var urlUpdateDoorPrice = '@Url.Action("UpdateDoorPrice", "Masters")';
         var urlGetAllDoorsPrices = '@Url.Action("GetAllDoorsPrices", "Masters")';
         var listDoorP = JSON.parse('@Html.Raw(ViewBag.ListDoorsPrices)');
-        var urlUpdateStatusDP = '@Url.Action("UpdateStatusDP", "Masters")';
+        var urlDeleteDoorPrice = '@Url.Action("UpdateStatusDP", "Masters")';
     </script>
 @Scripts.Render("~/Scripts/js/Master.DoorsPrice.js")
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>

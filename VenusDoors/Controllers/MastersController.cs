@@ -670,37 +670,37 @@ namespace VenusDoors.Controllers
         }
 
 
-        //[Authorize(Roles = "1")]
-        //[HttpPost]
-        //public ActionResult UpdateStatusDP(DoorsPrices moddp)
-        //{
-        //    if (Session["UserID"] != null && (int)Session["UserType"] == 1)
-        //    {
-        //        int userID = (int)Session["UserID"];
-        //        try
-        //        {
-        //            BusinessLogic.lnDoorsPrices _LNdp = new BusinessLogic.lnDoorsPrices();
+        [Authorize(Roles = "1")]
+        [HttpPost]
+        public ActionResult UpdateStatusDP(DoorsPrices moddp)
+        {
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                int userID = (int)Session["UserID"];
+                try
+                {
+                    BusinessLogic.lnDoorsPrices _LNdp = new BusinessLogic.lnDoorsPrices();
 
-        //            moddp.ModificationDate = DateTime.Now;
-        //            moddp.ModificationUser = userID;
-        //            DoorsPrices dp = _LNdp.GetDoorsPricesById(moddp.Id);
-        //            dp.Status.Id = moddp.Status.Id;
-        //            var updp = _LNdp.UpdateDoorsPrices(dp);
+                    moddp.ModificationDate = DateTime.Now;
+                    moddp.ModificationUser = userID;
+                    DoorsPrices dp = _LNdp.GetDoorPriceById(moddp.Id);
+                    dp.Status.Id = moddp.Status.Id;
+                    var updp = _LNdp.UpdateDoorsPrices(dp);
 
 
-        //            return Json(true, JsonRequestBehavior.AllowGet);
+                    return Json(true, JsonRequestBehavior.AllowGet);
 
-        //        }
-        //        catch
-        //        {
-        //            return Json(false, JsonRequestBehavior.AllowGet);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        return RedirectToAction("Index", "Home");
-        //    }
-        //}
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
         #endregion
 
         #region DoorStyle
