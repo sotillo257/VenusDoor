@@ -79,11 +79,11 @@ function GetDoorsByOrder(id) {
             dxu += '<div class="col-xs-4 col-md-3">';
             if (Result.isDrill == false)
             {
-                dxu += '<label for="Drill" style="margin-top: 10px;">Hinge Drilling: <span style="color: #868ba1">No Drill</span></label>';
+                dxu += '<label for="Drill" style="margin-top: 10px;">Hinge Drilling: <span style="color: #868ba1">No</span></label>';
             }
             else
             {
-                dxu += '<label for="Drill" style="margin-top: 10px;">Hinge Drilling: <span style="color: #868ba1">Is Drill</span></label>';
+                dxu += '<label for="Drill" style="margin-top: 10px;">Hinge Drilling: <span style="color: #868ba1">Yes</span></label>';
             }
             dxu += '</div><!-- col -->';
             if (Result.isDrill == true)

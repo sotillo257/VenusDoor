@@ -62,37 +62,49 @@
     });
 
     $(document).on('change', '#File1', function () {
-        var compania = new Array();
-        var formData = new FormData();
-        if ($("#File1")[0].files.length > 0) {
-            //alert($("#File1")[0].files[0].name);
-            formData.append('Files', $("#File1")[0].files[0], $("#File1")[0].files[0].name);
-        }
-        compania.push(formData);
-        $.ajax({
-            url: urlUploadExcel,
-            type: 'POST',
-            data: compania[0],
-            contentType: false,
-            processData: false,
-            success: function (data) {
-                if (data == true) {
-                    LlammarModal("ConfigM", "Successful doors creation!", "Your doors has been added successfully.");
-                    llenarTablaOrderSumary();
-                    $("#ModalUpload").modal("hide");
-                } else {
-                    LlammarModal("Danger", "An error occurred during the process.", "Check your internet connection I tried again");
-                }
-
-            },
-            error: function (err) {
-
-            },
-            complete: function (data) {
-                $("#btnCerrarModalCompania").prop("disabled", false);
-                $("#btnAgregarComapania").button('reset');
+        $('input[type=file][data-max-size]').each(function () {
+            if (typeof this.files[0] !== 'undefined') {
+                var maxSize = parseInt($(this).attr('max-size'), 10),
+                size = this.files[0].size;
+                isOk = maxSize > size;
+                return isOk;
             }
         });
+        if (!isOk) {
+            LlammarModal("Danger", "Image size execeeds maximun allowable size", "Maximun file size 5MB");
+        } else {
+            var compania = new Array();
+            var formData = new FormData();
+            if ($("#File1")[0].files.length > 0) {
+                //alert($("#File1")[0].files[0].name);
+                formData.append('Files', $("#File1")[0].files[0], $("#File1")[0].files[0].name);
+            }
+            compania.push(formData);
+            $.ajax({
+                url: urlUploadExcel,
+                type: 'POST',
+                data: compania[0],
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    if (data == true) {
+                        LlammarModal("ConfigM", "Successful doors creation!", "Your doors has been added successfully.");
+                        llenarTablaOrderSumary();
+                        $("#ModalUpload").modal("hide");
+                    } else {
+                        LlammarModal("Danger", "An error occurred during the process.", "Check your internet connection I tried again");
+                    }
+
+                },
+                error: function (err) {
+
+                },
+                complete: function (data) {
+                    $("#btnCerrarModalCompania").prop("disabled", false);
+                    $("#btnAgregarComapania").button('reset');
+                }
+            });
+        }
     });
 
     $(document).on('change', '#cbDoorStyle', function () {
@@ -181,7 +193,7 @@ function ChangeDoorStylePanel(pIdDoorStyle) {
         }
         $("#cbPanel").empty().append(option);
         $("#cbPanel").val(5);
-    } else if ($("#cbDoorStyle").val() == 1010) {
+    } else if (pIdDoorStyle == 1010) {
         llenarComboInsideAndOutside();
         var option = '<option value="3">Slab</option>';
         $("#cbPanel").empty().append(option);
@@ -1798,8 +1810,8 @@ function llenarTablaOrderSumary() {
                         DxO[i].Panel.Description,
                         DxO[i].DoorType.Description,
                         DxO[i].DoorOption.Description,
-                        DxO[i].ItemCost,
-                        DxO[i].SubTotal,
+                        "<span>$</span>"+ DxO[i].ItemCost,
+                        "<span>$</span>" + DxO[i].SubTotal,
                         Botones                       
                     ]).draw(false);
                 }
@@ -1874,11 +1886,11 @@ function llenarheaderOrder() {
                 headerConfig += '<div class="col-xs-4 col-md-3">';
                 if (data.LastDoor.isDrill == false)
                 {
-                    headerConfig += '<label for="Drill" style="margin-top: 25px;">Hinge Drilling: <span>No Drill</span></label>';
+                    headerConfig += '<label for="Drill" style="margin-top: 25px;">Hinge Drilling: <span>No</span></label>';
                 }
                 else
                 {
-                    headerConfig += '<label for="Drill" style="margin-top: 25px;">Hinge Drilling: <span>Is Drill</span></label>';
+                    headerConfig += '<label for="Drill" style="margin-top: 25px;">Hinge Drilling: <span>Yes</span></label>';
                 }
                 headerConfig += '</div>';
                 if (data.LastDoor.isDrill == true)

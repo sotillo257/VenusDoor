@@ -295,11 +295,11 @@ namespace VenusDoors.Controllers
             "<tr>";
             if(getDoorxu.isDrill == false)
             {
-                message += "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Hinge Drilling: <span style = 'color: #868ba1'>No drill</span></td>";
+                message += "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Hinge Drilling: <span style = 'color: #868ba1'>No</span></td>";
             }
             else
             {
-                message += "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Hinge Drilling: <span style = 'color: #868ba1'>Drill(" + getDoorxu.HingeDirection.Direction +")</span></td>";
+                message += "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Hinge Drilling: <span style = 'color: #868ba1'>Yes (" + getDoorxu.HingeDirection.Direction +")</span></td>";
             }
             if (getDoorxu.isFingerPull == false)
             {

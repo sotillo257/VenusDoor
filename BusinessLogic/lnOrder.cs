@@ -314,7 +314,7 @@ namespace BusinessLogic
                 table.AddCell(cell);
 
                 string Drill = (doorsxUser.isDrill == true) ? "Yes (" + doorsxUser.HingeDirection.Direction + ")" : "No";
-                cell = new PdfPCell(new Phrase("No Drill: " + Drill, FontFactory.GetFont("Arial", 9)));
+                cell = new PdfPCell(new Phrase("Drill: " + Drill, FontFactory.GetFont("Arial", 9)));
                 cell.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
                 cell.Border = 0;
                 cell.PaddingBottom = 5f;

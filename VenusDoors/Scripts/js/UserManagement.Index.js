@@ -15,8 +15,13 @@ $(document).ready(function () {
         '<button type="button" class="Cursor btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>');
         $('#deleteidhidden').val(id);
     });
-    
+    $('#inDescuento').on('change keyup paste', function () {
+        if ($('#inDescuento').val().length > 2) {
+            $('#inDescuento').val($('#inDescuento').val().substr(0, 1));
+        }
+    });
     $(document).on('click', '.Descuento', function (event) {
+        $("#inDescuento").val("");
         IdUser = $(this).attr('value');       
     });
 

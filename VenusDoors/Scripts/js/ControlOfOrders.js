@@ -187,10 +187,10 @@ function GetDoorsByOrder(idOrden) {
             //Cuarta fila
             dxu += '<tr>';
             if (Result.isDrill == false) {
-                dxu += '<td>Hinge Drilling: <span style="color: #868ba1">No Drill</span></td>';
+                dxu += '<td>Hinge Drilling: <span style="color: #868ba1">No</span></td>';
             }
             else {
-                dxu += '<td>Hinge Drilling: <span style="color: #868ba1">Drill (' + Result.HingeDirection.Direction + ')</span></td>';
+                dxu += '<td>Hinge Drilling: <span style="color: #868ba1">Yes (' + Result.HingeDirection.Direction + ')</span></td>';
             }
             if (Result.isFingerPull == false) {
                 dxu += '<td style="border-right: 1px solid #ADADAD;">Finger Pull: <span style="color: #868ba1">No</span></td>';
@@ -435,7 +435,7 @@ function llenarTablaOrderControl() {
                     else if (data[i].Status.Id == 7) {
                         Botones += '<button title="Complete order." value="' + data[i].Id + '" class="Completed Cursor btn btn-success btn-icon"  style="width: 25px;height: 25px; margin-left: 10px;"> <i class="fa fa-check"></i>  </button>';
                     }
-                 //   Botones += ' <button class="Cursor btn btn-secondary btn-icon Descarga" data-id="' + data[i].Id + '" style="width: 25px; height: 25px;  margin-left: 10px;"><i class="fa fa-download"></i></button>';
+                    Botones += ' <button class="Cursor btn btn-secondary btn-icon Descarga" data-id="' + data[i].Id + '" style="width: 25px; height: 25px;  margin-left: 10px;"><i class="fa fa-download"></i></button>';
                     t.row.add([
                          data[i].Id,
                         data[i].Quantity,
@@ -529,7 +529,7 @@ function llenarTablaOrderControlxUser(pIdStatus) {
                     else if (data[i].Status.Id == 7) {
                         Botones += '<button title="Complete order." value="' + data[i].Id + '" class="Completed Cursor btn btn-success btn-icon"  style="width: 25px;height: 25px; margin-left: 10px;"> <i class="fa fa-check"></i>  </button>';
                     }
-                   // Botones += ' <button class="Cursor btn btn-secondary btn-icon Descarga" data-id="' + data[i].Id + '" style="width: 25px; height: 25px; margin-left: 10px;"><i class="fa fa-download"></i></button>';
+                    Botones += ' <button class="Cursor btn btn-secondary btn-icon Descarga" data-id="' + data[i].Id + '" style="width: 25px; height: 25px; margin-left: 10px;"><i class="fa fa-download"></i></button>';
                     t.row.add([
                          data[i].Id,
                         data[i].Quantity,

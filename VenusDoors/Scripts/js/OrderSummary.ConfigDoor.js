@@ -467,8 +467,8 @@ function llenarComboFinger(pFinger) {
 function llenarComboIsDrill(pDrill) {
 
     var option = '';
-    option += '<option value="1">No Drill</option>';
-    option += '<option value="2">Drill</option>';
+    option += '<option value="1">No</option>';
+    option += '<option value="2">Yes</option>';
     $("#cbisDrill").empty().append(option);
     if (pDrill != 0) {
         $("#cbisDrill").val(pDrill);
