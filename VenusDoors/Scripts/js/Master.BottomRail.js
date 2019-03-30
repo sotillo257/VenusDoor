@@ -21,6 +21,7 @@
         $("#lblSubTitulo").text("You can create a new article below");
         $("#btnModify").hide();
         $("#btInsertBR").show();
+        QuitarClaseErrorACombos();
         Limpiar();
     });
 
@@ -37,9 +38,11 @@
         $("#btInsertBR").hide();
         $("#lblTitulo").text("Modify");
         $("#lblSubTitulo").text("You can modify a new article below");
+        QuitarClaseErrorACombos();
+        Limpiar();
         // Limpiar();
             for (var i = 0; i < listBTR.length; i++) {
-                if (listBTR[i].Id == $(this).attr('data-id')) {
+                if (listBTR[i].Id == $(this).attr('value')) {
                    
                   var aux = listBTR[i].Id;
                 var aux1 = listBTR[i].Status.Id;
@@ -104,25 +107,25 @@ function Limpiar() {
 
 }
 
+function QuitarClaseErrorACombos() {
+    $('#select2-inStatus-container').removeClass("cbError");
+}
+
 function ValidarCamposVacios() {
     var aux = true;
-    if ($('#inStatus').val() == 0) {
-        $('#inStatus').addClass("is-invalid");
+    if ($('#inStatus').val() == 0 || $('#inStatus').val() == null) {
+        $('#select2-inStatus-container').addClass("cbError");
         aux = false;
     } else {
-        $('#inStatus').removeClass("is-invalid");
+        $('#select2-inStatus-container').removeClass("cbError");
     }
-
-   
-
+  
     if ($('#inDescription').val() == "") {
         $('#inDescription').addClass("is-invalid");
         aux = false;
     } else {
         $('#inDescription').removeClass("is-invalid");
     }
-
-    
 
     return aux;
 }

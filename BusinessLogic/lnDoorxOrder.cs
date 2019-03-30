@@ -62,6 +62,10 @@ namespace BusinessLogic
                 string fracc = a.ToString() + "/" + b.ToString();
                 pDoorsxOrder.User = u;
                 decimal result = (((((Width * Height) / 12m) / 12m) - 1.5m) * DoorPrice.AdditionalSFPrice) + DoorPrice.BasePrice;
+                if ((DoorUser.DoorStyle.Id == 1010))
+                {
+                    result = result / 100m * 80m;
+                }
                 if (result < DoorPrice.BasePrice)
                 {
 
@@ -158,6 +162,14 @@ namespace BusinessLogic
                     if (Order.DoorxUser.DoorStyle.Id == 1010)
                     {
                         panel = 2;
+                        item.Panel.Id = 3;
+                    }
+                    else
+                    {
+                        if (item.Panel.Id == 3)
+                        {
+                            item.Panel.Id = 5;
+                        }
                     }
                     item.User = u;
                     DoorsPrices DoorPrice = dp.GetDoorsPricesById(0, panel, Order.DoorxUser.Material.Id, Rail);
@@ -166,7 +178,10 @@ namespace BusinessLogic
                     decimal Width = item.Width + deciW;
                     decimal Height = item.Height + deciH;
                     decimal result = (((((Width * Height) / 12m) / 12m) - 1.5m) * DoorPrice.AdditionalSFPrice) + DoorPrice.BasePrice;
-                    
+                    if ((Order.DoorxUser.DoorStyle.Id == 1010))
+                     {
+                        result = result / 100m * 80m;
+                     }
                     if (result < DoorPrice.BasePrice)
                     {
                         result = (DoorPrice.BasePrice * 2);
@@ -342,15 +357,25 @@ namespace BusinessLogic
                     {
                         panel = 2;
                     }
-                    DoorsPrices DoorPrice = dp.GetDoorsPricesById(0, panel, Order.DoorxUser.Material.Id, Rail);
+                    else
+                    {
+                        if (pDoorsOrder.Panel.Id == 3)
+                        {
+                         pDoorsOrder.Panel.Id = 5;
+                        }
+                    }
+                DoorsPrices DoorPrice = dp.GetDoorsPricesById(0, panel, Order.DoorxUser.Material.Id, Rail);
                     decimal deciW = listDeci.Where(x => x.Id == pDoorsOrder.DecimalsWidth.Id).FirstOrDefault().Value;
                     decimal deciH = listDeci.Where(x => x.Id == pDoorsOrder.DecimalsHeight.Id).FirstOrDefault().Value;
                     decimal Width = pDoorsOrder.Width + deciW;
                     decimal Height = pDoorsOrder.Height + deciH;
                     decimal result = (((((Width * Height) / 12m) / 12m) - 1.5m) * DoorPrice.AdditionalSFPrice) + DoorPrice.BasePrice;
-                 
+                    if ((Order.DoorxUser.DoorStyle.Id == 1010))
+                    {
+                        result = result / 100m * 80m;
+                    }
 
-                    if (result < DoorPrice.BasePrice)
+                if (result < DoorPrice.BasePrice)
                     {
                         result = DoorPrice.BasePrice * 2;
                         if (Order.User.Descuento > 0)

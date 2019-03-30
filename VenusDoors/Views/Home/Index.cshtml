@@ -1,5 +1,6 @@
 ﻿@{
     ViewBag.Title = "Home Page";
+    string wh = "130px";
 }
 <div class="pd-x-30 pd-t-30">
     <h4 class="tx-gray-800 mg-b-5">Dashboard</h4>
@@ -19,7 +20,16 @@
                             <p class="tx-20 tx-inverse tx-lato tx-black  mg-b-0 lh-1" style="padding-left: 15px;">@item.DoorStyle.Description</p>
                             </div>
                             <div class="pd-x-20 pd-t-20 d-flex align-items-center" style="padding-top: 0px;height: 120px;margin-bottom: 10px;">
-                                <img style="width: 130px;" src="@item.Picture" />
+                                @if (item.DoorStyle.Id == 1010)
+                                {
+                                    wh = "100px";   /**/
+
+                                }
+                                else
+                                {
+                                    wh = "130px";
+                                }
+                                <img style="width: @wh" src="@item.Picture" />
                                 <input type="hidden" value="@item.Id" id="hdId" />
                                 <div class="mg-l-20">
                                     <p class="tx-20 tx-inverse tx-lato mg-b-0 lh-1">@item.Material.Description</p>
