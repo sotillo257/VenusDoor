@@ -18,11 +18,21 @@
             LlammarModal("Danger", "You must fill all the fields.", " ");
         }
     });
+
+    $(document).on('click', '.Remove', function (event) {
+        var id = $(this).attr('value');
+        LlammarModal("modalConfim", "Warning!", "You are about to delete an article. What would you like to do?",
+        '<button onclick="UpdateStatus3(id)" class="Cursor btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal" aria-label="Close">Remove</button>' +
+        '<button type="button" class="Cursor btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>');
+        $('#deleteidhidden').val(id);
+    });
+
     $("#btInsert").on("click", function () {
         $("#lblTitulo").text("Insert new");
         $("#lblSubTitulo").text("You can create a new article below");
         $("#btnUpdateOrder").hide();
         $("#btInsertOrder").show();
+        QuitarClaseErrorACombos();
         Limpiar();
     });
     $(document).on('click', '.Modificar', function (event) {
@@ -30,6 +40,7 @@
         $("#btInsertOrder").hide();
         $("#lblTitulo").text("Modify");
         $("#lblSubTitulo").text("You can modify a new article below");
+        QuitarClaseErrorACombos();
         Limpiar();
         for (var i = 0; i < listORDER.length; i++) {
             if (listORDER[i].Id == $(this).attr('value')) {
@@ -128,13 +139,21 @@ function Limpiar() {
 
 }
 
+function QuitarClaseErrorACombos() {
+    $('#select2-inStatus-container').removeClass("cbError");
+    $('#select2-inShip-container').removeClass("cbError");
+    $('#select2-inType-container').removeClass("cbError");
+    $('#select2-inUser-container').removeClass("cbError");
+}
+
 function ValidarCamposVacios() {
     var aux = true;
-    if ($('#inUser').val() == 0) {
-        $('#inUser').addClass("is-invalid");
+
+    if ($('#inUser').val() == 0 || $('#inUser').val() == null) {
+        $('#select2-inUser-container').addClass("cbError");
         aux = false;
     } else {
-        $('#inUser').removeClass("is-invalid");
+        $('#select2-inUser-container').removeClass("cbError");
     }
 
     if ($('#inQuantity').val() == "") {
@@ -144,18 +163,11 @@ function ValidarCamposVacios() {
         $('#inQuantity').removeClass("is-invalid");
     }
 
-    if ($('#inObservations').val() == "") {
-        $('#inObservations').addClass("is-invalid");
+    if ($('#inShip').val() == 0 || $('#inShip').val() == null) {
+        $('#select2-inShip-container').addClass("cbError");
         aux = false;
     } else {
-        $('#inObservations').removeClass("is-invalid");
-    }
-
-    if ($('#inShippingAddress').val() == "") {
-        $('#inShippingAddress').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#inShippingAddress').removeClass("is-invalid");
+        $('#select2-inShip-container').removeClass("cbError");
     }
 
     if ($('#inTotal').val() == "") {
@@ -165,18 +177,18 @@ function ValidarCamposVacios() {
         $('#inTotal').removeClass("is-invalid");
     }
 
-    if ($('#inType').val() == 0) {
-        $('#inType').addClass("is-invalid");
+    if ($('#inType').val() == 0 || $('#inType').val() == null) {
+        $('#select2-inType-container').addClass("cbError");
         aux = false;
     } else {
-        $('#inType').removeClass("is-invalid");
+        $('#select2-inType-container').removeClass("cbError");
     }
 
-    if ($('#inStatus').val() == 0) {
-        $('#inStatus').addClass("is-invalid");
+    if ($('#inStatus').val() == 0 || $('#inStatus').val() == null) {
+        $('#select2-inStatus-container').addClass("cbError");
         aux = false;
     } else {
-        $('#inStatus').removeClass("is-invalid");
+        $('#select2-inStatus-container').removeClass("cbError");
     }
 
     if ($('#inObservations').val() == "") {
@@ -184,13 +196,6 @@ function ValidarCamposVacios() {
         aux = false;
     } else {
         $('#inObservations').removeClass("is-invalid");
-    }
-
-    if ($('#inShip').val() == 0) {
-        $('#inShip').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#inShip').removeClass("is-invalid");
     }
 
     return aux;
@@ -243,7 +248,7 @@ function UpdateOrder() {
             User: { Id: $("#inUser").val() },
             Quantity: $("#inQuantity").val(),
             Observations: $("#inObservations").val(),
-            ShippingAddress: $("#inShippingAddress").val(),
+            ShippingAddress: $("#inShip").val(),
             Total: $("#inTotal").val(),
             Type: { Id: $("#inType").val() },
             Status: { Id: $("#inStatus").val() },
@@ -264,6 +269,40 @@ function UpdateOrder() {
             if (result == true) {
                 LlammarModal("Congratuletions", "Congratulations! It has been modified correctly.", " ");
                 llenarTablaGetAllOrder()
+            } else {
+                LlammarModal("Danger", "Error: An error occurred while modifying.", " ");
+            }
+        },
+        error: function (err) {
+            LlammarModal("Danger", "Error.", " ");
+        },
+
+    });
+}
+
+function UpdateStatus3(id) {
+    var status = 3;
+    var datos =
+    {
+        modOrder: {
+            Id: $('#deleteidhidden').val(),
+            Status: { Id: status }
+
+        }
+    };
+
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(datos),
+        url: urlUpdateStatusOrder,
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+
+            //Validar data para ver si mostrar error al guardar o exito al guardar
+            if (result == true) {
+                LlammarModal("Congratuletions", "Congratulations! It has been modified correctly.", " ");
+                llenarTablaGetAllOrder();
             } else {
                 LlammarModal("Danger", "Error: An error occurred while modifying.", " ");
             }
@@ -461,24 +500,25 @@ function llenarTablaGetAllOrder() {
         success: function (data) {
             if (data != null) {
                 listORDER = data;
-                var option = '';
-                for (var i = 0; i < data.length; i++) {
-                    option += '<tr role="row" class="odd">';
-                    option += '<td tabindex="0"  >' + data[i].Id + '</td>';
-                    option += '<td>' + data[i].User.Id + '</td>';
-                    option += '<td>' + data[i].Quantity + '</td>';
-                    option += '<td>' + data[i].Observations + '</td>';
-                    option += '<td>' + data[i].ShippingAddress + '</td>';
-                    option += '<td>' + data[i].Type.Description + '</td>';
-                    option += '<td>' + data[i].Status.Description + '</td>';
-                    option += '<td>' + data[i].Total + '</td>';
-                    option += '<td>';
-                    option += '<center>';
-                    option += '<a href="#" data-toggle="modal" data-target="#modalInsert" value="' + data[i].Id + '" class="Modificar btn btn-primary btn-icon">';
-                    option += '<div><i class="fa fa-edit"></i></div></a></center></td></tr>';
+                var t = $('#datatable1').DataTable();
+                t.rows().remove().draw(false);
 
+                for (var i = 0; i < data.length; i++) {
+                    var Botones = '<center><button data-toggle="modal" data-target="#modalInsert" value="' + data[i].Id + '" style="width: 25px;height: 25px; margin-left: 10px;" class="Modificar btn btn-primary btn-icon"><i class="fa fa-edit"></i></button>' +
+                    '<button href="#" data-toggle="modal" data-target="" id="" title="Remove" value="' + data[i].Id + '" class="Remove Cursor btn btn-danger btn-icon" style="width: 25px;height: 25px; margin-left: 10px;"><i class="fa fa-trash"></i></button>' +
+                        '</center>';
+
+                    t.row.add([
+                        data[i].Id,
+                        data[i].User.Id,
+                        data[i].Quantity,
+                        data[i].ShippingAddress.Name,
+                        data[i].Type.Description,
+                        data[i].Status.Description,
+                        data[i].Total.toString().replace(',', '.'),
+                       Botones
+                    ]).draw(false);
                 }
-                $("#datatable1 > tbody").empty().append(option);
                 $("#modalInsert").modal("hide");
             }
             else {

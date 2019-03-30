@@ -24,6 +24,7 @@
         $("#btUpdateDoorPrice").hide();
         $("#btnInsertDP").show();
         Limpiar();
+        QuitarClaseErrorACombos();
     });
 
     $(document).on('click', '.Remove', function (event) {
@@ -40,6 +41,7 @@
         $("#lblTitulo").text("Modify");
         $("#lblSubTitulo").text("You can modify a new article below");
         Limpiar();
+        QuitarClaseErrorACombos();
         for (var i = 0; i < listDoorP.length; i++) {
             if (listDoorP[i].Id == $(this).attr('value')) {
                 var aux = listDoorP[i].Id;
@@ -149,72 +151,79 @@ function Limpiar() {
 
 }
 
+function QuitarClaseErrorACombos() {
+    $('#select2-inStatus-container').removeClass("cbError");
+    $('#select2-inDoorStyle-container').removeClass("cbError");
+    $('#select2-inMaterial-container').removeClass("cbError");
+    $('#select2-inRailThickness-container').removeClass("cbError");
+}
+
 function ValidarCamposVacios() {
     var aux = true;
-    if ($('#inDoorStyle').val() == 0) {
-        $('#inDoorStyle').addClass("is-invalid");
+    if ($('#inDoorStyle').val() == 0 || $('#inDoorStyle').val() == null) {
+        $('#select2-inDoorStyle-container').addClass("cbError");
         aux = false;
     } else {
-        $('#inDoorStyle').removeClass("is-invalid");
+        $('#select2-inDoorStyle-container').removeClass("cbError");
     }
 
-    if ($('#inMaterial').val() == 0) {
-        $('#inMaterial').addClass("is-invalid");
+    if ($('#inMaterial').val() == 0 || $('#inMaterial').val() == null) {
+        $('#select2-inMaterial-container').addClass("cbError");
         aux = false;
     } else {
-        $('#inMaterial').removeClass("is-invalid");
+        $('#select2-inMaterial-container').removeClass("cbError");
     }
 
-    if ($('#inRailThickness').val() == 0) {
-        $('#inRailThickness').addClass("is-invalid");
+    if ($('#inRailThickness').val() == 0 || $('#inRailThickness').val() == null) {
+        $('#select2-inRailThickness-container').addClass("cbError");
         aux = false;
     } else {
-        $('#inRailThickness').removeClass("is-invalid");
+        $('#select2-inRailThickness-container').removeClass("cbError");
     }
 
-    if ($('#inBasePrice').val() == " ") {
+    if ($('#inBasePrice').val() == "") {
         $('#inBasePrice').addClass("is-invalid");
         aux = false;
     } else {
         $('#inBasePrice').removeClass("is-invalid");
     }
 
-    if ($('#inAdditionalSFPrice').val() == " ") {
+    if ($('#inAdditionalSFPrice').val() == "") {
         $('#inAdditionalSFPrice').addClass("is-invalid");
         aux = false;
     } else {
         $('#inAdditionalSFPrice').removeClass("is-invalid");
     }
 
-    if ($('#inStatus').val() == 0) {
-        $('#inStatus').addClass("is-invalid");
+    if ($('#inStatus').val() == 0 || $('#inStatus').val() == null) {
+        $('#select2-inStatus-container').addClass("cbError");
         aux = false;
     } else {
-        $('#inStatus').removeClass("is-invalid");
+        $('#select2-inStatus-container').removeClass("cbError");
     }
 
-    if ($('#inVerticalBase1FLPrice').val() == " ") {
+    if ($('#inVerticalBase1FLPrice').val() == "") {
         $('#inVerticalBase1FLPrice').addClass("is-invalid");
         aux = false;
     } else {
         $('#inVerticalBase1FLPrice').removeClass("is-invalid");
     }
 
-    if ($('#inVerticalAdditionalInchPrice').val() == " ") {
+    if ($('#inVerticalAdditionalInchPrice').val() == "") {
         $('#inVerticalAdditionalInchPrice').addClass("is-invalid");
         aux = false;
     } else {
         $('#inVerticalAdditionalInchPrice').removeClass("is-invalid");
     }
 
-    if ($('#inHorizontalBase1FLPrice').val() == " ") {
+    if ($('#inHorizontalBase1FLPrice').val() == "") {
         $('#inHorizontalBase1FLPrice').addClass("is-invalid");
         aux = false;
     } else {
         $('#inHorizontalBase1FLPrice').removeClass("is-invalid");
     }
 
-    if ($('#inHorizontalAdditionalInchPrice').val() == " ") {
+    if ($('#inHorizontalAdditionalInchPrice').val() == "") {
         $('#inHorizontalAdditionalInchPrice').addClass("is-invalid");
         aux = false;
     } else {

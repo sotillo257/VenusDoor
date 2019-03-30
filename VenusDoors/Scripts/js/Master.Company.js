@@ -23,6 +23,7 @@
         $("#btUpdateCompany").hide();
         $("#btnInsertCompany").show();
         Limpiar();
+        QuitarClaseErrorACombos();
     });
 
     $(document).on('click', '.Remove', function (event) {
@@ -34,6 +35,8 @@
     });
 
     $(document).on('click', '.Modificar', function (event) {
+        QuitarClaseErrorACombos();
+        Limpiar();
     	$("#btUpdateCompany").show();
         $("#btnInsertCompany").hide();
         $("#lblTitulo").text("Modify");
@@ -138,22 +141,15 @@ function Limpiar() {
     llenarComboType(0);
 }
 
+function QuitarClaseErrorACombos() {
+    $('#select2-inStatus-container').removeClass("cbError");
+    $('#select2-inType-container').removeClass("cbError");
+    
+}
+
 function ValidarCamposVacios() {
     var aux = true;
-    if ($('#inStatus').val() == 0) {
-        $('#inStatus').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#inStatus').removeClass("is-invalid");
-    }
-
-    if ($('#inType').val() == 0) {
-    	$('#inType').addClass("is-invalid");
-    	aux = false;
-    } else {
-    	$('#inType').removeClass("is-invalid");
-    }
-
+    
     if ($('#inName').val() == "") {
     	$('#inName').addClass("is-invalid");
         aux = false;
@@ -180,6 +176,20 @@ function ValidarCamposVacios() {
     	aux = false;
     } else {
     	$('#inTelephone').removeClass("is-invalid");
+    }
+
+    if ($('#inType').val() == 0 || $('#inType').val() == null) {
+        $('#select2-inType-container').addClass("cbError");
+        aux = false;
+    } else {
+        $('#select2-inType-container').removeClass("cbError");
+    }
+
+    if ($('#inStatus').val() == 0 || $('#inStatus').val() == null) {
+        $('#select2-inStatus-container').addClass("cbError");
+        aux = false;
+    } else {
+        $('#select2-inStatus-container').removeClass("cbError");
     }
 
     return aux;

@@ -440,7 +440,7 @@ function llenarTablaOrderControl() {
                          data[i].Id,
                         data[i].Quantity,
                          option + ' ' + data[i].Status.Description,
-                        '$' + data[i].Total,                       
+                        '$' + data[i].Total.toString().replace(',', '.'),
                         Botones                       
                     ]).draw(false);
                 }

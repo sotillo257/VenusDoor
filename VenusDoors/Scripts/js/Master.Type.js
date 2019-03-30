@@ -15,11 +15,14 @@
             LlammarModal("Danger", "You must fill all the fields.", " ");
         }
     });
+
+
     $("#btInsert").on("click", function () {
         $("#lblTitulo").text("Insert new");
         $("#lblSubTitulo").text("You can create a new article below");
         $("#btnUpdateType").hide();
         $("#btInsertType").show();
+        QuitarClaseErrorACombos();
         Limpiar();
     });
     $(document).on('click', '.Modificar', function (event) {
@@ -27,6 +30,7 @@
         $("#btInsertType").hide();
         $("#lblTitulo").text("Modify");
         $("#lblSubTitulo").text("You can modify a new article below");
+        QuitarClaseErrorACombos();
         Limpiar();
         for (var i = 0; i < listTy.length; i++) {
             if (listTy[i].Id == $(this).attr('value')) {
@@ -93,11 +97,11 @@ function Limpiar() {
 
 function ValidarCamposVacios() {
     var aux = true;
-    if ($('#inGroup').val() == 0) {
-        $('#inGroup').addClass("is-invalid");
+    if ($('#inGroup').val() == 0 || $('#inGroup').val() == null) {
+        $('#select2-inGroup-container').addClass("cbError");
         aux = false;
     } else {
-        $('#inGroup').removeClass("is-invalid");
+        $('#select2-inGroup-container').removeClass("cbError");
     }
 
     if ($('#inDescription').val() == "") {
@@ -108,6 +112,10 @@ function ValidarCamposVacios() {
     }
 
     return aux;
+}
+
+function QuitarClaseErrorACombos() {
+    $('#select2-inGroup-container').removeClass("cbError");
 }
 
 function InsertType() {
@@ -176,6 +184,7 @@ function UpdateType() {
     });
 }
 
+
 var allGroup = '';
 function llenarComboGroup(pGroup) {
 
@@ -226,19 +235,20 @@ function llenarTablaGetAllType() {
         success: function (data) {
             if (data != null) {
                 listTy = data;
-                var option = '';
-                for (var i = 0; i < data.length; i++) {
-                    option += '<tr role="row" class="odd">';
-                    option += '<td tabindex="0"  >' + data[i].Id + '</td>';
-                    option += '<td>' + data[i].Description + '</td>';
-                    option += '<td>' + data[i].Group.Description + '</td>';
-                    option += '<td>';
-                    option += '<center>';
-                    option += '<a href="#" data-toggle="modal" data-target="#modalInsert" value="' + data[i].Id + '" class="Modificar btn btn-primary btn-icon">';
-                    option += '<div><i class="fa fa-edit"></i></div></a></center></td></tr>';
+                var t = $('#datatable1').DataTable();
+                t.rows().remove().draw(false);
 
+                for (var i = 0; i < data.length; i++) {
+                    var Botones = '<center><button data-toggle="modal" data-target="#modalInsert" value="' + data[i].Id + '" style="width: 25px;height: 25px; margin-left: 10px;" class="Modificar btn btn-primary btn-icon"><i class="fa fa-edit"></i></button>' +
+                    '</center>';
+
+                    t.row.add([
+                        data[i].Id,
+                        data[i].Description,
+                        data[i].Group.Description,
+                       Botones
+                    ]).draw(false);
                 }
-                $("#datatable1 > tbody").empty().append(option);
                 $("#modalInsert").modal("hide");
             }
             else {

@@ -50,9 +50,12 @@
                                 <td class="">@item.Status.Description</td>
                                 <td class="">
                                     <center>
-                                        <a href="#" data-toggle="modal" data-target="#modalInsert" value="@item.Id" class="Modificar btn btn-primary btn-icon">
-                                            <div><i class="fa fa-edit"></i></div>
-                                        </a>
+                                        <button data-toggle="modal" data-target="#modalInsert" style="width: 25px;height: 25px; margin-left: 10px;" value="@item.Id" class="Modificar btn btn-primary btn-icon">
+                                            <i class="fa fa-edit"></i>
+                                        </button>
+                                        <button href="#" data-toggle="modal" data-target="" id="" title="Remove" value="@item.Id" class="Remove Cursor btn btn-danger btn-icon" style="width: 25px;height: 25px; margin-left: 10px;">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
                                     </center>
                                 </td>
                             </tr>
@@ -93,11 +96,11 @@
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="inPriceFlatPanel" style="margin-top: 25px;">Price flat panel: </label>
-                                                <input type="text" id="inPriceFlatPanel" onkeypress="return soloAndNumeros(event)" maxlength="6" name="inPriceFlatPanel" class="form-control" placeholder="">
+                                                <input type="text" id="inPriceFlatPanel" onkeypress="return soloAndNumeros(event)" maxlength="6" name="PriceFlatPanel" class="form-control" placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="inPriceRaisedPanel" style="margin-top: 25px;">Price raised panel: </label>
-                                                <input type="text" id="inPriceRaisedPanel" onkeypress="return soloAndNumeros(event)" maxlength="6" name="inPriceRaisedPanel" class="form-control" placeholder="">
+                                                <input type="text" id="inPriceRaisedPanel" onkeypress="return soloAndNumeros(event)" maxlength="6" name="PriceRaisedPanel" class="form-control" placeholder="">
                                             </div><!-- form-group -->
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="inStatus" style="margin-top: 25px;">Status: </label>
@@ -129,6 +132,7 @@
         var urlGetAllStatus = '@Url.Action("GetStatus", "Masters")';
         var urlGetAllMaterial = '@Url.Action("GetAllMaterial", "Masters")';
         var listMaterial = JSON.parse('@Html.Raw(ViewBag.ListMaterial)');
+        var urlUpdateStatusMaterial = '@Url.Action("UpdateStatusMaterial", "Masters")';
     </script>
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>

@@ -46,9 +46,12 @@
                                 <td class="">@item.Status.Description</td>
                                 <td class="">
                                     <center>
-                                        <a href="#" data-toggle="modal" data-target="#modalInsert" value="@item.Id" class="Modificar btn btn-primary btn-icon">
-                                            <div><i class="fa fa-edit"></i></div>
-                                        </a>
+                                        <button data-toggle="modal" data-target="#modalInsert" style="width: 25px;height: 25px; margin-left: 10px;" value="@item.Id" class="Modificar btn btn-primary btn-icon">
+                                            <i class="fa fa-edit"></i>
+                                        </button>
+                                        <button href="#" data-toggle="modal" data-target="" id="" title="Remove" value="@item.Id" class="Remove Cursor btn btn-danger btn-icon" style="width: 25px;height: 25px; margin-left: 10px;">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
                                     </center>
                                 </td>
                             </tr>
@@ -117,6 +120,7 @@
         var urlGetAllStatus = '@Url.Action("GetStatus", "Masters")';
         var urlGetAllDoorStyle = '@Url.Action("GetAllDoorStyle", "Masters")';
         var ListDoorsStyle = JSON.parse('@Html.Raw(ViewBag.ListDoorsStyle)');
+        var urlUpdateStatusDS = '@Url.Action("UpdateStatusDS", "Masters")';
     </script>
     <script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
     <script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>

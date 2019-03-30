@@ -21,6 +21,7 @@
         $("#btInsertGroup").show();
         Limpiar();
     });
+
     $(document).on('click', '.Modificar', function (event) {
         $("#btUpdateGroup").show();
         $("#btInsertGroup").hide();
@@ -163,6 +164,7 @@ function UpdateGroup() {
     });
 }
 
+
 function llenarTablaGroup() {
     $.ajax({
         url: urlGetAllGroup,
@@ -173,18 +175,19 @@ function llenarTablaGroup() {
         success: function (data) {
             if (data != null) {
                 listGroup = data;
-                var option = '';
-                for (var i = 0; i < data.length; i++) {
-                    option += '<tr role="row" class="odd">';
-                    option += '<td tabindex="0"  >' + data[i].Id + '</td>';
-                    option += '<td>' + data[i].Description + '</td>';
-                    option += '<td>';
-                    option += '<center>';
-                    option += '<a href="#" data-toggle="modal" data-target="#modalInsert" value="' + data[i].Id + '" class="Modificar btn btn-primary btn-icon">';
-                    option += '<div><i class="fa fa-edit"></i></div></a></center></td></tr>';
+                var t = $('#datatable1').DataTable();
+                t.rows().remove().draw(false);
 
+                for (var i = 0; i < data.length; i++) {
+                    var Botones = '<center><button data-toggle="modal" data-target="#modalInsert" value="' + data[i].Id + '" style="width: 25px;height: 25px; margin-left: 10px;" class="Modificar btn btn-primary btn-icon"><i class="fa fa-edit"></i></button>' +
+                    '</center>';
+
+                    t.row.add([
+                        data[i].Id,
+                        data[i].Description,
+                       Botones
+                    ]).draw(false);
                 }
-                $("#datatable1 > tbody").empty().append(option);
                 $("#modalInsert").modal("hide");
             }
             else {

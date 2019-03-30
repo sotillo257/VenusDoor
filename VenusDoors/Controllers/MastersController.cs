@@ -806,8 +806,40 @@ namespace VenusDoors.Controllers
                 }
             }
         }
+
+        [Authorize(Roles = "1")]
+        [HttpPost]
+        public ActionResult UpdateStatusDS(DoorStyle modDs)
+        {
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                int userID = (int)Session["UserID"];
+                try
+                {
+                    BusinessLogic.lnDoorStyle _LNDS = new BusinessLogic.lnDoorStyle();
+
+                    modDs.ModificationDate = DateTime.Now;
+                    modDs.ModificationUser = userID;
+                    DoorStyle ds = _LNDS.GetDoorStyleById(modDs.Id);
+                    ds.Status.Id = modDs.Status.Id;
+                    var upcom = _LNDS.UpdateDoorStyle(ds);
+
+
+                    return Json(true, JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
         #endregion
-        
+
         #region Group
         [Authorize(Roles = "1")]
         public ActionResult Group()
@@ -902,6 +934,8 @@ namespace VenusDoors.Controllers
                 }
             }
         }
+
+        
         #endregion
 
         #region HingeDirection
@@ -1007,6 +1041,38 @@ namespace VenusDoors.Controllers
                 }
             }
         }
+
+        [Authorize(Roles = "1")]
+        [HttpPost]
+        public ActionResult UpdateStatusHD(HingeDirection modHD)
+        {
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                int userID = (int)Session["UserID"];
+                try
+                {
+                    BusinessLogic.lnHingeDirection _LNHD = new BusinessLogic.lnHingeDirection();
+
+                    modHD.ModificationDate = DateTime.Now;
+                    modHD.ModificationUser = userID;
+                    HingeDirection hd = _LNHD.GetHingeDirectionById(modHD.Id);
+                    hd.Status.Id = modHD.Status.Id;
+                    var uphd = _LNHD.UpdateHingeDirection(hd);
+
+
+                    return Json(true, JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
         #endregion
 
         #region HingePositions
@@ -1108,6 +1174,38 @@ namespace VenusDoors.Controllers
                 {
                     return Json(false, JsonRequestBehavior.AllowGet);
                 }
+            }
+        }
+
+        [Authorize(Roles = "1")]
+        [HttpPost]
+        public ActionResult UpdateStatusHP(HingePositions modHP)
+        {
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                int userID = (int)Session["UserID"];
+                try
+                {
+                    BusinessLogic.lnHingePositions _LNHP = new BusinessLogic.lnHingePositions();
+
+                    modHP.ModificationDate = DateTime.Now;
+                    modHP.ModificationUser = userID;
+                    HingePositions HP = _LNHP.GetHingePositionsById(modHP.Id);
+                    HP.Status.Id = modHP.Status.Id;
+                    var uphp = _LNHP.UpdateHingePositions(HP);
+
+
+                    return Json(true, JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
             }
         }
         #endregion
@@ -1213,6 +1311,38 @@ namespace VenusDoors.Controllers
                 {
                     return Json(false, JsonRequestBehavior.AllowGet);
                 }
+            }
+        }
+
+        [Authorize(Roles = "1")]
+        [HttpPost]
+        public ActionResult UpdateStatusHDIVI(HorizontalDivisions modHdi)
+        {
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                int userID = (int)Session["UserID"];
+                try
+                {
+                    BusinessLogic.lnHorizontalDivisions _LNHDI = new BusinessLogic.lnHorizontalDivisions();
+
+                    modHdi.ModificationDate = DateTime.Now;
+                    modHdi.ModificationUser = userID;
+                    HorizontalDivisions Hdiv = _LNHDI.GetHorizontalDivisionsById(modHdi.Id);
+                    Hdiv.Status.Id = modHdi.Status.Id;
+                    var uphdi = _LNHDI.UpdateHorizontalDivisions(Hdiv);
+
+
+                    return Json(true, JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
             }
         }
         #endregion
@@ -1321,6 +1451,38 @@ namespace VenusDoors.Controllers
                 }
             }
         }
+
+        [Authorize(Roles = "1")]
+        [HttpPost]
+        public ActionResult UpdateStatusIEP(InsideEdgeProfile modIEP)
+        {
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                int userID = (int)Session["UserID"];
+                try
+                {
+                    BusinessLogic.lnInsideEdgeProfile _LNIEP = new BusinessLogic.lnInsideEdgeProfile();
+
+                    modIEP.ModificationDate = DateTime.Now;
+                    modIEP.ModificationUser = userID;
+                    InsideEdgeProfile IEP = _LNIEP.GetInsideEdgeProfileById(modIEP.Id);
+                    IEP.Status.Id = modIEP.Status.Id;
+                    var upIEP = _LNIEP.UpdateInsideEdgeProfile(IEP);
+
+
+                    return Json(true, JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
         #endregion
 
         #region Join
@@ -1426,6 +1588,38 @@ namespace VenusDoors.Controllers
                 }
             }
         }
+
+        [Authorize(Roles = "1")]
+        [HttpPost]
+        public ActionResult UpdateStatusJoin(Join modJoin)
+        {
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                int userID = (int)Session["UserID"];
+                try
+                {
+                    BusinessLogic.lnJoin _LNJoin = new BusinessLogic.lnJoin();
+
+                    modJoin.ModificationDate = DateTime.Now;
+                    modJoin.ModificationUser = userID;
+                    Join Join = _LNJoin.GetJoinById(modJoin.Id);
+                    Join.Status.Id = modJoin.Status.Id;
+                    var upJoin = _LNJoin.UpdateJoin(Join);
+
+
+                    return Json(true, JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
         #endregion
 
         #region Material
@@ -1529,6 +1723,38 @@ namespace VenusDoors.Controllers
                 {
                     return Json(false, JsonRequestBehavior.AllowGet);
                 }
+            }
+        }
+
+        [Authorize(Roles = "1")]
+        [HttpPost]
+        public ActionResult UpdateStatusMaterial(Material modMaterial)
+        {
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                int userID = (int)Session["UserID"];
+                try
+                {
+                    BusinessLogic.lnMaterial _LNMaterial = new BusinessLogic.lnMaterial();
+
+                    modMaterial.ModificationDate = DateTime.Now;
+                    modMaterial.ModificationUser = userID;
+                    Material upMate = _LNMaterial.GetMaterialById(modMaterial.Id);
+                    upMate.Status.Id = modMaterial.Status.Id;
+                    var upMa = _LNMaterial.UpdateMaterial(upMate);
+
+
+                    return Json(true, JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
             }
         }
         #endregion
@@ -1637,6 +1863,38 @@ namespace VenusDoors.Controllers
                 }
             }
         }
+
+        [Authorize(Roles = "1")]
+        [HttpPost]
+        public ActionResult UpdateStatusOrder(Order modOrder)
+        {
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                int userID = (int)Session["UserID"];
+                try
+                {
+                    BusinessLogic.lnOrder _LNOR = new BusinessLogic.lnOrder();
+
+                    modOrder.ModificationDate = DateTime.Now;
+                    modOrder.ModificationUser = userID;
+                    Order upOR = _LNOR.GetOrderById(modOrder.Id);
+                    upOR.Status.Id = modOrder.Status.Id;
+                    var upO = _LNOR.UpdateOrder(upOR);
+
+
+                    return Json(true, JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
         #endregion
 
         #region OutsideEdgeProfile
@@ -1741,6 +1999,38 @@ namespace VenusDoors.Controllers
                 {
                     return Json(false, JsonRequestBehavior.AllowGet);
                 }
+            }
+        }
+
+        [Authorize(Roles = "1")]
+        [HttpPost]
+        public ActionResult UpdateStatusEP(OutsideEdgeProfile modEP)
+        {
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                int userID = (int)Session["UserID"];
+                try
+                {
+                    BusinessLogic.lnOutsideEdgeProfile _LNOEP = new BusinessLogic.lnOutsideEdgeProfile();
+
+                    modEP.ModificationDate = DateTime.Now;
+                    modEP.ModificationUser = userID;
+                    OutsideEdgeProfile upEP = _LNOEP.GetOutsideEdgeProfileById(modEP.Id);
+                    upEP.Status.Id = modEP.Status.Id;
+                    var upOEP = _LNOEP.UpdateOutsideEdgeProfile(upEP);
+
+
+                    return Json(true, JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
             }
         }
         #endregion
@@ -1848,6 +2138,38 @@ namespace VenusDoors.Controllers
                 }
             }
         }
+
+        [Authorize(Roles = "1")]
+        [HttpPost]
+        public ActionResult UpdateStatusP(Panel modP)
+        {
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                int userID = (int)Session["UserID"];
+                try
+                {
+                    BusinessLogic.lnPanel _LNP = new BusinessLogic.lnPanel();
+
+                    modP.ModificationDate = DateTime.Now;
+                    modP.ModificationUser = userID;
+                    Panel upP = _LNP.GetPanelById(modP.Id);
+                    upP.Status.Id = modP.Status.Id;
+                    var upOEP = _LNP.UpdatePanel(upP);
+
+
+                    return Json(true, JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
         #endregion
 
         #region PanelMaterial
@@ -1951,6 +2273,38 @@ namespace VenusDoors.Controllers
                 {
                     return Json(false, JsonRequestBehavior.AllowGet);
                 }
+            }
+        }
+
+        [Authorize(Roles = "1")]
+        [HttpPost]
+        public ActionResult UpdateStatusPM(PanelMaterial modPM)
+        {
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                int userID = (int)Session["UserID"];
+                try
+                {
+                    BusinessLogic.lnPanelMaterial _LNPM = new BusinessLogic.lnPanelMaterial();
+
+                    modPM.ModificationDate = DateTime.Now;
+                    modPM.ModificationUser = userID;
+                    PanelMaterial upPM = _LNPM.GetPanelMaterialById(modPM.Id);
+                    upPM.Status.Id = modPM.Status.Id;
+                    var upPm = _LNPM.UpdatePanelMaterial(upPM);
+
+
+                    return Json(true, JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
             }
         }
         #endregion
@@ -2058,6 +2412,38 @@ namespace VenusDoors.Controllers
                 }
             }
         }
+
+        [Authorize(Roles = "1")]
+        [HttpPost]
+        public ActionResult UpdateStatusPer(Person modPer)
+        {
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                int userID = (int)Session["UserID"];
+                try
+                {
+                    BusinessLogic.lnPerson _LNPer = new BusinessLogic.lnPerson();
+
+                    modPer.ModificationDate = DateTime.Now;
+                    modPer.ModificationUser = userID;
+                    Person upPer = _LNPer.GetPersonById(modPer.Id);
+                    upPer.Status.Id = modPer.Status.Id;
+                    var upPe = _LNPer.UpdatePerson(upPer);
+
+
+                    return Json(true, JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
         #endregion
 
         #region Preparation
@@ -2161,6 +2547,38 @@ namespace VenusDoors.Controllers
                 {
                     return Json(false, JsonRequestBehavior.AllowGet);
                 }
+            }
+        }
+
+        [Authorize(Roles = "1")]
+        [HttpPost]
+        public ActionResult UpdateStatusPre(Preparation modPre)
+        {
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                int userID = (int)Session["UserID"];
+                try
+                {
+                    BusinessLogic.lnPreparation _LNPre = new BusinessLogic.lnPreparation();
+
+                    modPre.ModificationDate = DateTime.Now;
+                    modPre.ModificationUser = userID;
+                    Preparation upPre = _LNPre.GetPreparationById(modPre.Id);
+                    upPre.Status.Id = modPre.Status.Id;
+                    var upPr = _LNPre.UpdatePreparation(upPre);
+
+
+                    return Json(true, JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
             }
         }
         #endregion
@@ -2276,6 +2694,38 @@ namespace VenusDoors.Controllers
                 {
                     return Json(false, JsonRequestBehavior.AllowGet);
                 }
+            }
+        }
+
+        [Authorize(Roles = "1")]
+        [HttpPost]
+        public ActionResult UpdateStatusRT(RailThickness modRT)
+        {
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                int userID = (int)Session["UserID"];
+                try
+                {
+                    BusinessLogic.lnRailThickness _LNRT = new BusinessLogic.lnRailThickness();
+
+                    modRT.ModificationDate = DateTime.Now;
+                    modRT.ModificationUser = userID;
+                    RailThickness uprt = _LNRT.GetRailThicknessById(modRT.Id);
+                    uprt.Status.Id = modRT.Status.Id;
+                    var upRT = _LNRT.UpdateRailThickness(uprt);
+
+
+                    return Json(true, JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
             }
         }
         #endregion
@@ -2482,8 +2932,40 @@ namespace VenusDoors.Controllers
                 }
             }
         }
+
+        [Authorize(Roles = "1")]
+        [HttpPost]
+        public ActionResult UpdateStatusTRA(TopRail modToP)
+        {
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                int userID = (int)Session["UserID"];
+                try
+                {
+                    BusinessLogic.lnTopRail _LNTOP = new BusinessLogic.lnTopRail();
+
+                    modToP.ModificationDate = DateTime.Now;
+                    modToP.ModificationUser = userID;
+                    TopRail uptop = _LNTOP.GetTopRailById(modToP.Id);
+                    uptop.Status.Id = modToP.Status.Id;
+                    var upTOP = _LNTOP.UpdateTopRail(uptop);
+
+
+                    return Json(true, JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
         #endregion
-     
+
         #region Type
         [Authorize(Roles = "1")]
         public ActionResult Type()
@@ -2563,6 +3045,7 @@ namespace VenusDoors.Controllers
             }
         }
         }
+        
 
         //[Authorize(Roles = "1")] [HttpPost]
         //public ActionResult GetAllType(Model.Type gType)
@@ -2695,6 +3178,38 @@ namespace VenusDoors.Controllers
                 }
             }
         }
+
+        [Authorize(Roles = "1")]
+        [HttpPost]
+        public ActionResult UpdateStatusUser(User modUser)
+        {
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                int userID = (int)Session["UserID"];
+                try
+                {
+                    BusinessLogic.lnUser _LNUS = new BusinessLogic.lnUser();
+
+                    modUser.ModificationDate = DateTime.Now;
+                    modUser.ModificationUser = userID;
+                    User upuser = _LNUS.GetUserById(modUser.Id);
+                    upuser.Status.Id = modUser.Status.Id;
+                    var upTOP = _LNUS.UpdateUser(upuser);
+
+
+                    return Json(true, JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
         #endregion
 
         #region VerticalDivisions
@@ -2798,6 +3313,38 @@ namespace VenusDoors.Controllers
                 {
                     return Json(false, JsonRequestBehavior.AllowGet);
                 }
+            }
+        }
+
+        [Authorize(Roles = "1")]
+        [HttpPost]
+        public ActionResult UpdateStatusVD(VerticalDivisions modVD)
+        {
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                int userID = (int)Session["UserID"];
+                try
+                {
+                    BusinessLogic.lnVerticalDivisions _LNVD = new BusinessLogic.lnVerticalDivisions();
+
+                    modVD.ModificationDate = DateTime.Now;
+                    modVD.ModificationUser = userID;
+                    VerticalDivisions upVD = _LNVD.GetVerticalDivisionsById(modVD.Id);
+                    upVD.Status.Id = modVD.Status.Id;
+                    var upVd = _LNVD.UpdateVerticalDivisions(upVD);
+
+
+                    return Json(true, JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
             }
         }
         #endregion
