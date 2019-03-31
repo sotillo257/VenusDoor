@@ -60,18 +60,11 @@
                     llenarComboOutsideEdgeProfile(ListDoors[i].OutsideEdgeProfile.Id);
                     llenarComboInsideEdgeProfile(ListDoors[i].InsideEdgeProfile.Id);
                     llenarComboVerticalDivisions(ListDoors[i].VerticalDivisions.Id);
-                    llenarComboHorizontalDivisions(ListDoors[i].HorizontalDivisions.Id);
-                    llenarComboHingeDirection(ListDoors[i].HingeDirection.Id);
-                    $('#inHingePositions').val(ListDoors[i].HingePositions.Id);
+                    llenarComboHorizontalDivisions(ListDoors[i].HorizontalDivisions.Id);                   
                     llenarComboPanel(ListDoors[i].Panel.Id);
-                    llenarComboPanelMaterial(ListDoors[i].PanelMaterial.Id);
-                    $('#cbDrill').val(ListDoors[i].isDrill);
-                    $('#cbWidth').val(ListDoors[i].Width);
-                    $('#cbHeight').val(ListDoors[i].Height);
-                    $('#cbOpeningMeasurement').val(ListDoors[i].IsOpeningMeasurement);
-                    $('#inPicture').val(ListDoors[i].Picture);
-                    $('#inProfilePicture').val(ListDoors[i].ProfilePicture);
+                    llenarComboPanelMaterial(ListDoors[i].PanelMaterial.Id);                    
                     llenarComboStatus(ListDoors[i].Status.Id);
+                    checkIsOverlay(ListDoors[i].isOverlay);
                 }
             }
     });
@@ -366,7 +359,7 @@ function changeDoorStyle() {
         llenarComboInsideEdgeProfile(0);
 
         $('#cbVerticalDivisions').removeClass("is-invalid");
-        llenarCombVerticalDivisions(0);
+        llenarComboVerticalDivisions(0);
 
         $('#cbHorizontalDivisions').removeClass("is-invalid");
         llenarComboHorizontalDivisions(0);
@@ -529,12 +522,13 @@ function InsertDoors() {
               DecimalsWidth: { Id: 2},
               Height: 0,
               DecimalsHeight: { Id: 2},
-              Picture: "",
-              ProfilePicture: "",
+              Picture: $("#DoorPicture").attr('src'),
+              ProfilePicture: "Profile",
               Status: { Id: $("#cbStatus").val() },
               OpeningMeasurement: { Id: false},
               isOverlay: { Id: isOver },
-              DoorOption: { Id: 1 }
+              DoorOption: { Id: 1 },
+              DoorType: {Id: 1}
 
           }
       };    
@@ -561,7 +555,7 @@ function InsertDoors() {
     });
 }
 function UpdateDoors() {
-
+    var isOver = ($('input[name=radioOver]:checked').attr("data-id") == 1) ? false : true;
     var datos =
     {
         uDoors: {
@@ -570,7 +564,7 @@ function UpdateDoors() {
             Material: { Id: $("#cbMaterial").val() },
             TopRail: { Id: $("#cbRailWidth").val() },
             BottomRail: { Id: $("#cbStileWidth").val() },
-            Preparation: { Id: $("#inPreparation").val() },
+            Preparation: { Id:1},
             Join: { Id: $("#cbDoorAssembly").val() },
             OutsideEdgeProfile: { Id: $("#cbOutsideEdgeProfile").val() },
             InsideEdgeProfile: { Id: $("#cbInsideEdgeProfile").val() },
@@ -581,12 +575,16 @@ function UpdateDoors() {
             Panel: { Id: $("#cbPanel").val() },
             PanelMaterial: { Id: $("#cbPanelMaterial").val() },
             Drill: { Id: false},
-            Width: $("#cbWidth").val(),
-            Height: $("#cbHeight").val(),
-            Picture: $("#inPicture").val(),
-            ProfilePicture: $("#inProfilePicture").val(),
+            Width: 0,
+            DecimalsWidth: { Id: 2 },
+            Height: 0,
+            DecimalsHeight: { Id: 2 },
+            Picture: $("#DoorPicture").attr('src'),
+            ProfilePicture: "Profile",
             Status: { Id: $("#cbStatus").val() },
-            OpeningMeasurement: { Id: $("#cbOpeningMeasurement").val() },
+            isOverlay: { Id: isOver },
+            DoorOption: { Id: 1 },
+            DoorType: {Id: 1}
         }
     };
     
@@ -1060,7 +1058,7 @@ function llenarComboDoorStyle(pDoorStyle) {
 }
 
 var AllInsideEdgeProfile = '';
-function llenarComboInsideEdgeProfileP(pIEP) {
+function llenarComboInsideEdgeProfile(pIEP) {
 
     var option = '<option value="0" id="">Select</option>';
     for (var i = 0; i < AllInsideEdgeProfile.length; i++) {
@@ -1075,7 +1073,7 @@ function llenarComboInsideEdgeProfileP(pIEP) {
 }
 
 var AllOutsideEdgeProfile = '';
-function llenarComboOutsideEdgeProfileP(pOEP) {
+function llenarComboOutsideEdgeProfile(pOEP) {
 
     var option = '<option value="0" id="">Select</option>';
     for (var i = 0; i < AllOutsideEdgeProfile.length; i++) {
@@ -1230,8 +1228,8 @@ function llenarComboFinger(pFinger) {
 }
 
 function checkIsOverlay(pOverlay) {
-    var lbl = '<label><input disabled style="margin-right: 8px;" type="radio" name="radioOver" data-id="1">Inset Door Type</label>';
-    lbl += '<label style="margin-left: 10px;"><input disabled style="margin-right: 8px;" type="radio" name="radioOver" data-id="2">Overlay Door Type</label>';
+    var lbl = '<label><input style="margin-right: 8px;" type="radio" name="radioOver" data-id="1">Inset Door Type</label>';
+    lbl += '<label style="margin-left: 10px;"><input style="margin-right: 8px;" type="radio" name="radioOver" data-id="2">Overlay Door Type</label>';
     $("#isOverlay").html(lbl);
     if (pOverlay != 0) {
         $("input[name=radioOver][data-id='" + pOverlay + "']").prop("checked", true);
@@ -1565,4 +1563,77 @@ function RaisedPanelDoor(Style) {
 
     }
     $('#DoorPicture').attr('src', urlFolder + DoorUrl);
+}
+
+function FlatPanel(Outside, Inside) {
+    var ProfileUrl = "img11.png";
+    var urlFolder = "/Content/img/Profile/";
+    if (Outside == 13) {
+        if (Inside == 4) {
+            ProfileUrl = "-Double_Roman_Ogee_ogee_flat_panel.png";
+        } else if (Inside == 5) {
+            ProfileUrl = "-Double_Roman_Ogee_Reba_flat_panel.png";
+        } else if (Inside == 3) {
+            ProfileUrl = "-Double_Roman_Ogee_Shaker_22_flat_panel.png";
+        } else if (Inside == 7) {
+            ProfileUrl = "-Double_Roman_Ogee_shaker_goove_flatpanel.png";
+        }
+    }
+    if (Outside == 2) {
+        if (Inside == 4) {
+            ProfileUrl = "-Fingerpull_ogee_flat_panel.png";
+        } else if (Inside == 5) {
+            ProfileUrl = "-Fingerpull_Reba_flat_panel.png";
+        } else if (Inside == 3) {
+            ProfileUrl = "-Fingerpull_Shaker22_flat_panel.png";
+        } else if (Inside == 7) {
+            ProfileUrl = "-Finger_pull_shaker_goove_flat_panel.png";
+        }
+    }
+    if (Outside == 17) {
+        if (Inside == 4) {
+            ProfileUrl = "-Half_Reba_ogee_flat_panel.png";
+        } else if (Inside == 5) {
+            ProfileUrl = "-Half_Reba_Reba_flat_panel.png";
+        } else if (Inside == 3) {
+            ProfileUrl = "-Half_Reba_Shaker_22_flat_panel.png";
+        } else if (Inside == 7) {
+            ProfileUrl = "-Half_Reba_shaker_goove_flat_panel.png";
+        }
+    }
+    if (Outside == 11) {
+
+        if (Inside == 4) {
+            ProfileUrl = "-Little_bone_ogee_flat_panel.png";
+        } else if (Inside == 5) {
+            ProfileUrl = "-Little_bone_Reba_flat_panel.png";
+        } else if (Inside == 3) {
+            ProfileUrl = "-Little_bone_Shaker_22_flat_panel.png";
+        } else if (Inside == 7) {
+            ProfileUrl = "-Little_bone_shaker_goove_flat_panel.png";
+        }
+    }
+    if (Outside == 5) {
+        if (Inside == 4) {
+            ProfileUrl = "-Reba_ogee_flat_panel.png";
+        } else if (Inside == 5) {
+            ProfileUrl = "-Reba_Reba_flat_panel.png";
+        } else if (Inside == 3) {
+            //  ProfileUrl = "-Reba_Shaker_22_flat_panel.png";
+        } else if (Inside == 7) {
+            ProfileUrl = "-Reba_shaker_goove_flat_panel.png";
+        }
+    }
+    if (Outside == 6) {
+        if (Inside == 4) {
+            ProfileUrl = "-Shaker_ogee_flat_panel.png";
+        } else if (Inside == 5) {
+            ProfileUrl = "-Shaker_Reba_flat_panel.png";
+        } else if (Inside == 3) {
+            ProfileUrl = "-Shaker_Shaker_22_flat_panel.png";
+        } else if (Inside == 7) {
+            ProfileUrl = "-Shaker_shaker_goove_flat_panel.png";
+        }
+    }
+    $('#ProfilePicture').attr('src', urlFolder + ProfileUrl);
 }
