@@ -118,13 +118,13 @@ $(function () {
 function Limpiar() {
     $('#inId').val(0);
     $('#inDescription').removeClass("is-invalid");
-    $('#inDescription').val(" ");
+    $('#inDescription').val("");
 
     $('#inPriceFlatPanel').removeClass("is-invalid");
-    $('#inPriceFlatPanel').val(" ");
+    $('#inPriceFlatPanel').val("");
 
     $('#inPriceRaisedPanel').removeClass("is-invalid");
-    $('#inPriceRaisedPanel').val(" ");
+    $('#inPriceRaisedPanel').val("");
 
     $('#inStatus').removeClass("is-invalid");
     llenarComboEstatus(0);
@@ -137,7 +137,7 @@ function QuitarClaseErrorACombos() {
 function ValidarCamposVacios() {
     var aux = true;
 
-    if ($('#inDescription').val() == "") {
+    if ($('#inDescription').val() == "" || $('#inDescription').val() == null) {
         $('#inDescription').addClass("is-invalid");
         aux = false;
     } else {
