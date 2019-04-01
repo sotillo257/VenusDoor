@@ -1258,7 +1258,7 @@ function llenarTablaDoors() {
                         data[i].Id,
                         data[i].DoorStyle.Description,
                         data[i].Material.Description,
-                        data[i].OutsideEdgeProfile.Descriptionn,
+                        data[i].OutsideEdgeProfile.Description,
                         data[i].InsideEdgeProfile.Description,
                         data[i].Panel.Description,
                         data[i].Status.Description,
