@@ -227,7 +227,7 @@ namespace DataAccess
             sql = string.Format(sql, pDoors.Id, pDoors.DoorStyle.Id, pDoors.Material.Id, pDoors.TopRail.Id, pDoors.BottomRail.Id,
                 pDoors.Preparation.Id, pDoors.Join.Id, pDoors.OutsideEdgeProfile.Id,
                 pDoors.InsideEdgeProfile.Id, pDoors.VerticalDivisions.Id, pDoors.HorizontalDivisions.Id, pDoors.HingeDirection.Id,
-                pDoors.HingePositions.Id, pDoors.Width.ToString().Replace(',', '.'), pDoors.DecimalsWidth.Id, pDoors.Height.ToString().Replace(',', '.'), pDoors.DecimalsHeight.Id, pDoors.IsOpeningMeasurement,
+                pDoors.HingePositions.Id, (pDoors.isDrill == true) ? 1 : 0, pDoors.Width.ToString().Replace(',', '.'), pDoors.DecimalsWidth.Id, pDoors.Height.ToString().Replace(',', '.'), pDoors.DecimalsHeight.Id, (pDoors.IsOpeningMeasurement == true) ? 1 : 0,
                 pDoors.Status.Id, pDoors.ModificationDate.ToString("yyyyMMdd"),
                 pDoors.ModificationUser, pDoors.Picture, pDoors.ProfilePicture, pDoors.Panel.Id, pDoors.PanelMaterial.Id, pDoors.DoorType.Id, pDoors.DoorOption.Id, (pDoors.isOverlay == true) ? 1 : 0, (pDoors.isFingerPull == true) ? 1 : 0);
             try

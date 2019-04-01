@@ -530,6 +530,38 @@ namespace VenusDoors.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
+        }   
+             
+        [Authorize(Roles = "1")]
+        [HttpPost]
+        public ActionResult UpdateStatusStandardDoor(Doors moddp)
+        {
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                int userID = (int)Session["UserID"];
+                try
+                {
+                    BusinessLogic.lnDoors _LNd = new BusinessLogic.lnDoors();
+
+                    moddp.ModificationDate = DateTime.Now;
+                    moddp.ModificationUser = userID;
+                    Doors doors = _LNd.GetDoorsById(moddp.Id);
+                    doors.Status.Id = moddp.Status.Id;
+                    var updp = _LNd.UpdateDoors(doors);
+
+
+                    return Json(true, JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         [Authorize(Roles = "1")] [HttpPost]

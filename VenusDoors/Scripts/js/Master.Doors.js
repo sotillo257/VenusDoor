@@ -28,6 +28,13 @@
         }
         
     });
+    $(document).on('click', '.Remove', function (event) {
+        var id = $(this).attr('value');
+        LlammarModal("modalConfim", "Warning!", "You are about to delete an article. What would you like to do?",
+        '<button onclick="DeleteDoor(id)" class="Cursor btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal" aria-label="Close">Remove</button>' +
+        '<button type="button" class="Cursor btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>');
+        $('#deleteidhidden').val(id);
+    });
     $("#btInsert").on("click", function () {
         $("#lblTitulo").text("Insert new");
         $("#lblSubTitulo").text("You can create a new article below");
@@ -606,6 +613,40 @@ function UpdateDoors() {
         },
         error: function (err) {
             LlammarModal("Danger", "Error", "Check your internet connection and try again.");
+        },
+
+    });
+}
+
+function DeleteDoor(id) {
+    var status = 3;
+    var datos =
+    {
+        moddp: {
+            Id: $('#deleteidhidden').val(),
+            Status: { Id: status }
+
+        }
+    };
+
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(datos),
+        url: urlDeleteDoor,
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+
+            //Validar data para ver si mostrar error al guardar o exito al guardar
+            if (result == true) {
+                LlammarModal("Congratuletions", "Congratulations!", "The door has been successfully removed.");
+                llenarTablaDoors();
+            } else {
+                LlammarModal("Danger", "Error: An error occurred while deleting.", " ");
+            }
+        },
+        error: function (err) {
+            LlammarModal("Danger", "Error.", " ");
         },
 
     });
@@ -1253,7 +1294,9 @@ function llenarTablaDoors() {
                 $("#modalInsert").modal("hide");
                 
                 for (var i = 0; i < data.length; i++) {
-                    var Botones = '<a href="#" data-toggle="modal" data-target="#modalInsert" value="' + data[i].Id + '" class="Modificar Cursor btn btn-primary btn-icon"><div><i class="fa fa-edit"></i></div></a>';
+                    var Botones = '<center><button data-toggle="modal" data-target="#modalInsert" style="width: 25px;height: 25px; margin-left: 10px;" value="@item.Id" class="Modificar Cursor btn btn-primary btn-icon"><i class="fa fa-edit"></i></button>'+
+                                  '<button href="#" data-toggle="modal" data-target="" id="" title="Remove" value="@item.Id" class="Remove Cursor btn btn-danger btn-icon" style="width: 25px;height: 25px; margin-left: 10px;"><i class="fa fa-trash"></i></button>'+
+                                  '</center>';
                     t.row.add([
                         data[i].Id,
                         data[i].DoorStyle.Description,

@@ -547,10 +547,11 @@ function llenarTablaDoorsPrices() {
 
                     t.row.add([
                         data[i].Id,
-                        data[i].BasePrice,
-                        data[i].AdditionalSFPrice,
-                        data[i].VerticalAdditionalInchPrice,
-                        data[i].HorizontalBase1FLPrice,
+                        data[i].PanelType.Description,
+                        data[i].RailThickness.Description,
+                        data[i].Material.Description,
+                        '$' + data[i].BasePrice,
+                        '$' + data[i].AdditionalSFPrice,
                         data[i].Status.Description,
                        Botones
                     ]).draw(false);

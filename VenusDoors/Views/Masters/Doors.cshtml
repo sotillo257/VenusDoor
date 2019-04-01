@@ -54,9 +54,12 @@
                                 <td class="">@item.Status.Description</td>
                                 <td class="">
                                     <center>
-                                        <a href="#" value="@item.Id" data-toggle="modal" data-target="#modalInsert" class="Modificar btn btn-primary btn-icon">
-                                            <div><i class="fa fa-edit"></i></div>
-                                        </a>
+                                        <button data-toggle="modal" data-target="#modalInsert" style="width: 25px;height: 25px; margin-left: 10px;" value="@item.Id" class="Modificar Cursor btn btn-primary btn-icon">
+                                            <i class="fa fa-edit"></i>
+                                        </button>
+                                        <button href="#" data-toggle="modal" data-target="" id="" title="Remove" value="@item.Id" class="Remove Cursor btn btn-danger btn-icon" style="width: 25px;height: 25px; margin-left: 10px;">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
                                     </center>
                                 </td>
                             </tr>
@@ -209,6 +212,7 @@
         var urlInsertDoors = '@Url.Action("InsertDoors", "Masters")';
         var urlUpdateDoors = '@Url.Action("UpdateDoors", "Masters")';
         var urlGetAllDoors = '@Url.Action("GetAllDoors", "Masters")';
+        var urlDeleteDoor = '@Url.Action("UpdateStatusStandardDoor", "Masters")';
         var ListDoors = JSON.parse('@Html.Raw(ViewBag.ListDoors)');
 
     </script>
