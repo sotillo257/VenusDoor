@@ -41,7 +41,7 @@
         $("#btnUpdateDoors").hide();
         $("#btInsertDoors").show();
         QuitarClaseErrorACombos();
-        Limpiar();
+        Limpiar();        
     });
 
     $(document).on('click', '.Modificar', function (event) {
@@ -61,7 +61,24 @@
                     $('#Picture').html(HTMLImage);
                     
                     $('#inId').val(ListDoors[i].Id);
-                    llenarComboDoorStyle(ListDoors[i].DoorStyle.Id);
+                    if (ListDoors[i].DoorStyle.Id == 1010) {
+                        llenarComboDoorStyle(ListDoors[i].DoorStyle.Id);
+                        var option = '<option value="3">Slab</option>';
+                        $("#cbPanel").empty().append(option);
+                        $("#cbPanel").hide();
+                        option = '<option value="1">Slab</option>';
+                        $("#cbInsideEdgeProfile").empty().append(option);
+                        $("#cbOutsideEdgeProfile").empty().append(option);
+                        option = '<option value="7">Slab</option>';
+                        $("#cbDoorAssembly").empty().append(option);
+                        $("#cbDoorAssembly").hide();
+                        $('#DoorPicture').attr('src', "/Content/img/Doors/slab.png");
+                        $('#ProfilePicture').attr('src', "/Content/img/Profile/slab.png");
+
+                    } else {
+                        llenarComboDoorStyle(ListDoors[i].DoorStyle.Id);
+                    }
+                    
                     llenarComboMaterial(ListDoors[i].Material.Id);
                     llenarComboTopRail(ListDoors[i].TopRail.Id);
                     llenarComboBottomRail(ListDoors[i].BottomRail.Id);
@@ -71,9 +88,22 @@
                     llenarComboVerticalDivisions(ListDoors[i].VerticalDivisions.Id);
                     llenarComboHorizontalDivisions(ListDoors[i].HorizontalDivisions.Id);                   
                     llenarComboPanel(ListDoors[i].Panel.Id);
-                    llenarComboPanelMaterial(ListDoors[i].PanelMaterial.Id);                    
+                    llenarComboPanelMaterial(ListDoors[i].Material.Id);                    
                     llenarComboStatus(ListDoors[i].Status.Id);
-                    checkIsOverlay(ListDoors[i].isOverlay);
+                    var isOver = ListDoors[i].isOverlay;
+                    if (isOver == false) {
+                        isOver = 1;
+                    } else {
+                        isOver = 2;
+                    }
+                    checkIsOverlay(isOver);
+                    var fingerPull = ListDoors[i].isFingerPull;
+                    if (fingerPull == false) {
+                        fingerPull = 1;
+                    } else {
+                        fingerPull = 2;
+                    }
+                    llenarComboFinger(fingerPull);
                 }
             }
     });
@@ -349,47 +379,21 @@ function changeDoorStyle() {
     function Limpiar() {
 
         $('#inId').val(0);
-        $('#cbDoorStyle').removeClass("is-invalid");
-        llenarComboDoorStyle(0);
-
-        $('#cbMaterial').removeClass("is-invalid");
+        llenarComboDoorStyle(0);       
         llenarComboMaterial(0);
-
-        $('#cbStileWidth').removeClass("is-invalid");
         llenarComboBottomRail(0);
-
-        $('#cbDoorAssembly').removeClass("is-invalid");
         llenarComboDoorAssembly(0);
-
-        $('#cbOutsideEdgeProfile').removeClass("is-invalid");
         llenarComboOutsideEdgeProfile(0);
-
-        $('#cbInsideEdgeProfile').removeClass("is-invalid");
         llenarComboInsideEdgeProfile(0);
-
-        $('#cbVerticalDivisions').removeClass("is-invalid");
         llenarComboVerticalDivisions(0);
-
-        $('#cbHorizontalDivisions').removeClass("is-invalid");
         llenarComboHorizontalDivisions(0);
-
-        $('#cbPanel').removeClass("is-invalid");
         llenarComboPanel(0);
-
-        $('#cbPanelMaterial').removeClass("is-invalid");
-        llenarComboPanelMaterial(0);
-    
-        $('#cbStatus').removeClass("is-invalid");
+        llenarComboPanelMaterial(0);    
         llenarComboStatus(0);
-
-        $('#cbRailWidth').removeClass("is-invalid");
         llenarComboTopRail(0);
-
-        var HTMLImage ='<center>' +
-                               '<img style="width: 230px;height: 230px;" id="DoorPicture" src="/Content/img/Doors/img11.png">' +
-                               '</center>';
-        $('#Picture').html(HTMLImage);
-
+        llenarComboFinger(0);
+        $("input[name=radioOver]").prop("checked", false);
+       
     }
 
     function soloAndNumeros(e) {
@@ -423,7 +427,11 @@ function changeDoorStyle() {
         $('#select2-cbPanel-container').removeClass("cbError");
         $('#select2-cbPanelMaterial-container').removeClass("cbError");
         $('#select2-cbStatus-container').removeClass("cbError");
-        $('#select2-cbOpeningMeasurement-container').removeClass("cbError");
+        $('#select2-cbFingerPull-container').removeClass("cbError");
+        var HTMLImage = '<center>' +
+                               '<img style="width: 230px;height: 230px;" id="DoorPicture" src="/Content/img/Doors/img11.png">' +
+                               '</center>';
+        $('#Picture').html(HTMLImage);
     }
 
 function ValidarCamposVacios() {
@@ -512,18 +520,18 @@ function ValidarCamposVacios() {
         $('#select2-cbStatus-container').removeClass("cbError");
     }
 
-    if ($('#cbOpeningMeasurement').val() == 0 || $('#cbOpeningMeasurement').val() == null) {
-        $('#select2-cbOpeningMeasurement-container').addClass("cbError");
+    if ($('#cbFingerPull').val() == 0 || $('#cbFingerPull').val() == null) {
+        $('#select2-cbFingerPull-container').addClass("cbError");
         aux = false;
     } else {
-        $('#select2-cbOpeningMeasurement-container').removeClass("cbError");
+        $('#select2-cbFingerPull-container').removeClass("cbError");
     }
 
     return aux;
 }
 
 function InsertDoors() { 
-    var isOver = ($('input[name=radioOver]:checked').attr("data-id") == 1) ? false : true;
+    var isOver = ($('input[name=radioOver]:checked').attr("data-id") == 1) ? false : true;   
     var datos =
       {
           pDoors: {
@@ -542,7 +550,7 @@ function InsertDoors() {
               HingePositions: { Id: 2 },
               Panel: { Id: $("#cbPanel").val() },
               PanelMaterial: { Id: $("#cbPanelMaterial").val() },
-              Drill: { Id: false },
+              isDrill: false,
               Width: 0,
               DecimalsWidth: { Id: 2},
               Height: 0,
@@ -550,10 +558,12 @@ function InsertDoors() {
               Picture: $("#DoorPicture").attr('src'),
               ProfilePicture: "Profile",
               Status: { Id: $("#cbStatus").val() },
-              OpeningMeasurement: { Id: false},
+              OpeningMeasurement: false,
               isOverlay: { Id: isOver },
               DoorOption: { Id: 1 },
-              DoorType: {Id: 1}
+              DoorType: { Id: 1 },
+              isFingerPull: ($("#cbFingerPull").val() == 1) ? false : true,
+
 
           }
       };    
@@ -599,7 +609,7 @@ function UpdateDoors() {
             HingePositions: { Id: 2 },
             Panel: { Id: $("#cbPanel").val() },
             PanelMaterial: { Id: $("#cbPanelMaterial").val() },
-            Drill: { Id: false},
+            isDrill: false,
             Width: 0,
             DecimalsWidth: { Id: 2 },
             Height: 0,
@@ -607,9 +617,10 @@ function UpdateDoors() {
             Picture: $("#DoorPicture").attr('src'),
             ProfilePicture: "Profile",
             Status: { Id: $("#cbStatus").val() },
-            isOverlay: { Id: isOver },
+            isOverlay: isOver ,
             DoorOption: { Id: 1 },
-            DoorType: {Id: 1}
+            DoorType: { Id: 1 },
+            isFingerPull: ($("#cbFingerPull").val() == 1) ? false : true,
         }
     };
     
@@ -1277,7 +1288,7 @@ function llenarComboHorizontalDivisions(pHorizontal) {
 
 function llenarComboFinger(pFinger) {
 
-    var option = '';
+    var option = '<option value="0">Select</option>';
     option += '<option value="1">No</option>';
     option += '<option value="2">Yes</option>';
     $("#cbFingerPull").empty().append(option);
@@ -1292,6 +1303,17 @@ function checkIsOverlay(pOverlay) {
     $("#isOverlay").html(lbl);
     if (pOverlay != 0) {
         $("input[name=radioOver][data-id='" + pOverlay + "']").prop("checked", true);
+    }
+}
+
+function llenarComboFinger(pFinger) {
+
+    var option = '';
+    option += '<option value="1">No</option>';
+    option += '<option value="2">Yes</option>';
+    $("#cbFingerPull").empty().append(option);
+    if (pFinger != 0) {
+        $("#cbFingerPull").val(pFinger);
     }
 }
 
@@ -1312,8 +1334,8 @@ function llenarTablaDoors() {
                 $("#modalInsert").modal("hide");
                 
                 for (var i = 0; i < data.length; i++) {
-                    var Botones = '<center><button data-toggle="modal" data-target="#modalInsert" style="width: 25px;height: 25px; margin-left: 10px;" value="@item.Id" class="Modificar Cursor btn btn-primary btn-icon"><i class="fa fa-edit"></i></button>'+
-                                  '<button href="#" data-toggle="modal" data-target="" id="" title="Remove" value="@item.Id" class="Remove Cursor btn btn-danger btn-icon" style="width: 25px;height: 25px; margin-left: 10px;"><i class="fa fa-trash"></i></button>'+
+                    var Botones = '<center><button data-toggle="modal" data-target="#modalInsert" style="width: 25px;height: 25px; margin-left: 10px;" value="'+data[i].Id+'" class="Modificar Cursor btn btn-primary btn-icon"><i class="fa fa-edit"></i></button>'+
+                                  '<button href="#" data-toggle="modal" data-target="" id="" title="Remove" value="' + data[i].Id + '" class="Remove Cursor btn btn-danger btn-icon" style="width: 25px;height: 25px; margin-left: 10px;"><i class="fa fa-trash"></i></button>' +
                                   '</center>';
                     t.row.add([
                         data[i].Id,
