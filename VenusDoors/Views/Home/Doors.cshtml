@@ -14,7 +14,8 @@
     <div class="row row-sm mg-t-20">
         @foreach (Model.Doors item in ViewBag.ListDoors)
         {
-
+            if (item.Status.Id == 1)
+            {
             <div class="col-sm-6 col-lg-4" style="padding-top: 10px;padding-bottom: 10px;">
                 <div class="bg-white rounded shadow-base overflow-hidden">
                     <a data-toggle="modal" data-target="#modaldemo1" class="Cursor Door" value="@item.Id">
@@ -54,6 +55,8 @@
                     </a>
                 </div>
             </div>
+
+            }
 
         }
     </div>
