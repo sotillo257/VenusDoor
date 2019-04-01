@@ -40,6 +40,7 @@
         $("#lblSubTitulo").text("You can create a new article below");
         $("#btnUpdateDoors").hide();
         $("#btInsertDoors").show();
+        QuitarClaseErrorACombos();
         Limpiar();
     });
 
@@ -48,6 +49,7 @@
         $("#btInsertDoors").hide();
         $("#lblTitulo").text("Modify");
         $("#lblSubTitulo").text("You can modify a new article below");
+        QuitarClaseErrorACombos();
         Limpiar();
             for (var i = 0; i < ListDoors.length; i++) {
                 if (ListDoors[i].Id == $(this).attr('value')) {
@@ -408,99 +410,115 @@ function changeDoorStyle() {
             return false;
     }
 
+    function QuitarClaseErrorACombos() {
+        $('#select2-cbDoorStyle-container').removeClass("cbError");
+        $('#select2-cbMaterial-container').removeClass("cbError");
+        $('#select2-cbRailWidth-container').removeClass("cbError");
+        $('#select2-cbStileWidth-container').removeClass("cbError");
+        $('#select2-cbDoorAssembly-container').removeClass("cbError");
+        $('#select2-cbOutsideEdgeProfile-container').removeClass("cbError");
+        $('#select2-cbInsideEdgeProfile-container').removeClass("cbError");
+        $('#select2-cbVerticalDivisions-container').removeClass("cbError");
+        $('#select2-cbHorizontalDivisions-container').removeClass("cbError");
+        $('#select2-cbPanel-container').removeClass("cbError");
+        $('#select2-cbPanelMaterial-container').removeClass("cbError");
+        $('#select2-cbStatus-container').removeClass("cbError");
+        $('#select2-cbOpeningMeasurement-container').removeClass("cbError");
+    }
+
 function ValidarCamposVacios() {
     var aux = true;
-    if ($('#cbDoorStyle').val() == 0) {
-        $('#cbDoorStyle').addClass("is-invalid");
+    if ($('#cbDoorStyle').val() == 0 || $('#cbDoorStyle').val() == null) {
+        $('#select2-cbDoorStyle-container').addClass("cbError");
         aux = false;
     } else {
-        $('#cbDoorStyle').removeClass("is-invalid");
+        $('#select2-cbDoorStyle-container').removeClass("cbError");
     }
 
-    if ($('#cbMaterial').val() == 0) {
-        $('#cbMaterial').addClass("is-invalid");
+    if ($('#cbMaterial').val() == 0 || $('#cbMaterial').val() == null) {
+        $('#select2-cbMaterial-container').addClass("cbError");
         aux = false;
     } else {
-        $('#cbMaterial').removeClass("is-invalid");
+        $('#select2-cbMaterial-container').removeClass("cbError");
     }
 
-    if ($('#cbRailWidth').val() == 0) {
-        $('#cbRailWidth').addClass("is-invalid");
+    if ($('#cbRailWidth').val() == 0 || $('#cbRailWidth').val() == null) {
+        $('#select2-cbRailWidth-container').addClass("cbError");
         aux = false;
     } else {
-        $('#cbRailWidth').removeClass("is-invalid");
+        $('#select2-cbRailWidth-container').removeClass("cbError");
     }
 
-    if ($('#cbStileWidth').val() == 0) {
-        $('#cbStileWidth').addClass("is-invalid");
+    if ($('#cbStileWidth').val() == 0 || $('#cbStileWidth').val() == null) {
+        $('#select2-cbStileWidth-container').addClass("cbError");
         aux = false;
     } else {
-        $('#cbStileWidth').removeClass("is-invalid");
-    } 
-
-    if ($('#cbDoorAssembly').val() == 0) {
-        $('#cbDoorAssembly').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#cbDoorAssembly').removeClass("is-invalid");
+        $('#select2-cbStileWidth-container').removeClass("cbError");
     }
 
-    if ($('#cbOutsideEdgeProfile').val() == 0) {
-        $('#cbOutsideEdgeProfile').addClass("is-invalid");
+    if ($('#cbDoorAssembly').val() == 0 || $('#cbDoorAssembly').val() == null) {
+        $('#select2-cbDoorAssembly-container').addClass("cbError");
         aux = false;
     } else {
-        $('#cbOutsideEdgeProfile').removeClass("is-invalid");
+        $('#select2-cbDoorAssembly-container').removeClass("cbError");
     }
 
-    if ($('#cbInsideEdgeProfile').val() == 0) {
-        $('#cbInsideEdgeProfile').addClass("is-invalid");
+    if ($('#cbOutsideEdgeProfile').val() == 0 || $('#cbOutsideEdgeProfile').val() == null) {
+        $('#select2-cbOutsideEdgeProfile-container').addClass("cbError");
         aux = false;
     } else {
-        $('#cbInsideEdgeProfile').removeClass("is-invalid");
+        $('#select2-cbOutsideEdgeProfile-container').removeClass("cbError");
     }
 
-    if ($('#cbVerticalDivisions').val() == 0) {
-        $('#cbVerticalDivisions').addClass("is-invalid");
+    if ($('#cbInsideEdgeProfile').val() == 0 || $('#cbInsideEdgeProfile').val() == null) {
+        $('#select2-cbInsideEdgeProfile-container').addClass("cbError");
         aux = false;
     } else {
-        $('#cbVerticalDivisions').removeClass("is-invalid");
+        $('#select2-cbInsideEdgeProfile-container').removeClass("cbError");
     }
 
-    if ($('#cbHorizontalDivisions').val() == 0) {
-        $('#cbHorizontalDivisions').addClass("is-invalid");
+    if ($('#cbVerticalDivisions').val() == 0 || $('#cbVerticalDivisions').val() == null) {
+        $('#select2-cbVerticalDivisions-container').addClass("cbError");
         aux = false;
     } else {
-        $('#cbHorizontalDivisions').removeClass("is-invalid");
-    } 
-
-    if ($('#cbPanel').val() == 0) {
-        $('#cbPanel').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#cbPanel').removeClass("is-invalid");
+        $('#select2-cbVerticalDivisions-container').removeClass("cbError");
     }
 
-    if ($('#cbPanelMaterial').val() == 0) {
-        $('#cbPanelMaterial').addClass("is-invalid");
+    if ($('#cbHorizontalDivisions').val() == 0 || $('#cbHorizontalDivisions').val() == null) {
+        $('#select2-cbHorizontalDivisions-container').addClass("cbError");
         aux = false;
     } else {
-        $('#cbPanelMaterial').removeClass("is-invalid");
+        $('#select2-cbHorizontalDivisions-container').removeClass("cbError");
     }
 
-    if ($('#cbStatus').val() == 0) {
-        $('#cbStatus').addClass("is-invalid");
+    if ($('#cbPanel').val() == 0 || $('#cbPanel').val() == null) {
+        $('#select2-cbPanel-container').addClass("cbError");
         aux = false;
     } else {
-        $('#cbStatus').removeClass("is-invalid");
+        $('#select2-cbPanel-container').removeClass("cbError");
     }
 
-    if ($('#cbOpeningMeasurement').val() == 0) {
-        $('#cbOpeningMeasurement').addClass("is-invalid");
+    if ($('#cbPanelMaterial').val() == 0 || $('#cbPanelMaterial').val() == null) {
+        $('#select2-cbPanelMaterial-container').addClass("cbError");
         aux = false;
     } else {
-        $('#cbOpeningMeasurement').removeClass("is-invalid");
+        $('#select2-cbPanelMaterial-container').removeClass("cbError");
     }
-   
+
+    if ($('#cbStatus').val() == 0 || $('#cbStatus').val() == null) {
+        $('#select2-cbStatus-container').addClass("cbError");
+        aux = false;
+    } else {
+        $('#select2-cbStatus-container').removeClass("cbError");
+    }
+
+    if ($('#cbOpeningMeasurement').val() == 0 || $('#cbOpeningMeasurement').val() == null) {
+        $('#select2-cbOpeningMeasurement-container').addClass("cbError");
+        aux = false;
+    } else {
+        $('#select2-cbOpeningMeasurement-container').removeClass("cbError");
+    }
+
     return aux;
 }
 
