@@ -200,7 +200,7 @@ namespace VenusDoors.Controllers
         {
             if (Session["UserID"] != null && (int)Session["UserType"] == 1)
             {
-                ViewBag.Masters = "active show-sub";
+                ViewBag.System = "active show-sub";
                 ViewBag.Company = "active";
                 BusinessLogic.lnCompany _USB = new BusinessLogic.lnCompany();
 
@@ -422,7 +422,7 @@ namespace VenusDoors.Controllers
             if (Session["UserID"] != null && (int)Session["UserType"] == 1)
             {
                 ViewBag.Masters = "active show-sub";
-                ViewBag.Doors = "active";
+                ViewBag.StanDoors = "active";
                 BusinessLogic.lnDoors _LM = new BusinessLogic.lnDoors();
 
                 var mDoors = _LM.GetAllDoors();
@@ -878,7 +878,7 @@ namespace VenusDoors.Controllers
         {
             if (Session["UserID"] != null && (int)Session["UserType"] == 1)
             {
-                ViewBag.Masters = "active show-sub";
+                ViewBag.System = "active show-sub";
                 ViewBag.Group = "active";
                 BusinessLogic.lnGroup _LC = new BusinessLogic.lnGroup();
                 var mGroup = _LC.GetAllGroup();
@@ -1797,6 +1797,7 @@ namespace VenusDoors.Controllers
             if (Session["UserID"] != null && (int)Session["UserType"] == 1)
             {                
                 ViewBag.Order = "active";
+                ViewBag.System = "active show-sub";
                 BusinessLogic.lnOrder _LK = new BusinessLogic.lnOrder();
 
                 var mOrder = _LK.GetAllOrder();
@@ -2347,7 +2348,7 @@ namespace VenusDoors.Controllers
         {
             if (Session["UserID"] != null && (int)Session["UserType"] == 1)
             {
-                ViewBag.Masters = "active show-sub";
+                ViewBag.System = "active show-sub";
                 ViewBag.Person = "active";
                 BusinessLogic.lnPerson _PAX = new BusinessLogic.lnPerson();
 
@@ -2768,7 +2769,7 @@ namespace VenusDoors.Controllers
         {
             if (Session["UserID"] != null && (int)Session["UserType"] == 1)
             {
-                ViewBag.Masters = "active show-sub";
+                ViewBag.System = "active show-sub";
                 ViewBag.Status = "active";
                 BusinessLogic.lnStatus _LNStatus = new BusinessLogic.lnStatus();
 
@@ -3004,7 +3005,7 @@ namespace VenusDoors.Controllers
         {
             if (Session["UserID"] != null && (int)Session["UserType"] == 1)
             {
-                ViewBag.Masters = "active show-sub";
+                ViewBag.System = "active show-sub";
                 ViewBag.Type = "active";
                 BusinessLogic.lnType _LBL = new BusinessLogic.lnType();
 
@@ -3111,7 +3112,7 @@ namespace VenusDoors.Controllers
         {
             if (Session["UserID"] != null && (int)Session["UserType"] == 1)
             {
-                ViewBag.Masters = "active show-sub";
+                ViewBag.System = "active show-sub";
                 ViewBag.Usuario = "active";
                 BusinessLogic.lnUser _USB = new BusinessLogic.lnUser();
 
