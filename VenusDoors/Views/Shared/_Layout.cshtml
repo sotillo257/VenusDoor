@@ -103,7 +103,8 @@
             }
 
             @if (Session["UserID"] != null && ((int)Session["UserType"] == 1 || (int)Session["UserType"] == 2))
-                        {
+            {
+               
                 <a href="/OrderControl/Index" class="br-menu-link @ViewBag.OrderControl">
                     <div class="br-menu-item">
                         <i class="menu-item-icon fa fa-list tx-20"></i>
@@ -116,9 +117,24 @@
                         <span class="menu-item-label">Users management</span>
                     </div><!-- menu-item -->
                 </a><!-- br-menu-link -->
-               if ((int)Session["UserType"] == 1)
-	            {
-              
+
+                <a href="#" class="br-menu-link  @ViewBag.Sales">
+                    <div class="br-menu-item">
+                        <i class="menu-item-icon icon ion-ios-cart-outline tx-24"></i>
+                        <span class="menu-item-label">Sales</span>
+                        <i class="menu-item-arrow fa fa-angle-down"></i>
+                    </div><!-- menu-item -->
+                </a><!-- br-menu-link -->
+                <ul class="br-menu-sub nav flex-column">
+                    <li class="nav-item">@Html.ActionLink("Estimate", "Index", "Estimate", new { area = "" }, new { @class = "nav-link " + ViewBag.Estimate })</li>
+                    <li class="nav-item">@Html.ActionLink("Invoice", "Index", "Invoice", new { area = "" }, new { @class = "nav-link " + ViewBag.Invoice })</li>
+                    <li class="nav-item">@Html.ActionLink("Payments Received", "Index", "Estimate", new { area = "" }, new { @class = "nav-link " + ViewBag.Estimate })</li>
+                    <li class="nav-item">@Html.ActionLink("Credit Notes", "Index", "Invoice", new { area = "" }, new { @class = "nav-link " + ViewBag.Invoice })</li>
+                </ul>
+
+                if ((int)Session["UserType"] == 1)
+                {
+
                 <a href="#" class="br-menu-link  @ViewBag.Masters">
                     <div class="br-menu-item">
                         <i class="menu-item-icon icon ion-ios-filing-outline tx-24"></i>
@@ -829,7 +845,9 @@
     <script src="~/Content/lib/select2/js/select2.full.min.js"></script>
     <script src="~/Content/js/bracket.js"></script>
     <script src="~/Content/js/ResizeSensor.js"></script>
-
+    <script src="~/Content/lib/highlightjs/highlight.pack.js"></script>
+    <script src="~/Content/lib/jquery.steps/jquery.steps.js"></script>
+    <script src="~/Content/lib/parsleyjs/parsley.js"></script>
     <script>
 
         $(document).ajaxStart(function () {

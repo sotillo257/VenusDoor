@@ -2092,6 +2092,12 @@ fieldset[disabled] a.btn {
   border-color: #064d95;
 }
 
+.btn-page {
+    color: #333;
+    background-color: #f5f5f5;
+    border-color: #ddd;
+}
+
 .btn-secondary {
   color: #fff;
   background-color: #868e96;
@@ -14324,13 +14330,12 @@ textarea.parsley-success:focus {
 
 .br-mailbox-list {
   position: fixed;
-  top: 60px;
   bottom: 0;
-  left: 230px;
+  top: 60px;
   width: 320px;
+  height: 100%;
   overflow-y: auto;
   background-color: #fff;
-  z-index: 100;
   border-right: 1px solid #ced4da;
   transition: all 0.2s ease-in-out;
 }
@@ -14392,7 +14397,7 @@ textarea.parsley-success:focus {
 
 .br-mailbox-body {
   margin-top: 60px;
-  margin-left: 550px;
+  margin-left: 350px;
   transition: all 0.2s ease-in-out;
 }
 
