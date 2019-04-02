@@ -61,6 +61,18 @@
                     $('#Picture').html(HTMLImage);
                     
                     $('#inId').val(ListDoors[i].Id);
+                    
+                    
+                    llenarComboMaterial(ListDoors[i].Material.Id);
+                    llenarComboTopRail(ListDoors[i].TopRail.Id);
+                    llenarComboBottomRail(ListDoors[i].BottomRail.Id);
+                    llenarComboDoorAssembly(ListDoors[i].Join.Id);
+                    llenarComboOutsideEdgeProfile(ListDoors[i].OutsideEdgeProfile.Id);
+                    llenarComboInsideEdgeProfile(ListDoors[i].InsideEdgeProfile.Id);
+                    llenarComboVerticalDivisions(ListDoors[i].VerticalDivisions.Id);
+                    llenarComboHorizontalDivisions(ListDoors[i].HorizontalDivisions.Id);                   
+                    llenarComboPanel(ListDoors[i].Panel.Id);
+                    llenarComboPanelMaterial(ListDoors[i].Material.Id);
                     if (ListDoors[i].DoorStyle.Id == 1010) {
                         llenarComboDoorStyle(ListDoors[i].DoorStyle.Id);
                         var option = '<option value="3">Slab</option>';
@@ -78,17 +90,6 @@
                     } else {
                         llenarComboDoorStyle(ListDoors[i].DoorStyle.Id);
                     }
-                    
-                    llenarComboMaterial(ListDoors[i].Material.Id);
-                    llenarComboTopRail(ListDoors[i].TopRail.Id);
-                    llenarComboBottomRail(ListDoors[i].BottomRail.Id);
-                    llenarComboDoorAssembly(ListDoors[i].Join.Id);
-                    llenarComboOutsideEdgeProfile(ListDoors[i].OutsideEdgeProfile.Id);
-                    llenarComboInsideEdgeProfile(ListDoors[i].InsideEdgeProfile.Id);
-                    llenarComboVerticalDivisions(ListDoors[i].VerticalDivisions.Id);
-                    llenarComboHorizontalDivisions(ListDoors[i].HorizontalDivisions.Id);                   
-                    llenarComboPanel(ListDoors[i].Panel.Id);
-                    llenarComboPanelMaterial(ListDoors[i].Material.Id);                    
                     llenarComboStatus(ListDoors[i].Status.Id);
                     var isOver = ListDoors[i].isOverlay;
                     if (isOver == false) {

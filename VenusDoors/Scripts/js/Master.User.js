@@ -136,13 +136,6 @@ function ValidarCamposVacios() {
         $('#Email').removeClass("is-invalid");
     }
 
-    if ($('#inEmail').val() == "") {
-        $('#inEmail').addClass("is-invalid");
-        aux = false;
-    } else {
-        $('#inEmail').removeClass("is-invalid");
-    }
-
     if ($('#descU').val() == "") {
         $('#descU').addClass("is-invalid");
         aux = false;

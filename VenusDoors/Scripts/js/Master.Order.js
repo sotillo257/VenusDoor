@@ -224,10 +224,11 @@ function InsertOrder() {
     var datos =
     {
         pOrder: {
+            DoorxUser: {Id: 1},
             User: { Id: $("#inUser").val() },
             Quantity: $("#inQuantity").val(),
             Observations: $("#inObservations").val(),
-            ShippingAddress: $("#inShippingAddress").val(),
+            ShippingAddress: { Id: $("#inShip").val() },
             Total: $("#inTotal").val(),
             Type: { Id: $("#inType").val() },
             Status: { Id: $("#inStatus").val() },
@@ -252,7 +253,7 @@ function InsertOrder() {
             }
         },
         error: function (err) {
-            LlammarModal("Danger", "Error.", " ");
+            LlammarModal("Danger", "Error.", "Insert (255)");
         },
 
     });
@@ -263,10 +264,11 @@ function UpdateOrder() {
     {
         uOrder: {
             Id: $("#inId").val(),
+            DoorxUser: { Id: 1 },
             User: { Id: $("#inUser").val() },
             Quantity: $("#inQuantity").val(),
             Observations: $("#inObservations").val(),
-            ShippingAddress: $("#inShip").val(),
+            ShippingAddress: { Id: $("#inShip").val() },
             Total: $("#inTotal").val(),
             Type: { Id: $("#inType").val() },
             Status: { Id: $("#inStatus").val() },
@@ -292,7 +294,7 @@ function UpdateOrder() {
             }
         },
         error: function (err) {
-            LlammarModal("Danger", "Error.", " ");
+            LlammarModal("Danger", "Error.", "Update (295)");
         },
 
     });
@@ -326,7 +328,7 @@ function UpdateStatus3(id) {
             }
         },
         error: function (err) {
-            LlammarModal("Danger", "Error.", " ");
+            LlammarModal("Danger", "Error.", "Delete (329)");
         },
 
     });
@@ -540,11 +542,11 @@ function llenarTablaGetAllOrder() {
                 $("#modalInsert").modal("hide");
             }
             else {
-                LlammarModal("Danger", "Error obtaining Type", " ");
+                LlammarModal("Danger", "Error in table", "");
             }
         },
         error: function (err) {
-            LlammarModal("Danger", "Error.", " ");
+            LlammarModal("Danger", "Error.", "Table (547)");
         }
     });
 
