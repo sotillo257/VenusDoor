@@ -535,7 +535,7 @@ function llenarTablaGetAllOrder() {
                         data[i].ShippingAddress.Name,
                         data[i].Type.Description,
                         data[i].Status.Description,
-                        data[i].Total.toString().replace(',', '.'),
+                        '$'+data[i].Total.toString().replace(',', '.'),
                        Botones
                     ]).draw(false);
                 }

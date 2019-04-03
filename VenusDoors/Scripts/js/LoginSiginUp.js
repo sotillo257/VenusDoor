@@ -2,11 +2,15 @@
     GetCompanys();
     $("#btNewUser").on("click", function () {
         if (ValidarCamposVacios()) {
-            if (ValContrasenas()) {
-                CreateNewUser();
-            } else {
-                LlammarModal("Danger", "Passwords do not match.", " ");
-            }
+            if (validarEmailvalido()) {
+                if (ValContrasenas()) {
+                    CreateNewUser();
+                } else {
+                    LlammarModal("Danger", "Passwords do not match.", " ");
+                }
+            }else{
+                LlammarModal("Danger", "You must enter a valid email.");
+            }           
         } else {
             LlammarModal("Danger", "You must fill all the fields.", " ");
         }
@@ -14,13 +18,18 @@
     });
 
     $(".ingresar").on("click", function () {
-        Signin();
+        if (ValidarInptLogin()) {
+            Signin();
+        } else {
+            LlammarModal("Danger", "You must fill all the fields.", " ");
+        }       
     });
 });
 function ValContrasenas() {
     var aux = true;
     if ($('#inptPassword').val() != $('#Password').val()) {
         $('#inptPassword').addClass("is-invalid");
+        $('#Password').addClass("is-invalid");
         $('#inptPassword').val(""); $('#Password').val("");
         aux = false;
     } else {
@@ -64,13 +73,13 @@ function ValidarCamposVacios() {
         aux = false;
     } else {
         $('#inptEmail').removeClass("is-invalid");
-    }
+    }    
 
-    if ($('#cbCompany').val() == 0) {
-        $('#cbCompany').addClass("is-invalid");
+    if ($('#cbCompany').val() == 0 || $('#cbCompany').val() == null) {
+        $('#select2-cbCompany-container').addClass("cbError");
         aux = false;
     } else {
-        $('#cbCompany').removeClass("is-invalid");
+        $('#select2-cbCompany-container').removeClass("cbError");
     }
 
     if ($('#inptPassword').val() == "") {
@@ -78,6 +87,13 @@ function ValidarCamposVacios() {
         aux = false;
     } else {
         $('#inptPassword').removeClass("is-invalid");
+    }
+
+    if ($('#Password').val() == "") {
+        $('#Password').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#Password').removeClass("is-invalid");
     }
 
     if ($('#inptResidence').val() == "") {
@@ -234,4 +250,35 @@ function GetCompanys() {
             LlammarModal("Danger", "Error.", " ");
         }
     });
+}
+
+function ValidarInptLogin() {
+    var aux = true;
+    if ($('#intEmail').val() == "") {
+        $('#intEmail').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#intEmail').removeClass("is-invalid");
+    }
+
+    if ($('#intPassword').val() == "") {
+        $('#intPassword').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#intPassword').removeClass("is-invalid");
+    }
+    return aux;
+}
+
+function validarEmailvalido() {
+    var aux = true;
+    var regex = /^(?:[^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*|"[^\n"]+")@(?:[^<>()[\].,;:\s@"]+\.)+[^<>()[\]\.,;:\s@"]{2,63}$/i;
+
+    if (!regex.test($('#inptEmail').val())) {
+        $('#inptEmail').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#inptEmail').removeClass("is-invalid");
+    }
+    return aux;
 }

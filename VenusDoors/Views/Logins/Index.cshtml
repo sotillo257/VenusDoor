@@ -78,13 +78,13 @@
                             <br>
                             <div class="form-group">
                                 <label>Email</label>
-                                <input class="userEmail form-control" id="intEmail" type="text">
+                                <input class="userEmail form-control" maxlength="30" id="intEmail" type="text">
                             </div><!-- form-group -->
                             <div class="form-group mg-b-20">
                             </div><!-- form-group -->
                             <div class="form-group mg-b-20">
                                 <label>Password</label>
-                                <input class="UserPass form-control" id="intPassword" name="intPassword" type="password" onkeydown = "if (event.keyCode == 13)document.getElementById('ingresarbtn').click()">
+                                <input class="UserPass form-control" id="intPassword" name="intPassword" type="password" maxlength="16" onkeydown = "if (event.keyCode == 13)document.getElementById('ingresarbtn').click()">
                                 <a href='@Url.Action("Recover_Password","Logins")'>forget your password?</a>                                
                             </div><!-- form-group -->
                             <div class="form-group mg-b-20">

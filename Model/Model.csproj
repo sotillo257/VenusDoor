@@ -64,6 +64,7 @@
     <Compile Include="DoorsxUser.cs" />
     <Compile Include="DoorType.cs" />
     <Compile Include="DoorxOrder.cs" />
+    <Compile Include="Estimate.cs" />
     <Compile Include="Group.cs" />
     <Compile Include="HingeDirection.cs" />
     <Compile Include="HingePositions.cs" />
