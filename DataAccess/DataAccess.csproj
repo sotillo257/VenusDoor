@@ -63,6 +63,7 @@
     <Compile Include="adGroup.cs" />
     <Compile Include="adHingeDirection.cs" />
     <Compile Include="adHingePositions.cs" />
+    <Compile Include="adHistoryEstimate.cs" />
     <Compile Include="adHorizontalDivisions.cs" />
     <Compile Include="adInsideEdgeProfile.cs" />
     <Compile Include="adJoin.cs" />

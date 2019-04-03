@@ -68,6 +68,7 @@
     <Compile Include="Group.cs" />
     <Compile Include="HingeDirection.cs" />
     <Compile Include="HingePositions.cs" />
+    <Compile Include="HistoryEstimate.cs" />
     <Compile Include="HorizontalDivisions.cs" />
     <Compile Include="InsideEdgeProfile.cs" />
     <Compile Include="Join.cs" />

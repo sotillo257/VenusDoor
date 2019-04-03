@@ -68,6 +68,7 @@
     <Compile Include="lnGroup.cs" />
     <Compile Include="lnHingeDirection.cs" />
     <Compile Include="lnHingePositions.cs" />
+    <Compile Include="lnHistoryEstimate.cs" />
     <Compile Include="lnHorizontalDivisions.cs" />
     <Compile Include="lnInsideEdgeProfile.cs" />
     <Compile Include="lnJoin.cs" />
