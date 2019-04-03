@@ -145,9 +145,9 @@ namespace DataAccess
 
         public int InsertInvoice(Invoice pInv)
         {
-            string sql = @"[spInsertInvoice] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}'";
+            string sql = @"[spInsertInvoice] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}'";
             sql = string.Format(sql, pInv.IdFolio, pInv.Company.Id, pInv.UserCliente.Id, pInv.UserVendedor.Id, pInv.Estimate.Id, pInv.InvoiceDate.ToString("yyyyMMdd HH:mm:ss"), pInv.ExpiryDate.ToString("yyyyMMdd HH:mm:ss"),
-                pInv.Total.ToString().Replace(',', '.'), pInv.TotalDue.ToString().Replace(',', '.'), pInv.TermsAndConditions, pInv.Status.Id, pInv.CreationDate.ToString("yyyyMMdd HH:mm:ss"), pInv.CreatorUser, pInv.ModificationDate.ToString("yyyyMMdd HH:mm:ss"), pInv.ModificationUser, 7);
+                pInv.Total.ToString().Replace(',', '.'), pInv.TotalDue.ToString().Replace(',', '.'), pInv.TermsAndConditions, pInv.Status.Id, pInv.CreationDate.ToString("yyyyMMdd HH:mm:ss"), pInv.CreatorUser, pInv.ModificationDate.ToString("yyyyMMdd HH:mm:ss"), pInv.ModificationUser, 6);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -160,7 +160,7 @@ namespace DataAccess
 
         public void UpdateInvoice(Invoice pInv)
         {
-            string sql = @"[spUpdateInvoice] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}'";
+            string sql = @"[spUpdateInvoice] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}'";
             sql = string.Format(sql, pInv.Id, pInv.IdFolio, pInv.Company.Id, pInv.UserCliente.Id, pInv.UserVendedor.Id, pInv.Estimate.Id, pInv.InvoiceDate.ToString("yyyyMMdd HH:mm:ss"), pInv.ExpiryDate.ToString("yyyyMMdd HH:mm:ss"),
                 pInv.Total.ToString().Replace(',', '.'), pInv.TotalDue.ToString().Replace(',', '.'), pInv.TermsAndConditions, pInv.Status.Id, pInv.ModificationDate.ToString("yyyyMMdd HH:mm:ss"), pInv.ModificationUser);
             try
