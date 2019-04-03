@@ -258,6 +258,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ConfiDoorController.cs" />
+    <Compile Include="Controllers\CreditNotesController.cs" />
     <Compile Include="Controllers\ErrorInternoController.cs" />
     <Compile Include="Controllers\EstimateController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -1105,6 +1106,7 @@
     <Content Include="Scripts\js\ControlOfOrders.js" />
     <Content Include="Scripts\js\ConverExcel.js" />
     <Content Include="Scripts\js\dashboard.js" />
+    <Content Include="Scripts\js\Invoice.js" />
     <Content Include="Scripts\js\LoginSiginUp.js" />
     <Content Include="Scripts\js\Master.BottomRail.js" />
     <Content Include="Scripts\js\Master.Company.js" />
@@ -1226,6 +1228,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\PDF\" />
+    <Folder Include="Views\CreditNotes\" />
     <Folder Include="Views\PaymentsReceived\" />
   </ItemGroup>
   <ItemGroup>
