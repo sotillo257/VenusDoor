@@ -66,6 +66,7 @@
     <Compile Include="adHistoryEstimate.cs" />
     <Compile Include="adHorizontalDivisions.cs" />
     <Compile Include="adInsideEdgeProfile.cs" />
+    <Compile Include="adInvoice.cs" />
     <Compile Include="adJoin.cs" />
     <Compile Include="adMaterialxBottomRail.cs" />
     <Compile Include="adOrder.cs" />

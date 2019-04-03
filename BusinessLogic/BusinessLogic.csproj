@@ -71,6 +71,7 @@
     <Compile Include="lnHistoryEstimate.cs" />
     <Compile Include="lnHorizontalDivisions.cs" />
     <Compile Include="lnInsideEdgeProfile.cs" />
+    <Compile Include="lnInvoice.cs" />
     <Compile Include="lnJoin.cs" />
     <Compile Include="lnMaterial.cs" />
     <Compile Include="lnMaterialxBottomRail.cs" />

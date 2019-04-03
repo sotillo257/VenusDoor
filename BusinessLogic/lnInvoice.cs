@@ -7,22 +7,28 @@ using Model;
 
 namespace BusinessLogic
 {
-    class lnEstimate
+    public class lnInvoice
     {
-        DataAccess.adEstimate _AD = new DataAccess.adEstimate();
-
-        /// <summary>
-        /// @Autor: Jesus Sotillo
-        /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna toda la Lista de Estimate.
-        /// </summary>
-        /// <param></param>
-        /// <returns></returns>
-        public List<Estimate> GetAllEstimate()
+        DataAccess.adInvoice _AD = new DataAccess.adInvoice();
+       
+        public List<Invoice> GetAllInvoice()
         {
             try
             {
-                return _AD.GetAllEstimate();
+                return _AD.GetAllInvoice();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+        }
+      
+        public Invoice GetInvoiceByIdCompany(int pIdcompany)
+        {
+            try
+            {
+                return _AD.GetInvoiceByIdCompany(pIdcompany);
             }
             catch (Exception ex)
             {
@@ -31,18 +37,11 @@ namespace BusinessLogic
 
         }
 
-        /// <summary>
-        /// @Autor: Jesus Sotillo
-        /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Retorna Estimate por Id.
-        /// </summary>
-        /// <param name="pId"></param>
-        /// <returns></returns>
-        public Estimate GetEstimateById(int pId)
+        public Invoice GetInvoice(int IdEstimate, int IdCompany, int IdUserCliente, int IdUserVendedor, DateTime Invoicedate, DateTime Expirydate)
         {
             try
             {
-                return _AD.GetEstimateById(pId);
+                return _AD.GetInvoice(IdEstimate, IdCompany, IdUserCliente, IdUserVendedor, Invoicedate, Expirydate);
             }
             catch (Exception ex)
             {
@@ -51,11 +50,11 @@ namespace BusinessLogic
 
         }
 
-        public Estimate GetEstimateByIdCompany(int pIdcompany)
+        public int InsertInvoice(Invoice pEst)
         {
             try
             {
-                return _AD.GetEstimateByIdCompany(pIdcompany);
+                return _AD.InsertInvoice(pEst);
             }
             catch (Exception ex)
             {
@@ -64,24 +63,11 @@ namespace BusinessLogic
 
         }
 
-        public int InsertEstimate(Estimate pEst)
+        public bool UpdateInvoice(Invoice pEst)
         {
             try
             {
-                return _AD.InsertEstimate(pEst);
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-
-        }
-
-        public bool UpdateEstimate(Estimate pEst)
-        {
-            try
-            {
-                _AD.UpdateEstimate(pEst);
+                _AD.UpdateInvoice(pEst);
                 return true;
             }
             catch (Exception ex)
@@ -91,11 +77,11 @@ namespace BusinessLogic
 
         }
 
-        public bool UpdateEstimateStatus(Estimate pEst)
+        public bool UpdateInvoiceStatus(Invoice pEst)
         {
             try
             {
-                _AD.UpdateEstimateStatus(pEst);
+                _AD.UpdateInvoiceStatus(pEst);
                 return true;
             }
             catch (Exception ex)
@@ -105,11 +91,11 @@ namespace BusinessLogic
 
         }
 
-        public bool DeleteEstimate(int pId)
+        public bool DeleteInvoice(int pId)
         {
             try
             {
-                _AD.DeleteEstimate(pId);
+                _AD.DeleteInvoice(pId);
                 return true;
             }
             catch (Exception ex)
@@ -119,7 +105,7 @@ namespace BusinessLogic
 
         }
 
-        public Estimate dEstimate(int id)
+        public Invoice dInvoice(int id)
         {
             throw new NotImplementedException();
         }
@@ -129,7 +115,7 @@ namespace BusinessLogic
             throw new NotImplementedException();
         }
 
-        public object DeleteEstimate(Estimate dEstimate)
+        public object DeleteInvoice(Invoice dInvoice)
         {
             throw new NotImplementedException();
         }
