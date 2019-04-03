@@ -258,14 +258,18 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ConfiDoorController.cs" />
+    <Compile Include="Controllers\CreditNotesController.cs" />
     <Compile Include="Controllers\ErrorInternoController.cs" />
+    <Compile Include="Controllers\EstimateController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InvoiceController.cs" />
     <Compile Include="Controllers\LoginsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MastersController.cs" />
     <Compile Include="Controllers\OrderControlController.cs" />
     <Compile Include="Controllers\OrderStatusController.cs" />
     <Compile Include="Controllers\OrderSummaryController.cs" />
+    <Compile Include="Controllers\PaymentsReceivedController.cs" />
     <Compile Include="Controllers\UserManagementController.cs" />
     <Compile Include="CustomRoleProvider.cs" />
     <Compile Include="Global.asax.cs">
@@ -1102,6 +1106,7 @@
     <Content Include="Scripts\js\ControlOfOrders.js" />
     <Content Include="Scripts\js\ConverExcel.js" />
     <Content Include="Scripts\js\dashboard.js" />
+    <Content Include="Scripts\js\Invoice.js" />
     <Content Include="Scripts\js\LoginSiginUp.js" />
     <Content Include="Scripts\js\Master.BottomRail.js" />
     <Content Include="Scripts\js\Master.Company.js" />
@@ -1217,10 +1222,14 @@
     <Content Include="Views\OrderControl\Index.cshtml" />
     <Content Include="Scripts\js\InsertDoor.OrderSumary.js" />
     <Content Include="Scripts\js\OrderStatus.FillingOfCombos.js" />
+    <Content Include="Views\Invoice\Index.cshtml" />
+    <Content Include="Views\Estimate\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\PDF\" />
+    <Folder Include="Views\CreditNotes\" />
+    <Folder Include="Views\PaymentsReceived\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
