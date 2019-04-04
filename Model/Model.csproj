@@ -64,11 +64,14 @@
     <Compile Include="DoorsxUser.cs" />
     <Compile Include="DoorType.cs" />
     <Compile Include="DoorxOrder.cs" />
+    <Compile Include="Estimate.cs" />
     <Compile Include="Group.cs" />
     <Compile Include="HingeDirection.cs" />
     <Compile Include="HingePositions.cs" />
+    <Compile Include="HistoryEstimate.cs" />
     <Compile Include="HorizontalDivisions.cs" />
     <Compile Include="InsideEdgeProfile.cs" />
+    <Compile Include="Invoice.cs" />
     <Compile Include="Join.cs" />
     <Compile Include="Material.cs" />
     <Compile Include="MaterialxBottomRail.cs" />
