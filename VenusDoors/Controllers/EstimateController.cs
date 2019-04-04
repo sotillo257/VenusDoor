@@ -11,7 +11,18 @@ namespace VenusDoors.Controllers
         // GET: Estimate
         public ActionResult Index()
         {
-            return View();
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Sales = "active show-sub";
+                ViewBag.Estimate = "active";
+
+                return View();
+            }
+            else
+            {
+
+                return RedirectToAction("Index", "Home");
+            }
         }
     }
 }
