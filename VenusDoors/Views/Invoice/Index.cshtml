@@ -4,6 +4,29 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+   
+    .details-container {
+        position: relative;
+        margin-bottom: 35px;
+        box-shadow: 0 0 6px #ccc;
+    }
+    .user-file-nav {
+  margin-top: 25px;
+  font-size: 13px;
+}
+    .user-file-nav a {
+  top:10px;
+  padding: 10px 10px;
+  border-radius: 2px;
+  transition: all 0.2s ease-in-out;
+}
+    .user-file-nav a:hover, .user-file-nav a:focus {
+  background-color: #dee2e6;
+  height: 34px;
+}
+</style>
+
         <div class="br-mailbox-list ps ps--theme_default ps--active-y" data-ps-id="7a4680f7-5fbe-1b05-8ec8-b8dbe07f7215">
             <div class="br-mailbox-list-header">
                 <a href="" id="showMailBoxLeft" class="show-mailbox-left hidden-sm-up">
@@ -105,22 +128,49 @@
                     <p class="tx-12 tx-gray-600 mg-b-5">I should be incapable of drawing a single stroke at the present moment; and yet I feel that I never...</p>
                 </div><!-- br-mailbox-list-item -->
             </div><!-- br-mailbox-list-body -->
-            <div class="ps__scrollbar-x-rail" style="left: 0px; bottom: 0px;">
+
+            <div class="br-mailbox-list-header">
+                <a href="" id="showMailBoxLeft" class="show-mailbox-left hidden-sm-up">
+                    <i class="fa fa-arrow-right"></i>
+                </a>
+                <h6 class="tx-inverse mg-b-0 tx-13 tx-uppercase">Inbox <span class="tx-roboto">(2)</span></h6>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-light disabled pd-x-25"><i class="fa fa-angle-left"></i></button>
+                    <button type="button" class="btn btn-light pd-x-25"><i class="fa fa-angle-right"></i></button>
+                </div>
+            </div><!-- br-mailbox-list-header -->
+
+            @*<div class="ps__scrollbar-x-rail" style="left: 0px; bottom: 0px;">
                 <div class="ps__scrollbar-x" tabindex="0" style="left: 0px; width: 0px;">
                 </div>
             </div>
             <div class="ps__scrollbar-y-rail" style="top: 0px; height: 597px; right: 0px;">
                 <div class="ps__scrollbar-y" tabindex="0" style="top: 0px; height: 370px;">
                 </div>
-            </div>
+            </div>*@
         </div>
 
         <div class="br-mailbox-body">
             <div class="br-msg-header d-flex justify-content-between">
                 <div class="media align-items-center">
-                    <img src="http://via.placeholder.com/280x280" class="wd-40 rounded-circle" alt="">
+                    <button type="button" class="Cursor btn btn-primary" data-toggle="modal" data-target="#modalNewIn"><i class="icon ion-plus"></i> New</button>
+                    <div class="dropdown">
+                        <a class="Cursor nav-link nav-link-profile d-flex align-items-center"
+                           data-toggle="dropdown"><i class="icon ion-android-more-horizontal"></i></a>
+
+                        <div class="dropdown-menu wd-230" style="width: 172px; height: 238px; padding-left: 10px; padding-right: 10px;">
+                            <ul class="list-unstyled user-file-nav">
+                                <li style="height: 34px;"><a href=""> Make Recurring</a></li>
+                                <li style="height: 34px;"><a href=""> Clone</a></li>
+                                <li style="height: 34px;"><a href=""> Print Delivery Note</a></li>
+                                <li style="height: 34px;"><a href=""> Print Packing Slip</a></li>
+                                <li style="height: 34px;"><a href=""> View Journal</a></li>
+                                <li style="height: 34px;"><a href=""> Delete</a></li>
+                            </ul>
+                        </div><!-- dropdown-menu -->
+                    </div>
                     <div class="media-body mg-l-10">
-                        <p class="tx-inverse tx-medium mg-b-0">Louise Kate Lumaad</p>
+                        <p class="tx-inverse tx-medium mg-b-0">INV-0001</p>
                         <p class="tx-12 mg-b-0">
                             <span>Sep 20, 2017 8:45am</span>
                             <a href="" class="mg-l-5 tx-gray-500"><i class="icon ion-star"></i></a>
@@ -129,10 +179,6 @@
                     </div><!-- media-body -->
                 </div><!-- media -->
                 <nav class="nav nav-inline tx-size-24 mg-b-0 lh-0">
-                    @*<a href="#" class="btn btn-primary btn-icon mg-r-5 mg-b-10"><div><i class="fa fa-edit"></i></div></a>
-                        <a href="#" class="btn btn-danger btn-icon mg-r-5 mg-b-10"><div><i class="fa fa-file-pdf-o"></i></div></a>
-                        <a href="#" class="btn btn-dark btn-icon mg-r-5 mg-b-10"><div><i class="fa fa-print"></i></div></a>
-                        <a href="#" class="btn btn-warning btn-icon mg-r-5 mg-b-10"><div><i class="fa fa-send"></i></div></a>*@
 
                     <div class="btn-group" role="group" aria-label="Basic example">
                         <button type="button" class="Cursor btn btn-page"><i class="fa fa-edit"></i></button>
@@ -143,10 +189,7 @@
 
                     <button type="button" class="Cursor btn btn-page" style="margin-left: 15px;margin-right: 15px;"><i class="fa fa-paperclip"></i></button>
 
-                    <button type="button" class="Cursor btn btn-page" style="margin-right: 15px;">Record Payment</button>
-
-                    <a href="" class="nav-link tx-gray-light hover-inverse pd-x-5">
-                        <i class="icon ion-android-more-horizontal"></i></a>
+                    <button type="button" class="Cursor btn btn-page">Record Payment</button>
 
                     <a id="closeMail" href="" class="nav-link pd-x-5 mg-l-15 hidden-xl-up">
                         <i class="icon ion-close"></i>
@@ -155,23 +198,18 @@
             </div><!-- br-msg-header -->
 
             <div class="br-msg-body">
-
-                
-                    <div class="modal-dialog modal-lg" style="margin-top: 0px;">
-                        <div class="modal-content">
+                    <div class="modal-dialog modal-lg" style="margin-top: 0px; max-width: 100%; height: 300px;">
+                        <div class="modal-content" style="border: 0px;">
                             <div class="modal-body">
                                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                                     <li class="nav-item">
-                                        <a class="nav-link active" data-toggle="tab" href="#infoPanel" role="tab">Info</a>
+                                        <a class="nav-link bd-0 active pd-y-8" data-toggle="tab" href="#infoPanel" role="tab">Info</a>
                                     <li>
                                     <li class="nav-item">
-                                        <a class="nav-link" data-toggle="tab" href="#ads" role="tab">Ads</a>
+                                        <a class="nav-link bd-0 tx-gray-light" data-toggle="tab" href="#ads" role="tab">Ads</a>
                                     <li>
                                     <li class="nav-item">
-                                        <a class="nav-link" data-toggle="tab" href="#schedulePanel" role="tab">Schedule</a>
-                                    <li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" data-toggle="tab" href="#reviewPanel" role="tab">Review</a>
+                                        <a class="nav-link bd-0 tx-gray-light" data-toggle="tab" href="#schedulePanel" role="tab">Schedule</a>
                                     <li>
                                 </ul>
 
@@ -190,11 +228,6 @@
                                             <label for="exampleInputFile">Fullscreen Ad Image</label>
                                             <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
                                             <small id="fileHelp" class="form-text text-muted">Select a file to use as the fullscreen ad image. Please ensure the size is at least 1080x1920 with a 9:16 (portrait) aspect ratio.</small>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputFile">Banner Ad Image</label>
-                                            <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
-                                            <small id="fileHelp" class="form-text text-muted">Select a file to use as the banner ad image. Please ensure the size is exactly 1080x450 for proper rendering.</small>
                                         </div>
                                         <button class="btn btn-secondary" id="adsContinue">Continue</button>
                                     </div>
@@ -312,27 +345,277 @@
                                         </div>
                                         <button class="btn btn-secondary" id="scheduleContinue">Continue</button>
                                     </div>
-                                    <div class="tab-pane fade" id="reviewPanel" role="tabpanel">
-                                        <h4>Review</h4>
-                                        <button class="btn btn-primary btn-block" id="activate">Activate this Campaign!</button>
-                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div>
 
-                <h6 class="tx-inverse mg-b-25 lh-4">Message sent via your Envato Market profile from themepixels</h6>
+                        <div style="max-width: 8.27in;margin-left:auto;margin-right:auto;" class="details-container clearfix ">
+                            <div class="pcs-template ">
+                                <div class="pcs-template-header pcs-header-content" id="header">
+                                    <div class="pcs-template-fill-emptydiv"></div>
+                                </div>
 
-                <p>Hi Isidore,</p>
+                                <div class="pcs-template-body">
+                                    <table style="width:100%;table-layout: fixed;">
+                                        <tbody>
+                                            <tr>
+                                                <td style="vertical-align: top; width:50%;">
+                                                    <span class="pcs-orgname"><b>Venus Cabinet Doors</b></span><br>
+                                                    <span id="tmp_entity_number" style="font-size: 10pt;" class="pcs-label"><b># INV-2105</b></span>
+                                                    <span class="pcs-label">
+                                                        <span style="white-space: pre-wrap;word-wrap: break-word;" id="tmp_org_address">
+                                                            Texas
+                                                            U.S.A
+                                                        </span>
+                                                    </span>
+                                                </td>
+                                                <td style="width:50%;" class="text-align-right v-top">
 
-                <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
+                                                    <div>
+                                                        <img src="~/Content/img/Venus_Doors11.png" style="width: 200px;" />
+                                                    </div>
+                                                    <div style="clear:both;margin-top:20px;">
+                                                        <span style="font-size:8pt;"><b>Balance Due</b></span><br>
+                                                        <span style="font-size:12pt;"><b>$230.77</b></span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
 
-                <p>I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. I am so happy, my dear friend, so absorbed in the exquisite sense of mere tranquil existence, that I neglect my talents.</p>
+                                    <table style="clear:both;width:100%;margin-top:30px;table-layout:fixed;">
+                                        <tbody>
+                                            <tr>
+                                                <td style="width:60%;vertical-align:bottom;word-wrap: break-word;">
+                                                    <div>
+                                                        <label style="font-size: 10pt;" class="pcs-label" id="tmp_billing_address_label">Bill To</label>
+                                                        <br>
+                                                        <span style="white-space: pre-wrap;" id="tmp_billing_address"><strong><span class="pcs-customer-name" id="zb-pdf-customer-detail"><a href="#/contacts/1650031000000667001">Sharron Garrison</a></span></strong></span>
+                                                    </div>
+                                                </td>
+                                                <td align="right" style="vertical-align:bottom;width: 40%;">
+                                                    <table style="float:right;width: 100%;table-layout: fixed;word-wrap: break-word;" border="0" cellspacing="0" cellpadding="0">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td style="padding:5px 10px 5px 0px;font-size:10pt;" class="text-align-right">
+                                                                    <span class="pcs-label">Invoice Date :</span>
+                                                                </td>
+                                                                <td class="text-align-right">
+                                                                    <span id="tmp_entity_date">03 Apr 2019</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="padding:5px 10px 5px 0px;font-size: 10pt;" class="text-align-right">
+                                                                    <span class="pcs-label">Terms :</span>
+                                                                </td>
+                                                                <td class="text-align-right">
+                                                                    <span id="tmp_payment_terms">Due on Receipt</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="padding:5px 10px 5px 0px;font-size: 10pt;" class="text-align-right">
+                                                                    <span class="pcs-label">Due Date :</span>
+                                                                </td>
+                                                                <td class="text-align-right">
+                                                                    <span id="tmp_due_date">03 Apr 2019</span>
+                                                                </td>
+                                                            </tr>
 
-                <p>I should be incapable of drawing a single stroke at the present moment; and yet I feel that I never was a greater artist than now.</p>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
 
-                <p>Regards,<br>ThemePixels</p>
-            </div><!-- br-msg-body -->
+                                    <table style="width:100%;margin-top:20px;table-layout:fixed;" class="pcs-itemtable" border="0" cellspacing="0" cellpadding="0">
+                                        <thead>
+                                            <tr style="height:32px;">
+                                                <td style="padding: 5px 0px 5px 5px;width: 5%;text-align: center;" id="" class="pcs-itemtable-header pcs-itemtable-breakword">
+                                                    #
+                                                </td>
+                                                <td style="padding: 5px 10px 5px 20px;width: ;text-align: left;" id="" class="pcs-itemtable-header pcs-itemtable-breakword">
+                                                    Item &amp; Description
+                                                </td>
+                                                <td style="padding: 5px 10px 5px 5px;width: 11%;text-align: right;" id="" class="pcs-itemtable-header pcs-itemtable-breakword">
+                                                    Qty
+                                                </td>
+                                                <td style="padding: 5px 10px 5px 5px;width: 11%;text-align: right;" id="" class="pcs-itemtable-header pcs-itemtable-breakword">
+                                                    Rate
+                                                </td>
+                                                <td style="padding: 5px 10px 5px 5px;width: 15%;text-align: right;" id="" class="pcs-itemtable-header pcs-itemtable-breakword">
+                                                    Amount
+                                                </td>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody class="itemBody">
+                                            <tr>
+                                                <td rowspan="1" valign="top" style="padding: 10px 0 10px 5px;text-align: center;word-wrap: break-word;" class="pcs-item-row">
+                                                    1
+                                                </td>
+                                                <td rowspan="1" valign="top" style="padding: 10px 0px 10px 20px;" class="pcs-item-row">
+                                                    <div>
+                                                        <div>
+                                                            <span style="word-wrap: break-word;" id="tmp_item_name">M-ACOL514FJ-16</span><br>
+
+                                                            <span style="white-space: pre-wrap;word-wrap: break-word;" class="pcs-item-desc" id="tmp_item_description">SW-M-ACOL514FJ-16-Baseboard</span>
+
+
+                                                        </div>
+                                                    </div>
+                                                </td>
+
+
+
+
+
+                                                <td rowspan="1" class="pcs-item-row lineitem-column text-align-right">
+                                                    <span id="tmp_item_qty">144.00</span>
+                                                    <div class="pcs-item-desc">LF</div>
+                                                </td>
+                                                <td rowspan="1" class="pcs-item-row lineitem-column text-align-right">
+                                                    <span id="tmp_item_rate">1.08</span>
+                                                </td>
+                                                <td rowspan="1" class="pcs-item-row lineitem-column lineitem-content-right text-align-right">
+                                                    <span id="tmp_item_amount">155.52</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td rowspan="1" valign="top" style="padding: 10px 0 10px 5px;text-align: center;word-wrap: break-word;" class="pcs-item-row">
+                                                    2
+                                                </td>
+                                                <td rowspan="1" valign="top" style="padding: 10px 0px 10px 20px;" class="pcs-item-row">
+                                                    <div>
+                                                        <div>
+                                                            <span style="word-wrap: break-word;" id="tmp_item_name">M-ACOL314PR-16</span><br>
+
+                                                            <span style="white-space: pre-wrap;word-wrap: break-word;" class="pcs-item-desc" id="tmp_item_description">SW-M-ACOL314PR-16-Baseboard</span>
+
+
+                                                        </div>
+                                                    </div>
+                                                </td>
+
+
+
+
+
+                                                <td rowspan="1" class="pcs-item-row lineitem-column text-align-right">
+                                                    <span id="tmp_item_qty">48.00</span>
+                                                    <div class="pcs-item-desc">LF</div>
+                                                </td>
+                                                <td rowspan="1" class="pcs-item-row lineitem-column text-align-right">
+                                                    <span id="tmp_item_rate">0.67</span>
+                                                </td>
+                                                <td rowspan="1" class="pcs-item-row lineitem-column lineitem-content-right text-align-right">
+                                                    <span id="tmp_item_amount">32.16</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td rowspan="1" valign="top" style="padding: 10px 0 10px 5px;text-align: center;word-wrap: break-word;" class="pcs-item-row">
+                                                    3
+                                                </td>
+                                                <td rowspan="1" valign="top" style="padding: 10px 0px 10px 20px;" class="pcs-item-row">
+                                                    <div>
+                                                        <div>
+                                                            <span style="word-wrap: break-word;" id="tmp_item_name">M-FL312FJ-17</span><br>
+
+                                                            <span style="white-space: pre-wrap;word-wrap: break-word;" class="pcs-item-desc" id="tmp_item_description"></span>
+
+
+                                                        </div>
+                                                    </div>
+                                                </td>
+
+
+
+
+
+                                                <td rowspan="1" class="pcs-item-row lineitem-column text-align-right">
+                                                    <span id="tmp_item_qty">51.00</span>
+                                                    <div class="pcs-item-desc">LF</div>
+                                                </td>
+                                                <td rowspan="1" class="pcs-item-row lineitem-column text-align-right">
+                                                    <span id="tmp_item_rate">0.50</span>
+                                                </td>
+                                                <td rowspan="1" class="pcs-item-row lineitem-column lineitem-content-right text-align-right">
+                                                    <span id="tmp_item_amount">25.50</span>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                    <div style="width: 100%;margin-top: 1px;">
+                                        <div class="v-top total-number-section">
+                                            <div style="white-space: pre-wrap;"></div>
+
+                                        </div>
+                                        <div class="v-top total-section">
+                                            <table class="pcs-totals" cellspacing="0" border="0" width="100%">
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="total-section-label text-align-right">Sub Total</td>
+                                                        <td id="tmp_subtotal" class="total-section-value text-align-right">213.18</td>
+                                                    </tr>
+
+
+
+                                                    <tr style="height:10px;">
+                                                        <td class="total-section-label text-align-right">Sales Tax (8.25%)  </td>
+                                                        <td class="total-section-value text-align-right">17.59</td>
+                                                    </tr>
+
+
+
+
+
+                                                    <tr>
+                                                        <td class="total-section-label text-align-right"><b>Total</b></td>
+                                                        <td id="tmp_total" class="total-section-value text-align-right"><b>$230.77</b></td>
+                                                    </tr>
+
+
+
+                                                    <tr style="height:40px;" class="pcs-balance">
+                                                        <td class="total-section-label text-align-right"><b>Balance Due</b></td>
+                                                        <td id="tmp_balance_due" class="total-section-value text-align-right"><b>$230.77</b></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div style="clear: both;"></div>
+                                    </div>
+
+
+
+
+
+                                    <div style="clear:both;margin-top:50px;width:100%;">
+                                        <label style="font-size: 10pt;" id="tmp_notes_label" class="pcs-label">Notes</label><br>
+                                        <p style="margin-top:7px;white-space: pre-wrap;word-wrap: break-word;" class="pcs-notes">Thanks for your business.</p>
+                                    </div>
+
+
+
+
+                                    <div style="page-break-inside: avoid;">
+                                    </div>
+
+                                </div>
+
+                                <div class="pcs-template-footer">
+                                    <div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                  </div>
+                </div><!-- br-msg-body -->
 
             <div class="pd-x-30 pd-b-30">
                 <div class="row flex-row-reverse">
@@ -351,6 +634,189 @@
             </div>
         </div>
 <div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div>
+
+<div id="modalNewIn" class="modal fade effect-scale" aria-hidden="true" style="display: none;" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" style="width: 65%!important;max-width: 100%; overflow-y: auto;" role="document">
+        <div class="modal-content bd-0 rounded-0">
+            <div class="modal-body pd-0">
+                <div class="row flex-row-reverse no-gutters">
+                    <div class="col-lg-12">
+                        <div class="pd-30">
+                            <button type="button" id="btXclose" class="close" data-dismiss="modal">
+                                <span aria-hidden="true">×</span>
+                            </button>
+
+                            <div class="pd-xs-x-15 pd-y-10" style="height: 1200px;">
+                                <div style="display:flex">
+                                    <h3 id="lblTitulo" class="tx-inverse mg-b-5">New Invoice</h3>
+                                </div>
+                                <div class="row" style="margin-right: 0;">
+                                    <div class="col-md-12" style="padding-right:0">
+                                        <div style="display:flex; width:100%">
+                                            <div class="row" style="width:100%; max-height: 380px;">
+                                                <input id="idDoor" hidden />
+                                                <div class="row" style="width: 100%;">
+
+                                                    <div class="col-xs-4 col-md-6">
+                                                        <label for="DoorStyle" style="margin-top: 25px;">Customer Name: </label>
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control" placeholder="Search Customer">
+                                                            <span class="input-group-btn">
+                                                                <button class="btn bd bg-white tx-gray-600" type="button"><i class="fa fa-search"></i></button>
+                                                            </span>
+                                                        </div><!-- input-group -->
+                                                    </div>
+
+                                                    <div class="col-xs-4 col-md-12">
+                                                        <hr />
+                                                    </div>
+                                                 
+                                                    <div class="col-xs-4 col-md-6">
+                                                        <label for="InsideEdgeProfile" style="margin-top: 25px;">Invoice#: </label>
+                                                        <input style="width:100%" class="form-control" id="cbStileWidth" data-placeholder="">
+                                                    </div><!-- col -->
+
+                                                    <div class="col-xs-4 col-md-6">
+                                                    </div>
+
+                                                    <div class="col-xs-4 col-md-6">
+                                                        <label for="OutsideEdgeProfile" style="margin-top: 25px;">Order Number: </label>
+                                                        <input style="width:100%" class="form-control" id="cbStileWidth" data-placeholder="">
+                                                    </div><!-- col -->
+
+                                                    <div class="col-xs-4 col-md-6">
+                                                    </div>
+
+                                                    <div class="col-xs-4 col-md-6">
+                                                        <label for="BottomRail" style="margin-top: 25px;">Invoice Date: </label>
+                                                        <input style="width:100%" class="form-control" id="cbStileWidth" data-placeholder="">
+                                                    </div><!-- col -->
+
+                                                    <div class="col-xs-4 col-md-3">
+                                                        <label for="TopRail" style="margin-top: 25px;">Terms:</label>
+                                                        <select style="width:100%" class="eventChange selectModal form-control select2 Doors" id="cbRailWidth" data-placeholder=""></select>
+                                                    </div><!-- col -->
+
+                                                    <div class="col-xs-4 col-md-3">
+                                                        <label for="DoorStyle" style="margin-top: 25px;">Due Date: </label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><i class="icon ion-calendar tx-16 lh-0 op-6"></i></span>
+                                                            <input id="dateMask" type="text" class="form-control hasDatepicker" placeholder="MM/DD/YYYY">
+                                                        </div>
+                                                    </div>
+
+                                                        <div class="col-xs-4 col-md-12">
+                                                            <hr />
+                                                        </div>
+
+                                                        <div class="col-xs-4 col-md-6">
+                                                            <label for="BottomRail" style="margin-top: 25px;">Salesperson: </label>
+                                                            <select style="width:100%" class="eventChange selectModal form-control select2 Doors" id="cbStileWidth" data-placeholder=""></select>
+                                                        </div><!-- col -->
+
+                                                        <br />
+
+                                                        <div class="col-xs-4 col-md-12" style="margin-top: 30px;padding-right: 0px;">
+                                                            <table id="mitabla" class="table table-bordered table-colored table-light">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th colspan="2">Item Details</th>
+                                                                        <th>Quantity</th>
+                                                                        <th>Rate</th>
+                                                                        <th>Discount</th>
+                                                                        <th>Tax</th>
+                                                                        <th>Amount</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td></td>
+                                                                        <td>
+                                                                            <div contenteditable></div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div contenteditable></div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div contenteditable></div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div contenteditable></div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div contenteditable></div>
+                                                                        </td>
+                                                                        <td></td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div><!-- col -->
+
+                                                        <div class="col-xs-4 col-md-4">
+                                                            <button type="button" class="Cursor btn btn-page" id="add">
+                                                                <span aria-hidden="true"><i class="icon ion-plus"></i> Add another line</span>
+                                                            </button>
+                                                        </div><!-- col -->
+
+                                                        <div class="col-md-8" id="Resultados" style="text-align: right;padding-right: 0px;">
+
+                                                            <input hidden id="idorder" value="" />
+                                                            <input hidden id="idtotal" value="" />
+                                                            <input hidden id="idstatus" value="" />
+                                                            <h5 id="lblSubtotal" style="color:#7b7979">Sub-Total: <span>$</span></h5>
+                                                            <h5 id="lblTax" style="color:#7b7979; margin-left:15px">Tax: <span>$</span></h5>
+                                                            <h5 id="lblShippingCost" style="display:none;color:#7b7979; margin-left:15px">Cost of shipping: <span>$</span></h5>
+                                                            <h5 id="lblTotal" style="color:#000; margin-left:15px">Total Price: <span>$</span></h5>
+
+                                                        </div>
+
+                                                        <div class="col-xs-4 col-md-12">
+                                                            <hr />
+                                                        </div>
+
+                                                        <div class="col-xs-4 col-md-6">
+                                                            <label for="DoorStyle" style="margin-top: 25px;">Due Date: </label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon"><i class="icon ion-paperclip tx-16 lh-0 op-6"></i></span>
+                                                                <input type="file" id="file" class="custom-file-input form-control">
+                                                            </div>
+                                                        </div><!-- col -->
+
+                                                        <div class="col-xs-4 col-md-6">
+
+                                                            <div class="form-group">
+                                                                <label for="OutsideEdgeProfile" style="margin-top: 25px;">Customer Notes: </label>
+                                                                <textarea style="width:100%" class="form-control" id="cbOutsideEdgeProfile" data-placeholder=""></textarea>
+                                                            </div><!-- col -->
+
+                                                            <div class="form-group">
+                                                                <label for="OutsideEdgeProfile" style="margin-top: 25px;">Terms & Conditions: </label>
+                                                                <textarea style="width:100%" class="form-control" id="cbOutsideEdgeProfile" data-placeholder=""></textarea>
+                                                            </div><!-- col -->
+
+                                                        </div><!-- col -->
+
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div><!-- pd-20 -->
+                                </div><!-- col-6 -->
+                            </div><!-- row -->
+                            <div class="modal-footer">
+
+                                <div style="width: 50%; display: flex;justify-content: flex-end;">
+                                    <button id="btConfSave" type="button" class="btn btn-page tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Save as Draft</button>
+                                    <button id="btConfSave" type="button" style="margin-left:10px" class="btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Save and Send</button>
+                                    <button type="button" id="btnCancel" style="margin-left:10px" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>
+                                </div>
+                            </div>
+                        </div><!-- modal-body -->
+                    </div><!-- modal-content -->
+                </div><!-- modal-dialog -->
+            </div>
+        </div><!-- modal-content -->
+    </div><!-- modal-dialog -->
+</div>
 
 @section scripts{
 
