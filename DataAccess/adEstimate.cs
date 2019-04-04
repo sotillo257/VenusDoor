@@ -11,11 +11,11 @@ namespace DataAccess
 {
     public class adEstimate : Connection
     {
-        public Estimate GetEstimateById(int Id)
+        public Estimate GetEstimateById(int Id, int IdCompany, int IdUserCliente, int IdUserVendedor, int CreatorUser, DateTime EstimateDate, DateTime Expirydate)
         {
             Estimate est = new Estimate();
             string sql = @"[spGetEstimate] '{0}' ";
-            sql = string.Format(sql, Id);
+            sql = string.Format(sql, Id, IdCompany, IdUserCliente, IdUserVendedor, CreatorUser, EstimateDate, Expirydate);
 
             try
             {

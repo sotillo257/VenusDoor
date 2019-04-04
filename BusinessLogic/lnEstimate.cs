@@ -38,11 +38,11 @@ namespace BusinessLogic
         /// </summary>
         /// <param name="pId"></param>
         /// <returns></returns>
-        public Estimate GetEstimateById(int pId)
+        public Estimate GetEstimate(int Id, int IdCompany, int IdUserCliente, int IdUserVendedor, int CreatorUser, DateTime EstimateDate, DateTime Expirydate)
         {
             try
             {
-                return _AD.GetEstimateById(pId);
+                return _AD.GetEstimateById(Id, IdCompany, IdUserCliente, IdUserVendedor, CreatorUser, EstimateDate, Expirydate);
             }
             catch (Exception ex)
             {

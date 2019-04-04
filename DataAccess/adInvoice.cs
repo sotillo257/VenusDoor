@@ -11,11 +11,11 @@ namespace DataAccess
 {
     public class adInvoice : Connection
     {
-        public Invoice GetInvoice(int IdEstimate, int IdCompany, int IdUserCliente, int IdUserVendedor, DateTime Invoicedate, DateTime Expirydate)
+        public Invoice GetInvoice(int Id, int IdEstimate, int IdCompany, int IdUserCliente, int IdUserVendedor, int CreatorUser, DateTime Invoicedate, DateTime Expirydate)
         {
             Invoice inv = new Invoice();
             string sql = @"[spGetInvoice] '{0}', '{1}','{2}', '{3}', '{4}', '{5}'";
-            sql = string.Format(sql, IdEstimate, IdCompany, IdUserCliente, IdUserVendedor, Invoicedate, Expirydate);
+            sql = string.Format(sql,Id, IdEstimate, IdCompany, IdUserCliente, IdUserVendedor, CreatorUser, Invoicedate, Expirydate);
 
             try
             {
