@@ -14,6 +14,7 @@ namespace Model
         public User UserCliente { get; set; }
         public User UserVendedor { get; set; }
         public Estimate Estimate { get; set; }
+        public Order Order { get; set; }
         public DateTime InvoiceDate { get; set; }
         public DateTime ExpiryDate { get; set; }
         public decimal Total { get; set; }

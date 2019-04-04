@@ -32,6 +32,7 @@ namespace DataAccess
                             Company = new Company() { Id = int.Parse(item["IdCompany"].ToString()), Name = item["NameCompany"].ToString() },
                             UserCliente = new User() { Id = int.Parse(item["IdUserCliente"].ToString()) },
                             UserVendedor = new User() { Id = int.Parse(item["IdUserVendedor"].ToString()) },
+                            Order = new Order() { Id = int.Parse(item["IdOrder"].ToString())},
                             Estimate = new Estimate() { Id = int.Parse(item["IdEstimate"].ToString()) },
                             InvoiceDate = (item["InvoiceDate"].ToString() != "") ? DateTime.Parse(item["InvoiceDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             ExpiryDate = (item["ExpiryDate"].ToString() != "") ? DateTime.Parse(item["ExpiryDate"].ToString()) : DateTime.Parse("01/01/1900"),
@@ -78,6 +79,7 @@ namespace DataAccess
                             Company = new Company() { Id = int.Parse(item["IdCompany"].ToString()), Name = item["NameCompany"].ToString() },
                             UserCliente = new User() { Id = int.Parse(item["IdUserCliente"].ToString()) },
                             UserVendedor = new User() { Id = int.Parse(item["IdUserVendedor"].ToString()) },
+                            Order = new Order() { Id = int.Parse(item["IdOrder"].ToString()) },
                             Estimate = new Estimate() { Id = int.Parse(item["IdEstimate"].ToString()) },
                             InvoiceDate = (item["InvoiceDate"].ToString() != "") ? DateTime.Parse(item["InvoiceDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             ExpiryDate = (item["ExpiryDate"].ToString() != "") ? DateTime.Parse(item["ExpiryDate"].ToString()) : DateTime.Parse("01/01/1900"),
@@ -119,6 +121,7 @@ namespace DataAccess
                             Company = new Company() { Id = int.Parse(item["IdCompany"].ToString()), Name = item["NameCompany"].ToString() },
                             UserCliente = new User() { Id = int.Parse(item["IdUserCliente"].ToString()) },
                             UserVendedor = new User() { Id = int.Parse(item["IdUserVendedor"].ToString()) },
+                            Order = new Order() { Id = int.Parse(item["IdOrder"].ToString()) },
                             Estimate = new Estimate() { Id = int.Parse(item["IdEstimate"].ToString()) },
                             InvoiceDate = (item["InvoiceDate"].ToString() != "") ? DateTime.Parse(item["InvoiceDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             ExpiryDate = (item["ExpiryDate"].ToString() != "") ? DateTime.Parse(item["ExpiryDate"].ToString()) : DateTime.Parse("01/01/1900"),
@@ -145,8 +148,8 @@ namespace DataAccess
 
         public int InsertInvoice(Invoice pInv)
         {
-            string sql = @"[spInsertInvoice] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}'";
-            sql = string.Format(sql, pInv.IdFolio, pInv.Company.Id, pInv.UserCliente.Id, pInv.UserVendedor.Id, pInv.Estimate.Id, pInv.InvoiceDate.ToString("yyyyMMdd HH:mm:ss"), pInv.ExpiryDate.ToString("yyyyMMdd HH:mm:ss"),
+            string sql = @"[spInsertInvoice] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}'";
+            sql = string.Format(sql, pInv.IdFolio, pInv.Company.Id, pInv.UserCliente.Id, pInv.UserVendedor.Id, pInv.Order.Id, pInv.Estimate.Id, pInv.InvoiceDate.ToString("yyyyMMdd HH:mm:ss"), pInv.ExpiryDate.ToString("yyyyMMdd HH:mm:ss"),
                 pInv.Total.ToString().Replace(',', '.'), pInv.TotalDue.ToString().Replace(',', '.'), pInv.TermsAndConditions, pInv.Status.Id, pInv.CreationDate.ToString("yyyyMMdd HH:mm:ss"), pInv.CreatorUser, pInv.ModificationDate.ToString("yyyyMMdd HH:mm:ss"), pInv.ModificationUser, 6);
             try
             {
@@ -160,8 +163,8 @@ namespace DataAccess
 
         public void UpdateInvoice(Invoice pInv)
         {
-            string sql = @"[spUpdateInvoice] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}'";
-            sql = string.Format(sql, pInv.Id, pInv.IdFolio, pInv.Company.Id, pInv.UserCliente.Id, pInv.UserVendedor.Id, pInv.Estimate.Id, pInv.InvoiceDate.ToString("yyyyMMdd HH:mm:ss"), pInv.ExpiryDate.ToString("yyyyMMdd HH:mm:ss"),
+            string sql = @"[spUpdateInvoice] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}'";
+            sql = string.Format(sql, pInv.Id, pInv.IdFolio, pInv.Company.Id, pInv.UserCliente.Id, pInv.UserVendedor.Id, pInv.Order.Id, pInv.Estimate.Id, pInv.InvoiceDate.ToString("yyyyMMdd HH:mm:ss"), pInv.ExpiryDate.ToString("yyyyMMdd HH:mm:ss"),
                 pInv.Total.ToString().Replace(',', '.'), pInv.TotalDue.ToString().Replace(',', '.'), pInv.TermsAndConditions, pInv.Status.Id, pInv.ModificationDate.ToString("yyyyMMdd HH:mm:ss"), pInv.ModificationUser);
             try
             {
