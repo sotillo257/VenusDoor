@@ -5,7 +5,8 @@
 }
 
 <style>
-    .details-container {
+  
+.details-container {
         position: relative;
         margin-bottom: 35px;
         box-shadow: 0 0 6px #ccc;
@@ -27,6 +28,7 @@
                 background-color: #dee2e6;
                 height: 34px;
             }
+
 </style>
 
 <div class="br-mailbox-list ps ps--theme_default ps--active-y" data-ps-id="7a4680f7-5fbe-1b05-8ec8-b8dbe07f7215">
@@ -41,6 +43,14 @@
         </div>
     </div><!-- br-mailbox-list-header -->
     <div class="br-mailbox-list-body">
+        <div class="skin" id="Demo">
+
+        </div>
+        <div class="" id="conta">
+
+        </div>
+
+
         <div class="br-mailbox-list-item active">
             <div class="d-flex justify-content-between mg-b-5">
                 <div>
@@ -805,6 +815,7 @@
 </div>
 
 @section scripts{
-
+    @Scripts.Render("~/Scripts/Pagination.js")
     @Scripts.Render("~/Scripts/js/Estimate.js")
+  
 }
