@@ -1090,6 +1090,7 @@
     <Content Include="Content\scss\util\_typography.scss" />
     <Content Include="Content\scss\util\_width.scss" />
     <Content Include="Content\Template.xlsx" />
+    <Content Include="Content\css\pagination.less" />
     <None Include="Properties\PublishProfiles\jesus.pubxml" />
     <None Include="Properties\PublishProfiles\VenusDoorApp Jesus.pubxml" />
     <None Include="Properties\PublishProfiles\VenusDoors App.pubxml" />
@@ -1148,6 +1149,7 @@
     <Content Include="Scripts\js\PriceCalc.js" />
     <Content Include="Scripts\js\UserManagement.Index.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\Pagination.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
