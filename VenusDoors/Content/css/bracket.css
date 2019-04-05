@@ -13842,6 +13842,95 @@ textarea.parsley-success:focus {
  * Copyright 2017-2018 ThemePixels
  * Licensed under ThemeFores License
  */
+
+.in-headr {
+  height: 95px;
+  margin-top: 60px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+  background-color: #e9ecef;
+  box-shadow: 0 1px 4px 0px rgba(0, 0, 0, 0.16);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.2s ease-in-out;
+}
+.in-headr::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -4px;
+  width: 3px;
+  background-color: #fff;
+  z-index: 1040;
+}
+
+@media (min-width: 992px) {
+  .in-headr {
+    left: 550px;
+  }
+}
+
+@media (min-width: 992px) {
+  .in-headr-right {
+    margin-left: 105px;
+    transition: all 0.2s ease-in-out;
+  }
+}
+
+.in-headr-left {
+  display: flex;
+}
+.in-headr-left .form-control, .in-headr-left .dataTables_filter input, .dataTables_filter .in-headr-left input {
+  border: 0;
+  border-radius: 0;
+  padding: 0 20px;
+}
+.in-headr-left .input-group-btn {
+  border-right: 1px solid rgba(0, 0, 0, 0.15);
+}
+.in-headr-left .input-group-btn .btn, .in-headr-left .input-group-btn .sp-container button, .sp-container .in-headr-left .input-group-btn button {
+  background-color: #fff;
+  border-radius: 0;
+  border: 0;
+  color: #868e96;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.in-headr-left .input-group-btn .btn:focus, .in-headr-left .input-group-btn .sp-container button:focus, .sp-container .in-headr-left .input-group-btn button:focus, .in-headr-left .input-group-btn .btn:active, .in-headr-left .input-group-btn .sp-container button:active, .sp-container .in-headr-left .input-group-btn button:active {
+  color: #343a40;
+  box-shadow: none;
+}
+
+.in-headr-right {
+  display: flex;
+  align-items: center;
+}
+.in-headr-right a {
+  color: #656464;
+}
+.in-headr-right a:hover, .in-headr-right a:focus {
+  color: #ccc;
+}
+.in-headr-right .dropdown:last-child .dropdown-menu {
+  padding: 0 10px 10px;
+}
+@media (max-width: 479px) {
+  .in-headr-right .dropdown:first-child .dropdown-menu {
+    transform: translateX(145px) !important;
+  }
+  .in-headr-right .dropdown:nth-child(2) .dropdown-menu {
+    transform: translateX(113px) !important;
+  }
+  .in-headr-right .dropdown:last-child .dropdown-menu {
+    transform: translateX(49px) !important;
+  }
+}
+
 .br-header {
   height: 60px;
   position: fixed;
@@ -13871,6 +13960,8 @@ textarea.parsley-success:focus {
     left: 230px;
   }
 }
+
+
 
 .br-header-left {
   display: flex;
@@ -14247,6 +14338,15 @@ textarea.parsley-success:focus {
   .collapsed-menu .br-header {
     left: 0;
   }
+  .collapsed-menu .in-headr {
+    left: 380px;
+  }
+
+  .collapsed-menu .in-headr-right {
+    margin-left: 270px;
+    transition: all 0.2s ease-in-out;
+  }
+
   .collapsed-menu .br-sideleft {
     width: 60px;
   }
@@ -14888,8 +14988,8 @@ textarea.parsley-success:focus {
 }
 
 .br-mailbox-body {
-  margin-top: 60px;
-  margin-left: 350px;
+      margin-left: 315px;
+    margin-top: 155px;
   transition: all 0.2s ease-in-out;
 }
 
