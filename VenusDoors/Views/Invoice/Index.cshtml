@@ -145,22 +145,7 @@
             <div class="in-headr">
                 <div class="br-msg-header d-flex justify-content-between">
                     <div class="media align-items-center">
-                        <button type="button" class="Cursor btn btn-primary" data-toggle="modal" data-target="#modalNewIn"><i class="icon ion-plus"></i> New</button>
-                        <div class="dropdown">
-                            <a class="Cursor nav-link nav-link-profile d-flex align-items-center"
-                               data-toggle="dropdown"><i class="icon ion-android-more-horizontal"></i></a>
-
-                            <div class="dropdown-menu wd-230" style="width: 172px; height: 238px; padding-left: 10px; padding-right: 10px;">
-                                <ul class="list-unstyled user-file-nav">
-                                    <li style="height: 34px;"><a href=""> Make Recurring</a></li>
-                                    <li style="height: 34px;"><a href=""> Clone</a></li>
-                                    <li style="height: 34px;"><a href=""> Print Delivery Note</a></li>
-                                    <li style="height: 34px;"><a href=""> Print Packing Slip</a></li>
-                                    <li style="height: 34px;"><a href=""> View Journal</a></li>
-                                    <li style="height: 34px;"><a href=""> Delete</a></li>
-                                </ul>
-                            </div><!-- dropdown-menu -->
-                        </div>
+                        @*<button type="button" class="Cursor btn btn-primary" data-toggle="modal" data-target="#modalNewIn"><i class="icon ion-plus"></i> New</button>*@
                         <div class="media-body mg-l-10">
                             <p class="tx-inverse tx-medium mg-b-0">INV-0001</p>
                             <p class="tx-12 mg-b-0">
@@ -183,6 +168,22 @@
 
                         <button type="button" class="Cursor btn btn-page">Record Payment</button>
 
+                        <div class="dropdown">
+                            <a class="Cursor nav-link nav-link-profile d-flex align-items-center"
+                               data-toggle="dropdown"><i class="icon ion-android-more-horizontal"></i></a>
+
+                            <div class="dropdown-menu wd-230" style="width: 172px; height: 238px; padding-left: 10px; padding-right: 10px;">
+                                <ul class="list-unstyled user-file-nav">
+                                    <li style="height: 34px;"><a href=""> Make Recurring</a></li>
+                                    <li style="height: 34px;"><a href=""> Clone</a></li>
+                                    <li style="height: 34px;"><a href=""> Print Delivery Note</a></li>
+                                    <li style="height: 34px;"><a href=""> Print Packing Slip</a></li>
+                                    <li style="height: 34px;"><a href=""> View Journal</a></li>
+                                    <li style="height: 34px;"><a href=""> Delete</a></li>
+                                </ul>
+                            </div><!-- dropdown-menu -->
+                        </div>
+
                         <a id="closeMail" href="" class="nav-link pd-x-5 mg-l-15 hidden-xl-up">
                             <i class="icon ion-close"></i>
                         </a>
@@ -195,36 +196,123 @@
                             <div class="modal-body" style="padding: 0px;">
                                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                                     <li class="nav-item">
-                                        <a class="nav-link bd-0 active pd-y-8" data-toggle="tab" href="#infoPanel" role="tab">Info</a>
+                                        <a class="nav-link bd-0 active pd-y-8" data-toggle="tab" href="#infoPanel" role="tab"><strong>Comments & History</strong></a>
                                     <li>
                                     <li class="nav-item">
-                                        <a class="nav-link bd-0 tx-gray-light" data-toggle="tab" href="#ads" role="tab">Ads</a>
+                                        <a class="nav-link bd-0 tx-gray-light" data-toggle="tab" href="#ads" role="tab"><strong>Payments</strong></a>
                                     <li>
-                                    <li class="nav-item">
-                                        <a class="nav-link bd-0 tx-gray-light" data-toggle="tab" href="#schedulePanel" role="tab">Schedule</a>
-                                    <li>
+                                    @*<li class="nav-item">
+                                        <a class="nav-link bd-0 tx-gray-light" data-toggle="tab" href="#schedulePanel" role="tab"><strong>Schedule</strong></a>
+                                    <li>*@
                                 </ul>
                                 
                                 <div style="background-color: #e9ecef;padding-left: 15px;padding-top: 20px;padding-right: 20px;padding-bottom: 20px;">
                                     <div class="tab-content">
                                         <div class="tab-pane fade show active" id="infoPanel" role="tabpanel">
-                                            <h4>Information</h4>
-                                            <div class="form-group">
-                                                <label for="campaignName">Campaign Name</label>
-                                                <input type="text" class="form-text" id='campaignName'>
+                                            <div class="comments-history">
+                                                <p class="font-small"><a data-ember-action="" data-ember-action-1551="1551">View More</a></p> <ul class="list-unstyled" data-test-title="comments-list">
+                                                    <li id="ember1553" class="ember-view">
+                                                        <div class="clearfix" data-test-title="comments-list-row">
+                                                            <div class="date-section pull-left">
+                                                            <div class="font-xxs text-draft"><strong> 08 Apr 2019 10:31 AM </strong><br>
+                                                                </div>
+                                                            </div> 
+                                                            <div class="comment-section pull-left">
+                                                                    <div class="pull-left"> 
+                                                                    <div class="txn-comment-icon circle-box"></div> 
+                                                                    </div> 
+                                                                    <div class="media-body" style="margin-left: 50px;">
+                                                                        <div class="comment">
+                                                                            <span class="description">Invoice marked as sent</span>
+                                                                            <label class="font-xs text-muted">by <strong>Katie Cai</strong></label>
+                                                                        </div>
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li id="ember1555" class="ember-view">
+                                                        <div class="clearfix" data-test-title="comments-list-row">
+                                                            <div class="date-section pull-left">
+                                                            <div class="font-xxs text-draft"><strong> 08 Apr 2019 10:31 AM </strong><br> <!----> </div></div> 
+                                                            <div class="comment-section pull-left">
+                                                                    <div class="pull-left"> 
+                                                                    <div class="txn-comment-icon circle-box"></div> 
+                                                                    </div> 
+                                                                <div class="media-body" style="margin-left: 50px;">
+                                                                    <div class="comment">
+                                                                        <span class="description">Payment of $199.06 received</span>
+                                                                        <label class="font-xs text-muted">by <strong>Katie Cai</strong></label>
+                                                                        <!---->
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                                <a data-test-title="add-comment" data-ember-action="" data-ember-action-1558="1558">+ Add Comment</a>
                                             </div>
-                                            <button class="btn btn-secondary" id="infoContinue">Continue</button>
                                         </div>
                                         <div class="tab-pane fade" id="ads" role="tabpanel">
-                                            <h4>Ads</h4>
-                                            <div class="form-group">
-                                                <label for="exampleInputFile">Fullscreen Ad Image</label>
-                                                <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
-                                                <small id="fileHelp" class="form-text text-muted">Select a file to use as the fullscreen ad image. Please ensure the size is at least 1080x1920 with a 9:16 (portrait) aspect ratio.</small>
-                                            </div>
-                                            <button class="btn btn-secondary" id="adsContinue">Continue</button>
+                                            <table style="width:100%;margin-top: 0px;table-layout:fixed;" class="pcs-itemtable" border="0" cellspacing="0" cellpadding="0">
+                                                <thead>
+                                                    <tr style="height:32px;">
+                                                        <td style="padding: 5px 0px 5px 5px;text-align: left;font-size: 9pt;" id="" class="pcs-itemtable-breakword">
+                                                            <strong>Date</strong>
+                                                        </td>
+                                                        <td style="padding: 5px 10px 5px 20px;text-align: left;font-size: 9pt;" id="" class="pcs-itemtable-breakword">
+                                                            <strong>Payment #</strong>
+                                                        </td>
+                                                        <td style="padding: 5px 10px 5px 5px;text-align: left;font-size: 9pt;" id="" class="pcs-itemtable-breakword">
+                                                            <strong>Reference #</strong>
+                                                        </td>
+                                                        <td style="padding: 5px 10px 5px 5px;text-align: left;font-size: 9pt;" id="" class="pcs-itemtable-breakword">
+                                                            <strong>Payment Mode</strong>
+                                                        </td>
+                                                        <td style="padding: 5px 10px 5px 5px;text-align: left;font-size: 9pt;" id="" class="pcs-itemtable-breakword hidden">
+                                                            <strong>Amount</strong>
+                                                        </td>
+                                                        <td style="padding: 5px 10px 5px 5px;text-align: center;font-size: 9pt;" id="" class="pcs-itemtable-breakword">
+                                                            <i class="fa fa-flash"></i>
+                                                        </td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="itemBody">
+                                                    <tr>
+                                                        <td rowspan="1" valign="top" style="background-color: #e9ecef;padding: 10px 0 10px 5px;text-align: left;word-wrap: break-word;" class="pcs-item-row">
+                                                            08 Apr 2019
+                                                        </td>
+                                                        <td rowspan="1" valign="top" style="background-color: #e9ecef;padding: 10px 0px 10px 20px;" class="pcs-item-row">
+                                                            <div>
+                                                                <div>
+                                                                    <span style="word-wrap: break-word;" id="tmp_item_name">300</span><br>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td rowspan="1" style="background-color: #e9ecef;" class="pcs-item-row lineitem-column text-align-right">
+                                                            <span id="tmp_item_qty"></span>
+                                                        </td>
+                                                        <td rowspan="1" style="background-color: #e9ecef;" class="pcs-item-row lineitem-column text-align-right">
+                                                            <span id="tmp_item_rate">Credit Card</span>
+                                                        </td>
+                                                        <td rowspan="1" style="background-color: #e9ecef;" class="pcs-item-row lineitem-column lineitem-content-right text-align-right">
+                                                            <span id="tmp_item_amount">$199.06</span>
+                                                        </td>
+                                                        <td rowspan="1" style="background-color: #e9ecef;" class="pcs-item-row lineitem-column lineitem-content-right text-align-right">
+                                                            <center>
+                                                                <button style="width: 25px;height: 25px; margin-left: 10px;" class="Modificar Cursor btn btn-outline-primary btn-icon">
+                                                                    <i class="fa fa-edit"></i>
+                                                                </button>
+                                                                <button href="#" title="Remove" class="Remove Cursor btn btn-outline-danger btn-icon" style="width: 25px;height: 25px; margin-left: 10px;">
+                                                                    <i class="fa fa-trash"></i>
+                                                                </button>
+                                                            </center>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
                                         </div>
-                                        <div class="tab-pane fade" id="schedulePanel" role="tabpanel">
+                                        @*<div class="tab-pane fade hidden" id="schedulePanel" role="tabpanel">
                                             <h4>Schedule</h4>
                                             <div id="scheduleAccordion" class="mb-3" role="tablist" aria-multiselectable="true">
                                                 <div class="card">
@@ -253,91 +341,8 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="card">
-                                                    <div class="card-header" role="tab" id="headingTwo">
-                                                        <h5 class="mb-0">
-                                                            <a class="collapsed" data-toggle="collapse" data-parent="#scheduleAccordion" href="#scheduleAccordioncollapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                                                Rules for Specific Days
-                                                            </a>
-                                                        </h5>
-                                                    </div>
-                                                    <div id="scheduleAccordioncollapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
-                                                        <div class="card-block">
-                                                            <h6>Play on the following days (check all that apply)</h6>
-                                                            <div class="form-check">
-                                                                <label class="form-check-label">
-                                                                    <input type="checkbox" class="form-check-input" id="sunday">
-                                                                    Sunday
-                                                                </label>
-                                                            </div>
-                                                            <div class="form-check">
-                                                                <label class="form-check-label">
-                                                                    <input type="checkbox" class="form-check-input" id="monday">
-                                                                    Monday
-                                                                </label>
-                                                            </div>
-                                                            <div class="form-check">
-                                                                <label class="form-check-label">
-                                                                    <input type="checkbox" class="form-check-input" id="tuesday">
-                                                                    Tuesday
-                                                                </label>
-                                                            </div>
-                                                            <div class="form-check">
-                                                                <label class="form-check-label">
-                                                                    <input type="checkbox" class="form-check-input" id="wednesday">
-                                                                    Wednesday
-                                                                </label>
-                                                            </div>
-                                                            <div class="form-check">
-                                                                <label class="form-check-label">
-                                                                    <input type="checkbox" class="form-check-input" id="thursday">
-                                                                    Thursday
-                                                                </label>
-                                                            </div>
-                                                            <div class="form-check">
-                                                                <label class="form-check-label">
-                                                                    <input type="checkbox" class="form-check-input" id="friday">
-                                                                    Friday
-                                                                </label>
-                                                            </div>
-                                                            <div class="form-check">
-                                                                <label class="form-check-label">
-                                                                    <input type="checkbox" class="form-check-input" id="saturday">
-                                                                    Saturday
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="card">
-                                                    <div class="card-header" role="tab" id="headingThree">
-                                                        <h5 class="mb-0">
-                                                            <a class="collapsed" data-toggle="collapse" data-parent="#scheduleAccordion" href="#scheduleAccordioncollapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                                                Rules for Specific Times
-                                                            </a>
-                                                        </h5>
-                                                    </div>
-                                                    <div id="scheduleAccordioncollapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
-                                                        <div class="card-block">
-                                                            <h6>Play during the following timeframes (applies to each day)</h6>
-                                                            <div class="form-group row">
-                                                                <label for="example-time-input" class="col-2 col-form-label">Start Time</label>
-                                                                <div class="col-10">
-                                                                    <input class="form-control" type="time" value="13:45:00" id="start-time">
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group row">
-                                                                <label for="example-time-input" class="col-2 col-form-label">End Time</label>
-                                                                <div class="col-10">
-                                                                    <input class="form-control" type="time" value="13:45:00" id="end-time">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             </div>
-                                            <button class="btn btn-secondary" id="scheduleContinue">Continue</button>
-                                        </div>
+                                        </div>*@
                                     </div>
                                 </div>
 
@@ -356,25 +361,27 @@
                                     <table style="width:100%;table-layout: fixed;">
                                         <tbody>
                                             <tr>
-                                                <td style="vertical-align: top; width:50%;">
+                                                <td style="width:50%;" class="text-align-lef v-top">
+
+                                                    <div>
+                                                        <img src="~/Content/img/Venus_Doors11.png" style="width: 200px;" />
+                                                    </div>
+                                                    <div style="clear:both;margin-top:20px;">
+                                                        <span style="font-size:8pt;"><b>Balance Due</b></span>
+                                                        <br>
+                                                        <span style="font-size:12pt;"><b>$230.77</b></span>
+                                                    </div>
+                                                </td>
+
+                                                <td class="text-align-right v-top" style="vertical-align: top; width:50%;">
                                                     <span class="pcs-orgname"><b>Venus Cabinet Doors</b></span><br>
-                                                    <span id="tmp_entity_number" style="font-size: 10pt;" class="pcs-label"><b># INV-2105</b></span>
+                                                    <span id="tmp_entity_number" style="font-size: 10pt;" class="pcs-label"><b># EST-2105</b></span>
                                                     <span class="pcs-label">
                                                         <span style="white-space: pre-wrap;word-wrap: break-word;" id="tmp_org_address">
                                                             Texas
                                                             U.S.A
                                                         </span>
                                                     </span>
-                                                </td>
-                                                <td style="width:50%;" class="text-align-right v-top">
-
-                                                    <div>
-                                                        <img src="~/Content/img/Venus_Doors11.png" style="width: 200px;" />
-                                                    </div>
-                                                    <div style="clear:both;margin-top:20px;">
-                                                        <span style="font-size:8pt;"><b>Balance Due</b></span><br>
-                                                        <span style="font-size:12pt;"><b>$230.77</b></span>
-                                                    </div>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -429,19 +436,19 @@
                                         <thead>
                                             <tr style="height:32px;">
                                                 <td style="padding: 5px 0px 5px 5px;width: 5%;text-align: center;" id="" class="pcs-itemtable-header pcs-itemtable-breakword">
-                                                    #
+                                                    Door
                                                 </td>
                                                 <td style="padding: 5px 10px 5px 20px;width: ;text-align: left;" id="" class="pcs-itemtable-header pcs-itemtable-breakword">
-                                                    Item &amp; Description
+                                                    Description
                                                 </td>
                                                 <td style="padding: 5px 10px 5px 5px;width: 11%;text-align: right;" id="" class="pcs-itemtable-header pcs-itemtable-breakword">
                                                     Qty
                                                 </td>
                                                 <td style="padding: 5px 10px 5px 5px;width: 11%;text-align: right;" id="" class="pcs-itemtable-header pcs-itemtable-breakword">
-                                                    Rate
+                                                    Discount
                                                 </td>
                                                 <td style="padding: 5px 10px 5px 5px;width: 15%;text-align: right;" id="" class="pcs-itemtable-header pcs-itemtable-breakword">
-                                                    Amount
+                                                    Sub Total
                                                 </td>
 
                                             </tr>
@@ -458,15 +465,9 @@
 
                                                             <span style="white-space: pre-wrap;word-wrap: break-word;" class="pcs-item-desc" id="tmp_item_description">SW-M-ACOL514FJ-16-Baseboard</span>
 
-
                                                         </div>
                                                     </div>
                                                 </td>
-
-
-
-
-
                                                 <td rowspan="1" class="pcs-item-row lineitem-column text-align-right">
                                                     <span id="tmp_item_qty">144.00</span>
                                                     <div class="pcs-item-desc">LF</div>
@@ -494,10 +495,6 @@
                                                     </div>
                                                 </td>
 
-
-
-
-
                                                 <td rowspan="1" class="pcs-item-row lineitem-column text-align-right">
                                                     <span id="tmp_item_qty">48.00</span>
                                                     <div class="pcs-item-desc">LF</div>
@@ -520,14 +517,9 @@
 
                                                             <span style="white-space: pre-wrap;word-wrap: break-word;" class="pcs-item-desc" id="tmp_item_description"></span>
 
-
                                                         </div>
                                                     </div>
                                                 </td>
-
-
-
-
 
                                                 <td rowspan="1" class="pcs-item-row lineitem-column text-align-right">
                                                     <span id="tmp_item_qty">51.00</span>
@@ -556,23 +548,15 @@
                                                         <td id="tmp_subtotal" class="total-section-value text-align-right">213.18</td>
                                                     </tr>
 
-
-
                                                     <tr style="height:10px;">
                                                         <td class="total-section-label text-align-right">Sales Tax (8.25%)  </td>
                                                         <td class="total-section-value text-align-right">17.59</td>
                                                     </tr>
 
-
-
-
-
                                                     <tr>
                                                         <td class="total-section-label text-align-right"><b>Total</b></td>
                                                         <td id="tmp_total" class="total-section-value text-align-right"><b>$230.77</b></td>
                                                     </tr>
-
-
 
                                                     <tr style="height:40px;" class="pcs-balance">
                                                         <td class="total-section-label text-align-right"><b>Balance Due</b></td>
@@ -584,17 +568,10 @@
                                         <div style="clear: both;"></div>
                                     </div>
 
-
-
-
-
                                     <div style="clear:both;margin-top:50px;width:100%;">
                                         <label style="font-size: 10pt;" id="tmp_notes_label" class="pcs-label">Notes</label><br>
                                         <p style="margin-top:7px;white-space: pre-wrap;word-wrap: break-word;" class="pcs-notes">Thanks for your business.</p>
                                     </div>
-
-
-
 
                                     <div style="page-break-inside: avoid;">
                                     </div>
@@ -650,22 +627,6 @@
                                                     <div class="col-xs-4 col-md-12">
                                                         <hr />
                                                     </div>
-                                                 
-                                                    <div class="col-xs-4 col-md-6">
-                                                        <label for="InsideEdgeProfile" style="margin-top: 25px;">Invoice#: </label>
-                                                        <input style="width:100%" class="form-control" id="cbStileWidth" data-placeholder="">
-                                                    </div><!-- col -->
-
-                                                    <div class="col-xs-4 col-md-6">
-                                                    </div>
-
-                                                    <div class="col-xs-4 col-md-6">
-                                                        <label for="OutsideEdgeProfile" style="margin-top: 25px;">Order Number: </label>
-                                                        <input style="width:100%" class="form-control" id="cbStileWidth" data-placeholder="">
-                                                    </div><!-- col -->
-
-                                                    <div class="col-xs-4 col-md-6">
-                                                    </div>
 
                                                     <div class="col-xs-4 col-md-6">
                                                         <label for="BottomRail" style="margin-top: 25px;">Invoice Date: </label>
@@ -685,98 +646,98 @@
                                                         </div>
                                                     </div>
 
-                                                        <div class="col-xs-4 col-md-12">
-                                                            <hr />
-                                                        </div>
+                                                    <div class="col-xs-4 col-md-12">
+                                                        <hr />
+                                                    </div>
 
-                                                        <div class="col-xs-4 col-md-6">
-                                                            <label for="BottomRail" style="margin-top: 25px;">Salesperson: </label>
-                                                            <select style="width:100%" class="eventChange selectModal form-control select2 Doors" id="cbStileWidth" data-placeholder=""></select>
-                                                        </div><!-- col -->
+                                                    <div class="col-xs-4 col-md-6">
+                                                        <label for="BottomRail" style="margin-top: 25px;">Salesperson: </label>
+                                                        <select style="width:100%" class="eventChange selectModal form-control select2 Doors" id="cbStileWidth" data-placeholder=""></select>
+                                                    </div><!-- col -->
 
-                                                        <br />
+                                                    <br />
 
-                                                        <div class="col-xs-4 col-md-12" style="margin-top: 30px;padding-right: 0px;">
-                                                            <table id="mitabla" class="table table-bordered table-colored table-light">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th colspan="2">Item Details</th>
-                                                                        <th>Quantity</th>
-                                                                        <th>Rate</th>
-                                                                        <th>Discount</th>
-                                                                        <th>Tax</th>
-                                                                        <th>Amount</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td></td>
-                                                                        <td>
-                                                                            <div contenteditable></div>
-                                                                        </td>
-                                                                        <td>
-                                                                            <div contenteditable></div>
-                                                                        </td>
-                                                                        <td>
-                                                                            <div contenteditable></div>
-                                                                        </td>
-                                                                        <td>
-                                                                            <div contenteditable></div>
-                                                                        </td>
-                                                                        <td>
-                                                                            <div contenteditable></div>
-                                                                        </td>
-                                                                        <td></td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </div><!-- col -->
+                                                    <div class="col-xs-4 col-md-12" style="margin-top: 30px;padding-right: 0px;">
+                                                        <table id="mitabla" class="table table-bordered table-colored table-light">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th colspan="2">Item Details</th>
+                                                                    <th>Quantity</th>
+                                                                    <th>Rate</th>
+                                                                    <th>Discount</th>
+                                                                    <th>Tax</th>
+                                                                    <th>Amount</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td>
+                                                                        <div contenteditable></div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div contenteditable></div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div contenteditable></div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div contenteditable></div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div contenteditable></div>
+                                                                    </td>
+                                                                    <td></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div><!-- col -->
 
-                                                        <div class="col-xs-4 col-md-4">
-                                                            <button type="button" class="Cursor btn btn-page" id="add">
-                                                                <span aria-hidden="true"><i class="icon ion-plus"></i> Add another line</span>
-                                                            </button>
-                                                        </div><!-- col -->
+                                                    <div class="col-xs-4 col-md-4">
+                                                        <button type="button" class="Cursor btn btn-page" id="add">
+                                                            <span aria-hidden="true"><i class="icon ion-plus"></i> Add another line</span>
+                                                        </button>
+                                                    </div><!-- col -->
 
-                                                        <div class="col-md-8" id="Resultados" style="text-align: right;padding-right: 0px;">
+                                                    <div class="col-md-8" id="Resultados" style="text-align: right;padding-right: 0px;">
 
-                                                            <input hidden id="idorder" value="" />
-                                                            <input hidden id="idtotal" value="" />
-                                                            <input hidden id="idstatus" value="" />
-                                                            <h5 id="lblSubtotal" style="color:#7b7979">Sub-Total: <span>$</span></h5>
-                                                            <h5 id="lblTax" style="color:#7b7979; margin-left:15px">Tax: <span>$</span></h5>
-                                                            <h5 id="lblShippingCost" style="display:none;color:#7b7979; margin-left:15px">Cost of shipping: <span>$</span></h5>
-                                                            <h5 id="lblTotal" style="color:#000; margin-left:15px">Total Price: <span>$</span></h5>
-
-                                                        </div>
-
-                                                        <div class="col-xs-4 col-md-12">
-                                                            <hr />
-                                                        </div>
-
-                                                        <div class="col-xs-4 col-md-6">
-                                                            <label for="DoorStyle" style="margin-top: 25px;">Due Date: </label>
-                                                            <div class="input-group">
-                                                                <span class="input-group-addon"><i class="icon ion-paperclip tx-16 lh-0 op-6"></i></span>
-                                                                <input type="file" id="file" class="custom-file-input form-control">
-                                                            </div>
-                                                        </div><!-- col -->
-
-                                                        <div class="col-xs-4 col-md-6">
-
-                                                            <div class="form-group">
-                                                                <label for="OutsideEdgeProfile" style="margin-top: 25px;">Customer Notes: </label>
-                                                                <textarea style="width:100%" class="form-control" id="cbOutsideEdgeProfile" data-placeholder=""></textarea>
-                                                            </div><!-- col -->
-
-                                                            <div class="form-group">
-                                                                <label for="OutsideEdgeProfile" style="margin-top: 25px;">Terms & Conditions: </label>
-                                                                <textarea style="width:100%" class="form-control" id="cbOutsideEdgeProfile" data-placeholder=""></textarea>
-                                                            </div><!-- col -->
-
-                                                        </div><!-- col -->
+                                                        <input hidden id="idorder" value="" />
+                                                        <input hidden id="idtotal" value="" />
+                                                        <input hidden id="idstatus" value="" />
+                                                        <h5 id="lblSubtotal" style="color:#7b7979">Sub-Total: <span>$</span></h5>
+                                                        <h5 id="lblTax" style="color:#7b7979; margin-left:15px">Tax: <span>$</span></h5>
+                                                        <h5 id="lblShippingCost" style="display:none;color:#7b7979; margin-left:15px">Cost of shipping: <span>$</span></h5>
+                                                        <h5 id="lblTotal" style="color:#000; margin-left:15px">Total Price: <span>$</span></h5>
 
                                                     </div>
+
+                                                    <div class="col-xs-4 col-md-12">
+                                                        <hr />
+                                                    </div>
+
+                                                    <div class="col-xs-4 col-md-6">
+                                                        <label for="DoorStyle" style="margin-top: 25px;">Due Date: </label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><i class="icon ion-paperclip tx-16 lh-0 op-6"></i></span>
+                                                            <input type="file" id="file" class="custom-file-input form-control">
+                                                        </div>
+                                                    </div><!-- col -->
+
+                                                    <div class="col-xs-4 col-md-6">
+
+                                                        <div class="form-group">
+                                                            <label for="OutsideEdgeProfile" style="margin-top: 25px;">Customer Notes: </label>
+                                                            <textarea style="width:100%" class="form-control" id="cbOutsideEdgeProfile" data-placeholder=""></textarea>
+                                                        </div><!-- col -->
+
+                                                        <div class="form-group">
+                                                            <label for="OutsideEdgeProfile" style="margin-top: 25px;">Terms & Conditions: </label>
+                                                            <textarea style="width:100%" class="form-control" id="cbOutsideEdgeProfile" data-placeholder=""></textarea>
+                                                        </div><!-- col -->
+
+                                                    </div><!-- col -->
+
+                                                </div>
                                             </div>
                                         </div>
                                     </div><!-- pd-20 -->
