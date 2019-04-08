@@ -7,7 +7,7 @@ using Model;
 
 namespace BusinessLogic
 {
-    class lnEstimate
+    public class lnEstimate
     {
         DataAccess.adEstimate _AD = new DataAccess.adEstimate();
 
@@ -38,7 +38,7 @@ namespace BusinessLogic
         /// </summary>
         /// <param name="pId"></param>
         /// <returns></returns>
-        public Estimate GetEstimate(int Id, int IdCompany, int IdUserCliente, int IdUserVendedor, int CreatorUser, DateTime EstimateDate, DateTime Expirydate)
+        public List<Estimate> GetEstimate(int Id, int IdCompany, int IdUserCliente, int IdUserVendedor, int CreatorUser, DateTime EstimateDate, DateTime Expirydate)
         {
             try
             {
@@ -51,7 +51,7 @@ namespace BusinessLogic
 
         }
 
-        public Estimate GetEstimateByIdCompany(int pIdcompany)
+        public List<Estimate> GetEstimateByIdCompany(int pIdcompany)
         {
             try
             {

@@ -222,7 +222,7 @@
                                 html += '<button type="button" class=" ' + classPrefix + '-prev ' + disableClassName + ' btn btn-light  pd-x-25"><i class="fa fa-angle-left"></i></button>';
                             }
                         } else {
-                            html += '<button type="button" class=" ' + classPrefix + '-prev J-paginationjs-previous btn btn-light  pd-x-25"><i class="fa fa-angle-left"></i></button>';
+                            html += '<button type="button" data-num="' + (currentPage - 1) + '" class=" ' + classPrefix + '-prev J-paginationjs-previous btn btn-light  pd-x-25"><i class="fa fa-angle-left"></i></button>';
                         }
                     }
 
@@ -266,18 +266,29 @@
                     }
 
                     // Whether to display the Next button
-                    if (showNext) {
-                        if (currentPage >= totalPage) {
-                            if (!autoHideNext) {
-                                html += '<li class="' + classPrefix + '-next ' + disableClassName + '"<button type="button" class="btn btn-light pd-x-25"><i class="fa fa-angle-right"></i></button><\/li>';
-                            }
-                        } else {
-                            html += '<li class="' + classPrefix + '-next J-paginationjs-next" data-num="' + (currentPage + 1) + '" title="Next page"><button type="button" class="btn btn-light pd-x-25"><i class="fa fa-angle-right"></i></button><\/li>';
-                        }
-                    }
-                    html += '<\/ul><\/div>';
-                }
+                //    if (showNext) {
+                //        if (currentPage >= totalPage) {
+                //            if (!autoHideNext) {
+                //                html += '<li class="' + classPrefix + '-next ' + disableClassName + '"<button type="button" class="btn btn-light pd-x-25"><i class="fa fa-angle-right"></i></button><\/li>';
+                //            }
+                //        } else {
+                //            html += '<li class="' + classPrefix + '-next J-paginationjs-next" data-num="' + (currentPage + 1) + '" title="Next page"><button type="button" class="btn btn-light pd-x-25"><i class="fa fa-angle-right"></i></button><\/li>';
+                //        }
+                //    }
+                //    html += '<\/ul><\/div>';
+                //}
 
+                if (showNext) {
+                    if (currentPage >= totalPage) {
+                        if (!autoHideNext) {
+                            html += '<button type="button" class=" ' + classPrefix + '-next ' + disableClassName + ' btn btn-light pd-x-25"><i class="fa fa-angle-right"></i></button>';
+                        }
+                    } else {
+                        html += '<button type="button" data-num="' + (currentPage + 1) + '" class="' + classPrefix + '-next J-paginationjs-next btn btn-light pd-x-25"><i class="fa fa-angle-right"></i></button>';
+                    }
+                }
+                html += '<\/ul><\/div>';
+            }
                 // Whether to display the navigator
                 if (showNavigator) {
                     if (formatNavigator) {
@@ -669,10 +680,10 @@
                     self.go(pageNumber, done);
                 });
 
-                // Page number button click
-                el.delegate('.J-paginationjs-page', 'click', function (event) {
+                $(document).ready(function () {
+                $(document).on('click', ".J-paginationjs-page", function () {
                     var current = $(event.currentTarget);
-                    var pageNumber = $.trim(current.attr('data-num'));
+                    var pageNumber = $(this).attr('data-num');
 
                     if (!pageNumber || current.hasClass(attributes.disableClassName) || current.hasClass(attributes.activeClassName)) return;
 
@@ -685,12 +696,12 @@
                     self.callHook('afterPageOnClick', event, pageNumber);
 
                     if (!attributes.pageLink) return false;
+
                 });
 
-                // Previous button click
-                el.delegate('.J-paginationjs-previous', 'click', function (event) {
+                $(document).on('click', ".J-paginationjs-previous", function () {
                     var current = $(event.currentTarget);
-                    var pageNumber = $.trim(current.attr('data-num'));
+                    var pageNumber = $(this).attr('data-num');
 
                     if (!pageNumber || current.hasClass(attributes.disableClassName)) return;
 
@@ -703,12 +714,11 @@
                     self.callHook('afterPreviousOnClick', event, pageNumber);
 
                     if (!attributes.pageLink) return false;
-                });
 
-                // Next button click
-                el.delegate('.J-paginationjs-next', 'click', function (event) {
+                });
+                $(document).on('click', ".J-paginationjs-next", function () {
                     var current = $(event.currentTarget);
-                    var pageNumber = $.trim(current.attr('data-num'));
+                    var pageNumber = $(this).attr('data-num');
 
                     if (!pageNumber || current.hasClass(attributes.disableClassName)) return;
 
@@ -721,7 +731,66 @@
                     self.callHook('afterNextOnClick', event, pageNumber);
 
                     if (!attributes.pageLink) return false;
+
                 });
+                });
+
+
+              
+
+                // Page number button click
+                //el.delegate('.J-paginationjs-page', 'click', function (event) {
+                //    var current = $(event.currentTarget);
+                //    var pageNumber = $.trim(current.attr('data-num'));
+
+                //    if (!pageNumber || current.hasClass(attributes.disableClassName) || current.hasClass(attributes.activeClassName)) return;
+
+                //    // Before page button clicked
+                //    if (self.callHook('beforePageOnClick', event, pageNumber) === false) return false;
+
+                //    self.go(pageNumber);
+
+                //    // After page button clicked
+                //    self.callHook('afterPageOnClick', event, pageNumber);
+
+                //    if (!attributes.pageLink) return false;
+                //});
+
+                // Previous button click
+                //el.delegate('.J-paginationjs-previous', 'click', function (event) {
+                //    var current = $(event.currentTarget);
+                //    var pageNumber = $.trim(current.attr('data-num'));
+
+                //    if (!pageNumber || current.hasClass(attributes.disableClassName)) return;
+
+                //    // Before previous clicked
+                //    if (self.callHook('beforePreviousOnClick', event, pageNumber) === false) return false;
+
+                //    self.go(pageNumber);
+
+                //    // After previous clicked
+                //    self.callHook('afterPreviousOnClick', event, pageNumber);
+
+                //    if (!attributes.pageLink) return false;
+                //});
+
+                // Next button click
+                //el.delegate('.J-paginationjs-next', 'click', function (event) {
+                //    var current = $(event.currentTarget);
+                //    var pageNumber = $.trim(current.attr('data-num'));
+
+                //    if (!pageNumber || current.hasClass(attributes.disableClassName)) return;
+
+                //    // Before next clicked
+                //    if (self.callHook('beforeNextOnClick', event, pageNumber) === false) return false;
+
+                //    self.go(pageNumber);
+
+                //    // After next clicked
+                //    self.callHook('afterNextOnClick', event, pageNumber);
+
+                //    if (!attributes.pageLink) return false;
+                //});
 
                 // Go button click
                 el.delegate('.J-paginationjs-go-button', 'click', function (event) {
