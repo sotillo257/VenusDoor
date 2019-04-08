@@ -60,9 +60,9 @@ $(document).ready(function () {
             var option = '';
             for (var i = 0; i < data.length; i++) {
                 if (i == 0) {
-                    option += '<div class="br-mailbox-list-item Esimate active">';
+                    option += '<div data-id="' + data[i].Id + '" class="br-mailbox-list-item Esimate active">';
                 } else {
-                    option += '<div class="br-mailbox-list-item Esimate">';
+                    option += '<div data-id="' + data[i].Id + '" class="br-mailbox-list-item Esimate ">';
                 }
                
                                  
@@ -94,6 +94,14 @@ $(document).ready(function () {
 $(document).on('click', '.Esimate', function (event) {   
     $('.Esimate').removeClass("active");
     $(this).addClass("active");
+    var IdEstimate = $(this).attr('data-id');
+    for (var i = 0; i < listEstimate.length; i++) {
+        if (IdEstimate == listEstimate[i].Id) {
+            $("#lblTitulo").text(listEstimate[i].IdFolio);
+            var Fecha1 = new Date(parseInt(re.exec(listEstimate[i].CreationDate)[0]));
+            $("#lblFechaTitulo").text(Fecha1.ddmmyyyy());
+        }
+    }
 });
 
 function Moneda(entrada) {
