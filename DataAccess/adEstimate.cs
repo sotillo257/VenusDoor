@@ -11,11 +11,11 @@ namespace DataAccess
 {
     public class adEstimate : Connection
     {
-        public Estimate GetEstimateById(int Id, int IdCompany, int IdUserCliente, int IdUserVendedor, int CreatorUser, DateTime EstimateDate, DateTime Expirydate)
+        public List<Estimate> GetEstimateById(int Id, int IdCompany, int IdUserCliente, int IdUserVendedor, int CreatorUser, DateTime EstimateDate, DateTime Expirydate)
         {
-            Estimate est = new Estimate();
-            string sql = @"[spGetEstimate] '{0}' ";
-            sql = string.Format(sql, Id, IdCompany, IdUserCliente, IdUserVendedor, CreatorUser, EstimateDate, Expirydate);
+            List<Estimate> est = new List<Estimate>();
+            string sql = @"[spGetEstimate] '{0}','{1}','{2}','{3}','{4}','{5}','{6}' ";
+            sql = string.Format(sql, Id, IdCompany, IdUserCliente, IdUserVendedor, CreatorUser, EstimateDate.ToString("yyyyMMdd"), Expirydate.ToString("yyyyMMdd"));
 
             try
             {
@@ -25,12 +25,12 @@ namespace DataAccess
                 {
                     foreach (DataRow item in ds.Tables["Estimates"].Rows)
                     {
-                        est = new Estimate()
+                        est.Add(new Estimate()
                         {
                             Id = int.Parse(item["Id"].ToString()),
                             IdFolio = item["IdFolio"].ToString(),
                             Company = new Company() { Id = int.Parse(item["IdCompany"].ToString()), Name = item["NameCompany"].ToString() },
-                            UserCliente = new User() { Id = int.Parse(item["IdUserCliente"].ToString()) },
+                            UserCliente = new User() { Id = int.Parse(item["IdUserCliente"].ToString()), Person = new Person() { Name = item["NameCliente"].ToString() } },
                             UserVendedor = new User() { Id = int.Parse(item["IdUserVendedor"].ToString()) },
                             Order = new Order() { Id = int.Parse(item["IdOrder"].ToString()) },
                             EstimateDate = (item["EstimateDate"].ToString() != "") ? DateTime.Parse(item["EstimateDate"].ToString()) : DateTime.Parse("01/01/1900"),
@@ -42,7 +42,8 @@ namespace DataAccess
                             ModificationDate = (item["ModificationDate"].ToString() != "") ? DateTime.Parse(item["ModificationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             CreatorUser = int.Parse(item["CreatorUser"].ToString()),
                             ModificationUser = int.Parse(item["ModificationUser"].ToString()),
-                        };
+
+                        });
                     }
                 }
                 return est;
@@ -53,9 +54,9 @@ namespace DataAccess
             }
         }
 
-        public Estimate GetEstimateByIdCompany(int IdCompania)
+        public List<Estimate> GetEstimateByIdCompany(int IdCompania)
         {
-            Estimate est = new Estimate();
+            List<Estimate> est = new List<Estimate>();
             string sql = @"[spGetEstimateByIdCompany] '{0}' ";
             sql = string.Format(sql, IdCompania);
 
@@ -67,7 +68,7 @@ namespace DataAccess
                 {
                     foreach (DataRow item in ds.Tables["Estimates"].Rows)
                     {
-                        est = new Estimate()
+                        est.Add(new Estimate()
                         {
                             Id = int.Parse(item["Id"].ToString()),
                             IdFolio = item["IdFolio"].ToString(),
@@ -84,7 +85,8 @@ namespace DataAccess
                             ModificationDate = (item["ModificationDate"].ToString() != "") ? DateTime.Parse(item["ModificationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             CreatorUser = int.Parse(item["CreatorUser"].ToString()),
                             ModificationUser = int.Parse(item["ModificationUser"].ToString()),
-                        };
+
+                        });
                     }
                 }
                 return est;
