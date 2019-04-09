@@ -13858,16 +13858,6 @@ textarea.parsley-success:focus {
   justify-content: space-between;
   transition: all 0.2s ease-in-out;
 }
-.in-headr::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: -4px;
-  width: 3px;
-  background-color: #fff;
-  z-index: 1040;
-}
 
 @media (min-width: 992px) {
   .in-headr {
@@ -14939,6 +14929,7 @@ textarea.parsley-success:focus {
   height: 95px;
   border-bottom: 1px solid #e9ecef;
   padding: 0 15px;
+  box-shadow: 0 1px 4px 0px rgba(0, 0, 0, 0.16);
 }
 .br-mailbox-list-header .btn-group .btn, .br-mailbox-list-header .btn-group .sp-container button, .sp-container .br-mailbox-list-header .btn-group button {
   padding: 8px 10px;
