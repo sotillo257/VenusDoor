@@ -25,6 +25,11 @@ namespace DataAccess
                 {
                     foreach (DataRow item in ds.Tables["Estimates"].Rows)
                     {
+                        int Document = 0;
+                        if (int.TryParse(item["Document"].ToString(), out Document))
+                        {
+                            Document = int.Parse(item["Document"].ToString());
+                        }
                         est.Add(new Estimate()
                         {
                             Id = int.Parse(item["Id"].ToString()),
@@ -42,6 +47,7 @@ namespace DataAccess
                             ModificationDate = (item["ModificationDate"].ToString() != "") ? DateTime.Parse(item["ModificationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             CreatorUser = int.Parse(item["CreatorUser"].ToString()),
                             ModificationUser = int.Parse(item["ModificationUser"].ToString()),
+                            Document = Document
 
                         });
                     }

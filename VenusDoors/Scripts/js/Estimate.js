@@ -71,7 +71,7 @@ $(document).ready(function () {
                 option += '   <h6 class="tx-14 mg-b-10 tx-gray-800">' + data[i].UserCliente.Person.Name + '</h6>';
                 option += '</div>';
                 var attach =' ';
-                if (i == 0) {
+                if (data[i].Document > 0) {
                     attach += '<i class="icon ion-android-attach"></i>';
                 }
                 option += '  <h6 class="tx-14 mg-b-10 tx-gray-800">'+attach+' $' + Moneda(data[i].Total) + '</h6>';
