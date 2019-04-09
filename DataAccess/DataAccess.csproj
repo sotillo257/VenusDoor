@@ -49,7 +49,14 @@
   <ItemGroup>
     <Compile Include="adBottomRail.cs" />
     <Compile Include="adCompany.cs" />
+    <Compile Include="adCreditNotes.cs" />
+    <Compile Include="adCreditNotesxInvoices.cs" />
     <Compile Include="adDecimals.cs" />
+    <Compile Include="adDocumentsAdj.cs" />
+    <Compile Include="adDocumentsAdjxCreditNotes.cs" />
+    <Compile Include="adDocumentsAdjxEstimate.cs" />
+    <Compile Include="adDocumentsAdjxInvoice.cs" />
+    <Compile Include="adDocumentsAdjxPaymentsReceived.cs" />
     <Compile Include="adDoorOption.cs" />
     <Compile Include="adDoors.cs" />
     <Compile Include="adDoorsPrices.cs" />
@@ -73,6 +80,7 @@
     <Compile Include="adOutsideEdgeProfile.cs" />
     <Compile Include="adPanel.cs" />
     <Compile Include="adPanelMaterial.cs" />
+    <Compile Include="adPaymentMode.cs" />
     <Compile Include="adPerson.cs" />
     <Compile Include="adPreparation.cs" />
     <Compile Include="adRailThickness.cs" />

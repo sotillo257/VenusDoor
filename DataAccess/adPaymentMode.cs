@@ -9,23 +9,23 @@ using System.Data;
 
 namespace DataAccess
 {
-    public class adBottomRail : Connection
+    public class adPaymentMode : Connection
     {
-        public BottomRail GetBottomRailById(int Id)
+        public PaymentMode GetPaymentModeById(int Id)
         {
-            BottomRail bottomrail = new BottomRail();
-            string sql = @"[spGetBottomRail] '{0}' ";
+            PaymentMode PaymentMode = new PaymentMode();
+            string sql = @"[spGetPaymentMode] '{0}' ";
             sql = string.Format(sql, Id);
 
             try
             {
                 DataSet ds = new DataSet();
-                ds = _MB.CreaDS(ds, "BottomRail", sql, _CN);
-                if (ds.Tables["BottomRail"].Rows.Count > 0)
+                ds = _MB.CreaDS(ds, "PaymentMode", sql, _CN);
+                if (ds.Tables["PaymentMode"].Rows.Count > 0)
                 {
-                    foreach (DataRow item in ds.Tables["BottomRail"].Rows)
+                    foreach (DataRow item in ds.Tables["PaymentMode"].Rows)
                     {
-                        bottomrail = new BottomRail()
+                        PaymentMode = new PaymentMode()
                         {
                             Id = int.Parse(item["Id"].ToString()),
                             Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["DescripStatus"].ToString() },
@@ -38,7 +38,7 @@ namespace DataAccess
                         };
                     }
                 }
-                return bottomrail;
+                return PaymentMode;
             }
             catch (Exception)
             {
@@ -47,22 +47,22 @@ namespace DataAccess
 
         }
 
-        public List<BottomRail> GetAllBottomRail()
+        public List<PaymentMode> GetAllPaymentMode()
         {
-            List<BottomRail> bottomrail = new List<BottomRail>();
-            string sql = @"[spGetAllBottomRail]";
+            List<PaymentMode> PaymentMode = new List<PaymentMode>();
+            string sql = @"[spGetAllPaymentMode]";
             try
             {
                 DataSet ds = new DataSet();
-                ds = _MB.CreaDS(ds, "BottomRail", sql, _CN);
-                if (ds.Tables["BottomRail"].Rows.Count > 0)
+                ds = _MB.CreaDS(ds, "PaymentMode", sql, _CN);
+                if (ds.Tables["PaymentMode"].Rows.Count > 0)
                 {
-                    foreach (DataRow item in ds.Tables["BottomRail"].Rows)
+                    foreach (DataRow item in ds.Tables["PaymentMode"].Rows)
                     {
-                        bottomrail.Add(new BottomRail()
+                        PaymentMode.Add(new PaymentMode()
                         {
                             Id = int.Parse(item["Id"].ToString()),
-                            Status = new Status() {Id = int.Parse(item["IdStatus"].ToString()), Description = item["DescripStatus"].ToString() },
+                            Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["DescripStatus"].ToString() },
                             Description = item["Description"].ToString(),
                             CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             ModificationDate = (item["ModificationDate"].ToString() != "") ? DateTime.Parse(item["ModificationDate"].ToString()) : DateTime.Parse("01/01/1900"),
@@ -72,7 +72,7 @@ namespace DataAccess
                         });
                     }
                 }
-                return bottomrail;
+                return PaymentMode;
             }
             catch (Exception)
             {
@@ -81,11 +81,11 @@ namespace DataAccess
 
         }
 
-        public int InsertBottomRail(BottomRail pBottomRail)
+        public int InsertPaymentMode(PaymentMode pPaymentMode)
         {
-            string sql = @"[spInsertBottomRail] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}'";
-            sql = string.Format(sql, pBottomRail.Description, pBottomRail.Status.Id, pBottomRail.CreationDate.ToString("yyyyMMdd"),
-                pBottomRail.CreatorUser, pBottomRail.ModificationDate.ToString("yyyyMMdd"), pBottomRail.ModificationUser);
+            string sql = @"[spInsertPaymentMode] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}'";
+            sql = string.Format(sql, pPaymentMode.Description, pPaymentMode.Status.Id, pPaymentMode.CreationDate.ToString("yyyyMMdd"),
+                pPaymentMode.CreatorUser, pPaymentMode.ModificationDate.ToString("yyyyMMdd"), pPaymentMode.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -96,11 +96,11 @@ namespace DataAccess
             }
         }
 
-        public void UpdateBottomRail(BottomRail pBottomRail)
+        public void UpdatePaymentMode(PaymentMode pPaymentMode)
         {
-            string sql = @"[spUpdateBottomRail] '{0}', '{1}', '{2}', '{3}', '{4}'";
-            sql = string.Format(sql,pBottomRail.Id, pBottomRail.Description, pBottomRail.Status.Id, pBottomRail.ModificationDate.ToString("yyyyMMdd"),
-                pBottomRail.ModificationUser);
+            string sql = @"[spUpdatePaymentMode] '{0}', '{1}', '{2}', '{3}', '{4}'";
+            sql = string.Format(sql, pPaymentMode.Id, pPaymentMode.Description, pPaymentMode.Status.Id, pPaymentMode.ModificationDate.ToString("yyyyMMdd"),
+                pPaymentMode.ModificationUser);
             try
             {
                 _MB.EjecutarSQL(_CN, sql);
@@ -110,10 +110,10 @@ namespace DataAccess
                 throw err;
             }
         }
-     
-        public void DeleteBottomRail(int pId)
+
+        public void DeletePaymentMode(int pId)
         {
-            string sql = @"[spDeleteBottomRail] '{0}'";
+            string sql = @"[spDeletePaymentMode] '{0}'";
             sql = string.Format(sql, pId);
             try
             {

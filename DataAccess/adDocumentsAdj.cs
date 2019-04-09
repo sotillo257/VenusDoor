@@ -9,27 +9,28 @@ using System.Data;
 
 namespace DataAccess
 {
-    public class adBottomRail : Connection
+    public class adDocumentsAdj : Connection
     {
-        public BottomRail GetBottomRailById(int Id)
+        public DocumentsAdj GetDocumentsAdjById(int Id)
         {
-            BottomRail bottomrail = new BottomRail();
-            string sql = @"[spGetBottomRail] '{0}' ";
+            DocumentsAdj adj = new DocumentsAdj();
+            string sql = @"[spGetDocumentsAdj] '{0}' ";
             sql = string.Format(sql, Id);
 
             try
             {
                 DataSet ds = new DataSet();
-                ds = _MB.CreaDS(ds, "BottomRail", sql, _CN);
-                if (ds.Tables["BottomRail"].Rows.Count > 0)
+                ds = _MB.CreaDS(ds, "DocumentsAdj", sql, _CN);
+                if (ds.Tables["DocumentsAdj"].Rows.Count > 0)
                 {
-                    foreach (DataRow item in ds.Tables["BottomRail"].Rows)
+                    foreach (DataRow item in ds.Tables["DocumentsAdj"].Rows)
                     {
-                        bottomrail = new BottomRail()
+                        adj = new DocumentsAdj()
                         {
                             Id = int.Parse(item["Id"].ToString()),
+                            Name = item["Name"].ToString(),
+                            Route = item["Route"].ToString(),
                             Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["DescripStatus"].ToString() },
-                            Description = item["Description"].ToString(),
                             CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             ModificationDate = (item["ModificationDate"].ToString() != "") ? DateTime.Parse(item["ModificationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             CreatorUser = int.Parse(item["CreatorUser"].ToString()),
@@ -38,7 +39,7 @@ namespace DataAccess
                         };
                     }
                 }
-                return bottomrail;
+                return adj;
             }
             catch (Exception)
             {
@@ -47,23 +48,24 @@ namespace DataAccess
 
         }
 
-        public List<BottomRail> GetAllBottomRail()
+        public List<DocumentsAdj> GetAllDocumentsAdj()
         {
-            List<BottomRail> bottomrail = new List<BottomRail>();
-            string sql = @"[spGetAllBottomRail]";
+            List<DocumentsAdj> adj = new List<DocumentsAdj>();
+            string sql = @"[spGetAllDocumentsAdj]";
             try
             {
                 DataSet ds = new DataSet();
-                ds = _MB.CreaDS(ds, "BottomRail", sql, _CN);
-                if (ds.Tables["BottomRail"].Rows.Count > 0)
+                ds = _MB.CreaDS(ds, "DocumentsAdj", sql, _CN);
+                if (ds.Tables["DocumentsAdj"].Rows.Count > 0)
                 {
-                    foreach (DataRow item in ds.Tables["BottomRail"].Rows)
+                    foreach (DataRow item in ds.Tables["DocumentsAdj"].Rows)
                     {
-                        bottomrail.Add(new BottomRail()
+                        adj.Add(new DocumentsAdj()
                         {
                             Id = int.Parse(item["Id"].ToString()),
-                            Status = new Status() {Id = int.Parse(item["IdStatus"].ToString()), Description = item["DescripStatus"].ToString() },
-                            Description = item["Description"].ToString(),
+                            Name = item["Name"].ToString(),
+                            Route = item["Route"].ToString(),
+                            Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["DescripStatus"].ToString() },
                             CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             ModificationDate = (item["ModificationDate"].ToString() != "") ? DateTime.Parse(item["ModificationDate"].ToString()) : DateTime.Parse("01/01/1900"),
                             CreatorUser = int.Parse(item["CreatorUser"].ToString()),
@@ -72,7 +74,7 @@ namespace DataAccess
                         });
                     }
                 }
-                return bottomrail;
+                return adj;
             }
             catch (Exception)
             {
@@ -81,11 +83,11 @@ namespace DataAccess
 
         }
 
-        public int InsertBottomRail(BottomRail pBottomRail)
+        public int InsertDocumentsAdj(DocumentsAdj pDocumentsAdj)
         {
-            string sql = @"[spInsertBottomRail] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}'";
-            sql = string.Format(sql, pBottomRail.Description, pBottomRail.Status.Id, pBottomRail.CreationDate.ToString("yyyyMMdd"),
-                pBottomRail.CreatorUser, pBottomRail.ModificationDate.ToString("yyyyMMdd"), pBottomRail.ModificationUser);
+            string sql = @"[spInsertDocumentsAdj] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}'";
+            sql = string.Format(sql, pDocumentsAdj.Name, pDocumentsAdj.Route, pDocumentsAdj.Status.Id, pDocumentsAdj.CreationDate.ToString("yyyyMMdd"),
+                pDocumentsAdj.CreatorUser, pDocumentsAdj.ModificationDate.ToString("yyyyMMdd"), pDocumentsAdj.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -96,11 +98,11 @@ namespace DataAccess
             }
         }
 
-        public void UpdateBottomRail(BottomRail pBottomRail)
+        public void UpdateDocumentsAdj(DocumentsAdj pDocumentsAdj)
         {
-            string sql = @"[spUpdateBottomRail] '{0}', '{1}', '{2}', '{3}', '{4}'";
-            sql = string.Format(sql,pBottomRail.Id, pBottomRail.Description, pBottomRail.Status.Id, pBottomRail.ModificationDate.ToString("yyyyMMdd"),
-                pBottomRail.ModificationUser);
+            string sql = @"[spUpdateDocumentsAdj] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}'";
+            sql = string.Format(sql, pDocumentsAdj.Id, pDocumentsAdj.Name, pDocumentsAdj.Route, pDocumentsAdj.Status.Id, pDocumentsAdj.ModificationDate.ToString("yyyyMMdd"),
+                pDocumentsAdj.ModificationUser);
             try
             {
                 _MB.EjecutarSQL(_CN, sql);
@@ -110,10 +112,10 @@ namespace DataAccess
                 throw err;
             }
         }
-     
-        public void DeleteBottomRail(int pId)
+
+        public void DeleteDocumentsAdj(int pId)
         {
-            string sql = @"[spDeleteBottomRail] '{0}'";
+            string sql = @"[spDeleteDocumentsAdj] '{0}'";
             sql = string.Format(sql, pId);
             try
             {
