@@ -55,7 +55,14 @@
   <ItemGroup>
     <Compile Include="lnBottomRail.cs" />
     <Compile Include="lnCompany.cs" />
+    <Compile Include="lnCreditNotes.cs" />
+    <Compile Include="lnCreditNotesxInvoices.cs" />
     <Compile Include="lnDecimals.cs" />
+    <Compile Include="lnDocumentsAdj.cs" />
+    <Compile Include="lnDocumentsAdjxCreditNotes.cs" />
+    <Compile Include="lnDocumentsAdjxEstimate.cs" />
+    <Compile Include="lnDocumentsAdjxInvoice.cs" />
+    <Compile Include="lnDocumentsAdjxPaymentsReceived.cs" />
     <Compile Include="lnDoorOption.cs" />
     <Compile Include="lnDoors.cs" />
     <Compile Include="lnDoorsPrices.cs" />
@@ -79,6 +86,7 @@
     <Compile Include="lnOutsideEdgeProfile.cs" />
     <Compile Include="lnPanel.cs" />
     <Compile Include="lnPanelMaterial.cs" />
+    <Compile Include="lnPaymentMode.cs" />
     <Compile Include="lnPerson.cs" />
     <Compile Include="lnPreparation.cs" />
     <Compile Include="lnRailThickness.cs" />
