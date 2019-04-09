@@ -106,7 +106,7 @@ $(document).on('click', '.Esimate', function (event) {
 
 function Moneda(entrada) {
     var resul = "";
-    entrada = entrada.toString().split(",");
+    entrada = entrada.toString().split(".");
     var num = entrada[0];
     var nums = new Array();
     var simb = ","; //Éste es el separador
