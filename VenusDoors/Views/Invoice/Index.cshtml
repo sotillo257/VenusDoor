@@ -27,11 +27,13 @@
 </style>
 
         <div class="br-mailbox-list ps ps--theme_default ps--active-y" data-ps-id="7a4680f7-5fbe-1b05-8ec8-b8dbe07f7215">
-            <div class="br-mailbox-list-header" style="width: 319px;position: fixed;">
+            <div class="br-mailbox-list-header" style="width: 319px;position: fixed;z-index: 999;
+    background-color: #e9ecef;">
                 <a href="" id="showMailBoxLeft" class="show-mailbox-left hidden-sm-up">
                     <i class="fa fa-arrow-right"></i>
                 </a>
-                <h6 class="tx-inverse mg-b-0 tx-13 tx-uppercase">Inbox <span class="tx-roboto">(2)</span></h6>
+                <h6 class="tx-inverse mg-b-0 tx-13 tx-uppercase">All Invoices</h6>
+                <button type="button" class="Cursor btn btn-primary" style="margin-left: 70px;height: 30px;padding-bottom: 2px;padding-top: 2px;padding-left: 9px;padding-right: 9px;" data-toggle="modal" data-target="#modalNewIn"><i class="icon ion-plus"></i> New</button>
                 <div class="btn-group" role="group" aria-label="Basic example">
                     <button type="button" class="btn btn-light disabled pd-x-25"><i class="fa fa-angle-left"></i></button>
                     <button type="button" class="btn btn-light pd-x-25"><i class="fa fa-angle-right"></i></button>
@@ -223,6 +225,7 @@
                                                                     </div> 
                                                                     <div class="media-body" style="margin-left: 50px;">
                                                                         <div class="comment">
+                                                                            <span class="square-8 bg-success mg-r-5 rounded-circle"></span>
                                                                             <span class="description">Invoice marked as sent</span>
                                                                             <label class="font-xs text-muted">by <strong>Katie Cai</strong></label>
                                                                         </div>
@@ -240,6 +243,7 @@
                                                                     </div> 
                                                                 <div class="media-body" style="margin-left: 50px;">
                                                                     <div class="comment">
+                                                                        <span class="square-8 bg-success mg-r-5 rounded-circle"></span>
                                                                         <span class="description">Payment of $199.06 received</span>
                                                                         <label class="font-xs text-muted">by <strong>Katie Cai</strong></label>
                                                                         <!---->
@@ -281,23 +285,23 @@
                                                         <td rowspan="1" valign="top" style="background-color: #e9ecef;padding: 10px 0 10px 5px;text-align: left;word-wrap: break-word;" class="pcs-item-row">
                                                             08 Apr 2019
                                                         </td>
-                                                        <td rowspan="1" valign="top" style="background-color: #e9ecef;padding: 10px 0px 10px 20px;" class="pcs-item-row">
+                                                        <td rowspan="1" valign="top" style="background-color: #e9ecef;padding: 10px 0px 10px 20px;" class="pcs-item-row text-align-left">
                                                             <div>
                                                                 <div>
                                                                     <span style="word-wrap: break-word;" id="tmp_item_name">300</span><br>
                                                                 </div>
                                                             </div>
                                                         </td>
-                                                        <td rowspan="1" style="background-color: #e9ecef;" class="pcs-item-row lineitem-column text-align-right">
+                                                        <td rowspan="1" style="background-color: #e9ecef;" class="pcs-item-row lineitem-column text-align-left">
                                                             <span id="tmp_item_qty"></span>
                                                         </td>
-                                                        <td rowspan="1" style="background-color: #e9ecef;" class="pcs-item-row lineitem-column text-align-right">
+                                                        <td rowspan="1" style="background-color: #e9ecef;" class="pcs-item-row lineitem-column text-align-left">
                                                             <span id="tmp_item_rate">Credit Card</span>
                                                         </td>
-                                                        <td rowspan="1" style="background-color: #e9ecef;" class="pcs-item-row lineitem-column lineitem-content-right text-align-right">
+                                                        <td rowspan="1" style="background-color: #e9ecef;" class="pcs-item-row lineitem-column lineitem-content-right text-align-left">
                                                             <span id="tmp_item_amount">$199.06</span>
                                                         </td>
-                                                        <td rowspan="1" style="background-color: #e9ecef;" class="pcs-item-row lineitem-column lineitem-content-right text-align-right">
+                                                        <td rowspan="1" style="background-color: #e9ecef;" class="pcs-item-row lineitem-column lineitem-content-right text-align-center">
                                                             <center>
                                                                 <button style="width: 25px;height: 25px; margin-left: 10px;" class="Modificar Cursor btn btn-outline-primary btn-icon">
                                                                     <i class="fa fa-edit"></i>

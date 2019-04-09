@@ -97,7 +97,7 @@ $(document).on('click', '.Esimate', function (event) {
     var IdEstimate = $(this).attr('data-id');
     for (var i = 0; i < listEstimate.length; i++) {
         if (IdEstimate == listEstimate[i].Id) {
-            $("#lblTitulo").text(listEstimate[i].IdFolio);
+            $("#lblFolio").text(listEstimate[i].IdFolio);
             var Fecha1 = new Date(parseInt(re.exec(listEstimate[i].CreationDate)[0]));
             $("#lblFechaTitulo").text(Fecha1.ddmmyyyy());
         }

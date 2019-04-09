@@ -63,51 +63,53 @@
 </style>
 
 <div class="br-mailbox-list ps ps--theme_default ps--active-y" data-ps-id="7a4680f7-5fbe-1b05-8ec8-b8dbe07f7215">
-    <div class="br-mailbox-list-header">
+    <div class="br-mailbox-list-header" style="width: 319px;position: fixed;z-index: 999;
+    background-color: #e9ecef;">
         <a href="" id="showMailBoxLeft" class="show-mailbox-left hidden-sm-up">
             <i class="fa fa-arrow-right"></i>
         </a>
-        <h6 class="tx-inverse mg-b-0 tx-13 tx-uppercase">Inbox <span class="tx-roboto">(2)</span></h6>
+        <h6 class="tx-inverse mg-b-0 tx-13 tx-uppercase">All Invoices</h6>
+        <button type="button" class="Cursor btn btn-primary" style="margin-left: 70px;height: 30px;padding-bottom: 2px;padding-top: 2px;padding-left: 9px;padding-right: 9px;" data-toggle="modal" data-target="#modalNewIn"><i class="icon ion-plus"></i> New</button>
         <div class="btn-group" role="group" aria-label="Basic example">
             <div class="skin" id="Demo">
 
             </div>
         </div>
     </div><!-- br-mailbox-list-header -->
-    <div class="br-mailbox-list-body">
-       
+    <div class="br-mailbox-list-body" style="margin-top: 95px;">
+
         <div class="" id="conta">
 
         </div>
 
 
         @*<div class="br-mailbox-list-item active">
-            <div class="d-flex justify-content-between mg-b-5">
-                <div>
-                    <h6 class="tx-14 mg-b-10 tx-gray-800">Kevin Shen</h6>
+                <div class="d-flex justify-content-between mg-b-5">
+                    <div>
+                        <h6 class="tx-14 mg-b-10 tx-gray-800">Kevin Shen</h6>
+                    </div>
+                    <h6 class="tx-14 mg-b-10 tx-gray-800"><i class="icon ion-android-attach"></i> $4,000.00</h6>
                 </div>
-                <h6 class="tx-14 mg-b-10 tx-gray-800"><i class="icon ion-android-attach"></i> $4,000.00</h6>
-            </div>
-         <div class="d-flex justify-content-between mg-b-5">
-                <div>
-                    <h6 class="tx-14 mg-b-10 tx-gray-800">EST-000001 | 12 Mar 2019</h6>
-                </div>
-                <h6 class="tx-14 mg-b-10 tx-gray-800">Draf</h6>
-            </div><!-- d-flex -->
-           
-        </div><!-- br-mailbox-list-item -->
-        <div class="br-mailbox-list-item unread">
-            <div class="d-flex justify-content-between mg-b-5">
-                <div>
-                    <i class="icon ion-ios-star"></i>
-                    <i class="icon ion-android-attach"></i>
-                </div>
-                <span class="tx-12">1 day ago</span>
-            </div><!-- d-flex -->
-            <h6 class="tx-14 mg-b-10 tx-gray-800">Envato, me (2)</h6>
-            <p class="tx-12 tx-gray-600 mg-b-5">I should be incapable of drawing a single stroke at the present moment; and yet I feel that I never...</p>
-        </div><!-- br-mailbox-list-item -->*@
-       
+             <div class="d-flex justify-content-between mg-b-5">
+                    <div>
+                        <h6 class="tx-14 mg-b-10 tx-gray-800">EST-000001 | 12 Mar 2019</h6>
+                    </div>
+                    <h6 class="tx-14 mg-b-10 tx-gray-800">Draf</h6>
+                </div><!-- d-flex -->
+
+            </div><!-- br-mailbox-list-item -->
+            <div class="br-mailbox-list-item unread">
+                <div class="d-flex justify-content-between mg-b-5">
+                    <div>
+                        <i class="icon ion-ios-star"></i>
+                        <i class="icon ion-android-attach"></i>
+                    </div>
+                    <span class="tx-12">1 day ago</span>
+                </div><!-- d-flex -->
+                <h6 class="tx-14 mg-b-10 tx-gray-800">Envato, me (2)</h6>
+                <p class="tx-12 tx-gray-600 mg-b-5">I should be incapable of drawing a single stroke at the present moment; and yet I feel that I never...</p>
+            </div><!-- br-mailbox-list-item -->*@
+
     </div><!-- br-mailbox-list-body -->
     @*<div class="ps__scrollbar-y-rail" style="top: 0px; height: 597px; right: 0px;">
         <div class="ps__scrollbar-y" tabindex="0" style="top: 0px; height: 370px;">
@@ -122,7 +124,7 @@
                 @*<button type="button" class="Cursor btn btn-primary" data-toggle="modal" data-target="#modalNewIn"><i class="icon ion-plus"></i> New</button>*@
                 
                 <div class="media-body mg-l-10">
-                    <p class="tx-inverse tx-medium mg-b-0" id="lblTitulo">INV-0001</p>
+                    <p class="tx-inverse tx-medium mg-b-0" id="lblFolio">INV-0001</p>
                     <p class="tx-12 mg-b-0">
                         <span id="lblFechaTitulo">Sep 20, 2017 </span>                       
                     </p>
@@ -320,7 +322,7 @@
         </div>
         <div>
 
-            <div style="max-width: 8.27in;margin-left:auto;margin-right:auto;" id="divMarca" class="details-container clearfix paid">
+            <div style="max-width: 8.27in;margin-left:auto;margin-right:auto; margin-top: 0px;" id="divMarca" class="details-container clearfix paid">
                 <div class="pcs-template ">
                     <div class="pcs-template-header pcs-header-content " id="header">
                         <div class="pcs-template-fill-emptydiv"></div>
