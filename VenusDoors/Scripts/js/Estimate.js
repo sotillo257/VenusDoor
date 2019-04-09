@@ -45,7 +45,7 @@ Date.prototype.ddmmyyyy = function () {
 
     return (dd[1] ? dd : "0" + dd[0]) + "/" + (mm[1] ? mm : "0" + mm[0]) + "/" + yyyy;
 };
-
+var re = /-?\d+/;
 $(document).ready(function () {
 
     var container = $('#Demo');
@@ -60,9 +60,9 @@ $(document).ready(function () {
             var option = '';
             for (var i = 0; i < data.length; i++) {
                 if (i == 0) {
-                    option += '<div class="br-mailbox-list-item Esimate active">';
+                    option += '<div data-id="' + data[i].Id + '" class="br-mailbox-list-item Esimate active">';
                 } else {
-                    option += '<div class="br-mailbox-list-item Esimate">';
+                    option += '<div data-id="' + data[i].Id + '" class="br-mailbox-list-item Esimate ">';
                 }
                
                                  
@@ -78,7 +78,7 @@ $(document).ready(function () {
                 option +='  </div>'
                 option +='  <div class="d-flex justify-content-between mg-b-5">'
                 option += '       <div>';
-                var re = /-?\d+/;
+               
                 var Fecha1 = new Date(parseInt(re.exec(data[i].CreationDate)[0]));
                 option += '         <h6 class="tx-14 mg-b-10 tx-gray-800">' + data[i].IdFolio + ' | ' + Fecha1.ddmmyyyy() + '</h6>'
                 option +='      </div>'
@@ -94,6 +94,14 @@ $(document).ready(function () {
 $(document).on('click', '.Esimate', function (event) {   
     $('.Esimate').removeClass("active");
     $(this).addClass("active");
+    var IdEstimate = $(this).attr('data-id');
+    for (var i = 0; i < listEstimate.length; i++) {
+        if (IdEstimate == listEstimate[i].Id) {
+            $("#lblTitulo").text(listEstimate[i].IdFolio);
+            var Fecha1 = new Date(parseInt(re.exec(listEstimate[i].CreationDate)[0]));
+            $("#lblFechaTitulo").text(Fecha1.ddmmyyyy());
+        }
+    }
 });
 
 function Moneda(entrada) {

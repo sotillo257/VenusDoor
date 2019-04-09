@@ -1865,8 +1865,8 @@ Metodo: Index
 Controller: VenusDoors.Controllers.EstimateController
 UserName: 
 UserID: 
-Date: 2019-04-08 17:02
-Origen :   en VenusDoors.Controllers.EstimateController.Index() en C:\Users\Javier Sotillo\Source\Repos\VenusDoor\VenusDoors\Controllers\EstimateController.cs:línea 29
+Date: 2019-04-08 21:46
+Origen :   en VenusDoors.Controllers.EstimateController.Index() en C:\Users\Lenovo\Source\Repos\VenusDoor\VenusDoors\Controllers\EstimateController.cs:línea 29
    en lambda_method(Closure , ControllerBase , Object[] )
    en System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
    en System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
@@ -1901,4 +1901,5 @@ Origen :   en VenusDoors.Controllers.EstimateController.Index() en C:\Users\Javi
    en System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
    en System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)
    en System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   en System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
    en System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
