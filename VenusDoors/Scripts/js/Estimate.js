@@ -45,7 +45,7 @@ Date.prototype.ddmmyyyy = function () {
 
     return (dd[1] ? dd : "0" + dd[0]) + "/" + (mm[1] ? mm : "0" + mm[0]) + "/" + yyyy;
 };
-
+var re = /-?\d+/;
 $(document).ready(function () {
 
     var container = $('#Demo');
@@ -78,7 +78,7 @@ $(document).ready(function () {
                 option +='  </div>'
                 option +='  <div class="d-flex justify-content-between mg-b-5">'
                 option += '       <div>';
-                var re = /-?\d+/;
+               
                 var Fecha1 = new Date(parseInt(re.exec(data[i].CreationDate)[0]));
                 option += '         <h6 class="tx-14 mg-b-10 tx-gray-800">' + data[i].IdFolio + ' | ' + Fecha1.ddmmyyyy() + '</h6>'
                 option +='      </div>'
