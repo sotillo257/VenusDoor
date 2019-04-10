@@ -52,6 +52,7 @@
     <Compile Include="adCreditNotes.cs" />
     <Compile Include="adCreditNotesxInvoices.cs" />
     <Compile Include="adDecimals.cs" />
+    <Compile Include="adDepositTo.cs" />
     <Compile Include="adDocumentsAdj.cs" />
     <Compile Include="adDocumentsAdjxCreditNotes.cs" />
     <Compile Include="adDocumentsAdjxEstimate.cs" />

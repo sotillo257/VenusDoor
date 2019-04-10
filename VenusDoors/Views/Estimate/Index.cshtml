@@ -244,7 +244,7 @@
                             </div>*@
                             <div class="tab-pane fade show active" id="infoPanel" role="tabpanel">
                                 <div class="comments-history">
-                                    <p class="font-small"><a data-ember-action="" data-ember-action-1551="1551">View More</a></p> <ul class="list-unstyled" data-test-title="comments-list">
+                                    <p class="font-small"><a data-ember-action="" data-ember-action-1551="1551">View More</a></p> <ul class="list-unstyled" data-test-title="comments-list" id="divHistoryComm">
                                         <li id="ember1553" class="ember-view">
                                             <div class="clearfix" data-test-title="comments-list-row">
                                                 <div class="date-section pull-left">
@@ -287,8 +287,8 @@
                                         </li>
                                     </ul>
                                     <bottom id="mostrarCampo" class="Cursor ocultarTitulo">+ Add Comment</bottom>
-                                    <textarea style="width:100%" class="showInput form-control"></textarea>
-                                    <button type="button" style="padding-left: 9px;padding-right: 9px;height: 30px;padding-top: 2px;padding-bottom: 2px;margin-top: 10px;" class="Cursor btn btn-primary AddComment">Add Comment</button>
+                                    <textarea style="width:100%" class="showInput form-control" id="txtComment"></textarea>
+                                    <button type="button" style="padding-left: 9px;padding-right: 9px;height: 30px;padding-top: 2px;padding-bottom: 2px;margin-top: 10px;" id="btAddComment" class="Cursor btn btn-primary AddComment">Add Comment</button>
                                                 </div>
                             </div>
                             @*<div class="tab-pane fade hidden" id="schedulePanel" role="tabpanel">
@@ -759,6 +759,7 @@
     @Scripts.Render("~/Scripts/js/Estimate.js")
 <script>
     var urlGetHistoryEstimate = '@Url.Action("GetHistoryEstimate", "Estimate")';
+    var urlInsertComment = '@Url.Action("InsertComment", "Estimate")';
                     try {
                         var listEstimate = JSON.parse('@Html.Raw(ViewBag.Estimate)');
                     } catch (e) {

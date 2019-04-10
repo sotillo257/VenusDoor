@@ -45,5 +45,37 @@ namespace VenusDoors.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
+        [Authorize]
+        [HttpPost]
+        public ActionResult InsertComment(string Comment, int IdEstimate)
+        {
+            try
+            {
+                BusinessLogic.lnHistoryEstimate _LNHIST = new BusinessLogic.lnHistoryEstimate();
+                HistoryEstimate HE = new HistoryEstimate() {
+                    Estimation = new Estimate() { Id = IdEstimate },
+                    History = Comment ,
+                    Type = new Model.Type() { Id = 12 },
+                    UserCreador = new Model.User() { Id = (int)Session["UserID"] },
+                    CreationDate = DateTime.Now };
+
+                int i = _LNHIST.InsertHistoryEstimate(HE);
+                if (i > 0 )
+                {
+                    List<HistoryEstimate> list = _LNHIST.GetHistoryEstimateByIdEstimation(IdEstimate);
+                    return Json(new { listHistory = list, Success = true }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
+                }
+               
+
+            }
+            catch
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
     }
 }

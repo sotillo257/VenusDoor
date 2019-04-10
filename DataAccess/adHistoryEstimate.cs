@@ -83,7 +83,7 @@ namespace DataAccess
 
         public int InsertHistoryEstimate(HistoryEstimate pHE)
         {
-            string sql = @"[spInsertHistoryEstimate] '{0}', '{1}', '{2}', '{3}', '{4}'";
+            string sql = @"[spInsertHistoryEstimate] '{0}', '{1}', '{2}', '{3}'";
             sql = string.Format(sql, pHE.Estimation.Id, pHE.UserCreador.Id, pHE.Type.Id, pHE.History, pHE.CreationDate.ToString("yyyyMMdd"));
             try
             {
