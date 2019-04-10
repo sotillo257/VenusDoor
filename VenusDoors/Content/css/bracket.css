@@ -85,6 +85,19 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
+.IconStatus {
+    border: 1px solid;
+    width: 66px;
+    height: 66px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
+    /* background-color: white; */
+    border-radius: 30px;
+    color: #15806f;
+}
+
 @font-face {
     font-family: 'WebFont-Open Sans';
     src: local(Open Sans), url(https://fonts.gstatic.com/s/opensans/v14/K88pR3goAWT7BTt32Z01m4X0hVgzZQUfRDuZrPvH3D8.woff2);
