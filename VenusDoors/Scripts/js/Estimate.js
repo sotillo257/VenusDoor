@@ -6,6 +6,14 @@
         $("#addFile").trigger('click');
     });
 
+    $(document).on('click', "#btAddComment", function () {
+        if ($("#txtComment").val() != "" && $("#txtComment").val() != null) {
+            InsertComment($("#txtComment").val());
+        }
+        
+    });
+
+
     $("#ocultarCampo").on("click", function () {
         $(".showInput").hide();
         $(".AddComment").hide();
@@ -58,13 +66,26 @@ $(function () {
         }
     });
 });
-
+var meses = new Array("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dic");
 Date.prototype.ddmmyyyy = function () {
     var yyyy = this.getFullYear().toString();
     var mm = (this.getMonth() + 1).toString();
     var dd = this.getDate().toString();
 
-    return (dd[1] ? dd : "0" + dd[0]) + "/" + (mm[1] ? mm : "0" + mm[0]) + "/" + yyyy;
+    return (dd[1] ? dd : "0" + dd[0]) + " " + meses[mm] + " " + yyyy;
+};
+
+Date.prototype.ddmmyyyyHH = function () {
+  
+
+   
+    var day = this.getDate().toString();
+    var month = this.getMonth().toString();
+    var year = this.getFullYear().toString();
+    var hour = this.getHours().toString();
+    var minute = this.getMinutes().toString();
+    var time = (day[1] ? day : "0" + day[0]) + " " + meses[month] + " " + year + " " + (hour[1] ? hour : "0" + hour[0]) + ':' + (minute[1] ? minute : "0" + minute[0]);
+    return time;
 };
 var re = /-?\d+/;
 $(document).ready(function () {
@@ -111,11 +132,12 @@ $(document).ready(function () {
         }
     });
 });
-
+var _IdEstimate = 0;
 $(document).on('click', '.Esimate', function (event) {   
     $('.Esimate').removeClass("active");
     $(this).addClass("active");
     var IdEstimate = $(this).attr('data-id');
+    _IdEstimate = $(this).attr('data-id');
     GetHistoryEstmate(IdEstimate);
     for (var i = 0; i < listEstimate.length; i++) {
         if (IdEstimate == listEstimate[i].Id) {
@@ -157,6 +179,22 @@ function Moneda(entrada) {
     return resul;
 }
 
+function ToJavaScriptDate(value) {
+    var pattern = /Date\(([^)]+)\)/;
+    var results = pattern.exec(value);
+    console.log(results);
+    console.log(parseFloat(results[1]));
+    var date = new Date(parseFloat(results[1]));
+    var meses = new Array("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dic");
+    var day = date.getDay();
+    var month = date.getMonth();
+    var year = date.getFullYear();
+    var hour = date.getHours();
+    var minute = date.getMinutes();
+    var time = day + " " + meses[month] + " " + year + " " + hour + ':' + minute;
+    return time;
+}
+
 function GetHistoryEstmate(id) {
     var status = 1;
     var datos =
@@ -180,16 +218,9 @@ function GetHistoryEstmate(id) {
                 option += '                               <div class="date-section pull-left">';
                 option += '                                   <div class="font-xxs text-draft">';
 
-                var meses = new Array("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dic");
-                var date = new Date(parseInt(result.listHistory[i].CreationDate.toString().replace("/Date(", "").replace(")/", ""), 10));
-                var day = date.getDay();
-                var month = date.getMonth();
-                var year = date.getFullYear();
-                var hour = date.getHours();
-                var minute = date.getMinutes();
-                var time = day + " " + meses[month] + " " + year + " " + hour + ':' + minute;
-
-                option += time;
+            
+                var Fecha1 = new Date(parseInt(re.exec(result.listHistory[i].CreationDate)[0]));
+                option += Fecha1.ddmmyyyyHH();
                 option += '                                   </div></div>';
                 option += '                               <div class="comment-section pull-left">';
                 option += '                                  <div class="pull-left">';
@@ -204,6 +235,56 @@ function GetHistoryEstmate(id) {
             }
         
             $("#divHistoryComm").empty().append(option);
+        },
+        error: function (err) {
+            LlammarModal("Danger", "Error.", "GetHistoryEstmate");
+        },
+
+    });
+}
+
+function InsertComment(Comment) {
+    var datos =
+         {
+             Comment: Comment, //
+             IdEstimate: _IdEstimate
+         };
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(datos),
+        url: urlInsertComment,
+        dataType: "json",
+        async: true,
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+            var option = '';
+            for (var i = 0; i < result.listHistory.length; i++) {
+                option += ' <li id="ember1553" class="ember-view">';
+                option += '                          <div class="clearfix" data-test-title="comments-list-row">';
+                option += '                               <div class="date-section pull-left">';
+                option += '                                   <div class="font-xxs text-draft">';
+
+
+                var Fecha1 = new Date(parseInt(re.exec(result.listHistory[i].CreationDate)[0]));
+                option += Fecha1.ddmmyyyyHH();
+                option += '                                   </div></div>';
+                option += '                               <div class="comment-section pull-left">';
+                option += '                                  <div class="pull-left">';
+                option += '                                      <div class="txn-comment-icon circle-box"></div>';
+                option += '                                    </div>';
+                option += '                                    <div class="media-body" style="margin-left: 50px;">';
+                option += '                                        <div class="comment">';
+                option += '                                          <span class="IconStatus icon ion-chatbubbles" style="padding-right: 7px;padding-left: 6px;"></span>';
+                option += '                                          <span class="description">' + result.listHistory[i].History + '</span>';
+                option += '                                          <label class="font-xs text-muted">by <strong>' + result.listHistory[i].NameCreador + '</strong></label>';
+                option += '                                     </div></div></div></div></li>';
+            }
+
+            $("#divHistoryComm").empty().append(option);
+
+            $(".showInput").hide();
+            $(".AddComment").hide();
+            $(".ocultarTitulo").show();
         },
         error: function (err) {
             LlammarModal("Danger", "Error.", "GetHistoryEstmate");
