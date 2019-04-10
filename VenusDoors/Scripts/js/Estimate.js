@@ -173,6 +173,37 @@ function GetHistoryEstmate(id) {
         success: function (result) {
             //Validar data para ver si mostrar error al guardar o exito al guardar
             console.log(result);
+            var option = '';
+            for (var i = 0; i < result.listHistory.length; i++) {
+                option += ' <li id="ember1553" class="ember-view">';
+                option += '                          <div class="clearfix" data-test-title="comments-list-row">';
+                option += '                               <div class="date-section pull-left">';
+                option += '                                   <div class="font-xxs text-draft">';
+
+                var meses = new Array("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dic");
+                var date = new Date(parseInt(result.listHistory[i].CreationDate.toString().replace("/Date(", "").replace(")/", ""), 10));
+                var day = date.getDay();
+                var month = date.getMonth();
+                var year = date.getFullYear();
+                var hour = date.getHours();
+                var minute = date.getMinutes();
+                var time = day + " " + meses[month] + " " + year + " " + hour + ':' + minute;
+
+                option += time;
+                option += '                                   </div></div>';
+                option += '                               <div class="comment-section pull-left">';
+                option += '                                  <div class="pull-left">';
+                option += '                                      <div class="txn-comment-icon circle-box"></div>';
+                option += '                                    </div>';
+                option += '                                    <div class="media-body" style="margin-left: 50px;">';
+                option += '                                        <div class="comment">';
+                option += '                                          <span class="IconStatus icon ion-chatbubbles" style="padding-right: 7px;padding-left: 6px;"></span>';
+                option += '                                          <span class="description">' + result.listHistory[i].History + '</span>';
+                option += '                                          <label class="font-xs text-muted">by <strong>' + result.listHistory[i].NameCreador + '</strong></label>';
+                option += '                                     </div></div></div></div></li>';
+            }
+        
+            $("#divHistoryComm").empty().append(option);
         },
         error: function (err) {
             LlammarModal("Danger", "Error.", "GetHistoryEstmate");
