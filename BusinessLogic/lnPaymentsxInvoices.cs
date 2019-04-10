@@ -7,15 +7,15 @@ using Model;
 
 namespace BusinessLogic
 {
-    public class lnCreditNotesxInvoices
+    public class lnPaymentsxInvoices
     {
-        DataAccess.adCreditNotesxInvoices _AD = new DataAccess.adCreditNotesxInvoices();
+        DataAccess.adPaymentsxInvoices _AD = new DataAccess.adPaymentsxInvoices();
 
-        public List<CreditNotesxInvoices> GetCreditNotesxInvoices(int IdCreditNotes, int IdInvoice)
+        public List<PaymentsxInvoices> GetPaymentsxInvoices(int IdCreditNotes, int IdInvoice)
         {
             try
             {
-                return _AD.GetCreditNotesxInvoices(IdCreditNotes, IdInvoice);
+                return _AD.GetPaymentsxInvoices(IdCreditNotes, IdInvoice);
             }
             catch (Exception ex)
             {
@@ -23,11 +23,11 @@ namespace BusinessLogic
             }
         }
 
-        public int InsertCreditNotesxInvoicess(CreditNotesxInvoices pEst)
+        public int InsertPaymentsxInvoicess(PaymentsxInvoices pEst)
         {
             try
             {
-                return _AD.InsertCreditNotesxInvoices(pEst);
+                return _AD.InsertPaymentsxInvoices(pEst);
             }
             catch (Exception ex)
             {
@@ -35,5 +35,5 @@ namespace BusinessLogic
             }
 
         }
-    }  
+    }
 }

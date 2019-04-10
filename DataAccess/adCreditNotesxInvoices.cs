@@ -14,7 +14,7 @@ namespace DataAccess
         public List<CreditNotesxInvoices> GetCreditNotesxInvoices(int IdCreditNotes, int IdInvoice)
         {
             List<CreditNotesxInvoices> cdn = new List<CreditNotesxInvoices>();
-            string sql = @"[spGetCreditNotes] '{0}','{1}'";
+            string sql = @"[spGetCreditNotesxInvoices] '{0}','{1}'";
             sql = string.Format(sql, IdCreditNotes, IdInvoice);
 
             try
