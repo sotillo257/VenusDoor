@@ -38,7 +38,7 @@ namespace BusinessLogic
         /// </summary>
         /// <param name="pId"></param>
         /// <returns></returns>
-        public HistoryEstimate GetHistoryEstimateByIdEstimation(int pIdest)
+        public List<HistoryEstimate> GetHistoryEstimateByIdEstimation(int pIdest)
         {
             try
             {

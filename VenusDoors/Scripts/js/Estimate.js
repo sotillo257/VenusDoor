@@ -95,6 +95,7 @@ $(document).on('click', '.Esimate', function (event) {
     $('.Esimate').removeClass("active");
     $(this).addClass("active");
     var IdEstimate = $(this).attr('data-id');
+    GetHistoryEstmate(IdEstimate);
     for (var i = 0; i < listEstimate.length; i++) {
         if (IdEstimate == listEstimate[i].Id) {
             $("#lblFolio").text(listEstimate[i].IdFolio);
@@ -134,4 +135,29 @@ function Moneda(entrada) {
    
     return resul;
 }
+
+function GetHistoryEstmate(id) {
+    var status = 1;
+    var datos =
+         {
+             idEstimate: id         
+    };
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(datos),
+        url: urlGetHistoryEstimate,
+        dataType: "json",
+        async : true,
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+            //Validar data para ver si mostrar error al guardar o exito al guardar
+            console.log(result);
+        },
+        error: function (err) {
+            LlammarModal("Danger", "Error.", "GetHistoryEstmate");
+        },
+
+    });
+}
+
 
