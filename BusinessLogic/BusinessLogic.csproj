@@ -58,6 +58,7 @@
     <Compile Include="lnCreditNotes.cs" />
     <Compile Include="lnCreditNotesxInvoices.cs" />
     <Compile Include="lnDecimals.cs" />
+    <Compile Include="lnDepositTo.cs" />
     <Compile Include="lnDocumentsAdj.cs" />
     <Compile Include="lnDocumentsAdjxCreditNotes.cs" />
     <Compile Include="lnDocumentsAdjxEstimate.cs" />
