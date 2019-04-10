@@ -77,6 +77,8 @@
     <Compile Include="lnHingePositions.cs" />
     <Compile Include="lnHistoryCreditNotes.cs" />
     <Compile Include="lnHistoryEstimate.cs" />
+    <Compile Include="lnHistoryInvoice.cs" />
+    <Compile Include="lnHistoryPayments.cs" />
     <Compile Include="lnHorizontalDivisions.cs" />
     <Compile Include="lnInsideEdgeProfile.cs" />
     <Compile Include="lnInvoice.cs" />

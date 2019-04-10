@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class HistoryCreditNotes
+    public class HistoryPayments
     {
         public int Id { get; set; }
-        public CreditNotes CreditNotes { get; set; }
+        public PaymentsReceived PaymentsReceived { get; set; }
         public User UserCreador { get; set; }
         public string NameCreador { get; set; }
         public Type Type { get; set; }

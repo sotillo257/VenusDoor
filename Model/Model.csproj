@@ -78,6 +78,8 @@
     <Compile Include="HingePositions.cs" />
     <Compile Include="HistoryCreditNotes.cs" />
     <Compile Include="HistoryEstimate.cs" />
+    <Compile Include="HistoryInvoice.cs" />
+    <Compile Include="HistoryPayments.cs" />
     <Compile Include="HorizontalDivisions.cs" />
     <Compile Include="InsideEdgeProfile.cs" />
     <Compile Include="Invoice.cs" />

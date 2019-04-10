@@ -9,31 +9,30 @@ using System.Data;
 
 namespace DataAccess
 {
-    public class adHistoryCreditNotes : Connection
+    public class adHistoryPayments : Connection
     {
-        public List<HistoryCreditNotes> GetHistoryCreditNotesByIdCreditNotes(int IdCreditsNotes)
+        public List<HistoryPayments> GetHistoryPaymentsByIdPayments(int IdPayments)
         {
-            List<HistoryCreditNotes> HistoEst = new List<HistoryCreditNotes>();
-            string sql = @"[spGetHistoryCreditNotesByIdCreditNotes] '{0}' ";
-            sql = string.Format(sql, IdCreditsNotes);
+            List<HistoryPayments> HistoEst = new List<HistoryPayments>();
+            string sql = @"[spGetHistoryPaymentsByIdPayments] '{0}' ";
+            sql = string.Format(sql, IdPayments);
             try
             {
                 DataSet ds = new DataSet();
-                ds = _MB.CreaDS(ds, "HistoryCreditNotes", sql, _CN);
-                if (ds.Tables["HistoryCreditNotes"].Rows.Count > 0)
+                ds = _MB.CreaDS(ds, "HistoryPayments", sql, _CN);
+                if (ds.Tables["HistoryPayments"].Rows.Count > 0)
                 {
-                    foreach (DataRow item in ds.Tables["HistoryCreditNotes"].Rows)
+                    foreach (DataRow item in ds.Tables["HistoryPayments"].Rows)
                     {
-                        HistoEst.Add(new HistoryCreditNotes()
+                        HistoEst.Add(new HistoryPayments()
                         {
                             Id = int.Parse(item["Id"].ToString()),
-                            CreditNotes = new CreditNotes() { Id = int.Parse(item["IdCreditsNotes"].ToString()) },
+                            PaymentsReceived = new PaymentsReceived() { Id = int.Parse(item["IdPayments"].ToString()) },
                             UserCreador = new User() { Id = int.Parse(item["IdUserCreador"].ToString()) },
                             NameCreador = item["NameCreador"].ToString(),
                             Type = new Model.Type() { Id = int.Parse(item["IdType"].ToString()), Description = item["DescripType"].ToString() },
                             History = item["History"].ToString(),
                             CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
-
                         });
                     }
                 }
@@ -44,27 +43,27 @@ namespace DataAccess
                 throw;
             }
 
-        }       
+        }
 
-        public List<HistoryCreditNotes> GetAllHistoryCreditNotes()
+        public List<HistoryPayments> GetAllHistoryPayments()
         {
-            List<HistoryCreditNotes> HistoEst = new List<HistoryCreditNotes>();
-            string sql = @"[spGetAllHistoryCreditNotes]";
+            List<HistoryPayments> HistoEst = new List<HistoryPayments>();
+            string sql = @"[spGetAllHistoryPayments]";
             try
             {
                 DataSet ds = new DataSet();
-                ds = _MB.CreaDS(ds, "HistoryCreditNotes", sql, _CN);
-                if (ds.Tables["HistoryCreditNotes"].Rows.Count > 0)
+                ds = _MB.CreaDS(ds, "HistoryPayments", sql, _CN);
+                if (ds.Tables["HistoryPayments"].Rows.Count > 0)
                 {
-                    foreach (DataRow item in ds.Tables["HistoryCreditNotes"].Rows)
+                    foreach (DataRow item in ds.Tables["HistoryPayments"].Rows)
                     {
-                        HistoEst.Add(new HistoryCreditNotes()
+                        HistoEst.Add(new HistoryPayments()
                         {
                             Id = int.Parse(item["Id"].ToString()),
-                            CreditNotes = new CreditNotes() { Id = int.Parse(item["IdCreditsNotes"].ToString()) },
+                            PaymentsReceived = new PaymentsReceived() { Id = int.Parse(item["IdPayments"].ToString()) },
                             UserCreador = new User() { Id = int.Parse(item["IdUserCreador"].ToString()) },
                             NameCreador = item["NameCreador"].ToString(),
-                            Type = new Model.Type() { Id = int.Parse(item["IdType"].ToString()), Description = item["DescripType"].ToString() },
+                            Type = new Model.Type() { Id = int.Parse(item["IdType"].ToString()) },
                             History = item["History"].ToString(),
                             CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
 
@@ -80,10 +79,10 @@ namespace DataAccess
 
         }
 
-        public int InsertHistoryCreditNotes(HistoryCreditNotes pHE)
+        public int InsertHistoryPayments(HistoryPayments pHE)
         {
-            string sql = @"[spInsertHistoryCreditNotes] '{0}', '{1}', '{2}', '{3}', '{4}'";
-            sql = string.Format(sql, pHE.CreditNotes.Id, pHE.UserCreador.Id, pHE.Type.Id, pHE.History, pHE.CreationDate.ToString("yyyyMMdd"));
+            string sql = @"[spInsertHistoryPayments] '{0}', '{1}', '{2}', '{3}', '{4}'";
+            sql = string.Format(sql, pHE.PaymentsReceived.Id, pHE.UserCreador.Id, pHE.Type.Id, pHE.History, pHE.CreationDate.ToString("yyyyMMdd"));
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);

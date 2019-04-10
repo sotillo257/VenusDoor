@@ -30,7 +30,8 @@ namespace DataAccess
                             Id = int.Parse(item["Id"].ToString()),
                             Estimation = new Estimate() { Id = int.Parse(item["IdEstimation"].ToString()) },
                             UserCreador = new User() { Id = int.Parse(item["IdUserCreador"].ToString()) },
-                            Type = new Model.Type() { Id = int.Parse(item["IdType"].ToString()) },
+                            NameCreador = item["NameCreador"].ToString(),
+                            Type = new Model.Type() { Id = int.Parse(item["IdType"].ToString()), Description = item["DescripType"].ToString() },
                             History = item["History"].ToString(),
                             CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
 
@@ -63,7 +64,8 @@ namespace DataAccess
                             Id = int.Parse(item["Id"].ToString()),
                             Estimation = new Estimate() { Id = int.Parse(item["IdEstimation"].ToString()) },
                             UserCreador = new User() { Id = int.Parse(item["IdUserCreador"].ToString()) },
-                            Type = new Model.Type() { Id = int.Parse(item["IdType"].ToString()) },
+                            NameCreador = item["NameCreador"].ToString(),
+                            Type = new Model.Type() { Id = int.Parse(item["IdType"].ToString()), Description = item["DescripType"].ToString() },
                             History = item["History"].ToString(),
                             CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
 
