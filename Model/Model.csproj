@@ -76,7 +76,10 @@
     <Compile Include="Group.cs" />
     <Compile Include="HingeDirection.cs" />
     <Compile Include="HingePositions.cs" />
+    <Compile Include="HistoryCreditNotes.cs" />
     <Compile Include="HistoryEstimate.cs" />
+    <Compile Include="HistoryInvoice.cs" />
+    <Compile Include="HistoryPayments.cs" />
     <Compile Include="HorizontalDivisions.cs" />
     <Compile Include="InsideEdgeProfile.cs" />
     <Compile Include="Invoice.cs" />
@@ -89,6 +92,7 @@
     <Compile Include="PanelMaterial.cs" />
     <Compile Include="PaymentMode.cs" />
     <Compile Include="PaymentsReceived.cs" />
+    <Compile Include="PaymentsxInvoices.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Preparation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

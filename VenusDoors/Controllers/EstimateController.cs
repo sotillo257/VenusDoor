@@ -25,11 +25,25 @@ namespace VenusDoors.Controllers
             }
             catch (Exception)
             {
+                return View("Error");
+            }        
+        }
 
-                throw;
+        [Authorize]
+        [HttpPost]
+        public ActionResult GetHistoryEstimate(int idEstimate)
+        {
+            try
+            {
+                BusinessLogic.lnHistoryEstimate _LNHIST = new BusinessLogic.lnHistoryEstimate();
+                List<HistoryEstimate> list = _LNHIST.GetHistoryEstimateByIdEstimation(idEstimate);
+                return Json(new { listHistory = list }, JsonRequestBehavior.AllowGet);
+
             }
-               
-           
+            catch
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
         }
     }
 }

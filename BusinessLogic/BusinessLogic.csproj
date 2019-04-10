@@ -75,7 +75,10 @@
     <Compile Include="lnGroup.cs" />
     <Compile Include="lnHingeDirection.cs" />
     <Compile Include="lnHingePositions.cs" />
+    <Compile Include="lnHistoryCreditNotes.cs" />
     <Compile Include="lnHistoryEstimate.cs" />
+    <Compile Include="lnHistoryInvoice.cs" />
+    <Compile Include="lnHistoryPayments.cs" />
     <Compile Include="lnHorizontalDivisions.cs" />
     <Compile Include="lnInsideEdgeProfile.cs" />
     <Compile Include="lnInvoice.cs" />
@@ -87,6 +90,8 @@
     <Compile Include="lnPanel.cs" />
     <Compile Include="lnPanelMaterial.cs" />
     <Compile Include="lnPaymentMode.cs" />
+    <Compile Include="lnPaymentsReceived.cs" />
+    <Compile Include="lnPaymentsxInvoices.cs" />
     <Compile Include="lnPerson.cs" />
     <Compile Include="lnPreparation.cs" />
     <Compile Include="lnRailThickness.cs" />
