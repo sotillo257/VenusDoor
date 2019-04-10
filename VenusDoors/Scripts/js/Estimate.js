@@ -1,4 +1,6 @@
 ﻿$(document).ready(function () {
+    $(".AddComment").hide();
+    $(".showInput").hide();
 
     $(document).on('click', "#btAdd", function () {
         $("#addFile").trigger('click');
