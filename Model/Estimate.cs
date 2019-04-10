@@ -23,5 +23,7 @@ namespace Model
         public int CreatorUser { get; set; }
         public DateTime ModificationDate { get; set; }
         public int ModificationUser { get; set; }    
+        public int Document { get; set; }
+        List<DocumentsAdj> ListDocument { get; set; }
     }
 }

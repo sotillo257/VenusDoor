@@ -42,7 +42,9 @@ namespace BusinessLogic
         {
             try
             {
-                return _AD.GetEstimateById(Id, IdCompany, IdUserCliente, IdUserVendedor, CreatorUser, EstimateDate, Expirydate);
+                List<Estimate> ListEstimate = _AD.GetEstimateById(Id, IdCompany, IdUserCliente, IdUserVendedor, CreatorUser, EstimateDate, Expirydate);
+                
+                return ListEstimate;
             }
             catch (Exception ex)
             {

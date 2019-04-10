@@ -110,14 +110,7 @@ namespace DataAccess
                 throw err;
             }
         }
-
-        /// <summary>
-        /// @Autor: Jesus Sotillo
-        /// @Fecha Creacion: 29/12/2018
-        /// @Descripción: Elimina BottomRail por Id
-        /// </summary>
-        /// <param name="pId"></param>
-        /// <returns></returns>
+     
         public void DeleteBottomRail(int pId)
         {
             string sql = @"[spDeleteBottomRail] '{0}'";

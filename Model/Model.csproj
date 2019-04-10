@@ -54,7 +54,15 @@
   <ItemGroup>
     <Compile Include="BottomRail.cs" />
     <Compile Include="Company.cs" />
+    <Compile Include="CreditNotes.cs" />
+    <Compile Include="CreditNotesxInvoices.cs" />
     <Compile Include="Decimals.cs" />
+    <Compile Include="DepositTo.cs" />
+    <Compile Include="DocumentsAdj.cs" />
+    <Compile Include="DocumentsAdjxCreditNotes.cs" />
+    <Compile Include="DocumentsAdjxEstimate.cs" />
+    <Compile Include="DocumentsAdjxInvoice.cs" />
+    <Compile Include="DocumentsAdjxPaymentsReceived.cs" />
     <Compile Include="DoorOption.cs" />
     <Compile Include="Doors.cs" />
     <Compile Include="DoorsPrices.cs" />
@@ -79,6 +87,8 @@
     <Compile Include="OutsideEdgeProfile.cs" />
     <Compile Include="Panel.cs" />
     <Compile Include="PanelMaterial.cs" />
+    <Compile Include="PaymentMode.cs" />
+    <Compile Include="PaymentsReceived.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Preparation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

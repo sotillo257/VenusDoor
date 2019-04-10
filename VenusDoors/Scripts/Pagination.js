@@ -195,12 +195,12 @@
                 }
 
                 if (showPrevious || showPageNumbers || showNext) {
-                    html += '<div class="paginationjs-pages">';
+                 //   html += '<div class="paginationjs-pages">';
 
                     if (ulClassName) {
-                        html += '<ul class="' + ulClassName + '">';
+                      //  html += '<ul class="' + ulClassName + '">';
                     } else {
-                        html += '<ul>';
+                     //   html += '<ul>';
                     }
 
                     // Whether to display the Previous button
@@ -287,7 +287,7 @@
                         html += '<button type="button" data-num="' + (currentPage + 1) + '" class="' + classPrefix + '-next J-paginationjs-next btn btn-light pd-x-25"><i class="fa fa-angle-right"></i></button>';
                     }
                 }
-                html += '<\/ul><\/div>';
+              //  html += '<\/ul><\/div>';
             }
                 // Whether to display the navigator
                 if (showNavigator) {
