@@ -11,9 +11,9 @@ namespace DataAccess
 {
     public class adHistoryEstimate : Connection
     {
-        public HistoryEstimate GetHistoryEstimateByIdEstimation(int IdEstimation)
+        public List<HistoryEstimate> GetHistoryEstimateByIdEstimation(int IdEstimation)
         {
-            HistoryEstimate HistoEst = new HistoryEstimate();
+            List<HistoryEstimate> HistoEst = new List<HistoryEstimate>();
             string sql = @"[spGetHistoryEstimateByIdEstimation] '{0}' ";
             sql = string.Format(sql, IdEstimation);
 
@@ -25,16 +25,16 @@ namespace DataAccess
                 {
                     foreach (DataRow item in ds.Tables["HistoryEstimate"].Rows)
                     {
-                        HistoEst = new HistoryEstimate()
+                        HistoEst.Add(new HistoryEstimate()
                         {
                             Id = int.Parse(item["Id"].ToString()),
                             Estimation = new Estimate() { Id = int.Parse(item["IdEstimation"].ToString()) },
                             UserCreador = new User() { Id = int.Parse(item["IdUserCreador"].ToString()) },
                             Type = new Model.Type() { Id = int.Parse(item["IdType"].ToString()) },
                             History = item["History"].ToString(),
-                            CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),                            
+                            CreationDate = (item["CreationDate"].ToString() != "") ? DateTime.Parse(item["CreationDate"].ToString()) : DateTime.Parse("01/01/1900"),
 
-                        };
+                        });
                     }
                 }
                 return HistoEst;

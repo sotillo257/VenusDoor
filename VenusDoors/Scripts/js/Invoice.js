@@ -37,3 +37,22 @@ $(function () {
         }
     });
 });
+
+$(document).ready(function () {
+
+    $(document).on('click', "#btAdd", function () {
+        $("#addFile").trigger('click');
+    });
+
+    $("#ocultarCampo").on("click", function () {
+        $(".showInput").hide();
+        $(".AddComment").hide();
+        $(".ocultarTitulo").show();
+    });
+
+    $("#mostrarCampo").on("click", function () {
+        $(".showInput").show();
+        $(".AddComment").show();
+        $(".ocultarTitulo").hide();
+    });
+});

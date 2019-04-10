@@ -1,4 +1,23 @@
-﻿$(function () {
+﻿$(document).ready(function () {
+
+    $(document).on('click', "#btAdd", function () {
+        $("#addFile").trigger('click');
+    });
+
+    $("#ocultarCampo").on("click", function () {
+        $(".showInput").hide();
+        $(".AddComment").hide();
+        $(".ocultarTitulo").show();
+    });
+
+    $("#mostrarCampo").on("click", function () {
+        $(".showInput").show();
+        $(".AddComment").show();
+        $(".ocultarTitulo").hide();
+    });
+});
+
+$(function () {
     $("#add").click(function () {
         var n = $('tr:last', $("#mitabla")).length;
         var tds = '<tr>';
@@ -71,7 +90,7 @@ $(document).ready(function () {
                 option += '   <h6 class="tx-14 mg-b-10 tx-gray-800">' + data[i].UserCliente.Person.Name + '</h6>';
                 option += '</div>';
                 var attach =' ';
-                if (i == 0) {
+                if (data[i].Document > 0) {
                     attach += '<i class="icon ion-android-attach"></i>';
                 }
                 option += '  <h6 class="tx-14 mg-b-10 tx-gray-800">'+attach+' $' + Moneda(data[i].Total) + '</h6>';
@@ -95,6 +114,7 @@ $(document).on('click', '.Esimate', function (event) {
     $('.Esimate').removeClass("active");
     $(this).addClass("active");
     var IdEstimate = $(this).attr('data-id');
+    GetHistoryEstmate(IdEstimate);
     for (var i = 0; i < listEstimate.length; i++) {
         if (IdEstimate == listEstimate[i].Id) {
             $("#lblFolio").text(listEstimate[i].IdFolio);
@@ -134,4 +154,29 @@ function Moneda(entrada) {
    
     return resul;
 }
+
+function GetHistoryEstmate(id) {
+    var status = 1;
+    var datos =
+         {
+             idEstimate: id         
+    };
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(datos),
+        url: urlGetHistoryEstimate,
+        dataType: "json",
+        async : true,
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+            //Validar data para ver si mostrar error al guardar o exito al guardar
+            console.log(result);
+        },
+        error: function (err) {
+            LlammarModal("Danger", "Error.", "GetHistoryEstmate");
+        },
+
+    });
+}
+
 

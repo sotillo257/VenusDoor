@@ -70,11 +70,9 @@
         </a>
         <h6 class="tx-inverse mg-b-0 tx-13 tx-uppercase">All Invoices</h6>
         <button type="button" class="Cursor btn btn-primary" style="margin-left: 70px;height: 30px;padding-bottom: 2px;padding-top: 2px;padding-left: 9px;padding-right: 9px;" data-toggle="modal" data-target="#modalNewIn"><i class="icon ion-plus"></i> New</button>
-        <div class="btn-group" role="group" aria-label="Basic example">
-            <div class="skin" id="Demo">
+        <div class="btn-group" id="Demo" role="group" aria-label="Basic example">
 
             </div>
-        </div>
     </div><!-- br-mailbox-list-header -->
     <div class="br-mailbox-list-body" style="margin-top: 95px;">
 
@@ -122,11 +120,12 @@
         <div class="br-msg-header d-flex justify-content-between">
             <div class="media align-items-center">
                 @*<button type="button" class="Cursor btn btn-primary" data-toggle="modal" data-target="#modalNewIn"><i class="icon ion-plus"></i> New</button>*@
-                
                 <div class="media-body mg-l-10">
                     <p class="tx-inverse tx-medium mg-b-0" id="lblFolio">INV-0001</p>
                     <p class="tx-12 mg-b-0">
-                        <span id="lblFechaTitulo">Sep 20, 2017 </span>                       
+                        <span>Sep 20, 2017 8:45am</span>
+                        <a href="" class="mg-l-5 tx-gray-500"><i class="icon ion-star"></i></a>
+                        <a href="" class="mg-l-5 tx-gray-500"><i class="icon ion-android-attach"></i></a>
                     </p>
                 </div><!-- media-body -->
             </div><!-- media -->
@@ -139,9 +138,10 @@
                     <button type="button" class="Cursor btn btn-page"><i class="fa fa-send"></i></button>
                 </div>
 
-                <button type="button" class="Cursor btn btn-page" style="margin-left: 15px;margin-right: 15px;"><i class="fa fa-paperclip"></i></button>
+                <button type="button" id="btAdd" class="Cursor btn btn-page" style="margin-left: 15px;margin-right: 15px;"><i class="fa fa-paperclip"></i></button>
+                <input id="addFile" name="file" type="file" style="display:none;" />
 
-                <button type="button" class="Cursor btn btn-page">Record Payment</button>
+                <button type="button" class="Cursor btn btn-page">Convert Invoice</button>
 
                 <div class="dropdown">
                     <a class="Cursor nav-link nav-link-profile d-flex align-items-center"
@@ -165,25 +165,83 @@
             </nav>
         </div><!-- br-msg-header -->
     </div>
-
     <div class="br-msg-body" style="margin-left: 0px;margin-right: 0px;margin-top: 95px;">
         <div class="modal-dialog modal-lg" style="margin-top: 0px; max-width: 100%; margin-bottom: 20px;">
             <div class="modal-content" style="border: 0px;">
                 <div class="modal-body" style="padding: 0px;">
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link bd-0 active pd-y-8" data-toggle="tab" href="#infoPanel" role="tab"><strong>Comments & History</strong></a>
-                        <li>
-                        <li class="nav-item">
-                            <a class="nav-link bd-0 tx-gray-light" data-toggle="tab" href="#ads" role="tab"><strong>Payments</strong></a>
-                        <li>
+
                             @*<li class="nav-item">
-                                    <a class="nav-link bd-0 tx-gray-light" data-toggle="tab" href="#schedulePanel" role="tab"><strong>Schedule</strong></a>
-                                <li>*@
+                            <a class="nav-link bd-0 tx-gray-light " data-toggle="tab" href="#ads" role="tab"><strong>Payments</strong></a>
+                        </li>*@
+                        <li class="nav-item">
+                            <a class="nav-link bd-0 pd-y-8 active" id="ocultarCampo" data-toggle="tab" href="#infoPanel" role="tab"><strong>Comments & History</strong></a>
+                        </li>
+                        
                     </ul>
 
                     <div style="background-color: #e9ecef;padding-left: 15px;padding-top: 20px;padding-right: 20px;padding-bottom: 20px;">
                         <div class="tab-content">
+                            @*<div class="tab-pane fade" id="ads" role="tabpanel">
+                                <table style="width:100%;margin-top: 0px;table-layout:fixed;" class="pcs-itemtable" border="0" cellspacing="0" cellpadding="0">
+                                    <thead>
+                                        <tr style="height:32px;">
+                                            <td style="padding: 5px 0px 5px 5px;text-align: left;font-size: 9pt;" id="" class="pcs-itemtable-breakword">
+                                                <strong>Date</strong>
+                                            </td>
+                                            <td style="padding: 5px 10px 5px 20px;text-align: left;font-size: 9pt;" id="" class="pcs-itemtable-breakword">
+                                                <strong>Payment #</strong>
+                                            </td>
+                                            <td style="padding: 5px 10px 5px 5px;text-align: left;font-size: 9pt;" id="" class="pcs-itemtable-breakword">
+                                                <strong>Reference #</strong>
+                                            </td>
+                                            <td style="padding: 5px 10px 5px 5px;text-align: left;font-size: 9pt;" id="" class="pcs-itemtable-breakword">
+                                                <strong>Payment Mode</strong>
+                                            </td>
+                                            <td style="padding: 5px 10px 5px 5px;text-align: left;font-size: 9pt;" id="" class="pcs-itemtable-breakword hidden">
+                                                <strong>Amount</strong>
+                                            </td>
+                                            <td style="padding: 5px 10px 5px 5px;text-align: center;font-size: 9pt;" id="" class="pcs-itemtable-breakword">
+                                                <i class="fa fa-flash"></i>
+                                            </td>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="itemBody">
+                                        <tr>
+                                            <td rowspan="1" valign="top" style="background-color: #e9ecef;padding: 10px 0 10px 5px;text-align: left;word-wrap: break-word;" class="pcs-item-row">
+                                                08 Apr 2019
+                                            </td>
+                                            <td rowspan="1" valign="top" style="background-color: #e9ecef;padding: 10px 0px 10px 20px;" class="pcs-item-row text-align-left">
+                                                <div>
+                                                    <div>
+                                                        <span style="word-wrap: break-word;" id="tmp_item_name">300</span><br>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td rowspan="1" style="background-color: #e9ecef;" class="pcs-item-row lineitem-column text-align-left">
+                                                <span id="tmp_item_qty"></span>
+                                            </td>
+                                            <td rowspan="1" style="background-color: #e9ecef;" class="pcs-item-row lineitem-column text-align-left">
+                                                <span id="tmp_item_rate">Credit Card</span>
+                                            </td>
+                                            <td rowspan="1" style="background-color: #e9ecef;" class="pcs-item-row lineitem-column lineitem-content-right text-align-left">
+                                                <span id="tmp_item_amount">$199.06</span>
+                                            </td>
+                                            <td rowspan="1" style="background-color: #e9ecef;" class="pcs-item-row lineitem-column lineitem-content-right text-align-center">
+                                                <center>
+                                                    <button style="width: 25px;height: 25px; margin-left: 10px;" class="Modificar Cursor btn btn-outline-primary btn-icon">
+                                                        <i class="fa fa-edit"></i>
+                                                    </button>
+                                                    <button href="#" title="Remove" class="Remove Cursor btn btn-outline-danger btn-icon" style="width: 25px;height: 25px; margin-left: 10px;">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
+                                                </center>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>*@
                             <div class="tab-pane fade show active" id="infoPanel" role="tabpanel">
                                 <div class="comments-history">
                                     <p class="font-small"><a data-ember-action="" data-ember-action-1551="1551">View More</a></p> <ul class="list-unstyled" data-test-title="comments-list">
@@ -200,6 +258,7 @@
                                                     </div>
                                                     <div class="media-body" style="margin-left: 50px;">
                                                         <div class="comment">
+                                                            <span class="IconStatus icon ion-chatbubbles" style="padding-right: 7px;padding-left: 6px;"></span>
                                                             <span class="description">Invoice marked as sent</span>
                                                             <label class="font-xs text-muted">by <strong>Katie Cai</strong></label>
                                                         </div>
@@ -218,70 +277,19 @@
                                                     </div>
                                                     <div class="media-body" style="margin-left: 50px;">
                                                         <div class="comment">
+                                                            <span class="IconStatus icon ion-cash"></span>
                                                             <span class="description">Payment of $199.06 received</span>
                                                             <label class="font-xs text-muted">by <strong>Katie Cai</strong></label>
-                                                            <!---->
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </li>
                                     </ul>
-                                    <a data-test-title="add-comment" data-ember-action="" data-ember-action-1558="1558">+ Add Comment</a>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="ads" role="tabpanel">
-                                <table style="width:100%;margin-top: 0px;table-layout:fixed;" class="pcs-itemtable" border="0" cellspacing="0" cellpadding="0">
-                                    <thead>
-                                        <tr style="height:32px;">
-                                            <td style="padding: 5px 0px 5px 5px;text-align: left;font-size: 9pt;" id="" class="pcs-itemtable-breakword">
-                                                <strong>Date</strong>
-                                            </td>
-                                            <td style="padding: 5px 10px 5px 20px;text-align: left;font-size: 9pt;" id="" class="pcs-itemtable-breakword">
-                                                <strong>Invoice #</strong>
-                                            </td>
-                                            <td style="padding: 5px 10px 5px 5px;text-align: left;font-size: 9pt;" id="" class="pcs-itemtable-breakword">
-                                                <strong>Status</strong>
-                                            </td>
-                                            <td style="padding: 5px 10px 5px 5px;text-align: left;font-size: 9pt;" id="" class="pcs-itemtable-breakword">
-                                                <strong>Due Date</strong>
-                                            </td>
-                                            <td style="padding: 5px 10px 5px 5px;text-align: left;font-size: 9pt;" id="" class="pcs-itemtable-breakword hidden">
-                                                <strong>Amount</strong>
-                                            </td>
-                                            <td style="padding: 5px 10px 5px 5px;text-align: left;font-size: 9pt;" id="" class="pcs-itemtable-breakword">
-                                                Balance Due
-                                            </td>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="itemBody">
-                                        <tr>
-                                            <td rowspan="1" valign="top" style="background-color: #e9ecef;padding: 10px 0 10px 5px;text-align: left;word-wrap: break-word;" class="pcs-item-row">
-                                                08 Apr 2019
-                                            </td>
-                                            <td rowspan="1" valign="top" style="background-color: #e9ecef;text-align: left;padding: 10px 0px 10px 20px;" class="pcs-item-row">
-                                                <div>
-                                                    <div>
-                                                        <span style="word-wrap: break-word;" id="tmp_item_name">INV-0001</span><br>
-                                                    </div>
+                                    <bottom id="mostrarCampo" class="Cursor ocultarTitulo">+ Add Comment</bottom>
+                                    <textarea style="width:100%" class="showInput form-control"></textarea>
+                                    <button type="button" style="padding-left: 9px;padding-right: 9px;height: 30px;padding-top: 2px;padding-bottom: 2px;margin-top: 10px;" class="Cursor btn btn-primary AddComment">Add Comment</button>
                                                 </div>
-                                            </td>
-                                            <td rowspan="1" style="background-color: #e9ecef;" class="pcs-item-row lineitem-column text-align-left">
-                                                <span id="tmp_item_qty">PAID</span>
-                                            </td>
-                                            <td rowspan="1" style="background-color: #e9ecef;" class="pcs-item-row lineitem-column text-align-left">
-                                                <span id="tmp_item_rate">20 Apr 2019</span>
-                                            </td>
-                                            <td rowspan="1" style="background-color: #e9ecef;" class="pcs-item-row lineitem-column lineitem-content-right text-align-left">
-                                                <span id="tmp_item_amount">$199.06</span>
-                                            </td>
-                                            <td rowspan="1" style="background-color: #e9ecef;" class="pcs-item-row lineitem-column lineitem-content-right text-align-left">
-                                                <span id="tmp_item_amount">$50.00</span>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-
                             </div>
                             @*<div class="tab-pane fade hidden" id="schedulePanel" role="tabpanel">
                                     <h4>Schedule</h4>
@@ -324,7 +332,7 @@
 
             <div style="max-width: 8.27in;margin-left:auto;margin-right:auto; margin-top: 0px;" id="divMarca" class="details-container clearfix paid">
                 <div class="pcs-template ">
-                    <div class="pcs-template-header pcs-header-content " id="header">
+                    <div class="pcs-template-header pcs-header-content" id="header">
                         <div class="pcs-template-fill-emptydiv"></div>
                     </div>
 
@@ -337,11 +345,6 @@
                                         <div>
                                             <img src="~/Content/img/Venus_Doors11.png" style="width: 200px;" />
                                         </div>
-                                        <div style="clear:both;margin-top:20px;">
-                                            <span style="font-size:8pt;"><b>Balance Due</b></span>
-                                            <br>
-                                            <span style="font-size:12pt;"><b>$230.77</b></span>
-                                        </div>
                                     </td>
 
                                     <td class="text-align-right v-top" style="vertical-align: top; width:50%;">
@@ -353,6 +356,11 @@
                                                 U.S.A
                                             </span>
                                         </span>
+                                        <div style="clear:both;margin-top:30px;">
+                                            <span style="font-size:8pt;"><b>Balance Due</b></span>
+                                            <br>
+                                            <span style="font-size:12pt;"><b>$230.77</b></span>
+                                        </div>
                                     </td>
                                 </tr>
                             </tbody>
@@ -750,6 +758,7 @@
     @Scripts.Render("~/Scripts/Pagination.js")
     @Scripts.Render("~/Scripts/js/Estimate.js")
 <script>
+    var urlGetHistoryEstimate = '@Url.Action("GetHistoryEstimate", "Estimate")';
                     try {
                         var listEstimate = JSON.parse('@Html.Raw(ViewBag.Estimate)');
                     } catch (e) {
