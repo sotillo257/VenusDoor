@@ -36,13 +36,13 @@ namespace VenusDoors.Controllers
             try
             {
                 BusinessLogic.lnHistoryEstimate _LNHIST = new BusinessLogic.lnHistoryEstimate();
-                List<HistoryEstimate> list = _LNHIST.GetHistoryEstimateByIdEstimation(idEstimate);
-                return Json(new { listHistory = list }, JsonRequestBehavior.AllowGet);
+                List<HistoryEstimate> list = _LNHIST.GetHistoryEstimateByIdEstimation(idEstimate);         
+                return Json(new { listHistory = list, Success = true, Mensaje = ""}, JsonRequestBehavior.AllowGet);
 
             }
-            catch
+            catch (Exception ex)
             {
-                return Json(null, JsonRequestBehavior.AllowGet);
+                return Json(new { Success = false, Mensaje = ex.Message }, JsonRequestBehavior.AllowGet);
             }
         }
         [Authorize]
@@ -63,18 +63,16 @@ namespace VenusDoors.Controllers
                 if (i > 0 )
                 {
                     List<HistoryEstimate> list = _LNHIST.GetHistoryEstimateByIdEstimation(IdEstimate);
-                    return Json(new { listHistory = list, Success = true }, JsonRequestBehavior.AllowGet);
+                    return Json(new { listHistory = list, Success = true, Mensaje = "" }, JsonRequestBehavior.AllowGet);
                 }
                 else
                 {
-                    return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
+                    return Json(new { Success = false, Mensaje = "Error inserting the comment" }, JsonRequestBehavior.AllowGet);
                 }
-               
-
             }
-            catch
+            catch (Exception ex)
             {
-                return Json(null, JsonRequestBehavior.AllowGet);
+                return Json(new { Success = false, Mensaje = ex.Message }, JsonRequestBehavior.AllowGet);
             }
         }
     }

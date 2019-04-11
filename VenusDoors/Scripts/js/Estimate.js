@@ -97,8 +97,6 @@ $(document).ready(function () {
         className: 'paginationjs-theme-blue paginationjs-small',
         dataSource: listEstimate,
         callback: function (data, pagination) {
- // template method of yourself
-            console.log(data);
             var option = '';
             for (var i = 0; i < data.length; i++) {
                 if (i == 0) {
@@ -133,7 +131,11 @@ $(document).ready(function () {
     });
 });
 var _IdEstimate = 0;
-$(document).on('click', '.Esimate', function (event) {   
+$(document).on('click', '.Esimate', function (event) {
+    $("#txtComment").val("");
+    $(".showInput").hide();
+    $(".AddComment").hide();
+    $(".ocultarTitulo").show();
     $('.Esimate').removeClass("active");
     $(this).addClass("active");
     var IdEstimate = $(this).attr('data-id');
@@ -196,7 +198,6 @@ function ToJavaScriptDate(value) {
 }
 
 function GetHistoryEstmate(id) {
-    var status = 1;
     var datos =
          {
              idEstimate: id         
@@ -209,8 +210,7 @@ function GetHistoryEstmate(id) {
         async : true,
         contentType: 'application/json; charset=utf-8',
         success: function (result) {
-            //Validar data para ver si mostrar error al guardar o exito al guardar
-            console.log(result);
+            if (result.Success) {
             var option = '';
             for (var i = 0; i < result.listHistory.length; i++) {
                 option += ' <li id="ember1553" class="ember-view">';
@@ -235,9 +235,13 @@ function GetHistoryEstmate(id) {
             }
         
             $("#divHistoryComm").empty().append(option);
+            $("#txtComment").val("");
+        } else {
+                LlammarModal("Danger", "Error.", result.Mensaje);
+    }
         },
         error: function (err) {
-            LlammarModal("Danger", "Error.", "GetHistoryEstmate");
+            LlammarModal("Danger", "Error.", "Error getting History & Comments");
         },
 
     });
@@ -257,6 +261,7 @@ function InsertComment(Comment) {
         async: true,
         contentType: 'application/json; charset=utf-8',
         success: function (result) {
+            if (result.Success) {          
             var option = '';
             for (var i = 0; i < result.listHistory.length; i++) {
                 option += ' <li id="ember1553" class="ember-view">';
@@ -285,9 +290,12 @@ function InsertComment(Comment) {
             $(".showInput").hide();
             $(".AddComment").hide();
             $(".ocultarTitulo").show();
+            } else {
+                LlammarModal("Danger", "Error.", result.Mensaje);
+            }
         },
         error: function (err) {
-            LlammarModal("Danger", "Error.", "GetHistoryEstmate");
+            LlammarModal("Danger", "Error.", "Error inserting the comment");
         },
 
     });
