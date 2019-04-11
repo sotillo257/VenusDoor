@@ -101,6 +101,7 @@ $(document).ready(function () {
             var option = '';
             for (var i = 0; i < data.length; i++) {
                 if (i == 0) {
+                    LlenarVistaPrincipal(data[i]);
                     option += '<div data-id="' + data[i].Id + '" class="br-mailbox-list-item Esimate active">';
                 } else {
                     option += '<div data-id="' + data[i].Id + '" class="br-mailbox-list-item Esimate ">';
@@ -123,7 +124,7 @@ $(document).ready(function () {
                 var Fecha1 = new Date(parseInt(re.exec(data[i].CreationDate)[0]));
                 option += '         <h6 class="tx-14 mg-b-10 tx-gray-800">' + data[i].IdFolio + ' | ' + Fecha1.ddmmyyyy() + '</h6>'
                 option +='      </div>'
-                option += '   <h6 class="tx-14 mg-b-10 tx-gray-800">' + data[i].Status.Description + '</h6>'
+                option += '   <h6 class="tx-14 mg-b-10 tx-gray-800" style="color: ' + Colores(data[i].Status.Id) + ';">' + data[i].Status.Description + '</h6>'
                 option += '  </div>'
                 option += ' </div><!-- br-mailbox-list-item -->';
             }
@@ -139,19 +140,61 @@ $(document).on('click', '.Esimate', function (event) {
     $(".ocultarTitulo").show();
     $("#read-more-state").show();
     $("#read-less-state").hide();
-    $('.Esimate').removeClass("active");
-    $(this).addClass("active");
+   
     var IdEstimate = $(this).attr('data-id');
     _IdEstimate = $(this).attr('data-id');
-    GetHistoryEstmate(IdEstimate);
-    for (var i = 0; i < listEstimate.length; i++) {
+    if (!$(this).hasClass("active")) {
+        for (var i = 0; i < listEstimate.length; i++) {
         if (IdEstimate == listEstimate[i].Id) {
-            $("#lblFolio").text(listEstimate[i].IdFolio);
-            var Fecha1 = new Date(parseInt(re.exec(listEstimate[i].CreationDate)[0]));
-            $("#lblFechaTitulo").text(Fecha1.ddmmyyyy());
+            LlenarVistaPrincipal(listEstimate[i]);
+            break;
         }
     }
+    }
+    $('.Esimate').removeClass("active");
+    $(this).addClass("active");
 });
+var claseAnterior = 'paid';
+function LlenarVistaPrincipal(listEstimate) {
+    GetHistoryEstmate(listEstimate.Id);
+    $("#lblFolio").text(listEstimate.IdFolio);
+    var Fecha1 = new Date(parseInt(re.exec(listEstimate.CreationDate)[0]));
+    $("#lblFechaTitulo").text(Fecha1.ddmmyyyy());
+
+    $('<style type="text/css">  .paid-' + listEstimate.Status.Description + ' {box-sizing:border-box; margin: calc(50vh - 170px) auto;position:relative;} .paid-' + listEstimate.Status.Description + '::before { position:absolute;' +
+   ' top:13px; left:-39px; box-sizing:border-box;content:"¡' + listEstimate.Status.Description + '!";text-transform:uppercase; font-family:"Segoe UI", Tahoma, Geneva, Verdana, sans-serif;' +
+    'font-size: 13px;text-align:center;font-weight: 700;color: #fff;background: transparent;height:0;width:155px;border:25px solid transparent;border-bottom:25px solid ' + Colores(listEstimate.Status.Id) + ';' +
+    'transform: rotate(-45deg);line-height:23px;} </style>').appendTo("head");
+   
+    $("#divMarca").removeClass(claseAnterior);
+    claseAnterior = 'paid-' + listEstimate.Status.Description;
+    $("#divMarca").addClass('paid-' + listEstimate.Status.Description);
+}
+
+function Colores(IdStatus) {
+    var Color = "#94a5a6";
+    switch (IdStatus) {
+        case 13:
+            Color = "#94a5a6";
+            break;
+        case 14:
+            Color = "#15806f";
+            break;
+        case 15:
+            Color = "#f59d00";
+            break;
+        case 16:
+            Color = "#15806f";
+            break;
+        case 17:
+            Color = "#15806f";
+            break;
+        default:
+
+    }
+
+    return Color;
+}
 
 function Moneda(entrada) {
     var resul = "";
