@@ -59,3 +59,4 @@ C:\Users\Javier Sotillo\Source\Repos\VenusDoor\Model\bin\Debug\EntityFramework.d
 C:\Users\Javier Sotillo\Source\Repos\VenusDoor\Model\bin\Debug\EntityFramework.xml
 C:\Users\Javier Sotillo\Source\Repos\VenusDoor\Model\obj\Debug\Model.dll
 C:\Users\Javier Sotillo\Source\Repos\VenusDoor\Model\obj\Debug\Model.pdb
+C:\Users\Javier Sotillo\Source\Repos\VenusDoor\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache

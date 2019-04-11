@@ -39,9 +39,23 @@ $(function () {
 });
 
 $(document).ready(function () {
+    $(".read-more-target").hide();
+    $("#read-less-state").hide();
 
     $(document).on('click', "#btAdd", function () {
         $("#addFile").trigger('click');
+    });
+
+    $("#read-more-state").on("click", function () {
+        $("#read-more-state").hide();
+        $("#read-less-state").show();
+        $(".read-more-target").show();
+    });
+
+    $("#read-less-state").on("click", function () {
+        $("#read-more-state").show();
+        $("#read-less-state").hide();
+        $(".read-more-target").hide();
     });
 
     $("#ocultarCampo").on("click", function () {
