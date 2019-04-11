@@ -1,7 +1,8 @@
 ﻿$(document).ready(function () {
     $(".AddComment").hide();
     $(".showInput").hide();
-
+    $(".read-more-target").hide();
+    $("#read-less-state").hide();
     $(document).on('click', "#btAdd", function () {
         $("#addFile").trigger('click');
     });
@@ -136,6 +137,8 @@ $(document).on('click', '.Esimate', function (event) {
     $(".showInput").hide();
     $(".AddComment").hide();
     $(".ocultarTitulo").show();
+    $("#read-more-state").show();
+    $("#read-less-state").hide();
     $('.Esimate').removeClass("active");
     $(this).addClass("active");
     var IdEstimate = $(this).attr('data-id');
@@ -211,9 +214,15 @@ function GetHistoryEstmate(id) {
         contentType: 'application/json; charset=utf-8',
         success: function (result) {
             if (result.Success) {
-            var option = '';
+                var option = '';
+                var x = result.listHistory.length - 4;
             for (var i = 0; i < result.listHistory.length; i++) {
-                option += ' <li id="ember1553" class="ember-view">';
+                if (i > x) {
+                    option += ' <li id="ember1553" class="ember-view">';
+                } else {
+                    option += ' <li id="ember1553" class="read-more-target ember-view">';
+                }
+               
                 option += '                          <div class="clearfix" data-test-title="comments-list-row">';
                 option += '                               <div class="date-section pull-left">';
                 option += '                                   <div class="font-xxs text-draft">';
@@ -229,13 +238,14 @@ function GetHistoryEstmate(id) {
                 option += '                                    <div class="media-body" style="margin-left: 50px;">';
                 option += '                                        <div class="comment">';
                 option += '                                          <span class="IconStatus icon ion-chatbubbles" style="padding-right: 7px;padding-left: 6px;"></span>';
-                option += '                                          <span class="description">' + result.listHistory[i].History + '</span>';
-                option += '                                          <label class="font-xs text-muted">by <strong>' + result.listHistory[i].NameCreador + '</strong></label>';
+                option += '                                          <span class="description"><strong>' + result.listHistory[i].History + '</strong></span>';
+                option += '                                          <label class="font-xs text-muted tx-12"> by ' + result.listHistory[i].NameCreador + '</label>';
                 option += '                                     </div></div></div></div></li>';
             }
         
             $("#divHistoryComm").empty().append(option);
             $("#txtComment").val("");
+            $(".read-more-target").hide();
         } else {
                 LlammarModal("Danger", "Error.", result.Mensaje);
     }
@@ -263,8 +273,13 @@ function InsertComment(Comment) {
         success: function (result) {
             if (result.Success) {          
             var option = '';
+            var x = result.listHistory.length - 4;
             for (var i = 0; i < result.listHistory.length; i++) {
-                option += ' <li id="ember1553" class="ember-view">';
+                if (i > x) {
+                    option += ' <li id="ember1553" class="ember-view">';
+                } else {
+                    option += ' <li id="ember1553" class="read-more-target ember-view">';
+                }
                 option += '                          <div class="clearfix" data-test-title="comments-list-row">';
                 option += '                               <div class="date-section pull-left">';
                 option += '                                   <div class="font-xxs text-draft">';
@@ -301,4 +316,14 @@ function InsertComment(Comment) {
     });
 }
 
+$("#read-more-state").on("click", function () {
+    $("#read-more-state").hide();
+    $("#read-less-state").show();
+    $(".read-more-target").show();
+});
 
+$("#read-less-state").on("click", function () {
+    $("#read-more-state").show();
+    $("#read-less-state").hide();
+    $(".read-more-target").hide();
+});
