@@ -1,7 +1,8 @@
 ﻿$(document).ready(function () {
     $(".AddComment").hide();
     $(".showInput").hide();
-
+    $(".read-more-target").hide();
+    $("#read-less-state").hide();
     $(document).on('click', "#btAdd", function () {
         $("#addFile").trigger('click');
     });
@@ -88,6 +89,7 @@ Date.prototype.ddmmyyyyHH = function () {
     return time;
 };
 var re = /-?\d+/;
+var inicio = true;
 $(document).ready(function () {
 
     var container = $('#Demo');
@@ -100,7 +102,12 @@ $(document).ready(function () {
             var option = '';
             for (var i = 0; i < data.length; i++) {
                 if (i == 0) {
-                    option += '<div data-id="' + data[i].Id + '" class="br-mailbox-list-item Esimate active">';
+                    if (inicio) {
+                        inicio = false;
+                        LlenarVistaPrincipal(data[i]);
+                        option += '<div data-id="' + data[i].Id + '" class="br-mailbox-list-item Esimate active">';
+                    }                   
+                   
                 } else {
                     option += '<div data-id="' + data[i].Id + '" class="br-mailbox-list-item Esimate ">';
                 }
@@ -122,7 +129,7 @@ $(document).ready(function () {
                 var Fecha1 = new Date(parseInt(re.exec(data[i].CreationDate)[0]));
                 option += '         <h6 class="tx-14 mg-b-10 tx-gray-800">' + data[i].IdFolio + ' | ' + Fecha1.ddmmyyyy() + '</h6>'
                 option +='      </div>'
-                option += '   <h6 class="tx-14 mg-b-10 tx-gray-800">' + data[i].Status.Description + '</h6>'
+                option += '   <h6 class="tx-14 mg-b-10 tx-gray-800" style="color: ' + Colores(data[i].Status.Id) + ';">' + data[i].Status.Description + '</h6>'
                 option += '  </div>'
                 option += ' </div><!-- br-mailbox-list-item -->';
             }
@@ -136,19 +143,109 @@ $(document).on('click', '.Esimate', function (event) {
     $(".showInput").hide();
     $(".AddComment").hide();
     $(".ocultarTitulo").show();
-    $('.Esimate').removeClass("active");
-    $(this).addClass("active");
+    $("#read-more-state").show();
+    $("#read-less-state").hide();
+   
     var IdEstimate = $(this).attr('data-id');
     _IdEstimate = $(this).attr('data-id');
-    GetHistoryEstmate(IdEstimate);
-    for (var i = 0; i < listEstimate.length; i++) {
+    if (!$(this).hasClass("active")) {
+        for (var i = 0; i < listEstimate.length; i++) {
         if (IdEstimate == listEstimate[i].Id) {
-            $("#lblFolio").text(listEstimate[i].IdFolio);
-            var Fecha1 = new Date(parseInt(re.exec(listEstimate[i].CreationDate)[0]));
-            $("#lblFechaTitulo").text(Fecha1.ddmmyyyy());
+            LlenarVistaPrincipal(listEstimate[i]);
+            break;
         }
     }
+    }
+    $('.Esimate').removeClass("active");
+    $(this).addClass("active");
 });
+var claseAnterior = 'paid';
+function LlenarVistaPrincipal(listEstimate) {
+    GetHistoryEstmate(listEstimate.Id);
+    $("#lblFolio").text(listEstimate.IdFolio);
+    var Fecha1 = new Date(parseInt(re.exec(listEstimate.CreationDate)[0]));
+    $("#lblFechaTitulo").text(Fecha1.ddmmyyyy());
+
+    $('<style type="text/css">  .paid-' + listEstimate.Status.Description + ' {box-sizing:border-box; margin: calc(50vh - 170px) auto;position:relative;} .paid-' + listEstimate.Status.Description + '::before { position:absolute;' +
+   ' top:13px; left:-39px; box-sizing:border-box;content:"' + listEstimate.Status.Description + '!";text-transform:uppercase; font-family:"Segoe UI", Tahoma, Geneva, Verdana, sans-serif;' +
+    'font-size: 13px;text-align:center;font-weight: 700;color: #fff;background: transparent;height:0;width:155px;border:25px solid transparent;border-bottom:25px solid ' + Colores(listEstimate.Status.Id) + ';' +
+    'transform: rotate(-45deg);line-height:23px;} </style>').appendTo("head");
+   
+    $("#divMarca").removeClass(claseAnterior);
+    claseAnterior = 'paid-' + listEstimate.Status.Description;
+    $("#divMarca").addClass('paid-' + listEstimate.Status.Description);
+}
+
+function Colores(IdStatus) {
+    var Color = "#94a5a6";
+    switch (IdStatus) {
+        case 13:
+            Color = "#94a5a6";
+            break;
+        case 14:
+            Color = "#15806f";
+            break;
+        case 15:
+            Color = "#f59d00";
+            break;
+        case 16:
+            Color = "#15806f";
+            break;
+        case 17:
+            Color = "#15806f";
+            break;
+        default:
+
+    }
+
+    return Color;
+}
+
+function Iconos(IdType) {
+    var Icono = "fa fa-sticky-note-o";
+    switch (IdType) {
+        case 10:
+            Icono = "fa fa-plus";
+            break;
+        case 11:
+            Icono = "fa fa-envelope-o";
+            break;
+        case 12:
+            Icono = "fa fa-comment-o";
+            break;
+        case 13:
+            Icono = "fa fa-file-text-o";
+            break;
+        case 14:
+            Icono = "fa fa-paperclip";
+            break;
+        case 15:
+            Icono = "fa fa-trash-o";
+            break;
+        case 16:
+            Icono = "fa fa-edit";
+            break;
+        case 17:
+            Icono = "fa fa-times";
+            break;
+        case 18:
+            Icono = "fa fa-check";
+            break;
+        case 19:
+            Icono = "a fa-paper-plane-o";
+            break;
+        case 20:
+            Icono = "fa fa-usd";
+            break;
+        case 21:
+            Icono = "fa fa-files-o";
+            break;
+        default:
+
+    }
+
+    return Icono;
+}
 
 function Moneda(entrada) {
     var resul = "";
@@ -211,9 +308,15 @@ function GetHistoryEstmate(id) {
         contentType: 'application/json; charset=utf-8',
         success: function (result) {
             if (result.Success) {
-            var option = '';
+                var option = '';
+                var x = result.listHistory.length - 4;
             for (var i = 0; i < result.listHistory.length; i++) {
-                option += ' <li id="ember1553" class="ember-view">';
+                if (i > x) {
+                    option += ' <li id="ember1553" class="ember-view">';
+                } else {
+                    option += ' <li id="ember1553" class="read-more-target ember-view">';
+                }
+               
                 option += '                          <div class="clearfix" data-test-title="comments-list-row">';
                 option += '                               <div class="date-section pull-left">';
                 option += '                                   <div class="font-xxs text-draft">';
@@ -228,14 +331,15 @@ function GetHistoryEstmate(id) {
                 option += '                                    </div>';
                 option += '                                    <div class="media-body" style="margin-left: 50px;">';
                 option += '                                        <div class="comment">';
-                option += '                                          <span class="IconStatus icon ion-chatbubbles" style="padding-right: 7px;padding-left: 6px;"></span>';
-                option += '                                          <span class="description">' + result.listHistory[i].History + '</span>';
-                option += '                                          <label class="font-xs text-muted">by <strong>' + result.listHistory[i].NameCreador + '</strong></label>';
+                option += '                                          <span class="IconStatus ' + Iconos(result.listHistory[i].Type.Id) + '" style="padding-right: 2px;padding-left: 6px;height: 24px;width: 26px;padding-bottom: 2px;padding-top: 3px;"></span>';
+                option += '                                          <span class="description"><strong>' + result.listHistory[i].History + '</strong></span>';
+                option += '                                          <label class="font-xs text-muted tx-12"> by ' + result.listHistory[i].NameCreador + '</label>';
                 option += '                                     </div></div></div></div></li>';
             }
         
             $("#divHistoryComm").empty().append(option);
             $("#txtComment").val("");
+            $(".read-more-target").hide();
         } else {
                 LlammarModal("Danger", "Error.", result.Mensaje);
     }
@@ -263,8 +367,13 @@ function InsertComment(Comment) {
         success: function (result) {
             if (result.Success) {          
             var option = '';
+            var x = result.listHistory.length - 4;
             for (var i = 0; i < result.listHistory.length; i++) {
-                option += ' <li id="ember1553" class="ember-view">';
+                if (i > x) {
+                    option += ' <li id="ember1553" class="ember-view">';
+                } else {
+                    option += ' <li id="ember1553" class="read-more-target ember-view">';
+                }
                 option += '                          <div class="clearfix" data-test-title="comments-list-row">';
                 option += '                               <div class="date-section pull-left">';
                 option += '                                   <div class="font-xxs text-draft">';
@@ -279,7 +388,7 @@ function InsertComment(Comment) {
                 option += '                                    </div>';
                 option += '                                    <div class="media-body" style="margin-left: 50px;">';
                 option += '                                        <div class="comment">';
-                option += '                                          <span class="IconStatus icon ion-chatbubbles" style="padding-right: 7px;padding-left: 6px;"></span>';
+                option += '                                          <span class="IconStatus ' + Iconos(result.listHistory[i].Type.Id) + '" style="padding-right: 2px;padding-left: 6px;height: 24px;width: 26px;padding-bottom: 2px;padding-top: 3px;"></span>';
                 option += '                                          <span class="description">' + result.listHistory[i].History + '</span>';
                 option += '                                          <label class="font-xs text-muted">by <strong>' + result.listHistory[i].NameCreador + '</strong></label>';
                 option += '                                     </div></div></div></div></li>';
@@ -301,4 +410,14 @@ function InsertComment(Comment) {
     });
 }
 
+$("#read-more-state").on("click", function () {
+    $("#read-more-state").hide();
+    $("#read-less-state").show();
+    $(".read-more-target").show();
+});
 
+$("#read-less-state").on("click", function () {
+    $("#read-more-state").show();
+    $("#read-less-state").hide();
+    $(".read-more-target").hide();
+});

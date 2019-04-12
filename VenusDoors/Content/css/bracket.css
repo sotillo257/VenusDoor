@@ -13881,7 +13881,7 @@ textarea.parsley-success:focus {
 
 @media (min-width: 992px) {
   .in-headr-right {
-    margin-left: 170px;
+    margin-left: 140px;
     transition: all 0.2s ease-in-out;
   }
 }
@@ -14347,7 +14347,7 @@ textarea.parsley-success:focus {
   }
 
   .collapsed-menu .in-headr-right {
-    margin-left: 355px;
+    margin-left: 315px;
     transition: all 0.2s ease-in-out;
   }
 
