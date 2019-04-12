@@ -191,7 +191,7 @@ namespace DataAccess
         {
             decimal total = Convert.ToDecimal(pDoorsxOrder.ItemCost);
             decimal subto = Convert.ToDecimal(pDoorsxOrder.SubTotal);
-            string sql = @"[spInsertDoorsxOrder]  '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}'";
+            string sql = @"[spInsertDoorsxOrder]  '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}'";
             sql = string.Format(sql,
                 pDoorsxOrder.DoorxUser.Id,
                 pDoorsxOrder.Width.ToString().Replace(',', '.'), 
@@ -202,10 +202,8 @@ namespace DataAccess
                 total.ToString().Replace(',', '.'), 
                 subto.ToString().Replace(',', '.'),
                 pDoorsxOrder.User.Id, 
-                pDoorsxOrder.Status.Id, 
-                pDoorsxOrder.CreationDate.ToString("yyyyMMdd HH:mm:ss"),
-                pDoorsxOrder.CreatorUser, 
-                pDoorsxOrder.ModificationDate.ToString("yyyyMMdd HH:mm:ss"),
+                pDoorsxOrder.Status.Id,
+                pDoorsxOrder.CreatorUser,
                 pDoorsxOrder.ModificationUser, 
                 pDoorsxOrder.Picture,
                 pDoorsxOrder.ProfilePicture, 
@@ -226,7 +224,7 @@ namespace DataAccess
         {
             decimal total = Convert.ToDecimal(pDoorsxOrder.ItemCost);
             decimal subto = Convert.ToDecimal(pDoorsxOrder.SubTotal);
-            string sql = @"[spUpdateDoorsxOrder]  '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}'";
+            string sql = @"[spUpdateDoorsxOrder]  '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}'";
             sql = string.Format(sql,
                 pDoorsxOrder.Id,
                 pDoorsxOrder.DoorxUser.Id,
@@ -239,7 +237,6 @@ namespace DataAccess
                 subto.ToString().Replace(',', '.'),
                 pDoorsxOrder.User.Id,
                 pDoorsxOrder.Status.Id,
-                pDoorsxOrder.ModificationDate.ToString("yyyyMMdd HH:mm:ss"),
                 pDoorsxOrder.ModificationUser,
                 pDoorsxOrder.Picture,
                 pDoorsxOrder.ProfilePicture,

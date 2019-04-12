@@ -85,9 +85,9 @@ namespace DataAccess
 
         public int InsertDocumentsAdjxPaymentsReceived(DocumentsAdjxPaymentsReceived pDocumentsAdjxPaymentsReceived)
         {
-            string sql = @"[spInsertDocumentsAdjxPaymentsReceived] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}'";
-            sql = string.Format(sql, pDocumentsAdjxPaymentsReceived.DocumentsAdj.Id, pDocumentsAdjxPaymentsReceived.PaymentsReceived.Id, pDocumentsAdjxPaymentsReceived.Status.Id, pDocumentsAdjxPaymentsReceived.CreationDate.ToString("yyyyMMdd"),
-                pDocumentsAdjxPaymentsReceived.CreatorUser, pDocumentsAdjxPaymentsReceived.ModificationDate.ToString("yyyyMMdd"), pDocumentsAdjxPaymentsReceived.ModificationUser);
+            string sql = @"[spInsertDocumentsAdjxPaymentsReceived] '{0}', '{1}', '{2}', '{3}', '{4}'";
+            sql = string.Format(sql, pDocumentsAdjxPaymentsReceived.DocumentsAdj.Id, pDocumentsAdjxPaymentsReceived.PaymentsReceived.Id, pDocumentsAdjxPaymentsReceived.Status.Id,
+                pDocumentsAdjxPaymentsReceived.CreatorUser, pDocumentsAdjxPaymentsReceived.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -100,8 +100,8 @@ namespace DataAccess
 
         public void UpdateDocumentsAdjxPaymentsReceived(DocumentsAdjxPaymentsReceived pDocumentsAdjxPaymentsReceived)
         {
-            string sql = @"[spUpdateDocumentsAdjxPaymentsReceived] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}'";
-            sql = string.Format(sql, pDocumentsAdjxPaymentsReceived.Id, pDocumentsAdjxPaymentsReceived.DocumentsAdj.Id, pDocumentsAdjxPaymentsReceived.PaymentsReceived.Id, pDocumentsAdjxPaymentsReceived.Status.Id, pDocumentsAdjxPaymentsReceived.ModificationDate.ToString("yyyyMMdd"),
+            string sql = @"[spUpdateDocumentsAdjxPaymentsReceived] '{0}', '{1}', '{2}', '{3}', '{4}'";
+            sql = string.Format(sql, pDocumentsAdjxPaymentsReceived.Id, pDocumentsAdjxPaymentsReceived.DocumentsAdj.Id, pDocumentsAdjxPaymentsReceived.PaymentsReceived.Id, pDocumentsAdjxPaymentsReceived.Status.Id,
                 pDocumentsAdjxPaymentsReceived.ModificationUser);
             try
             {

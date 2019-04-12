@@ -314,9 +314,9 @@ namespace DataAccess
             decimal subtotal = Convert.ToDecimal(pOrder.SubTotal);
             decimal tax = Convert.ToDecimal(pOrder.Tax);
             decimal total = Convert.ToDecimal(pOrder.Total);
-            string sql = @"[spInsertOrder] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}'";
-            sql = string.Format(sql, pOrder.User.Id, pOrder.Quantity, subtotal.ToString().Replace(',', '.'), tax.ToString().Replace(',', '.'), total.ToString().Replace(',', '.'),pOrder.ShippingAddress.Id, pOrder.Type.Id, pOrder.Status.Id, pOrder.CreationDate.ToString("yyyyMMdd HH:mm:ss"),
-                pOrder.CreatorUser, pOrder.ModificationDate.ToString("yyyyMMdd HH:mm:ss"), pOrder.ModificationUser, pOrder.Observations);
+            string sql = @"[spInsertOrder] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}'";
+            sql = string.Format(sql, pOrder.User.Id, pOrder.Quantity, subtotal.ToString().Replace(',', '.'), tax.ToString().Replace(',', '.'), total.ToString().Replace(',', '.'),pOrder.ShippingAddress.Id, pOrder.Type.Id, pOrder.Status.Id,
+                pOrder.CreatorUser, pOrder.ModificationUser, pOrder.Observations);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -332,9 +332,9 @@ namespace DataAccess
             decimal subtotal = Convert.ToDecimal(pOrder.SubTotal);
             decimal tax = Convert.ToDecimal(pOrder.Tax);
             decimal total = Convert.ToDecimal(pOrder.Total);
-            string sql = @"[spUpdateOrder] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}'";
+            string sql = @"[spUpdateOrder] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}'";
 
-            sql = string.Format(sql, pOrder.Id, pOrder.User.Id, pOrder.Quantity, subtotal.ToString().Replace(',', '.'), tax.ToString().Replace(',', '.'), total.ToString().Replace(',', '.'), pOrder.ShippingAddress.Id, pOrder.Type.Id, pOrder.Status.Id, pOrder.ModificationDate.ToString("yyyyMMdd HH:mm:ss"),
+            sql = string.Format(sql, pOrder.Id, pOrder.User.Id, pOrder.Quantity, subtotal.ToString().Replace(',', '.'), tax.ToString().Replace(',', '.'), total.ToString().Replace(',', '.'), pOrder.ShippingAddress.Id, pOrder.Type.Id, pOrder.Status.Id,
                 pOrder.ModificationUser, pOrder.Observations, pOrder.Descuento, pOrder.TotalDescuento.ToString().Replace(',', '.'));
             try
             {
@@ -348,9 +348,9 @@ namespace DataAccess
 
         public void UpdateOrderStatus(Order pOrder)
         {
-            string sql = @"[spUpdateOrderStatus] '{0}', '{1}', '{2}', '{3}'";
+            string sql = @"[spUpdateOrderStatus] '{0}', '{1}', '{2}', ";
 
-            sql = string.Format(sql, pOrder.Id, pOrder.Status.Id, pOrder.ModificationDate.ToString("yyyyMMdd HH:mm:ss"),
+            sql = string.Format(sql, pOrder.Id, pOrder.Status.Id,
                 pOrder.ModificationUser);
             try
             {

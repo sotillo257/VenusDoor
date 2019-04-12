@@ -83,9 +83,9 @@ namespace DataAccess
 
         public int InsertDepositTo(DepositTo pDepositTo)
         {
-            string sql = @"[spInsertDepositTo] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}'";
-            sql = string.Format(sql, pDepositTo.Description, pDepositTo.Status.Id, pDepositTo.CreationDate.ToString("yyyyMMdd"),
-                pDepositTo.CreatorUser, pDepositTo.ModificationDate.ToString("yyyyMMdd"), pDepositTo.ModificationUser);
+            string sql = @"[spInsertDepositTo] '{0}', '{1}', '{2}', '{3}'";
+            sql = string.Format(sql, pDepositTo.Description, pDepositTo.Status.Id,
+                pDepositTo.CreatorUser, pDepositTo.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -98,8 +98,8 @@ namespace DataAccess
 
         public void UpdateDepositTo(DepositTo pDepositTo)
         {
-            string sql = @"[spUpdateDepositTo] '{0}', '{1}', '{2}', '{3}', '{4}'";
-            sql = string.Format(sql, pDepositTo.Id, pDepositTo.Description, pDepositTo.Status.Id, pDepositTo.ModificationDate.ToString("yyyyMMdd"),
+            string sql = @"[spUpdateDepositTo] '{0}', '{1}', '{2}', '{3}'";
+            sql = string.Format(sql, pDepositTo.Id, pDepositTo.Description, pDepositTo.Status.Id,
                 pDepositTo.ModificationUser);
             try
             {

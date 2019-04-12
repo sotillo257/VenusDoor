@@ -83,9 +83,9 @@ namespace DataAccess
 
         public int InsertPreparation(Preparation pPreparation)
         {
-            string sql = @"[spInsertPreparation] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}'";
-            sql = string.Format(sql, pPreparation.Description, pPreparation.Status.Id, pPreparation.CreationDate.ToString("yyyyMMdd"),
-                pPreparation.CreatorUser, pPreparation.ModificationDate.ToString("yyyyMMdd"), pPreparation.ModificationUser);
+            string sql = @"[spInsertPreparation] '{0}', '{1}', '{2}', '{3}'";
+            sql = string.Format(sql, pPreparation.Description, pPreparation.Status.Id,
+                pPreparation.CreatorUser, pPreparation.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -98,8 +98,8 @@ namespace DataAccess
 
         public void UpdatePreparation(Preparation pPreparation)
         {
-            string sql = @"[spUpdatePreparation] '{0}', '{1}', '{2}', '{3}', '{4}'";
-            sql = string.Format(sql,pPreparation.Id, pPreparation.Description, pPreparation.Status.Id, pPreparation.ModificationDate.ToString("yyyyMMdd"),
+            string sql = @"[spUpdatePreparation] '{0}', '{1}', '{2}', '{3}'";
+            sql = string.Format(sql,pPreparation.Id, pPreparation.Description, pPreparation.Status.Id,
                 pPreparation.ModificationUser);
             try
             {

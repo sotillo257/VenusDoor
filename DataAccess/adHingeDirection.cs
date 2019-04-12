@@ -83,9 +83,9 @@ namespace DataAccess
 
         public int InsertHingeDirection(HingeDirection pHingeDirection)
         {
-            string sql = @"[spInsertHingeDirection] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}'";
-            sql = string.Format(sql, pHingeDirection.Direction, pHingeDirection.Status.Id, pHingeDirection.CreationDate.ToString("yyyyMMdd"),
-                pHingeDirection.CreatorUser, pHingeDirection.ModificationDate.ToString("yyyyMMdd"), pHingeDirection.ModificationUser);
+            string sql = @"[spInsertHingeDirection] '{0}', '{1}', '{2}', '{3}'";
+            sql = string.Format(sql, pHingeDirection.Direction, pHingeDirection.Status.Id,
+                pHingeDirection.CreatorUser, pHingeDirection.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -98,8 +98,8 @@ namespace DataAccess
 
         public void UpdateHingeDirection(HingeDirection pHingeDirection)
         {
-            string sql = @"[spUpdateHingeDirection] '{0}', '{1}', '{2}', '{3}', '{4}'";
-            sql = string.Format(sql,pHingeDirection.Id, pHingeDirection.Direction, pHingeDirection.Status.Id, pHingeDirection.ModificationDate.ToString("yyyyMMdd"),
+            string sql = @"[spUpdateHingeDirection] '{0}', '{1}', '{2}', '{3}'";
+            sql = string.Format(sql,pHingeDirection.Id, pHingeDirection.Direction, pHingeDirection.Status.Id,
                 pHingeDirection.ModificationUser);
             try
             {

@@ -135,10 +135,10 @@ namespace DataAccess
 
         public int InsertPaymentsReceived(PaymentsReceived pPaymentsReceived)
         {
-            string sql = @"[spInsertPaymentsReceived] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}'";
+            string sql = @"[spInsertPaymentsReceived] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}'";
             sql = string.Format(sql, pPaymentsReceived.IdFolio, pPaymentsReceived.Company.Id, pPaymentsReceived.UserCliente.Id, pPaymentsReceived.Amount,
             pPaymentsReceived.PaymentDate.ToString("yyyyMMdd"), pPaymentsReceived.PaymentMode.Id, pPaymentsReceived.DepositTo.Id, pPaymentsReceived.Status.Id, 
-            pPaymentsReceived.CreationDate.ToString("yyyyMMdd"), pPaymentsReceived.CreatorUser, pPaymentsReceived.ModificationDate.ToString("yyyyMMdd"), pPaymentsReceived.ModificationUser);
+            pPaymentsReceived.CreatorUser, pPaymentsReceived.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -151,10 +151,10 @@ namespace DataAccess
 
         public void UpdatePaymentsReceived(PaymentsReceived pPaymentsReceived)
         {
-            string sql = @"[spUpdatePaymentsReceived] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}'";
+            string sql = @"[spUpdatePaymentsReceived] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}'";
             sql = string.Format(sql, pPaymentsReceived.Id, pPaymentsReceived.IdFolio, pPaymentsReceived.Company.Id, pPaymentsReceived.UserCliente.Id, pPaymentsReceived.Amount,
             pPaymentsReceived.PaymentDate.ToString("yyyyMMdd"), pPaymentsReceived.PaymentMode.Id, pPaymentsReceived.DepositTo.Id, pPaymentsReceived.Status.Id,
-            pPaymentsReceived.CreationDate.ToString("yyyyMMdd"), pPaymentsReceived.CreatorUser, pPaymentsReceived.ModificationDate.ToString("yyyyMMdd"), pPaymentsReceived.ModificationUser);
+            pPaymentsReceived.CreationDate.ToString("yyyyMMdd"), pPaymentsReceived.CreatorUser, pPaymentsReceived.ModificationUser);
             try
             {
                 _MB.EjecutarSQL(_CN, sql);
@@ -167,9 +167,9 @@ namespace DataAccess
 
         public void UpdatePaymentsReceivedStatus(PaymentsReceived pPaymentsReceived)
         {
-            string sql = @"[spUpdatePaymentsReceivedStatus] '{0}', '{1}', '{2}', '{3}'";
+            string sql = @"[spUpdatePaymentsReceivedStatus] '{0}', '{1}', '{2}'";
 
-            sql = string.Format(sql, pPaymentsReceived.Id, pPaymentsReceived.Status.Id, pPaymentsReceived.ModificationDate.ToString("yyyyMMdd HH:mm:ss"),
+            sql = string.Format(sql, pPaymentsReceived.Id, pPaymentsReceived.Status.Id,
                 pPaymentsReceived.ModificationUser);
             try
             {

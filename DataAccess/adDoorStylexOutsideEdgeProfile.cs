@@ -85,9 +85,9 @@ namespace DataAccess
 
         public int InsertDoorStylexOutsideEdgeProfile(DoorStylexOutsideEdgeProfile pDoorStylexOutsideEdgeProfile)
         {
-            string sql = @"[spInsertDoorStylexOutsideEdgeProfile] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}','{6}'";
-            sql = string.Format(sql, pDoorStylexOutsideEdgeProfile.DoorStyle.Id, pDoorStylexOutsideEdgeProfile.OutsideEdgeProfile.Id, pDoorStylexOutsideEdgeProfile.Status.Id, pDoorStylexOutsideEdgeProfile.CreationDate.ToString("yyyyMMdd"),
-                pDoorStylexOutsideEdgeProfile.CreatorUser, pDoorStylexOutsideEdgeProfile.ModificationDate.ToString("yyyyMMdd"), pDoorStylexOutsideEdgeProfile.ModificationUser);
+            string sql = @"[spInsertDoorStylexOutsideEdgeProfile] '{0}', '{1}', '{2}', '{3}', '{4}'";
+            sql = string.Format(sql, pDoorStylexOutsideEdgeProfile.DoorStyle.Id, pDoorStylexOutsideEdgeProfile.OutsideEdgeProfile.Id, pDoorStylexOutsideEdgeProfile.Status.Id,
+                pDoorStylexOutsideEdgeProfile.CreatorUser, pDoorStylexOutsideEdgeProfile.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -100,8 +100,8 @@ namespace DataAccess
 
         public void UpdateDoorStylexOutsideEdgeProfile(DoorStylexOutsideEdgeProfile pDoorStylexOutsideEdgeProfile)
         {
-            string sql = @"[spUpdateDoorStylexOutsideEdgeProfile] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}'";
-            sql = string.Format(sql,pDoorStylexOutsideEdgeProfile.Id, pDoorStylexOutsideEdgeProfile.DoorStyle.Id, pDoorStylexOutsideEdgeProfile.OutsideEdgeProfile.Id, pDoorStylexOutsideEdgeProfile.Status.Id, pDoorStylexOutsideEdgeProfile.ModificationDate.ToString("yyyyMMdd"),
+            string sql = @"[spUpdateDoorStylexOutsideEdgeProfile] '{0}', '{1}', '{2}', '{3}', '{4}'";
+            sql = string.Format(sql,pDoorStylexOutsideEdgeProfile.Id, pDoorStylexOutsideEdgeProfile.DoorStyle.Id, pDoorStylexOutsideEdgeProfile.OutsideEdgeProfile.Id, pDoorStylexOutsideEdgeProfile.Status.Id,
                 pDoorStylexOutsideEdgeProfile.ModificationUser);
             try
             {

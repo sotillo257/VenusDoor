@@ -83,9 +83,9 @@ namespace DataAccess
 
         public int InsertPanelMaterial(PanelMaterial pPanelMaterial)
         {
-            string sql = @"[spInsertPanelMaterial] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}'";
-            sql = string.Format(sql, pPanelMaterial.Description, pPanelMaterial.Status.Id, pPanelMaterial.CreationDate.ToString("yyyyMMdd"),
-                pPanelMaterial.CreatorUser, pPanelMaterial.ModificationDate.ToString("yyyyMMdd"), pPanelMaterial.ModificationUser);
+            string sql = @"[spInsertPanelMaterial] '{0}', '{1}', '{2}', '{3}'";
+            sql = string.Format(sql, pPanelMaterial.Description, pPanelMaterial.Status.Id,
+                pPanelMaterial.CreatorUser, pPanelMaterial.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -98,8 +98,8 @@ namespace DataAccess
 
         public void UpdatePanelMaterial(PanelMaterial pPanelMaterial)
         {
-            string sql = @"[spUpdatePanelMaterial] '{0}', '{1}', '{2}', '{3}', '{4}'";
-            sql = string.Format(sql,pPanelMaterial.Id, pPanelMaterial.Description, pPanelMaterial.Status.Id, pPanelMaterial.ModificationDate.ToString("yyyyMMdd"),
+            string sql = @"[spUpdatePanelMaterial] '{0}', '{1}', '{2}', '{3}'";
+            sql = string.Format(sql,pPanelMaterial.Id, pPanelMaterial.Description, pPanelMaterial.Status.Id,
                 pPanelMaterial.ModificationUser);
             try
             {

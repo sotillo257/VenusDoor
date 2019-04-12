@@ -81,8 +81,8 @@ namespace DataAccess
 
         public int InsertHistoryInvoice(HistoryInvoice pHE)
         {
-            string sql = @"[spInsertHistoryInvoice] '{0}', '{1}', '{2}', '{3}', '{4}'";
-            sql = string.Format(sql, pHE.Invoice.Id, pHE.UserCreador.Id, pHE.Type.Id, pHE.History, pHE.CreationDate.ToString("yyyyMMdd"));
+            string sql = @"[spInsertHistoryInvoice] '{0}', '{1}', '{2}', '{3}'";
+            sql = string.Format(sql, pHE.Invoice.Id, pHE.UserCreador.Id, pHE.Type.Id, pHE.History);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);

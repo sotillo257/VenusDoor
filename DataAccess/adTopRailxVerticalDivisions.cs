@@ -86,9 +86,9 @@ namespace DataAccess
 
         public int InsertTopRailxVerticalDivisions(TopRailxVerticalDivisions pTop)
         {
-            string sql = @"[spInsertTopRailxVerticalDivisions] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}','{6}'";
-            sql = string.Format(sql, pTop.TopRail.Id, pTop.VerticalDivisions.Id, pTop.Status.Id, pTop.CreationDate.ToString("yyyyMMdd"),
-                pTop.CreatorUser, pTop.ModificationDate.ToString("yyyyMMdd"), pTop.ModificationUser);
+            string sql = @"[spInsertTopRailxVerticalDivisions] '{0}', '{1}', '{2}', '{3}', '{4}'";
+            sql = string.Format(sql, pTop.TopRail.Id, pTop.VerticalDivisions.Id, pTop.Status.Id,
+                pTop.CreatorUser, pTop.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -101,8 +101,8 @@ namespace DataAccess
 
         public void UpdateTopRailxVerticalDivisions(TopRailxVerticalDivisions pTop)
         {
-            string sql = @"[spUpdateTopRailxVerticalDivisions] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}'";
-            sql = string.Format(sql,pTop.Id, pTop.TopRail.Id, pTop.VerticalDivisions.Id, pTop.Status.Id, pTop.ModificationDate.ToString("yyyyMMdd"),
+            string sql = @"[spUpdateTopRailxVerticalDivisions] '{0}', '{1}', '{2}', '{3}', '{4}'";
+            sql = string.Format(sql,pTop.Id, pTop.TopRail.Id, pTop.VerticalDivisions.Id, pTop.Status.Id,
                 pTop.ModificationUser);
             try
             {
