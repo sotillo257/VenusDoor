@@ -40,6 +40,9 @@
                 </div>
             </div><!-- br-mailbox-list-header -->
             <div class="br-mailbox-list-body" style="margin-top: 95px;">
+                <div class="" id="listaInvoices">
+
+                </div>
                 <div class="br-mailbox-list-item active">
                     <div class="d-flex justify-content-between mg-b-5">
                         <div>
@@ -50,84 +53,7 @@
                     </div><!-- d-flex -->
                     <h6 class="tx-14 mg-b-10 tx-gray-800">Socrates Itumay, me (4)</h6>
                     <p class="tx-12 tx-gray-600 mg-b-5">I should be incapable of drawing a single stroke at the present moment; and yet I feel that I never...</p>
-                </div><!-- br-mailbox-list-item -->
-                <div class="br-mailbox-list-item unread">
-                    <div class="d-flex justify-content-between mg-b-5">
-                        <div>
-                            <i class="icon ion-ios-star"></i>
-                            <i class="icon ion-android-attach"></i>
-                        </div>
-                        <span class="tx-12">1 day ago</span>
-                    </div><!-- d-flex -->
-                    <h6 class="tx-14 mg-b-10 tx-gray-800">Envato, me (2)</h6>
-                    <p class="tx-12 tx-gray-600 mg-b-5">I should be incapable of drawing a single stroke at the present moment; and yet I feel that I never...</p>
-                </div><!-- br-mailbox-list-item -->
-                <div class="br-mailbox-list-item">
-                    <div class="d-flex justify-content-between mg-b-5">
-                        <div>
-                            <i class="icon ion-ios-star"></i>
-                            <i class="icon ion-android-attach"></i>
-                        </div>
-                        <span class="tx-12">2 days ago</span>
-                    </div><!-- d-flex -->
-                    <h6 class="tx-14 mg-b-10 tx-gray-800">Themeforest</h6>
-                    <p class="tx-12 tx-gray-600 mg-b-5">I should be incapable of drawing a single stroke at the present moment; and yet I feel that I never...</p>
-                </div><!-- br-mailbox-list-item -->
-                <div class="br-mailbox-list-item">
-                    <div class="d-flex justify-content-between mg-b-5">
-                        <div>
-                            <i class="icon ion-ios-star"></i>
-                            <i class="icon ion-android-attach"></i>
-                        </div>
-                        <span class="tx-12">2 days ago</span>
-                    </div><!-- d-flex -->
-                    <h6 class="tx-14 mg-b-10 tx-gray-800">Reynante Labares, me (2)</h6>
-                    <p class="tx-12 tx-gray-600 mg-b-5">I should be incapable of drawing a single stroke at the present moment; and yet I feel that I never...</p>
-                </div><!-- br-mailbox-list-item -->
-                <div class="br-mailbox-list-item">
-                    <div class="d-flex justify-content-between mg-b-5">
-                        <div>
-                            <i class="icon ion-ios-star"></i>
-                            <i class="icon ion-android-attach"></i>
-                        </div>
-                        <span class="tx-12">3 days ago</span>
-                    </div><!-- d-flex -->
-                    <h6 class="tx-14 mg-b-10 tx-gray-800">Isidore Dilao (3)</h6>
-                    <p class="tx-12 tx-gray-600 mg-b-5">I should be incapable of drawing a single stroke at the present moment; and yet I feel that I never...</p>
-                </div><!-- br-mailbox-list-item -->
-                <div class="br-mailbox-list-item">
-                    <div class="d-flex justify-content-between mg-b-5">
-                        <div>
-                            <i class="icon ion-ios-star"></i>
-                            <i class="icon ion-android-attach"></i>
-                        </div>
-                        <span class="tx-12">Sep 20</span>
-                    </div><!-- d-flex -->
-                    <h6 class="tx-14 mg-b-10 tx-gray-800">Reynante Labares, me (2)</h6>
-                    <p class="tx-12 tx-gray-600 mg-b-5">I should be incapable of drawing a single stroke at the present moment; and yet I feel that I never...</p>
-                </div><!-- br-mailbox-list-item -->
-                <div class="br-mailbox-list-item">
-                    <div class="d-flex justify-content-between mg-b-5">
-                        <div>
-                            <i class="icon ion-ios-star"></i>
-                            <i class="icon ion-android-attach"></i>
-                        </div>
-                        <span class="tx-12">Sep 19</span>
-                    </div><!-- d-flex -->
-                    <h6 class="tx-14 mg-b-10 tx-gray-800">Envato, me (2)</h6>
-                    <p class="tx-12 tx-gray-600 mg-b-5">I should be incapable of drawing a single stroke at the present moment; and yet I feel that I never...</p>
-                </div><!-- br-mailbox-list-item -->
-                <div class="br-mailbox-list-item">
-                    <div class="d-flex justify-content-between mg-b-5">
-                        <div>
-                            <i class="icon ion-ios-star"></i>
-                            <i class="icon ion-android-attach"></i>
-                        </div>
-                        <span class="tx-12">Sep 17</span>
-                    </div><!-- d-flex -->
-                    <h6 class="tx-14 mg-b-10 tx-gray-800">Themeforest</h6>
-                    <p class="tx-12 tx-gray-600 mg-b-5">I should be incapable of drawing a single stroke at the present moment; and yet I feel that I never...</p>
-                </div><!-- br-mailbox-list-item -->
+                </div><!-- br-mailbox-list-item -->               
             </div><!-- br-mailbox-list-body -->
 
             <div class="br-mailbox-list-header">
@@ -942,4 +868,13 @@
 @section scripts{
 
     @Scripts.Render("~/Scripts/js/Invoice.js")
+<script>
+    var urlGetHistoryInvoice = '@Url.Action("GetHistoryInvoice", "Invoice")';
+    var urlInsertComment = '@Url.Action("InsertComment", "Invoice")';
+                    try {
+                        var listInvoice = JSON.parse('@Html.Raw(ViewBag.Invoice)');
+                    } catch (e) {
+                        var listInvoice = null;
+                    }
+</script>
 }
