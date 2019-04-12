@@ -141,7 +141,7 @@
                 <button type="button" id="btAdd" class="Cursor btn btn-page" style="margin-left: 15px;margin-right: 15px;"><i class="fa fa-paperclip"></i></button>
                 <input id="addFile" name="file" type="file" style="display:none;" />
 
-                <button type="button" class="Cursor btn btn-page">Convert Invoice</button>
+                <button type="button" class="Cursor btn btn-page">Convert to Invoice</button>
 
                 <div class="dropdown">
                     <a class="Cursor nav-link nav-link-profile d-flex align-items-center"
@@ -250,23 +250,15 @@
 
                                         <div>
                                             <img src="~/Content/img/Venus_Doors11.png" style="width: 200px;" />
-                                        </div>
+                                        </div><br>
+                                                <span class="pcs-orgname"><b>Venus Cabinet Doors</b></span><br />   
+                                                <span class="pcs-orgname ">Texas</span><br />
+                                        <span class="pcs-orgname ">U.S.A</span>                                 
                                     </td>
 
                                     <td class="text-align-right v-top" style="vertical-align: top; width:50%;">
-                                        <span class="pcs-orgname"><b>Venus Cabinet Doors</b></span><br>
-                                        <span id="tmp_entity_number" style="font-size: 10pt;" class="pcs-label"><b># EST-2105</b></span>
-                                        <span class="pcs-label">
-                                            <span style="white-space: pre-wrap;word-wrap: break-word;" id="tmp_org_address">
-                                                Texas
-                                                U.S.A
-                                            </span>
-                                        </span>
-                                        <div style="clear:both;margin-top:30px;">
-                                            <span style="font-size:8pt;"><b>Balance Due</b></span>
-                                            <br>
-                                            <span style="font-size:12pt;"><b>$230.77</b></span>
-                                        </div>
+                                        <span class="pcs-orgname tx-40"><b>ESTIMATE</b></span><br>     
+                                        <span  class="pcs-label tx-20"><b id="tmp_entity_number"># EST-2105</b></span>
                                     </td>
                                 </tr>
                             </tbody>
@@ -279,7 +271,7 @@
                                         <div>
                                             <label style="font-size: 10pt;" class="pcs-label" id="tmp_billing_address_label">Bill To</label>
                                             <br>
-                                            <span style="white-space: pre-wrap;" id="tmp_billing_address"><strong><span class="pcs-customer-name" id="zb-pdf-customer-detail"><a href="#/contacts/1650031000000667001">Sharron Garrison</a></span></strong></span>
+                                            <span style="white-space: pre-wrap;" id="tmp_billing_address"><strong><span class="pcs-customer-name" id="zb-pdf-customer-detail"><a href="#" id="btNameBill"></a></span></strong></span>
                                         </div>
                                     </td>
                                     <td align="right" style="vertical-align:bottom;width: 40%;">
@@ -287,29 +279,12 @@
                                             <tbody>
                                                 <tr>
                                                     <td style="padding:5px 10px 5px 0px;font-size:10pt;" class="text-align-right">
-                                                        <span class="pcs-label">Invoice Date :</span>
+                                                        <span class="pcs-label">Estimate Date :</span>
                                                     </td>
                                                     <td class="text-align-right">
                                                         <span id="tmp_entity_date">03 Apr 2019</span>
                                                     </td>
-                                                </tr>
-                                                <tr>
-                                                    <td style="padding:5px 10px 5px 0px;font-size: 10pt;" class="text-align-right">
-                                                        <span class="pcs-label">Terms :</span>
-                                                    </td>
-                                                    <td class="text-align-right">
-                                                        <span id="tmp_payment_terms">Due on Receipt</span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td style="padding:5px 10px 5px 0px;font-size: 10pt;" class="text-align-right">
-                                                        <span class="pcs-label">Due Date :</span>
-                                                    </td>
-                                                    <td class="text-align-right">
-                                                        <span id="tmp_due_date">03 Apr 2019</span>
-                                                    </td>
-                                                </tr>
-
+                                                </tr>                                               
                                             </tbody>
                                         </table>
                                     </td>
@@ -666,6 +641,7 @@
 <script>
     var urlGetHistoryEstimate = '@Url.Action("GetHistoryEstimate", "Estimate")';
     var urlInsertComment = '@Url.Action("InsertComment", "Estimate")';
+    var urlGetDoorsByOrder = '@Url.Action("GetDoorsByOrder", "OrderControl")';
                     try {
                         var listEstimate = JSON.parse('@Html.Raw(ViewBag.Estimate)');
                     } catch (e) {
