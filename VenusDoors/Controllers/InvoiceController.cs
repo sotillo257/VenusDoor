@@ -18,7 +18,7 @@ namespace VenusDoors.Controllers
                 ViewBag.Sales = "active show-sub";
                 ViewBag.Invoice = "active";
                 //BusinessLogic.lnInvoice _LNINV = new BusinessLogic.lnInvoice();
-                //List<Invoice> est = _LNINV.GetInvoice(0,0, (int)Session["IdCompany"], 0, 0, 0, DateTime.Parse("1999/01/01"), DateTime.Now.AddDays(1)).OrderByDescending(x => x.IdFolio).ToList();
+                //List<Invoice> est = _LNINV.GetInvoice(0, 0, (int)Session["IdCompany"], 0, 0, 0, DateTime.Parse("1999/01/01"), DateTime.Now.AddDays(1)).OrderByDescending(x => x.IdFolio).ToList();
                 //var serializar1 = new System.Web.Script.Serialization.JavaScriptSerializer();
                 //ViewBag.Invoice = serializar1.Serialize(est);
                 return View();

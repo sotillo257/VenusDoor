@@ -102,7 +102,7 @@ namespace DataAccess
         {
             string sql = @"[spUpdateTopRailxJoin] '{0}', '{1}', '{2}', '{3}', '{4}'";
             sql = string.Format(sql,pTop.Id, pTop.TopRail.Id, pTop.Join.Id, pTop.Status.Id,
-                pTop.ModificationUser);ssSS
+                pTop.ModificationUser);
             try
             {
                 _MB.EjecutarSQL(_CN, sql);
