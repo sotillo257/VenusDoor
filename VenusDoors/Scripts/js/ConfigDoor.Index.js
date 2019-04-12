@@ -64,7 +64,7 @@
     $(document).on('change', '#File1', function () {
         $('input[type=file][data-max-size]').each(function () {
             if (typeof this.files[0] !== 'undefined') {
-                var maxSize = parseInt($(this).attr('max-size'), 10),
+                var maxSize = parseInt($(this).attr('data-max-size'), 10),
                 size = this.files[0].size;
                 isOk = maxSize > size;
                 return isOk;

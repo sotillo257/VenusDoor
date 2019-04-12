@@ -85,9 +85,9 @@ namespace DataAccess
 
         public int InsertDocumentsAdjxCreditNotes(DocumentsAdjxCreditNotes pDocumentsAdjxCreditNotes)
         {
-            string sql = @"[spInsertDocumentsAdjxCreditNotes] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}'";
-            sql = string.Format(sql, pDocumentsAdjxCreditNotes.DocumentsAdj.Id, pDocumentsAdjxCreditNotes.CreditNotes.Id, pDocumentsAdjxCreditNotes.Status.Id, pDocumentsAdjxCreditNotes.CreationDate.ToString("yyyyMMdd"),
-                pDocumentsAdjxCreditNotes.CreatorUser, pDocumentsAdjxCreditNotes.ModificationDate.ToString("yyyyMMdd"), pDocumentsAdjxCreditNotes.ModificationUser);
+            string sql = @"[spInsertDocumentsAdjxCreditNotes] '{0}', '{1}', '{2}', '{3}', '{4}'";
+            sql = string.Format(sql, pDocumentsAdjxCreditNotes.DocumentsAdj.Id, pDocumentsAdjxCreditNotes.CreditNotes.Id, pDocumentsAdjxCreditNotes.Status.Id,
+                pDocumentsAdjxCreditNotes.CreatorUser, pDocumentsAdjxCreditNotes.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -100,8 +100,8 @@ namespace DataAccess
 
         public void UpdateDocumentsAdjxCreditNotes(DocumentsAdjxCreditNotes pDocumentsAdjxCreditNotes)
         {
-            string sql = @"[spUpdateDocumentsAdjxCreditNotes] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}'";
-            sql = string.Format(sql, pDocumentsAdjxCreditNotes.Id, pDocumentsAdjxCreditNotes.DocumentsAdj.Id, pDocumentsAdjxCreditNotes.CreditNotes.Id, pDocumentsAdjxCreditNotes.Status.Id, pDocumentsAdjxCreditNotes.ModificationDate.ToString("yyyyMMdd"),
+            string sql = @"[spUpdateDocumentsAdjxCreditNotes] '{0}', '{1}', '{2}', '{3}', '{4}'";
+            sql = string.Format(sql, pDocumentsAdjxCreditNotes.Id, pDocumentsAdjxCreditNotes.DocumentsAdj.Id, pDocumentsAdjxCreditNotes.CreditNotes.Id, pDocumentsAdjxCreditNotes.Status.Id,
                 pDocumentsAdjxCreditNotes.ModificationUser);
             try
             {

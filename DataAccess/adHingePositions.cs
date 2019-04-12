@@ -91,9 +91,9 @@ namespace DataAccess
 
         public int InsertHingePositions(HingePositions pHingePositions)
         {
-            string sql = @"[spInsertHingePositions] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}'";
-            sql = string.Format(sql, pHingePositions.Position1, pHingePositions.Position2, pHingePositions.Position3, pHingePositions.Position4, pHingePositions.Position5, pHingePositions.Status.Id, pHingePositions.CreationDate.ToString("yyyyMMdd"),
-                pHingePositions.CreatorUser, pHingePositions.ModificationDate.ToString("yyyyMMdd"), pHingePositions.ModificationUser);
+            string sql = @"[spInsertHingePositions] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}'";
+            sql = string.Format(sql, pHingePositions.Position1, pHingePositions.Position2, pHingePositions.Position3, pHingePositions.Position4, pHingePositions.Position5, pHingePositions.Status.Id,
+                pHingePositions.CreatorUser, pHingePositions.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -106,8 +106,8 @@ namespace DataAccess
 
         public void UpdateHingePositions(HingePositions pHingePositions)
         {
-            string sql = @"[spUpdateHingePositions] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}'";
-            sql = string.Format(sql,pHingePositions.Id, pHingePositions.Position1, pHingePositions.Position2, pHingePositions.Position3, pHingePositions.Position4, pHingePositions.Position5, pHingePositions.Status.Id, pHingePositions.ModificationDate.ToString("yyyyMMdd"),
+            string sql = @"[spUpdateHingePositions] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}'";
+            sql = string.Format(sql,pHingePositions.Id, pHingePositions.Position1, pHingePositions.Position2, pHingePositions.Position3, pHingePositions.Position4, pHingePositions.Position5, pHingePositions.Status.Id,
                 pHingePositions.ModificationUser);
             try
             {

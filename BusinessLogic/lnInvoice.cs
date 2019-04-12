@@ -24,7 +24,7 @@ namespace BusinessLogic
 
         }
       
-        public Invoice GetInvoiceByIdCompany(int pIdcompany)
+        public List<Invoice> GetInvoiceByIdCompany(int pIdcompany)
         {
             try
             {
@@ -37,11 +37,13 @@ namespace BusinessLogic
 
         }
 
-        public Invoice GetInvoice(int Id, int IdEstimate, int IdCompany, int IdUserCliente, int IdUserVendedor, int CreatorUser, DateTime Invoicedate, DateTime Expirydate)
+        public List<Invoice> GetInvoice(int Id, int IdEstimate, int IdCompany, int IdUserCliente, int IdUserVendedor, int CreatorUser, DateTime Invoicedate, DateTime Expirydate)
         {
             try
             {
-                return _AD.GetInvoice(Id, IdEstimate, IdCompany, IdUserCliente, IdUserVendedor, CreatorUser, Invoicedate, Expirydate);
+                List<Invoice> ListINV = _AD.GetInvoice(Id, IdEstimate, IdCompany, IdUserCliente, IdUserVendedor, CreatorUser, Invoicedate, Expirydate);
+
+                return ListINV;
             }
             catch (Exception ex)
             {

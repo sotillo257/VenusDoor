@@ -83,9 +83,9 @@ namespace DataAccess
 
         public int InsertDoorOption(DoorOption pDoorOption)
         {
-            string sql = @"[spInsertDoorOption] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}'";
-            sql = string.Format(sql, pDoorOption.Description, pDoorOption.Status.Id, pDoorOption.CreationDate.ToString("yyyyMMdd"),
-                pDoorOption.CreatorUser, pDoorOption.ModificationDate.ToString("yyyyMMdd"), pDoorOption.ModificationUser);
+            string sql = @"[spInsertDoorOption] '{0}', '{1}', '{2}', '{3}'";
+            sql = string.Format(sql, pDoorOption.Description, pDoorOption.Status.Id,
+                pDoorOption.CreatorUser, pDoorOption.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -98,8 +98,8 @@ namespace DataAccess
 
         public void UpdateDoorOption(DoorOption pDoorOption)
         {
-            string sql = @"[spUpdateDoorOption] '{0}', '{1}', '{2}', '{3}', '{4}'";
-            sql = string.Format(sql, pDoorOption.Id, pDoorOption.Description, pDoorOption.Status.Id, pDoorOption.ModificationDate.ToString("yyyyMMdd"),
+            string sql = @"[spUpdateDoorOption] '{0}', '{1}', '{2}', '{3}'";
+            sql = string.Format(sql, pDoorOption.Id, pDoorOption.Description, pDoorOption.Status.Id,
                 pDoorOption.ModificationUser);
             try
             {

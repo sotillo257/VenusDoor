@@ -83,9 +83,9 @@ namespace DataAccess
 
         public int InsertRailThickness(RailThickness pRailThickness)
         {
-            string sql = @"[spInsertRailThickness] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}'";
-            sql = string.Format(sql, pRailThickness.Description, pRailThickness.Status.Id, pRailThickness.CreationDate.ToString("yyyyMMdd"),
-                pRailThickness.CreatorUser, pRailThickness.ModificationDate.ToString("yyyyMMdd"), pRailThickness.ModificationUser);
+            string sql = @"[spInsertRailThickness] '{0}', '{1}', '{2}', '{3}'";
+            sql = string.Format(sql, pRailThickness.Description, pRailThickness.Status.Id,
+                pRailThickness.CreatorUser, pRailThickness.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -98,8 +98,8 @@ namespace DataAccess
 
         public void UpdateRailThickness(RailThickness pRailThickness)
         {
-            string sql = @"[spUpdateRailThickness] '{0}', '{1}', '{2}', '{3}', '{4}'";
-            sql = string.Format(sql,pRailThickness.Id, pRailThickness.Description, pRailThickness.Status.Id, pRailThickness.ModificationDate.ToString("yyyyMMdd"),
+            string sql = @"[spUpdateRailThickness] '{0}', '{1}', '{2}', '{3}'";
+            sql = string.Format(sql,pRailThickness.Id, pRailThickness.Description, pRailThickness.Status.Id,
                 pRailThickness.ModificationUser);
             try
             {

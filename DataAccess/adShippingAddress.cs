@@ -142,9 +142,9 @@ namespace DataAccess
 
         public int InsertShippingAddress(ShippingAddress pShippingAddress)
         {
-            string sql = @"[spInsertShippingAddress] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}'";
-            sql = string.Format(sql, pShippingAddress.Name, pShippingAddress.Contact, pShippingAddress.Residence, pShippingAddress.LotBlock, pShippingAddress.Address, pShippingAddress.City, pShippingAddress.St, pShippingAddress.ZipCode, pShippingAddress.User.Id, pShippingAddress.Status.Id, pShippingAddress.CreationDate.ToString("yyyyMMdd"),
-                pShippingAddress.CreatorUser, pShippingAddress.ModificationDate.ToString("yyyyMMdd"), pShippingAddress.ModificationUser);
+            string sql = @"[spInsertShippingAddress] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}'";
+            sql = string.Format(sql, pShippingAddress.Name, pShippingAddress.Contact, pShippingAddress.Residence, pShippingAddress.LotBlock, pShippingAddress.Address, pShippingAddress.City, pShippingAddress.St, pShippingAddress.ZipCode, pShippingAddress.User.Id, pShippingAddress.Status.Id,
+                pShippingAddress.CreatorUser, pShippingAddress.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -157,8 +157,8 @@ namespace DataAccess
 
         public void UpdateShippingAddress(ShippingAddress pShippingAddress)
         {
-            string sql = @"[spUpdateShippingAddress] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}'";
-            sql = string.Format(sql, pShippingAddress.Id, pShippingAddress.Name, pShippingAddress.Contact, pShippingAddress.Residence, pShippingAddress.LotBlock, pShippingAddress.Address, pShippingAddress.City, pShippingAddress.St, pShippingAddress.ZipCode, pShippingAddress.User.Id, pShippingAddress.Status.Id, pShippingAddress.ModificationDate.ToString("yyyyMMdd"),
+            string sql = @"[spUpdateShippingAddress] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}'";
+            sql = string.Format(sql, pShippingAddress.Id, pShippingAddress.Name, pShippingAddress.Contact, pShippingAddress.Residence, pShippingAddress.LotBlock, pShippingAddress.Address, pShippingAddress.City, pShippingAddress.St, pShippingAddress.ZipCode, pShippingAddress.User.Id, pShippingAddress.Status.Id,
                 pShippingAddress.ModificationUser);
             try
             {

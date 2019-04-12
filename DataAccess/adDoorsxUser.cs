@@ -144,12 +144,12 @@ namespace DataAccess
         {
             decimal total = Convert.ToDecimal(pDoorsxUser.ItemCost);
             decimal subto = Convert.ToDecimal(pDoorsxUser.SubTotal);
-            string sql = @"[spInsertDoorsxUser] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}', '{20}', '{21}', '{22}', '{23}', '{24}', '{25}', '{26}', '{27}', '{28}', '{29}', '{30}', '{31}', '{32}', '{33}', '{34}', '{35}'";
+            string sql = @"[spInsertDoorsxUser] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}', '{20}', '{21}', '{22}', '{23}', '{24}', '{25}', '{26}', '{27}', '{28}', '{29}', '{30}', '{31}', '{32}', '{33}'";
             sql = string.Format(sql, pDoorsxUser.Order.Id, pDoorsxUser.DoorStyle.Id, pDoorsxUser.Material.Id, pDoorsxUser.TopRail.Id, pDoorsxUser.BottomRail.Id, 
                 pDoorsxUser.Preparation.Id, pDoorsxUser.Join.Id, pDoorsxUser.OutsideEdgeProfile.Id, 
                 pDoorsxUser.InsideEdgeProfile.Id, pDoorsxUser.VerticalDivisions.Id, pDoorsxUser.HorizontalDivisions.Id, pDoorsxUser.HingeDirection.Id, 
                 pDoorsxUser.HingePositions.Id, (pDoorsxUser.isDrill == true) ? 1 : 0, pDoorsxUser.Width.ToString().Replace(',', '.'), pDoorsxUser.DecimalsWidth.Id, pDoorsxUser.Height.ToString().Replace(',', '.'), pDoorsxUser.DecimalsHeight.Id, (pDoorsxUser.IsOpeningMeasurement == true) ? 1 : 0, pDoorsxUser.Quantity, total.ToString().Replace(',', '.'), subto.ToString().Replace(',', '.'), pDoorsxUser.User.Id, 
-                pDoorsxUser.Status.Id, pDoorsxUser.CreationDate.ToString("yyyyMMdd HH:mm:ss"), pDoorsxUser.CreatorUser, pDoorsxUser.ModificationDate.ToString("yyyyMMdd HH:mm:ss"),
+                pDoorsxUser.Status.Id, pDoorsxUser.CreatorUser,
                 pDoorsxUser.ModificationUser, pDoorsxUser.Picture, pDoorsxUser.ProfilePicture, pDoorsxUser.Panel.Id, pDoorsxUser.PanelMaterial.Id, pDoorsxUser.DoorType.Id, pDoorsxUser.DoorOption.Id, (pDoorsxUser.isOverlay == true) ? 1 : 0, (pDoorsxUser.isFingerPull == true) ? 1 : 0);
             try
             {
@@ -165,12 +165,12 @@ namespace DataAccess
         {
             decimal total = Convert.ToDecimal(pDoorsxUser.ItemCost);
             decimal subto = Convert.ToDecimal(pDoorsxUser.SubTotal);
-            string sql = @"[spUpdateDoorsxUser] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}', '{20}', '{21}', '{22}', '{23}', '{24}', '{25}', '{26}', '{27}', '{28}', '{29}', '{30}', '{31}', '{32}', '{33}', '{34}'";
+            string sql = @"[spUpdateDoorsxUser] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}', '{20}', '{21}', '{22}', '{23}', '{24}', '{25}', '{26}', '{27}', '{28}', '{29}', '{30}', '{31}', '{32}', '{33}'";
             sql = string.Format(sql, pDoorsxUser.Id, pDoorsxUser.Order.Id, pDoorsxUser.DoorStyle.Id, pDoorsxUser.Material.Id, pDoorsxUser.TopRail.Id, pDoorsxUser.BottomRail.Id,
                 pDoorsxUser.Preparation.Id, pDoorsxUser.Join.Id, pDoorsxUser.OutsideEdgeProfile.Id,
                 pDoorsxUser.InsideEdgeProfile.Id, pDoorsxUser.VerticalDivisions.Id, pDoorsxUser.HorizontalDivisions.Id, pDoorsxUser.HingeDirection.Id,
                 pDoorsxUser.HingePositions.Id, (pDoorsxUser.isDrill == true) ? 1 : 0, pDoorsxUser.Width.ToString().Replace(',', '.'), pDoorsxUser.DecimalsWidth.Id, pDoorsxUser.Height.ToString().Replace(',', '.'), pDoorsxUser.DecimalsHeight.Id, (pDoorsxUser.IsOpeningMeasurement == true) ? 1 : 0, pDoorsxUser.Quantity, total.ToString().Replace(',', '.'), subto.ToString().Replace(',', '.'), pDoorsxUser.User.Id,
-                pDoorsxUser.Status.Id, pDoorsxUser.ModificationDate.ToString("yyyyMMdd HH:mm:ss"), pDoorsxUser.ModificationUser, pDoorsxUser.Picture, pDoorsxUser.ProfilePicture, pDoorsxUser.Panel.Id, pDoorsxUser.PanelMaterial.Id, pDoorsxUser.DoorType.Id, pDoorsxUser.DoorOption.Id, (pDoorsxUser.isOverlay == true) ? 1 : 0, (pDoorsxUser.isFingerPull == true) ? 1 : 0);
+                pDoorsxUser.Status.Id, pDoorsxUser.ModificationUser, pDoorsxUser.Picture, pDoorsxUser.ProfilePicture, pDoorsxUser.Panel.Id, pDoorsxUser.PanelMaterial.Id, pDoorsxUser.DoorType.Id, pDoorsxUser.DoorOption.Id, (pDoorsxUser.isOverlay == true) ? 1 : 0, (pDoorsxUser.isFingerPull == true) ? 1 : 0);
             try
             {
                 _MB.EjecutarSQL(_CN, sql);

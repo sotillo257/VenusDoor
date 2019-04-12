@@ -5,834 +5,760 @@
 }
 
 <style>
-    .details-container {
+   .details-container {
         position: relative;
         margin-bottom: 35px;
         box-shadow: 0 0 6px #ccc;
     }
 
     .user-file-nav {
-        margin-top: 25px;
-        font-size: 13px;
-    }
+  margin-top: 25px;
+  font-size: 13px;
+}
 
-        .user-file-nav a {
+    .user-file-nav a {
             top: 10px;
-            padding: 10px 10px;
-            border-radius: 2px;
-            transition: all 0.2s ease-in-out;
-        }
+  padding: 10px 10px;
+  border-radius: 2px;
+  transition: all 0.2s ease-in-out;
+}
 
-            .user-file-nav a:hover, .user-file-nav a:focus {
-                background-color: #dee2e6;
-                height: 34px;
-            }
+    .user-file-nav a:hover, .user-file-nav a:focus {
+  background-color: #dee2e6;
+  height: 34px;
+}
 </style>
 
-<div class="br-mailbox-list ps ps--theme_default ps--active-y" data-ps-id="7a4680f7-5fbe-1b05-8ec8-b8dbe07f7215">
-    <div class="br-mailbox-list-header" style="width: 319px;position: fixed;z-index: 999;
+        <div class="br-mailbox-list ps ps--theme_default ps--active-y" data-ps-id="7a4680f7-5fbe-1b05-8ec8-b8dbe07f7215">
+            <div class="br-mailbox-list-header" style="width: 319px;position: fixed;z-index: 999;
     background-color: #e9ecef;">
-        <a href="" id="showMailBoxLeft" class="show-mailbox-left hidden-sm-up">
-            <i class="fa fa-arrow-right"></i>
-        </a>
-        <h6 class="tx-inverse mg-b-0 tx-13 tx-uppercase">All Invoices</h6>
-        @*<button type="button" class="Cursor btn btn-primary" style="margin-left: 70px;height: 30px;padding-bottom: 2px;padding-top: 2px;padding-left: 9px;padding-right: 9px;" data-toggle="modal" data-target="#modalNewIn"><i class="icon ion-plus"></i> New</button>*@
-        <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-light disabled pd-x-25"><i class="fa fa-angle-left"></i></button>
-            <button type="button" class="btn btn-light pd-x-25"><i class="fa fa-angle-right"></i></button>
-        </div>
-    </div><!-- br-mailbox-list-header -->
-    <div class="br-mailbox-list-body" style="margin-top: 95px;">
-        <div class="br-mailbox-list-item active">
-            <div class="d-flex justify-content-between mg-b-5">
-                <div>
-                    <i class="icon ion-ios-star tx-warning"></i>
-                    <i class="icon ion-android-attach"></i>
+                <a href="" id="showMailBoxLeft" class="show-mailbox-left hidden-sm-up">
+                    <i class="fa fa-arrow-right"></i>
+                </a>
+                <h6 class="tx-inverse mg-b-0 tx-13 tx-uppercase">All Invoices</h6>
+                @*<button type="button" class="Cursor btn btn-primary" style="margin-left: 70px;height: 30px;padding-bottom: 2px;padding-top: 2px;padding-left: 9px;padding-right: 9px;" data-toggle="modal" data-target="#modalNewIn"><i class="icon ion-plus"></i> New</button>*@
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-light disabled pd-x-25"><i class="fa fa-angle-left"></i></button>
+                    <button type="button" class="btn btn-light pd-x-25"><i class="fa fa-angle-right"></i></button>
                 </div>
-                <span class="tx-12">10 hours ago</span>
-            </div><!-- d-flex -->
-            <h6 class="tx-14 mg-b-10 tx-gray-800">Socrates Itumay, me (4)</h6>
-            <p class="tx-12 tx-gray-600 mg-b-5">I should be incapable of drawing a single stroke at the present moment; and yet I feel that I never...</p>
-        </div><!-- br-mailbox-list-item -->
-        <div class="br-mailbox-list-item unread">
-            <div class="d-flex justify-content-between mg-b-5">
-                <div>
-                    <i class="icon ion-ios-star"></i>
-                    <i class="icon ion-android-attach"></i>
-                </div>
-                <span class="tx-12">1 day ago</span>
-            </div><!-- d-flex -->
-            <h6 class="tx-14 mg-b-10 tx-gray-800">Envato, me (2)</h6>
-            <p class="tx-12 tx-gray-600 mg-b-5">I should be incapable of drawing a single stroke at the present moment; and yet I feel that I never...</p>
-        </div><!-- br-mailbox-list-item -->
-        <div class="br-mailbox-list-item">
-            <div class="d-flex justify-content-between mg-b-5">
-                <div>
-                    <i class="icon ion-ios-star"></i>
-                    <i class="icon ion-android-attach"></i>
-                </div>
-                <span class="tx-12">2 days ago</span>
-            </div><!-- d-flex -->
-            <h6 class="tx-14 mg-b-10 tx-gray-800">Themeforest</h6>
-            <p class="tx-12 tx-gray-600 mg-b-5">I should be incapable of drawing a single stroke at the present moment; and yet I feel that I never...</p>
-        </div><!-- br-mailbox-list-item -->
-        <div class="br-mailbox-list-item">
-            <div class="d-flex justify-content-between mg-b-5">
-                <div>
-                    <i class="icon ion-ios-star"></i>
-                    <i class="icon ion-android-attach"></i>
-                </div>
-                <span class="tx-12">2 days ago</span>
-            </div><!-- d-flex -->
-            <h6 class="tx-14 mg-b-10 tx-gray-800">Reynante Labares, me (2)</h6>
-            <p class="tx-12 tx-gray-600 mg-b-5">I should be incapable of drawing a single stroke at the present moment; and yet I feel that I never...</p>
-        </div><!-- br-mailbox-list-item -->
-        <div class="br-mailbox-list-item">
-            <div class="d-flex justify-content-between mg-b-5">
-                <div>
-                    <i class="icon ion-ios-star"></i>
-                    <i class="icon ion-android-attach"></i>
-                </div>
-                <span class="tx-12">3 days ago</span>
-            </div><!-- d-flex -->
-            <h6 class="tx-14 mg-b-10 tx-gray-800">Isidore Dilao (3)</h6>
-            <p class="tx-12 tx-gray-600 mg-b-5">I should be incapable of drawing a single stroke at the present moment; and yet I feel that I never...</p>
-        </div><!-- br-mailbox-list-item -->
-        <div class="br-mailbox-list-item">
-            <div class="d-flex justify-content-between mg-b-5">
-                <div>
-                    <i class="icon ion-ios-star"></i>
-                    <i class="icon ion-android-attach"></i>
-                </div>
-                <span class="tx-12">Sep 20</span>
-            </div><!-- d-flex -->
-            <h6 class="tx-14 mg-b-10 tx-gray-800">Reynante Labares, me (2)</h6>
-            <p class="tx-12 tx-gray-600 mg-b-5">I should be incapable of drawing a single stroke at the present moment; and yet I feel that I never...</p>
-        </div><!-- br-mailbox-list-item -->
-        <div class="br-mailbox-list-item">
-            <div class="d-flex justify-content-between mg-b-5">
-                <div>
-                    <i class="icon ion-ios-star"></i>
-                    <i class="icon ion-android-attach"></i>
-                </div>
-                <span class="tx-12">Sep 19</span>
-            </div><!-- d-flex -->
-            <h6 class="tx-14 mg-b-10 tx-gray-800">Envato, me (2)</h6>
-            <p class="tx-12 tx-gray-600 mg-b-5">I should be incapable of drawing a single stroke at the present moment; and yet I feel that I never...</p>
-        </div><!-- br-mailbox-list-item -->
-        <div class="br-mailbox-list-item">
-            <div class="d-flex justify-content-between mg-b-5">
-                <div>
-                    <i class="icon ion-ios-star"></i>
-                    <i class="icon ion-android-attach"></i>
-                </div>
-                <span class="tx-12">Sep 17</span>
-            </div><!-- d-flex -->
-            <h6 class="tx-14 mg-b-10 tx-gray-800">Themeforest</h6>
-            <p class="tx-12 tx-gray-600 mg-b-5">I should be incapable of drawing a single stroke at the present moment; and yet I feel that I never...</p>
-        </div><!-- br-mailbox-list-item -->
-    </div><!-- br-mailbox-list-body -->
+            </div><!-- br-mailbox-list-header -->
+            <div class="br-mailbox-list-body" style="margin-top: 95px;">
+                <div class="" id="listaInvoices">
 
-    <div class="br-mailbox-list-header">
-        <a href="" id="showMailBoxLeft" class="show-mailbox-left hidden-sm-up">
-            <i class="fa fa-arrow-right"></i>
-        </a>
-        <h6 class="tx-inverse mg-b-0 tx-13 tx-uppercase">Inbox <span class="tx-roboto">(2)</span></h6>
-        <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-light disabled pd-x-25"><i class="fa fa-angle-left"></i></button>
-            <button type="button" class="btn btn-light pd-x-25"><i class="fa fa-angle-right"></i></button>
-        </div>
-    </div><!-- br-mailbox-list-header -->
+                </div>
+                <div class="br-mailbox-list-item active">
+                    <div class="d-flex justify-content-between mg-b-5">
+                        <div>
+                            <i class="icon ion-ios-star tx-warning"></i>
+                            <i class="icon ion-android-attach"></i>
+                        </div>
+                        <span class="tx-12">10 hours ago</span>
+                    </div><!-- d-flex -->
+                    <h6 class="tx-14 mg-b-10 tx-gray-800">Socrates Itumay, me (4)</h6>
+                    <p class="tx-12 tx-gray-600 mg-b-5">I should be incapable of drawing a single stroke at the present moment; and yet I feel that I never...</p>
+                </div><!-- br-mailbox-list-item -->
+            </div><!-- br-mailbox-list-body -->
 
-</div>
+            <div class="br-mailbox-list-header">
+                <a href="" id="showMailBoxLeft" class="show-mailbox-left hidden-sm-up">
+                    <i class="fa fa-arrow-right"></i>
+                </a>
+                <h6 class="tx-inverse mg-b-0 tx-13 tx-uppercase">Inbox <span class="tx-roboto">(2)</span></h6>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-light disabled pd-x-25"><i class="fa fa-angle-left"></i></button>
+                    <button type="button" class="btn btn-light pd-x-25"><i class="fa fa-angle-right"></i></button>
+                </div>
+            </div><!-- br-mailbox-list-header -->
+
+        </div>
 
 <div id="Invoice" class="br-mailbox-body" style="margin-left: 315px;">
-    <div class="in-headr">
-        <div class="br-msg-header d-flex justify-content-between">
-            <div class="media align-items-center">
-                <div class="media-body mg-l-10">
-                    <p class="tx-inverse tx-medium mg-b-0">INV-0001</p>
-                    <p class="tx-12 mg-b-0">
-                        <span>Sep 20, 2017 8:45am</span>
-                        <a href="" class="mg-l-5 tx-gray-500"><i class="icon ion-star"></i></a>
-                        <a href="" class="mg-l-5 tx-gray-500"><i class="icon ion-android-attach"></i></a>
-                    </p>
-                </div><!-- media-body -->
-            </div><!-- media -->
-            <nav class="media in-headr-right nav nav-inline tx-size-24 mg-b-0 lh-0">
+            <div class="in-headr">
+                <div class="br-msg-header d-flex justify-content-between">
+                    <div class="media align-items-center">
+                        <div class="media-body mg-l-10">
+                            <p class="tx-inverse tx-medium mg-b-0">INV-0001</p>
+                            <p class="tx-12 mg-b-0">
+                                <span>Sep 20, 2017 8:45am</span>
+                                <a href="" class="mg-l-5 tx-gray-500"><i class="icon ion-star"></i></a>
+                                <a href="" class="mg-l-5 tx-gray-500"><i class="icon ion-android-attach"></i></a>
+                            </p>
+                        </div><!-- media-body -->
+                    </div><!-- media -->
+                    <nav class="media in-headr-right nav nav-inline tx-size-24 mg-b-0 lh-0">
 
-                <div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" data-toggle="modal" data-target="#modalNewIn" class="Cursor btn btn-page"><i class="fa fa-plus"></i></button>
-                    <button type="button" class="Cursor btn btn-page"><i class="fa fa-edit"></i></button>
-                    <button type="button" class="Cursor btn btn-page"><i class="fa fa-file-pdf-o"></i></button>
-                    <button type="button" class="Cursor btn btn-page"><i class="fa fa-print"></i></button>
-                    <button type="button" class="Cursor btn btn-page"><i class="fa fa-send"></i></button>
-                </div>
-
-                <button type="button" id="btAdd" class="Cursor btn btn-page" style="margin-left: 15px;margin-right: 15px;"><i class="fa fa-paperclip"></i></button>
-                <input id="addFile" name="file" type="file" style="display:none;" />
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <button type="button" data-toggle="modal" data-target="#modalNewIn" class="Cursor btn btn-page"><i class="fa fa-plus"></i></button>
+                            <button type="button" class="Cursor btn btn-page"><i class="fa fa-edit"></i></button>
+                            <button type="button" class="Cursor btn btn-page"><i class="fa fa-file-pdf-o"></i></button>
+                            <button type="button" class="Cursor btn btn-page"><i class="fa fa-print"></i></button>
+                            <button type="button" class="Cursor btn btn-page"><i class="fa fa-send"></i></button>
+                        </div>
+                        
+                        <button type="button" id="btAdd" class="Cursor btn btn-page" style="margin-left: 15px;margin-right: 15px;"><i class="fa fa-paperclip"></i></button>
+                        <input id="addFile" name="file" type="file" style="display:none;" />
 
                 <button type="button" id="RecordPaymend" class="Cursor btn btn-page">Record Payment</button>
 
-                <div class="dropdown">
-                    <a class="Cursor nav-link nav-link-profile d-flex align-items-center"
-                       data-toggle="dropdown"><i class="icon ion-android-more-horizontal"></i></a>
+                        <div class="dropdown">
+                            <a class="Cursor nav-link nav-link-profile d-flex align-items-center"
+                               data-toggle="dropdown"><i class="icon ion-android-more-horizontal"></i></a>
 
-                    <div class="dropdown-menu wd-230" style="width: 172px; height: 238px; padding-left: 10px; padding-right: 10px;">
-                        <ul class="list-unstyled user-file-nav">
-                            <li style="height: 34px;"><a href=""> Make Recurring</a></li>
-                            <li style="height: 34px;"><a href=""> Clone</a></li>
-                            <li style="height: 34px;"><a href=""> Print Delivery Note</a></li>
-                            <li style="height: 34px;"><a href=""> Print Packing Slip</a></li>
-                            <li style="height: 34px;"><a href=""> View Journal</a></li>
-                            <li style="height: 34px;"><a href=""> Delete</a></li>
-                        </ul>
-                    </div><!-- dropdown-menu -->
-                </div>
+                            <div class="dropdown-menu wd-230" style="width: 172px; height: 238px; padding-left: 10px; padding-right: 10px;">
+                                <ul class="list-unstyled user-file-nav">
+                                    <li style="height: 34px;"><a href=""> Make Recurring</a></li>
+                                    <li style="height: 34px;"><a href=""> Clone</a></li>
+                                    <li style="height: 34px;"><a href=""> Print Delivery Note</a></li>
+                                    <li style="height: 34px;"><a href=""> Print Packing Slip</a></li>
+                                    <li style="height: 34px;"><a href=""> View Journal</a></li>
+                                    <li style="height: 34px;"><a href=""> Delete</a></li>
+                                </ul>
+                            </div><!-- dropdown-menu -->
+                        </div>
 
-                <a id="closeMail" href="" class="nav-link pd-x-5 mg-l-15 hidden-xl-up">
-                    <i class="icon ion-close"></i>
-                </a>
-            </nav>
-        </div><!-- br-msg-header -->
-    </div>
-    <div class="br-msg-body" style="margin-left: 0px;margin-right: 0px;margin-top: 95px;">
-        <div class="modal-dialog modal-lg" style="margin-top: 0px; max-width: 100%; margin-bottom: 20px;">
-            <div class="modal-content" style="border: 0px;">
-                <div class="modal-body" style="padding: 0px;">
-                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <a id="closeMail" href="" class="nav-link pd-x-5 mg-l-15 hidden-xl-up">
+                            <i class="icon ion-close"></i>
+                        </a>
+                    </nav>
+                </div><!-- br-msg-header -->
+            </div>
+            <div class="br-msg-body" style="margin-left: 0px;margin-right: 0px;margin-top: 95px;">
+                <div class="modal-dialog modal-lg" style="margin-top: 0px; max-width: 100%; margin-bottom: 20px;">
+                    <div class="modal-content" style="border: 0px;">
+                        <div class="modal-body" style="padding: 0px;">
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
 
-                        <li class="nav-item">
-                            <a class="nav-link bd-0 tx-gray-light active " data-toggle="tab" href="#ads" role="tab"><strong>Payments</strong></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link bd-0 pd-y-8" id="ocultarCampo" data-toggle="tab" href="#infoPanel" role="tab"><strong>Comments & History</strong></a>
-                        </li>
+                                <li class="nav-item">
+                                    <a class="nav-link bd-0 tx-gray-light active " data-toggle="tab" href="#ads" role="tab"><strong>Payments</strong></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link bd-0 pd-y-8" id="ocultarCampo" data-toggle="tab" href="#infoPanel" role="tab"><strong>Comments & History</strong></a>
+                                </li>
 
-                    </ul>
+                            </ul>
 
-                    <div style="background-color: #e9ecef;padding-left: 15px;padding-top: 20px;padding-right: 20px;padding-bottom: 20px;">
-                        <div class="tab-content">
-                            <div class="tab-pane fade show active" id="ads" role="tabpanel">
-                                @if (true)
+                            <div style="background-color: #e9ecef;padding-left: 15px;padding-top: 20px;padding-right: 20px;padding-bottom: 20px;">
+                                <div class="tab-content">
+                                    <div class="tab-pane fade show active" id="ads" role="tabpanel">
+                                        @if (true)
                                         {
-                                        <button type="button" class="Cursor btn btn-outline-primary">+ New payment</button>
+                                            <button type="button" class="Cursor btn btn-outline-primary">+ New payment</button>
                                         }
                                         else {
-                                        <table style="width:100%;margin-top: 0px;table-layout:fixed;" class="pcs-itemtable" border="0" cellspacing="0" cellpadding="0">
-                                            <thead>
-                                                <tr style="height:32px;">
-                                                    <td style="padding: 5px 0px 5px 5px;text-align: left;font-size: 9pt;" id="" class="pcs-itemtable-breakword">
-                                                        <strong>Date</strong>
-                                                    </td>
-                                                    <td style="padding: 5px 10px 5px 20px;text-align: left;font-size: 9pt;" id="" class="pcs-itemtable-breakword">
-                                                        <strong>Payment #</strong>
-                                                    </td>
-                                                    <td style="padding: 5px 10px 5px 5px;text-align: left;font-size: 9pt;" id="" class="pcs-itemtable-breakword">
-                                                        <strong>Reference #</strong>
-                                                    </td>
-                                                    <td style="padding: 5px 10px 5px 5px;text-align: left;font-size: 9pt;" id="" class="pcs-itemtable-breakword">
-                                                        <strong>Payment Mode</strong>
-                                                    </td>
-                                                    <td style="padding: 5px 10px 5px 5px;text-align: left;font-size: 9pt;" id="" class="pcs-itemtable-breakword hidden">
-                                                        <strong>Amount</strong>
-                                                    </td>
-                                                    <td style="padding: 5px 10px 5px 5px;text-align: center;font-size: 9pt;" id="" class="pcs-itemtable-breakword">
-                                                        <i class="fa fa-flash"></i>
-                                                    </td>
-                                                </tr>
-                                            </thead>
-                                            <tbody class="itemBody">
-                                                <tr>
-                                                    <td rowspan="1" valign="top" style="background-color: #e9ecef;padding: 10px 0 10px 5px;text-align: left;word-wrap: break-word;" class="pcs-item-row">
-                                                        08 Apr 2019
-                                                    </td>
-                                                    <td rowspan="1" valign="top" style="background-color: #e9ecef;padding: 10px 0px 10px 20px;" class="pcs-item-row text-align-left">
-                                                        <div>
+                                            <table style="width:100%;margin-top: 0px;table-layout:fixed;" class="pcs-itemtable" border="0" cellspacing="0" cellpadding="0">
+                                                <thead>
+                                                    <tr style="height:32px;">
+                                                        <td style="padding: 5px 0px 5px 5px;text-align: left;font-size: 9pt;" id="" class="pcs-itemtable-breakword">
+                                                            <strong>Date</strong>
+                                                        </td>
+                                                        <td style="padding: 5px 10px 5px 20px;text-align: left;font-size: 9pt;" id="" class="pcs-itemtable-breakword">
+                                                            <strong>Payment #</strong>
+                                                        </td>
+                                                        <td style="padding: 5px 10px 5px 5px;text-align: left;font-size: 9pt;" id="" class="pcs-itemtable-breakword">
+                                                            <strong>Reference #</strong>
+                                                        </td>
+                                                        <td style="padding: 5px 10px 5px 5px;text-align: left;font-size: 9pt;" id="" class="pcs-itemtable-breakword">
+                                                            <strong>Payment Mode</strong>
+                                                        </td>
+                                                        <td style="padding: 5px 10px 5px 5px;text-align: left;font-size: 9pt;" id="" class="pcs-itemtable-breakword hidden">
+                                                            <strong>Amount</strong>
+                                                        </td>
+                                                        <td style="padding: 5px 10px 5px 5px;text-align: center;font-size: 9pt;" id="" class="pcs-itemtable-breakword">
+                                                            <i class="fa fa-flash"></i>
+                                                        </td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="itemBody">
+                                                    <tr>
+                                                        <td rowspan="1" valign="top" style="background-color: #e9ecef;padding: 10px 0 10px 5px;text-align: left;word-wrap: break-word;" class="pcs-item-row">
+                                                            08 Apr 2019
+                                                        </td>
+                                                        <td rowspan="1" valign="top" style="background-color: #e9ecef;padding: 10px 0px 10px 20px;" class="pcs-item-row text-align-left">
                                                             <div>
-                                                                <span style="word-wrap: break-word;" id="tmp_item_name">300</span><br>
+                                                                <div>
+                                                                    <span style="word-wrap: break-word;" id="tmp_item_name">300</span><br>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </td>
-                                                    <td rowspan="1" style="background-color: #e9ecef;" class="pcs-item-row lineitem-column text-align-left">
-                                                        <span id="tmp_item_qty"></span>
-                                                    </td>
-                                                    <td rowspan="1" style="background-color: #e9ecef;" class="pcs-item-row lineitem-column text-align-left">
-                                                        <span id="tmp_item_rate">Credit Card</span>
-                                                    </td>
-                                                    <td rowspan="1" style="background-color: #e9ecef;" class="pcs-item-row lineitem-column lineitem-content-right text-align-left">
-                                                        <span id="tmp_item_amount">$199.06</span>
-                                                    </td>
-                                                    <td rowspan="1" style="background-color: #e9ecef;" class="pcs-item-row lineitem-column lineitem-content-right text-align-center">
-                                                        <center>
-                                                            <button style="width: 25px;height: 25px; margin-left: 10px;" class="Modificar Cursor btn btn-outline-primary btn-icon">
-                                                                <i class="fa fa-edit"></i>
-                                                            </button>
-                                                            <button href="#" title="Remove" class="Remove Cursor btn btn-outline-danger btn-icon" style="width: 25px;height: 25px; margin-left: 10px;">
-                                                                <i class="fa fa-trash"></i>
-                                                            </button>
-                                                        </center>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                                        </td>
+                                                        <td rowspan="1" style="background-color: #e9ecef;" class="pcs-item-row lineitem-column text-align-left">
+                                                            <span id="tmp_item_qty"></span>
+                                                        </td>
+                                                        <td rowspan="1" style="background-color: #e9ecef;" class="pcs-item-row lineitem-column text-align-left">
+                                                            <span id="tmp_item_rate">Credit Card</span>
+                                                        </td>
+                                                        <td rowspan="1" style="background-color: #e9ecef;" class="pcs-item-row lineitem-column lineitem-content-right text-align-left">
+                                                            <span id="tmp_item_amount">$199.06</span>
+                                                        </td>
+                                                        <td rowspan="1" style="background-color: #e9ecef;" class="pcs-item-row lineitem-column lineitem-content-right text-align-center">
+                                                            <center>
+                                                                <button style="width: 25px;height: 25px; margin-left: 10px;" class="Modificar Cursor btn btn-outline-primary btn-icon">
+                                                                    <i class="fa fa-edit"></i>
+                                                                </button>
+                                                                <button href="#" title="Remove" class="Remove Cursor btn btn-outline-danger btn-icon" style="width: 25px;height: 25px; margin-left: 10px;">
+                                                                    <i class="fa fa-trash"></i>
+                                                                </button>
+                                                            </center>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                         }
 
-                            </div>
-                            <div class="tab-pane fade" id="infoPanel" role="tabpanel">
-                                <div class="comments-history">
-                                    <p class="font-small">
-                                        <a class="Cursor" id="read-more-state">+ View More</a>
-                                        <a class="Cursor" id="read-less-state">- View Less</a>
-                                    </p>
-                                    <ul class="read-more-wrap list-unstyled" data-test-title="comments-list" id="divHistoryComm">
+                                    </div>
+                                    <div class="tab-pane fade" id="infoPanel" role="tabpanel">
+                                        <div class="comments-history">
+                                            <p class="font-small">
+                                            <a class="Cursor" id="read-more-state">+ View More</a>
+                                            <a class="Cursor" id="read-less-state">- View Less</a>
+                                            </p> 
+                                            <ul class="read-more-wrap list-unstyled" data-test-title="comments-list" id="divHistoryComm">
+                                   
+                                                <li id="ember1555" class="ember-view">
+                                                    <div class="clearfix" data-test-title="comments-list-row">
+                                                        <div class="date-section pull-left">
+                                                            <div class="font-xxs text-draft">
+                                                                08 Apr 2019 10:31 AM <br>
+                                                            </div>
+                                                        </div>
+                                                        <div class="comment-section pull-left">
+                                                            <div class="pull-left">
+                                                                <div class="txn-comment-icon circle-box"></div>
+                                                            </div>
+                                                            <div class="media-body" style="margin-left: 50px;">
+                                                                <div class="comment">
+                                                                    <span class="IconStatus fa fa-comment-o" style="padding-right: 2px;padding-left: 6px;height: 24px;width: 26px;padding-bottom: 2px;padding-top: 3px;"></span>
+                                                                    <span class="description">Coment </span>
+                                                                    <label class="font-xs text-muted">by <strong>Katie Cai</strong></label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li id="ember1555" class="ember-view">
+                                                    <div class="clearfix" data-test-title="comments-list-row">
+                                                        <div class="date-section pull-left">
+                                                            <div class="font-xxs text-draft">
+                                                                08 Apr 2019 10:31 AM <br>
+                                                            </div>
+                                                        </div>
+                                                        <div class="comment-section pull-left">
+                                                            <div class="pull-left">
+                                                                <div class="txn-comment-icon circle-box"></div>
+                                                            </div>
+                                                            <div class="media-body" style="margin-left: 50px;">
+                                                                <div class="comment">
+                                                                    <span class="IconStatus fa fa-usd" style="padding-right: 2px;padding-left: 8px;height: 24px;width: 26px;padding-bottom: 2px;padding-top: 3px;"></span>
+                                                                    <span class="description">Payment of $199.06 received</span>
+                                                                    <label class="font-xs text-muted">by <strong>Katie Cai</strong></label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li id="ember1555" class="ember-view">
+                                                    <div class="clearfix" data-test-title="comments-list-row">
+                                                        <div class="date-section pull-left">
+                                                            <div class="font-xxs text-draft">
+                                                                08 Apr 2019 10:31 AM <br>
+                                                            </div>
+                                                        </div>
+                                                        <div class="comment-section pull-left">
+                                                            <div class="pull-left">
+                                                                <div class="txn-comment-icon circle-box"></div>
+                                                            </div>
+                                                            <div class="media-body" style="margin-left: 50px;">
+                                                                <div class="comment">
+                                                                    <span class="IconStatus fa fa-envelope-o" style="padding-right: 3px;padding-left: 5px;height: 24px;width: 26px;padding-bottom: 2px;padding-top: 3px;"></span>
+                                                                    <span class="description">Emailed </span>
+                                                                    <label class="font-xs text-muted">by <strong>Katie Cai</strong></label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
 
-                                        <li id="ember1555" class="ember-view">
-                                            <div class="clearfix" data-test-title="comments-list-row">
-                                                <div class="date-section pull-left">
-                                                    <div class="font-xxs text-draft">
-                                                        08 Apr 2019 10:31 AM <br>
-                                                    </div>
-                                                </div>
-                                                <div class="comment-section pull-left">
-                                                    <div class="pull-left">
-                                                        <div class="txn-comment-icon circle-box"></div>
-                                                    </div>
-                                                    <div class="media-body" style="margin-left: 50px;">
-                                                        <div class="comment">
-                                                            <span class="IconStatus fa fa-comment-o" style="padding-right: 2px;padding-left: 6px;height: 24px;width: 26px;padding-bottom: 2px;padding-top: 3px;"></span>
-                                                            <span class="description">Coment </span>
-                                                            <label class="font-xs text-muted">by <strong>Katie Cai</strong></label>
+                                                <li id="ember1555" class="read-more-target ember-view">
+                                                    <div class="clearfix" data-test-title="comments-list-row">
+                                                        <div class="date-section pull-left">
+                                                            <div class="font-xxs text-draft">
+                                                                08 Apr 2019 10:31 AM <br>
+                                                            </div>
+                                                        </div>
+                                                        <div class="comment-section pull-left">
+                                                            <div class="pull-left">
+                                                                <div class="txn-comment-icon circle-box"></div>
+                                                            </div>
+                                                            <div class="media-body" style="margin-left: 50px;">
+                                                                <div class="comment">
+                                                                    <span class="IconStatus fa fa-file-text-o" style="padding-right: 2px;padding-left: 6px;height: 24px;width: 26px;padding-bottom: 2px;padding-top: 3px;"></span>
+                                                                    <span class="description">Converted to Invoice </span>
+                                                                    <label class="font-xs text-muted">by <strong>Katie Cai</strong></label>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li id="ember1555" class="ember-view">
-                                            <div class="clearfix" data-test-title="comments-list-row">
-                                                <div class="date-section pull-left">
-                                                    <div class="font-xxs text-draft">
-                                                        08 Apr 2019 10:31 AM <br>
-                                                    </div>
-                                                </div>
-                                                <div class="comment-section pull-left">
-                                                    <div class="pull-left">
-                                                        <div class="txn-comment-icon circle-box"></div>
-                                                    </div>
-                                                    <div class="media-body" style="margin-left: 50px;">
-                                                        <div class="comment">
-                                                            <span class="IconStatus fa fa-usd" style="padding-right: 2px;padding-left: 8px;height: 24px;width: 26px;padding-bottom: 2px;padding-top: 3px;"></span>
-                                                            <span class="description">Payment of $199.06 received</span>
-                                                            <label class="font-xs text-muted">by <strong>Katie Cai</strong></label>
+                                                </li>
+                                                <li id="ember1555" class="read-more-target ember-view">
+                                                    <div class="clearfix" data-test-title="comments-list-row">
+                                                        <div class="date-section pull-left">
+                                                            <div class="font-xxs text-draft">
+                                                                08 Apr 2019 10:31 AM <br>
+                                                            </div>
+                                                        </div>
+                                                        <div class="comment-section pull-left">
+                                                            <div class="pull-left">
+                                                                <div class="txn-comment-icon circle-box"></div>
+                                                            </div>
+                                                            <div class="media-body" style="margin-left: 50px;">
+                                                                <div class="comment">
+                                                                    <span class="IconStatus fa fa-paperclip" style="padding-right: 2px;padding-left: 6px;height: 24px;width: 26px;padding-bottom: 2px;padding-top: 3px;"></span>
+                                                                    <span class="description">Attachment added </span>
+                                                                    <label class="font-xs text-muted">by <strong>Katie Cai</strong></label>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li id="ember1555" class="ember-view">
-                                            <div class="clearfix" data-test-title="comments-list-row">
-                                                <div class="date-section pull-left">
-                                                    <div class="font-xxs text-draft">
-                                                        08 Apr 2019 10:31 AM <br>
-                                                    </div>
-                                                </div>
-                                                <div class="comment-section pull-left">
-                                                    <div class="pull-left">
-                                                        <div class="txn-comment-icon circle-box"></div>
-                                                    </div>
-                                                    <div class="media-body" style="margin-left: 50px;">
-                                                        <div class="comment">
-                                                            <span class="IconStatus fa fa-envelope-o" style="padding-right: 3px;padding-left: 5px;height: 24px;width: 26px;padding-bottom: 2px;padding-top: 3px;"></span>
-                                                            <span class="description">Emailed </span>
-                                                            <label class="font-xs text-muted">by <strong>Katie Cai</strong></label>
+                                                </li>
+                                                <li id="ember1555" class="read-more-target ember-view">
+                                                    <div class="clearfix" data-test-title="comments-list-row">
+                                                        <div class="date-section pull-left">
+                                                            <div class="font-xxs text-draft">
+                                                                08 Apr 2019 10:31 AM <br>
+                                                            </div>
+                                                        </div>
+                                                        <div class="comment-section pull-left">
+                                                            <div class="pull-left">
+                                                                <div class="txn-comment-icon circle-box"></div>
+                                                            </div>
+                                                            <div class="media-body" style="margin-left: 50px;">
+                                                                <div class="comment">
+                                                                    <span class="IconStatus fa fa-trash-o" style="padding-right: 2px;padding-left: 6px;height: 24px;width: 26px;padding-bottom: 2px;padding-top: 3px;"></span>
+                                                                    <span class="description">Attachment deleted </span>
+                                                                    <label class="font-xs text-muted">by <strong>Katie Cai</strong></label>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </li>
-
-                                        <li id="ember1555" class="read-more-target ember-view">
-                                            <div class="clearfix" data-test-title="comments-list-row">
-                                                <div class="date-section pull-left">
-                                                    <div class="font-xxs text-draft">
-                                                        08 Apr 2019 10:31 AM <br>
-                                                    </div>
-                                                </div>
-                                                <div class="comment-section pull-left">
-                                                    <div class="pull-left">
-                                                        <div class="txn-comment-icon circle-box"></div>
-                                                    </div>
-                                                    <div class="media-body" style="margin-left: 50px;">
-                                                        <div class="comment">
-                                                            <span class="IconStatus fa fa-file-text-o" style="padding-right: 2px;padding-left: 6px;height: 24px;width: 26px;padding-bottom: 2px;padding-top: 3px;"></span>
-                                                            <span class="description">Converted to Invoice </span>
-                                                            <label class="font-xs text-muted">by <strong>Katie Cai</strong></label>
+                                                </li>
+                                                <li id="ember1555" class="read-more-target ember-view">
+                                                    <div class="clearfix" data-test-title="comments-list-row">
+                                                        <div class="date-section pull-left">
+                                                            <div class="font-xxs text-draft">
+                                                                08 Apr 2019 10:31 AM <br>
+                                                            </div>
+                                                        </div>
+                                                        <div class="comment-section pull-left">
+                                                            <div class="pull-left">
+                                                                <div class="txn-comment-icon circle-box"></div>
+                                                            </div>
+                                                            <div class="media-body" style="margin-left: 50px;">
+                                                                <div class="comment">
+                                                                    <span class="IconStatus fa fa-check" style="padding-right: 2px;padding-left: 6px;height: 24px;width: 26px;padding-bottom: 2px;padding-top: 3px;"></span>
+                                                                    <span class="description">Accepted </span>
+                                                                    <label class="font-xs text-muted">by <strong>Katie Cai</strong></label>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li id="ember1555" class="read-more-target ember-view">
-                                            <div class="clearfix" data-test-title="comments-list-row">
-                                                <div class="date-section pull-left">
-                                                    <div class="font-xxs text-draft">
-                                                        08 Apr 2019 10:31 AM <br>
-                                                    </div>
-                                                </div>
-                                                <div class="comment-section pull-left">
-                                                    <div class="pull-left">
-                                                        <div class="txn-comment-icon circle-box"></div>
-                                                    </div>
-                                                    <div class="media-body" style="margin-left: 50px;">
-                                                        <div class="comment">
-                                                            <span class="IconStatus fa fa-paperclip" style="padding-right: 2px;padding-left: 6px;height: 24px;width: 26px;padding-bottom: 2px;padding-top: 3px;"></span>
-                                                            <span class="description">Attachment added </span>
-                                                            <label class="font-xs text-muted">by <strong>Katie Cai</strong></label>
+                                                </li>
+                                                <li id="ember1555" class="read-more-target ember-view">
+                                                    <div class="clearfix" data-test-title="comments-list-row">
+                                                        <div class="date-section pull-left">
+                                                            <div class="font-xxs text-draft">
+                                                                08 Apr 2019 10:31 AM <br>
+                                                            </div>
+                                                        </div>
+                                                        <div class="comment-section pull-left">
+                                                            <div class="pull-left">
+                                                                <div class="txn-comment-icon circle-box"></div>
+                                                            </div>
+                                                            <div class="media-body" style="margin-left: 50px;">
+                                                                <div class="comment">
+                                                                    <span class="IconStatus fa fa-times" style="padding-right: 2px;padding-left: 6px;height: 24px;width: 26px;padding-bottom: 2px;padding-top: 3px;"></span>
+                                                                    <span class="description">Declined </span>
+                                                                    <label class="font-xs text-muted">by <strong>Katie Cai</strong></label>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li id="ember1555" class="read-more-target ember-view">
-                                            <div class="clearfix" data-test-title="comments-list-row">
-                                                <div class="date-section pull-left">
-                                                    <div class="font-xxs text-draft">
-                                                        08 Apr 2019 10:31 AM <br>
-                                                    </div>
-                                                </div>
-                                                <div class="comment-section pull-left">
-                                                    <div class="pull-left">
-                                                        <div class="txn-comment-icon circle-box"></div>
-                                                    </div>
-                                                    <div class="media-body" style="margin-left: 50px;">
-                                                        <div class="comment">
-                                                            <span class="IconStatus fa fa-trash-o" style="padding-right: 2px;padding-left: 6px;height: 24px;width: 26px;padding-bottom: 2px;padding-top: 3px;"></span>
-                                                            <span class="description">Attachment deleted </span>
-                                                            <label class="font-xs text-muted">by <strong>Katie Cai</strong></label>
+                                                </li>
+                                                <li id="ember1555" class="read-more-target ember-view">
+                                                    <div class="clearfix" data-test-title="comments-list-row">
+                                                        <div class="date-section pull-left">
+                                                            <div class="font-xxs text-draft">
+                                                                08 Apr 2019 10:31 AM <br>
+                                                            </div>
+                                                        </div>
+                                                        <div class="comment-section pull-left">
+                                                            <div class="pull-left">
+                                                                <div class="txn-comment-icon circle-box"></div>
+                                                            </div>
+                                                            <div class="media-body" style="margin-left: 50px;">
+                                                                <div class="comment">
+                                                                    <span class="IconStatus fa fa-paper-plane-o" style="padding-right: 4px;padding-left: 5px;height: 24px;width: 26px;padding-bottom: 2px;padding-top: 3px;"></span>
+                                                                    <span class="description">Sent </span>
+                                                                    <label class="font-xs text-muted">by <strong>Katie Cai</strong></label>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li id="ember1555" class="read-more-target ember-view">
-                                            <div class="clearfix" data-test-title="comments-list-row">
-                                                <div class="date-section pull-left">
-                                                    <div class="font-xxs text-draft">
-                                                        08 Apr 2019 10:31 AM <br>
-                                                    </div>
-                                                </div>
-                                                <div class="comment-section pull-left">
-                                                    <div class="pull-left">
-                                                        <div class="txn-comment-icon circle-box"></div>
-                                                    </div>
-                                                    <div class="media-body" style="margin-left: 50px;">
-                                                        <div class="comment">
-                                                            <span class="IconStatus fa fa-check" style="padding-right: 2px;padding-left: 6px;height: 24px;width: 26px;padding-bottom: 2px;padding-top: 3px;"></span>
-                                                            <span class="description">Accepted </span>
-                                                            <label class="font-xs text-muted">by <strong>Katie Cai</strong></label>
+                                                </li>
+                                                <li id="ember1555" class="read-more-target ember-view">
+                                                    <div class="clearfix" data-test-title="comments-list-row">
+                                                        <div class="date-section pull-left">
+                                                            <div class="font-xxs text-draft">
+                                                                08 Apr 2019 10:31 AM <br>
+                                                            </div>
+                                                        </div>
+                                                        <div class="comment-section pull-left">
+                                                            <div class="pull-left">
+                                                                <div class="txn-comment-icon circle-box"></div>
+                                                            </div>
+                                                            <div class="media-body" style="margin-left: 50px;">
+                                                                <div class="comment">
+                                                                    <span class="IconStatus fa fa-files-o" style="padding-right: 2px;padding-left: 6px;height: 24px;width: 26px;padding-bottom: 2px;padding-top: 3px;"></span>
+                                                                    <span class="description">Refunded </span>
+                                                                    <label class="font-xs text-muted">by <strong>Katie Cai</strong></label>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li id="ember1555" class="read-more-target ember-view">
-                                            <div class="clearfix" data-test-title="comments-list-row">
-                                                <div class="date-section pull-left">
-                                                    <div class="font-xxs text-draft">
-                                                        08 Apr 2019 10:31 AM <br>
-                                                    </div>
-                                                </div>
-                                                <div class="comment-section pull-left">
-                                                    <div class="pull-left">
-                                                        <div class="txn-comment-icon circle-box"></div>
-                                                    </div>
-                                                    <div class="media-body" style="margin-left: 50px;">
-                                                        <div class="comment">
-                                                            <span class="IconStatus fa fa-times" style="padding-right: 2px;padding-left: 6px;height: 24px;width: 26px;padding-bottom: 2px;padding-top: 3px;"></span>
-                                                            <span class="description">Declined </span>
-                                                            <label class="font-xs text-muted">by <strong>Katie Cai</strong></label>
+                                                </li>
+                                                <li id="ember1555" class="read-more-target ember-view">
+                                                    <div class="clearfix" data-test-title="comments-list-row">
+                                                        <div class="date-section pull-left">
+                                                            <div class="font-xxs text-draft">
+                                                                08 Apr 2019 10:31 AM <br>
+                                                            </div>
+                                                        </div>
+                                                        <div class="comment-section pull-left">
+                                                            <div class="pull-left">
+                                                                <div class="txn-comment-icon circle-box"></div>
+                                                            </div>
+                                                            <div class="media-body" style="margin-left: 50px;">
+                                                                <div class="comment">
+                                                                    <span class="IconStatus fa fa-sticky-note-o" style="padding-right: 2px;padding-left: 6px;height: 24px;width: 26px;padding-bottom: 2px;padding-top: 3px;"></span>
+                                                                    <span class="description">Credit Notes </span>
+                                                                    <label class="font-xs text-muted">by <strong>Katie Cai</strong></label>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li id="ember1555" class="read-more-target ember-view">
-                                            <div class="clearfix" data-test-title="comments-list-row">
-                                                <div class="date-section pull-left">
-                                                    <div class="font-xxs text-draft">
-                                                        08 Apr 2019 10:31 AM <br>
-                                                    </div>
-                                                </div>
-                                                <div class="comment-section pull-left">
-                                                    <div class="pull-left">
-                                                        <div class="txn-comment-icon circle-box"></div>
-                                                    </div>
-                                                    <div class="media-body" style="margin-left: 50px;">
-                                                        <div class="comment">
-                                                            <span class="IconStatus fa fa-paper-plane-o" style="padding-right: 4px;padding-left: 5px;height: 24px;width: 26px;padding-bottom: 2px;padding-top: 3px;"></span>
-                                                            <span class="description">Sent </span>
-                                                            <label class="font-xs text-muted">by <strong>Katie Cai</strong></label>
+                                                </li>
+                                                <li id="ember1555" class="read-more-target ember-view">
+                                                    <div class="clearfix" data-test-title="comments-list-row">
+                                                        <div class="date-section pull-left">
+                                                            <div class="font-xxs text-draft">
+                                                                08 Apr 2019 10:31 AM <br>
+                                                            </div>
+                                                        </div>
+                                                        <div class="comment-section pull-left">
+                                                            <div class="pull-left">
+                                                                <div class="txn-comment-icon circle-box"></div>
+                                                            </div>
+                                                            <div class="media-body" style="margin-left: 50px;">
+                                                                <div class="comment">
+                                                                    <span class="IconStatus fa fa-plus" style="padding-right: 2px;padding-left: 6px;height: 24px;width: 26px;padding-bottom: 2px;padding-top: 3px;"></span>
+                                                                    <span class="description">Created </span>
+                                                                    <label class="font-xs text-muted">by <strong>Katie Cai</strong></label>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li id="ember1555" class="read-more-target ember-view">
-                                            <div class="clearfix" data-test-title="comments-list-row">
-                                                <div class="date-section pull-left">
-                                                    <div class="font-xxs text-draft">
-                                                        08 Apr 2019 10:31 AM <br>
-                                                    </div>
-                                                </div>
-                                                <div class="comment-section pull-left">
-                                                    <div class="pull-left">
-                                                        <div class="txn-comment-icon circle-box"></div>
-                                                    </div>
-                                                    <div class="media-body" style="margin-left: 50px;">
-                                                        <div class="comment">
-                                                            <span class="IconStatus fa fa-files-o" style="padding-right: 2px;padding-left: 6px;height: 24px;width: 26px;padding-bottom: 2px;padding-top: 3px;"></span>
-                                                            <span class="description">Refunded </span>
-                                                            <label class="font-xs text-muted">by <strong>Katie Cai</strong></label>
+                                                </li>
+                                                <li id="ember1555" class="read-more-target ember-view">
+                                                    <div class="clearfix" data-test-title="comments-list-row">
+                                                        <div class="date-section pull-left">
+                                                            <div class="font-xxs text-draft">
+                                                                08 Apr 2019 10:31 AM <br>
+                                                            </div>
+                                                        </div>
+                                                        <div class="comment-section pull-left">
+                                                            <div class="pull-left">
+                                                                <div class="txn-comment-icon circle-box"></div>
+                                                            </div>
+                                                            <div class="media-body" style="margin-left: 50px;">
+                                                                <div class="comment">
+                                                                    <span class="IconStatus fa fa-fax" style="padding-right: 2px;padding-left: 6px;height: 24px;width: 26px;padding-bottom: 2px;padding-top: 3px;"></span>
+                                                                    <span class="description">Estimate </span>
+                                                                    <label class="font-xs text-muted">by <strong>Katie Cai</strong></label>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li id="ember1555" class="read-more-target ember-view">
-                                            <div class="clearfix" data-test-title="comments-list-row">
-                                                <div class="date-section pull-left">
-                                                    <div class="font-xxs text-draft">
-                                                        08 Apr 2019 10:31 AM <br>
-                                                    </div>
-                                                </div>
-                                                <div class="comment-section pull-left">
-                                                    <div class="pull-left">
-                                                        <div class="txn-comment-icon circle-box"></div>
-                                                    </div>
-                                                    <div class="media-body" style="margin-left: 50px;">
-                                                        <div class="comment">
-                                                            <span class="IconStatus fa fa-sticky-note-o" style="padding-right: 2px;padding-left: 6px;height: 24px;width: 26px;padding-bottom: 2px;padding-top: 3px;"></span>
-                                                            <span class="description">Credit Notes </span>
-                                                            <label class="font-xs text-muted">by <strong>Katie Cai</strong></label>
+                                                </li>
+                                                <li id="ember1555" class="read-more-target ember-view">
+                                                    <div class="clearfix" data-test-title="comments-list-row">
+                                                        <div class="date-section pull-left">
+                                                            <div class="font-xxs text-draft">
+                                                                08 Apr 2019 10:31 AM <br>
+                                                            </div>
+                                                        </div>
+                                                        <div class="comment-section pull-left">
+                                                            <div class="pull-left">
+                                                                <div class="txn-comment-icon circle-box"></div>
+                                                            </div>
+                                                            <div class="media-body" style="margin-left: 50px;">
+                                                                <div class="comment">
+                                                                    <span class="IconStatus fa fa-file-text-o" style="padding-right: 2px;padding-left: 6px;height: 24px;width: 26px;padding-bottom: 2px;padding-top: 3px;"></span>
+                                                                    <span class="description">Invoice </span>
+                                                                    <label class="font-xs text-muted">by <strong>Katie Cai</strong></label>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li id="ember1555" class="read-more-target ember-view">
-                                            <div class="clearfix" data-test-title="comments-list-row">
-                                                <div class="date-section pull-left">
-                                                    <div class="font-xxs text-draft">
-                                                        08 Apr 2019 10:31 AM <br>
-                                                    </div>
-                                                </div>
-                                                <div class="comment-section pull-left">
-                                                    <div class="pull-left">
-                                                        <div class="txn-comment-icon circle-box"></div>
-                                                    </div>
-                                                    <div class="media-body" style="margin-left: 50px;">
-                                                        <div class="comment">
-                                                            <span class="IconStatus fa fa-plus" style="padding-right: 2px;padding-left: 6px;height: 24px;width: 26px;padding-bottom: 2px;padding-top: 3px;"></span>
-                                                            <span class="description">Created </span>
-                                                            <label class="font-xs text-muted">by <strong>Katie Cai</strong></label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li id="ember1555" class="read-more-target ember-view">
-                                            <div class="clearfix" data-test-title="comments-list-row">
-                                                <div class="date-section pull-left">
-                                                    <div class="font-xxs text-draft">
-                                                        08 Apr 2019 10:31 AM <br>
-                                                    </div>
-                                                </div>
-                                                <div class="comment-section pull-left">
-                                                    <div class="pull-left">
-                                                        <div class="txn-comment-icon circle-box"></div>
-                                                    </div>
-                                                    <div class="media-body" style="margin-left: 50px;">
-                                                        <div class="comment">
-                                                            <span class="IconStatus fa fa-fax" style="padding-right: 2px;padding-left: 6px;height: 24px;width: 26px;padding-bottom: 2px;padding-top: 3px;"></span>
-                                                            <span class="description">Estimate </span>
-                                                            <label class="font-xs text-muted">by <strong>Katie Cai</strong></label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li id="ember1555" class="read-more-target ember-view">
-                                            <div class="clearfix" data-test-title="comments-list-row">
-                                                <div class="date-section pull-left">
-                                                    <div class="font-xxs text-draft">
-                                                        08 Apr 2019 10:31 AM <br>
-                                                    </div>
-                                                </div>
-                                                <div class="comment-section pull-left">
-                                                    <div class="pull-left">
-                                                        <div class="txn-comment-icon circle-box"></div>
-                                                    </div>
-                                                    <div class="media-body" style="margin-left: 50px;">
-                                                        <div class="comment">
-                                                            <span class="IconStatus fa fa-file-text-o" style="padding-right: 2px;padding-left: 6px;height: 24px;width: 26px;padding-bottom: 2px;padding-top: 3px;"></span>
-                                                            <span class="description">Invoice </span>
-                                                            <label class="font-xs text-muted">by <strong>Katie Cai</strong></label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-
-                                    </ul>
-                                    <bottom id="mostrarCampo" class="Cursor ocultarTitulo">+ Add Comment</bottom>
-                                    <textarea style="width:100%" class="hidden showInput form-control"></textarea>
-                                    <button type="button" style="padding-left: 9px;padding-right: 9px;height: 30px;padding-top: 2px;padding-bottom: 2px;margin-top: 10px;" class="Cursor btn btn-primary AddComment">Add Comment</button>
+                                                </li>
+                                   
+                                            </ul>
+                                            <bottom id="mostrarCampo" class="Cursor ocultarTitulo">+ Add Comment</bottom>
+                                            <textarea style="width:100%" class="hidden showInput form-control"></textarea>
+                                            <button type="button" style="padding-left: 9px;padding-right: 9px;height: 30px;padding-top: 2px;padding-bottom: 2px;margin-top: 10px;" class="Cursor btn btn-primary AddComment">Add Comment</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
-
                 </div>
-            </div>
-        </div>
-        <div>
-            <div style="max-width: 8.27in;margin-left:auto;margin-right:auto;" class="details-container clearfix ">
-                <div class="pcs-template ">
-                    <div class="pcs-template-header pcs-header-content" id="header">
-                        <div class="pcs-template-fill-emptydiv"></div>
-                    </div>
+                    <div>
+                        <div style="max-width: 8.27in;margin-left:auto;margin-right:auto;" class="details-container clearfix ">
+                            <div class="pcs-template ">
+                                <div class="pcs-template-header pcs-header-content" id="header">
+                                    <div class="pcs-template-fill-emptydiv"></div>
+                                </div>
 
-                    <div class="pcs-template-body">
-                        <table style="width:100%;table-layout: fixed;">
-                            <tbody>
-                                <tr>
-                                    <td style="width:50%;" class="text-align-lef v-top">
+                                <div class="pcs-template-body">
+                                    <table style="width:100%;table-layout: fixed;">
+                                        <tbody>
+                                            <tr>
+                                                <td style="width:50%;" class="text-align-lef v-top">
 
-                                        <div>
-                                            <img src="~/Content/img/Venus_Doors11.png" style="width: 200px;" />
+                                                    <div>
+                                                        <img src="~/Content/img/Venus_Doors11.png" style="width: 200px;" />
+                                                    </div>
+                                                </td>
+
+                                                <td class="text-align-right v-top" style="vertical-align: top; width:50%;">
+                                                    <span class="pcs-orgname"><b>Venus Cabinet Doors</b></span><br>
+                                                    <span id="tmp_entity_number" style="font-size: 10pt;" class="pcs-label"><b># INV-2105</b></span>
+                                                    <span class="pcs-label">
+                                                        <span style="white-space: pre-wrap;word-wrap: break-word;" id="tmp_org_address">
+                                                            Texas
+                                                            U.S.A
+                                                        </span>
+                                                    </span>
+                                                    <div style="clear:both;margin-top:30px;">
+                                                        <span style="font-size:8pt;"><b>Balance Due</b></span>
+                                                        <br>
+                                                        <span style="font-size:12pt;"><b>$230.77</b></span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <table style="clear:both;width:100%;table-layout:fixed;">
+                                        <tbody>
+                                            <tr>
+                                                <td style="width:60%;vertical-align:bottom;word-wrap: break-word;">
+                                                    <div>
+                                                        <label style="font-size: 10pt;" class="pcs-label" id="tmp_billing_address_label">Bill To</label>
+                                                        <br>
+                                                        <span style="white-space: pre-wrap;" id="tmp_billing_address"><strong><span class="pcs-customer-name" id="zb-pdf-customer-detail"><a href="#/contacts/1650031000000667001">Sharron Garrison</a></span></strong></span>
+                                                    </div>
+                                                </td>
+                                                <td align="right" style="vertical-align:bottom;width: 40%;">
+                                                    <table style="float:right;width: 100%;table-layout: fixed;word-wrap: break-word;" border="0" cellspacing="0" cellpadding="0">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td style="padding:5px 10px 5px 0px;font-size:10pt;" class="text-align-right">
+                                                                    <span class="pcs-label">Invoice Date :</span>
+                                                                </td>
+                                                                <td class="text-align-right">
+                                                                    <span id="tmp_entity_date">03 Apr 2019</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="padding:5px 10px 5px 0px;font-size: 10pt;" class="text-align-right">
+                                                                    <span class="pcs-label">Terms :</span>
+                                                                </td>
+                                                                <td class="text-align-right">
+                                                                    <span id="tmp_payment_terms">Due on Receipt</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="padding:5px 10px 5px 0px;font-size: 10pt;" class="text-align-right">
+                                                                    <span class="pcs-label">Due Date :</span>
+                                                                </td>
+                                                                <td class="text-align-right">
+                                                                    <span id="tmp_due_date">03 Apr 2019</span>
+                                                                </td>
+                                                            </tr>
+
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <table style="width:100%;margin-top:20px;table-layout:fixed;" class="pcs-itemtable" border="0" cellspacing="0" cellpadding="0">
+                                        <thead>
+                                            <tr style="height:32px;">
+                                                <td style="padding: 5px 0px 5px 5px;width: 5%;text-align: center;" id="" class="pcs-itemtable-header pcs-itemtable-breakword">
+                                                    Door
+                                                </td>
+                                                <td style="padding: 5px 10px 5px 20px;width: ;text-align: left;" id="" class="pcs-itemtable-header pcs-itemtable-breakword">
+                                                    Description
+                                                </td>
+                                                <td style="padding: 5px 10px 5px 5px;width: 11%;text-align: right;" id="" class="pcs-itemtable-header pcs-itemtable-breakword">
+                                                    Qty
+                                                </td>
+                                                <td style="padding: 5px 10px 5px 5px;width: 11%;text-align: right;" id="" class="pcs-itemtable-header pcs-itemtable-breakword">
+                                                    Discount
+                                                </td>
+                                                <td style="padding: 5px 10px 5px 5px;width: 15%;text-align: right;" id="" class="pcs-itemtable-header pcs-itemtable-breakword">
+                                                    Sub Total
+                                                </td>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody class="itemBody">
+                                            <tr>
+                                                <td rowspan="1" valign="top" style="padding: 10px 0 10px 5px;text-align: center;word-wrap: break-word;" class="pcs-item-row">
+                                                    1
+                                                </td>
+                                                <td rowspan="1" valign="top" style="padding: 10px 0px 10px 20px;" class="pcs-item-row">
+                                                    <div>
+                                                        <div>
+                                                            <span style="word-wrap: break-word;" id="tmp_item_name">M-ACOL514FJ-16</span><br>
+
+                                                            <span style="white-space: pre-wrap;word-wrap: break-word;" class="pcs-item-desc" id="tmp_item_description">SW-M-ACOL514FJ-16-Baseboard</span>
+
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td rowspan="1" class="pcs-item-row lineitem-column text-align-right">
+                                                    <span id="tmp_item_qty">144.00</span>
+                                                    <div class="pcs-item-desc">LF</div>
+                                                </td>
+                                                <td rowspan="1" class="pcs-item-row lineitem-column text-align-right">
+                                                    <span id="tmp_item_rate">1.08</span>
+                                                </td>
+                                                <td rowspan="1" class="pcs-item-row lineitem-column lineitem-content-right text-align-right">
+                                                    <span id="tmp_item_amount">155.52</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td rowspan="1" valign="top" style="padding: 10px 0 10px 5px;text-align: center;word-wrap: break-word;" class="pcs-item-row">
+                                                    2
+                                                </td>
+                                                <td rowspan="1" valign="top" style="padding: 10px 0px 10px 20px;" class="pcs-item-row">
+                                                    <div>
+                                                        <div>
+                                                            <span style="word-wrap: break-word;" id="tmp_item_name">M-ACOL314PR-16</span><br>
+
+                                                            <span style="white-space: pre-wrap;word-wrap: break-word;" class="pcs-item-desc" id="tmp_item_description">SW-M-ACOL314PR-16-Baseboard</span>
+
+
+                                                        </div>
+                                                    </div>
+                                                </td>
+
+                                                <td rowspan="1" class="pcs-item-row lineitem-column text-align-right">
+                                                    <span id="tmp_item_qty">48.00</span>
+                                                    <div class="pcs-item-desc">LF</div>
+                                                </td>
+                                                <td rowspan="1" class="pcs-item-row lineitem-column text-align-right">
+                                                    <span id="tmp_item_rate">0.67</span>
+                                                </td>
+                                                <td rowspan="1" class="pcs-item-row lineitem-column lineitem-content-right text-align-right">
+                                                    <span id="tmp_item_amount">32.16</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td rowspan="1" valign="top" style="padding: 10px 0 10px 5px;text-align: center;word-wrap: break-word;" class="pcs-item-row">
+                                                    3
+                                                </td>
+                                                <td rowspan="1" valign="top" style="padding: 10px 0px 10px 20px;" class="pcs-item-row">
+                                                    <div>
+                                                        <div>
+                                                            <span style="word-wrap: break-word;" id="tmp_item_name">M-FL312FJ-17</span><br>
+
+                                                            <span style="white-space: pre-wrap;word-wrap: break-word;" class="pcs-item-desc" id="tmp_item_description"></span>
+
+                                                        </div>
+                                                    </div>
+                                                </td>
+
+                                                <td rowspan="1" class="pcs-item-row lineitem-column text-align-right">
+                                                    <span id="tmp_item_qty">51.00</span>
+                                                    <div class="pcs-item-desc">LF</div>
+                                                </td>
+                                                <td rowspan="1" class="pcs-item-row lineitem-column text-align-right">
+                                                    <span id="tmp_item_rate">0.50</span>
+                                                </td>
+                                                <td rowspan="1" class="pcs-item-row lineitem-column lineitem-content-right text-align-right">
+                                                    <span id="tmp_item_amount">25.50</span>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                    <div style="width: 100%;margin-top: 1px;">
+                                        <div class="v-top total-number-section">
+                                            <div style="white-space: pre-wrap;"></div>
+
                                         </div>
-                                    </td>
+                                        <div class="v-top total-section">
+                                            <table class="pcs-totals" cellspacing="0" border="0" width="100%">
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="total-section-label text-align-right">Sub Total</td>
+                                                        <td id="tmp_subtotal" class="total-section-value text-align-right">213.18</td>
+                                                    </tr>
 
-                                    <td class="text-align-right v-top" style="vertical-align: top; width:50%;">
-                                        <span class="pcs-orgname"><b>Venus Cabinet Doors</b></span><br>
-                                        <span id="tmp_entity_number" style="font-size: 10pt;" class="pcs-label"><b># INV-2105</b></span>
-                                        <span class="pcs-label">
-                                            <span style="white-space: pre-wrap;word-wrap: break-word;" id="tmp_org_address">
-                                                Texas
-                                                U.S.A
-                                            </span>
-                                        </span>
-                                        <div style="clear:both;margin-top:30px;">
-                                            <span style="font-size:8pt;"><b>Balance Due</b></span>
-                                            <br>
-                                            <span style="font-size:12pt;"><b>$230.77</b></span>
+                                                    <tr style="height:10px;">
+                                                        <td class="total-section-label text-align-right">Sales Tax (8.25%)  </td>
+                                                        <td class="total-section-value text-align-right">17.59</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td class="total-section-label text-align-right"><b>Total</b></td>
+                                                        <td id="tmp_total" class="total-section-value text-align-right"><b>$230.77</b></td>
+                                                    </tr>
+
+                                                    <tr style="height:40px;" class="pcs-balance">
+                                                        <td class="total-section-label text-align-right"><b>Balance Due</b></td>
+                                                        <td id="tmp_balance_due" class="total-section-value text-align-right"><b>$230.77</b></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                        <div style="clear: both;"></div>
+                                    </div>
 
-                        <table style="clear:both;width:100%;table-layout:fixed;">
-                            <tbody>
-                                <tr>
-                                    <td style="width:60%;vertical-align:bottom;word-wrap: break-word;">
-                                        <div>
-                                            <label style="font-size: 10pt;" class="pcs-label" id="tmp_billing_address_label">Bill To</label>
-                                            <br>
-                                            <span style="white-space: pre-wrap;" id="tmp_billing_address"><strong><span class="pcs-customer-name" id="zb-pdf-customer-detail"><a href="#/contacts/1650031000000667001">Sharron Garrison</a></span></strong></span>
-                                        </div>
-                                    </td>
-                                    <td align="right" style="vertical-align:bottom;width: 40%;">
-                                        <table style="float:right;width: 100%;table-layout: fixed;word-wrap: break-word;" border="0" cellspacing="0" cellpadding="0">
-                                            <tbody>
-                                                <tr>
-                                                    <td style="padding:5px 10px 5px 0px;font-size:10pt;" class="text-align-right">
-                                                        <span class="pcs-label">Invoice Date :</span>
-                                                    </td>
-                                                    <td class="text-align-right">
-                                                        <span id="tmp_entity_date">03 Apr 2019</span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td style="padding:5px 10px 5px 0px;font-size: 10pt;" class="text-align-right">
-                                                        <span class="pcs-label">Terms :</span>
-                                                    </td>
-                                                    <td class="text-align-right">
-                                                        <span id="tmp_payment_terms">Due on Receipt</span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td style="padding:5px 10px 5px 0px;font-size: 10pt;" class="text-align-right">
-                                                        <span class="pcs-label">Due Date :</span>
-                                                    </td>
-                                                    <td class="text-align-right">
-                                                        <span id="tmp_due_date">03 Apr 2019</span>
-                                                    </td>
-                                                </tr>
+                                    <div style="clear:both;margin-top:50px;width:100%;">
+                                        <label style="font-size: 10pt;" id="tmp_notes_label" class="pcs-label">Notes</label><br>
+                                        <p style="margin-top:7px;white-space: pre-wrap;word-wrap: break-word;" class="pcs-notes">Thanks for your business.</p>
+                                    </div>
 
-                                            </tbody>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                    <div style="page-break-inside: avoid;">
+                                    </div>
 
-                        <table style="width:100%;margin-top:20px;table-layout:fixed;" class="pcs-itemtable" border="0" cellspacing="0" cellpadding="0">
-                            <thead>
-                                <tr style="height:32px;">
-                                    <td style="padding: 5px 0px 5px 5px;width: 5%;text-align: center;" id="" class="pcs-itemtable-header pcs-itemtable-breakword">
-                                        Door
-                                    </td>
-                                    <td style="padding: 5px 10px 5px 20px;width: ;text-align: left;" id="" class="pcs-itemtable-header pcs-itemtable-breakword">
-                                        Description
-                                    </td>
-                                    <td style="padding: 5px 10px 5px 5px;width: 11%;text-align: right;" id="" class="pcs-itemtable-header pcs-itemtable-breakword">
-                                        Qty
-                                    </td>
-                                    <td style="padding: 5px 10px 5px 5px;width: 11%;text-align: right;" id="" class="pcs-itemtable-header pcs-itemtable-breakword">
-                                        Discount
-                                    </td>
-                                    <td style="padding: 5px 10px 5px 5px;width: 15%;text-align: right;" id="" class="pcs-itemtable-header pcs-itemtable-breakword">
-                                        Sub Total
-                                    </td>
+                                </div>
 
-                                </tr>
-                            </thead>
-                            <tbody class="itemBody">
-                                <tr>
-                                    <td rowspan="1" valign="top" style="padding: 10px 0 10px 5px;text-align: center;word-wrap: break-word;" class="pcs-item-row">
-                                        1
-                                    </td>
-                                    <td rowspan="1" valign="top" style="padding: 10px 0px 10px 20px;" class="pcs-item-row">
-                                        <div>
-                                            <div>
-                                                <span style="word-wrap: break-word;" id="tmp_item_name">M-ACOL514FJ-16</span><br>
+                                <div class="pcs-template-footer">
+                                    <div>
 
-                                                <span style="white-space: pre-wrap;word-wrap: break-word;" class="pcs-item-desc" id="tmp_item_description">SW-M-ACOL514FJ-16-Baseboard</span>
-
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td rowspan="1" class="pcs-item-row lineitem-column text-align-right">
-                                        <span id="tmp_item_qty">144.00</span>
-                                        <div class="pcs-item-desc">LF</div>
-                                    </td>
-                                    <td rowspan="1" class="pcs-item-row lineitem-column text-align-right">
-                                        <span id="tmp_item_rate">1.08</span>
-                                    </td>
-                                    <td rowspan="1" class="pcs-item-row lineitem-column lineitem-content-right text-align-right">
-                                        <span id="tmp_item_amount">155.52</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td rowspan="1" valign="top" style="padding: 10px 0 10px 5px;text-align: center;word-wrap: break-word;" class="pcs-item-row">
-                                        2
-                                    </td>
-                                    <td rowspan="1" valign="top" style="padding: 10px 0px 10px 20px;" class="pcs-item-row">
-                                        <div>
-                                            <div>
-                                                <span style="word-wrap: break-word;" id="tmp_item_name">M-ACOL314PR-16</span><br>
-
-                                                <span style="white-space: pre-wrap;word-wrap: break-word;" class="pcs-item-desc" id="tmp_item_description">SW-M-ACOL314PR-16-Baseboard</span>
-
-
-                                            </div>
-                                        </div>
-                                    </td>
-
-                                    <td rowspan="1" class="pcs-item-row lineitem-column text-align-right">
-                                        <span id="tmp_item_qty">48.00</span>
-                                        <div class="pcs-item-desc">LF</div>
-                                    </td>
-                                    <td rowspan="1" class="pcs-item-row lineitem-column text-align-right">
-                                        <span id="tmp_item_rate">0.67</span>
-                                    </td>
-                                    <td rowspan="1" class="pcs-item-row lineitem-column lineitem-content-right text-align-right">
-                                        <span id="tmp_item_amount">32.16</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td rowspan="1" valign="top" style="padding: 10px 0 10px 5px;text-align: center;word-wrap: break-word;" class="pcs-item-row">
-                                        3
-                                    </td>
-                                    <td rowspan="1" valign="top" style="padding: 10px 0px 10px 20px;" class="pcs-item-row">
-                                        <div>
-                                            <div>
-                                                <span style="word-wrap: break-word;" id="tmp_item_name">M-FL312FJ-17</span><br>
-
-                                                <span style="white-space: pre-wrap;word-wrap: break-word;" class="pcs-item-desc" id="tmp_item_description"></span>
-
-                                            </div>
-                                        </div>
-                                    </td>
-
-                                    <td rowspan="1" class="pcs-item-row lineitem-column text-align-right">
-                                        <span id="tmp_item_qty">51.00</span>
-                                        <div class="pcs-item-desc">LF</div>
-                                    </td>
-                                    <td rowspan="1" class="pcs-item-row lineitem-column text-align-right">
-                                        <span id="tmp_item_rate">0.50</span>
-                                    </td>
-                                    <td rowspan="1" class="pcs-item-row lineitem-column lineitem-content-right text-align-right">
-                                        <span id="tmp_item_amount">25.50</span>
-                                    </td>
-                                </tr>
-
-                            </tbody>
-                        </table>
-                        <div style="width: 100%;margin-top: 1px;">
-                            <div class="v-top total-number-section">
-                                <div style="white-space: pre-wrap;"></div>
+                                    </div>
+                                </div>
 
                             </div>
-                            <div class="v-top total-section">
-                                <table class="pcs-totals" cellspacing="0" border="0" width="100%">
-                                    <tbody>
-                                        <tr>
-                                            <td class="total-section-label text-align-right">Sub Total</td>
-                                            <td id="tmp_subtotal" class="total-section-value text-align-right">213.18</td>
-                                        </tr>
-
-                                        <tr style="height:10px;">
-                                            <td class="total-section-label text-align-right">Sales Tax (8.25%)  </td>
-                                            <td class="total-section-value text-align-right">17.59</td>
-                                        </tr>
-
-                                        <tr>
-                                            <td class="total-section-label text-align-right"><b>Total</b></td>
-                                            <td id="tmp_total" class="total-section-value text-align-right"><b>$230.77</b></td>
-                                        </tr>
-
-                                        <tr style="height:40px;" class="pcs-balance">
-                                            <td class="total-section-label text-align-right"><b>Balance Due</b></td>
-                                            <td id="tmp_balance_due" class="total-section-value text-align-right"><b>$230.77</b></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div style="clear: both;"></div>
                         </div>
-
-                        <div style="clear:both;margin-top:50px;width:100%;">
-                            <label style="font-size: 10pt;" id="tmp_notes_label" class="pcs-label">Notes</label><br>
-                            <p style="margin-top:7px;white-space: pre-wrap;word-wrap: break-word;" class="pcs-notes">Thanks for your business.</p>
-                        </div>
-
-                        <div style="page-break-inside: avoid;">
-                        </div>
-
-                    </div>
-
-                    <div class="pcs-template-footer">
-                        <div>
-
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div><!-- br-msg-body -->
+                  </div>
+                </div><!-- br-msg-body -->
 </div>
 
 <div id="Record_Paymend" class="br-mailbox-body" style="margin-left: 315px;">
@@ -841,7 +767,7 @@
             <div class="media align-items-center">
                 <div class="media-body mg-l-10">
                     <h3 class="tx-inverse tx-medium mg-b-0">Payment for INV-000005 </h3>
-                </div>
+        </div>
             </div>
         </div>
     </div>
@@ -1393,4 +1319,13 @@
 @section scripts{
 
     @Scripts.Render("~/Scripts/js/Invoice.js")
+<script>
+    var urlGetHistoryInvoice = '@Url.Action("GetHistoryInvoice", "Invoice")';
+    var urlInsertComment = '@Url.Action("InsertComment", "Invoice")';
+                    try {
+                        var listInvoice = JSON.parse('@Html.Raw(ViewBag.Invoice)');
+                    } catch (e) {
+                        var listInvoice = null;
+                    }
+</script>
 }

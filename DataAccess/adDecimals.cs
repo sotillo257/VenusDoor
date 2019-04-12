@@ -85,9 +85,9 @@ namespace DataAccess
 
         public int InsertDecimals(Decimals pDecimals)
         {
-            string sql = @"[spInsertDecimals] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}'";
-            sql = string.Format(sql, pDecimals.Description, pDecimals.Value.ToString().Replace(',', '.'), pDecimals.Status.Id, pDecimals.CreationDate.ToString("yyyyMMdd"),
-                pDecimals.CreatorUser, pDecimals.ModificationDate.ToString("yyyyMMdd"), pDecimals.ModificationUser);
+            string sql = @"[spInsertDecimals] '{0}', '{1}', '{2}', '{3}', '{4}'";
+            sql = string.Format(sql, pDecimals.Description, pDecimals.Value.ToString().Replace(',', '.'), pDecimals.Status.Id,
+                pDecimals.CreatorUser, pDecimals.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -100,8 +100,8 @@ namespace DataAccess
 
         public void UpdateDecimals(Decimals pDecimals)
         {
-            string sql = @"[spUpdateDecimals] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}'";
-            sql = string.Format(sql, pDecimals.Id, pDecimals.Description, pDecimals.Value.ToString().Replace(',', '.'), pDecimals.Status.Id, pDecimals.ModificationDate.ToString("yyyyMMdd"),
+            string sql = @"[spUpdateDecimals] '{0}', '{1}', '{2}', '{3}', '{4}'";
+            sql = string.Format(sql, pDecimals.Id, pDecimals.Description, pDecimals.Value.ToString().Replace(',', '.'), pDecimals.Status.Id,
                 pDecimals.ModificationUser);
             try
             {

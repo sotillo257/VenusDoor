@@ -82,8 +82,8 @@ namespace DataAccess
 
         public int InsertHistoryCreditNotes(HistoryCreditNotes pHE)
         {
-            string sql = @"[spInsertHistoryCreditNotes] '{0}', '{1}', '{2}', '{3}', '{4}'";
-            sql = string.Format(sql, pHE.CreditNotes.Id, pHE.UserCreador.Id, pHE.Type.Id, pHE.History, pHE.CreationDate.ToString("yyyyMMdd"));
+            string sql = @"[spInsertHistoryCreditNotes] '{0}', '{1}', '{2}', '{3}'";
+            sql = string.Format(sql, pHE.CreditNotes.Id, pHE.UserCreador.Id, pHE.Type.Id, pHE.History);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);

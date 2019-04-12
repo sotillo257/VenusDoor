@@ -28,6 +28,50 @@ $(function () {
     });
 });
 
+var re = /-?\d+/;
+$(document).ready(function () {
+
+    var container = $('#Demo');
+    var conta = $('#conta');
+
+    container.pagination({
+        className: 'paginationjs-theme-blue paginationjs-small',
+        dataSource: listInvoice,
+        callback: function (data, pagination) {
+            var option = '';
+            for (var i = 0; i < data.length; i++) {
+                if (i == 0) {
+                    option += '<div data-id="' + data[i].Id + '" class="br-mailbox-list-item Invoice active">';
+                } else {
+                    option += '<div data-id="' + data[i].Id + '" class="br-mailbox-list-item Invoice ">';
+                }
+
+
+                option += '  <div class="d-flex justify-content-between mg-b-5">';
+                option += ' <div>';
+                option += '   <h6 class="tx-14 mg-b-10 tx-gray-800">' + data[i].UserCliente.Person.Name + '</h6>';
+                option += '</div>';
+                var attach = ' ';
+                if (data[i].Document > 0) {
+                    attach += '<i class="icon ion-android-attach"></i>';
+                }
+                option += '  <h6 class="tx-14 mg-b-10 tx-gray-800">' + attach + ' $' + Moneda(data[i].Total) + '</h6>';
+                option += '  </div>'
+                option += '  <div class="d-flex justify-content-between mg-b-5">'
+                option += '       <div>';
+
+                var Fecha1 = new Date(parseInt(re.exec(data[i].CreationDate)[0]));
+                option += '         <h6 class="tx-14 mg-b-10 tx-gray-800">' + data[i].IdFolio + ' | ' + Fecha1.ddmmyyyy() + '</h6>'
+                option += '      </div>'
+                option += '   <h6 class="tx-14 mg-b-10 tx-gray-800">' + data[i].Status.Description + '</h6>'
+                option += '  </div>'
+                option += ' </div><!-- br-mailbox-list-item -->';
+            }
+            conta.html(option);
+        }
+    });
+});
+
 $(document).ready(function () {
     $(".read-more-target").hide();
     $("#read-less-state").hide();

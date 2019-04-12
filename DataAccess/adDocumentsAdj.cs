@@ -85,9 +85,9 @@ namespace DataAccess
 
         public int InsertDocumentsAdj(DocumentsAdj pDocumentsAdj)
         {
-            string sql = @"[spInsertDocumentsAdj] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}'";
-            sql = string.Format(sql, pDocumentsAdj.Name, pDocumentsAdj.Route, pDocumentsAdj.Status.Id, pDocumentsAdj.CreationDate.ToString("yyyyMMdd"),
-                pDocumentsAdj.CreatorUser, pDocumentsAdj.ModificationDate.ToString("yyyyMMdd"), pDocumentsAdj.ModificationUser);
+            string sql = @"[spInsertDocumentsAdj] '{0}', '{1}', '{2}', '{3}', '{4}'";
+            sql = string.Format(sql, pDocumentsAdj.Name, pDocumentsAdj.Route, pDocumentsAdj.Status.Id,
+                pDocumentsAdj.CreatorUser, pDocumentsAdj.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -100,8 +100,8 @@ namespace DataAccess
 
         public void UpdateDocumentsAdj(DocumentsAdj pDocumentsAdj)
         {
-            string sql = @"[spUpdateDocumentsAdj] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}'";
-            sql = string.Format(sql, pDocumentsAdj.Id, pDocumentsAdj.Name, pDocumentsAdj.Route, pDocumentsAdj.Status.Id, pDocumentsAdj.ModificationDate.ToString("yyyyMMdd"),
+            string sql = @"[spUpdateDocumentsAdj] '{0}', '{1}', '{2}', '{3}', '{4}'";
+            sql = string.Format(sql, pDocumentsAdj.Id, pDocumentsAdj.Name, pDocumentsAdj.Route, pDocumentsAdj.Status.Id,
                 pDocumentsAdj.ModificationUser);
             try
             {

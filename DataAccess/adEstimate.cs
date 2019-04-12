@@ -147,9 +147,9 @@ namespace DataAccess
 
         public int InsertEstimate(Estimate pEst)
         {
-            string sql = @"[spInsertEstimate] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}'";
+            string sql = @"[spInsertEstimate] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}'";
             sql = string.Format(sql, pEst.IdFolio, pEst.Company.Id, pEst.UserCliente.Id, pEst.UserVendedor.Id, pEst.Order.Id, pEst.EstimateDate.ToString("yyyyMMdd HH:mm:ss"), pEst.ExpiryDate.ToString("yyyyMMdd HH:mm:ss"),
-                pEst.Total.ToString().Replace(',', '.'), pEst.TermsAndConditions, pEst.Status.Id, pEst.CreationDate.ToString("yyyyMMdd HH:mm:ss"), pEst.CreatorUser, pEst.ModificationDate.ToString("yyyyMMdd HH:mm:ss"), pEst.ModificationUser, 7);
+                pEst.Total.ToString().Replace(',', '.'), pEst.TermsAndConditions, pEst.Status.Id, pEst.CreatorUser, pEst.ModificationUser, 7);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -162,9 +162,9 @@ namespace DataAccess
 
         public void UpdateEstimate(Estimate pEst)
         {
-            string sql = @"[spUpdateEstimate] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}'";
+            string sql = @"[spUpdateEstimate] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}'";
             sql = string.Format(sql, pEst.Id, pEst.IdFolio, pEst.Company.Id, pEst.UserCliente.Id, pEst.UserVendedor.Id, pEst.Order.Id, pEst.EstimateDate.ToString("yyyyMMdd HH:mm:ss"), pEst.ExpiryDate.ToString("yyyyMMdd HH:mm:ss"),
-                pEst.Total.ToString().Replace(',', '.'), pEst.TermsAndConditions, pEst.Status.Id, pEst.ModificationDate.ToString("yyyyMMdd HH:mm:ss"), pEst.ModificationUser);
+                pEst.Total.ToString().Replace(',', '.'), pEst.TermsAndConditions, pEst.Status.Id, pEst.ModificationUser);
             try
             {
                 _MB.EjecutarSQL(_CN, sql);
@@ -177,9 +177,9 @@ namespace DataAccess
 
         public void UpdateEstimateStatus(Estimate pEst)
         {
-            string sql = @"[spUpdateEstimateStatus] '{0}', '{1}', '{2}', '{3}'";
+            string sql = @"[spUpdateEstimateStatus] '{0}', '{1}', '{2}'";
 
-            sql = string.Format(sql, pEst.Id, pEst.Status.Id, pEst.ModificationDate.ToString("yyyyMMdd HH:mm:ss"),
+            sql = string.Format(sql, pEst.Id, pEst.Status.Id,
                 pEst.ModificationUser);
             try
             {

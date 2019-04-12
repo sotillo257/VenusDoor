@@ -83,9 +83,9 @@ namespace DataAccess
 
         public int InsertPaymentMode(PaymentMode pPaymentMode)
         {
-            string sql = @"[spInsertPaymentMode] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}'";
-            sql = string.Format(sql, pPaymentMode.Description, pPaymentMode.Status.Id, pPaymentMode.CreationDate.ToString("yyyyMMdd"),
-                pPaymentMode.CreatorUser, pPaymentMode.ModificationDate.ToString("yyyyMMdd"), pPaymentMode.ModificationUser);
+            string sql = @"[spInsertPaymentMode] '{0}', '{1}', '{2}', '{3}'";
+            sql = string.Format(sql, pPaymentMode.Description, pPaymentMode.Status.Id,
+                pPaymentMode.CreatorUser, pPaymentMode.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -98,8 +98,8 @@ namespace DataAccess
 
         public void UpdatePaymentMode(PaymentMode pPaymentMode)
         {
-            string sql = @"[spUpdatePaymentMode] '{0}', '{1}', '{2}', '{3}', '{4}'";
-            sql = string.Format(sql, pPaymentMode.Id, pPaymentMode.Description, pPaymentMode.Status.Id, pPaymentMode.ModificationDate.ToString("yyyyMMdd"),
+            string sql = @"[spUpdatePaymentMode] '{0}', '{1}', '{2}', '{3}'";
+            sql = string.Format(sql, pPaymentMode.Id, pPaymentMode.Description, pPaymentMode.Status.Id,
                 pPaymentMode.ModificationUser);
             try
             {

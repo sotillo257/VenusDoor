@@ -87,9 +87,9 @@ namespace DataAccess
 
         public int InsertMaterial(Material pMaterial)
         {
-            string sql = @"[spInsertMaterial] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}'";
-            sql = string.Format(sql, pMaterial.Description,pMaterial.PriceFlatPanel.ToString().Replace(',', '.'), pMaterial.PriceRaisedPanel.ToString().Replace(',', '.'), pMaterial.Status.Id, pMaterial.CreationDate.ToString("yyyyMMdd"),
-                pMaterial.CreatorUser, pMaterial.ModificationDate.ToString("yyyyMMdd"), pMaterial.ModificationUser);
+            string sql = @"[spInsertMaterial] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}'";
+            sql = string.Format(sql, pMaterial.Description,pMaterial.PriceFlatPanel.ToString().Replace(',', '.'), pMaterial.PriceRaisedPanel.ToString().Replace(',', '.'), pMaterial.Status.Id,
+                pMaterial.CreatorUser, pMaterial.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -103,7 +103,7 @@ namespace DataAccess
         public void UpdateMaterial(Material pMaterial)
         {
             string sql = @"[spUpdateMaterial] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}'";
-            sql = string.Format(sql,pMaterial.Id, pMaterial.Description, pMaterial.PriceFlatPanel.ToString().Replace(',', '.'), pMaterial.PriceRaisedPanel.ToString().Replace(',', '.'), pMaterial.Status.Id, pMaterial.ModificationDate.ToString("yyyyMMdd"),
+            sql = string.Format(sql,pMaterial.Id, pMaterial.Description, pMaterial.PriceFlatPanel.ToString().Replace(',', '.'), pMaterial.PriceRaisedPanel.ToString().Replace(',', '.'),
                 pMaterial.ModificationUser);
             try
             {

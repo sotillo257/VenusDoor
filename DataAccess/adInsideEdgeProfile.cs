@@ -83,9 +83,9 @@ namespace DataAccess
 
         public int InsertInsideEdgeProfile(InsideEdgeProfile pInsideEdgeProfile)
         {
-            string sql = @"[spInsertInsideEdgeProfile] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}'";
-            sql = string.Format(sql, pInsideEdgeProfile.Description, pInsideEdgeProfile.Status.Id, pInsideEdgeProfile.CreationDate.ToString("yyyyMMdd"),
-                pInsideEdgeProfile.CreatorUser, pInsideEdgeProfile.ModificationDate.ToString("yyyyMMdd"), pInsideEdgeProfile.ModificationUser);
+            string sql = @"[spInsertInsideEdgeProfile] '{0}', '{1}', '{2}', '{3}'";
+            sql = string.Format(sql, pInsideEdgeProfile.Description, pInsideEdgeProfile.Status.Id,
+                pInsideEdgeProfile.CreatorUser, pInsideEdgeProfile.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -98,8 +98,8 @@ namespace DataAccess
 
         public void UpdateInsideEdgeProfile(InsideEdgeProfile pInsideEdgeProfile)
         {
-            string sql = @"[spUpdateInsideEdgeProfile] '{0}', '{1}', '{2}', '{3}', '{4}'";
-            sql = string.Format(sql, pInsideEdgeProfile.Id, pInsideEdgeProfile.Description, pInsideEdgeProfile.Status.Id, pInsideEdgeProfile.ModificationDate.ToString("yyyyMMdd"),
+            string sql = @"[spUpdateInsideEdgeProfile] '{0}', '{1}', '{2}', '{3}'";
+            sql = string.Format(sql, pInsideEdgeProfile.Id, pInsideEdgeProfile.Description, pInsideEdgeProfile.Status.Id,
                 pInsideEdgeProfile.ModificationUser);
             try
             {

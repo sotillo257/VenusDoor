@@ -83,9 +83,9 @@ namespace DataAccess
 
         public int InsertDoorType(DoorType pDoorType)
         {
-            string sql = @"[spInsertDoorType] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}'";
-            sql = string.Format(sql, pDoorType.Description, pDoorType.Status.Id, pDoorType.CreationDate.ToString("yyyyMMdd"),
-                pDoorType.CreatorUser, pDoorType.ModificationDate.ToString("yyyyMMdd"), pDoorType.ModificationUser);
+            string sql = @"[spInsertDoorType] '{0}', '{1}', '{2}', '{3}'";
+            sql = string.Format(sql, pDoorType.Description, pDoorType.Status.Id,
+                pDoorType.CreatorUser, pDoorType.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -98,8 +98,8 @@ namespace DataAccess
 
         public void UpdateDoorType(DoorType pDoorType)
         {
-            string sql = @"[spUpdateDoorType] '{0}', '{1}', '{2}', '{3}', '{4}'";
-            sql = string.Format(sql, pDoorType.Id, pDoorType.Description, pDoorType.Status.Id, pDoorType.ModificationDate.ToString("yyyyMMdd"),
+            string sql = @"[spUpdateDoorType] '{0}', '{1}', '{2}', '{3}'";
+            sql = string.Format(sql, pDoorType.Id, pDoorType.Description, pDoorType.Status.Id,
                 pDoorType.ModificationUser);
             try
             {

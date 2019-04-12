@@ -83,9 +83,9 @@ namespace DataAccess
 
         public int InsertJoin(Join pjo)
         {
-            string sql = @"[spInsertJoin] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}'";
-            sql = string.Format(sql, pjo.Description, pjo.Status.Id, pjo.CreationDate.ToString("yyyyMMdd"),
-                pjo.CreatorUser, pjo.ModificationDate.ToString("yyyyMMdd"), pjo.ModificationUser);
+            string sql = @"[spInsertJoin] '{0}', '{1}', '{2}', '{3}'";
+            sql = string.Format(sql, pjo.Description, pjo.Status.Id,
+                pjo.CreatorUser, pjo.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -98,8 +98,8 @@ namespace DataAccess
 
         public void UpdateJoin(Join pjo)
         {
-            string sql = @"[spUpdateJoin] '{0}', '{1}', '{2}', '{3}', '{4}'";
-            sql = string.Format(sql,pjo.Id, pjo.Description, pjo.Status.Id, pjo.ModificationDate.ToString("yyyyMMdd"),
+            string sql = @"[spUpdateJoin] '{0}', '{1}', '{2}', '{3}'";
+            sql = string.Format(sql,pjo.Id, pjo.Description, pjo.Status.Id,
                 pjo.ModificationUser);
             try
             {

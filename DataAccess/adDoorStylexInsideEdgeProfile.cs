@@ -85,9 +85,9 @@ namespace DataAccess
 
         public int InsertDoorStylexInsideEdgeProfile(DoorStylexInsideEdgeProfile pDoorStylexInsideEdgeProfile)
         {
-            string sql = @"[spInsertDoorStylexInsideEdgeProfile] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}','{6}'";
-            sql = string.Format(sql, pDoorStylexInsideEdgeProfile.DoorStyle.Id, pDoorStylexInsideEdgeProfile.InsideEdgeProfile.Id, pDoorStylexInsideEdgeProfile.Status.Id, pDoorStylexInsideEdgeProfile.CreationDate.ToString("yyyy-MM-dd"),
-                pDoorStylexInsideEdgeProfile.CreatorUser, pDoorStylexInsideEdgeProfile.ModificationDate.ToString("yyyyMMdd"), pDoorStylexInsideEdgeProfile.ModificationUser);
+            string sql = @"[spInsertDoorStylexInsideEdgeProfile] '{0}', '{1}', '{2}', '{3}', '{4}'";
+            sql = string.Format(sql, pDoorStylexInsideEdgeProfile.DoorStyle.Id, pDoorStylexInsideEdgeProfile.InsideEdgeProfile.Id, pDoorStylexInsideEdgeProfile.Status.Id,
+                pDoorStylexInsideEdgeProfile.CreatorUser, pDoorStylexInsideEdgeProfile.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -100,8 +100,8 @@ namespace DataAccess
 
         public void UpdateDoorStylexInsideEdgeProfile(DoorStylexInsideEdgeProfile pDoorStylexInsideEdgeProfile)
         {
-            string sql = @"[spUpdateDoorStylexInsideEdgeProfile] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}'";
-            sql = string.Format(sql,pDoorStylexInsideEdgeProfile.Id, pDoorStylexInsideEdgeProfile.DoorStyle.Id, pDoorStylexInsideEdgeProfile.InsideEdgeProfile.Id, pDoorStylexInsideEdgeProfile.Status.Id, pDoorStylexInsideEdgeProfile.ModificationDate.ToString("yyyyMMdd"),
+            string sql = @"[spUpdateDoorStylexInsideEdgeProfile] '{0}', '{1}', '{2}', '{3}', '{4}'";
+            sql = string.Format(sql,pDoorStylexInsideEdgeProfile.Id, pDoorStylexInsideEdgeProfile.DoorStyle.Id, pDoorStylexInsideEdgeProfile.InsideEdgeProfile.Id, pDoorStylexInsideEdgeProfile.Status.Id,
                 pDoorStylexInsideEdgeProfile.ModificationUser);
             try
             {

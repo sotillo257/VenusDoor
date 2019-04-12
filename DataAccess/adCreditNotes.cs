@@ -141,10 +141,10 @@ namespace DataAccess
 
         public int InsertCreditNotes(CreditNotes pCreditNotes)
         {
-            string sql = @"[spInsertCreditNotes] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}'";
+            string sql = @"[spInsertCreditNotes] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}'";
             sql = string.Format(sql, pCreditNotes.IdFolio, pCreditNotes.Company.Id, pCreditNotes.UserCliente.Id, pCreditNotes.UserVendedor.Id, pCreditNotes.Order.Id, 
-            pCreditNotes.PaymentsDate.ToString("yyyyMMdd"), pCreditNotes.Total, pCreditNotes.TotalDue, pCreditNotes.TermsAndConditions, pCreditNotes.Status.Id, pCreditNotes.CreationDate.ToString("yyyyMMdd"),
-            pCreditNotes.CreatorUser, pCreditNotes.ModificationDate.ToString("yyyyMMdd"), pCreditNotes.ModificationUser);
+            pCreditNotes.PaymentsDate.ToString("yyyyMMdd"), pCreditNotes.Total, pCreditNotes.TotalDue, pCreditNotes.TermsAndConditions, pCreditNotes.Status.Id,
+            pCreditNotes.CreatorUser, pCreditNotes.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -157,10 +157,10 @@ namespace DataAccess
 
         public void UpdateCreditNotes(CreditNotes pCreditNotes)
         {
-            string sql = @"[spUpdateCreditNotes] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}'";
+            string sql = @"[spUpdateCreditNotes] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}'";
             sql = string.Format(sql, pCreditNotes.Id, pCreditNotes.IdFolio, pCreditNotes.Company.Id, pCreditNotes.UserCliente.Id, pCreditNotes.UserVendedor.Id, pCreditNotes.Order.Id,
             pCreditNotes.PaymentsDate.ToString("yyyyMMdd"), pCreditNotes.Total, pCreditNotes.TotalDue, pCreditNotes.TermsAndConditions, pCreditNotes.Status.Id,
-            pCreditNotes.ModificationDate.ToString("yyyyMMdd"), pCreditNotes.ModificationUser);
+            pCreditNotes.ModificationUser);
             try
             {
                 _MB.EjecutarSQL(_CN, sql);
@@ -173,9 +173,9 @@ namespace DataAccess
 
         public void UpdateCreditNotesStatus(CreditNotes pCreditNotes)
         {
-            string sql = @"[spUpdateCreditNotesStatus] '{0}', '{1}', '{2}', '{3}'";
+            string sql = @"[spUpdateCreditNotesStatus] '{0}', '{1}', '{2}'";
 
-            sql = string.Format(sql, pCreditNotes.Id, pCreditNotes.Status.Id, pCreditNotes.ModificationDate.ToString("yyyyMMdd HH:mm:ss"),
+            sql = string.Format(sql, pCreditNotes.Id, pCreditNotes.Status.Id,
                 pCreditNotes.ModificationUser);
             try
             {

@@ -85,9 +85,9 @@ namespace DataAccess
 
         public int InsertMaterialxBottomRail(MaterialxBottomRail pMaterialxBottomRail)
         {
-            string sql = @"[spInsertMaterialxBottomRail] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}','{6}'";
-            sql = string.Format(sql, pMaterialxBottomRail.Material.Id, pMaterialxBottomRail.BottomRail.Id, pMaterialxBottomRail.Status.Id, pMaterialxBottomRail.CreationDate.ToString("yyyyMMdd"),
-                pMaterialxBottomRail.CreatorUser, pMaterialxBottomRail.ModificationDate.ToString("yyyyMMdd"), pMaterialxBottomRail.ModificationUser);
+            string sql = @"[spInsertMaterialxBottomRail] '{0}', '{1}', '{2}', '{3}', '{4}'";
+            sql = string.Format(sql, pMaterialxBottomRail.Material.Id, pMaterialxBottomRail.BottomRail.Id, pMaterialxBottomRail.Status.Id,
+                pMaterialxBottomRail.CreatorUser, pMaterialxBottomRail.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -100,8 +100,8 @@ namespace DataAccess
 
         public void UpdateMaterialxBottomRail(MaterialxBottomRail pMaterialxBottomRail)
         {
-            string sql = @"[spUpdateMaterialxBottomRail] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}'";
-            sql = string.Format(sql,pMaterialxBottomRail.Id, pMaterialxBottomRail.Material.Id, pMaterialxBottomRail.BottomRail.Id, pMaterialxBottomRail.Status.Id, pMaterialxBottomRail.ModificationDate.ToString("yyyyMMdd"),
+            string sql = @"[spUpdateMaterialxBottomRail] '{0}', '{1}', '{2}', '{3}', '{4}'";
+            sql = string.Format(sql,pMaterialxBottomRail.Id, pMaterialxBottomRail.Material.Id, pMaterialxBottomRail.BottomRail.Id, pMaterialxBottomRail.Status.Id,
                 pMaterialxBottomRail.ModificationUser);
             try
             {

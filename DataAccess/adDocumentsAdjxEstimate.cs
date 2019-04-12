@@ -85,9 +85,9 @@ namespace DataAccess
 
         public int InsertDocumentsAdjxEstimate(DocumentsAdjxEstimate pDocumentsAdjxEstimate)
         {
-            string sql = @"[spInsertDocumentsAdjxEstimate] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}'";
-            sql = string.Format(sql, pDocumentsAdjxEstimate.DocumentsAdj.Id, pDocumentsAdjxEstimate.Estimate.Id, pDocumentsAdjxEstimate.Status.Id, pDocumentsAdjxEstimate.CreationDate.ToString("yyyyMMdd"),
-                pDocumentsAdjxEstimate.CreatorUser, pDocumentsAdjxEstimate.ModificationDate.ToString("yyyyMMdd"), pDocumentsAdjxEstimate.ModificationUser);
+            string sql = @"[spInsertDocumentsAdjxEstimate] '{0}', '{1}', '{2}', '{3}', '{4}'";
+            sql = string.Format(sql, pDocumentsAdjxEstimate.DocumentsAdj.Id, pDocumentsAdjxEstimate.Estimate.Id, pDocumentsAdjxEstimate.Status.Id,
+                pDocumentsAdjxEstimate.CreatorUser, pDocumentsAdjxEstimate.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -100,8 +100,8 @@ namespace DataAccess
 
         public void UpdateDocumentsAdjxEstimate(DocumentsAdjxEstimate pDocumentsAdjxEstimate)
         {
-            string sql = @"[spUpdateDocumentsAdjxEstimate] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}'";
-            sql = string.Format(sql, pDocumentsAdjxEstimate.Id, pDocumentsAdjxEstimate.DocumentsAdj.Id, pDocumentsAdjxEstimate.Estimate.Id, pDocumentsAdjxEstimate.Status.Id, pDocumentsAdjxEstimate.ModificationDate.ToString("yyyyMMdd"),
+            string sql = @"[spUpdateDocumentsAdjxEstimate] '{0}', '{1}', '{2}', '{3}', '{4}'";
+            sql = string.Format(sql, pDocumentsAdjxEstimate.Id, pDocumentsAdjxEstimate.DocumentsAdj.Id, pDocumentsAdjxEstimate.Estimate.Id, pDocumentsAdjxEstimate.Status.Id,
                 pDocumentsAdjxEstimate.ModificationUser);
             try
             {

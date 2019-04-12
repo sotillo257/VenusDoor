@@ -149,9 +149,9 @@ namespace DataAccess
 
         public int InsertUser(User pUser)
         {
-            string sql = @"[spInsertUser] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}'";
-            sql = string.Format(sql, pUser.Email, pUser.Password, pUser.Type.Id, pUser.Person.Id, pUser.Company.Id, pUser.Status.Id, pUser.VerificationCode, pUser.CreationDate.ToString("yyyyMMdd"),
-                pUser.CreatorUser, pUser.ModificationDate.ToString("yyyyMMdd"), pUser.ModificationUser);
+            string sql = @"[spInsertUser] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}'";
+            sql = string.Format(sql, pUser.Email, pUser.Password, pUser.Type.Id, pUser.Person.Id, pUser.Company.Id, pUser.Status.Id, pUser.VerificationCode,
+                pUser.CreatorUser, pUser.ModificationUser);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -164,8 +164,8 @@ namespace DataAccess
 
         public void UpdateUser(User pUser)
         {
-            string sql = @"[spUpdateUser] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}'";
-            sql = string.Format(sql,pUser.Id, pUser.Email, pUser.Password, pUser.Type.Id, pUser.Person.Id, pUser.Company.Id, pUser.Status.Id, pUser.VerificationCode, pUser.ModificationDate.ToString("yyyyMMdd"),
+            string sql = @"[spUpdateUser] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}'";
+            sql = string.Format(sql,pUser.Id, pUser.Email, pUser.Password, pUser.Type.Id, pUser.Person.Id, pUser.Company.Id, pUser.Status.Id, pUser.VerificationCode,
                 pUser.ModificationUser, pUser.Descuento);
             try
             {
@@ -179,8 +179,8 @@ namespace DataAccess
 
         public void UpdateUserStatus(User pUser)
         {
-            string sql = @"[spUpdateUserStatus] '{0}', '{1}', '{2}', '{3}'";
-            sql = string.Format(sql, pUser.Id, pUser.Status.Id, pUser.ModificationDate.ToString("yyyyMMdd"),
+            string sql = @"[spUpdateUserStatus] '{0}', '{1}', '{2}'";
+            sql = string.Format(sql, pUser.Id, pUser.Status.Id,
                 pUser.ModificationUser);
             try
             {
