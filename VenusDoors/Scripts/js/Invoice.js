@@ -1,18 +1,8 @@
 ﻿$(function () {
-    $("#add").click(function () {
-        var n = $('tr:last', $("#mitabla")).length;
-        var tds = '<tr>';
-        for (var i = 0; i < n; i++) {
-            tds += '<td> </td>';
-            tds += '<td><div contenteditable></div></td>';
-            tds += '<td><div contenteditable></div></td>';
-            tds += '<td><div contenteditable></div></td>';
-            tds += '<td><div contenteditable></div></td>';
-            tds += '<td><div contenteditable></div></td>';
-            tds += '<td></td>';
-        }
-        tds += '</tr>';
-        $("#mitabla").append(tds);
+    $('#datepickerNoOfMonths').datepicker({
+        showOtherMonths: true,
+        selectOtherMonths: true,
+        numberOfMonths: 2
     });
 
     $('#modalToggle').click(function () {
@@ -41,9 +31,15 @@ $(function () {
 $(document).ready(function () {
     $(".read-more-target").hide();
     $("#read-less-state").hide();
+    $("#Record_Paymend").hide();
 
     $(document).on('click', "#btAdd", function () {
         $("#addFile").trigger('click');
+    });
+
+    $("#RecordPaymend").on("click", function () {
+        $("#Invoice").hide();
+        $("#Record_Paymend").show();
     });
 
     $("#read-more-state").on("click", function () {
