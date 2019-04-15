@@ -392,3 +392,4 @@ function GetHistoryInvoice(id) {
         },
 
 });
+    }
