@@ -35,7 +35,28 @@
                 <a href="" id="showMailBoxLeft" class="show-mailbox-left hidden-sm-up">
                     <i class="fa fa-arrow-right"></i>
                 </a>
-                <h6 class="tx-inverse mg-b-0 tx-13 tx-uppercase">All Invoices</h6>
+                <h6 class="tx-inverse mg-b-0 tx-13 tx-uppercase"></h6>
+                <div class="dropdown">
+                    <a class="Cursor nav-link nav-link-profile d-flex" style="margin-right: 110px;"
+                       data-toggle="dropdown">All Invoices  <i class="icon ion-arrow-down-b"> </i></a>
+
+                    <div class="dropdown-menu wd-230" style="width: 172px; padding-left: 10px; padding-right: 10px;">
+                        <ul class="list-unstyled user-file-nav">
+                            <li style="height: 34px;"><a href=""> All</a></li>
+                            <li style="height: 34px;"><a href=""> Draft</a></li>
+                            <li style="height: 34px;"><a href=""> Pending Approval</a></li>
+                            <li style="height: 34px;"><a href=""> Approved</a></li>
+                            <li style="height: 34px;"><a href=""> Client Viewed</a></li>
+                            <li style="height: 34px;"><a href=""> Partially Paid</a></li>
+                            <li style="height: 34px;"><a href=""> Unpaid</a></li>
+                            <li style="height: 34px;"><a href=""> Overdue</a></li>
+                            <li style="height: 34px;"><a href=""> Payment Initiated</a></li>
+                            <li style="height: 34px;"><a href=""> Paid</a></li>
+                            <li style="height: 34px;"><a href=""> Void</a></li>
+                        </ul>
+                    </div><!-- dropdown-menu -->
+                </div>
+
                 @*<button type="button" class="Cursor btn btn-primary" style="margin-left: 70px;height: 30px;padding-bottom: 2px;padding-top: 2px;padding-left: 9px;padding-right: 9px;" data-toggle="modal" data-target="#modalNewIn"><i class="icon ion-plus"></i> New</button>*@
                 <div class="btn-group" role="group" aria-label="Basic example">
                     <button type="button" class="btn btn-light disabled pd-x-25"><i class="fa fa-angle-left"></i></button>
@@ -88,7 +109,7 @@
                     <nav class="media in-headr-right nav nav-inline tx-size-24 mg-b-0 lh-0">
 
                         <div class="btn-group" role="group" aria-label="Basic example">
-                            <button type="button" data-toggle="modal" data-target="#modalNewIn" class="Cursor btn btn-page"><i class="fa fa-plus"></i></button>
+                            <button type="button" id="btNew" data-toggle="modal" data-target="#modalNewIn" class="Cursor btn btn-page"><i class="fa fa-plus"></i></button>
                             <button type="button" class="Cursor btn btn-page"><i class="fa fa-edit"></i></button>
                             <button type="button" class="Cursor btn btn-page"><i class="fa fa-file-pdf-o"></i></button>
                             <button type="button" class="Cursor btn btn-page"><i class="fa fa-print"></i></button>
@@ -603,6 +624,84 @@
                                         </tbody>
                                     </table>
 
+                                    <div>
+                                        <h6 style="text-align: center;padding-top: 10px;">General Configuration</h6>
+                                        <div class="col-md-12" style="margin-top: 10px;padding-right: 0px;">
+                                            <div class="row" style="margin-right: 0px;">
+                                                <div class="col-xs-4 col-md-4">
+                                                    <label><strong>Wood Species:</strong></label>
+                                                    <span>Knotty Alder</span>
+                                                </div>
+
+                                                <div class="col-xs-4 col-md-4">
+                                                    <label><strong>Door Style:</strong></label>
+                                                    <span>Eye Brow</span>
+                                                </div>
+
+                                                <div class="col-xs-4 col-md-4">
+                                                    <label><strong>Door Place:</strong></label>
+                                                    <span>Overlay Door Type </span>
+                                                </div>
+
+                                                <div class="col-xs-4 col-md-4">
+                                                    <label><strong>Stile Width:</strong></label>
+                                                    <span>2 1/2</span>
+                                                </div>
+
+                                                <div class="col-xs-4 col-md-4">
+                                                    <label><strong>Rail Width:</strong></label>
+                                                    <span>2 1/2</span>
+                                                </div>
+
+                                                <div class="col-xs-4 col-md-4">
+                                                    <label><strong>Inside Profile:</strong></label>
+                                                    <span>Shaker22</span>
+                                                </div>
+
+                                                <div class="col-xs-4 col-md-4">
+                                                    <label><strong>Outside Profile:</strong></label>
+                                                    <span>Reba</span>
+                                                </div>
+
+                                                <div class="col-xs-4 col-md-4">
+                                                    <label><strong>Door Assembly:</strong></label>
+                                                    <span>Cope and Stick</span>
+                                                </div>
+
+                                                <div class="col-xs-4 col-md-4">
+                                                    <label><strong>Panel Material:</strong></label>
+                                                    <span>Knotty Alder</span>
+                                                </div>
+
+                                                <div class="col-xs-4 col-md-4">
+                                                    <label><strong>Opening Measurement:</strong></label>
+                                                    <span>No</span>
+                                                </div>
+
+                                                <div class="col-xs-4 col-md-4">
+                                                    <label><strong>Vertical Divisions:</strong></label>
+                                                    <span>0</span>
+                                                </div>
+
+                                                <div class="col-xs-4 col-md-4">
+                                                    <label><strong>Horizontal Divisions:</strong></label>
+                                                    <span>0</span>
+                                                </div>
+
+                                                <div class="col-xs-4 col-md-4">
+                                                    <label><strong>Drill:</strong></label>
+                                                    <span>Yes (Left)</span>
+                                                </div>
+
+                                                <div class="col-xs-4 col-md-4">
+                                                    <label><strong>Finger Pull:</strong></label>
+                                                    <span>No</span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                     <table style="width:100%;margin-top:20px;table-layout:fixed;" class="pcs-itemtable" border="0" cellspacing="0" cellpadding="0">
                                         <thead>
                                             <tr style="height:32px;">
@@ -612,13 +711,13 @@
                                                 <td style="padding: 5px 10px 5px 20px;width: ;text-align: left;" id="" class="pcs-itemtable-header pcs-itemtable-breakword">
                                                     Description
                                                 </td>
-                                                <td style="padding: 5px 10px 5px 5px;width: 11%;text-align: right;" id="" class="pcs-itemtable-header pcs-itemtable-breakword">
+                                                <td style="padding: 5px 10px 5px 5px;width: 11%;text-align: left;" id="" class="pcs-itemtable-header pcs-itemtable-breakword">
                                                     Qty
                                                 </td>
-                                                <td style="padding: 5px 10px 5px 5px;width: 11%;text-align: right;" id="" class="pcs-itemtable-header pcs-itemtable-breakword">
+                                                <td style="padding: 5px 10px 5px 5px;width: 11%;text-align: left;" id="" class="pcs-itemtable-header pcs-itemtable-breakword">
                                                     Discount
                                                 </td>
-                                                <td style="padding: 5px 10px 5px 5px;width: 15%;text-align: right;" id="" class="pcs-itemtable-header pcs-itemtable-breakword">
+                                                <td style="padding: 5px 10px 5px 5px;width: 15%;text-align: left;" id="" class="pcs-itemtable-header pcs-itemtable-breakword">
                                                     Sub Total
                                                 </td>
 
@@ -632,10 +731,9 @@
                                                 <td rowspan="1" valign="top" style="padding: 10px 0px 10px 20px;" class="pcs-item-row">
                                                     <div>
                                                         <div>
-                                                            <span style="word-wrap: break-word;" id="tmp_item_name">M-ACOL514FJ-16</span><br>
+                                                            <span style="word-wrap: break-word;" id="tmp_item_name">Wich</span><br>
 
-                                                            <span style="white-space: pre-wrap;word-wrap: break-word;" class="pcs-item-desc" id="tmp_item_description">SW-M-ACOL514FJ-16-Baseboard</span>
-
+                                                            <span style="white-space: pre-wrap;word-wrap: break-word;" class="pcs-item-desc" id="tmp_item_description">50</span>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -650,60 +748,6 @@
                                                     <span id="tmp_item_amount">155.52</span>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td rowspan="1" valign="top" style="padding: 10px 0 10px 5px;text-align: center;word-wrap: break-word;" class="pcs-item-row">
-                                                    2
-                                                </td>
-                                                <td rowspan="1" valign="top" style="padding: 10px 0px 10px 20px;" class="pcs-item-row">
-                                                    <div>
-                                                        <div>
-                                                            <span style="word-wrap: break-word;" id="tmp_item_name">M-ACOL314PR-16</span><br>
-
-                                                            <span style="white-space: pre-wrap;word-wrap: break-word;" class="pcs-item-desc" id="tmp_item_description">SW-M-ACOL314PR-16-Baseboard</span>
-
-
-                                                        </div>
-                                                    </div>
-                                                </td>
-
-                                                <td rowspan="1" class="pcs-item-row lineitem-column text-align-right">
-                                                    <span id="tmp_item_qty">48.00</span>
-                                                    <div class="pcs-item-desc">LF</div>
-                                                </td>
-                                                <td rowspan="1" class="pcs-item-row lineitem-column text-align-right">
-                                                    <span id="tmp_item_rate">0.67</span>
-                                                </td>
-                                                <td rowspan="1" class="pcs-item-row lineitem-column lineitem-content-right text-align-right">
-                                                    <span id="tmp_item_amount">32.16</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td rowspan="1" valign="top" style="padding: 10px 0 10px 5px;text-align: center;word-wrap: break-word;" class="pcs-item-row">
-                                                    3
-                                                </td>
-                                                <td rowspan="1" valign="top" style="padding: 10px 0px 10px 20px;" class="pcs-item-row">
-                                                    <div>
-                                                        <div>
-                                                            <span style="word-wrap: break-word;" id="tmp_item_name">M-FL312FJ-17</span><br>
-
-                                                            <span style="white-space: pre-wrap;word-wrap: break-word;" class="pcs-item-desc" id="tmp_item_description"></span>
-
-                                                        </div>
-                                                    </div>
-                                                </td>
-
-                                                <td rowspan="1" class="pcs-item-row lineitem-column text-align-right">
-                                                    <span id="tmp_item_qty">51.00</span>
-                                                    <div class="pcs-item-desc">LF</div>
-                                                </td>
-                                                <td rowspan="1" class="pcs-item-row lineitem-column text-align-right">
-                                                    <span id="tmp_item_rate">0.50</span>
-                                                </td>
-                                                <td rowspan="1" class="pcs-item-row lineitem-column lineitem-content-right text-align-right">
-                                                    <span id="tmp_item_amount">25.50</span>
-                                                </td>
-                                            </tr>
-
                                         </tbody>
                                     </table>
                                     <div style="width: 100%;margin-top: 1px;">
@@ -758,6 +802,11 @@
                             </div>
                         </div>
                   </div>
+
+                <a id="closeMail" href="" class="nav-link pd-x-5 mg-l-15"><i class="fa fa-paperclip"></i>
+                    1 Attachment(s) added
+                </a>
+
                 </div><!-- br-msg-body -->
 </div>
 
@@ -861,136 +910,15 @@
 
 <div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div>
 
-<div id="" class="modal fade effect-scale" aria-hidden="true" style="display: none;" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog" style="width: 65%!important;max-width: 100%; overflow-y: auto;" role="document">
-        <div class="modal-content bd-0">
-            <div class="modal-body pd-0">
-                <div class="row flex-row-reverse no-gutters">
-                    <div class="col-lg-12">
-                        <div class="pd-30">
-                            <button type="button" id="btXclose" class="close" data-dismiss="modal">
-                                <span aria-hidden="true">×</span>
-                            </button>
-
-                            <div class="pd-xs-x-15 pd-y-10">
-                                <div style="display:flex">
-                                    <h3 id="lblTitulo" class="tx-inverse mg-b-5">New Invoice</h3>
-                                </div>
-                                <div class="row" style="margin-right: 0;">
-                                    <div class="col-md-12" style="padding-right:0">
-                                        <div style="display:flex; width:100%">
-                                            <div class="row" style="width:100%; max-height: 380px;">
-                                                <input id="idDoor" hidden />
-                                                <div class="row" style="width: 100%;">
-
-                                                    <div class="col-xs-4 col-md-4">
-                                                        <label for="DoorStyle" style="margin-top: 25px;">Customer Name: </label>
-                                                        <div class="input-group">
-                                                            <input type="text" class="form-control" placeholder="Search Customer">
-                                                            <span class="input-group-btn">
-                                                                <button class="btn bd bg-white tx-gray-600" type="button"><i class="fa fa-search"></i></button>
-                                                            </span>
-                                                        </div><!-- input-group -->
-                                                    </div>
-
-                                                    <div class="col-xs-4 col-md-4">
-                                                        <label for="TopRail" style="margin-top: 25px;">Salesperson:</label>
-                                                        <select style="width:100%" class="eventChange selectModal form-control select2 Doors" id="" data-placeholder=""></select>
-                                                    </div><!-- col -->
-
-                                                    <div class="col-xs-4 col-md-12">
-                                                        <br />
-                                                    </div>
-
-                                                    <div class="col-xs-4 col-md-4">
-                                                        <label for="BottomRail" style="margin-top: 25px;">Invoice Date: </label>
-                                                        <input style="width:100%" class="form-control" id="cbStileWidth" data-placeholder="">
-                                                    </div><!-- col -->
-
-                                                    <div class="col-xs-4 col-md-4">
-                                                        <label for="TopRail" style="margin-top: 25px;">Possible dates:</label>
-                                                        <select style="width:100%" class="eventChange selectModal form-control select2 Doors" id="" data-placeholder=""></select>
-                                                    </div><!-- col -->
-
-                                                    <div class="col-xs-4 col-md-3">
-                                                        <label for="DoorStyle" style="margin-top: 25px;">Due Date: </label>
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon"><i class="icon ion-calendar tx-16 lh-0 op-6"></i></span>
-                                                            <input id="datepickerNoOfMonths" type="text" class="form-control dateMask" placeholder="MM/DD/YYYY">
-                                                        </div>
-                                                    </div>
-
-                                                    @*<div class="col-md-8" id="Resultados" style="text-align: right;padding-right: 0px;">
-
-                                                        <input hidden id="idorder" value="" />
-                                                        <input hidden id="idtotal" value="" />
-                                                        <input hidden id="idstatus" value="" />
-                                                        <h5 id="lblSubtotal" style="color:#7b7979">Sub-Total: <span>$</span></h5>
-                                                        <h5 id="lblTax" style="color:#7b7979; margin-left:15px">Tax: <span>$</span></h5>
-                                                        <h5 id="lblShippingCost" style="display:none;color:#7b7979; margin-left:15px">Cost of shipping: <span>$</span></h5>
-                                                        <h5 id="lblTotal" style="color:#000; margin-left:15px">Total Price: <span>$</span></h5>
-
-                                                    </div>*@
-
-                                                    @*<div class="col-xs-4 col-md-12">
-                                                        <hr />
-                                                    </div>
-
-                                                    <div class="col-xs-4 col-md-6">
-                                                        <label for="DoorStyle" style="margin-top: 25px;">Due Date: </label>
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon"><i class="icon ion-paperclip tx-16 lh-0 op-6"></i></span>
-                                                            <input type="file" id="file" class="custom-file-input form-control">
-                                                        </div>
-                                                    </div><!-- col -->
-
-                                                    <div class="col-xs-4 col-md-6">
-
-                                                        <div class="form-group">
-                                                            <label for="OutsideEdgeProfile" style="margin-top: 25px;">Customer Notes: </label>
-                                                            <textarea style="width:100%" class="form-control" id="cbOutsideEdgeProfile" data-placeholder=""></textarea>
-                                                        </div><!-- col -->
-
-                                                        <div class="form-group">
-                                                            <label for="OutsideEdgeProfile" style="margin-top: 25px;">Terms & Conditions: </label>
-                                                            <textarea style="width:100%" class="form-control" id="cbOutsideEdgeProfile" data-placeholder=""></textarea>
-                                                        </div><!-- col -->
-
-                                                    </div><!-- col -->*@
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div><!-- pd-20 -->
-                                </div><!-- col-6 -->
-                            </div><!-- row -->
-                            <div class="modal-footer">
-
-                                <div style="width: 50%; display: flex;justify-content: flex-end;">
-                                    <button id="btBack" type="button" class="btn btn-page tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Back</button>
-                                    <button id="btContinue" type="button" style="margin-left:10px" class="btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Continue</button>
-                                    <button id="btSaveDraft" type="button" style="margin-left:10px" class="btn btn-page tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Save as Draft</button>
-                                    <button id="btSaveSend" type="button" style="margin-left:10px" class="btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Save and Send</button>
-                                    <button type="button" id="btnCancel" style="margin-left:10px" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>
-                                </div>
-                            </div>
-                        </div><!-- modal-body -->
-                    </div><!-- modal-content -->
-                </div><!-- modal-dialog -->
-            </div>
-        </div><!-- modal-content -->
-    </div><!-- modal-dialog -->
-</div>
-
 <div id="modalNewIn" class="ModalOrderInfo modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" id="mdialTamanio" style="width: 80%!important; max-width:100%;max-height: 100%;height: 90%;">
         <div class="modal-content" style="height:100%">
             <div class="modal-header">
                 <div style="display:flex" id="tituloConBTNEdit">
-                    <a id="editBCK" title="Click here to return to the previous window." class="btn btn-icon active" data-toggle="tab" href="#infoPanel" role="tab">
+                    <a id="editBCK" class="btn btn-icon active" data-toggle="tab" href="#datePanel" role="tab">
                         <div><i class="fa fa-arrow-left"></i></div>
                     </a>
-                    <h3 id="lblTitulo" class="tx-inverse mg-b-5">New Invoice</h3>
+                    <h3 id="lblTituloModal" class="tx-inverse mg-b-5"></h3>
                     <a id="editDXU" style="margin-left: 20px;" title="Click here to modify the general configuration of the order and add a general discount." data-toggle="tab" href="#ads" role="tab" class="btn btn-primary btn-icon">
                         <div><i class="fa fa-edit"></i></div>
                     </a>
@@ -1052,25 +980,26 @@
                                             </div>
 
                                             <div class="col-xs-4 col-md-6">
-                                                <label for="DoorStyle" style="margin-top: 25px;">Due Date: </label>
-                                                <div class="input-group">
-                                                    <span class="input-group-addon"><i class="icon ion-paperclip tx-16 lh-0 op-6"></i></span>
-                                                    <input type="text" id="file" class="form-control">
-                                                </div>
-                                            </div><!-- col -->
-                                            
-                                            <div class="col-xs-4 col-md-6">
 
                                                 <div class="form-group">
                                                     <label for="OutsideEdgeProfile" style="margin-top: 25px;">Customer Notes: </label>
                                                     <textarea style="width:100%" class="form-control" id="cbOutsideEdgeProfile" data-placeholder=""></textarea>
                                                 </div><!-- col -->
 
+                                            </div><!-- col -->
+
+                                            <div class="col-xs-4 col-md-6">
+
                                                 <div class="form-group">
                                                     <label for="OutsideEdgeProfile" style="margin-top: 25px;">Terms & Conditions: </label>
                                                     <textarea style="width:100%" class="form-control" id="cbOutsideEdgeProfile" data-placeholder=""></textarea>
                                                 </div><!-- col -->
 
+                                            </div><!-- col -->
+
+                                            <div class="col-xs-4 col-md-4">
+                                                <button type="button" id="btAdd" class="Cursor btn btn-page" style="margin-right: 15px;"><i class="fa fa-paperclip"></i> Upload file</button>
+                                                <input id="addFile" name="file" type="file" style="display:none;" />
                                             </div><!-- col -->
 
                                         </div>
@@ -1080,53 +1009,7 @@
                         </div><!-- col-6 -->
                     </div>
 
-                    <div class="tab-pane fade show" id="infoPanel" role="tabpanel">
-                        <div class="row" style="margin-right: 0;">
-                            <div class="datagrid" style="width: 100%;">
-                                <table id="UserOrderInfo">
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Phone</th>
-                                            <th>Address</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody></tbody>
-                                </table>
-                            </div>
-
-                        </div>
-                        <div style="color:#000;margin-right: 0; padding:10px" class="row">
-                            <div class="datagrid" style="width: 100%;">
-                                <table id="HeaderOptions">
-                                    <tbody></tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <div style="overflow-y:auto; height: 235px;" id="divTable">
-                            @*<table id="ordertable" style="width:100%">
-                                    <thead>
-                                        <tr>
-                                            <th>PREVIEW</th>
-                                            <th>QUANTITY</th>
-                                            <th>WIDHT</th>
-                                            <th>HEIGHT</th>
-                                            <th>PANEL STYLE</th>
-                                            <th>DOOR TYPE</th>
-                                            <th>DOOR OPTION</th>
-                                            <th>U. PRICE</th>
-                                            <th>TOTAL</th>
-                                            <th><i class="fa fa-flash"></i></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                    </tbody>
-                                </table>*@
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="ads" role="tabpanel">
+                    <div class="tab-pane fade" style="padding-left:25px" id="doorPanel" role="tabpanel">
                         <div class="row" style="margin-right: 0;">
                             <div class="col-md-12" style="padding-right:0">
                                 <div style="display:flex; width:100%">
@@ -1309,8 +1192,9 @@
             <div class="modal-footer">
                 <button id="btnClose" type="button" class="btn btn-secondary Cursor" data-dismiss="modal">Close</button>
                 <button id="btnBack" type="button" class="btn btn-secondary Cursor">Back</button>
-                <button id="btnsave" type="button" class="Cursor btn btn-primary Cursor">Save changes</button>
+                <button id="btnsave" type="button" class="Cursor btn btn-primary Cursor">Save and continue</button>
                 <button id="btnsaveDxO" type="button" class="Cursor btn btn-primary Cursor">Save changes</button>
+                <button id="btContinue" data-toggle="tab" href="#doorPanel" role="tab" style="margin-left:10px" class="btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Continue</button>
             </div>
         </div>
     </div>

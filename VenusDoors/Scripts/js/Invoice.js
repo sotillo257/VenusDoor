@@ -30,6 +30,90 @@ $(function () {
 
 var re = /-?\d+/;
 $(document).ready(function () {
+    $(".read-more-target").hide();
+    $("#read-less-state").hide();
+    $("#Record_Paymend").hide();
+
+    $(document).on('click', "#btAdd", function () {
+        $("#addFile").trigger('click');
+    });
+
+    $("#RecordPaymend").on("click", function () {
+        $("#Invoice").hide();
+        $("#Record_Paymend").show();
+    });
+
+    $("#read-more-state").on("click", function () {
+        $("#read-more-state").hide();
+        $("#read-less-state").show();
+        $(".read-more-target").show();
+    });
+
+    $("#read-less-state").on("click", function () {
+        $("#read-more-state").show();
+        $("#read-less-state").hide();
+        $(".read-more-target").hide();
+    });
+
+    $("#ocultarCampo").on("click", function () {
+        $(".showInput").hide();
+        $(".AddComment").hide();
+        $(".ocultarTitulo").show();
+    });
+
+    $("#mostrarCampo").on("click", function () {
+        $(".showInput").show();
+        $(".AddComment").show();
+        $(".ocultarTitulo").hide();
+    });
+
+    $(document).on('click', "#btnBack", function () {
+        $("#editBCK").trigger("click");
+    });
+
+    $(document).on('click', "#btNew", function () {
+        $("#lblTituloModal").text("New Invoice");
+        $('#datePanel').show();
+        $('#editBCK').hide();
+        $("#editDXU").hide();
+        $("#btnsave").hide();
+        $("#btnsaveDxO").hide();
+        $("#btnBack").hide();
+        $("#btnClose").hide();
+        $('#doorPanel').removeClass("active");
+        $('#editDXU').removeClass("active");
+        $('#dxoPanel').removeClass("active");
+    });
+
+    $(document).on('click', "#editBCK", function () {
+        $("#lblTituloModal").text("New Invoice");
+        $('#datePanel').show();
+        $('#editBCK').hide();
+        $('#btContinue').show();
+        $("#editDXU").hide();
+        $("#btnsave").hide();
+        $("#btnsaveDxO").hide();
+        $("#btnBack").hide();
+        $("#btnClose").hide();
+        $('#doorPanel').removeClass("active");
+        $('#editDXU').removeClass("active");
+        $('#dxoPanel').removeClass("active");
+    });
+
+    $(document).on('click', "#btContinue", function () {
+        $("#lblTituloModal").text("Create order");
+        $('#doorPanel').show();
+        $("#editDXU").show();
+        $("#editBCK").show();
+        $("#btnsave").show();
+        $("#btnsaveDxO").hide();
+        $("#btContinue").hide();
+        $("#btnBack").show();
+        $("#btnClose").show();
+        $('#editDXU').removeClass("active");
+        $('#dxoPanel').removeClass("active");
+        $('#datePanel').removeClass("active");
+    });
 
     var container = $('#Demo');
     var conta = $('#conta');
@@ -69,44 +153,5 @@ $(document).ready(function () {
             }
             conta.html(option);
         }
-    });
-});
-
-$(document).ready(function () {
-    $(".read-more-target").hide();
-    $("#read-less-state").hide();
-    $("#Record_Paymend").hide();
-
-    $(document).on('click', "#btAdd", function () {
-        $("#addFile").trigger('click');
-    });
-
-    $("#RecordPaymend").on("click", function () {
-        $("#Invoice").hide();
-        $("#Record_Paymend").show();
-    });
-
-    $("#read-more-state").on("click", function () {
-        $("#read-more-state").hide();
-        $("#read-less-state").show();
-        $(".read-more-target").show();
-    });
-
-    $("#read-less-state").on("click", function () {
-        $("#read-more-state").show();
-        $("#read-less-state").hide();
-        $(".read-more-target").hide();
-    });
-
-    $("#ocultarCampo").on("click", function () {
-        $(".showInput").hide();
-        $(".AddComment").hide();
-        $(".ocultarTitulo").show();
-    });
-
-    $("#mostrarCampo").on("click", function () {
-        $(".showInput").show();
-        $(".AddComment").show();
-        $(".ocultarTitulo").hide();
     });
 });
