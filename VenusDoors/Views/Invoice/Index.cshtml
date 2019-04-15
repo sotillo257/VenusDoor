@@ -37,16 +37,15 @@
                 </a>
                 <h6 class="tx-inverse mg-b-0 tx-13 tx-uppercase">All Invoices</h6>
                 @*<button type="button" class="Cursor btn btn-primary" style="margin-left: 70px;height: 30px;padding-bottom: 2px;padding-top: 2px;padding-left: 9px;padding-right: 9px;" data-toggle="modal" data-target="#modalNewIn"><i class="icon ion-plus"></i> New</button>*@
-                <div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-light disabled pd-x-25"><i class="fa fa-angle-left"></i></button>
-                    <button type="button" class="btn btn-light pd-x-25"><i class="fa fa-angle-right"></i></button>
+                <div class="btn-group" id="Demo" role="group" aria-label="Basic example">
+                    
                 </div>
             </div><!-- br-mailbox-list-header -->
             <div class="br-mailbox-list-body" style="margin-top: 95px;">
                 <div class="" id="listaInvoices">
 
                 </div>
-                <div class="br-mailbox-list-item active">
+                @*<div class="br-mailbox-list-item active">
                     <div class="d-flex justify-content-between mg-b-5">
                         <div>
                             <i class="icon ion-ios-star tx-warning"></i>
@@ -56,19 +55,10 @@
                     </div><!-- d-flex -->
                     <h6 class="tx-14 mg-b-10 tx-gray-800">Socrates Itumay, me (4)</h6>
                     <p class="tx-12 tx-gray-600 mg-b-5">I should be incapable of drawing a single stroke at the present moment; and yet I feel that I never...</p>
-                </div><!-- br-mailbox-list-item -->
+                </div><!-- br-mailbox-list-item -->*@
             </div><!-- br-mailbox-list-body -->
 
-            <div class="br-mailbox-list-header">
-                <a href="" id="showMailBoxLeft" class="show-mailbox-left hidden-sm-up">
-                    <i class="fa fa-arrow-right"></i>
-                </a>
-                <h6 class="tx-inverse mg-b-0 tx-13 tx-uppercase">Inbox <span class="tx-roboto">(2)</span></h6>
-                <div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-light disabled pd-x-25"><i class="fa fa-angle-left"></i></button>
-                    <button type="button" class="btn btn-light pd-x-25"><i class="fa fa-angle-right"></i></button>
-                </div>
-            </div><!-- br-mailbox-list-header -->
+            
 
         </div>
 
@@ -1319,6 +1309,7 @@
 @section scripts{
 
     @Scripts.Render("~/Scripts/js/Invoice.js")
+    @Scripts.Render("~/Scripts/Pagination.js")
 <script>
     var urlGetHistoryInvoice = '@Url.Action("GetHistoryInvoice", "Invoice")';
     var urlInsertComment = '@Url.Action("InsertComment", "Invoice")';
