@@ -13,6 +13,23 @@
 
 })
 
+$(function () {
+    $("#add").click(function () {
+        var n = $('tr:last', $("#mitabla")).length;
+        var tds = '<tr>';
+        for (var i = 0; i < n; i++) {
+            tds += '<td> </td>';
+            tds += '<td><div contenteditable></div></td>';
+            tds += '<td><div contenteditable></div></td>';
+            tds += '<td><div contenteditable></div></td>';
+            tds += '<td><div contenteditable></div></td>';
+            tds += '<td><div contenteditable></div></td>';
+            tds += '<td></td>';
+        }
+        tds += '</tr>';
+        $("#mitabla").append(tds);
+    });
+
 function Colores(IdStatus) {
     var Color = "#94a5a6";
     switch (IdStatus) {
