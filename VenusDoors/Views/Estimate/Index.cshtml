@@ -263,7 +263,7 @@
                                 </tr>
                             </tbody>
                         </table>
-
+                      
                         <table style="clear:both;width:100%;margin-top:30px;table-layout:fixed;">
                             <tbody>
                                 <tr>
@@ -291,7 +291,83 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <div>
+                            <h6 style="text-align: center;padding-top: 10px;"><strong>General Configuration</strong></h6>
+                            <div class="col-md-12" style="margin-top: 10px;padding-right: 0px;">
+                                <div class="row" style="margin-right: 0px;">
+                                    <div class="col-xs-4 col-md-4">
+                                        <label><strong>Wood Species:</strong></label>
+                                        <span id="lblWoodSpecies"></span>
+                                    </div>
 
+                                    <div class="col-xs-4 col-md-4">
+                                        <label><strong>Door Style:</strong></label>
+                                        <span id="lblDoorStyle"></span>
+                                    </div>
+
+                                    <div class="col-xs-4 col-md-4">
+                                        <label><strong>Door Place:</strong></label>
+                                        <span id="lblDoorPlace"></span>
+                                    </div>
+
+                                    <div class="col-xs-4 col-md-4">
+                                        <label><strong>Stile Width:</strong></label>
+                                        <span id="lblStileWidth"></span>
+                                    </div>
+
+                                    <div class="col-xs-4 col-md-4">
+                                        <label><strong>Rail Width:</strong></label>
+                                        <span id="lblRailWidth"></span>
+                                    </div>
+
+                                    <div class="col-xs-4 col-md-4">
+                                        <label><strong>Inside Profile:</strong></label>
+                                        <span id="lblInsideProfile"></span>
+                                    </div>
+
+                                    <div class="col-xs-4 col-md-4">
+                                        <label><strong>Outside Profile:</strong></label>
+                                        <span id="lblOutsideProfile"></span>
+                                    </div>
+
+                                    <div class="col-xs-4 col-md-4">
+                                        <label><strong>Door Assembly:</strong></label>
+                                        <span id="lblDoorAssembly"></span>
+                                    </div>
+
+                                    <div class="col-xs-4 col-md-4">
+                                        <label><strong>Panel Material:</strong></label>
+                                        <span id="lblPanelMaterial"></span>
+                                    </div>
+
+                                    <div class="col-xs-4 col-md-4">
+                                        <label><strong>Opening Measurement:</strong></label>
+                                        <span id="lbOpeningMeasurementl"></span>
+                                    </div>
+
+                                    <div class="col-xs-4 col-md-4">
+                                        <label><strong>Vertical Divisions:</strong></label>
+                                        <span id="lblVerticalDivisions"></span>
+                                    </div>
+
+                                    <div class="col-xs-4 col-md-4">
+                                        <label><strong>Horizontal Divisions:</strong></label>
+                                        <span id="lblHorizontalDivisions"></span>
+                                    </div>
+
+                                    <div class="col-xs-4 col-md-4">
+                                        <label><strong>Drill:</strong></label>
+                                        <span id="lblDrill"></span>
+                                    </div>
+
+                                    <div class="col-xs-4 col-md-4">
+                                        <label><strong>Finger Pull:</strong></label>
+                                        <span id="lblFingerPull"></span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
                         <table style="width:100%;margin-top:20px;table-layout:fixed;" class="pcs-itemtable" border="0" cellspacing="0" cellpadding="0" id="tbEstimate">
                             <thead>
                              
@@ -321,7 +397,7 @@
 
                                         <tr style="height:40px;" class="pcs-balance">
                                             <td class="total-section-label text-align-right"><b>Total</b></td>
-                                            <td id="tmp_total" class="total-section-value text-align-right"><b>$230.77</b></td>
+                                            <td id="tmp_total" class="total-section-value tx-bold text-align-right"><b>$230.77</b></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -348,6 +424,10 @@
                 </div>
             </div>
         </div>
+    <div id="divDocumentosAdjuntos">
+       
+    </div>
+       
     </div><!-- br-msg-body -->
 
 </div>
@@ -543,6 +623,7 @@
     var urlGetHistoryEstimate = '@Url.Action("GetHistoryEstimate", "Estimate")';
     var urlInsertComment = '@Url.Action("InsertComment", "Estimate")';
     var urlGetDoorsByOrder = '@Url.Action("GetDoorsByOrder", "OrderControl")';
+    var urlGetDocAdjuntosEstimate = '@Url.Action("GetDocAdjuntosEstimate", "Estimate")';
                     try {
                         var listEstimate = JSON.parse('@Html.Raw(ViewBag.Estimate)');
                     } catch (e) {
