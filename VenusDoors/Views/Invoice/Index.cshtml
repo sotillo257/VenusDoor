@@ -1105,7 +1105,54 @@
                             </div><!-- pd-20 -->
                         </div><!-- col-6 -->
                     </div>
-                    <div id="dxoPanel" class="tab-pane fade" role="tabpanel">
+                    <div class="tab-pane fade" id="detailsPanel" role="tabpanel">
+                        <div class="row" style="margin-right: 0;">
+                            <div class="datagrid" style="width: 100%;">
+                                <table id="UserOrderInfo">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Phone</th>
+                                            <th>Address</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                        <div style="color:#000;margin-right: 0; padding:10px" class="row">
+                            <div class="datagrid" style="width: 100%;">
+                                <table id="HeaderOptions">
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div style="overflow-y:auto; height: 235px;" id="divTable">
+                            @*<table id="ordertable" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>PREVIEW</th>
+                            <th>QUANTITY</th>
+                            <th>WIDHT</th>
+                            <th>HEIGHT</th>
+                            <th>PANEL STYLE</th>
+                            <th>DOOR TYPE</th>
+                            <th>DOOR OPTION</th>
+                            <th>U. PRICE</th>
+                            <th>TOTAL</th>
+                            <th><i class="fa fa-flash"></i></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>*@
+                        </div>
+                    </div>
+
+                    <div id="" class="tab-pane fade" role="tabpanel">
                         <div style="display:flex; margin-top:45px">
                             <div id="DivImagenes" style="width:33%">
                                 <div class="row" style="margin-right: 0px; display:flex; justify-content:center">
@@ -1182,7 +1229,7 @@
             <div class="modal-footer">
                 <button id="btnClose" type="button" class="btn btn-secondary Cursor" data-dismiss="modal">Close</button>
                 <button id="btnBack" type="button" class="btn btn-secondary Cursor">Back</button>
-                <button id="btnsave" type="button" class="Cursor btn btn-primary Cursor">Save and continue</button>
+                <button id="btnsave" data-toggle="tab" href="#detailsPanel" role="tab" type="button" class="Cursor btn btn-primary Cursor">Save and continue</button>
                 <button id="btnsaveDxO" type="button" class="Cursor btn btn-primary Cursor">Save changes</button>
                 <button id="btContinue" data-toggle="tab" href="#doorPanel" role="tab" style="margin-left:10px" class="btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Continue</button>
             </div>

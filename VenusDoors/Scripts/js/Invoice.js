@@ -236,24 +236,35 @@ $(document).ready(function () {
         $("#btnsaveDxO").hide();
         $("#btnBack").hide();
         $("#btnClose").hide();
-        $('#doorPanel').removeClass("active");
-        $('#editDXU').removeClass("active");
-        $('#dxoPanel').removeClass("active");
+        $('#doorPanel').hide();
+        $('#detailsPanel').hide();
     });
 
     $(document).on('click', "#btContinue", function () {
         $("#lblTituloModal").text("Create order");
         $('#doorPanel').show();
-        $("#editDXU").show();
+        $("#editDXU").hide();
         $("#editBCK").show();
         $("#btnsave").show();
         $("#btnsaveDxO").hide();
         $("#btContinue").hide();
         $("#btnBack").show();
         $("#btnClose").show();
-        $('#editDXU').removeClass("active");
-        $('#dxoPanel').removeClass("active");
-        $('#datePanel').removeClass("active");
+        $('#detailsPanel').hide();
+    });
+
+    $(document).on('click', "#btnsave", function () {
+        $("#lblTituloModal").text("Details of the order #");
+        $("#editDXU").show();
+        $("#editBCK").show();
+        $("#btnsave").hide();
+        $("#doorPanel").hide();
+        $("#btnsaveDxO").show();
+        $("#btContinue").hide();
+        $("#btnBack").show();
+        $("#btnClose").show();
+        $('#datePanel').hide();
+        $('#detailsPanel').show();
     });
 
     var container = $('#Demo');
@@ -391,5 +402,5 @@ function GetHistoryInvoice(id) {
             LlammarModal("Danger", "Error.", "Error getting History & Comments");
         },
 
-});
-    }})
+    });
+}
