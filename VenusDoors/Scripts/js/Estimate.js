@@ -90,6 +90,7 @@ Date.prototype.ddmmyyyyHH = function () {
 };
 var re = /-?\d+/;
 var inicio = true;
+
 $(document).ready(function () {
 
     var container = $('#Demo');
@@ -106,10 +107,21 @@ $(document).ready(function () {
                         inicio = false;
                         LlenarVistaPrincipal(data[i]);
                         option += '<div data-id="' + data[i].Id + '" class="br-mailbox-list-item Esimate active">';
-                    }                   
+                    } else {
+                        if (_IdEstimate == data[i].Id) {
+                            option += '<div data-id="' + data[i].Id + '" class="br-mailbox-list-item Esimate active">';
+                        } else {
+                            option += '<div data-id="' + data[i].Id + '" class="br-mailbox-list-item Esimate">';
+                        }
+                       
+                    }
                    
                 } else {
-                    option += '<div data-id="' + data[i].Id + '" class="br-mailbox-list-item Esimate ">';
+                    if (_IdEstimate == data[i].Id) {
+                        option += '<div data-id="' + data[i].Id + '" class="br-mailbox-list-item Esimate active">';
+                    } else {
+                        option += '<div data-id="' + data[i].Id + '" class="br-mailbox-list-item Esimate">';
+                    }
                 }
                
                                  
@@ -163,9 +175,13 @@ var claseAnterior = 'paid';
 function LlenarVistaPrincipal(listEstimate) {
     GetHistoryEstmate(listEstimate.Id);
     $("#lblFolio").text(listEstimate.IdFolio);
+    $("#tmp_entity_number").text("# "+listEstimate.IdFolio);    
     var Fecha1 = new Date(parseInt(re.exec(listEstimate.CreationDate)[0]));
     $("#lblFechaTitulo").text(Fecha1.ddmmyyyy());
-
+    $("#tmp_entity_date").text(Fecha1.ddmmyyyy());
+    
+    $("#btNameBill").text(listEstimate.UserCliente.Person.Name);
+    
     $('<style type="text/css">  .paid-' + listEstimate.Status.Description + ' {box-sizing:border-box; margin: calc(50vh - 170px) auto;position:relative;} .paid-' + listEstimate.Status.Description + '::before { position:absolute;' +
    ' top:13px; left:-39px; box-sizing:border-box;content:"' + listEstimate.Status.Description + '!";text-transform:uppercase; font-family:"Segoe UI", Tahoma, Geneva, Verdana, sans-serif;' +
     'font-size: 13px;text-align:center;font-weight: 700;color: #fff;background: transparent;height:0;width:155px;border:25px solid transparent;border-bottom:25px solid ' + Colores(listEstimate.Status.Id) + ';' +
@@ -421,3 +437,185 @@ $("#read-less-state").on("click", function () {
     $("#read-less-state").hide();
     $(".read-more-target").hide();
 });
+
+function GetDoorsByOrder(idOrden) {
+    var datos =
+                    {
+                        IdOrder: idOrden,
+                    }
+    $.ajax({
+        data: JSON.stringify(datos),
+        url: urlGetDoorsByOrder,
+        cache: false,
+        type: 'POST',
+        async: false,
+        contentType: 'application/json; charset=utf-8',
+        success: function (Result) {
+            _IdDoorxUser = Result.Order.Id;
+            $('#idDxUorder').val(Result.Id);
+            $('#descDXU').val(Result.Order.Descuento);
+            var fingerPull = Result.isFingerPull;
+            if (fingerPull == false) {
+                fingerPull = 1;
+            } else {
+                fingerPull = 2;
+            }
+            llenarComboFinger(fingerPull);
+
+            var isDrill = Result.isDrill;
+            if (isDrill == false) {
+                isDrill = 1;
+            } else {
+                isDrill = 2;
+            }
+            llenarComboIsDrill(isDrill);
+            HingeCalculate();
+            HingeShow();
+
+            var isOpen = Result.IsOpeningMeasurement;
+            if (isOpen == false) {
+                isOpen = 1;
+            } else {
+                isOpen = 2;
+            }
+            llenarComboIsOpen(isOpen);
+
+            var isOver = Result.isOverlay;
+            if (isOver == false) {
+                isOver = 1;
+            } else {
+                isOver = 2;
+            }
+            checkIsOverlay(isOver);
+            llenarComboMaterial(Result.Material.Id);
+            llenarComboDoorStyle(Result.DoorStyle.Id);
+            llenarComboIEP(Result.InsideEdgeProfile.Id);
+            llenarComboOEP(Result.OutsideEdgeProfile.Id);
+            llenarComboStileWidth(Result.BottomRail.Id);
+            llenarComboRailWidth(Result.TopRail.Id);
+            llenarComboDoorAssembly(Result.Join.Id);
+            llenarComboPanelMaterial(Result.Material.Id);
+            llenarComboVerticalDivisions(Result.VerticalDivisions.Id);
+            llenarComboHorizontalDivisions(Result.HorizontalDivisions.Id);
+            llenarComboHingeDirection(Result.HingeDirection.Id);
+            ChangeDoorStylePanel(Result.DoorStyle.Id);
+
+            var info = "";
+            info += '<tr>';
+            info += '<td>' + Result.User.Person.Name + ' ' + Result.User.Person.Lastname + '</td>';
+            info += '<td>' + Result.User.Email + '</td>';
+            info += '<td>' + Result.User.Person.Telephone + '</td>';
+            info += '<td>' + Result.User.Person.Direction + '</td>';
+            info += '</tr>';
+
+            var dxu = '';
+            //Primera fila
+            dxu += '<tr>';
+            dxu += '<td>Wood Species: <span style="color: #868ba1">' + Result.Material.Description + '</span></td>';
+            dxu += '<td>Door Style: <span style="color: #868ba1">' + Result.DoorStyle.Description + '</span></td>';
+            if (Result.isOverlay == false) {
+                dxu += '<td>Door Place: <span style="color: #868ba1">Inset Door Type</span></td>';
+            }
+            else {
+                dxu += '<td>Door Place: <span style="color: #868ba1">Overlay Door Type</span></td>';
+            }
+            dxu += '<td>Stile Width: <span style="color: #868ba1">' + Result.BottomRail.Description + '</span></td>';
+            dxu += '</tr>';
+
+            //Segunda fila
+            dxu += '<tr>';
+            dxu += '<td>Rail Width: <span style="color: #868ba1">' + Result.TopRail.Description + '</span></td>';
+            dxu += '<td>Inside Edge Profile: <span style="color: #868ba1">' + Result.InsideEdgeProfile.Description + '</span></td>';
+            dxu += '<td>Outside Edge Profile: <span style="color: #868ba1">' + Result.OutsideEdgeProfile.Description + '</span></td>';
+            dxu += '<td>Door Assembly: <span style="color: #868ba1">' + Result.Join.Description + '</span></td>';
+            dxu += '</tr>';
+
+            //tercera fila
+            dxu += '<tr>';
+            dxu += '<td>Panel Material: <span style="color: #868ba1">' + Result.PanelMaterial.Description + '</span></td>';
+            if (Result.IsOpeningMeasurement == false) {
+                dxu += '<td>Opening Measurement: <span style="color: #868ba1">No</span></td>';
+            }
+            else {
+                dxu += '<td>Opening Measurement: <span style="color: #868ba1">Yes</span></td>';
+            }
+            dxu += '<td>Vertical Divisions: <span style="color: #868ba1">' + Result.VerticalDivisions.Quantity + '</span></td>';
+            dxu += '<td>Horizontal Divisions: <span style="color: #868ba1">' + Result.HorizontalDivisions.Quantity + '</span></td>';
+            dxu += '</tr>';
+
+            //Cuarta fila
+            dxu += '<tr>';
+            if (Result.isDrill == false) {
+                dxu += '<td>Hinge Drilling: <span style="color: #868ba1">No</span></td>';
+            }
+            else {
+                dxu += '<td>Hinge Drilling: <span style="color: #868ba1">Yes (' + Result.HingeDirection.Direction + ')</span></td>';
+            }
+            if (Result.isFingerPull == false) {
+                dxu += '<td style="border-right: 1px solid #ADADAD;">Finger Pull: <span style="color: #868ba1">No</span></td>';
+            }
+            else {
+                dxu += '<td style="border-right: 1px solid #ADADAD;">Finger Pull: <span style="color: #868ba1">Yes</span></td>';
+            }
+            dxu += '<td colspan="2"><textarea disabled rows="1" style="background: #fff!important" class="form-control">Observations: ' + Result.Order.Observations + '</textarea></td>';
+            dxu += '</tr>';
+
+            var option = '<table id="ordertable" style="width:100%">';
+            option += '<thead><tr>';
+            option += '<th>PREVIEW</th>';
+            option += '<th>QUANTITY</th>';
+            option += '<th>WIDHT</th>';
+            option += '<th>HEIGHT</th>';
+            option += '<th>PANEL STYLE</th>';
+            option += '<th>DOOR TYPE</th>';
+            option += '<th>DOOR OPTION</th>';
+            option += '<th>U. PRICE</th>';
+            if (Result.DescuentoActivos) {
+                option += '<th>DISCOUNT</th>';
+            }
+            option += '<th>TOTAL</th>';
+            option += '<th><i class="fa fa-flash"></i></th></tr></thead><tbody>';
+            DxOl = Result.DoorsxOrder;
+            for (var i = 0; i < Result.DoorsxOrder.length; i++) {
+                option += '<tr><td><img width="65px" src="' + Result.DoorsxOrder[i].Picture + '"/></td>';
+
+                option += '<td>' + Result.DoorsxOrder[i].Quantity.toString().replace(',', '.') + '</td>';
+                option += '<td>' + Math.trunc(Result.DoorsxOrder[i].Width);
+                if (Result.DoorsxOrder[i].DecimalsWidth.Value != 0) {
+                    option += ' <span>' + Result.DoorsxOrder[i].DecimalsWidth.Description + '</span>';
+                }
+                option += '</td>';
+                option += '<td>' + Math.trunc(Result.DoorsxOrder[i].Height);
+                if (Result.DoorsxOrder[i].DecimalsHeight.Value != 0) {
+                    option += ' <span>' + Result.DoorsxOrder[i].DecimalsHeight.Description + '</span>';
+                }
+                option += '</td>';
+                option += '<td>' + Result.DoorsxOrder[i].Panel.Description + '</td>';
+                option += '<td>' + Result.DoorsxOrder[i].DoorType.Description + '</td>';
+                option += '<td>' + Result.DoorsxOrder[i].DoorOption.Description + '</td>';
+                option += '<td><span>$</span>' + Result.DoorsxOrder[i].ItemCost.toString().replace(',', '.') + '</td>';
+                if (Result.DescuentoActivos) {
+                    option += '<td>' + Result.DoorsxOrder[i].Descuento + '%</td>';
+                }
+                option += '<td><span>$</span>' + Result.DoorsxOrder[i].SubTotal.toString().replace(',', '.') + '</td>';
+                if (Result.Order.Status.Id == 5) {
+                    option += '<td><button title="Edit Door" data-id="' + Result.DoorsxOrder[i].Id + '"data-toggle="tab" href="#dxoPanel" role="tab"  class="editDoor Cursor btn btn-primary btn-icon"  style="width: 25px;height: 25px; margin-left: 10px;"> <i class="fa fa-edit"></i></button></td>';
+                } else {
+                    option += '<td><button title="Not available" disabled data-id="" data-toggle="tab" href="#dxoPanel" role="tab"  class="editDoor btn btn-primary btn-icon"  style="width: 25px;height: 25px; margin-left: 10px;"> <i class="fa fa-edit"></i></button></td>';
+                }
+                option += '</tr>';
+            }
+            option += '</tbody></table>';
+            $("#orreff").text(idOrden);
+            $("#divTable").empty().append(option);
+            $("#HeaderOptions > tbody").empty().append(dxu);
+            $("#UserOrderInfo > tbody").empty().append(info);
+            if (Result.Order.Status.Id == 5) {
+                $("#editDXU").show();
+            } else {
+                $("#editDXU").hide();
+            }
+        },
+    });
+}
+
