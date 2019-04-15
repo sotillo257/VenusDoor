@@ -402,5 +402,5 @@ function GetHistoryInvoice(id) {
             LlammarModal("Danger", "Error.", "Error getting History & Comments");
         },
 
-    });
-}
+});
+    }
