@@ -77,8 +77,6 @@ Date.prototype.ddmmyyyy = function () {
 };
 
 Date.prototype.ddmmyyyyHH = function () {
-  
-
    
     var day = this.getDate().toString();
     var month = this.getMonth().toString();
@@ -162,8 +160,8 @@ $(document).on('click', '.Esimate', function (event) {
     _IdEstimate = $(this).attr('data-id');
     if (!$(this).hasClass("active")) {
         for (var i = 0; i < listEstimate.length; i++) {
-        if (IdEstimate == listEstimate[i].Id) {
-            LlenarVistaPrincipal(listEstimate[i]);
+            if (IdEstimate == listEstimate[i].Id) {               
+                LlenarVistaPrincipal(listEstimate[i]);                
             break;
         }
     }
@@ -190,6 +188,7 @@ function LlenarVistaPrincipal(listEstimate) {
     $("#divMarca").removeClass(claseAnterior);
     claseAnterior = 'paid-' + listEstimate.Status.Description;
     $("#divMarca").addClass('paid-' + listEstimate.Status.Description);
+    GetDoorsByOrder(listEstimate.Order.Id);
 }
 
 function Colores(IdStatus) {
@@ -451,170 +450,66 @@ function GetDoorsByOrder(idOrden) {
         async: false,
         contentType: 'application/json; charset=utf-8',
         success: function (Result) {
-            _IdDoorxUser = Result.Order.Id;
-            $('#idDxUorder').val(Result.Id);
-            $('#descDXU').val(Result.Order.Descuento);
-            var fingerPull = Result.isFingerPull;
-            if (fingerPull == false) {
-                fingerPull = 1;
-            } else {
-                fingerPull = 2;
-            }
-            llenarComboFinger(fingerPull);
-
-            var isDrill = Result.isDrill;
-            if (isDrill == false) {
-                isDrill = 1;
-            } else {
-                isDrill = 2;
-            }
-            llenarComboIsDrill(isDrill);
-            HingeCalculate();
-            HingeShow();
-
-            var isOpen = Result.IsOpeningMeasurement;
-            if (isOpen == false) {
-                isOpen = 1;
-            } else {
-                isOpen = 2;
-            }
-            llenarComboIsOpen(isOpen);
-
-            var isOver = Result.isOverlay;
-            if (isOver == false) {
-                isOver = 1;
-            } else {
-                isOver = 2;
-            }
-            checkIsOverlay(isOver);
-            llenarComboMaterial(Result.Material.Id);
-            llenarComboDoorStyle(Result.DoorStyle.Id);
-            llenarComboIEP(Result.InsideEdgeProfile.Id);
-            llenarComboOEP(Result.OutsideEdgeProfile.Id);
-            llenarComboStileWidth(Result.BottomRail.Id);
-            llenarComboRailWidth(Result.TopRail.Id);
-            llenarComboDoorAssembly(Result.Join.Id);
-            llenarComboPanelMaterial(Result.Material.Id);
-            llenarComboVerticalDivisions(Result.VerticalDivisions.Id);
-            llenarComboHorizontalDivisions(Result.HorizontalDivisions.Id);
-            llenarComboHingeDirection(Result.HingeDirection.Id);
-            ChangeDoorStylePanel(Result.DoorStyle.Id);
-
-            var info = "";
-            info += '<tr>';
-            info += '<td>' + Result.User.Person.Name + ' ' + Result.User.Person.Lastname + '</td>';
-            info += '<td>' + Result.User.Email + '</td>';
-            info += '<td>' + Result.User.Person.Telephone + '</td>';
-            info += '<td>' + Result.User.Person.Direction + '</td>';
-            info += '</tr>';
-
-            var dxu = '';
-            //Primera fila
-            dxu += '<tr>';
-            dxu += '<td>Wood Species: <span style="color: #868ba1">' + Result.Material.Description + '</span></td>';
-            dxu += '<td>Door Style: <span style="color: #868ba1">' + Result.DoorStyle.Description + '</span></td>';
-            if (Result.isOverlay == false) {
-                dxu += '<td>Door Place: <span style="color: #868ba1">Inset Door Type</span></td>';
-            }
-            else {
-                dxu += '<td>Door Place: <span style="color: #868ba1">Overlay Door Type</span></td>';
-            }
-            dxu += '<td>Stile Width: <span style="color: #868ba1">' + Result.BottomRail.Description + '</span></td>';
-            dxu += '</tr>';
-
-            //Segunda fila
-            dxu += '<tr>';
-            dxu += '<td>Rail Width: <span style="color: #868ba1">' + Result.TopRail.Description + '</span></td>';
-            dxu += '<td>Inside Edge Profile: <span style="color: #868ba1">' + Result.InsideEdgeProfile.Description + '</span></td>';
-            dxu += '<td>Outside Edge Profile: <span style="color: #868ba1">' + Result.OutsideEdgeProfile.Description + '</span></td>';
-            dxu += '<td>Door Assembly: <span style="color: #868ba1">' + Result.Join.Description + '</span></td>';
-            dxu += '</tr>';
-
-            //tercera fila
-            dxu += '<tr>';
-            dxu += '<td>Panel Material: <span style="color: #868ba1">' + Result.PanelMaterial.Description + '</span></td>';
-            if (Result.IsOpeningMeasurement == false) {
-                dxu += '<td>Opening Measurement: <span style="color: #868ba1">No</span></td>';
-            }
-            else {
-                dxu += '<td>Opening Measurement: <span style="color: #868ba1">Yes</span></td>';
-            }
-            dxu += '<td>Vertical Divisions: <span style="color: #868ba1">' + Result.VerticalDivisions.Quantity + '</span></td>';
-            dxu += '<td>Horizontal Divisions: <span style="color: #868ba1">' + Result.HorizontalDivisions.Quantity + '</span></td>';
-            dxu += '</tr>';
-
-            //Cuarta fila
-            dxu += '<tr>';
-            if (Result.isDrill == false) {
-                dxu += '<td>Hinge Drilling: <span style="color: #868ba1">No</span></td>';
-            }
-            else {
-                dxu += '<td>Hinge Drilling: <span style="color: #868ba1">Yes (' + Result.HingeDirection.Direction + ')</span></td>';
-            }
-            if (Result.isFingerPull == false) {
-                dxu += '<td style="border-right: 1px solid #ADADAD;">Finger Pull: <span style="color: #868ba1">No</span></td>';
-            }
-            else {
-                dxu += '<td style="border-right: 1px solid #ADADAD;">Finger Pull: <span style="color: #868ba1">Yes</span></td>';
-            }
-            dxu += '<td colspan="2"><textarea disabled rows="1" style="background: #fff!important" class="form-control">Observations: ' + Result.Order.Observations + '</textarea></td>';
-            dxu += '</tr>';
-
-            var option = '<table id="ordertable" style="width:100%">';
-            option += '<thead><tr>';
-            option += '<th>PREVIEW</th>';
-            option += '<th>QUANTITY</th>';
-            option += '<th>WIDHT</th>';
-            option += '<th>HEIGHT</th>';
-            option += '<th>PANEL STYLE</th>';
-            option += '<th>DOOR TYPE</th>';
-            option += '<th>DOOR OPTION</th>';
-            option += '<th>U. PRICE</th>';
+            console.log(Result);
+            var tableH = '';
+            tableH += '<tr style="height:32px;">';
+            tableH += '<td style="padding: 5px 0px 5px 5px;width: 11%;text-align: center;" id="" class="pcs-itemtable-header pcs-itemtable-breakword">';
+            tableH += 'Door Option';
+            tableH += '</td>';
+            tableH += '<td style="padding: 5px 10px 5px 20px;width: ;text-align: left;" id="" class="pcs-itemtable-header pcs-itemtable-breakword">';
+            tableH += 'Description';
+            tableH += '</td>';
+            tableH += '<td style="padding: 5px 10px 5px 5px;width: 11%;text-align: right;" id="" class="pcs-itemtable-header pcs-itemtable-breakword">';
+            tableH += 'Qty';
+            tableH += '</td>';
+            tableH += '<td style="padding: 5px 10px 5px 5px;width: 11%;text-align: right;" id="" class="pcs-itemtable-header pcs-itemtable-breakword">U. Price</td>';
             if (Result.DescuentoActivos) {
-                option += '<th>DISCOUNT</th>';
+                tableH += '<td style="padding: 5px 10px 5px 5px;width: 11%;text-align: right;" id="" class="pcs-itemtable-header pcs-itemtable-breakword';
+                tableH += 'Discount';
+                tableH += '</td>';
             }
-            option += '<th>TOTAL</th>';
-            option += '<th><i class="fa fa-flash"></i></th></tr></thead><tbody>';
-            DxOl = Result.DoorsxOrder;
+            tableH += '<td style="padding: 5px 10px 5px 5px;width: 15%;text-align: right;" id="" class="pcs-itemtable-header pcs-itemtable-breakword">';
+            tableH += 'Sub Total';
+            tableH += '</td></tr>';
+            var table = '';
             for (var i = 0; i < Result.DoorsxOrder.length; i++) {
-                option += '<tr><td><img width="65px" src="' + Result.DoorsxOrder[i].Picture + '"/></td>';
-
-                option += '<td>' + Result.DoorsxOrder[i].Quantity.toString().replace(',', '.') + '</td>';
-                option += '<td>' + Math.trunc(Result.DoorsxOrder[i].Width);
+                table += ' <tr><td rowspan="1" valign="top" style="padding: 10px 0 10px 5px;text-align: center;word-wrap: break-word;" class="pcs-item-row">';
+                table += Result.DoorsxOrder[i].DoorOption.Description;
+                table += '</td>';
+                table += '<td rowspan="1" valign="top" style="padding: 10px 0px 10px 20px;" class="pcs-item-row">';
+                table += '<div><div>';
+                var dec = '';
+                var deci = '';
                 if (Result.DoorsxOrder[i].DecimalsWidth.Value != 0) {
-                    option += ' <span>' + Result.DoorsxOrder[i].DecimalsWidth.Description + '</span>';
+                    dec += ' <span>' + Result.DoorsxOrder[i].DecimalsWidth.Description + '</span>';
                 }
-                option += '</td>';
-                option += '<td>' + Math.trunc(Result.DoorsxOrder[i].Height);
                 if (Result.DoorsxOrder[i].DecimalsHeight.Value != 0) {
-                    option += ' <span>' + Result.DoorsxOrder[i].DecimalsHeight.Description + '</span>';
+                    deci += ' <span>' + Result.DoorsxOrder[i].DecimalsHeight.Description + '</span>';
                 }
-                option += '</td>';
-                option += '<td>' + Result.DoorsxOrder[i].Panel.Description + '</td>';
-                option += '<td>' + Result.DoorsxOrder[i].DoorType.Description + '</td>';
-                option += '<td>' + Result.DoorsxOrder[i].DoorOption.Description + '</td>';
-                option += '<td><span>$</span>' + Result.DoorsxOrder[i].ItemCost.toString().replace(',', '.') + '</td>';
+                table += '<span style="word-wrap: break-word;" id="tmp_item_name">Width: ' + Math.trunc(Result.DoorsxOrder[i].Width) + ' '+ dec +', Height: '+ Math.trunc(Result.DoorsxOrder[i].Height)+' '+ dec +'</span><br>';
+                table += '<span style="white-space: pre-wrap;word-wrap: break-word;" class="pcs-item-desc" id="tmp_item_description">Panel: ' + Result.DoorsxOrder[i].Panel.Description + ', Door Type:' + Result.DoorsxOrder[i].DoorType.Description + '</span>';
+                table += '</div></div></td>';
+                table += '<td rowspan="1" class="pcs-item-row lineitem-column text-align-right">';
+                table += '<span id="tmp_item_qty">'+ Result.DoorsxOrder[i].Quantity.toString().replace(',', '.') +'</span>';               
+                table += '</td>';
+                table += '<td rowspan="1" class="pcs-item-row lineitem-column text-align-right"><span>$</span>' + Moneda(Result.DoorsxOrder[i].ItemCost) + '</td>';
                 if (Result.DescuentoActivos) {
-                    option += '<td>' + Result.DoorsxOrder[i].Descuento + '%</td>';
+                    table += '<td rowspan="1" class="pcs-item-row lineitem-column text-align-right">';
+                    table += '<span id="tmp_item_rate">' + Result.DoorsxOrder[i].Descuento + '%</span>';
+                    table += '</td>';
                 }
-                option += '<td><span>$</span>' + Result.DoorsxOrder[i].SubTotal.toString().replace(',', '.') + '</td>';
-                if (Result.Order.Status.Id == 5) {
-                    option += '<td><button title="Edit Door" data-id="' + Result.DoorsxOrder[i].Id + '"data-toggle="tab" href="#dxoPanel" role="tab"  class="editDoor Cursor btn btn-primary btn-icon"  style="width: 25px;height: 25px; margin-left: 10px;"> <i class="fa fa-edit"></i></button></td>';
-                } else {
-                    option += '<td><button title="Not available" disabled data-id="" data-toggle="tab" href="#dxoPanel" role="tab"  class="editDoor btn btn-primary btn-icon"  style="width: 25px;height: 25px; margin-left: 10px;"> <i class="fa fa-edit"></i></button></td>';
-                }
-                option += '</tr>';
+                table += '<td rowspan="1" class="pcs-item-row lineitem-column lineitem-content-right text-align-right">';
+                table += '<span id="tmp_item_amount"><span>$</span>' + Moneda(Result.DoorsxOrder[i].SubTotal) + '</span>';
+                table += '</td></tr>';
             }
-            option += '</tbody></table>';
-            $("#orreff").text(idOrden);
-            $("#divTable").empty().append(option);
-            $("#HeaderOptions > tbody").empty().append(dxu);
-            $("#UserOrderInfo > tbody").empty().append(info);
-            if (Result.Order.Status.Id == 5) {
-                $("#editDXU").show();
-            } else {
-                $("#editDXU").hide();
-            }
+            $("#tmp_subtotal").text('$' + Moneda(Result.Order.SubTotal));
+            $("#tmp_Tax").text('$' + Moneda(Result.Order.Tax));
+            $("#tmp_total").text('$' + Moneda(Result.Order.Total));
+            $("#tmp_Notes").text(Result.Order.Observations);
+            
+            $("#tbEstimate > thead").empty().append(tableH);
+            $("#tbEstimate > tbody").empty().append(table);
+            
         },
     });
 }
