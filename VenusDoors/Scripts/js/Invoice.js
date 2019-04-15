@@ -29,6 +29,7 @@ $(function () {
         tds += '</tr>';
         $("#mitabla").append(tds);
     });
+})
 
 function Colores(IdStatus) {
     var Color = "#94a5a6";
@@ -158,7 +159,7 @@ Date.prototype.ddmmyyyy = function () {
 Date.prototype.ddmmyyyyHH = function () {
 
 
-   
+
     var day = this.getDate().toString();
     var month = this.getMonth().toString();
     var year = this.getFullYear().toString();
@@ -170,6 +171,90 @@ Date.prototype.ddmmyyyyHH = function () {
 var re = /-?\d+/;
 var inicio = true;
 $(document).ready(function () {
+    $(".read-more-target").hide();
+    $("#read-less-state").hide();
+    $("#Record_Paymend").hide();
+
+    $(document).on('click', "#btAdd", function () {
+        $("#addFile").trigger('click');
+    });
+
+    $("#RecordPaymend").on("click", function () {
+        $("#Invoice").hide();
+        $("#Record_Paymend").show();
+    });
+
+    $("#read-more-state").on("click", function () {
+        $("#read-more-state").hide();
+        $("#read-less-state").show();
+        $(".read-more-target").show();
+    });
+
+    $("#read-less-state").on("click", function () {
+        $("#read-more-state").show();
+        $("#read-less-state").hide();
+        $(".read-more-target").hide();
+    });
+
+    $("#ocultarCampo").on("click", function () {
+        $(".showInput").hide();
+        $(".AddComment").hide();
+        $(".ocultarTitulo").show();
+    });
+
+    $("#mostrarCampo").on("click", function () {
+        $(".showInput").show();
+        $(".AddComment").show();
+        $(".ocultarTitulo").hide();
+    });
+
+    $(document).on('click', "#btnBack", function () {
+        $("#editBCK").trigger("click");
+    });
+
+    $(document).on('click', "#btNew", function () {
+        $("#lblTituloModal").text("New Invoice");
+        $('#datePanel').show();
+        $('#editBCK').hide();
+        $("#editDXU").hide();
+        $("#btnsave").hide();
+        $("#btnsaveDxO").hide();
+        $("#btnBack").hide();
+        $("#btnClose").hide();
+        $('#doorPanel').removeClass("active");
+        $('#editDXU').removeClass("active");
+        $('#dxoPanel').removeClass("active");
+    });
+
+    $(document).on('click', "#editBCK", function () {
+        $("#lblTituloModal").text("New Invoice");
+        $('#datePanel').show();
+        $('#editBCK').hide();
+        $('#btContinue').show();
+        $("#editDXU").hide();
+        $("#btnsave").hide();
+        $("#btnsaveDxO").hide();
+        $("#btnBack").hide();
+        $("#btnClose").hide();
+        $('#doorPanel').removeClass("active");
+        $('#editDXU').removeClass("active");
+        $('#dxoPanel').removeClass("active");
+    });
+
+    $(document).on('click', "#btContinue", function () {
+        $("#lblTituloModal").text("Create order");
+        $('#doorPanel').show();
+        $("#editDXU").show();
+        $("#editBCK").show();
+        $("#btnsave").show();
+        $("#btnsaveDxO").hide();
+        $("#btContinue").hide();
+        $("#btnBack").show();
+        $("#btnClose").show();
+        $('#editDXU').removeClass("active");
+        $('#dxoPanel').removeClass("active");
+        $('#datePanel').removeClass("active");
+    });
 
     var container = $('#Demo');
     var conta = $('#listaInvoices');
@@ -181,9 +266,9 @@ $(document).ready(function () {
             var option = '';
             for (var i = 0; i < data.length; i++) {
                 if (i == 0) {
-                    option += '<div data-id="' + data[i].Id + '" class="br-mailbox-list-item Esimate active">';
+                    option += '<div data-id="' + data[i].Id + '" class="br-mailbox-list-item Invoice active">';
                 } else {
-                    option += '<div data-id="' + data[i].Id + '" class="br-mailbox-list-item Esimate ">';
+                    option += '<div data-id="' + data[i].Id + '" class="br-mailbox-list-item Invoice ">';
                 }
 
 
@@ -233,26 +318,26 @@ $(document).on('click', '.Invoice', function (event) {
     }
     $('.Invoice').removeClass("active");
     $(this).addClass("active");
-});
+    });
 
 var claseAnterior = 'paid';
-function LlenarVistaPrincipal(listEstimate) {
-    GetHistoryEstmate(listEstimate.Id);
-    $("#lblFolio").text(listEstimate.IdFolio);
-    var Fecha1 = new Date(parseInt(re.exec(listEstimate.CreationDate)[0]));
+function LlenarVistaPrincipal(listInvoice) {
+    GetHistoryInvoice(listInvoice.Id);
+    $("#lblFolio").text(listInvoice.IdFolio);
+    var Fecha1 = new Date(parseInt(re.exec(listInvoice.CreationDate)[0]));
     $("#lblFechaTitulo").text(Fecha1.ddmmyyyy());
 
-    $('<style type="text/css">  .paid-' + listEstimate.Status.Description + ' {box-sizing:border-box; margin: calc(50vh - 170px) auto;position:relative;} .paid-' + listEstimate.Status.Description + '::before { position:absolute;' +
-   ' top:13px; left:-39px; box-sizing:border-box;content:"' + listEstimate.Status.Description + '!";text-transform:uppercase; font-family:"Segoe UI", Tahoma, Geneva, Verdana, sans-serif;' +
-    'font-size: 13px;text-align:center;font-weight: 700;color: #fff;background: transparent;height:0;width:155px;border:25px solid transparent;border-bottom:25px solid ' + Colores(listEstimate.Status.Id) + ';' +
+    $('<style type="text/css">  .paid-' + listInvoice.Status.Description + ' {box-sizing:border-box; margin: calc(50vh - 170px) auto;position:relative;} .paid-' + listInvoice.Status.Description + '::before { position:absolute;' +
+   ' top:13px; left:-39px; box-sizing:border-box;content:"' + listInvoice.Status.Description + '!";text-transform:uppercase; font-family:"Segoe UI", Tahoma, Geneva, Verdana, sans-serif;' +
+    'font-size: 13px;text-align:center;font-weight: 700;color: #fff;background: transparent;height:0;width:155px;border:25px solid transparent;border-bottom:25px solid ' + Colores(listInvoice.Status.Id) + ';' +
     'transform: rotate(-45deg);line-height:23px;} </style>').appendTo("head");
 
     $("#divMarca").removeClass(claseAnterior);
-    claseAnterior = 'paid-' + listEstimate.Status.Description;
-    $("#divMarca").addClass('paid-' + listEstimate.Status.Description);
+    claseAnterior = 'paid-' + listInvoice.Status.Description;
+    $("#divMarca").addClass('paid-' + listInvoice.Status.Description);
 }
 
-function GetHistoryEstmate(id) {
+function GetHistoryInvoice(id) {
     var datos =
          {
              idInvoice: id
@@ -307,43 +392,4 @@ function GetHistoryEstmate(id) {
         },
 
 });
-}
-
-$(document).ready(function () {
-    $(".read-more-target").hide();
-    $("#read-less-state").hide();
-    $("#Record_Paymend").hide();
-
-    $(document).on('click', "#btAdd", function () {
-        $("#addFile").trigger('click');
-    });
-
-    $("#RecordPaymend").on("click", function () {
-        $("#Invoice").hide();
-        $("#Record_Paymend").show();
-    });
-
-    $("#read-more-state").on("click", function () {
-        $("#read-more-state").hide();
-        $("#read-less-state").show();
-        $(".read-more-target").show();
-    });
-
-    $("#read-less-state").on("click", function () {
-        $("#read-more-state").show();
-        $("#read-less-state").hide();
-        $(".read-more-target").hide();
-    });
-
-    $("#ocultarCampo").on("click", function () {
-        $(".showInput").hide();
-        $(".AddComment").hide();
-        $(".ocultarTitulo").show();
-    });
-
-    $("#mostrarCampo").on("click", function () {
-        $(".showInput").show();
-        $(".AddComment").show();
-        $(".ocultarTitulo").hide();
-    });
-});
+    }})
