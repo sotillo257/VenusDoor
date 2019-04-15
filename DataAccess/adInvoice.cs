@@ -15,7 +15,7 @@ namespace DataAccess
         {
             List<Invoice> inv = new List<Invoice>();
             string sql = @"[spGetInvoice] '{0}', '{1}','{2}', '{3}', '{4}', '{5}', '{6}', '{7}'";
-            sql = string.Format(sql,Id, IdEstimate, IdCompany, IdUserCliente, IdUserVendedor, CreatorUser, Invoicedate, Expirydate);
+            sql = string.Format(sql,Id, IdEstimate, IdCompany, IdUserCliente, IdUserVendedor, CreatorUser, Invoicedate.ToString("yyyyMMdd"), Expirydate.ToString("yyyyMMdd"));
             try
             {
                 DataSet ds = new DataSet();
@@ -34,7 +34,7 @@ namespace DataAccess
                             Id = int.Parse(item["Id"].ToString()),
                             IdFolio = item["IdFolio"].ToString(),
                             Company = new Company() { Id = int.Parse(item["IdCompany"].ToString()), Name = item["NameCompany"].ToString() },
-                            UserCliente = new User() { Id = int.Parse(item["IdUserCliente"].ToString()) },
+                            UserCliente = new User() { Id = int.Parse(item["IdUserCliente"].ToString()), Person = new Person() { Name = item["NameCliente"].ToString() } },
                             UserVendedor = new User() { Id = int.Parse(item["IdUserVendedor"].ToString()) },
                             Order = new Order() { Id = int.Parse(item["IdOrder"].ToString()) },
                             Estimate = new Estimate() { Id = int.Parse(item["IdEstimate"].ToString()) },
@@ -82,7 +82,7 @@ namespace DataAccess
                             Id = int.Parse(item["Id"].ToString()),
                             IdFolio = item["IdFolio"].ToString(),
                             Company = new Company() { Id = int.Parse(item["IdCompany"].ToString()), Name = item["NameCompany"].ToString() },
-                            UserCliente = new User() { Id = int.Parse(item["IdUserCliente"].ToString()) },
+                            UserCliente = new User() { Id = int.Parse(item["IdUserCliente"].ToString()), Person = new Person() { Name = item["NameCliente"].ToString() } },
                             UserVendedor = new User() { Id = int.Parse(item["IdUserVendedor"].ToString()) },
                             Order = new Order() { Id = int.Parse(item["IdOrder"].ToString()) },
                             Estimate = new Estimate() { Id = int.Parse(item["IdEstimate"].ToString()) },
@@ -124,7 +124,7 @@ namespace DataAccess
                             Id = int.Parse(item["Id"].ToString()),
                             IdFolio = item["IdFolio"].ToString(),
                             Company = new Company() { Id = int.Parse(item["IdCompany"].ToString()), Name = item["NameCompany"].ToString() },
-                            UserCliente = new User() { Id = int.Parse(item["IdUserCliente"].ToString()) },
+                            UserCliente = new User() { Id = int.Parse(item["IdUserCliente"].ToString()), Person = new Person() { Name = item["NameCliente"].ToString() } },
                             UserVendedor = new User() { Id = int.Parse(item["IdUserVendedor"].ToString()) },
                             Order = new Order() { Id = int.Parse(item["IdOrder"].ToString()) },
                             Estimate = new Estimate() { Id = int.Parse(item["IdEstimate"].ToString()) },
