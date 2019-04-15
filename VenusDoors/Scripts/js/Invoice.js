@@ -215,15 +215,16 @@ $(document).ready(function () {
     $(document).on('click', "#btNew", function () {
         $("#lblTituloModal").text("New Invoice");
         $('#datePanel').show();
+        $('#btContinue').show();
+        $("#btnBack").hide();
+        $('#btnAtras').hide();
         $('#editBCK').hide();
         $("#editDXU").hide();
         $("#btnsave").hide();
         $("#btnsaveDxO").hide();
-        $("#btnBack").hide();
         $("#btnClose").hide();
         $('#doorPanel').removeClass("active");
-        $('#editDXU').removeClass("active");
-        $('#dxoPanel').removeClass("active");
+        $('#detailsPanel').removeClass("active");
     });
 
     $(document).on('click', "#editBCK", function () {
@@ -235,8 +236,14 @@ $(document).ready(function () {
         $("#btnsave").hide();
         $("#btnsaveDxO").hide();
         $("#btnBack").hide();
+        $('#btnAtras').hide();
         $("#btnClose").hide();
         $('#doorPanel').hide();
+        $('#detailsPanel').hide();
+    });
+
+    $(document).on('click', "#btnAtras", function () {
+        $("#btContinue").trigger("click");
         $('#detailsPanel').hide();
     });
 
@@ -247,21 +254,25 @@ $(document).ready(function () {
         $("#editBCK").show();
         $("#btnsave").show();
         $("#btnsaveDxO").hide();
-        $("#btContinue").hide();
+        $("#btContinue").hide(); 
         $("#btnBack").show();
+        $('#btnAtras').hide();
         $("#btnClose").show();
-        $('#detailsPanel').hide();
+        $('#datePanel').hide();
+        $('#editBCK').removeClass("active");
+        $('#detailsPanel').removeClass("active");
     });
 
     $(document).on('click', "#btnsave", function () {
         $("#lblTituloModal").text("Details of the order #");
         $("#editDXU").show();
-        $("#editBCK").show();
+        $("#editBCK").hide();
         $("#btnsave").hide();
         $("#doorPanel").hide();
         $("#btnsaveDxO").show();
         $("#btContinue").hide();
-        $("#btnBack").show();
+        $("#btnBack").hide();
+        $('#btnAtras').show();
         $("#btnClose").show();
         $('#datePanel').hide();
         $('#detailsPanel').show();
