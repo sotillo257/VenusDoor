@@ -208,8 +208,8 @@ $(document).ready(function () {
         $(".ocultarTitulo").hide();
     });
 
-    $(document).on('click', "#btnBack", function () {
-        $("#editBCK").trigger("click");
+    $("#btnBack").on('click', function () {
+        $("#createBACK").trigger("click");
     });
 
     $(document).on('click', "#btNew", function () {
