@@ -8,10 +8,10 @@
         $("#editBCK").trigger("click");
         $('#dxoPanel').removeClass("active");
         GetDoorsByOrder(idGETOr);
-    });
+});
 
     $(".read-more-target").hide();
-    $("#read-less-state").hide();
+    $("#read-less-state").hide(); 
     $("#Record_Paymend").hide();
     $("#infoMore").hide();
     $("#btOculDis").hide();
@@ -70,7 +70,7 @@
     });
 
     $("#btNew").on('click', function () {
-        $("#lblTituloModal").text("New Invoice");
+        $("#lblTituloModal").text("New Invoice"); 
         $("#btnCON").show();
         $("#NEWINVOICE").show();
         $("#detailBACK").hide();
@@ -160,29 +160,45 @@
             var option = '';
             for (var i = 0; i < data.length; i++) {
                 if (i == 0) {
+                    if (inicio) {
+                        inicio = false;
+                        LlenarVistaPrincipal(data[i]);
                     option += '<div data-id="' + data[i].Id + '" class="br-mailbox-list-item Invoice active">';
                 } else {
-                    option += '<div data-id="' + data[i].Id + '" class="br-mailbox-list-item Invoice ">';
+                        if (_IdInvoice == data[i].Id) {
+                            option += '<div data-id="' + data[i].Id + '" class="br-mailbox-list-item Invoice active">';
+                        } else {
+                            option += '<div data-id="' + data[i].Id + '" class="br-mailbox-list-item Invoice">';
                 }
 
+                    }
 
+                } else {
+                    if (_IdInvoice == data[i].Id) {
+                        option += '<div data-id="' + data[i].Id + '" class="br-mailbox-list-item Invoice active">';
+                    } else {
+                        option += '<div data-id="' + data[i].Id + '" class="br-mailbox-list-item Invoice">';
+                    }
+                }
+               
+                                 
                 option += '  <div class="d-flex justify-content-between mg-b-5">';
                 option += ' <div>';
                 option += '   <h6 class="tx-14 mg-b-10 tx-gray-800">' + data[i].UserCliente.Person.Name + '</h6>';
                 option += '</div>';
-                var attach = ' ';
+                var attach =' ';
                 if (data[i].Document > 0) {
                     attach += '<i class="icon ion-android-attach"></i>';
                 }
-                option += '  <h6 class="tx-14 mg-b-10 tx-gray-800">' + attach + ' $' + Moneda(data[i].Total) + '</h6>';
-                option += '  </div>'
-                option += '  <div class="d-flex justify-content-between mg-b-5">'
+                option += '  <h6 class="tx-14 mg-b-10 tx-gray-800">'+attach+' $' + Moneda(data[i].TotalDue) + '</h6>';
+                option +='  </div>'
+                option +='  <div class="d-flex justify-content-between mg-b-5">'
                 option += '       <div>';
 
                 var Fecha1 = new Date(parseInt(re.exec(data[i].CreationDate)[0]));
                 option += '         <h6 class="tx-14 mg-b-10 tx-gray-800">' + data[i].IdFolio + ' | ' + Fecha1.ddmmyyyy() + '</h6>'
-                option += '      </div>'
-                option += '   <h6 class="tx-14 mg-b-10 tx-gray-800">' + data[i].Status.Description + '</h6>'
+                option +='      </div>'
+                option += '   <h6 class="tx-14 mg-b-10 tx-gray-800" style="color: ' + Colores(data[i].Status.Id) + ';">' + data[i].Status.Description + '</h6>'
                 option += '  </div>'
                 option += ' </div><!-- br-mailbox-list-item -->';
             }
@@ -201,7 +217,7 @@ $(function () {
     $('#modalToggle').click(function () {
         $('#modal').modal({
             backdrop: 'static'
-        });
+});
     });
 
 })
@@ -383,7 +399,7 @@ $(document).on('click', '.Invoice', function (event) {
     _IdInvoice = $(this).attr('data-id');
     if (!$(this).hasClass("active")) {
         for (var i = 0; i < listInvoice.length; i++) {
-            if (IdEstimate == listInvoice[i].Id) {
+            if (IdInvoice == listInvoice[i].Id) {
                 LlenarVistaPrincipal(listInvoice[i]);
                 break;
             }
@@ -397,8 +413,17 @@ var claseAnterior = 'paid';
 function LlenarVistaPrincipal(listInvoice) {
     GetHistoryInvoice(listInvoice.Id);
     $("#lblFolio").text(listInvoice.IdFolio);
+    $("#tmp_entity_number").text("# " + listInvoice.IdFolio);
+
+    var balancs = listInvoice.TotalDue - listInvoice.Total;
+    $("#tmp_balance_due").text("$" + Moneda(balancs));
+    $("#tmp_balance_due_bottom").text("$" + Moneda(balancs));
+
     var Fecha1 = new Date(parseInt(re.exec(listInvoice.CreationDate)[0]));
     $("#lblFechaTitulo").text(Fecha1.ddmmyyyy());
+    $("#tmp_entity_date").text(Fecha1.ddmmyyyy());
+
+    $("#btNameBill").text(listInvoice.UserCliente.Person.Name);
 
     $('<style type="text/css">  .paid-' + listInvoice.Status.Description + ' {box-sizing:border-box; margin: calc(50vh - 170px) auto;position:relative;} .paid-' + listInvoice.Status.Description + '::before { position:absolute;' +
    ' top:13px; left:-39px; box-sizing:border-box;content:"' + listInvoice.Status.Description + '!";text-transform:uppercase; font-family:"Segoe UI", Tahoma, Geneva, Verdana, sans-serif;' +
@@ -408,6 +433,7 @@ function LlenarVistaPrincipal(listInvoice) {
     $("#divMarca").removeClass(claseAnterior);
     claseAnterior = 'paid-' + listInvoice.Status.Description;
     $("#divMarca").addClass('paid-' + listInvoice.Status.Description);
+    GetDoorsByOrder(listInvoice.Order.Id);
 }
 
 function GetHistoryInvoice(id) {
@@ -645,5 +671,5 @@ function GetDoorsByOrder(idOrden) {
                 $("#editDXU").hide();
             }
         },
-    });
-}
+});
+    }
