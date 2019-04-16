@@ -83,6 +83,37 @@ namespace DataAccess
 
         }
 
+        public List<DocumentsAdj> GetAllDocumentsAdjxIdEstimate( int IdEstimate)
+        {
+            List<DocumentsAdj> adj = new List<DocumentsAdj>();
+            string sql = @"[spGetDocAdjEstimatexIdEstimate] '{0}'";
+            sql = string.Format(sql, IdEstimate);
+            try
+            {
+                DataSet ds = new DataSet();
+                ds = _MB.CreaDS(ds, "DocumentsAdj", sql, _CN);
+                if (ds.Tables["DocumentsAdj"].Rows.Count > 0)
+                {
+                    foreach (DataRow item in ds.Tables["DocumentsAdj"].Rows)
+                    {
+                        adj.Add(new DocumentsAdj()
+                        {
+                            Id = int.Parse(item["IdDocumentsAdj"].ToString()),
+                            Name = item["Name"].ToString(),
+                            Route = item["Route"].ToString(),
+                            Status = new Status() { Id = int.Parse(item["IdStatus"].ToString()), Description = item["DescripStatus"].ToString() }     
+                        });
+                    }
+                }
+                return adj;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
+
         public int InsertDocumentsAdj(DocumentsAdj pDocumentsAdj)
         {
             string sql = @"[spInsertDocumentsAdj] '{0}', '{1}', '{2}', '{3}', '{4}'";

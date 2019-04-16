@@ -75,5 +75,22 @@ namespace VenusDoors.Controllers
                 return Json(new { Success = false, Mensaje = ex.Message }, JsonRequestBehavior.AllowGet);
             }
         }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult GetDocAdjuntosEstimate(int idEstimate)
+        {
+            try
+            {
+                BusinessLogic.lnDocumentsAdj _LNDAdj = new BusinessLogic.lnDocumentsAdj();
+                List<DocumentsAdj> list = _LNDAdj.GetAllDocumentsAdjxIdEstimate(idEstimate);
+                return Json(new { listDocAdj = list, Success = true, Mensaje = "" }, JsonRequestBehavior.AllowGet);
+
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Success = false, Mensaje = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
     }
 }

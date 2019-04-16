@@ -172,6 +172,8 @@ $(document).on('click', '.Esimate', function (event) {
 var claseAnterior = 'paid';
 function LlenarVistaPrincipal(listEstimate) {
     GetHistoryEstmate(listEstimate.Id);
+    GetDoorsByOrder(listEstimate.Order.Id);
+    GetDocAdjuntosEstimate(listEstimate.Id);
     $("#lblFolio").text(listEstimate.IdFolio);
     $("#tmp_entity_number").text("# "+listEstimate.IdFolio);    
     var Fecha1 = new Date(parseInt(re.exec(listEstimate.CreationDate)[0]));
@@ -188,7 +190,7 @@ function LlenarVistaPrincipal(listEstimate) {
     $("#divMarca").removeClass(claseAnterior);
     claseAnterior = 'paid-' + listEstimate.Status.Description;
     $("#divMarca").addClass('paid-' + listEstimate.Status.Description);
-    GetDoorsByOrder(listEstimate.Order.Id);
+    
 }
 
 function Colores(IdStatus) {
@@ -447,7 +449,7 @@ function GetDoorsByOrder(idOrden) {
         url: urlGetDoorsByOrder,
         cache: false,
         type: 'POST',
-        async: false,
+        async: true,
         contentType: 'application/json; charset=utf-8',
         success: function (Result) {
             console.log(Result);
@@ -506,6 +508,46 @@ function GetDoorsByOrder(idOrden) {
             $("#tmp_Tax").text('$' + Moneda(Result.Order.Tax));
             $("#tmp_total").text('$' + Moneda(Result.Order.Total));
             $("#tmp_Notes").text(Result.Order.Observations);
+            $("#lblWoodSpecies").text(Result.Material.Description);
+            $("#lblDoorStyle").text(Result.DoorStyle.Description);
+            if (Result.isOverlay == false) {
+                $("#lblDoorPlace").text("Inset Door Type");
+            }
+            else {
+                $("#lblDoorPlace").text("Overlay Door Type");
+            }
+           
+            $("#lblStileWidth").text(Result.BottomRail.Description);
+            $("#lblRailWidth").text(Result.TopRail.Description);
+            $("#lblInsideProfile").text(Result.InsideEdgeProfile.Description);
+            $("#lblOutsideProfile").text(Result.OutsideEdgeProfile.Description);
+            $("#lblDoorAssembly").text(Result.Preparation.Description);
+            $("#lblPanelMaterial").text(Result.PanelMaterial.Description);
+            if (Result.IsOpeningMeasurement == false) {
+                $("#lbOpeningMeasurementl").text('No');
+            }
+            else {
+                $("#lbOpeningMeasurementl").text("yes");
+            }
+          
+            $("#lblVerticalDivisions").text(Result.VerticalDivisions.Quantity);
+            $("#lblHorizontalDivisions").text(Result.HorizontalDivisions.Quantity);
+           
+            if (Result.isDrill == false) {
+                $("#lblDrill").text('No');
+            }
+            else {
+                $("#lblDrill").text("yes (" + Result.HingeDirection.Direction+")");
+            }
+
+            if (Result.isFingerPull == false) {
+                $("#lblFingerPull").text('No');
+            }
+            else {
+                $("#lblFingerPull").text("yes");
+            }
+           
+            
             
             $("#tbEstimate > thead").empty().append(tableH);
             $("#tbEstimate > tbody").empty().append(table);
@@ -514,3 +556,34 @@ function GetDoorsByOrder(idOrden) {
     });
 }
 
+function GetDocAdjuntosEstimate(id) {
+    var datos =
+         {
+             idEstimate: id
+         };
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(datos),
+        url: urlGetDocAdjuntosEstimate,
+        dataType: "json",
+        async: true,
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+            if (result.Success) {
+                var option = '';
+                var x = result.listDocAdj.length;
+                     option += ' <a id="closeMail" href="" class="nav-link pd-x-5 mg-l-15">';
+                     option += ' <i class="fa fa-paperclip"></i> ';
+                     option += x + ' Attachment(s) added';
+                     option += ' </a>';
+                $("#divDocumentosAdjuntos").html(option);
+            } else {
+                LlammarModal("Danger", "Error.", result.Mensaje);
+            }
+        },
+        error: function (err) {
+            LlammarModal("Danger", "Error.", "Error getting History & Comments");
+        },
+
+    });
+}

@@ -23,7 +23,22 @@ namespace BusinessLogic
             }
 
         }
-   
+
+        public List<DocumentsAdj> GetAllDocumentsAdjxIdEstimate(int IdEstimate)
+        {
+            try
+            {
+                return _AD.GetAllDocumentsAdjxIdEstimate(IdEstimate);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+        }
+
+        
+
         public DocumentsAdj GetDocumentsAdjById(int pId)
         {
             try
