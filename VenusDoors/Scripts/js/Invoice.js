@@ -208,22 +208,23 @@ $(document).ready(function () {
         $(".ocultarTitulo").hide();
     });
 
-    $(document).on('click', "#btnBack", function () {
-        $("#editBCK").trigger("click");
+    $("#btnBack").on('click', function () {
+        $("#createBACK").trigger("click");
     });
 
     $(document).on('click', "#btNew", function () {
         $("#lblTituloModal").text("New Invoice");
         $('#datePanel').show();
+        $('#btContinue').show();
+        $("#btnBack").hide();
+        $('#btnAtras').hide();
         $('#editBCK').hide();
         $("#editDXU").hide();
         $("#btnsave").hide();
         $("#btnsaveDxO").hide();
-        $("#btnBack").hide();
         $("#btnClose").hide();
         $('#doorPanel').removeClass("active");
-        $('#editDXU').removeClass("active");
-        $('#dxoPanel').removeClass("active");
+        $('#detailsPanel').removeClass("active");
     });
 
     $(document).on('click', "#editBCK", function () {
@@ -235,25 +236,46 @@ $(document).ready(function () {
         $("#btnsave").hide();
         $("#btnsaveDxO").hide();
         $("#btnBack").hide();
+        $('#btnAtras').hide();
         $("#btnClose").hide();
-        $('#doorPanel').removeClass("active");
-        $('#editDXU').removeClass("active");
-        $('#dxoPanel').removeClass("active");
+        $('#doorPanel').hide();
+        $('#detailsPanel').hide();
+    });
+
+    $(document).on('click', "#btnAtras", function () {
+        $("#btContinue").trigger("click");
+        $('#detailsPanel').hide();
     });
 
     $(document).on('click', "#btContinue", function () {
         $("#lblTituloModal").text("Create order");
         $('#doorPanel').show();
-        $("#editDXU").show();
+        $("#editDXU").hide();
         $("#editBCK").show();
         $("#btnsave").show();
         $("#btnsaveDxO").hide();
-        $("#btContinue").hide();
+        $("#btContinue").hide(); 
         $("#btnBack").show();
+        $('#btnAtras').hide();
         $("#btnClose").show();
-        $('#editDXU').removeClass("active");
-        $('#dxoPanel').removeClass("active");
-        $('#datePanel').removeClass("active");
+        $('#datePanel').hide();
+        $('#editBCK').removeClass("active");
+        $('#detailsPanel').removeClass("active");
+    });
+
+    $(document).on('click', "#btnsave", function () {
+        $("#lblTituloModal").text("Details of the order #");
+        $("#editDXU").show();
+        $("#editBCK").hide();
+        $("#btnsave").hide();
+        $("#doorPanel").hide();
+        $("#btnsaveDxO").show();
+        $("#btContinue").hide();
+        $("#btnBack").hide();
+        $('#btnAtras').show();
+        $("#btnClose").show();
+        $('#datePanel').hide();
+        $('#detailsPanel').show();
     });
 
     var container = $('#Demo');
@@ -392,4 +414,4 @@ function GetHistoryInvoice(id) {
         },
 
 });
-    }})
+    }
