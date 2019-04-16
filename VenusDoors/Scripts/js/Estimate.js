@@ -572,14 +572,11 @@ function GetDocAdjuntosEstimate(id) {
             if (result.Success) {
                 var option = '';
                 var x = result.listDocAdj.length;
-             //   for (var i = 0; i < result.listDocAdj.length; i++) {
                      option += ' <a id="closeMail" href="" class="nav-link pd-x-5 mg-l-15">';
                      option += ' <i class="fa fa-paperclip"></i> ';
                      option += x + ' Attachment(s) added';
                      option += ' </a>';
-              //  }
                 $("#divDocumentosAdjuntos").html(option);
-              
             } else {
                 LlammarModal("Danger", "Error.", result.Mensaje);
             }
