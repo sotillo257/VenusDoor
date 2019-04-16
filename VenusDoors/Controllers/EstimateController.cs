@@ -75,5 +75,100 @@ namespace VenusDoors.Controllers
                 return Json(new { Success = false, Mensaje = ex.Message }, JsonRequestBehavior.AllowGet);
             }
         }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult GetDocAdjuntosEstimate(int idEstimate)
+        {
+            try
+            {
+                BusinessLogic.lnDocumentsAdj _LNDAdj = new BusinessLogic.lnDocumentsAdj();
+                List<DocumentsAdj> list = _LNDAdj.GetAllDocumentsAdjxIdEstimate(idEstimate);
+                return Json(new { listDocAdj = list, Success = true, Mensaje = "" }, JsonRequestBehavior.AllowGet);
+
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Success = false, Mensaje = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult InsertEstimacion(Estimate pEstimate)
+        {
+            try
+            {
+                BusinessLogic.lnDoorsxUser ln = new BusinessLogic.lnDoorsxUser();
+                BusinessLogic.lnDoorxOrder _LN = new BusinessLogic.lnDoorxOrder();
+                BusinessLogic.lnEstimate _LNEstimate = new BusinessLogic.lnEstimate();
+                Order ord = ln.CrearOrder(pEstimate.Order, (int)Session["UserID"]);
+                _LN.UpdateDoorsxOrder(ord);
+                pEstimate.Order.Id = ord.Id;
+                int i = _LNEstimate.InsertEstimate(pEstimate);
+                if (i > 0)
+                {
+                    pEstimate.Id = i;
+                    return Json(new { Estimate = pEstimate, Success = true, Mensaje = "" }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(new { Success = false, Mensaje = "Error inserting Estimate" }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Success = false, Mensaje = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult UpdateEstimacion(Estimate pEstimate)
+        {
+            try
+            {
+                BusinessLogic.lnDoorsxUser ln = new BusinessLogic.lnDoorsxUser();
+                BusinessLogic.lnDoorxOrder _LN = new BusinessLogic.lnDoorxOrder();
+                BusinessLogic.lnEstimate _LNEstimate = new BusinessLogic.lnEstimate();
+                Order ord = ln.CrearOrder(pEstimate.Order, (int)Session["UserID"]);
+                _LN.UpdateDoorsxOrder(ord);
+                pEstimate.Order.Id = ord.Id;
+                if (_LNEstimate.UpdateEstimate(pEstimate))
+                {
+                    return Json(new { Estimate = pEstimate, Success = true, Mensaje = "" }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(new { Success = false, Mensaje = "Error Updating Estimate" }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Success = false, Mensaje = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [Authorize]
+        [HttpPost]
+        public ActionResult deleteEstimacion(int pIdEstimate)
+        {
+            try
+            {
+                BusinessLogic.lnEstimate _LNEstimate = new BusinessLogic.lnEstimate();
+              
+                if (_LNEstimate.DeleteEstimate(pIdEstimate))
+                {
+                    return Json(new { Estimate = pIdEstimate, Success = true, Mensaje = "" }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(new { Success = false, Mensaje = "Error deleting Estimate" }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Success = false, Mensaje = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
     }
 }

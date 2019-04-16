@@ -11,10 +11,7 @@
         if ($("#txtComment").val() != "" && $("#txtComment").val() != null) {
             InsertComment($("#txtComment").val());
         }
-        
     });
-
-
     $("#ocultarCampo").on("click", function () {
         $(".showInput").hide();
         $(".AddComment").hide();
@@ -72,7 +69,6 @@ Date.prototype.ddmmyyyy = function () {
     var yyyy = this.getFullYear().toString();
     var mm = (this.getMonth() + 1).toString();
     var dd = this.getDate().toString();
-
     return (dd[1] ? dd : "0" + dd[0]) + " " + meses[mm] + " " + yyyy;
 };
 
@@ -110,19 +106,15 @@ $(document).ready(function () {
                             option += '<div data-id="' + data[i].Id + '" class="br-mailbox-list-item Esimate active">';
                         } else {
                             option += '<div data-id="' + data[i].Id + '" class="br-mailbox-list-item Esimate">';
-                        }
-                       
-                    }
-                   
+                        }                       
+                    }                   
                 } else {
                     if (_IdEstimate == data[i].Id) {
                         option += '<div data-id="' + data[i].Id + '" class="br-mailbox-list-item Esimate active">';
                     } else {
                         option += '<div data-id="' + data[i].Id + '" class="br-mailbox-list-item Esimate">';
                     }
-                }
-               
-                                 
+                }                          
                 option += '  <div class="d-flex justify-content-between mg-b-5">';
                 option += ' <div>';
                 option += '   <h6 class="tx-14 mg-b-10 tx-gray-800">' + data[i].UserCliente.Person.Name + '</h6>';
@@ -163,15 +155,23 @@ $(document).on('click', '.Esimate', function (event) {
             if (IdEstimate == listEstimate[i].Id) {               
                 LlenarVistaPrincipal(listEstimate[i]);                
             break;
+            }
         }
-    }
     }
     $('.Esimate').removeClass("active");
     $(this).addClass("active");
 });
+
 var claseAnterior = 'paid';
+
 function LlenarVistaPrincipal(listEstimate) {
+
     GetHistoryEstmate(listEstimate.Id);
+
+    GetDoorsByOrder(listEstimate.Order.Id);
+
+    GetDocAdjuntosEstimate(listEstimate.Id);
+
     $("#lblFolio").text(listEstimate.IdFolio);
     $("#tmp_entity_number").text("# "+listEstimate.IdFolio);    
     var Fecha1 = new Date(parseInt(re.exec(listEstimate.CreationDate)[0]));
@@ -188,7 +188,7 @@ function LlenarVistaPrincipal(listEstimate) {
     $("#divMarca").removeClass(claseAnterior);
     claseAnterior = 'paid-' + listEstimate.Status.Description;
     $("#divMarca").addClass('paid-' + listEstimate.Status.Description);
-    GetDoorsByOrder(listEstimate.Order.Id);
+    
 }
 
 function Colores(IdStatus) {
@@ -293,22 +293,6 @@ function Moneda(entrada) {
     return resul;
 }
 
-function ToJavaScriptDate(value) {
-    var pattern = /Date\(([^)]+)\)/;
-    var results = pattern.exec(value);
-    console.log(results);
-    console.log(parseFloat(results[1]));
-    var date = new Date(parseFloat(results[1]));
-    var meses = new Array("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dic");
-    var day = date.getDay();
-    var month = date.getMonth();
-    var year = date.getFullYear();
-    var hour = date.getHours();
-    var minute = date.getMinutes();
-    var time = day + " " + meses[month] + " " + year + " " + hour + ':' + minute;
-    return time;
-}
-
 function GetHistoryEstmate(id) {
     var datos =
          {
@@ -323,36 +307,9 @@ function GetHistoryEstmate(id) {
         contentType: 'application/json; charset=utf-8',
         success: function (result) {
             if (result.Success) {
-                var option = '';
-                var x = result.listHistory.length - 4;
-            for (var i = 0; i < result.listHistory.length; i++) {
-                if (i > x) {
-                    option += ' <li id="ember1553" class="ember-view">';
-                } else {
-                    option += ' <li id="ember1553" class="read-more-target ember-view">';
-                }
-               
-                option += '                          <div class="clearfix" data-test-title="comments-list-row">';
-                option += '                               <div class="date-section pull-left">';
-                option += '                                   <div class="font-xxs text-draft">';
-
-            
-                var Fecha1 = new Date(parseInt(re.exec(result.listHistory[i].CreationDate)[0]));
-                option += Fecha1.ddmmyyyyHH();
-                option += '                                   </div></div>';
-                option += '                               <div class="comment-section pull-left">';
-                option += '                                  <div class="pull-left">';
-                option += '                                      <div class="txn-comment-icon circle-box"></div>';
-                option += '                                    </div>';
-                option += '                                    <div class="media-body" style="margin-left: 50px;">';
-                option += '                                        <div class="comment">';
-                option += '                                          <span class="IconStatus ' + Iconos(result.listHistory[i].Type.Id) + '" style="padding-right: 2px;padding-left: 6px;height: 24px;width: 26px;padding-bottom: 2px;padding-top: 3px;"></span>';
-                option += '                                          <span class="description"><strong>' + result.listHistory[i].History + '</strong></span>';
-                option += '                                          <label class="font-xs text-muted tx-12"> by ' + result.listHistory[i].NameCreador + '</label>';
-                option += '                                     </div></div></div></div></li>';
-            }
-        
-            $("#divHistoryComm").empty().append(option);
+              
+                MostrarHistoryAndComment(result.listHistory);
+           
             $("#txtComment").val("");
             $(".read-more-target").hide();
         } else {
@@ -365,6 +322,43 @@ function GetHistoryEstmate(id) {
 
     });
 }
+
+function MostrarHistoryAndComment(listHistory) {
+    var option = '';
+    var x = listHistory.length - 4;
+    for (var i = 0; i < listHistory.length; i++) {
+        if (i > x) {
+            option += ' <li id="ember1553" class="ember-view">';
+        } else {
+            option += ' <li id="ember1553" class="read-more-target ember-view">';
+        }
+
+        option += '                          <div class="clearfix" data-test-title="comments-list-row">';
+        option += '                               <div class="date-section pull-left">';
+        option += '                                   <div class="font-xxs text-draft">';
+
+
+        var Fecha1 = new Date(parseInt(re.exec(listHistory[i].CreationDate)[0]));
+        option += Fecha1.ddmmyyyyHH();
+        option += '                                   </div></div>';
+        option += '                               <div class="comment-section pull-left">';
+        option += '                                  <div class="pull-left">';
+        option += '                                      <div class="txn-comment-icon circle-box"></div>';
+        option += '                                    </div>';
+        option += '                                    <div class="media-body" style="margin-left: 50px;">';
+        option += '                                        <div class="comment">';
+        option += '                                          <span class="IconStatus ' + Iconos(listHistory[i].Type.Id) + '" style="padding-right: 2px;padding-left: 6px;height: 24px;width: 26px;padding-bottom: 2px;padding-top: 3px;"></span>';
+        option += '                                          <span class="description"><strong>' + listHistory[i].History + '</strong></span>';
+        option += '                                          <label class="font-xs text-muted tx-12"> by ' + listHistory[i].NameCreador + '</label>';
+        option += '                                     </div></div></div></div></li>';
+    }
+
+    $("#divHistoryComm").empty().append(option);
+
+}
+
+
+
 
 function InsertComment(Comment) {
     var datos =
@@ -381,39 +375,13 @@ function InsertComment(Comment) {
         contentType: 'application/json; charset=utf-8',
         success: function (result) {
             if (result.Success) {          
-            var option = '';
-            var x = result.listHistory.length - 4;
-            for (var i = 0; i < result.listHistory.length; i++) {
-                if (i > x) {
-                    option += ' <li id="ember1553" class="ember-view">';
-                } else {
-                    option += ' <li id="ember1553" class="read-more-target ember-view">';
-                }
-                option += '                          <div class="clearfix" data-test-title="comments-list-row">';
-                option += '                               <div class="date-section pull-left">';
-                option += '                                   <div class="font-xxs text-draft">';
+                MostrarHistoryAndComment(result.listHistory);
 
-
-                var Fecha1 = new Date(parseInt(re.exec(result.listHistory[i].CreationDate)[0]));
-                option += Fecha1.ddmmyyyyHH();
-                option += '                                   </div></div>';
-                option += '                               <div class="comment-section pull-left">';
-                option += '                                  <div class="pull-left">';
-                option += '                                      <div class="txn-comment-icon circle-box"></div>';
-                option += '                                    </div>';
-                option += '                                    <div class="media-body" style="margin-left: 50px;">';
-                option += '                                        <div class="comment">';
-                option += '                                          <span class="IconStatus ' + Iconos(result.listHistory[i].Type.Id) + '" style="padding-right: 2px;padding-left: 6px;height: 24px;width: 26px;padding-bottom: 2px;padding-top: 3px;"></span>';
-                option += '                                          <span class="description">' + result.listHistory[i].History + '</span>';
-                option += '                                          <label class="font-xs text-muted">by <strong>' + result.listHistory[i].NameCreador + '</strong></label>';
-                option += '                                     </div></div></div></div></li>';
-            }
-
-            $("#divHistoryComm").empty().append(option);
-
-            $(".showInput").hide();
-            $(".AddComment").hide();
-            $(".ocultarTitulo").show();
+                $(".showInput").hide();
+                $(".AddComment").hide();
+                $("#read-more-state").hide();
+                $("#read-less-state").show();
+                $(".ocultarTitulo").show();
             } else {
                 LlammarModal("Danger", "Error.", result.Mensaje);
             }
@@ -447,7 +415,7 @@ function GetDoorsByOrder(idOrden) {
         url: urlGetDoorsByOrder,
         cache: false,
         type: 'POST',
-        async: false,
+        async: true,
         contentType: 'application/json; charset=utf-8',
         success: function (Result) {
             console.log(Result);
@@ -506,6 +474,46 @@ function GetDoorsByOrder(idOrden) {
             $("#tmp_Tax").text('$' + Moneda(Result.Order.Tax));
             $("#tmp_total").text('$' + Moneda(Result.Order.Total));
             $("#tmp_Notes").text(Result.Order.Observations);
+            $("#lblWoodSpecies").text(Result.Material.Description);
+            $("#lblDoorStyle").text(Result.DoorStyle.Description);
+            if (Result.isOverlay == false) {
+                $("#lblDoorPlace").text("Inset Door Type");
+            }
+            else {
+                $("#lblDoorPlace").text("Overlay Door Type");
+            }
+           
+            $("#lblStileWidth").text(Result.BottomRail.Description);
+            $("#lblRailWidth").text(Result.TopRail.Description);
+            $("#lblInsideProfile").text(Result.InsideEdgeProfile.Description);
+            $("#lblOutsideProfile").text(Result.OutsideEdgeProfile.Description);
+            $("#lblDoorAssembly").text(Result.Preparation.Description);
+            $("#lblPanelMaterial").text(Result.PanelMaterial.Description);
+            if (Result.IsOpeningMeasurement == false) {
+                $("#lbOpeningMeasurementl").text('No');
+            }
+            else {
+                $("#lbOpeningMeasurementl").text("yes");
+            }
+          
+            $("#lblVerticalDivisions").text(Result.VerticalDivisions.Quantity);
+            $("#lblHorizontalDivisions").text(Result.HorizontalDivisions.Quantity);
+           
+            if (Result.isDrill == false) {
+                $("#lblDrill").text('No');
+            }
+            else {
+                $("#lblDrill").text("yes (" + Result.HingeDirection.Direction+")");
+            }
+
+            if (Result.isFingerPull == false) {
+                $("#lblFingerPull").text('No');
+            }
+            else {
+                $("#lblFingerPull").text("yes");
+            }
+           
+            
             
             $("#tbEstimate > thead").empty().append(tableH);
             $("#tbEstimate > tbody").empty().append(table);
@@ -514,3 +522,34 @@ function GetDoorsByOrder(idOrden) {
     });
 }
 
+function GetDocAdjuntosEstimate(id) {
+    var datos =
+         {
+             idEstimate: id
+         };
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(datos),
+        url: urlGetDocAdjuntosEstimate,
+        dataType: "json",
+        async: true,
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+            if (result.Success) {
+                var option = '';
+                var x = result.listDocAdj.length;
+                     option += ' <a id="closeMail" href="" class="nav-link pd-x-5 mg-l-15">';
+                     option += ' <i class="fa fa-paperclip"></i> ';
+                     option += x + ' Attachment(s) added';
+                     option += ' </a>';
+                $("#divDocumentosAdjuntos").html(option);
+            } else {
+                LlammarModal("Danger", "Error.", result.Mensaje);
+            }
+        },
+        error: function (err) {
+            LlammarModal("Danger", "Error.", "Error getting History & Comments");
+        },
+
+    });
+}

@@ -170,10 +170,18 @@ Date.prototype.ddmmyyyyHH = function () {
 };
 var re = /-?\d+/;
 var inicio = true;
+
+function Desactivar() {
+  //  $('#inStatus').removeClass("is-invalid");
+    $('#inDescription').removeClass("active");
+}
+
 $(document).ready(function () {
     $(".read-more-target").hide();
-    $("#read-less-state").hide();
+    $("#read-less-state").hide(); 
     $("#Record_Paymend").hide();
+    $("#infoMore").hide();
+    $("#btOculDis").hide();
 
     $(document).on('click', "#btAdd", function () {
         $("#addFile").trigger('click');
@@ -206,37 +214,108 @@ $(document).ready(function () {
         $(".showInput").show();
         $(".AddComment").show();
         $(".ocultarTitulo").hide();
-    });   
+    });
+
+    $("#btLinkAdd").on('click', function () {
+        $("#btFile").trigger("click");
+    });
 
     $("#btnBack").on('click', function () {
         $("#createBACK").trigger("click");
     });
 
-    $("#btNew").on('click', function () {   
-        $("#lblTituloModal").text("New Invoice");       
-        $('#createBACK').hide();       
-        $("#btnSAVE").hide();
-        $("#btnBack").hide();
-        $("#btnClose").hide();
-        $('#createBACK').removeClass("active");       
+    $("#btDisplay").on('click', function () {
+        $("#infoMore").show();
+        $("#btOculDis").show();
+        $("#btDisplay").hide();
     });
 
-    $("#createBACK").on('click', function () {  
-        $("#lblTituloModal").text("New Invoice");      
+    $("#btOculDis").on('click', function () {
+        $("#infoMore").hide();
+        $("#btOculDis").hide();
+        $("#btDisplay").show();
+    });
+
+    $("#btNew").on('click', function () {
+        $("#lblTituloModal").text("New Invoice"); 
+        $("#btnCON").show();
+        $("#NEWINVOICE").show();
+        $("#detailBACK").hide();
+        $("#btnAtras").hide();
+        $("#btSaveChan").hide();
         $('#createBACK').hide();
         $("#btnSAVE").hide();
         $("#btnBack").hide();
-        $("#btnClose").hide();       
+        $("#btnClose").hide();
+        $("#NEWORDER").hide();
+        $("#DETAILORDER").hide();
     });
 
-    $("#btnCON").on('click', function () {  
-        $("#lblTituloModal").text("Create order");               
+    $("#createBACK").on('click', function () {
+        $("#lblTituloModal").text("New Invoice");
+        $("#NEWINVOICE").show();
+        $("#btnCON").show();
+        $("#detailBACK").hide();
+        $("#btnAtras").hide();
+        $("#btSaveChan").hide();
+        $('#createBACK').hide();
+        $("#btnSAVE").hide();
+        $("#btnBack").hide();
+        $("#btnClose").hide();
+        $('#NEWORDER').hide();
+        $('#btnAtras').removeClass("active");
+    });
+
+    $("#detailBACK").on('click', function () {
+        $("#btnAtras").trigger("click");
+    });
+
+    $("#btnAtras").on('click', function () {
+        $("#lblTituloModal").text("Create order");
+        $("#NEWORDER").show();
         $("#createBACK").show();
-        $("#btnSAVE").show();      
+        $("#btnSAVE").show();
         $("#btnBack").show();
         $("#btnClose").show();
+        $("#detailBACK").hide();
+        $("#createBACK").show();
+        $("#btnAtras").hide();
+        $("#btSaveChan").hide();
+        $("#btnCON").hide();
+        $("#DETAILORDER").hide();
         $('#createBACK').removeClass("active");
-    });    
+    });
+
+    $("#btnCON").on('click', function () {
+        $("#lblTituloModal").text("Create order");
+        $("#createBACK").show();
+        $("#btnSAVE").show();
+        $("#btnBack").show();
+        $("#NEWORDER").show();
+        $("#detailBACK").hide();
+        $("#btnClose").show();
+        $("#btnAtras").hide();
+        $("#btSaveChan").hide();
+        $("#btnCON").hide();
+        $("#NEWINVOICE").hide();
+        $("#DETAILORDER").hide();
+        $('#createBACK').removeClass("active");
+    });
+
+    $("#btnSAVE").on('click', function () {
+        $("#lblTituloModal").text("Details of the order #");
+        $("#btnClose").show();
+        $("#btnAtras").show();
+        $("#detailBACK").show();
+        $('#DETAILORDER').show();
+        $("#createBACK").hide();
+        $("#btnBack").hide();
+        $("#btSaveChan").hide();
+        $("#btnSAVE").hide();
+        $("#btnCON").hide();
+        $("#NEWORDER").hide();
+        $("#NEWINVOICE").hide();
+    });
 
     var container = $('#Demo');
     var conta = $('#listaInvoices');
