@@ -89,8 +89,8 @@
                 <div class="br-msg-header d-flex justify-content-between">
                     <div class="media align-items-center">
                         <div class="media-body mg-l-10">
-                            <p class="tx-inverse tx-medium mg-b-0">INV-0001</p>
-                            <p class="tx-12 mg-b-0">
+                            <p class="tx-inverse tx-medium mg-b-0" id="lblFolio">INV-0001</p>
+                            <p class="tx-12 mg-b-0" id="lblFechaTitulo">
                                 <span>Sep 20, 2017 8:45am</span>
                                 <a href="" class="mg-l-5 tx-gray-500"><i class="icon ion-star"></i></a>
                                 <a href="" class="mg-l-5 tx-gray-500"><i class="icon ion-android-attach"></i></a>
@@ -214,6 +214,7 @@
                                                     </tr>
                                                 </tbody>
                                             </table>
+                                          
                                         }
 
                                     </div>
@@ -523,7 +524,7 @@
                                    
                                             </ul>
                                             <bottom id="mostrarCampo" class="Cursor ocultarTitulo">+ Add Comment</bottom>
-                                            <textarea style="width:100%" class="hidden showInput form-control"></textarea>
+                                            <textarea style="width:100%" class="hidden showInput form-control" id="txtComment"></textarea>
                                             <button type="button" style="padding-left: 9px;padding-right: 9px;height: 30px;padding-top: 2px;padding-bottom: 2px;margin-top: 10px;" class="Cursor btn btn-primary AddComment">Add Comment</button>
                                         </div>
                                     </div>
@@ -534,7 +535,7 @@
                     </div>
                 </div>
                     <div>
-                        <div style="max-width: 8.27in;margin-left:auto;margin-right:auto;" class="details-container clearfix ">
+                        <div style="max-width: 8.27in;margin-left:auto;margin-right:auto; margin-top: 0;" class="details-container clearfix" id="divMarca">
                             <div class="pcs-template ">
                                 <div class="pcs-template-header pcs-header-content" id="header">
                                     <div class="pcs-template-fill-emptydiv"></div>
@@ -563,7 +564,7 @@
                                                     <div style="clear:both;margin-top:30px;">
                                                         <span style="font-size:8pt;"><b>Balance Due</b></span>
                                                         <br>
-                                                        <span style="font-size:12pt;"><b>$230.77</b></span>
+                                                        <span style="font-size:12pt;"><b id="tmp_balance_due"></b></span>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -577,7 +578,7 @@
                                                     <div>
                                                         <label style="font-size: 10pt;" class="pcs-label" id="tmp_billing_address_label">Bill To</label>
                                                         <br>
-                                                        <span style="white-space: pre-wrap;" id="tmp_billing_address"><strong><span class="pcs-customer-name" id="zb-pdf-customer-detail"><a href="#/contacts/1650031000000667001">Sharron Garrison</a></span></strong></span>
+                                                        <span style="white-space: pre-wrap;" id="tmp_billing_address"><strong><span class="pcs-customer-name" id="zb-pdf-customer-detail"><a id="btNameBill" href="#"></a></span></strong></span>
                                                     </div>
                                                 </td>
                                                 <td align="right" style="vertical-align:bottom;width: 40%;">
@@ -693,53 +694,11 @@
                                         </div>
                                     </div>
                                     
-                                    <table style="width:100%;margin-top:20px;table-layout:fixed;" class="pcs-itemtable" border="0" cellspacing="0" cellpadding="0">
+                                    <table style="width:100%;margin-top:20px;table-layout:fixed;" class="pcs-itemtable" border="0" cellspacing="0" cellpadding="0" id="tbInvoice">
                                         <thead>
-                                            <tr style="height:32px;">
-                                                <td style="padding: 5px 0px 5px 5px;width: 5%;text-align: center;" id="" class="pcs-itemtable-header pcs-itemtable-breakword">
-                                                    Door
-                                                </td>
-                                                <td style="padding: 5px 10px 5px 20px;width: ;text-align: left;" id="" class="pcs-itemtable-header pcs-itemtable-breakword">
-                                                    Description
-                                                </td>
-                                                <td style="padding: 5px 10px 5px 5px;width: 11%;text-align: left;" id="" class="pcs-itemtable-header pcs-itemtable-breakword">
-                                                    Qty
-                                                </td>
-                                                <td style="padding: 5px 10px 5px 5px;width: 11%;text-align: left;" id="" class="pcs-itemtable-header pcs-itemtable-breakword">
-                                                    Discount
-                                                </td>
-                                                <td style="padding: 5px 10px 5px 5px;width: 15%;text-align: left;" id="" class="pcs-itemtable-header pcs-itemtable-breakword">
-                                                    Sub Total
-                                                </td>
 
-                                            </tr>
                                         </thead>
-                                        <tbody class="itemBody">
-                                            <tr>
-                                                <td rowspan="1" valign="top" style="padding: 10px 0 10px 5px;text-align: center;word-wrap: break-word;" class="pcs-item-row">
-                                                    1
-                                                </td>
-                                                <td rowspan="1" valign="top" style="padding: 10px 0px 10px 20px;" class="pcs-item-row">
-                                                    <div>
-                                                        <div>
-                                                            <span style="word-wrap: break-word;" id="tmp_item_name">Wich</span><br>
-
-                                                            <span style="white-space: pre-wrap;word-wrap: break-word;" class="pcs-item-desc" id="tmp_item_description">50</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td rowspan="1" class="pcs-item-row lineitem-column text-align-right">
-                                                    <span id="tmp_item_qty">144.00</span>
-                                                    <div class="pcs-item-desc">LF</div>
-                                                </td>
-                                                <td rowspan="1" class="pcs-item-row lineitem-column text-align-right">
-                                                    <span id="tmp_item_rate">1.08</span>
-                                                </td>
-                                                <td rowspan="1" class="pcs-item-row lineitem-column lineitem-content-right text-align-right">
-                                                    <span id="tmp_item_amount">155.52</span>
-                                                </td>
-                                            </tr>
-                                        </tbody>
+                                        <tbody class="itemBody"></tbody>
                                     </table>
                                     <div style="width: 100%;margin-top: 1px;">
                                         <div class="v-top total-number-section">
@@ -756,7 +715,7 @@
 
                                                     <tr style="height:10px;">
                                                         <td class="total-section-label text-align-right">Sales Tax (8.25%)  </td>
-                                                        <td class="total-section-value text-align-right">17.59</td>
+                                                        <td id="tmp_Tax" class="total-section-value text-align-right">17.59</td>
                                                     </tr>
 
                                                     <tr>
@@ -766,7 +725,7 @@
 
                                                     <tr style="height:40px;" class="pcs-balance">
                                                         <td class="total-section-label text-align-right"><b>Balance Due</b></td>
-                                                        <td id="tmp_balance_due" class="total-section-value text-align-right"><b>$230.77</b></td>
+                                                        <td id="tmp_balance_due_bottom" class="total-section-value text-align-right"><b></b></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -776,6 +735,7 @@
 
                                     <div style="clear:both;margin-top:50px;width:100%;">
                                         <label style="font-size: 10pt;" id="tmp_notes_label" class="pcs-label">Notes</label><br>
+                                        <p id="tmp_Notes" style="margin-top:7px;white-space: pre-wrap;word-wrap: break-word;" class="pcs-notes"></p>
                                         <p style="margin-top:7px;white-space: pre-wrap;word-wrap: break-word;" class="pcs-notes">Thanks for your business.</p>
                                     </div>
 
@@ -1117,6 +1077,7 @@
 <script>
     var urlGetHistoryInvoice = '@Url.Action("GetHistoryInvoice", "Invoice")';
     var urlInsertComment = '@Url.Action("InsertComment", "Invoice")';
+    var urlGetDoorsByOrder = '@Url.Action("GetDoorsByOrder", "OrderControl")';
                     try {
                         var listInvoice = JSON.parse('@Html.Raw(ViewBag.Invoice)');
                     } catch (e) {

@@ -248,29 +248,45 @@ $(document).ready(function () {
             var option = '';
             for (var i = 0; i < data.length; i++) {
                 if (i == 0) {
-                    option += '<div data-id="' + data[i].Id + '" class="br-mailbox-list-item Invoice active">';
+                    if (inicio) {
+                        inicio = false;
+                        LlenarVistaPrincipal(data[i]);
+                        option += '<div data-id="' + data[i].Id + '" class="br-mailbox-list-item Invoice active">';
+                    } else {
+                        if (_IdInvoice == data[i].Id) {
+                            option += '<div data-id="' + data[i].Id + '" class="br-mailbox-list-item Invoice active">';
+                        } else {
+                            option += '<div data-id="' + data[i].Id + '" class="br-mailbox-list-item Invoice">';
+                        }
+                       
+                    }
+                   
                 } else {
-                    option += '<div data-id="' + data[i].Id + '" class="br-mailbox-list-item Invoice ">';
+                    if (_IdInvoice == data[i].Id) {
+                        option += '<div data-id="' + data[i].Id + '" class="br-mailbox-list-item Invoice active">';
+                    } else {
+                        option += '<div data-id="' + data[i].Id + '" class="br-mailbox-list-item Invoice">';
+                    }
                 }
-
-
+               
+                                 
                 option += '  <div class="d-flex justify-content-between mg-b-5">';
                 option += ' <div>';
                 option += '   <h6 class="tx-14 mg-b-10 tx-gray-800">' + data[i].UserCliente.Person.Name + '</h6>';
                 option += '</div>';
-                var attach = ' ';
+                var attach =' ';
                 if (data[i].Document > 0) {
                     attach += '<i class="icon ion-android-attach"></i>';
                 }
-                option += '  <h6 class="tx-14 mg-b-10 tx-gray-800">' + attach + ' $' + Moneda(data[i].Total) + '</h6>';
-                option += '  </div>'
-                option += '  <div class="d-flex justify-content-between mg-b-5">'
+                option += '  <h6 class="tx-14 mg-b-10 tx-gray-800">'+attach+' $' + Moneda(data[i].TotalDue) + '</h6>';
+                option +='  </div>'
+                option +='  <div class="d-flex justify-content-between mg-b-5">'
                 option += '       <div>';
-
+               
                 var Fecha1 = new Date(parseInt(re.exec(data[i].CreationDate)[0]));
                 option += '         <h6 class="tx-14 mg-b-10 tx-gray-800">' + data[i].IdFolio + ' | ' + Fecha1.ddmmyyyy() + '</h6>'
-                option += '      </div>'
-                option += '   <h6 class="tx-14 mg-b-10 tx-gray-800">' + data[i].Status.Description + '</h6>'
+                option +='      </div>'
+                option += '   <h6 class="tx-14 mg-b-10 tx-gray-800" style="color: ' + Colores(data[i].Status.Id) + ';">' + data[i].Status.Description + '</h6>'
                 option += '  </div>'
                 option += ' </div><!-- br-mailbox-list-item -->';
             }
@@ -292,7 +308,7 @@ $(document).on('click', '.Invoice', function (event) {
     _IdInvoice = $(this).attr('data-id');
     if (!$(this).hasClass("active")) {
         for (var i = 0; i < listInvoice.length; i++) {
-            if (IdEstimate == listInvoice[i].Id) {
+            if (IdInvoice == listInvoice[i].Id) {
                 LlenarVistaPrincipal(listInvoice[i]);
                 break;
             }
@@ -306,8 +322,17 @@ var claseAnterior = 'paid';
 function LlenarVistaPrincipal(listInvoice) {
     GetHistoryInvoice(listInvoice.Id);
     $("#lblFolio").text(listInvoice.IdFolio);
+    $("#tmp_entity_number").text("# " + listInvoice.IdFolio);
+
+    var balancs = listInvoice.TotalDue - listInvoice.Total;
+    $("#tmp_balance_due").text("$" + Moneda(balancs));
+    $("#tmp_balance_due_bottom").text("$" + Moneda(balancs));
+
     var Fecha1 = new Date(parseInt(re.exec(listInvoice.CreationDate)[0]));
     $("#lblFechaTitulo").text(Fecha1.ddmmyyyy());
+    $("#tmp_entity_date").text(Fecha1.ddmmyyyy());
+
+    $("#btNameBill").text(listInvoice.UserCliente.Person.Name);
 
     $('<style type="text/css">  .paid-' + listInvoice.Status.Description + ' {box-sizing:border-box; margin: calc(50vh - 170px) auto;position:relative;} .paid-' + listInvoice.Status.Description + '::before { position:absolute;' +
    ' top:13px; left:-39px; box-sizing:border-box;content:"' + listInvoice.Status.Description + '!";text-transform:uppercase; font-family:"Segoe UI", Tahoma, Geneva, Verdana, sans-serif;' +
@@ -317,6 +342,7 @@ function LlenarVistaPrincipal(listInvoice) {
     $("#divMarca").removeClass(claseAnterior);
     claseAnterior = 'paid-' + listInvoice.Status.Description;
     $("#divMarca").addClass('paid-' + listInvoice.Status.Description);
+    GetDoorsByOrder(listInvoice.Order.Id);
 }
 
 function GetHistoryInvoice(id) {
@@ -374,4 +400,81 @@ function GetHistoryInvoice(id) {
         },
 
 });
-    }
+}
+
+function GetDoorsByOrder(idOrden) {
+    var datos =
+                    {
+                        IdOrder: idOrden,
+                    }
+    $.ajax({
+        data: JSON.stringify(datos),
+        url: urlGetDoorsByOrder,
+        cache: false,
+        type: 'POST',
+        async: false,
+        contentType: 'application/json; charset=utf-8',
+        success: function (Result) {
+            console.log(Result);
+            var tableH = '';
+            tableH += '<tr style="height:32px;">';
+            tableH += '<td style="padding: 5px 0px 5px 5px;width: 11%;text-align: center;" id="" class="pcs-itemtable-header pcs-itemtable-breakword">';
+            tableH += 'Door Option';
+            tableH += '</td>';
+            tableH += '<td style="padding: 5px 10px 5px 20px;width: ;text-align: left;" id="" class="pcs-itemtable-header pcs-itemtable-breakword">';
+            tableH += 'Description';
+            tableH += '</td>';
+            tableH += '<td style="padding: 5px 10px 5px 5px;width: 11%;text-align: right;" id="" class="pcs-itemtable-header pcs-itemtable-breakword">';
+            tableH += 'Qty';
+            tableH += '</td>';
+            tableH += '<td style="padding: 5px 10px 5px 5px;width: 11%;text-align: right;" id="" class="pcs-itemtable-header pcs-itemtable-breakword">U. Price</td>';
+            if (Result.DescuentoActivos) {
+                tableH += '<td style="padding: 5px 10px 5px 5px;width: 11%;text-align: right;" id="" class="pcs-itemtable-header pcs-itemtable-breakword';
+                tableH += 'Discount';
+                tableH += '</td>';
+            }
+            tableH += '<td style="padding: 5px 10px 5px 5px;width: 15%;text-align: right;" id="" class="pcs-itemtable-header pcs-itemtable-breakword">';
+            tableH += 'Sub Total';
+            tableH += '</td></tr>';
+            var table = '';
+            for (var i = 0; i < Result.DoorsxOrder.length; i++) {
+                table += ' <tr><td rowspan="1" valign="top" style="padding: 10px 0 10px 5px;text-align: center;word-wrap: break-word;" class="pcs-item-row">';
+                table += Result.DoorsxOrder[i].DoorOption.Description;
+                table += '</td>';
+                table += '<td rowspan="1" valign="top" style="padding: 10px 0px 10px 20px;" class="pcs-item-row">';
+                table += '<div><div>';
+                var dec = '';
+                var deci = '';
+                if (Result.DoorsxOrder[i].DecimalsWidth.Value != 0) {
+                    dec += ' <span>' + Result.DoorsxOrder[i].DecimalsWidth.Description + '</span>';
+                }
+                if (Result.DoorsxOrder[i].DecimalsHeight.Value != 0) {
+                    deci += ' <span>' + Result.DoorsxOrder[i].DecimalsHeight.Description + '</span>';
+                }
+                table += '<span style="word-wrap: break-word;" id="tmp_item_name">Width: ' + Math.trunc(Result.DoorsxOrder[i].Width) + ' ' + dec + ', Height: ' + Math.trunc(Result.DoorsxOrder[i].Height) + ' ' + dec + '</span><br>';
+                table += '<span style="white-space: pre-wrap;word-wrap: break-word;" class="pcs-item-desc" id="tmp_item_description">Panel: ' + Result.DoorsxOrder[i].Panel.Description + ', Door Type:' + Result.DoorsxOrder[i].DoorType.Description + '</span>';
+                table += '</div></div></td>';
+                table += '<td rowspan="1" class="pcs-item-row lineitem-column text-align-right">';
+                table += '<span id="tmp_item_qty">' + Result.DoorsxOrder[i].Quantity.toString().replace(',', '.') + '</span>';
+                table += '</td>';
+                table += '<td rowspan="1" class="pcs-item-row lineitem-column text-align-right"><span>$</span>' + Moneda(Result.DoorsxOrder[i].ItemCost) + '</td>';
+                if (Result.DescuentoActivos) {
+                    table += '<td rowspan="1" class="pcs-item-row lineitem-column text-align-right">';
+                    table += '<span id="tmp_item_rate">' + Result.DoorsxOrder[i].Descuento + '%</span>';
+                    table += '</td>';
+                }
+                table += '<td rowspan="1" class="pcs-item-row lineitem-column lineitem-content-right text-align-right">';
+                table += '<span id="tmp_item_amount"><span>$</span>' + Moneda(Result.DoorsxOrder[i].SubTotal) + '</span>';
+                table += '</td></tr>';
+            }
+            $("#tmp_subtotal").text('$' + Moneda(Result.Order.SubTotal));
+            $("#tmp_Tax").text('$' + Moneda(Result.Order.Tax));
+            $("#tmp_total").text('$' + Moneda(Result.Order.Total));
+            $("#tmp_Notes").text(Result.Order.Observations);
+
+            $("#tbInvoice > thead").empty().append(tableH);
+            $("#tbInvoice > tbody").empty().append(table);
+
+        },
+    });
+}
