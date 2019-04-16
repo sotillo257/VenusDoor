@@ -222,24 +222,6 @@ $(function () {
 
 })
 
-$(function () {
-    $("#add").click(function () {
-        var n = $('tr:last', $("#mitabla")).length;
-        var tds = '<tr>';
-        for (var i = 0; i < n; i++) {
-            tds += '<td> </td>';
-            tds += '<td><div contenteditable></div></td>';
-            tds += '<td><div contenteditable></div></td>';
-            tds += '<td><div contenteditable></div></td>';
-            tds += '<td><div contenteditable></div></td>';
-            tds += '<td><div contenteditable></div></td>';
-            tds += '<td></td>';
-        }
-        tds += '</tr>';
-        $("#mitabla").append(tds);
-    });
-})
-
 function Colores(IdStatus) {
     var Color = "#94a5a6";
     switch (IdStatus) {
@@ -515,46 +497,7 @@ function GetDoorsByOrder(idOrden) {
             } else {
                 fingerPull = 2;
             }
-            llenarComboFinger(fingerPull);
-
-            var isDrill = Result.isDrill;
-            if (isDrill == false) {
-                isDrill = 1;
-            } else {
-                isDrill = 2;
-            }
-            llenarComboIsDrill(isDrill);
-            HingeCalculate();
-            HingeShow();
-
-            var isOpen = Result.IsOpeningMeasurement;
-            if (isOpen == false) {
-                isOpen = 1;
-            } else {
-                isOpen = 2;
-            }
-            llenarComboIsOpen(isOpen);
-
-            var isOver = Result.isOverlay;
-            if (isOver == false) {
-                isOver = 1;
-            } else {
-                isOver = 2;
-            }
-            checkIsOverlay(isOver);
-            llenarComboMaterial(Result.Material.Id);
-            llenarComboDoorStyle(Result.DoorStyle.Id);
-            llenarComboIEP(Result.InsideEdgeProfile.Id);
-            llenarComboOEP(Result.OutsideEdgeProfile.Id);
-            llenarComboStileWidth(Result.BottomRail.Id);
-            llenarComboRailWidth(Result.TopRail.Id);
-            llenarComboDoorAssembly(Result.Join.Id);
-            llenarComboPanelMaterial(Result.Material.Id);
-            llenarComboVerticalDivisions(Result.VerticalDivisions.Id);
-            llenarComboHorizontalDivisions(Result.HorizontalDivisions.Id);
-            llenarComboHingeDirection(Result.HingeDirection.Id);
-            ChangeDoorStylePanel(Result.DoorStyle.Id);
-
+           
             var info = "";
             info += '<tr>';
             info += '<td>' + Result.User.Person.Name + ' ' + Result.User.Person.Lastname + '</td>';
