@@ -5,6 +5,10 @@
 }
 
 <style>
+    *::before,
+    *::after {
+      box-sizing: content-box !important;
+    }
    .details-container {
         position: relative;
         margin-bottom: 35px;
@@ -107,8 +111,66 @@
                             <button type="button" class="Cursor btn btn-page"><i class="fa fa-send"></i></button>
                         </div>
                         
-                        <button type="button" id="btAdd" class="Cursor btn btn-page" style="margin-left: 15px;margin-right: 15px;"><i class="fa fa-paperclip"></i></button>
-                        <input id="addFile" name="file" type="file" style="display:none;" />
+                        @if (true)
+                        {
+                            <div class="dropdown">
+                                <button id="btFile" class="Cursor btn btn-page" data-toggle="dropdown" style="margin-left: 10px;margin-right: 10px;"><i class="fa fa-paperclip"></i> 1</button>
+
+                                <div class="dropdown-menu" style="width: 400px;position: absolute;transform: translate3d(-101px, 39px, 0px);top: 0px;left: -210px;right: auto;bottom: auto;will-change: transform;max-height: 450px;padding: 9px 14px;overflow-wrap: break-word;">
+                                   <div style="margin-bottom: 20px;margin-top: 20px;"> 
+                                       <table>
+                                           <tbody>
+                                               <tr>
+                                                   <td><img style="width: 70px;" src="~/Content/img/vectorPDF.png" /></td>
+                                                   <td style="padding-left: 25px;">Archivo PDF</td>
+                                               </tr>
+                                               <tr>
+                                                   <td><img style="width: 70px;" src="~/Content/img/vectorPDF.png" /></td>
+                                                   <td style="padding-left: 25px;">Archivo PDF</td>
+                                               </tr>
+                                           </tbody>
+                                       </table>
+                                   </div>
+                                    <div style="padding: 20px 0 10px;border-top: 1px solid #eee;margin-bottom: 20px;margin-top: 20px;">
+                                        <center>
+                                            <table>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <button type="button" id="btAdd" class="Cursor btn btn-page" style="border: 0px;margin-left: 5px;margin-right: 5px; width: 90px; height: 65px"><i class="fa fa-paperclip"></i></button>
+                                                            <input id="addFile" name="file" type="file" style="display:none;" />
+                                                        </td>
+                                                        <td>
+                                                            <button type="button" id="btAdd" class="Cursor btn btn-page" style="border: 0px;margin-left: 5px;margin-right: 5px; width: 90px; height: 65px"><i class="fa fa-cloud-upload"></i></button>
+                                                            <input id="addFile" name="file" type="file" style="display:none;" />
+                                                        </td>
+                                                        <td>
+                                                            <button type="button" id="btAdd" class="Cursor btn btn-page" style="border: 0px;margin-left: 5px;margin-right: 5px; width: 90px; height: 65px"><i class="fa fa-folder-o"></i></button>
+                                                            <input id="addFile" name="file" type="file" style="display:none;" />
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </center>
+                                    </div>
+                                <div style="padding: 20px 0 10px;border-top: 1px solid #eee;">
+                                    <div>Display attachment(s) in client portal and emails
+                                        <label class="switch">
+                                            <input type="checkbox" checked>
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                </div><!-- dropdown-menu -->
+                            </div>
+
+                        }
+                        else {
+                            <button type="button" id="btAdd" class="Cursor btn btn-page" style="margin-left: 15px;margin-right: 15px;"><i class="fa fa-paperclip"></i></button>
+                            <input id="addFile" name="file" type="file" style="display:none;" />
+                        }
+
 
                 <button type="button" id="RecordPaymend" class="Cursor btn btn-page">Record Payment</button>
 
@@ -128,7 +190,7 @@
                             </div><!-- dropdown-menu -->
                         </div>
 
-                        <a id="closeMail" href="" class="nav-link pd-x-5 mg-l-15 hidden-xl-up">
+                        <a id="closeMail" class="nav-link pd-x-5 mg-l-15 hidden-xl-up">
                             <i class="icon ion-close"></i>
                         </a>
                     </nav>
@@ -794,10 +856,65 @@
                         </div>
                   </div>
 
-                <a id="closeMail" href="" class="nav-link pd-x-5 mg-l-15"><i class="fa fa-paperclip"></i>
-                    1 Attachment(s) added
+                <a id="btLinkAdd"  href="#" class="nav-link pd-x-5 mg-l-15"><i class="fa fa-paperclip"></i>
+                    2 Attachment(s) added
                 </a>
-
+                <div class="pmt-info" style="margin-top: 25px;margin-left: 15px;padding-left: 5px;">
+                    <h5>More Information</h5> 
+                        <div class="row info-row">
+                            <label class="text-muted col-md-3">Salesperson</label> 
+                                <div class="col-md-9">: Jesus Sotillo</div>
+                        </div>
+                </div>
+                <a id="btDisplay" style="margin-top: 20px;" class="Cursor nav-link pd-x-5 mg-l-15">
+                    Display Journal <i class="icon ion-arrow-right-b"> </i>
+                </a>
+                <a id="btOculDis" style="margin-top: 20px;" class="Cursor nav-link pd-x-5 mg-l-15">
+                    Display Journal <i class="icon ion-arrow-down-b"> </i>
+                </a>
+                <table style="width:100%;margin-top:20px;table-layout:fixed;" id="infoMore" class="pcs-itemtable" border="0" cellspacing="0" cellpadding="0">
+                    <thead>
+                        <tr style="height:32px;">
+                            <td style="border-bottom: solid 1px; padding: 5px 10px 5px 20px;width: 70%;text-align: left;" id="" class="pcs-itemtable-breakword">
+                                ACCOUNT
+                            </td>
+                            <td style="border-bottom: solid 1px; padding: 5px 10px 5px 5px;width: 15%;text-align: left;" id="" class="pcs-itemtable-breakword">
+                                DEBIT
+                            </td>
+                            <td style="border-bottom: solid 1px; padding: 5px 10px 5px 5px;width: 15%;text-align: left;" id="" class="pcs-itemtable-breakword">
+                                CREDIT
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody class="itemBody">
+                        <tr>
+                            <td rowspan="1" valign="top" style="padding: 10px 0px 10px 20px;" class="pcs-item-row">
+                                <div>
+                                    Sales
+                                </div>
+                            </td>
+                            <td rowspan="1" class="pcs-item-row lineitem-column text-align-left">
+                                <span id="tmp_item_qty">144.00</span>
+                            </td>
+                            <td rowspan="1" class="pcs-item-row lineitem-column text-align-left">
+                                <span id="tmp_item_rate">1.08</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td rowspan="1" valign="top" style="padding: 10px 0px 10px 20px;" class="pcs-item-row">
+                                <div>
+                                    Accounts Receivable
+                                </div>
+                            </td>
+                            <td rowspan="1" class="pcs-item-row lineitem-column text-align-left">
+                                <span id="tmp_item_qty">144.00</span>
+                            </td>
+                            <td rowspan="1" class="pcs-item-row lineitem-column text-align-left">
+                                <span id="tmp_item_rate">1.08</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
                 </div><!-- br-msg-body -->
 </div>
 
@@ -907,6 +1024,9 @@
             <div class="modal-header">
                 <div style="display:flex" id="tituloConBTNEdit">
                     <a id="createBACK" title="Click here to return to the previous window." class="btn btn-icon active" data-toggle="tab" href="#NEWINVOICE" role="tab">
+                        <div><i class="fa fa-arrow-left"></i></div>
+                    </a>
+                    <a id="detailBACK" title="Click here to return to the previous window." class="btn btn-icon active" data-toggle="tab" href="#NEWORDER" role="tab">
                         <div><i class="fa fa-arrow-left"></i></div>
                     </a>
                     <h3 id="lblTituloModal" class="tx-inverse mg-b-5"></h3>
@@ -1098,13 +1218,61 @@
                             </div><!-- pd-20 -->
                         </div><!-- col-6 -->
                     </div>
+                    <div class="tab-pane fade" id="DETAILORDER" role="tabpanel">
+                        <div class="row" style="margin-right: 0;">
+                            <div class="datagrid" style="width: 100%;">
+                                <table id="UserOrderInfo">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Phone</th>
+                                            <th>Address</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                        <div style="color:#000;margin-right: 0; padding:10px" class="row">
+                            <div class="datagrid" style="width: 100%;">
+                                <table id="HeaderOptions">
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div style="overflow-y:auto; height: 235px;" id="divTable">
+                            @*<table id="ordertable" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>PREVIEW</th>
+                        <th>QUANTITY</th>
+                        <th>WIDHT</th>
+                        <th>HEIGHT</th>
+                        <th>PANEL STYLE</th>
+                        <th>DOOR TYPE</th>
+                        <th>DOOR OPTION</th>
+                        <th>U. PRICE</th>
+                        <th>TOTAL</th>
+                        <th><i class="fa fa-flash"></i></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>*@
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <button id="btnClose" type="button" class="btn btn-secondary Cursor" data-dismiss="modal">Close</button>
                 <button id="btnBack" type="button" class="btn btn-secondary Cursor">Back</button>
+                <button id="btnAtras" data-toggle="tab" href="#NEWORDER" type="button" class="btn btn-secondary Cursor">Back</button>
                 <button id="btnCON" data-toggle="tab" href="#NEWORDER" role="tab" type="button" class="Cursor btn btn-primary Cursor">Continue</button>
-                <button id="btnSAVE" type="button" class="Cursor btn btn-primary Cursor">Save and continue</button>
+                <button id="btnSAVE" data-toggle="tab" href="#DETAILORDER" role="tab" type="button" class="Cursor btn btn-primary Cursor">Save and continue</button>
+                <button id="btSaveChan" type="button" class="Cursor btn btn-primary Cursor">Save change</button>
             </div>
         </div>
     </div>
