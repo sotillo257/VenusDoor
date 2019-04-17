@@ -31,6 +31,15 @@
   background-color: #dee2e6;
   height: 34px;
 }
+
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button { 
+        -webkit-appearance: none; 
+        margin: 0; 
+
+    }
+    input[type=number] { -moz-appearance:textfield; }
+    .datagrid table { border-collapse: collapse; text-align: left; width: 100%; } .datagrid {font: normal 12px/150% Verdana, Arial, Helvetica, sans-serif; background: #fff; overflow: hidden; border: 1px solid #D2D2D2; -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px; }.datagrid table td, .datagrid table th { padding: 3px 10px; }.datagrid table thead th {background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #8397C6), color-stop(1, #B8B4B4) );background:-moz-linear-gradient( center top, #8397C6 5%, #B8B4B4 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#8397C6', endColorstr='#B8B4B4');background-color:#8397C6; color:#FFFFFF; font-size: 12px; font-weight: normal; border-left: 1px solid #B0B0B0; } .datagrid table thead th:first-child { border: none; }.datagrid table tbody td { color: #5C5C5C; border-left: 1px solid #ADADAD;font-size: 12px;border-bottom: 1px solid #E6F0F2;font-weight: normal; }.datagrid table tbody td:first-child { border-left: none; }.datagrid table tbody tr:last-child td { border-bottom: none; }
 </style>
 
         <div class="br-mailbox-list ps ps--theme_default ps--active-y" data-ps-id="7a4680f7-5fbe-1b05-8ec8-b8dbe07f7215">
@@ -93,8 +102,8 @@
                 <div class="br-msg-header d-flex justify-content-between">
                     <div class="media align-items-center">
                         <div class="media-body mg-l-10">
-                            <p class="tx-inverse tx-medium mg-b-0">INV-0001</p>
-                            <p class="tx-12 mg-b-0">
+                            <p class="tx-inverse tx-medium mg-b-0" id="lblFolio">INV-0001</p>
+                            <p class="tx-12 mg-b-0" id="lblFechaTitulo">
                                 <span>Sep 20, 2017 8:45am</span>
                                 <a href="" class="mg-l-5 tx-gray-500"><i class="icon ion-star"></i></a>
                                 <a href="" class="mg-l-5 tx-gray-500"><i class="icon ion-android-attach"></i></a>
@@ -118,15 +127,31 @@
 
                                 <div class="dropdown-menu" id="dropFile" style="width: 400px;position: absolute;transform: translate3d(-101px, 39px, 0px);top: 0px;left: -210px;right: auto;bottom: auto;will-change: transform;max-height: 450px;padding: 9px 14px;overflow-wrap: break-word;">
                                    <div style="margin-bottom: 20px;margin-top: 20px;"> 
-                                       <table>
+                                       <table class="table table-hover">
                                            <tbody>
                                                <tr>
-                                                   <td><img style="width: 70px;" src="~/Content/img/vectorPDF.png" /></td>
-                                                   <td style="padding-left: 25px;">Archivo PDF</td>
+                                                   <td style="border-top: 0;"><img style="width: 70px;" src="~/Content/img/vectorPDF.png" /></td>
+                                                   <td style="border-top: 0;padding-left: 25px;">
+                                                       <p>Archivo PDF</p>
+                                                       <span style="font-size: 12px;">File Size: 1.6 MB</span><br />
+                                                       <div class="line-seperator font-xs hide" style="margin-top: 45px;">
+                                                           <a class="col" href="#">Download</a>
+                                                           <a class="col" href="#">Remove</a>
+                                                           <a class="col" href="#">Delete</a>
+                                                       </div>
+                                                   </td>
                                                </tr>
                                                <tr>
-                                                   <td><img style="width: 70px;" src="~/Content/img/vectorPDF.png" /></td>
-                                                   <td style="padding-left: 25px;">Archivo PDF</td>
+                                                   <td style="border-top: 0;"><img style="width: 70px;" src="~/Content/img/vectorPDF.png" /></td>
+                                                   <td style="border-top: 0;padding-left: 25px;">
+                                                       <p>Archivo PDF</p>
+                                                       <span style="font-size: 12px;">File Size: 1.6 MB</span><br />
+                                                       <div class="line-seperator font-xs hide" style="margin-top: 45px;">
+                                                           <a class="col" href="#">Download</a>
+                                                           <a class="col" href="#">Remove</a>
+                                                           <a class="col" href="#">Delete</a>
+                                                       </div>
+                                                   </td>
                                                </tr>
                                            </tbody>
                                        </table>
@@ -276,6 +301,7 @@
                                                     </tr>
                                                 </tbody>
                                             </table>
+                                          
                                         }
 
                                     </div>
@@ -585,7 +611,7 @@
                                    
                                             </ul>
                                             <bottom id="mostrarCampo" class="Cursor ocultarTitulo">+ Add Comment</bottom>
-                                            <textarea style="width:100%" class="hidden showInput form-control"></textarea>
+                                            <textarea style="width:100%" class="hidden showInput form-control" id="txtComment"></textarea>
                                             <button type="button" style="padding-left: 9px;padding-right: 9px;height: 30px;padding-top: 2px;padding-bottom: 2px;margin-top: 10px;" class="Cursor btn btn-primary AddComment">Add Comment</button>
                                         </div>
                                     </div>
@@ -596,7 +622,7 @@
                     </div>
                 </div>
                     <div>
-                        <div style="max-width: 8.27in;margin-left:auto;margin-right:auto;" class="details-container clearfix ">
+                        <div style="max-width: 8.27in;margin-left:auto;margin-right:auto; margin-top: 0;" class="details-container clearfix" id="divMarca">
                             <div class="pcs-template ">
                                 <div class="pcs-template-header pcs-header-content" id="header">
                                     <div class="pcs-template-fill-emptydiv"></div>
@@ -625,7 +651,7 @@
                                                     <div style="clear:both;margin-top:30px;">
                                                         <span style="font-size:8pt;"><b>Balance Due</b></span>
                                                         <br>
-                                                        <span style="font-size:12pt;"><b>$230.77</b></span>
+                                                        <span style="font-size:12pt;"><b id="tmp_balance_due"></b></span>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -639,7 +665,7 @@
                                                     <div>
                                                         <label style="font-size: 10pt;" class="pcs-label" id="tmp_billing_address_label">Bill To</label>
                                                         <br>
-                                                        <span style="white-space: pre-wrap;" id="tmp_billing_address"><strong><span class="pcs-customer-name" id="zb-pdf-customer-detail"><a href="#/contacts/1650031000000667001">Sharron Garrison</a></span></strong></span>
+                                                        <span style="white-space: pre-wrap;" id="tmp_billing_address"><strong><span class="pcs-customer-name" id="zb-pdf-customer-detail"><a id="btNameBill" href="#"></a></span></strong></span>
                                                     </div>
                                                 </td>
                                                 <td align="right" style="vertical-align:bottom;width: 40%;">
@@ -755,53 +781,11 @@
                                         </div>
                                     </div>
                                     
-                                    <table style="width:100%;margin-top:20px;table-layout:fixed;" class="pcs-itemtable" border="0" cellspacing="0" cellpadding="0">
+                                    <table style="width:100%;margin-top:20px;table-layout:fixed;" class="pcs-itemtable" border="0" cellspacing="0" cellpadding="0" id="tbInvoice">
                                         <thead>
-                                            <tr style="height:32px;">
-                                                <td style="padding: 5px 0px 5px 5px;width: 5%;text-align: center;" id="" class="pcs-itemtable-header pcs-itemtable-breakword">
-                                                    Door
-                                                </td>
-                                                <td style="padding: 5px 10px 5px 20px;width: ;text-align: left;" id="" class="pcs-itemtable-header pcs-itemtable-breakword">
-                                                    Description
-                                                </td>
-                                                <td style="padding: 5px 10px 5px 5px;width: 11%;text-align: left;" id="" class="pcs-itemtable-header pcs-itemtable-breakword">
-                                                    Qty
-                                                </td>
-                                                <td style="padding: 5px 10px 5px 5px;width: 11%;text-align: left;" id="" class="pcs-itemtable-header pcs-itemtable-breakword">
-                                                    Discount
-                                                </td>
-                                                <td style="padding: 5px 10px 5px 5px;width: 15%;text-align: left;" id="" class="pcs-itemtable-header pcs-itemtable-breakword">
-                                                    Sub Total
-                                                </td>
 
-                                            </tr>
                                         </thead>
-                                        <tbody class="itemBody">
-                                            <tr>
-                                                <td rowspan="1" valign="top" style="padding: 10px 0 10px 5px;text-align: center;word-wrap: break-word;" class="pcs-item-row">
-                                                    1
-                                                </td>
-                                                <td rowspan="1" valign="top" style="padding: 10px 0px 10px 20px;" class="pcs-item-row">
-                                                    <div>
-                                                        <div>
-                                                            <span style="word-wrap: break-word;" id="tmp_item_name">Wich</span><br>
-
-                                                            <span style="white-space: pre-wrap;word-wrap: break-word;" class="pcs-item-desc" id="tmp_item_description">50</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td rowspan="1" class="pcs-item-row lineitem-column text-align-right">
-                                                    <span id="tmp_item_qty">144.00</span>
-                                                    <div class="pcs-item-desc">LF</div>
-                                                </td>
-                                                <td rowspan="1" class="pcs-item-row lineitem-column text-align-right">
-                                                    <span id="tmp_item_rate">1.08</span>
-                                                </td>
-                                                <td rowspan="1" class="pcs-item-row lineitem-column lineitem-content-right text-align-right">
-                                                    <span id="tmp_item_amount">155.52</span>
-                                                </td>
-                                            </tr>
-                                        </tbody>
+                                        <tbody class="itemBody"></tbody>
                                     </table>
                                     <div style="width: 100%;margin-top: 1px;">
                                         <div class="v-top total-number-section">
@@ -818,7 +802,7 @@
 
                                                     <tr style="height:10px;">
                                                         <td class="total-section-label text-align-right">Sales Tax (8.25%)  </td>
-                                                        <td class="total-section-value text-align-right">17.59</td>
+                                                        <td id="tmp_Tax" class="total-section-value text-align-right">17.59</td>
                                                     </tr>
 
                                                     <tr>
@@ -828,7 +812,7 @@
 
                                                     <tr style="height:40px;" class="pcs-balance">
                                                         <td class="total-section-label text-align-right"><b>Balance Due</b></td>
-                                                        <td id="tmp_balance_due" class="total-section-value text-align-right"><b>$230.77</b></td>
+                                                        <td id="tmp_balance_due_bottom" class="total-section-value text-align-right"><b></b></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -838,7 +822,7 @@
 
                                     <div style="clear:both;margin-top:50px;width:100%;">
                                         <label style="font-size: 10pt;" id="tmp_notes_label" class="pcs-label">Notes</label><br>
-                                        <p style="margin-top:7px;white-space: pre-wrap;word-wrap: break-word;" class="pcs-notes">Thanks for your business.</p>
+                                        <p id="tmp_Notes" style="margin-top:7px;white-space: pre-wrap;word-wrap: break-word;" class="pcs-notes"></p>
                                     </div>
 
                                     <div style="page-break-inside: avoid;">
@@ -1230,7 +1214,9 @@
                                             <th>Address</th>
                                         </tr>
                                     </thead>
-                                    <tbody></tbody>
+                                    <tbody>
+
+                                    </tbody>
                                 </table>
                             </div>
 
@@ -1238,11 +1224,13 @@
                         <div style="color:#000;margin-right: 0; padding:10px" class="row">
                             <div class="datagrid" style="width: 100%;">
                                 <table id="HeaderOptions">
-                                    <tbody></tbody>
+                                    <tbody>
+
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
-                        <div style="overflow-y:auto; height: 235px;" id="divTable">
+                        <div hidden style="overflow-y:auto; height: 225px;" id="divTable">
                             @*<table id="ordertable" style="width:100%">
                 <thead>
                     <tr>
@@ -1264,14 +1252,88 @@
             </table>*@
                         </div>
                     </div>
+                    <div id="MODIFYOR" class="tab-pane fade" role="tabpanel">
+                        <div style="display:flex; margin-top:45px">
+                            <div id="DivImagenes" style="width:33%">
+                                <div class="row" style="margin-right: 0px; display:flex; justify-content:center">
+                                    <center id="PictureProfile">
+                                        <img style="height: 100px;width: 235px;margin-top: 20px;" id="ProfilePicture" src="~/Content/img/Profile/img11.png" />
+                                    </center>
+                                </div>
+                                <div class="row" style="margin-right: 0px;display:flex; justify-content:center">
+                                    <center id="PicturePanel">
+                                        <img style="width: 230px;height: 230px;" id="DoorPicture" src="~/Content/img/Doors/img11.png">
+                                    </center>
+                                </div>
+                            </div>
+                            <div id="DivCombos" style="width:67%;">
+                                <div class="row" style="margin-right: 0;">
+                                    <input id="idDoorxO" hidden />
+                                    <input id="idDxuXO" hidden />
+                                    <div class="col-xs-3 col-md-4">
+                                        <label for="Panel" style="margin-top: 25px;">Panel Style: </label>
+                                        <select style="width:100%;" class="form-control select2 Profile Doors" id="cbPanel"></select>
+                                    </div><!-- col -->
+                                    <div class="col-xs-3 col-md-4">
+                                        <label for="DoorType" style="margin-top: 25px;">Door Type: </label>
+                                        <select style="width:100%" class="form-control select2" id="cbDoorType"></select>
+                                    </div>
+                                    <div class="col-xs-3 col-md-4">
+                                        <label for="DoorType" style="margin-top: 25px;">Door Option</label>
+                                        <select style="width:100%" class="form-control select2" id="cbDoorOpt"></select>
+                                    </div>
+
+                                    <div class="col-xs-2 col-md-3">
+                                        <label for="width" style="margin-top: 25px;">Width: </label>
+                                        <div>
+                                            <div style="display:flex">
+                                                <input style="width:50%!important" name="SoloNumeros" required class="required RequiereLlenar eventChange iptWidth form-control" type="number" min="1" maxlength="2" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="iptWidth">
+                                                <select style="width:50%!important" class="form-control select2" id="cbDecimalsW"></select>
+                                            </div>
+                                            <label id="alertWidth" style="Color:red; font-size:10px; display:none;margin:0"></label>
+                                        </div>
+                                    </div><!-- form-group -->
+                                    <div class="col-xs-2 col-md-3">
+                                        <label for="inDescription" style="margin-top: 25px;">Height: </label>
+                                        <div>
+                                            <div style="display:flex">
+                                                <input style="width:50%!important" name="SoloNumeros" required class="required RequiereLlenar eventChange iptHeight form-control" type="number" min="1" maxlength="3" max="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="iptHeight">
+                                                <select style="width:50%!important" class="form-control select2" id="cbDecimalsH"></select>
+                                            </div>
+                                            <label id="alertHeight" style="Color:red; font-size:10px; margin:0"></label>
+                                        </div>
+                                    </div><!-- form-group -->
+
+                                    <div class="col-xs-1 col-md-2">
+                                        <label for="Material" style="margin-top: 25px;">Quantity: </label>
+                                        <input style="width:100%!important" name="SoloNumeros" required class="required RequiereLlenar eventChange iptHeight form-control" type="number" min="1" maxlength="2" max="99" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="CantidadFila">
+                                    </div><!-- col -->
+                                </div>
+                                <div class="row" style="margin-right: 0;">
+                                    <p style="margin-bottom: 0;">You can add a different discount to this door or leave the discount of the order in general.</p>
+                                </div>
+                                <div class="row" style="margin-right: 0;">
+                                    <div class="col-xs-3 col-md-3">
+
+                                        <div class="input-group" style="width: 53%!important;">
+                                            <input style="width:50%!important" name="SoloNumeros" required class="required RequiereLlenar eventChange iptHeight form-control" type="number" min="1" maxlength="2" max="99" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="descDXO">
+                                            <span class="input-group-addon tx-size-sm lh-2">%</span>
+                                        </div>
+                                    </div><!-- form-group -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <button id="btnClose" type="button" class="btn btn-secondary Cursor" data-dismiss="modal">Close</button>
+                <button id="btCancel" type="button" class="btn btn-secondary Cursor">Cancel</button>
                 <button id="btnBack" type="button" class="btn btn-secondary Cursor">Back</button>
                 <button id="btnAtras" data-toggle="tab" href="#NEWORDER" type="button" class="btn btn-secondary Cursor">Back</button>
                 <button id="btnCON" data-toggle="tab" href="#NEWORDER" role="tab" type="button" class="Cursor btn btn-primary Cursor">Continue</button>
-                <button id="btnSAVE" data-toggle="tab" href="#DETAILORDER" role="tab" type="button" class="Cursor btn btn-primary Cursor">Save and continue</button>
+                <button id="btnSAVE" data-toggle="tab" href="#DETAILORDER" role="tab" type="button" class="Cursor Detalle btn btn-primary Cursor">Save and continue</button>
+                <button id="btGuardar" type="button" class="Cursor btn btn-primary Cursor">Save</button>
                 <button id="btSaveChan" type="button" class="Cursor btn btn-primary Cursor">Save change</button>
             </div>
         </div>
@@ -1279,16 +1341,21 @@
 </div>
 
 @section scripts{
+    <script type="text/javascript">
+        var urlGetDoorsByOrder = '@Url.Action("GetDoorsByOrder", "OrderControl")';
+    </script>
 
     @Scripts.Render("~/Scripts/js/Invoice.js")
     @Scripts.Render("~/Scripts/Pagination.js")
 <script>
     var urlGetHistoryInvoice = '@Url.Action("GetHistoryInvoice", "Invoice")';
     var urlInsertComment = '@Url.Action("InsertComment", "Invoice")';
+    var urlGetDoorsByOrder = '@Url.Action("GetDoorsByOrder", "OrderControl")';
                     try {
                         var listInvoice = JSON.parse('@Html.Raw(ViewBag.Invoice)');
                     } catch (e) {
                         var listInvoice = null;
                     }
 </script>
+
 }

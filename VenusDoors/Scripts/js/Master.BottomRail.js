@@ -45,10 +45,10 @@
                 if (listBTR[i].Id == $(this).attr('value')) {
                    
                   var aux = listBTR[i].Id;
-                var aux1 = listBTR[i].Status.Id;
-                var aux2 = listBTR[i].Description;
+                    var aux1 = listBTR[i].Status.Id;
+                    var aux2 = listBTR[i].Description;
                     $('#inId').val(listBTR[i].Id);
-                llenarComboEstatus(listBTR[i].Status.Id);
+                    llenarComboEstatus(listBTR[i].Status.Id);
                     $('#inDescription').val(listBTR[i].Description);
                 break;
                 }
