@@ -30,5 +30,8 @@ namespace Model
         public DoorOption DoorOption { get; set; }
         public int Descuento { get; set; }
         public decimal TotalDescuento { get; set; }
+        public bool isDrill { get; set; }
+        public HingeDirection HingeDirection { get; set; }
+        public HingePositions HingePositions { get; set; }
     }
 }

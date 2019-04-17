@@ -55,7 +55,10 @@ namespace DataAccess
                             DoorType = new DoorType() { Id = int.Parse(item["IdDoorType"].ToString()), Description = item["DescripDoorType"].ToString() },
                             DoorOption = new DoorOption() { Id = int.Parse(item["IdDoorOption"].ToString()), Description = item["DescripDoorOption"].ToString() },
                             Descuento = val,
-                            TotalDescuento = valu
+                            TotalDescuento = valu,
+                            isDrill = bool.Parse(item["isDrill"].ToString()),
+                            HingeDirection = new HingeDirection() { Id = int.Parse(item["IdHingeDirection"].ToString()), Direction = item["HingerDirection"].ToString(), },
+                            HingePositions = new HingePositions() { Id = int.Parse(item["IdHingePositions"].ToString()), Position1 = item["HP1"].ToString(), Position2 = item["HP2"].ToString(), Position3 = item["HP3"].ToString(), Position4 = item["HP4"].ToString(), Position5 = item["HP5"].ToString(), },
                         });
                     }
                 }
@@ -114,7 +117,10 @@ namespace DataAccess
                             DoorType = new DoorType() { Id = int.Parse(item["IdDoorType"].ToString()), Description = item["DescripDoorType"].ToString() },
                             DoorOption = new DoorOption() { Id = int.Parse(item["IdDoorOption"].ToString()), Description = item["DescripDoorOption"].ToString() },
                             Descuento = val,
-                            TotalDescuento = valu
+                            TotalDescuento = valu,
+                            isDrill = bool.Parse(item["isDrill"].ToString()),
+                            HingeDirection = new HingeDirection() { Id = int.Parse(item["IdHingeDirection"].ToString()), Direction = item["HingerDirection"].ToString(), },
+                            HingePositions = new HingePositions() { Id = int.Parse(item["IdHingePositions"].ToString()), Position1 = item["HP1"].ToString(), Position2 = item["HP2"].ToString(), Position3 = item["HP3"].ToString(), Position4 = item["HP4"].ToString(), Position5 = item["HP5"].ToString(), },
                         });
                     }
                 }
@@ -174,7 +180,10 @@ namespace DataAccess
                             DoorType = new DoorType() { Id = int.Parse(item["IdDoorType"].ToString()), Description = item["DescripDoorType"].ToString() },
                             DoorOption = new DoorOption() { Id = int.Parse(item["IdDoorOption"].ToString()), Description = item["DescripDoorOption"].ToString() },
                             Descuento = val,
-                            TotalDescuento = valu
+                            TotalDescuento = valu,
+                            isDrill = bool.Parse(item["isDrill"].ToString()),
+                            HingeDirection = new HingeDirection() { Id = int.Parse(item["IdHingeDirection"].ToString()), Direction = item["HingerDirection"].ToString(), },
+                            HingePositions = new HingePositions() { Id = int.Parse(item["IdHingePositions"].ToString()), Position1 = item["HP1"].ToString(), Position2 = item["HP2"].ToString(), Position3 = item["HP3"].ToString(), Position4 = item["HP4"].ToString(), Position5 = item["HP5"].ToString(), },
                         };
                     }
                 }
@@ -191,7 +200,7 @@ namespace DataAccess
         {
             decimal total = Convert.ToDecimal(pDoorsxOrder.ItemCost);
             decimal subto = Convert.ToDecimal(pDoorsxOrder.SubTotal);
-            string sql = @"[spInsertDoorsxOrder]  '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}'";
+            string sql = @"[spInsertDoorsxOrder]  '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}'";
             sql = string.Format(sql,
                 pDoorsxOrder.DoorxUser.Id,
                 pDoorsxOrder.Width.ToString().Replace(',', '.'), 
@@ -209,7 +218,10 @@ namespace DataAccess
                 pDoorsxOrder.ProfilePicture, 
                 pDoorsxOrder.Panel.Id,
                 pDoorsxOrder.DoorType.Id,
-                pDoorsxOrder.DoorOption.Id);
+                pDoorsxOrder.DoorOption.Id,
+                (pDoorsxOrder.isDrill == true) ? 1 : 0,
+                pDoorsxOrder.HingeDirection.Id,
+                pDoorsxOrder.HingePositions.Id);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -224,7 +236,7 @@ namespace DataAccess
         {
             decimal total = Convert.ToDecimal(pDoorsxOrder.ItemCost);
             decimal subto = Convert.ToDecimal(pDoorsxOrder.SubTotal);
-            string sql = @"[spUpdateDoorsxOrder]  '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}'";
+            string sql = @"[spUpdateDoorsxOrder]  '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}', '{20}', '{21}'";
             sql = string.Format(sql,
                 pDoorsxOrder.Id,
                 pDoorsxOrder.DoorxUser.Id,
@@ -243,6 +255,9 @@ namespace DataAccess
                 pDoorsxOrder.Panel.Id,
                 pDoorsxOrder.DoorType.Id,
                 pDoorsxOrder.DoorOption.Id,
+                (pDoorsxOrder.isDrill == true) ? 1 : 0,
+                pDoorsxOrder.HingeDirection.Id,
+                pDoorsxOrder.HingePositions.Id,
                 pDoorsxOrder.Descuento,
                 pDoorsxOrder.TotalDescuento.ToString().Replace(',', '.'));
             try
