@@ -216,7 +216,7 @@ $(document).ready(function () {
         $(".ocultarTitulo").hide();
     });
 
-    $("#btLinkAdd").on('click', function () {
+    $(document).on('click', "#btLinkAdd", function () {
         $("#btFile").trigger("click");
     });
 

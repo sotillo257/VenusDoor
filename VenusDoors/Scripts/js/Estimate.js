@@ -100,6 +100,7 @@ $(document).ready(function () {
                     if (inicio) {
                         inicio = false;
                         LlenarVistaPrincipal(data[i]);
+                        _IdEstimate = data[i].Id;
                         option += '<div data-id="' + data[i].Id + '" class="br-mailbox-list-item Esimate active">';
                     } else {
                         if (_IdEstimate == data[i].Id) {
