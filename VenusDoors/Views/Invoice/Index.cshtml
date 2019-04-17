@@ -1232,24 +1232,24 @@
                         </div>
                         <div hidden style="overflow-y:auto; height: 225px;" id="divTable">
                             @*<table id="ordertable" style="width:100%">
-                <thead>
-                    <tr>
-                        <th>PREVIEW</th>
-                        <th>QUANTITY</th>
-                        <th>WIDHT</th>
-                        <th>HEIGHT</th>
-                        <th>PANEL STYLE</th>
-                        <th>DOOR TYPE</th>
-                        <th>DOOR OPTION</th>
-                        <th>U. PRICE</th>
-                        <th>TOTAL</th>
-                        <th><i class="fa fa-flash"></i></th>
-                    </tr>
-                </thead>
-                <tbody>
+                                <thead>
+                                    <tr>
+                                        <th>PREVIEW</th>
+                                        <th>QUANTITY</th>
+                                        <th>WIDHT</th>
+                                        <th>HEIGHT</th>
+                                        <th>PANEL STYLE</th>
+                                        <th>DOOR TYPE</th>
+                                        <th>DOOR OPTION</th>
+                                        <th>U. PRICE</th>
+                                        <th>TOTAL</th>
+                                        <th><i class="fa fa-flash"></i></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
 
-                </tbody>
-            </table>*@
+                                </tbody>
+                            </table>*@
                         </div>
                     </div>
                     <div id="MODIFYOR" class="tab-pane fade" role="tabpanel">
@@ -1341,15 +1341,12 @@
 </div>
 
 @section scripts{
-    <script type="text/javascript">
-        var urlGetDoorsByOrder = '@Url.Action("GetDoorsByOrder", "OrderControl")';
-    </script>
-
     @Scripts.Render("~/Scripts/js/Invoice.js")
     @Scripts.Render("~/Scripts/Pagination.js")
 <script>
     var urlGetHistoryInvoice = '@Url.Action("GetHistoryInvoice", "Invoice")';
     var urlInsertComment = '@Url.Action("InsertComment", "Invoice")';
+    var urlGetDoorsByOrderInvo = '@Url.Action("GetDoorsByOrderInvo", "Invoice")';
     var urlGetDoorsByOrder = '@Url.Action("GetDoorsByOrder", "OrderControl")';
                     try {
                         var listInvoice = JSON.parse('@Html.Raw(ViewBag.Invoice)');

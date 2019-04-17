@@ -45,5 +45,28 @@ namespace VenusDoors.Controllers
                 return Json(new { Success = false, Mensaje = ex.Message }, JsonRequestBehavior.AllowGet);
             }
         }
+
+        [Authorize(Roles = "1, 2")]
+        [HttpPost]
+        public ActionResult GetDoorsByOrderInvo(int idOrder)
+        {
+            BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
+            BusinessLogic.lnDoorxOrder Ord = new BusinessLogic.lnDoorxOrder();
+            BusinessLogic.lnOrder _LNO = new BusinessLogic.lnOrder();
+            BusinessLogic.lnUser _LNU = new BusinessLogic.lnUser();
+            BusinessLogic.lnPerson _LNP = new BusinessLogic.lnPerson();
+
+            DoorsxUser xDoors = _LN.GetAllDoorsxUser().Where(x => x.Order.Id == idOrder).ToList().FirstOrDefault();
+
+            xDoors.DoorsxOrder = Ord.GetAllDoorxOrderByDoorxUser(xDoors.Id);
+            if (xDoors.DoorsxOrder.Sum(x => x.Descuento) > 0)
+            {
+                xDoors.DescuentoActivos = true;
+            }
+            xDoors.Order = _LNO.GetOrderById(idOrder);
+            xDoors.User = _LNU.GetUserById(xDoors.User.Id);
+            xDoors.User.Person = _LNP.GetPersonById(xDoors.User.Person.Id);
+            return Json(xDoors);
+        }
     }
 }

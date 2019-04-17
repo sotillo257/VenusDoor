@@ -7,7 +7,7 @@
         $('#editDXU').removeClass("active");
         $("#editBCK").trigger("click");
         $('#dxoPanel').removeClass("active");
-        GetDoorsByOrder(idGETOr);
+        GetDoorsByOrderInvo(idGETOr);
 });
 
     $(".read-more-target").hide();
@@ -619,14 +619,14 @@ function GetDoorsByOrder(idOrden) {
     });
 }
 
-//function GetDoorsByOrder(idOrden) {
+//function GetDoorsByOrderInvo(id) {
 //    var datos =
 //                    {
 //                        IdOrder: idOrden,
 //                    }
 //    $.ajax({
 //        data: JSON.stringify(datos),
-//        url: urlGetDoorsByOrder,
+//        url: urlGetDoorsByOrderInvo,
 //        cache: false,
 //        type: 'POST',
 //        async: false,
@@ -760,5 +760,4 @@ function GetDoorsByOrder(idOrden) {
 //                $("#editDXU").hide();
 //            }
 //        },
-//});
-//    }
+//    })}
