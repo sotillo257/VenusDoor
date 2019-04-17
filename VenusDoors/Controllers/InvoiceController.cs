@@ -46,27 +46,54 @@ namespace VenusDoors.Controllers
             }
         }
 
-        [Authorize(Roles = "1, 2")]
+        [Authorize]
         [HttpPost]
-        public ActionResult GetDoorsByOrderInvo(int idOrder)
+        public ActionResult InsertComment(string Comment, int IdInvoice)
         {
-            BusinessLogic.lnDoorsxUser _LN = new BusinessLogic.lnDoorsxUser();
-            BusinessLogic.lnDoorxOrder Ord = new BusinessLogic.lnDoorxOrder();
-            BusinessLogic.lnOrder _LNO = new BusinessLogic.lnOrder();
-            BusinessLogic.lnUser _LNU = new BusinessLogic.lnUser();
-            BusinessLogic.lnPerson _LNP = new BusinessLogic.lnPerson();
-
-            DoorsxUser xDoors = _LN.GetAllDoorsxUser().Where(x => x.Order.Id == idOrder).ToList().FirstOrDefault();
-
-            xDoors.DoorsxOrder = Ord.GetAllDoorxOrderByDoorxUser(xDoors.Id);
-            if (xDoors.DoorsxOrder.Sum(x => x.Descuento) > 0)
+            try
             {
-                xDoors.DescuentoActivos = true;
+                BusinessLogic.lnHistoryInvoice _LNHIST = new BusinessLogic.lnHistoryInvoice();
+                HistoryInvoice HI = new HistoryInvoice()
+                {
+                    Invoice = new Invoice() { Id = IdInvoice },
+                    History = Comment,
+                    Type = new Model.Type() { Id = 12 },
+                    UserCreador = new Model.User() { Id = (int)Session["UserID"] },
+                    CreationDate = DateTime.Now
+                };
+
+                int i = _LNHIST.InsertHistoryInvoice(HI);
+                if (i > 0)
+                {
+                    List<HistoryInvoice> list = _LNHIST.GetHistoryInvoiceByIdInvoice(IdInvoice);
+                    return Json(new { listHistory = list, Success = true, Mensaje = "" }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(new { Success = false, Mensaje = "Error inserting the comment" }, JsonRequestBehavior.AllowGet);
+                }
             }
-            xDoors.Order = _LNO.GetOrderById(idOrder);
-            xDoors.User = _LNU.GetUserById(xDoors.User.Id);
-            xDoors.User.Person = _LNP.GetPersonById(xDoors.User.Person.Id);
-            return Json(xDoors);
+            catch (Exception ex)
+            {
+                return Json(new { Success = false, Mensaje = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult GetDocAdjuntosInvoice(int idInvoice)
+        {
+            try
+            {
+                BusinessLogic.lnDocumentsAdjxInvoice _LNDAdj = new BusinessLogic.lnDocumentsAdjxInvoice();
+                List<DocumentsAdjxInvoice> list = _LNDAdj.GetDocumentsAdjxInvoice(idInvoice);
+                return Json(new { listDocAdj = list, Success = true, Mensaje = "" }, JsonRequestBehavior.AllowGet);
+
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Success = false, Mensaje = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
         }
     }
 }

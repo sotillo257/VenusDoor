@@ -49,7 +49,7 @@
         $(".ocultarTitulo").hide();
     });
 
-    $("#btLinkAdd").on('click', function () {
+    $(document).on('click', "#btLinkAdd", function () {
         $("#btFile").trigger("click");
     });
 
@@ -459,15 +459,42 @@ $(document).on('click', '.Invoice', function (event) {
     });
 
 var claseAnterior = 'paid';
+//function LlenarVistaPrincipal(listInvoice) {
+//    GetHistoryInvoice(listInvoice.Id);
+//    $("#lblFolio").text(listInvoice.IdFolio);
+//    $("#tmp_entity_number").text("# " + listInvoice.IdFolio);
+
+//    var balancs = listInvoice.TotalDue - listInvoice.Total;
+//    $("#tmp_balance_due").text("$" + Moneda(balancs));
+//    $("#tmp_balance_due_bottom").text("$" + Moneda(balancs));
+
+//    var Fecha1 = new Date(parseInt(re.exec(listInvoice.CreationDate)[0]));
+//    $("#lblFechaTitulo").text(Fecha1.ddmmyyyy());
+//    $("#tmp_entity_date").text(Fecha1.ddmmyyyy());
+
+//    $("#btNameBill").text(listInvoice.UserCliente.Person.Name);
+
+//    $('<style type="text/css">  .paid-' + listInvoice.Status.Description + ' {box-sizing:border-box; margin: calc(50vh - 170px) auto;position:relative;} .paid-' + listInvoice.Status.Description + '::before { position:absolute;' +
+//   ' top:29px; left:-48px; box-sizing:border-box;content:"' + listInvoice.Status.Description + '!";text-transform:uppercase; font-family:"Segoe UI", Tahoma, Geneva, Verdana, sans-serif;' +
+//    'font-size: 13px;text-align:center;font-weight: 700;color: #fff;background: transparent;height:0;width:155px;border:25px solid transparent;border-bottom:25px solid ' + Colores(listInvoice.Status.Id) + ';' +
+//    'transform: rotate(-45deg);line-height:23px;} </style>').appendTo("head");
+
+//    $("#divMarca").removeClass(claseAnterior);
+//    claseAnterior = 'paid-' + listInvoice.Status.Description;
+//    $("#divMarca").addClass('paid-' + listInvoice.Status.Description);
+//    GetDoorsByOrder(listInvoice.Order.Id);
+//}
+
 function LlenarVistaPrincipal(listInvoice) {
+
     GetHistoryInvoice(listInvoice.Id);
+
+    GetDoorsByOrder(listInvoice.Order.Id);
+
+    GetDocAdjuntosInvoice(listInvoice.Id);
+
     $("#lblFolio").text(listInvoice.IdFolio);
     $("#tmp_entity_number").text("# " + listInvoice.IdFolio);
-
-    var balancs = listInvoice.TotalDue - listInvoice.Total;
-    $("#tmp_balance_due").text("$" + Moneda(balancs));
-    $("#tmp_balance_due_bottom").text("$" + Moneda(balancs));
-
     var Fecha1 = new Date(parseInt(re.exec(listInvoice.CreationDate)[0]));
     $("#lblFechaTitulo").text(Fecha1.ddmmyyyy());
     $("#tmp_entity_date").text(Fecha1.ddmmyyyy());
@@ -475,14 +502,13 @@ function LlenarVistaPrincipal(listInvoice) {
     $("#btNameBill").text(listInvoice.UserCliente.Person.Name);
 
     $('<style type="text/css">  .paid-' + listInvoice.Status.Description + ' {box-sizing:border-box; margin: calc(50vh - 170px) auto;position:relative;} .paid-' + listInvoice.Status.Description + '::before { position:absolute;' +
-   ' top:13px; left:-39px; box-sizing:border-box;content:"' + listInvoice.Status.Description + '!";text-transform:uppercase; font-family:"Segoe UI", Tahoma, Geneva, Verdana, sans-serif;' +
+   ' top:29px; left:-48px; box-sizing:border-box;content:"' + listInvoice.Status.Description + '!";text-transform:uppercase; font-family:"Segoe UI", Tahoma, Geneva, Verdana, sans-serif;' +
     'font-size: 13px;text-align:center;font-weight: 700;color: #fff;background: transparent;height:0;width:155px;border:25px solid transparent;border-bottom:25px solid ' + Colores(listInvoice.Status.Id) + ';' +
     'transform: rotate(-45deg);line-height:23px;} </style>').appendTo("head");
 
     $("#divMarca").removeClass(claseAnterior);
     claseAnterior = 'paid-' + listInvoice.Status.Description;
     $("#divMarca").addClass('paid-' + listInvoice.Status.Description);
-    GetDoorsByOrder(listInvoice.Order.Id);
 }
 
 function GetHistoryInvoice(id) {
@@ -499,9 +525,26 @@ function GetHistoryInvoice(id) {
         contentType: 'application/json; charset=utf-8',
         success: function (result) {
             if (result.Success) {
+
+                MostrarHistoryAndComment(result.listHistory);
+
+                $("#txtComment").val("");
+                $(".read-more-target").hide();
+            } else {
+                LlammarModal("Danger", "Error.", result.Mensaje);
+            }
+        },
+        error: function (err) {
+            LlammarModal("Danger", "Error.", "Error getting History & Comments");
+        },
+
+    });
+}
+
+function MostrarHistoryAndComment(listHistory) {
                 var option = '';
-                var x = result.listHistory.length - 4;
-                for (var i = 0; i < result.listHistory.length; i++) {
+    var x = listHistory.length - 4;
+    for (var i = 0; i < listHistory.length; i++) {
                     if (i > x) {
                         option += ' <li id="ember1553" class="ember-view">';
                     } else {
@@ -513,7 +556,7 @@ function GetHistoryInvoice(id) {
                     option += '                                   <div class="font-xxs text-draft">';
 
 
-                    var Fecha1 = new Date(parseInt(re.exec(result.listHistory[i].CreationDate)[0]));
+        var Fecha1 = new Date(parseInt(re.exec(listHistory[i].CreationDate)[0]));
                     option += Fecha1.ddmmyyyyHH();
                     option += '                                   </div></div>';
                     option += '                               <div class="comment-section pull-left">';
@@ -522,24 +565,14 @@ function GetHistoryInvoice(id) {
                     option += '                                    </div>';
                     option += '                                    <div class="media-body" style="margin-left: 50px;">';
                     option += '                                        <div class="comment">';
-                    option += '                                          <span class="IconStatus ' + Iconos(result.listHistory[i].Type.Id) + '" style="padding-right: 2px;padding-left: 6px;height: 24px;width: 26px;padding-bottom: 2px;padding-top: 3px;"></span>';
-                    option += '                                          <span class="description"><strong>' + result.listHistory[i].History + '</strong></span>';
-                    option += '                                          <label class="font-xs text-muted tx-12"> by ' + result.listHistory[i].NameCreador + '</label>';
+        option += '                                          <span class="IconStatus ' + Iconos(listHistory[i].Type.Id) + '" style="padding-right: 2px;padding-left: 6px;height: 24px;width: 26px;padding-bottom: 2px;padding-top: 3px;"></span>';
+        option += '                                          <span class="description"><strong>' + listHistory[i].History + '</strong></span>';
+        option += '                                          <label class="font-xs text-muted tx-12"> by ' + listHistory[i].NameCreador + '</label>';
                     option += '                                     </div></div></div></div></li>';
                 }
 
                 $("#divHistoryComm").empty().append(option);
-                $("#txtComment").val("");
-                $(".read-more-target").hide();
-            } else {
-                LlammarModal("Danger", "Error.", result.Mensaje);
-            }
-        },
-        error: function (err) {
-            LlammarModal("Danger", "Error.", "Error getting History & Comments");
-        },
 
-});
 }
 
 function GetDoorsByOrder(idOrden) {
@@ -616,6 +649,38 @@ function GetDoorsByOrder(idOrden) {
             $("#tbInvoice > tbody").empty().append(table);
 
         },
+    });
+}
+
+function GetDocAdjuntosInvoice(id) {
+    var datos =
+         {
+             idInvoice: id
+         };
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(datos),
+        url: urlGetDocAdjuntosInvoice,
+        dataType: "json",
+        async: true,
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+            if (result.Success) {
+                var option = '';
+                var x = result.listDocAdj.length;
+                option += ' <a id="closeMail" href="" class="nav-link pd-x-5 mg-l-15">';
+                option += ' <i class="fa fa-paperclip"></i> ';
+                option += x + ' Attachment(s) added';
+                option += ' </a>';
+                $("#divDocumentosAdjuntos").html(option);
+            } else {
+                LlammarModal("Danger", "Error.", result.Mensaje);
+            }
+        },
+        error: function (err) {
+            LlammarModal("Danger", "Error.", "Error getting History & Comments");
+        },
+
     });
 }
 
