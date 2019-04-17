@@ -135,17 +135,27 @@ namespace VenusDoors.Controllers
                 DoorsxUser doorsxUser = LNDoorUser.GetAllDoorsxUser().Where(x => x.Order.Id == IdOrder).FirstOrDefault();
                 List<DoorxOrder> DO = LNDoorOrder.GetAllDoorxOrderByDoorxUser(doorsxUser.Id);
 
-               
+
                 //use a variable to let my code fit across the page...
 
-               
+                Image image = null;
                 string ruta = "/Content/PDF" + "/" + IdOrder + ".pdf";
                 PdfWriter.GetInstance(doc1, new FileStream(path + "/" + IdOrder + ".pdf", FileMode.Create));
+                try
+                {                   
+                    string rutaImagen = Server.MapPath("~" + company.Logo);
+                    image = Image.GetInstance(rutaImagen);
+                }
+                catch (Exception)
+                {                  
+                    string rutaImagen = Server.MapPath("~/Content/img/Venus_Doors11.png");
+                    image = Image.GetInstance(rutaImagen);
+                }
+               
 
                 doc1.Open();
 
-                string rutaImagen = Server.MapPath("~" + company.Logo);
-                Image image = Image.GetInstance(rutaImagen);
+
                 Chunk c = new Chunk("Order #" +IdOrder+" \n",
                                    FontFactory.GetFont("Arial", 18));
 
@@ -176,7 +186,7 @@ namespace VenusDoors.Controllers
 
                 //table.SpacingAfter = 30f;
 
-                PdfPCell cell = new PdfPCell(new Phrase("General Configuration", FontFactory.GetFont("Arial", 12)));
+                PdfPCell cell = new PdfPCell(new Phrase("General Doors Specifications", FontFactory.GetFont("Arial", 12)));
                 cell.Colspan = 4;
                 cell.HorizontalAlignment = 1;
                 cell.Border = 0;
@@ -286,7 +296,7 @@ namespace VenusDoors.Controllers
                 table.AddCell(cell);
 
                 image.ScaleAbsoluteWidth(150);
-                image.ScaleAbsoluteHeight(42);
+                image.ScaleAbsoluteHeight(68);
 
                 Paragraph p = new Paragraph();
                 int descu = 9;
@@ -401,6 +411,7 @@ namespace VenusDoors.Controllers
                 TableHeader.HorizontalAlignment = 0;
                 TableHeader.SpacingBefore = 20f;
                 TableHeader.SpacingAfter = 30f;
+
                 cell = new PdfPCell(image);
                 cell.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
                 cell.Border = 0;
