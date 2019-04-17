@@ -82,6 +82,9 @@
         $("#btnClose").hide();
         $("#NEWORDER").hide();
         $("#DETAILORDER").hide();
+        $("#btGuardar").hide();
+        $("#MODIFYOR").hide();
+        $("#btCancel").hide();
     });
 
     $("#createBACK").on('click', function () {
@@ -96,7 +99,10 @@
         $("#btnBack").hide();
         $("#btnClose").hide();
         $('#NEWORDER').hide();
+        $("#MODIFYOR").hide();
+        $("#btGuardar").hide();
         $('#btnAtras').removeClass("active");
+        $("#btCancel").hide();
     });
 
     $("#detailBACK").on('click', function () {
@@ -116,7 +122,10 @@
         $("#btSaveChan").hide();
         $("#btnCON").hide();
         $("#DETAILORDER").hide();
+        $("#MODIFYOR").hide();
+        $("#btGuardar").hide();
         $('#createBACK').removeClass("active");
+        $("#btCancel").hide();
     });
 
     $("#btnCON").on('click', function () {
@@ -132,7 +141,14 @@
         $("#btnCON").hide();
         $("#NEWINVOICE").hide();
         $("#DETAILORDER").hide();
+        $("#MODIFYOR").hide();
+        $("#btGuardar").hide();
         $('#createBACK').removeClass("active");
+        $("#btCancel").hide();
+    });
+
+    $("#btCancel").on('click', function () {
+        $("#btnSAVE").trigger("click");
     });
 
     $("#btnSAVE").on('click', function () {
@@ -141,6 +157,7 @@
         $("#btnAtras").show();
         $("#detailBACK").show();
         $('#DETAILORDER').show();
+        $("#btGuardar").show();
         $("#createBACK").hide();
         $("#btnBack").hide();
         $("#btSaveChan").hide();
@@ -148,6 +165,56 @@
         $("#btnCON").hide();
         $("#NEWORDER").hide();
         $("#NEWINVOICE").hide();
+        $("#MODIFYOR").hide();
+        $("#btCancel").hide();
+    });
+
+    $(document).on('click', '.editDoor', function (event) {
+        var id = $(this).attr('data-id'); 
+        $("#btGuardar").hide();
+        $("#detailBACK").hide(); 
+        $("#MODIFYOR").show();
+        $("#btCancel").show();
+        $("#btnSAVE").hide();
+        $("#btnCON").hide();
+        $("#btnAtras").hide();
+        $("#btnBack").hide();
+        $("#btnClose").hide();
+        $("#NEWINVOICE").hide();
+        $("#NEWORDER").hide();
+        $("#DETAILORDER").hide();
+        $('#createBACK').removeClass("active");
+        $('#btnAtras').removeClass("active");
+        $("#btSaveChan").show();
+        QuitarClaseErrorACombos();
+
+
+        for (var i = 0; i < DxOl.length; i++) {
+            if (DxOl[i].Id == $(this).attr('data-id')) {
+
+
+                var PictureProfile = '<img style="height: 100px;width: 235px;margin-top: 20px;" id="ProfilePicture" src="' + DxOl[i].ProfilePicture + '">';
+                var PicturePanel = '<img style="width: 230px;height: 230px;" id="DoorPicture" src="' + DxOl[i].Picture + '">';
+                $('#PictureProfile').html(PictureProfile);
+                $('#PicturePanel').html(PicturePanel);
+                $('#idDoorxO').val(DxOl[i].Id);
+                $('#idDxuXO').val(DxOl[i].DoorxUser.Id);
+                $('#descDXO').val(DxOl[i].Descuento);
+                $('#iptWidth').val(DxOl[i].Width);
+                $('#iptHeight').val(DxOl[i].Height);
+                $('#CantidadFila').val(DxOl[i].Quantity);
+                //$('#descDXO').val(DxOl[i].Descuento);
+                if ($('#cbDoorStyle').val() != 1010) {
+                    llenarComboPanelStyle(DxOl[i].Panel.Id);
+                }
+
+                llenarComboDoorType(DxOl[i].DoorType.Id);
+                selectDoorOption(DxOl[i].DoorOption.Id);
+                llenarComboDecimalW(DxOl[i].DecimalsWidth.Id);
+                llenarComboDecimalH(DxOl[i].DecimalsHeight.Id);
+                break;
+            }
+        }
     });
 
     var container = $('#Demo');
@@ -574,35 +641,37 @@ function GetDoorsByOrder(idOrden) {
             option += '<th>TOTAL</th>';
             option += '<th><i class="fa fa-flash"></i></th></tr></thead><tbody>';
             DxOl = Result.DoorsxOrder;
-            for (var i = 0; i < Result.DoorsxOrder.length; i++) {
-                option += '<tr><td><img width="65px" src="' + Result.DoorsxOrder[i].Picture + '"/></td>';
+            for (var i = 0; i < Result.DoorsxOrder.length; i++){
+                
+                        option += '<tr><td><img width="65px" src="' + Result.DoorsxOrder[i].Picture + '"/></td>';
 
-                option += '<td>' + Result.DoorsxOrder[i].Quantity.toString().replace(',', '.') + '</td>';
-                option += '<td>' + Math.trunc(Result.DoorsxOrder[i].Width);
-                if (Result.DoorsxOrder[i].DecimalsWidth.Value != 0) {
-                    option += ' <span>' + Result.DoorsxOrder[i].DecimalsWidth.Description + '</span>';
-                }
-                option += '</td>';
-                option += '<td>' + Math.trunc(Result.DoorsxOrder[i].Height);
-                if (Result.DoorsxOrder[i].DecimalsHeight.Value != 0) {
-                    option += ' <span>' + Result.DoorsxOrder[i].DecimalsHeight.Description + '</span>';
-                }
-                option += '</td>';
-                option += '<td>' + Result.DoorsxOrder[i].Panel.Description + '</td>';
-                option += '<td>' + Result.DoorsxOrder[i].DoorType.Description + '</td>';
-                option += '<td>' + Result.DoorsxOrder[i].DoorOption.Description + '</td>';
-                option += '<td><span>$</span>' + Result.DoorsxOrder[i].ItemCost.toString().replace(',', '.') + '</td>';
-                if (Result.DescuentoActivos) {
-                    option += '<td>' + Result.DoorsxOrder[i].Descuento + '%</td>';
-                }
-                option += '<td><span>$</span>' + Result.DoorsxOrder[i].SubTotal.toString().replace(',', '.') + '</td>';
-                if (Result.Order.Status.Id == 5) {
-                    option += '<td><button title="Edit Door" data-id="' + Result.DoorsxOrder[i].Id + '"data-toggle="tab" href="#dxoPanel" role="tab"  class="editDoor Cursor btn btn-primary btn-icon"  style="width: 25px;height: 25px; margin-left: 10px;"> <i class="fa fa-edit"></i></button></td>';
-                } else {
-                    option += '<td><button title="Not available" disabled data-id="" data-toggle="tab" href="#dxoPanel" role="tab"  class="editDoor btn btn-primary btn-icon"  style="width: 25px;height: 25px; margin-left: 10px;"> <i class="fa fa-edit"></i></button></td>';
-                }
-                option += '</tr>';
-            }
+                        option += '<td>' + Result.DoorsxOrder[i].Quantity.toString().replace(',', '.') + '</td>';
+                        option += '<td>' + Math.trunc(Result.DoorsxOrder[i].Width);
+                        if (Result.DoorsxOrder[i].DecimalsWidth.Value != 0) {
+                            option += ' <span>' + Result.DoorsxOrder[i].DecimalsWidth.Description + '</span>';
+                        }
+                        option += '</td>';
+                        option += '<td>' + Math.trunc(Result.DoorsxOrder[i].Height);
+                        if (Result.DoorsxOrder[i].DecimalsHeight.Value != 0) {
+                            option += ' <span>' + Result.DoorsxOrder[i].DecimalsHeight.Description + '</span>';
+                        }
+                        option += '</td>';
+                        option += '<td>' + Result.DoorsxOrder[i].Panel.Description + '</td>';
+                        option += '<td>' + Result.DoorsxOrder[i].DoorType.Description + '</td>';
+                        option += '<td>' + Result.DoorsxOrder[i].DoorOption.Description + '</td>';
+                        option += '<td><span>$</span>' + Result.DoorsxOrder[i].ItemCost.toString().replace(',', '.') + '</td>';
+                        if (Result.DescuentoActivos) {
+                            option += '<td>' + Result.DoorsxOrder[i].Descuento + '%</td>';
+                        }
+                        option += '<td><span>$</span>' + Result.DoorsxOrder[i].SubTotal.toString().replace(',', '.') + '</td>';
+                        if (Result.Order.Status.Id == 5) {
+                            option += '<td><button title="Edit Door" data-id="' + Result.DoorsxOrder[i].Id + '"data-toggle="tab" href="#MODIFYOR" role="tab"  class="editDoor Cursor btn btn-primary btn-icon"  style="width: 25px;height: 25px; margin-left: 10px;"> <i class="fa fa-edit"></i></button></td>';
+                        } else {
+                            option += '<td><button title="Not available" disabled data-id="" data-toggle="tab" href="#MODIFYOR" role="tab"  class="editDoor btn btn-primary btn-icon"  style="width: 25px;height: 25px; margin-left: 10px;"> <i class="fa fa-edit"></i></button></td>';
+                        }
+                        option += '</tr>';
+                    }
+
             option += '</tbody></table>';
             $("#orreff").text(idOrden);
             $("#divTable").empty().append(option);
