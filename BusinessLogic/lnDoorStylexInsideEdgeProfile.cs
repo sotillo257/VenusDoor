@@ -51,11 +51,21 @@ namespace BusinessLogic
 
         }
 
-        public int InsertDoorStylexInsideEdgeProfile(DoorStylexInsideEdgeProfile pDoorStylexInsideEdgeProfile)
+        public int InsertDoorStylexInsideEdgeProfile(DoorStyle pDoorStyle)
         {
             try
             {
-                return _AD.InsertDoorStylexInsideEdgeProfile(pDoorStylexInsideEdgeProfile);
+                DoorStylexInsideEdgeProfile doorStylexInside = new DoorStylexInsideEdgeProfile();
+                foreach (var item in pDoorStyle.listInsideProfile)
+                {
+                    doorStylexInside.CreationDate = DateTime.Now;
+                    doorStylexInside.ModificationDate = DateTime.Now;
+                    doorStylexInside.InsideEdgeProfile = new InsideEdgeProfile() { Id = item.Id };
+                    doorStylexInside.DoorStyle = new DoorStyle() { Id = pDoorStyle.Id };
+                    doorStylexInside.Status = new Status() { Id = pDoorStyle.Status.Id };
+                    _AD.InsertDoorStylexInsideEdgeProfile(doorStylexInside);
+                }
+                return 1;
             }
             catch (Exception ex)
             {

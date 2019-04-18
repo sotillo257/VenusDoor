@@ -750,21 +750,7 @@ namespace VenusDoors.Controllers
         #endregion
 
         #region DoorStylexInsideEdgeProfile
-        [Authorize] [HttpPost]
-        public ActionResult InsertDoorStylexInsideEdgeProfile(DoorStylexInsideEdgeProfile pDoorStylexInsideEdgeProfile)
-
-        {
-            try
-            {
-                BusinessLogic.lnDoorStylexInsideEdgeProfile _LN = new BusinessLogic.lnDoorStylexInsideEdgeProfile();
-                return Json(_LN.InsertDoorStylexInsideEdgeProfile(pDoorStylexInsideEdgeProfile));
-
-            }
-            catch
-            {
-                return Json(false, JsonRequestBehavior.AllowGet);
-            }
-        }
+        
 
         [Authorize] [HttpPost]
         public ActionResult UpdateDoorStylexInsideEdgeProfile(DoorStylexInsideEdgeProfile pDoorStylexInsideEdgeProfile)

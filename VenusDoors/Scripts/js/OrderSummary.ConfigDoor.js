@@ -167,7 +167,7 @@ function SearchDoor(data) {
         llenarComboStileWidth(data.BottomRail.Id);
         llenarComboRailWidth(data.TopRail.Id);
         llenarComboDoorAssembly(data.Join.Id);
-        llenarComboPanelMaterial(data.Material.Id);
+        llenarComboPanelMaterial(data.Material.Id, data.DoorStyle.Id);
         llenarComboVerticalDivisions(data.VerticalDivisions.Id);
         llenarComboHorizontalDivisions(data.HorizontalDivisions.Id);
         llenarComboHingeDirection(data.HingeDirection.Id);
@@ -338,7 +338,7 @@ function llenarComboPanelStyle(pPanelStyle) {
 }
 
 var AllPanelMaterial = '';
-function llenarComboPanelMaterial(pMaterial) {
+function llenarComboPanelMaterial(pMaterial, pDoorStyle) {
     var pPanelMaterial = 0;
     if (pMaterial == 1) {
         //knotty Alder
@@ -359,23 +359,31 @@ function llenarComboPanelMaterial(pMaterial) {
     else if (pMaterial == 13) {
         //Beech
         pPanelMaterial = 3;
-    }    
-    var option = '<option value="0">Select</option>';
+    }
+    var option = '';
     for (var i = 0; i < AllPanelMaterial.length; i++) {
         if (AllPanelMaterial[i].Status.Id == 1 && AllPanelMaterial[i].Id == pPanelMaterial) {
             option += '<option value="' + AllPanelMaterial[i].Id + '">' + AllPanelMaterial[i].Description + '</option>';
 
         }
         if (pMaterial == 6) {
-            if (AllPanelMaterial[i].Status.Id == 1 && AllPanelMaterial[i].Id == 1) {
-                option += '<option value="' + AllPanelMaterial[i].Id + '">' + AllPanelMaterial[i].Description + '</option>';
+            if (pDoorStyle == 1003) {
+                if (AllPanelMaterial[i].Status.Id == 1 && AllPanelMaterial[i].Id == 1) {
+                    option += '<option value="' + AllPanelMaterial[i].Id + '">' + AllPanelMaterial[i].Description + '</option>';
+
+                }
+            } else if (pDoorStyle == 1002) {
+                if (AllPanelMaterial[i].Status.Id == 1 && AllPanelMaterial[i].Id == 5) {
+                    option += '<option value="' + AllPanelMaterial[i].Id + '">' + AllPanelMaterial[i].Description + '</option>';
+
+                }
             }
+
         }
     }
     $("#cbPanelMaterial").empty().append(option);
     $("#cbPanelMaterial").val(pPanelMaterial);
 }
-
 var AllVerticalDivisions = '';
 function llenarComboVerticalDivisions(pVerticalD) {
 
@@ -918,7 +926,7 @@ function GetDoorxUser() {
                 llenarComboStileWidth(data.LastDoor.BottomRail.Id);
                 llenarComboRailWidth(data.LastDoor.TopRail.Id);
                 llenarComboDoorAssembly(data.LastDoor.Join.Id);
-                llenarComboPanelMaterial(data.LastDoor.Material.Id);
+                llenarComboPanelMaterial(data.LastDoor.Material.Id, data.LastDoor.DoorStyle.Id);
                 llenarComboVerticalDivisions(data.LastDoor.VerticalDivisions.Id);
                 llenarComboHorizontalDivisions(data.LastDoor.HorizontalDivisions.Id);
                 llenarComboHingeDirection(data.LastDoor.HingeDirection.Id);

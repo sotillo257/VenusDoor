@@ -1,0 +1,161 @@
+﻿
+@{
+    ViewBag.Title = "DoorStyle + Inside Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="br-pageheader pd-y-15 pd-l-20">
+    <nav class="breadcrumb pd-0 mg-0 tx-12">
+        <a class="breadcrumb-item" href="/">Venus Doors</a>
+        <a class="breadcrumb-item" href="#">Masters</a>
+        <span class="breadcrumb-item active">@ViewBag.Title</span>
+    </nav>
+</div><!-- br-pageheader -->
+
+<div class="br-pagebody">
+    <div class="br-section-wrapper">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-11 pd-sm-bottom-30">
+                        <h4 class="tx-gray-800 mg-b-5">@ViewBag.Title</h4>
+
+                    </div>
+                    <div class="col-md-1">
+                        <button type="button" data-toggle="modal" data-target="#modalInsert" id="btInsert" class="Cursor btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Insert</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="table-wrapper">
+            <div id="datatable1_wrapper" class="dataTables_wrapper no-footer">
+                <table id="datatable1" style="width: 100%;" class="table display responsive nowrap dataTable no-footer dtr-inline" role="grid" aria-describedby="datatable1_info">
+                    <thead>
+                        <tr>
+                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="First name: activate to sort column ascending">Id</th>
+                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Door Style</th>
+                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Inside Profile</th>
+                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" aria-label="Last name: activate to sort column ascending">Status</th>
+                            <th class="wd-15p sorting" tabindex="0" aria-controls="datatable1" rowspan="1" colspan="1" style="text-align: center" aria-label="Last name: activate to sort column ascending"><i class="fa fa-flash"></i></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (Model.DoorStylexInsideEdgeProfile item in ViewBag.DoorStylexInsideEdgeProfile)
+                        {
+                            <tr role="row" class="odd">
+                                <td tabindex="0" class="">@item.Id</td>
+                                <td class="">@item.DoorStyle.Description</td>
+                                <td class="">@item.InsideEdgeProfile.Description</td>
+                                <td class="">@item.Status.Id</td>
+                                <td class="">
+                                    <center>                                      
+                                        <button href="#" data-toggle="modal" data-target="" id="" title="Remove" value="@item.Id" class="Remove Cursor btn btn-danger btn-icon" style="width: 25px;height: 25px; margin-left: 10px;">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </center>
+                                </td>
+                            </tr>
+                        }
+                      
+
+                    </tbody>
+                </table>
+            </div>
+        </div><!-- table-wrapper -->
+    </div>
+</div>
+<div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div>
+
+<div id="modalInsert" class="modal fade effect-scale" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content bd-0 rounded-0">
+            <div class="modal-body pd-0">
+                <div class="row flex-row-reverse no-gutters">
+                    <div class="col-lg-12">
+                        <div class="pd-30">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            <div class="pd-xs-x-15 pd-y-10">
+                                <h3 class="tx-inverse  mg-b-5">Insert new</h3>
+                                <p>You can create a new article below</p>
+                            
+                                        <div class="row">
+                                            @*<div class="col-xs-4 col-md-4" id="txtID">
+                                                <label for="Template" style="margin-top: 25px;">Id: </label>
+                                                <input type="text" name="id" class="form-control pd-y-12" placeholder="id">
+                                            </div>*@ 
+                                            <div class="col-lg-6 mg-t-20 mg-lg-t-0">
+                                                <label for="Template" style="margin-top: 25px;">Door Style: </label>
+                                                <select  style="width:100%" class="form-control select2" id="cbDoorStyle" ></select>
+                                            </div><!-- form-group -->
+                                            <div class="col-lg-6 mg-t-20 mg-lg-t-0">
+                                                <label for="Template" style="margin-top: 25px;">Inside Profile: </label>
+                                                <select style="width:100%"  class="form-control  select2 " multiple id="cbInsideEdgeProfile" ></select>
+                                            </div><!-- form-group -->
+                                            <div class="col-lg-6 mg-t-20 mg-lg-t-0">
+                                                <label for="Template" style="margin-top: 25px;">Status: </label>
+                                                <select style="width:100%" class="form-control select2" id="cbStatus" ></select>
+                                            </div><!-- form-group -->
+                                        </div>
+                                    </div><!-- pd-20 -->
+                  
+                            <div class="modal-footer justify-content-lg-end">
+                                <button id="btInsertBR" class="Cursor btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Insert</button>
+                                <button type="button" class="Cursor btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>
+                            </div>
+                        </div><!-- modal-body -->
+                    </div><!-- modal-content -->
+                </div><!-- modal-dialog -->
+            </div>
+        </div><!-- modal-content -->
+    </div><!-- modal-dialog -->
+</div>
+
+
+
+<div id="modaldemo2" class="modal fade" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content bd-0 tx-14">
+            <div class="modal-header pd-x-20">
+                <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Warning!</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body pd-20">
+                <p class="mg-b-5">You are about to delete an article. What would you like to do?</p>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Remove</button>
+                <button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div><!-- modal-dialog -->
+</div>
+@section scripts{
+<script src="~/Content/lib/datatables/jquery.dataTables.js"></script>
+<script src="~/Content/lib/datatables-responsive/dataTables.responsive.js"></script>
+<script src="~/Content/lib/select2/js/select2.min.js"></script>
+    <script>
+
+
+
+        var urlInsertDoorStylexInsideEdgeProfile = '@Url.Action("InsertDoorStylexInsideEdgeProfile", "Masters")';
+       
+        var urlGetStatus = '@Url.Action("GetStatus", "Masters")';
+        var urlGetDoorStyle = '@Url.Action("GetAllDoorStyle", "Masters")';
+        var urlInsideEdgeProfile = '@Url.Action("GetAllInsideEdgeProfile", "Masters")';
+        var urlGetAllDoorStylexInsideEdgeProfile = '@Url.Action("GetAllDoorStylexInsideEdgeProfile", "Masters")';
+        try {
+           var ListDoorStylexInsideEdgeProfile = JSON.parse('@Html.Raw(ViewBag.ListDoorStylexInsideEdgeProfile)');
+        } catch (e) {
+            var ListDoorStylexInsideEdgeProfile = '';
+        }
+        var urlEliminarDoorStyle = '@Url.Action("DeleteDoorStylexInsideEdgeProfile", "Masters")';
+    </script>
+   @Scripts.Render("~/Scripts/js/Master.DoorStylexInsideEdgeProfile.js")
+}
+
+
+

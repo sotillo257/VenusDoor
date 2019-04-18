@@ -815,7 +815,7 @@ namespace VenusDoors.Controllers
         }
 
         [Authorize(Roles = "1")] [HttpPost]
-        public ActionResult GetAllDoorStyle(DoorStyle gDoorStyle)
+        public ActionResult GetAllDoorStyle()
         {
             if (Session["UserID"] == null)
             {
@@ -1460,7 +1460,7 @@ namespace VenusDoors.Controllers
         }
 
         [Authorize(Roles = "1")] [HttpPost]
-        public ActionResult GetAllInsideEdgeProfile(InsideEdgeProfile gHorizontalDivisions)
+        public ActionResult GetAllInsideEdgeProfile()
         {
             if (Session["UserID"] == null)
             {
@@ -1515,6 +1515,159 @@ namespace VenusDoors.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
+        #endregion
+
+        #region DoorStylexInsideProfile
+        [Authorize(Roles = "1")]
+        public ActionResult DoorStylexInsideEdgeProfile()
+        {
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.BottomRail = "active";
+                BusinessLogic.lnDoorStylexInsideEdgeProfile _LN = new BusinessLogic.lnDoorStylexInsideEdgeProfile();
+
+
+
+                var DoorStylexInsideEdgeProfile = _LN.GetAllDoorStylexInsideEdgeProfile();
+                ViewBag.DoorStylexInsideEdgeProfile = DoorStylexInsideEdgeProfile;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListDoorStylexInsideEdgeProfile = serializar.Serialize(DoorStylexInsideEdgeProfile);
+                return View();
+            }
+            else
+            {
+
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        [Authorize(Roles = "1")]
+        [HttpPost]
+        public ActionResult InsertDoorStylexInsideEdgeProfile(DoorStyle pDoorStyle)
+        {
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                int userID = (int)Session["UserID"];
+                try
+                {
+                    BusinessLogic.lnDoorStylexInsideEdgeProfile _LN = new BusinessLogic.lnDoorStylexInsideEdgeProfile();
+                    var inBR = _LN.InsertDoorStylexInsideEdgeProfile(pDoorStyle);
+                    return Json(true, JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
+        }
+        [Authorize(Roles = "1")]
+        [HttpPost]
+        public ActionResult UpdateDoorStylexInsideEdgeProfile(DoorStylexInsideEdgeProfile uDoorStylexInsideEdgeProfile)
+        {
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                int userID = (int)Session["UserID"];
+                try
+                {
+
+                    uDoorStylexInsideEdgeProfile.ModificationDate = DateTime.Now;
+                    uDoorStylexInsideEdgeProfile.ModificationUser = userID;
+                    BusinessLogic.lnDoorStylexInsideEdgeProfile _LN = new BusinessLogic.lnDoorStylexInsideEdgeProfile();
+                    var modBR = _LN.UpdateDoorStylexInsideEdgeProfile(uDoorStylexInsideEdgeProfile);
+                    return Json(true, JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
+        }
+
+        [Authorize(Roles = "1")]
+        [HttpPost]
+        public ActionResult GetAllDoorStylexInsideEdgeProfile()
+        {
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+
+                try
+                {
+
+                    BusinessLogic.lnDoorStylexInsideEdgeProfile _LN = new BusinessLogic.lnDoorStylexInsideEdgeProfile();
+
+                    return Json(_LN.GetAllDoorStylexInsideEdgeProfile(), JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
+        }
+
+        public ActionResult DeleteDoorStylexInsideEdgeProfile(int pId)
+        {
+
+            try
+            {
+                BusinessLogic.lnDoorStylexInsideEdgeProfile _LN = new BusinessLogic.lnDoorStylexInsideEdgeProfile();
+                var delBR = _LN.DeleteDoorStylexInsideEdgeProfile(pId);
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            }
+            catch
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [Authorize(Roles = "1")]
+        [HttpPost]
+        public ActionResult UpdateStatusDoorStylexInsideEdgeProfile(DoorStylexInsideEdgeProfile modDoorStylexInsideEdgeProfile)
+        {
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                int userID = (int)Session["UserID"];
+                try
+                {
+                    BusinessLogic.lnDoorStylexInsideEdgeProfile _LNBR = new BusinessLogic.lnDoorStylexInsideEdgeProfile();
+
+                    modDoorStylexInsideEdgeProfile.ModificationDate = DateTime.Now;
+                    modDoorStylexInsideEdgeProfile.ModificationUser = userID;
+                    DoorStylexInsideEdgeProfile br = _LNBR.GetDoorStylexInsideEdgeProfileById(modDoorStylexInsideEdgeProfile.Id);
+                    br.Status.Id = modDoorStylexInsideEdgeProfile.Status.Id;
+                    var upbr = _LNBR.UpdateDoorStylexInsideEdgeProfile(br);
+
+
+                    return Json(true, JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
         #endregion
 
         #region Join

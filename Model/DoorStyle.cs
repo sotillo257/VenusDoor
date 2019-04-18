@@ -15,5 +15,6 @@ namespace Model
         public int CreatorUser { get; set; }
         public DateTime ModificationDate { get; set; }
         public int ModificationUser { get; set; }
+        public List<InsideEdgeProfile> listInsideProfile { get; set; }
     }
 }
