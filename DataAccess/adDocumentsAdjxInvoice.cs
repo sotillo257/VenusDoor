@@ -11,11 +11,11 @@ namespace DataAccess
 {
     public class adDocumentsAdjxInvoice : Connection
     {
-        public List<DocumentsAdjxInvoice> GetDocumentsAdjxInvoice(int Id, int IdDocumentAdj, int IdInvoice)
+        public List<DocumentsAdjxInvoice> GetDocumentsAdjxInvoice(int IdInvoice)
         {
             List<DocumentsAdjxInvoice> adj = new List<DocumentsAdjxInvoice>();
-            string sql = @"[spGetAllDocumentsAdjxInvoice] '{0}', '{1}', '{2}'";
-            sql = string.Format(sql, Id, IdDocumentAdj, IdInvoice);
+            string sql = @"[spGetDocumentsAdjxInvoice] '{0}'";
+            sql = string.Format(sql, IdInvoice);
 
             try
             {

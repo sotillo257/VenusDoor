@@ -24,11 +24,11 @@ namespace BusinessLogic
 
         }
 
-        public List<DocumentsAdjxInvoice> GetDocumentsAdjxInvoice(int Id, int IdDocumentAdj, int IdCreditNotes)
+        public List<DocumentsAdjxInvoice> GetDocumentsAdjxInvoice(int IdInvoice)
         {
             try
             {
-                return _AD.GetDocumentsAdjxInvoice(Id, IdDocumentAdj, IdCreditNotes);
+                return _AD.GetDocumentsAdjxInvoice(IdInvoice);
             }
             catch (Exception ex)
             {
