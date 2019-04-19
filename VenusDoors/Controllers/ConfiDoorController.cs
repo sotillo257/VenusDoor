@@ -96,6 +96,33 @@ namespace VenusDoors.Controllers
         }
 
         [HttpPost]
+        public ActionResult GetInsideAndOutside(int pDoorStyle)
+        {
+            try
+            {
+                BusinessLogic.lnInsideEdgeProfile _LN = new BusinessLogic.lnInsideEdgeProfile();
+               List<InsideEdgeProfile> listIn = _LN.GetOutsideProfilexDoorStyle(pDoorStyle);
+                BusinessLogic.lnOutsideEdgeProfile _LNO = new BusinessLogic.lnOutsideEdgeProfile();
+                List<OutsideEdgeProfile> listOut = _LNO.GetAllOutsideEdgeProfile();
+                if (listIn.Count > 0 && listOut.Count > 0)
+                {
+                    return Json(new { listOutside = listOut, listInside = listIn, Success = true, Mensaje = "" }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(new { Success = false, Mensaje = "Error Getting Inside and Outside profile" }, JsonRequestBehavior.AllowGet);
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Success = false, Mensaje = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        
+
+        [HttpPost]
         public ActionResult GetAllBottomRail()
         {
             try
