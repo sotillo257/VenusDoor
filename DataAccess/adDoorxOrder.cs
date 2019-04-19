@@ -51,7 +51,6 @@ namespace DataAccess
                             ModificationUser = int.Parse(item["ModificationUser"].ToString()),
                             Picture = item["Picture"].ToString(),
                             ProfilePicture = item["ProfilePicture"].ToString(),
-                            Panel = new Panel() { Id = int.Parse(item["IdPanel"].ToString()), Description = item["DescripPanel"].ToString() },
                             DoorType = new DoorType() { Id = int.Parse(item["IdDoorType"].ToString()), Description = item["DescripDoorType"].ToString() },
                             DoorOption = new DoorOption() { Id = int.Parse(item["IdDoorOption"].ToString()), Description = item["DescripDoorOption"].ToString() },
                             Descuento = val,
@@ -113,7 +112,6 @@ namespace DataAccess
                             ModificationUser = int.Parse(item["ModificationUser"].ToString()),
                             Picture = item["Picture"].ToString(),
                             ProfilePicture = item["ProfilePicture"].ToString(),
-                            Panel = new Panel() { Id = int.Parse(item["IdPanel"].ToString()), Description = item["DescripPanel"].ToString() },
                             DoorType = new DoorType() { Id = int.Parse(item["IdDoorType"].ToString()), Description = item["DescripDoorType"].ToString() },
                             DoorOption = new DoorOption() { Id = int.Parse(item["IdDoorOption"].ToString()), Description = item["DescripDoorOption"].ToString() },
                             Descuento = val,
@@ -126,7 +124,7 @@ namespace DataAccess
                 }
                 return doorxu;
             }
-            catch (Exception)
+            catch (Exception erro)
             {
                 throw;
             }
@@ -176,7 +174,6 @@ namespace DataAccess
                             ModificationUser = int.Parse(item["ModificationUser"].ToString()),
                             Picture = item["Picture"].ToString(),
                             ProfilePicture = item["ProfilePicture"].ToString(),
-                            Panel = new Panel() { Id = int.Parse(item["IdPanel"].ToString()), Description = item["DescripPanel"].ToString() },
                             DoorType = new DoorType() { Id = int.Parse(item["IdDoorType"].ToString()), Description = item["DescripDoorType"].ToString() },
                             DoorOption = new DoorOption() { Id = int.Parse(item["IdDoorOption"].ToString()), Description = item["DescripDoorOption"].ToString() },
                             Descuento = val,
@@ -200,7 +197,7 @@ namespace DataAccess
         {
             decimal total = Convert.ToDecimal(pDoorsxOrder.ItemCost);
             decimal subto = Convert.ToDecimal(pDoorsxOrder.SubTotal);
-            string sql = @"[spInsertDoorsxOrder]  '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}'";
+            string sql = @"[spInsertDoorsxOrder]  '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}'";
             sql = string.Format(sql,
                 pDoorsxOrder.DoorxUser.Id,
                 pDoorsxOrder.Width.ToString().Replace(',', '.'), 
@@ -215,8 +212,7 @@ namespace DataAccess
                 pDoorsxOrder.CreatorUser, 
                 pDoorsxOrder.ModificationUser, 
                 pDoorsxOrder.Picture,
-                pDoorsxOrder.ProfilePicture, 
-                pDoorsxOrder.Panel.Id,
+                pDoorsxOrder.ProfilePicture,
                 pDoorsxOrder.DoorType.Id,
                 pDoorsxOrder.DoorOption.Id,
                 (pDoorsxOrder.isDrill == true) ? 1 : 0,
@@ -236,7 +232,7 @@ namespace DataAccess
         {
             decimal total = Convert.ToDecimal(pDoorsxOrder.ItemCost);
             decimal subto = Convert.ToDecimal(pDoorsxOrder.SubTotal);
-            string sql = @"[spUpdateDoorsxOrder]  '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}', '{20}', '{21}'";
+            string sql = @"[spUpdateDoorsxOrder]  '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}', '{20}'";
             sql = string.Format(sql,
                 pDoorsxOrder.Id,
                 pDoorsxOrder.DoorxUser.Id,
@@ -252,7 +248,6 @@ namespace DataAccess
                 pDoorsxOrder.ModificationUser,
                 pDoorsxOrder.Picture,
                 pDoorsxOrder.ProfilePicture,
-                pDoorsxOrder.Panel.Id,
                 pDoorsxOrder.DoorType.Id,
                 pDoorsxOrder.DoorOption.Id,
                 (pDoorsxOrder.isDrill == true) ? 1 : 0,

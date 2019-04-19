@@ -21,15 +21,16 @@ namespace BusinessLogic
                 lnOrder _LNOrder = new lnOrder();
                 Order item = _LNOrder.GetOrderByUser(pDoorsxOrder.User.Id).Where(x => x.Status.Id == 4).FirstOrDefault();
                 DoorsxUser DoorUser = DU.GetAllDoorsxUser().Where(x => x.Order.Id == item.Id).FirstOrDefault();
+                pDoorsxOrder.DoorxUser = DoorUser;
                 int Rail = 1;
                 if (DoorUser.TopRail.Id == 3 || DoorUser.BottomRail.Id == 3 || DoorUser.DoorStyle.Id == 1009 || DoorUser.DoorStyle.Id == 1008)
                 {
                     Rail = 2;
                 }
                 int panel = 5;
-                if (pDoorsxOrder.Panel.Id == 2)
+                if (DoorUser.Panel.Id == 2)
                 {
-                    panel = pDoorsxOrder.Panel.Id;
+                    panel = DoorUser.Panel.Id;
                 }
                 if (DoorUser.DoorStyle.Id == 1010)
                 {
@@ -101,13 +102,12 @@ namespace BusinessLogic
                     }
                     pDoorsxOrder.ItemCost = result ;
                     pDoorsxOrder.SubTotal = result * pDoorsxOrder.Quantity;
-                }
-                pDoorsxOrder.DoorxUser = DoorUser;
+                }               
                 pDoorsxOrder.CreationDate = DateTime.Now;
                 pDoorsxOrder.ModificationDate = DateTime.Now;
                 pDoorsxOrder.CreatorUser = pDoorsxOrder.User.Id;
                 pDoorsxOrder.ModificationUser = pDoorsxOrder.User.Id;
-                pDoorsxOrder.ProfilePicture = DU.BuscarProfilePicture(DoorUser.OutsideEdgeProfile.Id, DoorUser.InsideEdgeProfile.Id, pDoorsxOrder.Panel.Id);
+                pDoorsxOrder.ProfilePicture = DU.BuscarProfilePicture(DoorUser.OutsideEdgeProfile.Id, DoorUser.InsideEdgeProfile.Id, DoorUser.Panel.Id);
                 pDoorsxOrder.Picture = DU.BuscarDoorPicture(pDoorsxOrder);
                int retorno = _AD.InsertDoorsxOrder(pDoorsxOrder);
                 item.SubTotal = item.SubTotal + pDoorsxOrder.SubTotal;

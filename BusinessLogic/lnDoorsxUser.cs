@@ -1099,11 +1099,11 @@ namespace BusinessLogic
         public string BuscarDoorPicture(DoorxOrder pDoorxOrder)
         {
             string respuesta = "/Content/img/Doors/Cabinet Vector-1.png";
-            if (pDoorxOrder.Panel.Id == 5)
+            if (pDoorxOrder.DoorxUser.Panel.Id == 5)
             {
                 respuesta = FlatPanel(pDoorxOrder);
             }
-            if (pDoorxOrder.Panel.Id == 6)
+            if (pDoorxOrder.DoorxUser.Panel.Id == 6)
             {
                 if (pDoorxOrder.DoorxUser.DoorStyle.Id == 1010)
                 {
@@ -1115,11 +1115,11 @@ namespace BusinessLogic
                 }
                
             }
-            if (pDoorxOrder.Panel.Id == 2)
+            if (pDoorxOrder.DoorxUser.Panel.Id == 2)
             {
                 respuesta = RaisedPanel(pDoorxOrder);
             }
-            if (pDoorxOrder.Panel.Id == 3)
+            if (pDoorxOrder.DoorxUser.Panel.Id == 3)
             {
                 respuesta = "/Content/img/Doors/slab.png";
             }
