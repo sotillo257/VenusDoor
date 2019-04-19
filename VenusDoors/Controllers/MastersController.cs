@@ -1557,42 +1557,24 @@ namespace VenusDoors.Controllers
                 {
                     BusinessLogic.lnDoorStylexInsideEdgeProfile _LN = new BusinessLogic.lnDoorStylexInsideEdgeProfile();
                     var inBR = _LN.InsertDoorStylexInsideEdgeProfile(pDoorStyle);
-                    return Json(true, JsonRequestBehavior.AllowGet);
+
+                    if (inBR > 0)
+                    {
+                        return Json(new {  Success = true, Mensaje = "" }, JsonRequestBehavior.AllowGet);
+                    }
+                    else
+                    {
+                        return Json(new { Success = false, Mensaje = "Error Inserting Door Inside Profile" }, JsonRequestBehavior.AllowGet);
+                    }
 
                 }
-                catch
+                catch (Exception ex)
                 {
-                    return Json(false, JsonRequestBehavior.AllowGet);
+                    return Json(new { Success = false, Mensaje = ex.Message }, JsonRequestBehavior.AllowGet);
                 }
             }
         }
-        [Authorize(Roles = "1")]
-        [HttpPost]
-        public ActionResult UpdateDoorStylexInsideEdgeProfile(DoorStylexInsideEdgeProfile uDoorStylexInsideEdgeProfile)
-        {
-            if (Session["UserID"] == null)
-            {
-                return View();
-            }
-            else
-            {
-                int userID = (int)Session["UserID"];
-                try
-                {
-
-                    uDoorStylexInsideEdgeProfile.ModificationDate = DateTime.Now;
-                    uDoorStylexInsideEdgeProfile.ModificationUser = userID;
-                    BusinessLogic.lnDoorStylexInsideEdgeProfile _LN = new BusinessLogic.lnDoorStylexInsideEdgeProfile();
-                    var modBR = _LN.UpdateDoorStylexInsideEdgeProfile(uDoorStylexInsideEdgeProfile);
-                    return Json(true, JsonRequestBehavior.AllowGet);
-
-                }
-                catch
-                {
-                    return Json(false, JsonRequestBehavior.AllowGet);
-                }
-            }
-        }
+       
 
         [Authorize(Roles = "1")]
         [HttpPost]
@@ -1609,13 +1591,20 @@ namespace VenusDoors.Controllers
                 {
 
                     BusinessLogic.lnDoorStylexInsideEdgeProfile _LN = new BusinessLogic.lnDoorStylexInsideEdgeProfile();
-
-                    return Json(_LN.GetAllDoorStylexInsideEdgeProfile(), JsonRequestBehavior.AllowGet);
+                    List<DoorStylexInsideEdgeProfile> list = _LN.GetAllDoorStylexInsideEdgeProfile();
+                    if (list.Count > 0)
+                    {
+                        return Json(new { listDoorInside = list, Success = true, Mensaje = "" }, JsonRequestBehavior.AllowGet);
+                    }
+                    else
+                    {
+                        return Json(new { Success = false, Mensaje = "Error getting all the door style + Inside profile" }, JsonRequestBehavior.AllowGet);
+                    }
 
                 }
-                catch
+                catch (Exception ex)
                 {
-                    return Json(false, JsonRequestBehavior.AllowGet);
+                    return Json(new { Success = false, Mensaje = ex.Message }, JsonRequestBehavior.AllowGet);
                 }
             }
         }
@@ -1627,12 +1616,20 @@ namespace VenusDoors.Controllers
             {
                 BusinessLogic.lnDoorStylexInsideEdgeProfile _LN = new BusinessLogic.lnDoorStylexInsideEdgeProfile();
                 var delBR = _LN.DeleteDoorStylexInsideEdgeProfile(pId);
-                return Json(true, JsonRequestBehavior.AllowGet);
+                if (delBR)
+                {
+                    return Json(new { Success = true, Mensaje = "" }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(new { Success = false, Mensaje = "Error Deleting" }, JsonRequestBehavior.AllowGet);
+                }
+                
 
             }
-            catch
+            catch (Exception ex)
             {
-                return Json(false, JsonRequestBehavior.AllowGet);
+                return Json(new { Success = false, Mensaje = ex.Message }, JsonRequestBehavior.AllowGet);
             }
         }
 

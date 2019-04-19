@@ -134,15 +134,15 @@ function InsertDoorStylexInsideEdgeProfile() {
         success: function (result) {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
-            if (result == true) {
+            if (result.Success) {
                 LlammarModal("Congratuletions", "Congratulations! It has been inserted correctly.", " ");
                 llenarTablaDoorStylexInsideEdgeProfile();
             } else {
-                LlammarModal("Danger", "Error: An error occurred while inserting.", " ");
+                LlammarModal("Danger", "Error: An error occurred while inserting.", result.Mensaje);
             }
         },
         error: function (err) {
-            LlammarModal("Danger", "Error.", " ");
+            LlammarModal("Danger", "Error.", "while inserting");
         },
 
     });
@@ -164,15 +164,15 @@ function EliminarDoorStylexInsideEdgeProfile(id) {
         success: function (result) {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
-            if (result == true) {
+            if (result.Success) {
                 LlammarModal("Congratuletions", "Congratulations! It has been modified correctly.", " ");
                 llenarTablaDoorStylexInsideEdgeProfile();
             } else {
-                LlammarModal("Danger", "Error: An error occurred while modifying.", " ");
+                LlammarModal("Danger", "Error: An error occurred while deleting.", result.Mensaje);
             }
         },
         error: function (err) {
-            LlammarModal("Danger", "Error.", " ");
+            LlammarModal("Danger", "Error.", "while deleting");
         },
 
     });
@@ -289,7 +289,6 @@ function llenarComboInsideEdgeProfile(pStatus) {
         $("#cbInsideEdgeProfile").val(pStatus);
     }
 }
-
 function llenarTablaDoorStylexInsideEdgeProfile() {
     $.ajax({
         url: urlGetAllDoorStylexInsideEdgeProfile,
@@ -298,31 +297,31 @@ function llenarTablaDoorStylexInsideEdgeProfile() {
         async: false,
         contentType: "application/json; charset=utf-8",
         success: function (data) {
-            if (data != null) {
-                ListDoorStylexInsideEdgeProfile = data;
+            if (data.Success) {
+                ListDoorStylexInsideEdgeProfile = data.listDoorInside;
 
                 var t = $('#datatable1').DataTable();
                 t.rows().remove().draw(false);
 
-                for (var i = 0; i < data.length; i++) {
-                    var Botones = '<center><button href="#" data-toggle="modal" data-target="" id="" title="Remove" value="' + data[i].Id + '" class="Remove Cursor btn btn-danger btn-icon" style="width: 25px;height: 25px; margin-left: 10px;"><i class="fa fa-trash"></i></button></center>';
+                for (var i = 0; i < ListDoorStylexInsideEdgeProfile.length; i++) {
+                    var Botones = '<center><button href="#" data-toggle="modal" data-target="" id="" title="Remove" value="' + ListDoorStylexInsideEdgeProfile[i].Id + '" class="Remove Cursor btn btn-danger btn-icon" style="width: 25px;height: 25px; margin-left: 10px;"><i class="fa fa-trash"></i></button></center>';
 
                     t.row.add([
-                        data[i].Id,
-                        data[i].DoorStyle.Description,
-                        data[i].InsideEdgeProfile.Description,
-                        data[i].Status.Description,
+                        ListDoorStylexInsideEdgeProfile[i].Id,
+                        ListDoorStylexInsideEdgeProfile[i].DoorStyle.Description,
+                        ListDoorStylexInsideEdgeProfile[i].InsideEdgeProfile.Description,
+                        ListDoorStylexInsideEdgeProfile[i].Status.Description,
                        Botones
                     ]).draw(false);
                 }
                 $("#modalInsert").modal("hide");
             }
             else {
-                LlammarModal("Danger", "Error obtaining Type", " ");
+                LlammarModal("Danger", "Error obtaining Door Inside Profile", result.Mensaje);
             }
         },
         error: function (err) {
-            LlammarModal("Danger", "Error.", " ");
+            LlammarModal("Danger", "Error.", "Obtaining Door Inside Profile");
         }
     });
 
