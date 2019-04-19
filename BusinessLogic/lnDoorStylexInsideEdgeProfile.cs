@@ -62,7 +62,7 @@ namespace BusinessLogic
                     doorStylexInside.ModificationDate = DateTime.Now;
                     doorStylexInside.InsideEdgeProfile = new InsideEdgeProfile() { Id = item.Id };
                     doorStylexInside.DoorStyle = new DoorStyle() { Id = pDoorStyle.Id };
-                    doorStylexInside.Status = new Status() { Id = pDoorStyle.Status.Id };
+                    doorStylexInside.Status = new Status() { Id = pDoorStyle.Status.Id};
                     _AD.InsertDoorStylexInsideEdgeProfile(doorStylexInside);
                 }
                 return 1;

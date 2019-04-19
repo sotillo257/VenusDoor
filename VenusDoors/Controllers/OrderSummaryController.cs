@@ -813,7 +813,7 @@ namespace VenusDoors.Controllers
 
         #region DoorStylexOutsideEdgeProfile
         [Authorize] [HttpPost]
-        public ActionResult InsertDoorStylexOutsideEdgeProfile(DoorStylexOutsideEdgeProfile pDoorStylexOutsideEdgeProfile)
+        public ActionResult InsertDoorStylexOutsideEdgeProfile(DoorStyle pDoorStylexOutsideEdgeProfile)
 
         {
             try
