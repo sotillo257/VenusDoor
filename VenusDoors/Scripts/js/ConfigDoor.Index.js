@@ -110,6 +110,7 @@
 
     $(document).on('change', '#cbDoorStyle', function () {
         ChangeDoorStylePanel($("#cbDoorStyle").val());
+        GetInsideAndOutside($("#cbDoorStyle").val());
     });
 });
 
@@ -475,6 +476,59 @@ function llenarComboInsideAndOutside() {
         $("#cbOutsideEdgeProfile").val(outside);
     }
   
+}
+
+function GetInsideAndOutside(pDoorStyle) {
+
+    var datos =
+    {
+        pDoorStyle: pDoorStyle
+    };
+
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(datos),
+        url: urlGetInsideAndOutside,
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+
+            //Validar data para ver si mostrar error al guardar o exito al guardar
+            if (result.Success) {
+
+                var inside = $("#cbInsideEdgeProfile").val();
+                var outside = $("#cbOutsideEdgeProfile").val();
+                var option = '<option value="0">Select</option>';
+                for (var i = 0; i < result.listInside.length; i++) {
+                    option += '<option value="' + result.listInside[i].Id + '">' + result.listInside[i].Description + '</option>';
+                 
+                }
+                $("#cbInsideEdgeProfile").empty().append(option);
+
+
+                if (inside != 1) {
+                    $("#cbInsideEdgeProfile").val(inside);
+                }
+                option = '<option value="0">Select</option>';
+                for (var i = 0; i < result.listOutside.length; i++) {
+                    option += '<option value="' + result.listOutside[i].Id + '">' + result.listOutside[i].Description + '</option>';
+               
+                }
+                $("#cbOutsideEdgeProfile").empty().append(option);
+                if (outside != 1) {
+
+                    $("#cbOutsideEdgeProfile").val(outside);
+                }
+            } else {
+                LlammarModal("Danger", "Error", result.Mensaje);
+            }
+        },
+        error: function (err) {
+            LlammarModal("Danger", "Error.", "while deleting");
+        },
+
+    });
+
 }
 
 function HingeCalculate() {

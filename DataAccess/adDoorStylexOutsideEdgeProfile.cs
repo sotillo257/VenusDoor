@@ -83,6 +83,8 @@ namespace DataAccess
 
         }
 
+       
+
         public int InsertDoorStylexOutsideEdgeProfile(DoorStylexOutsideEdgeProfile pDoorStylexOutsideEdgeProfile)
         {
             string sql = @"[spInsertDoorStylexOutsideEdgeProfile] '{0}', '{1}', '{2}', '{3}', '{4}'";

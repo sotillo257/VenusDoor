@@ -32,6 +32,19 @@ namespace BusinessLogic
 
         }
 
+        public List<InsideEdgeProfile> GetOutsideProfilexDoorStyle(int pDoorStyle)
+        {
+            try
+            {
+                return _AD.GetOutsideProfilexDoorStyle(pDoorStyle);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+        }
+
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018

@@ -742,6 +742,8 @@
                 var urlGetAllShippingAddress = '@Url.Action("GetAllShippingAddressByUser", "OrderSummary")';
                 var urlInsertShipping = '@Url.Action("InsertShippingAddress", "OrderSummary")';
                 var urlUpdateDoorsxUser = '@Url.Action("UpdateDoorsxUser", "ConfiDoor")';
+                var urlGetInsideAndOutside = '@Url.Action("GetInsideAndOutside", "ConfiDoor")';
+                
 
                 try {
                     var listDOOR = JSON.parse('@Html.Raw(ViewBag.JsDoor)');
@@ -756,12 +758,12 @@
 
                     try {
                         var _DoorSt = '@ViewBag.IDDoorStyle';
-                          
+
 
                     } catch (e) {
                         var _DoorSt = 0;
                     }
-               
+
 
                 $(function () {
                     'use strict'
