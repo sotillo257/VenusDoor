@@ -38,10 +38,7 @@ namespace DataAccess
                             OutsideEdgeProfile = new OutsideEdgeProfile() { Id = int.Parse(item["IdOutsideEdgeProfile"].ToString()), Description = item["DescriptOEP"].ToString() },
                             InsideEdgeProfile = new InsideEdgeProfile() { Id = int.Parse(item["IdInsideEdgeProfile"].ToString()), Description = item["DesccripIEP"].ToString() },
                             VerticalDivisions = new VerticalDivisions() {Id = int.Parse(item["IdVerticalDivisions"].ToString()), Quantity = int.Parse(item["VerticalDivision"].ToString()) },
-                            HorizontalDivisions = new HorizontalDivisions() { Id = int.Parse(item["IdHorizontalDivisions"].ToString()), Quantity = int.Parse(item["HorizontalDivision"].ToString()) },
-                            HingeDirection = new HingeDirection() { Id = int.Parse(item["IdHingeDirection"].ToString()), Direction = item["HingerDirection"].ToString(), },
-                          //  HingePositions = new HingePositions() { Id = int.Parse(item["IdHingePositions"].ToString()), Position1 = item["HP1"].ToString(), Position2 = item["HP2"].ToString(), Position3 = item["HP3"].ToString(), Position4 = item["HP4"].ToString(), Position5 = item["HP5"].ToString(), },
-                            isDrill = bool.Parse(item["isDrill"].ToString()),
+                            HorizontalDivisions = new HorizontalDivisions() { Id = int.Parse(item["IdHorizontalDivisions"].ToString()), Quantity = int.Parse(item["HorizontalDivision"].ToString()) },                            
                             Width = decimal.Parse(item["Width"].ToString()),
                             DecimalsWidth = new Decimals() { Id = int.Parse(item["IdDecimalsWidth"].ToString()), Description = item["DescriptDW"].ToString(), Value = decimal.Parse(item["ValueDW"].ToString()) },
                             Height = decimal.Parse(item["Height"].ToString()),
@@ -102,10 +99,7 @@ namespace DataAccess
                             OutsideEdgeProfile = new OutsideEdgeProfile() { Id = int.Parse(item["IdOutsideEdgeProfile"].ToString()), Description = item["DescriptOEP"].ToString() },
                             InsideEdgeProfile = new InsideEdgeProfile() { Id = int.Parse(item["IdInsideEdgeProfile"].ToString()), Description = item["DesccripIEP"].ToString() },
                             VerticalDivisions = new VerticalDivisions() { Id = int.Parse(item["IdVerticalDivisions"].ToString()), Quantity = int.Parse(item["VerticalDivision"].ToString()) },
-                            HorizontalDivisions = new HorizontalDivisions() { Id = int.Parse(item["IdHorizontalDivisions"].ToString()), Quantity = int.Parse(item["HorizontalDivision"].ToString()) },
-                            HingeDirection = new HingeDirection() { Id = int.Parse(item["IdHingeDirection"].ToString()), Direction = item["HingerDirection"].ToString(), },
-                            HingePositions = new HingePositions() { Id = int.Parse(item["IdHingePositions"].ToString()), Position1 = item["HP1"].ToString(), Position2 = item["HP2"].ToString(), Position3 = item["HP3"].ToString(), Position4 = item["HP4"].ToString(), Position5 = item["HP5"].ToString(), },
-                            isDrill = bool.Parse(item["isDrill"].ToString()),
+                            HorizontalDivisions = new HorizontalDivisions() { Id = int.Parse(item["IdHorizontalDivisions"].ToString()), Quantity = int.Parse(item["HorizontalDivision"].ToString()) },                           
                             Width = decimal.Parse(item["Width"].ToString()),
                             DecimalsWidth = new Decimals() { Id = int.Parse(item["IdDecimalsWidth"].ToString()), Description = item["DescriptDW"].ToString(), Value = decimal.Parse(item["ValueDW"].ToString()) },
                             Height = decimal.Parse(item["Height"].ToString()),
@@ -144,13 +138,39 @@ namespace DataAccess
         {
             decimal total = Convert.ToDecimal(pDoorsxUser.ItemCost);
             decimal subto = Convert.ToDecimal(pDoorsxUser.SubTotal);
-            string sql = @"[spInsertDoorsxUser] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}', '{20}', '{21}', '{22}', '{23}', '{24}', '{25}', '{26}', '{27}', '{28}', '{29}', '{30}', '{31}', '{32}', '{33}'";
-            sql = string.Format(sql, pDoorsxUser.Order.Id, pDoorsxUser.DoorStyle.Id, pDoorsxUser.Material.Id, pDoorsxUser.TopRail.Id, pDoorsxUser.BottomRail.Id, 
-                pDoorsxUser.Preparation.Id, pDoorsxUser.Join.Id, pDoorsxUser.OutsideEdgeProfile.Id, 
-                pDoorsxUser.InsideEdgeProfile.Id, pDoorsxUser.VerticalDivisions.Id, pDoorsxUser.HorizontalDivisions.Id, pDoorsxUser.HingeDirection.Id, 
-                pDoorsxUser.HingePositions.Id, (pDoorsxUser.isDrill == true) ? 1 : 0, pDoorsxUser.Width.ToString().Replace(',', '.'), pDoorsxUser.DecimalsWidth.Id, pDoorsxUser.Height.ToString().Replace(',', '.'), pDoorsxUser.DecimalsHeight.Id, (pDoorsxUser.IsOpeningMeasurement == true) ? 1 : 0, pDoorsxUser.Quantity, total.ToString().Replace(',', '.'), subto.ToString().Replace(',', '.'), pDoorsxUser.User.Id, 
-                pDoorsxUser.Status.Id, pDoorsxUser.CreatorUser,
-                pDoorsxUser.ModificationUser, pDoorsxUser.Picture, pDoorsxUser.ProfilePicture, pDoorsxUser.Panel.Id, pDoorsxUser.PanelMaterial.Id, pDoorsxUser.DoorType.Id, pDoorsxUser.DoorOption.Id, (pDoorsxUser.isOverlay == true) ? 1 : 0, (pDoorsxUser.isFingerPull == true) ? 1 : 0);
+            string sql = @"[spInsertDoorsxUser] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}', '{20}', '{21}', '{22}', '{23}', '{24}', '{25}', '{26}', '{27}', '{28}', '{29}', '{30}'";
+            sql = string.Format(sql, 
+                pDoorsxUser.Order.Id, 
+                pDoorsxUser.DoorStyle.Id, 
+                pDoorsxUser.Material.Id, 
+                pDoorsxUser.TopRail.Id, 
+                pDoorsxUser.BottomRail.Id, 
+                pDoorsxUser.Preparation.Id,
+                pDoorsxUser.Join.Id, 
+                pDoorsxUser.OutsideEdgeProfile.Id, 
+                pDoorsxUser.InsideEdgeProfile.Id, 
+                pDoorsxUser.VerticalDivisions.Id, 
+                pDoorsxUser.HorizontalDivisions.Id, 
+                pDoorsxUser.Width.ToString().Replace(',', '.'), 
+                pDoorsxUser.DecimalsWidth.Id, 
+                pDoorsxUser.Height.ToString().Replace(',', '.'), 
+                pDoorsxUser.DecimalsHeight.Id, 
+                (pDoorsxUser.IsOpeningMeasurement == true) ? 1 : 0, 
+                pDoorsxUser.Quantity, 
+                total.ToString().Replace(',', '.'), 
+                subto.ToString().Replace(',', '.'), 
+                pDoorsxUser.User.Id, 
+                pDoorsxUser.Status.Id, 
+                pDoorsxUser.CreatorUser,
+                pDoorsxUser.ModificationUser, 
+                pDoorsxUser.Picture, 
+                pDoorsxUser.ProfilePicture, 
+                pDoorsxUser.Panel.Id, 
+                pDoorsxUser.PanelMaterial.Id, 
+                pDoorsxUser.DoorType.Id, 
+                pDoorsxUser.DoorOption.Id, 
+                (pDoorsxUser.isOverlay == true) ? 1 : 0, 
+                (pDoorsxUser.isFingerPull == true) ? 1 : 0);
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -165,12 +185,39 @@ namespace DataAccess
         {
             decimal total = Convert.ToDecimal(pDoorsxUser.ItemCost);
             decimal subto = Convert.ToDecimal(pDoorsxUser.SubTotal);
-            string sql = @"[spUpdateDoorsxUser] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}', '{20}', '{21}', '{22}', '{23}', '{24}', '{25}', '{26}', '{27}', '{28}', '{29}', '{30}', '{31}', '{32}', '{33}'";
-            sql = string.Format(sql, pDoorsxUser.Id, pDoorsxUser.Order.Id, pDoorsxUser.DoorStyle.Id, pDoorsxUser.Material.Id, pDoorsxUser.TopRail.Id, pDoorsxUser.BottomRail.Id,
-                pDoorsxUser.Preparation.Id, pDoorsxUser.Join.Id, pDoorsxUser.OutsideEdgeProfile.Id,
-                pDoorsxUser.InsideEdgeProfile.Id, pDoorsxUser.VerticalDivisions.Id, pDoorsxUser.HorizontalDivisions.Id, pDoorsxUser.HingeDirection.Id,
-                pDoorsxUser.HingePositions.Id, (pDoorsxUser.isDrill == true) ? 1 : 0, pDoorsxUser.Width.ToString().Replace(',', '.'), pDoorsxUser.DecimalsWidth.Id, pDoorsxUser.Height.ToString().Replace(',', '.'), pDoorsxUser.DecimalsHeight.Id, (pDoorsxUser.IsOpeningMeasurement == true) ? 1 : 0, pDoorsxUser.Quantity, total.ToString().Replace(',', '.'), subto.ToString().Replace(',', '.'), pDoorsxUser.User.Id,
-                pDoorsxUser.Status.Id, pDoorsxUser.ModificationUser, pDoorsxUser.Picture, pDoorsxUser.ProfilePicture, pDoorsxUser.Panel.Id, pDoorsxUser.PanelMaterial.Id, pDoorsxUser.DoorType.Id, pDoorsxUser.DoorOption.Id, (pDoorsxUser.isOverlay == true) ? 1 : 0, (pDoorsxUser.isFingerPull == true) ? 1 : 0);
+            string sql = @"[spUpdateDoorsxUser] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}', '{20}', '{21}', '{22}', '{23}', '{24}', '{25}', '{26}', '{27}', '{28}', '{29}', '{30}'";
+            sql = string.Format(sql, 
+                pDoorsxUser.Id, 
+                pDoorsxUser.Order.Id, 
+                pDoorsxUser.DoorStyle.Id, 
+                pDoorsxUser.Material.Id, 
+                pDoorsxUser.TopRail.Id, 
+                pDoorsxUser.BottomRail.Id,
+                pDoorsxUser.Preparation.Id, 
+                pDoorsxUser.Join.Id, 
+                pDoorsxUser.OutsideEdgeProfile.Id,
+                pDoorsxUser.InsideEdgeProfile.Id, 
+                pDoorsxUser.VerticalDivisions.Id, 
+                pDoorsxUser.HorizontalDivisions.Id, 
+                pDoorsxUser.Width.ToString().Replace(',', '.'), 
+                pDoorsxUser.DecimalsWidth.Id, 
+                pDoorsxUser.Height.ToString().Replace(',', '.'), 
+                pDoorsxUser.DecimalsHeight.Id, 
+                (pDoorsxUser.IsOpeningMeasurement == true) ? 1 : 0, 
+                pDoorsxUser.Quantity, 
+                total.ToString().Replace(',', '.'), 
+                subto.ToString().Replace(',', '.'), 
+                pDoorsxUser.User.Id,
+                pDoorsxUser.Status.Id, 
+                pDoorsxUser.ModificationUser, 
+                pDoorsxUser.Picture, 
+                pDoorsxUser.ProfilePicture, 
+                pDoorsxUser.Panel.Id, 
+                pDoorsxUser.PanelMaterial.Id, 
+                pDoorsxUser.DoorType.Id, 
+                pDoorsxUser.DoorOption.Id, 
+                (pDoorsxUser.isOverlay == true) ? 1 : 0, 
+                (pDoorsxUser.isFingerPull == true) ? 1 : 0);
             try
             {
                 _MB.EjecutarSQL(_CN, sql);
