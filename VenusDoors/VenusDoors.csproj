@@ -1112,6 +1112,8 @@
     <Content Include="Scripts\js\Estimate.js" />
     <Content Include="Scripts\js\Invoice.js" />
     <Content Include="Scripts\js\LoginSiginUp.js" />
+    <Content Include="Scripts\js\Master.DoorStylexOutsideEdgeProfile.js" />
+    <Content Include="Scripts\js\Master.DoorStylexInsideEdgeProfile.js" />
     <Content Include="Scripts\js\Master.BottomRail.js" />
     <Content Include="Scripts\js\Master.Company.js" />
     <Content Include="Scripts\js\Master.Doors.js" />
@@ -1229,6 +1231,8 @@
     <Content Include="Scripts\js\OrderStatus.FillingOfCombos.js" />
     <Content Include="Views\Invoice\Index.cshtml" />
     <Content Include="Views\Estimate\Index.cshtml" />
+    <Content Include="Views\Masters\DoorStylexInsideEdgeProfile.cshtml" />
+    <Content Include="Views\Masters\DoorStylexOutsideEdgeProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

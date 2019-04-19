@@ -114,7 +114,7 @@
 
                         <div class="btn-group" role="group" aria-label="Basic example">
                             <button type="button" id="btNew" data-toggle="modal" data-target="#modalNewIn" class="Cursor btn btn-page"><i class="fa fa-plus"></i></button>
-                            <button type="button" class="Cursor btn btn-page"><i class="fa fa-edit"></i></button>
+                            <button type="button" id="btModi" data-toggle="modal" data-target="#modalNewIn" class="Cursor btn btn-page"><i class="fa fa-edit"></i></button>
                             <button type="button" class="Cursor btn btn-page"><i class="fa fa-file-pdf-o"></i></button>
                             <button type="button" class="Cursor btn btn-page"><i class="fa fa-print"></i></button>
                             <button type="button" class="Cursor btn btn-page"><i class="fa fa-send"></i></button>
@@ -703,89 +703,49 @@
                                         </tbody>
                                     </table>
 
-                                    <div>
-                                        <h6 style="text-align: center;padding-top: 10px;"><strong>General Configuration</strong></h6>
-                                        <div class="col-md-12" style="margin-top: 10px;padding-right: 0px;">
-                                            <div class="row" style="margin-right: 0px;">
-                                                <div class="col-xs-4 col-md-4">
-                                                    <label><strong>Wood Species:</strong></label>
-                                                    <span id="lblWoodSpecies">Knotty Alder</span>
-                                                </div>
-
-                                                <div class="col-xs-4 col-md-4">
-                                                    <label><strong>Door Style:</strong></label>
-                                                    <span>Eye Brow</span>
-                                                </div>
-
-                                                <div class="col-xs-4 col-md-4">
-                                                    <label><strong>Door Place:</strong></label>
-                                                    <span>Overlay Door Type </span>
-                                                </div>
-
-                                                <div class="col-xs-4 col-md-4">
-                                                    <label><strong>Stile Width:</strong></label>
-                                                    <span>2 1/2</span>
-                                                </div>
-
-                                                <div class="col-xs-4 col-md-4">
-                                                    <label><strong>Rail Width:</strong></label>
-                                                    <span>2 1/2</span>
-                                                </div>
-
-                                                <div class="col-xs-4 col-md-4">
-                                                    <label><strong>Inside Profile:</strong></label>
-                                                    <span>Shaker22</span>
-                                                </div>
-
-                                                <div class="col-xs-4 col-md-4">
-                                                    <label><strong>Outside Profile:</strong></label>
-                                                    <span>Reba</span>
-                                                </div>
-
-                                                <div class="col-xs-4 col-md-4">
-                                                    <label><strong>Door Assembly:</strong></label>
-                                                    <span>Cope and Stick</span>
-                                                </div>
-
-                                                <div class="col-xs-4 col-md-4">
-                                                    <label><strong>Panel Material:</strong></label>
-                                                    <span>Knotty Alder</span>
-                                                </div>
-
-                                                <div class="col-xs-4 col-md-4">
-                                                    <label><strong>Opening Measurement:</strong></label>
-                                                    <span>No</span>
-                                                </div>
-
-                                                <div class="col-xs-4 col-md-4">
-                                                    <label><strong>Vertical Divisions:</strong></label>
-                                                    <span>0</span>
-                                                </div>
-
-                                                <div class="col-xs-4 col-md-4">
-                                                    <label><strong>Horizontal Divisions:</strong></label>
-                                                    <span>0</span>
-                                                </div>
-
-                                                <div class="col-xs-4 col-md-4">
-                                                    <label><strong>Drill:</strong></label>
-                                                    <span>Yes (Left)</span>
-                                                </div>
-
-                                                <div class="col-xs-4 col-md-4">
-                                                    <label><strong>Finger Pull:</strong></label>
-                                                    <span>No</span>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <table style="width:100%;margin-top:20px;table-layout:fixed;" border="0" cellspacing="0" cellpadding="0">
+                                        <thead>
+                                            <tr>
+                                                <td style="padding: 5px 0px 5px 5px;text-align: center;" class="pcs-itemtable-header pcs-itemtable-breakword">General Doors Specifications</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td rowspan="1" valign="top" style="padding: 10px 0px 10px 20px;" class="pcs-item-row">
+                                                    <div>
+                                                        <div>
+                                                            <span style="word-wrap: break-word;font-size: 10pt;" id="tmp_item_name">Wood Species: Knotty Alder; Door Style: Eye Brow; Inside Profile: Shaker22; Outside Profile: Reba</span><br />
+                                                            <span style="white-space: pre-wrap;word-wrap: break-word;font-size: 8pt;" class="pcs-item-desc" id="tmp_item_description">Door Place: Overlay Door Type; Stile Width: 2 1/2; Rail Width: 2 1/2; Door Assembly: Cope and Stick; Panel Material: Knotty Alder; Opening Measurement: No; Vertical Divisions: 0; Horizontal Divisions: 0; Drill: Yes (Left); Finger Pull: No</span>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                                @*<tr>
+                                                <td rowspan="1" class="pcs-item-row lineitem-column text-align-left">
+                                                    <span style="word-wrap: break-word;"></span><br />
+                                                    <span style="white-space: pre-wrap;word-wrap: break-word;" class="pcs-item-desc">0</span>
+                                                </td>
+                                                <td rowspan="1" class="pcs-item-row lineitem-column text-align-left">
+                                                    <span style="word-wrap: break-word;"></span><br />
+                                                    <span style="white-space: pre-wrap;word-wrap: break-word;" class="pcs-item-desc">0</span>
+                                                </td>
+                                                <td rowspan="1" class="pcs-item-row lineitem-column text-align-left">
+                                                    <span style="word-wrap: break-word;">: </span><br />
+                                                    <span style="white-space: pre-wrap;word-wrap: break-word;" class="pcs-item-desc"></span>
+                                                </td>
+                                                <td rowspan="1" class="pcs-item-row lineitem-column text-align-left">
+                                                    <span style="word-wrap: break-word;"> </span><br />
+                                                    <span style="white-space: pre-wrap;word-wrap: break-word;" class="pcs-item-desc">No</span>
+                                                </td>
+                                            </tr>*@
+                                        </tbody>
+                                    </table>
                                     
                                     <table style="width:100%;margin-top:20px;table-layout:fixed;" class="pcs-itemtable" border="0" cellspacing="0" cellpadding="0" id="tbInvoice">
                                         <thead>
 
                                         </thead>
-                                        <tbody class="itemBody"></tbody>
+                                        <tbody class="tbInvoice"></tbody>
                                     </table>
                                     <div style="width: 100%;margin-top: 1px;">
                                         <div class="v-top total-number-section">
@@ -1029,9 +989,9 @@
                                         <div class="row" style="width: 100%;">
 
                                             <div class="col-xs-4 col-md-4">
-                                                <label for="DoorStyle" style="margin-top: 25px;">Customer Name: </label>
+                                                <label style="margin-top: 25px;">Customer Name: </label>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" placeholder="Search Customer">
+                                                    <select style="width:100%" class="eventChange form-control select2-show-search" id="" data-placeholder="Search Customer"></select>
                                                     <span class="input-group-btn">
                                                         <button class="btn bd bg-white tx-gray-600" type="button"><i class="fa fa-search"></i></button>
                                                     </span>
@@ -1040,7 +1000,15 @@
 
                                             <div class="col-xs-4 col-md-4">
                                                 <label for="TopRail" style="margin-top: 25px;">Salesperson:</label>
-                                                <select style="width:100%" class="eventChange selectModal form-control select2 Doors" id="" data-placeholder=""></select>
+                                                <select style="width:100%" class="form-control select2-show-search" data-placeholder="Search Salesperson">
+                                                    <option label="Choose one"></option>
+                                                    <option value="Firefox">Firefox</option>
+                                                    <option value="Chrome">Chrome</option>
+                                                    <option value="Safari">Safari</option>
+                                                    <option value="Opera">Opera</option>
+                                                    <option value="Internet Explorer">Internet Explorer</option>
+                                                </select>
+
                                             </div><!-- col -->
 
                                             <div class="col-xs-4 col-md-12">
@@ -1061,7 +1029,7 @@
                                                 <label for="DoorStyle" style="margin-top: 25px;">Due Date: </label>
                                                 <div class="input-group">
                                                     <span class="input-group-addon"><i class="icon ion-calendar tx-16 lh-0 op-6"></i></span>
-                                                    <input id="datepickerNoOfMonths" type="text" class="form-control dateMask" placeholder="MM/DD/YYYY">
+                                                    <input id="fc-datepicker" type="text" class="form-control dateMask" placeholder="MM/DD/YYYY">
                                                 </div>
                                             </div>
 
@@ -1232,24 +1200,24 @@
                         </div>
                         <div hidden style="overflow-y:auto; height: 225px;" id="divTable">
                             @*<table id="ordertable" style="width:100%">
-                <thead>
-                    <tr>
-                        <th>PREVIEW</th>
-                        <th>QUANTITY</th>
-                        <th>WIDHT</th>
-                        <th>HEIGHT</th>
-                        <th>PANEL STYLE</th>
-                        <th>DOOR TYPE</th>
-                        <th>DOOR OPTION</th>
-                        <th>U. PRICE</th>
-                        <th>TOTAL</th>
-                        <th><i class="fa fa-flash"></i></th>
-                    </tr>
-                </thead>
-                <tbody>
+                                <thead>
+                                    <tr>
+                                        <th>PREVIEW</th>
+                                        <th>QUANTITY</th>
+                                        <th>WIDHT</th>
+                                        <th>HEIGHT</th>
+                                        <th>PANEL STYLE</th>
+                                        <th>DOOR TYPE</th>
+                                        <th>DOOR OPTION</th>
+                                        <th>U. PRICE</th>
+                                        <th>TOTAL</th>
+                                        <th><i class="fa fa-flash"></i></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
 
-                </tbody>
-            </table>*@
+                                </tbody>
+                            </table>*@
                         </div>
                     </div>
                     <div id="MODIFYOR" class="tab-pane fade" role="tabpanel">
@@ -1341,15 +1309,12 @@
 </div>
 
 @section scripts{
-    <script type="text/javascript">
-        var urlGetDoorsByOrder = '@Url.Action("GetDoorsByOrder", "OrderControl")';
-    </script>
-
     @Scripts.Render("~/Scripts/js/Invoice.js")
     @Scripts.Render("~/Scripts/Pagination.js")
 <script>
     var urlGetHistoryInvoice = '@Url.Action("GetHistoryInvoice", "Invoice")';
     var urlInsertComment = '@Url.Action("InsertComment", "Invoice")';
+    var urlGetDoorsByOrderInvo = '@Url.Action("GetDoorsByOrderInvo", "Invoice")';
     var urlGetDoorsByOrder = '@Url.Action("GetDoorsByOrder", "OrderControl")';
     var urlGetDocAdjuntosInvoice = '@Url.Action("GetDocAdjuntosInvoice", "Invoice")';
                     try {
@@ -1358,5 +1323,6 @@
                         var listInvoice = null;
                     }
 </script>
-
+<script src="~/Content/lib/select2/js/select2.min.js"></script>
+<script src="~/Content/lib/select2/js/select2.full.min.js"></script>
 }

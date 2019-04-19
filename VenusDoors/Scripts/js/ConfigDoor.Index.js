@@ -49,8 +49,9 @@
     });
 
     $(document).on('change', '#cbMaterial', function () {
-        var pMaterial = $("#cbMaterial").val()
-        llenarComboPanelMaterial(pMaterial)
+        var pMaterial = $("#cbMaterial").val();
+        var pDoorStyle = $("#cbDoorStyle").val();
+        llenarComboPanelMaterial(pMaterial, pDoorStyle);
     });
 
     $(document).on('change', '.Profile', function () {
@@ -115,6 +116,8 @@
 
 function ChangeDoorStylePanel(pIdDoorStyle) {
     var bandera = true;
+    var pMaterial = $("#cbMaterial").val();
+    llenarComboPanelMaterial(pMaterial, pIdDoorStyle);
     llenarComboDoorAssembly($("#cbDoorAssembly").val());
     if (pIdDoorStyle == 1002) {
         var panelType = $("#cbPanel").val();
@@ -150,7 +153,7 @@ function ChangeDoorStylePanel(pIdDoorStyle) {
         var outside = $("#cbOutsideEdgeProfile").val();
         var option = '<option value="0">Select</option>';
         for (var i = 0; i < AllInsideEdgeProfile.length; i++) {
-            if (AllInsideEdgeProfile[i].Status.Id == 1 && (AllInsideEdgeProfile[i].Id == 3 || AllInsideEdgeProfile[i].Id == 7)) {
+            if (AllInsideEdgeProfile[i].Status.Id == 1 && (AllInsideEdgeProfile[i].Id == 3 || AllInsideEdgeProfile[i].Id == 7 || AllInsideEdgeProfile[i].Id == 11)) {
                 option += '<option value="' + AllInsideEdgeProfile[i].Id + '">' + AllInsideEdgeProfile[i].Description + '</option>';
             }
         }
@@ -178,7 +181,7 @@ function ChangeDoorStylePanel(pIdDoorStyle) {
         llenarInsideAndOutsideEspecificos(5, 5);
         llenarComboPanel();
     } else if (pIdDoorStyle == 1007) {
-        llenarInsideAndOutsideEspecificos(4, 11);
+        llenarInsideAndOutsideEspecificos(0, 11);
         llenarComboPanel();
     } else if (pIdDoorStyle == 1008) {
         llenarComboInsideAndOutside();
@@ -374,7 +377,7 @@ function changeDoorStyle() {
 
 }
 
-function llenarComboPanelMaterial(pMaterial) {
+function llenarComboPanelMaterial(pMaterial, pDoorStyle) {
     var pPanelMaterial = 0;
     if (pMaterial == 1) {
         //knotty Alder
@@ -401,12 +404,20 @@ function llenarComboPanelMaterial(pMaterial) {
         if (AllPanelMaterial[i].Status.Id == 1 && AllPanelMaterial[i].Id == pPanelMaterial) {
             option += '<option value="' + AllPanelMaterial[i].Id + '">' + AllPanelMaterial[i].Description + '</option>';
             
-        }
+        }       
         if (pMaterial == 6) {
-            if (AllPanelMaterial[i].Status.Id == 1 && AllPanelMaterial[i].Id == 1) {
-                option += '<option value="' + AllPanelMaterial[i].Id + '">' + AllPanelMaterial[i].Description + '</option>';
+            if (pDoorStyle == 1003) {
+                if (AllPanelMaterial[i].Status.Id == 1 && AllPanelMaterial[i].Id == 1) {
+                    option += '<option value="' + AllPanelMaterial[i].Id + '">' + AllPanelMaterial[i].Description + '</option>';
 
+                }
+            } else if (pDoorStyle == 1002) {
+                if (AllPanelMaterial[i].Status.Id == 1 && AllPanelMaterial[i].Id == 5) {
+                    option += '<option value="' + AllPanelMaterial[i].Id + '">' + AllPanelMaterial[i].Description + '</option>';
+
+                }
             }
+           
         }
     }
     $("#cbPanelMaterial").empty().append(option);
@@ -418,13 +429,18 @@ function llenarInsideAndOutsideEspecificos(pInside, pOutside) {
     var outside = $("#cbOutsideEdgeProfile").val();
     var option = '';
     for (var i = 0; i < AllInsideEdgeProfile.length; i++) {
-        if (AllInsideEdgeProfile[i].Status.Id == 1 && AllInsideEdgeProfile[i].Id == pInside) {
+        if (AllInsideEdgeProfile[i].Status.Id == 1 && (AllInsideEdgeProfile[i].Id == pInside || pInside == 0)) {
             option += '<option value="' + AllInsideEdgeProfile[i].Id + '">' + AllInsideEdgeProfile[i].Description + '</option>';
-            break;
+          
         }
     }
     $("#cbInsideEdgeProfile").empty().append(option);
+    if (pInside == 0) {
+        $("#cbInsideEdgeProfile").val(4);
+    } else {
         $("#cbInsideEdgeProfile").val(pInside);
+    }
+       
     option = '';
     for (var i = 0; i < AllOutsideEdgeProfile.length; i++) {
         if (AllOutsideEdgeProfile[i].Status.Id == 1 && AllOutsideEdgeProfile[i].Id == pOutside) {
@@ -649,7 +665,6 @@ function GetAllInsideEdgeProfile() {
                     if (data[i].Status.Id == 1) {
                         option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
                     }
-
                 }
                 $("#cbInsideEdgeProfile").empty().append(option);
 

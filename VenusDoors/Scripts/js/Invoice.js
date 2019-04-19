@@ -7,8 +7,13 @@
         $('#editDXU').removeClass("active");
         $("#editBCK").trigger("click");
         $('#dxoPanel').removeClass("active");
-        GetDoorsByOrder(idGETOr);
-});
+        GetDoorsByOrderInvo(idGETOr);
+    });
+
+    $('#fc-datepicker').datepicker({
+        showOtherMonths: true,
+        selectOtherMonths: true
+    });
 
     $(".read-more-target").hide();
     $("#read-less-state").hide(); 
@@ -51,6 +56,24 @@
 
     $(document).on('click', "#btLinkAdd", function () {
         $("#btFile").trigger("click");
+    });
+
+    $(document).on('click', '#btModi', function (event) {
+        $("#lblTituloModal").text("Modify Invoice");
+        $("#btnCON").show();
+        $("#NEWINVOICE").show();
+        $("#detailBACK").hide();
+        $("#btnAtras").hide();
+        $("#btSaveChan").hide();
+        $('#createBACK').hide();
+        $("#btnSAVE").hide();
+        $("#btnBack").hide();
+        $("#btnClose").hide();
+        $("#NEWORDER").hide();
+        $("#DETAILORDER").hide();
+        $("#btGuardar").hide();
+        $("#MODIFYOR").hide();
+        $("#btCancel").hide();
     });
 
     $("#btnBack").on('click', function () {
@@ -542,36 +565,36 @@ function GetHistoryInvoice(id) {
 }
 
 function MostrarHistoryAndComment(listHistory) {
-    var option = '';
+                var option = '';
     var x = listHistory.length - 4;
     for (var i = 0; i < listHistory.length; i++) {
-        if (i > x) {
-            option += ' <li id="ember1553" class="ember-view">';
-        } else {
-            option += ' <li id="ember1553" class="read-more-target ember-view">';
-        }
+                    if (i > x) {
+                        option += ' <li id="ember1553" class="ember-view">';
+                    } else {
+                        option += ' <li id="ember1553" class="read-more-target ember-view">';
+                    }
 
-        option += '                          <div class="clearfix" data-test-title="comments-list-row">';
-        option += '                               <div class="date-section pull-left">';
-        option += '                                   <div class="font-xxs text-draft">';
+                    option += '                          <div class="clearfix" data-test-title="comments-list-row">';
+                    option += '                               <div class="date-section pull-left">';
+                    option += '                                   <div class="font-xxs text-draft">';
 
 
         var Fecha1 = new Date(parseInt(re.exec(listHistory[i].CreationDate)[0]));
-        option += Fecha1.ddmmyyyyHH();
-        option += '                                   </div></div>';
-        option += '                               <div class="comment-section pull-left">';
-        option += '                                  <div class="pull-left">';
-        option += '                                      <div class="txn-comment-icon circle-box"></div>';
-        option += '                                    </div>';
-        option += '                                    <div class="media-body" style="margin-left: 50px;">';
-        option += '                                        <div class="comment">';
+                    option += Fecha1.ddmmyyyyHH();
+                    option += '                                   </div></div>';
+                    option += '                               <div class="comment-section pull-left">';
+                    option += '                                  <div class="pull-left">';
+                    option += '                                      <div class="txn-comment-icon circle-box"></div>';
+                    option += '                                    </div>';
+                    option += '                                    <div class="media-body" style="margin-left: 50px;">';
+                    option += '                                        <div class="comment">';
         option += '                                          <span class="IconStatus ' + Iconos(listHistory[i].Type.Id) + '" style="padding-right: 2px;padding-left: 6px;height: 24px;width: 26px;padding-bottom: 2px;padding-top: 3px;"></span>';
         option += '                                          <span class="description"><strong>' + listHistory[i].History + '</strong></span>';
         option += '                                          <label class="font-xs text-muted tx-12"> by ' + listHistory[i].NameCreador + '</label>';
-        option += '                                     </div></div></div></div></li>';
-    }
+                    option += '                                     </div></div></div></div></li>';
+                }
 
-    $("#divHistoryComm").empty().append(option);
+                $("#divHistoryComm").empty().append(option);
 
 }
 
@@ -684,146 +707,145 @@ function GetDocAdjuntosInvoice(id) {
     });
 }
 
-//function GetDoorsByOrder(idOrden) {
-//    var datos =
-//                    {
-//                        IdOrder: idOrden,
-//                    }
-//    $.ajax({
-//        data: JSON.stringify(datos),
-//        url: urlGetDoorsByOrder,
-//        cache: false,
-//        type: 'POST',
-//        async: false,
-//        contentType: 'application/json; charset=utf-8',
-//        success: function (Result) {
-//            _IdDoorxUser = Result.Order.Id;
-//            $('#idDxUorder').val(Result.Id);
-//            $('#descDXU').val(Result.Order.Descuento);
-//            var fingerPull = Result.isFingerPull;
-//            if (fingerPull == false) {
-//                fingerPull = 1;
-//            } else {
-//                fingerPull = 2;
-//            }
+function GetDoorsByOrderInvo(idInvoice) {
+    var datos =
+                    {
+                        IdOrder: idOrden,
+                    }
+    $.ajax({
+        data: JSON.stringify(datos),
+        url: urlGetDoorsByOrderInvo,
+        cache: false,
+        type: 'POST',
+        async: false,
+        contentType: 'application/json; charset=utf-8',
+        success: function (Result) {
+            _IdDoorxUser = Result.Order.Id;
+            $('#idDxUorder').val(Result.Id);
+            $('#descDXU').val(Result.Order.Descuento);
+            var fingerPull = Result.isFingerPull;
+            if (fingerPull == false) {
+                fingerPull = 1;
+            } else {
+                fingerPull = 2;
+            }
            
-//            var info = "";
-//            info += '<tr>';
-//            info += '<td>' + Result.User.Person.Name + ' ' + Result.User.Person.Lastname + '</td>';
-//            info += '<td>' + Result.User.Email + '</td>';
-//            info += '<td>' + Result.User.Person.Telephone + '</td>';
-//            info += '<td>' + Result.User.Person.Direction + '</td>';
-//            info += '</tr>';
+            var info = "";
+            info += '<tr>';
+            info += '<td>' + Result.User.Person.Name + ' ' + Result.User.Person.Lastname + '</td>';
+            info += '<td>' + Result.User.Email + '</td>';
+            info += '<td>' + Result.User.Person.Telephone + '</td>';
+            info += '<td>' + Result.User.Person.Direction + '</td>';
+            info += '</tr>';
 
-//            var dxu = '';
-//            //Primera fila
-//            dxu += '<tr>';
-//            dxu += '<td>Wood Species: <span style="color: #868ba1">' + Result.Material.Description + '</span></td>';
-//            dxu += '<td>Door Style: <span style="color: #868ba1">' + Result.DoorStyle.Description + '</span></td>';
-//            if (Result.isOverlay == false) {
-//                dxu += '<td>Door Place: <span style="color: #868ba1">Inset Door Type</span></td>';
-//            }
-//            else {
-//                dxu += '<td>Door Place: <span style="color: #868ba1">Overlay Door Type</span></td>';
-//            }
-//            dxu += '<td>Stile Width: <span style="color: #868ba1">' + Result.BottomRail.Description + '</span></td>';
-//            dxu += '</tr>';
+            var dxu = '';
+            //Primera fila
+            dxu += '<tr>';
+            dxu += '<td>Wood Species: <span style="color: #868ba1">' + Result.Material.Description + '</span></td>';
+            dxu += '<td>Door Style: <span style="color: #868ba1">' + Result.DoorStyle.Description + '</span></td>';
+            if (Result.isOverlay == false) {
+                dxu += '<td>Door Place: <span style="color: #868ba1">Inset Door Type</span></td>';
+            }
+            else {
+                dxu += '<td>Door Place: <span style="color: #868ba1">Overlay Door Type</span></td>';
+            }
+            dxu += '<td>Stile Width: <span style="color: #868ba1">' + Result.BottomRail.Description + '</span></td>';
+            dxu += '</tr>';
 
-//            //Segunda fila
-//            dxu += '<tr>';
-//            dxu += '<td>Rail Width: <span style="color: #868ba1">' + Result.TopRail.Description + '</span></td>';
-//            dxu += '<td>Inside Edge Profile: <span style="color: #868ba1">' + Result.InsideEdgeProfile.Description + '</span></td>';
-//            dxu += '<td>Outside Edge Profile: <span style="color: #868ba1">' + Result.OutsideEdgeProfile.Description + '</span></td>';
-//            dxu += '<td>Door Assembly: <span style="color: #868ba1">' + Result.Join.Description + '</span></td>';
-//            dxu += '</tr>';
+            //Segunda fila
+            dxu += '<tr>';
+            dxu += '<td>Rail Width: <span style="color: #868ba1">' + Result.TopRail.Description + '</span></td>';
+            dxu += '<td>Inside Edge Profile: <span style="color: #868ba1">' + Result.InsideEdgeProfile.Description + '</span></td>';
+            dxu += '<td>Outside Edge Profile: <span style="color: #868ba1">' + Result.OutsideEdgeProfile.Description + '</span></td>';
+            dxu += '<td>Door Assembly: <span style="color: #868ba1">' + Result.Join.Description + '</span></td>';
+            dxu += '</tr>';
 
-//            //tercera fila
-//            dxu += '<tr>';
-//            dxu += '<td>Panel Material: <span style="color: #868ba1">' + Result.PanelMaterial.Description + '</span></td>';
-//            if (Result.IsOpeningMeasurement == false) {
-//                dxu += '<td>Opening Measurement: <span style="color: #868ba1">No</span></td>';
-//            }
-//            else {
-//                dxu += '<td>Opening Measurement: <span style="color: #868ba1">Yes</span></td>';
-//            }
-//            dxu += '<td>Vertical Divisions: <span style="color: #868ba1">' + Result.VerticalDivisions.Quantity + '</span></td>';
-//            dxu += '<td>Horizontal Divisions: <span style="color: #868ba1">' + Result.HorizontalDivisions.Quantity + '</span></td>';
-//            dxu += '</tr>';
+            //tercera fila
+            dxu += '<tr>';
+            dxu += '<td>Panel Material: <span style="color: #868ba1">' + Result.PanelMaterial.Description + '</span></td>';
+            if (Result.IsOpeningMeasurement == false) {
+                dxu += '<td>Opening Measurement: <span style="color: #868ba1">No</span></td>';
+            }
+            else {
+                dxu += '<td>Opening Measurement: <span style="color: #868ba1">Yes</span></td>';
+            }
+            dxu += '<td>Vertical Divisions: <span style="color: #868ba1">' + Result.VerticalDivisions.Quantity + '</span></td>';
+            dxu += '<td>Horizontal Divisions: <span style="color: #868ba1">' + Result.HorizontalDivisions.Quantity + '</span></td>';
+            dxu += '</tr>';
 
-//            //Cuarta fila
-//            dxu += '<tr>';
-//            if (Result.isDrill == false) {
-//                dxu += '<td>Hinge Drilling: <span style="color: #868ba1">No</span></td>';
-//            }
-//            else {
-//                dxu += '<td>Hinge Drilling: <span style="color: #868ba1">Yes (' + Result.HingeDirection.Direction + ')</span></td>';
-//            }
-//            if (Result.isFingerPull == false) {
-//                dxu += '<td style="border-right: 1px solid #ADADAD;">Finger Pull: <span style="color: #868ba1">No</span></td>';
-//            }
-//            else {
-//                dxu += '<td style="border-right: 1px solid #ADADAD;">Finger Pull: <span style="color: #868ba1">Yes</span></td>';
-//            }
-//            dxu += '<td colspan="2"><textarea disabled rows="1" style="background: #fff!important" class="form-control">Observations: ' + Result.Order.Observations + '</textarea></td>';
-//            dxu += '</tr>';
+            //Cuarta fila
+            dxu += '<tr>';
+            if (Result.isDrill == false) {
+                dxu += '<td>Hinge Drilling: <span style="color: #868ba1">No</span></td>';
+            }
+            else {
+                dxu += '<td>Hinge Drilling: <span style="color: #868ba1">Yes (' + Result.HingeDirection.Direction + ')</span></td>';
+            }
+            if (Result.isFingerPull == false) {
+                dxu += '<td style="border-right: 1px solid #ADADAD;">Finger Pull: <span style="color: #868ba1">No</span></td>';
+            }
+            else {
+                dxu += '<td style="border-right: 1px solid #ADADAD;">Finger Pull: <span style="color: #868ba1">Yes</span></td>';
+            }
+            dxu += '<td colspan="2"><textarea disabled rows="1" style="background: #fff!important" class="form-control">Observations: ' + Result.Order.Observations + '</textarea></td>';
+            dxu += '</tr>';
 
-//            var option = '<table id="ordertable" style="width:100%">';
-//            option += '<thead><tr>';
-//            option += '<th>PREVIEW</th>';
-//            option += '<th>QUANTITY</th>';
-//            option += '<th>WIDHT</th>';
-//            option += '<th>HEIGHT</th>';
-//            option += '<th>PANEL STYLE</th>';
-//            option += '<th>DOOR TYPE</th>';
-//            option += '<th>DOOR OPTION</th>';
-//            option += '<th>U. PRICE</th>';
-//            if (Result.DescuentoActivos) {
-//                option += '<th>DISCOUNT</th>';
-//            }
-//            option += '<th>TOTAL</th>';
-//            option += '<th><i class="fa fa-flash"></i></th></tr></thead><tbody>';
-//            DxOl = Result.DoorsxOrder;
-//            for (var i = 0; i < Result.DoorsxOrder.length; i++){
+            var option = '<table id="ordertable" style="width:100%">';
+            option += '<thead><tr>';
+            option += '<th>PREVIEW</th>';
+            option += '<th>QUANTITY</th>';
+            option += '<th>WIDHT</th>';
+            option += '<th>HEIGHT</th>';
+            option += '<th>PANEL STYLE</th>';
+            option += '<th>DOOR TYPE</th>';
+            option += '<th>DOOR OPTION</th>';
+            option += '<th>U. PRICE</th>';
+            if (Result.DescuentoActivos) {
+                option += '<th>DISCOUNT</th>';
+            }
+            option += '<th>TOTAL</th>';
+            option += '<th><i class="fa fa-flash"></i></th></tr></thead><tbody>';
+            DxOl = Result.DoorsxOrder;
+            for (var i = 0; i < Result.DoorsxOrder.length; i++){
                 
-//                        option += '<tr><td><img width="65px" src="' + Result.DoorsxOrder[i].Picture + '"/></td>';
+                        option += '<tr><td><img width="65px" src="' + Result.DoorsxOrder[i].Picture + '"/></td>';
 
-//                        option += '<td>' + Result.DoorsxOrder[i].Quantity.toString().replace(',', '.') + '</td>';
-//                        option += '<td>' + Math.trunc(Result.DoorsxOrder[i].Width);
-//                        if (Result.DoorsxOrder[i].DecimalsWidth.Value != 0) {
-//                            option += ' <span>' + Result.DoorsxOrder[i].DecimalsWidth.Description + '</span>';
-//                        }
-//                        option += '</td>';
-//                        option += '<td>' + Math.trunc(Result.DoorsxOrder[i].Height);
-//                        if (Result.DoorsxOrder[i].DecimalsHeight.Value != 0) {
-//                            option += ' <span>' + Result.DoorsxOrder[i].DecimalsHeight.Description + '</span>';
-//                        }
-//                        option += '</td>';
-//                        option += '<td>' + Result.DoorsxOrder[i].Panel.Description + '</td>';
-//                        option += '<td>' + Result.DoorsxOrder[i].DoorType.Description + '</td>';
-//                        option += '<td>' + Result.DoorsxOrder[i].DoorOption.Description + '</td>';
-//                        option += '<td><span>$</span>' + Result.DoorsxOrder[i].ItemCost.toString().replace(',', '.') + '</td>';
-//                        if (Result.DescuentoActivos) {
-//                            option += '<td>' + Result.DoorsxOrder[i].Descuento + '%</td>';
-//                        }
-//                        option += '<td><span>$</span>' + Result.DoorsxOrder[i].SubTotal.toString().replace(',', '.') + '</td>';
-//                        if (Result.Order.Status.Id == 5) {
-//                            option += '<td><button title="Edit Door" data-id="' + Result.DoorsxOrder[i].Id + '"data-toggle="tab" href="#MODIFYOR" role="tab"  class="editDoor Cursor btn btn-primary btn-icon"  style="width: 25px;height: 25px; margin-left: 10px;"> <i class="fa fa-edit"></i></button></td>';
-//                        } else {
-//                            option += '<td><button title="Not available" disabled data-id="" data-toggle="tab" href="#MODIFYOR" role="tab"  class="editDoor btn btn-primary btn-icon"  style="width: 25px;height: 25px; margin-left: 10px;"> <i class="fa fa-edit"></i></button></td>';
-//                        }
-//                        option += '</tr>';
-//                    }
+                        option += '<td>' + Result.DoorsxOrder[i].Quantity.toString().replace(',', '.') + '</td>';
+                        option += '<td>' + Math.trunc(Result.DoorsxOrder[i].Width);
+                        if (Result.DoorsxOrder[i].DecimalsWidth.Value != 0) {
+                            option += ' <span>' + Result.DoorsxOrder[i].DecimalsWidth.Description + '</span>';
+                        }
+                        option += '</td>';
+                        option += '<td>' + Math.trunc(Result.DoorsxOrder[i].Height);
+                        if (Result.DoorsxOrder[i].DecimalsHeight.Value != 0) {
+                            option += ' <span>' + Result.DoorsxOrder[i].DecimalsHeight.Description + '</span>';
+                        }
+                        option += '</td>';
+                        option += '<td>' + Result.DoorsxOrder[i].Panel.Description + '</td>';
+                        option += '<td>' + Result.DoorsxOrder[i].DoorType.Description + '</td>';
+                        option += '<td>' + Result.DoorsxOrder[i].DoorOption.Description + '</td>';
+                        option += '<td><span>$</span>' + Result.DoorsxOrder[i].ItemCost.toString().replace(',', '.') + '</td>';
+                        if (Result.DescuentoActivos) {
+                            option += '<td>' + Result.DoorsxOrder[i].Descuento + '%</td>';
+                        }
+                        option += '<td><span>$</span>' + Result.DoorsxOrder[i].SubTotal.toString().replace(',', '.') + '</td>';
+                        if (Result.Order.Status.Id == 5) {
+                            option += '<td><button title="Edit Door" data-id="' + Result.DoorsxOrder[i].Id + '"data-toggle="tab" href="#MODIFYOR" role="tab"  class="editDoor Cursor btn btn-primary btn-icon"  style="width: 25px;height: 25px; margin-left: 10px;"> <i class="fa fa-edit"></i></button></td>';
+                        } else {
+                            option += '<td><button title="Not available" disabled data-id="" data-toggle="tab" href="#MODIFYOR" role="tab"  class="editDoor btn btn-primary btn-icon"  style="width: 25px;height: 25px; margin-left: 10px;"> <i class="fa fa-edit"></i></button></td>';
+                        }
+                        option += '</tr>';
+                    }
 
-//            option += '</tbody></table>';
-//            $("#orreff").text(idOrden);
-//            $("#divTable").empty().append(option);
-//            $("#HeaderOptions > tbody").empty().append(dxu);
-//            $("#UserOrderInfo > tbody").empty().append(info);
-//            if (Result.Order.Status.Id == 5) {
-//                $("#editDXU").show();
-//            } else {
-//                $("#editDXU").hide();
-//            }
-//        },
-//});
-//    }
+            option += '</tbody></table>';
+            $("#orreff").text(idOrden);
+            $("#divTable").empty().append(option);
+            $("#HeaderOptions > tbody").empty().append(dxu);
+            $("#UserOrderInfo > tbody").empty().append(info);
+            if (Result.Order.Status.Id == 5) {
+                $("#editDXU").show();
+            } else {
+                $("#editDXU").hide();
+            }
+        },
+    })}
