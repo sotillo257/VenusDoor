@@ -1098,7 +1098,7 @@ namespace BusinessLogic
         }
         public string BuscarDoorPicture(DoorxOrder pDoorxOrder)
         {
-            string respuesta = "/Content/img/Doors/Cabinet Vector-1.png";
+            string respuesta = "/Content/img/Doors/Cabinet Vector-01.png";
             if (pDoorxOrder.DoorxUser.Panel.Id == 5)
             {
                 respuesta = FlatPanel(pDoorxOrder);
