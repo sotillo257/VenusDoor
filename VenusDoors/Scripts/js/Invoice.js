@@ -30,6 +30,11 @@
         $("#Record_Paymend").show();
     });
 
+    $("#btCancelar").on("click", function () {
+        $("#Invoice").show();
+        $("#Record_Paymend").hide();
+    });
+
     $("#read-more-state").on("click", function () {
         $("#read-more-state").hide();
         $("#read-less-state").show();
