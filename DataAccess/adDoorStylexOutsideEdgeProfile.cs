@@ -83,6 +83,8 @@ namespace DataAccess
 
         }
 
+       
+
         public int InsertDoorStylexOutsideEdgeProfile(DoorStylexOutsideEdgeProfile pDoorStylexOutsideEdgeProfile)
         {
             string sql = @"[spInsertDoorStylexOutsideEdgeProfile] '{0}', '{1}', '{2}', '{3}', '{4}'";
@@ -122,7 +124,7 @@ namespace DataAccess
         /// <returns></returns>
         public void DeleteDoorStylexOutsideEdgeProfile(int pId)
         {
-            string sql = @"[spDeleteDoorStylexOutisdeEdgeProfile] '{0}'";
+            string sql = @"[spDeleteDoorStylexOutsideEdgeProfile] '{0}'";
             sql = string.Format(sql, pId);
             try
             {

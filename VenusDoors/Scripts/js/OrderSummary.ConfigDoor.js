@@ -167,7 +167,7 @@ function SearchDoor(data) {
         llenarComboStileWidth(data.BottomRail.Id);
         llenarComboRailWidth(data.TopRail.Id);
         llenarComboDoorAssembly(data.Join.Id);
-        llenarComboPanelMaterial(data.Material.Id);
+        llenarComboPanelMaterial(data.Material.Id, data.DoorStyle.Id);
         llenarComboVerticalDivisions(data.VerticalDivisions.Id);
         llenarComboHorizontalDivisions(data.HorizontalDivisions.Id);
         llenarComboHingeDirection(data.HingeDirection.Id);
@@ -338,7 +338,7 @@ function llenarComboPanelStyle(pPanelStyle) {
 }
 
 var AllPanelMaterial = '';
-function llenarComboPanelMaterial(pMaterial) {
+function llenarComboPanelMaterial(pMaterial, pDoorStyle) {
     var pPanelMaterial = 0;
     if (pMaterial == 1) {
         //knotty Alder
@@ -359,23 +359,31 @@ function llenarComboPanelMaterial(pMaterial) {
     else if (pMaterial == 13) {
         //Beech
         pPanelMaterial = 3;
-    }    
-    var option = '<option value="0">Select</option>';
+    }
+    var option = '';
     for (var i = 0; i < AllPanelMaterial.length; i++) {
         if (AllPanelMaterial[i].Status.Id == 1 && AllPanelMaterial[i].Id == pPanelMaterial) {
             option += '<option value="' + AllPanelMaterial[i].Id + '">' + AllPanelMaterial[i].Description + '</option>';
 
         }
         if (pMaterial == 6) {
-            if (AllPanelMaterial[i].Status.Id == 1 && AllPanelMaterial[i].Id == 1) {
-                option += '<option value="' + AllPanelMaterial[i].Id + '">' + AllPanelMaterial[i].Description + '</option>';
+            if (pDoorStyle == 1003) {
+                if (AllPanelMaterial[i].Status.Id == 1 && AllPanelMaterial[i].Id == 1) {
+                    option += '<option value="' + AllPanelMaterial[i].Id + '">' + AllPanelMaterial[i].Description + '</option>';
+
+                }
+            } else if (pDoorStyle == 1002) {
+                if (AllPanelMaterial[i].Status.Id == 1 && AllPanelMaterial[i].Id == 5) {
+                    option += '<option value="' + AllPanelMaterial[i].Id + '">' + AllPanelMaterial[i].Description + '</option>';
+
+                }
             }
+
         }
     }
     $("#cbPanelMaterial").empty().append(option);
     $("#cbPanelMaterial").val(pPanelMaterial);
 }
-
 var AllVerticalDivisions = '';
 function llenarComboVerticalDivisions(pVerticalD) {
 
@@ -661,20 +669,14 @@ function ValidarCamposVacios() {
         $('#select2-cbHorizontalDivisions-container').removeClass("cbError");
     }
 
+    if ($('#cbPanel').val() == 0 || $('#cbPanel').val() == null) {
+        // $('#cbPanel').addClass("cbError");
 
-    if ($('#cbisDrill').val() == 0 || $('#cbisDrill').val() == null) {
-        $('#select2-cbisDrill-container').addClass("cbError");
+        $('#select2-cbPanel-container').addClass("cbError");
         aux = false;
     } else {
-        if ($('#cbisDrill').val() == 2) {
-            if ($('#cbHingeDirection').val() == 0 || $('#cbHingeDirection').val() == null) {
-                $('#select2-cbHingeDirection-container').addClass("cbError");
-                aux = false;
-            } else {
-                $('#select2-cbHingeDirection-container').removeClass("cbError");
-            }
-        }
-        $('#select2-cbisDrill-container').removeClass("cbError");
+        // $('#cbPanel').addClass("cbError");
+        $('#select2-cbPanel-container').removeClass("cbError");
     }
 
     if ($('#cbFingerPull').val() == 0 || $('#cbFingerPull').val() == null) {
@@ -871,11 +873,11 @@ function GetDoorxUser() {
             if (data.LastDoor != null) {               
                 
                 $('#idDoor').val(data.LastDoor.Id);
-                //var HTMLImage =                       
-                //   ' <center> <img style="height: 100px;width: 235px;margin-top: 20px;" id="ProfilePicture" src="' + data.LastDoor[i].ProfilePicture + '">' +
-                //              '<img style="width: 230px;height: 230px;" id="DoorPicture" src="' + data.LastDoor[i].Picture + '">' +
-                //              '</center>';
-                //$('#Picture').html(HTMLImage);
+                var HTMLImage =                       
+                   ' <center> <img style="height: 100px;width: 235px;margin-top: 20px;" id="ProfilePicture" src="' + data.LastDoor.ProfilePicture + '">' +
+                              '<img style="width: 230px;height: 230px;" id="DoorPicture" src="' + data.LastDoor.Picture + '">' +
+                              '</center>';
+                $('#Picture').html(HTMLImage);
                 var fingerPull = data.LastDoor.isFingerPull;
                 if (fingerPull == false) {
                     fingerPull = 1;
@@ -883,14 +885,7 @@ function GetDoorxUser() {
                     fingerPull = 2;
                 }
                 llenarComboFinger(fingerPull);
-
-                var isDrill = data.LastDoor.isDrill;
-                if (isDrill == false) {
-                    isDrill = 1;
-                } else {
-                    isDrill = 2;
-                }
-                llenarComboIsDrill(isDrill);
+               
                 HingeCalculate();
                 HingeShow();
 
@@ -908,8 +903,7 @@ function GetDoorxUser() {
                 } else {
                     isOver = 2;
                 }
-                checkIsOverlay(isOver);
-                //llenarComboDecimales(data.LastDoor.Decimales.Id);
+                checkIsOverlay(isOver);                
                 llenarComboMaterial(data.LastDoor.Material.Id);
                
                 
@@ -918,7 +912,7 @@ function GetDoorxUser() {
                 llenarComboStileWidth(data.LastDoor.BottomRail.Id);
                 llenarComboRailWidth(data.LastDoor.TopRail.Id);
                 llenarComboDoorAssembly(data.LastDoor.Join.Id);
-                llenarComboPanelMaterial(data.LastDoor.Material.Id);
+                llenarComboPanelMaterial(data.LastDoor.Material.Id, data.LastDoor.DoorStyle.Id);
                 llenarComboVerticalDivisions(data.LastDoor.VerticalDivisions.Id);
                 llenarComboHorizontalDivisions(data.LastDoor.HorizontalDivisions.Id);
                 llenarComboHingeDirection(data.LastDoor.HingeDirection.Id);

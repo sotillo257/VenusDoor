@@ -144,14 +144,18 @@
                     </div><!-- menu-item -->
                 </a><!-- br-menu-link -->
                     <ul class="br-menu-sub nav flex-column">
+                        
                         <li class="nav-item">@Html.ActionLink("Standard Doors", "Doors", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.StanDoors })</li>
                         <li class="nav-item">@Html.ActionLink("Doors Prices", "DoorsPrices", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.DoorPrice })</li>
                         <li class="nav-item">@Html.ActionLink("Doors Style", "Index", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.DoorStyle })</li>
+                        <li class="nav-item">@Html.ActionLink("Door Style + inside Profile", "DoorStylexInsideEdgeProfile", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.InsideEdgeProfile })</li>
+                        <li class="nav-item">@Html.ActionLink("Door Style + Outside Profile", "DoorStylexOutsideEdgeProfile", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.InsideEdgeProfile })</li>
                         <li class="nav-item">@Html.ActionLink("Door Assembly", "Join", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Join })</li>                       
                         <li class="nav-item">@Html.ActionLink("Panel", "Panel", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Panel })</li> 
                         <li class="nav-item">@Html.ActionLink("Panel Material", "PanelMaterial", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.PanelMaterial })</li> 
-                        <li class="nav-item">@Html.ActionLink("Material", "Material", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Material })</li>                      
-                        <li class="nav-item">@Html.ActionLink("Inside Edge Profile", "InsideEdgeProfile", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.InsideEdgeProfile })</li>
+                        <li class="nav-item">@Html.ActionLink("Material", "Material", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.Material })</li>        
+                        <li class="nav-item">@Html.ActionLink("Inside Edge Profile", "InsideEdgeProfile", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.InsideEdgeProfile })</li>              
+                       
                         <li class="nav-item">@Html.ActionLink("Outside Edge Profile", "OutsideEdgeProfile", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.OutsideEdgeProfile })</li>                       
                         <li class="nav-item">@Html.ActionLink("Rail Width", "BottomRail", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.BottomRail })</li>
                         <li class="nav-item">@Html.ActionLink("Stile Width", "TopRail", "Masters", new { area = "" }, new { @class = "nav-link " + ViewBag.TopRail })</li>

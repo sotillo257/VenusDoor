@@ -81,6 +81,36 @@ namespace DataAccess
 
         }
 
+        public List<OutsideEdgeProfile> GetOutsideProfilexDoorStyle(int pDoorStyle)
+        {
+            List<OutsideEdgeProfile> doorxoutside = new List<OutsideEdgeProfile>();
+            string sql = @"[spGetOutsideProfilexDoorStyle] '{0}'";
+            sql = string.Format(sql, pDoorStyle);
+            try
+            {
+                DataSet ds = new DataSet();
+                ds = _MB.CreaDS(ds, "DoorStylexOutsideEdgeProfile", sql, _CN);
+                if (ds.Tables["DoorStylexOutsideEdgeProfile"].Rows.Count > 0)
+                {
+                    foreach (DataRow item in ds.Tables["DoorStylexOutsideEdgeProfile"].Rows)
+                    {
+                        doorxoutside.Add(new OutsideEdgeProfile()
+                        {
+                            Id = int.Parse(item["Id"].ToString()),
+                            Status = new Status() { Id = int.Parse(item["IdStatus"].ToString())},
+                            Description = item["Description"].ToString()                        
+                        });
+                    }
+                }
+                return doorxoutside;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
+
         public int InsertOutsideEdgeProfile(OutsideEdgeProfile pOutsideEdgeProfile)
         {
             string sql = @"[spInsertOutsideEdgeProfile] '{0}', '{1}', '{2}', '{3}'";

@@ -49,8 +49,9 @@
     });
 
     $(document).on('change', '#cbMaterial', function () {
-        var pMaterial = $("#cbMaterial").val()
-        llenarComboPanelMaterial(pMaterial)
+        var pMaterial = $("#cbMaterial").val();
+        var pDoorStyle = $("#cbDoorStyle").val();
+        llenarComboPanelMaterial(pMaterial, pDoorStyle);
     });
 
     $(document).on('change', '.Profile', function () {
@@ -109,12 +110,15 @@
 
     $(document).on('change', '#cbDoorStyle', function () {
         ChangeDoorStylePanel($("#cbDoorStyle").val());
+        GetInsideAndOutside($("#cbDoorStyle").val());
     });
 });
 
 
 function ChangeDoorStylePanel(pIdDoorStyle) {
     var bandera = true;
+    var pMaterial = $("#cbMaterial").val();
+    llenarComboPanelMaterial(pMaterial, pIdDoorStyle);
     llenarComboDoorAssembly($("#cbDoorAssembly").val());
     if (pIdDoorStyle == 1002) {
         var panelType = $("#cbPanel").val();
@@ -150,7 +154,7 @@ function ChangeDoorStylePanel(pIdDoorStyle) {
         var outside = $("#cbOutsideEdgeProfile").val();
         var option = '<option value="0">Select</option>';
         for (var i = 0; i < AllInsideEdgeProfile.length; i++) {
-            if (AllInsideEdgeProfile[i].Status.Id == 1 && (AllInsideEdgeProfile[i].Id == 3 || AllInsideEdgeProfile[i].Id == 7)) {
+            if (AllInsideEdgeProfile[i].Status.Id == 1 && (AllInsideEdgeProfile[i].Id == 3 || AllInsideEdgeProfile[i].Id == 7 || AllInsideEdgeProfile[i].Id == 11)) {
                 option += '<option value="' + AllInsideEdgeProfile[i].Id + '">' + AllInsideEdgeProfile[i].Description + '</option>';
             }
         }
@@ -178,7 +182,7 @@ function ChangeDoorStylePanel(pIdDoorStyle) {
         llenarInsideAndOutsideEspecificos(5, 5);
         llenarComboPanel();
     } else if (pIdDoorStyle == 1007) {
-        llenarInsideAndOutsideEspecificos(4, 11);
+        llenarInsideAndOutsideEspecificos(0, 11);
         llenarComboPanel();
     } else if (pIdDoorStyle == 1008) {
         llenarComboInsideAndOutside();
@@ -259,14 +263,19 @@ function ValidarCamposFront() {
         $('#CantidadFila').removeClass("is-invalid");
     }
 
-    if ($('#cbPanel').val() == 0 || $('#cbPanel').val() == null) {
-       // $('#cbPanel').addClass("cbError");
-        
-        $('#select2-cbPanel-container').addClass("cbError");
+    if ($('#cbisDrill').val() == 0 || $('#cbisDrill').val() == null) {
+        $('#select2-cbisDrill-container').addClass("cbError");
         aux = false;
     } else {
-       // $('#cbPanel').addClass("cbError");
-        $('#select2-cbPanel-container').removeClass("cbError");
+        if ($('#cbisDrill').val() == 2) {
+            if ($('#cbHingeDirection').val() == 0 || $('#cbHingeDirection').val() == null) {
+                $('#select2-cbHingeDirection-container').addClass("cbError");
+                aux = false;
+            } else {
+                $('#select2-cbHingeDirection-container').removeClass("cbError");
+            }
+        }
+        $('#select2-cbisDrill-container').removeClass("cbError");
     }
 
     if ($('#cbDoorType').val() == 0 || $('#cbDoorType').val() == null) {
@@ -369,7 +378,7 @@ function changeDoorStyle() {
 
 }
 
-function llenarComboPanelMaterial(pMaterial) {
+function llenarComboPanelMaterial(pMaterial, pDoorStyle) {
     var pPanelMaterial = 0;
     if (pMaterial == 1) {
         //knotty Alder
@@ -396,12 +405,20 @@ function llenarComboPanelMaterial(pMaterial) {
         if (AllPanelMaterial[i].Status.Id == 1 && AllPanelMaterial[i].Id == pPanelMaterial) {
             option += '<option value="' + AllPanelMaterial[i].Id + '">' + AllPanelMaterial[i].Description + '</option>';
             
-        }
+        }       
         if (pMaterial == 6) {
-            if (AllPanelMaterial[i].Status.Id == 1 && AllPanelMaterial[i].Id == 1) {
-                option += '<option value="' + AllPanelMaterial[i].Id + '">' + AllPanelMaterial[i].Description + '</option>';
+            if (pDoorStyle == 1003) {
+                if (AllPanelMaterial[i].Status.Id == 1 && AllPanelMaterial[i].Id == 1) {
+                    option += '<option value="' + AllPanelMaterial[i].Id + '">' + AllPanelMaterial[i].Description + '</option>';
 
+                }
+            } else if (pDoorStyle == 1002) {
+                if (AllPanelMaterial[i].Status.Id == 1 && AllPanelMaterial[i].Id == 5) {
+                    option += '<option value="' + AllPanelMaterial[i].Id + '">' + AllPanelMaterial[i].Description + '</option>';
+
+                }
             }
+           
         }
     }
     $("#cbPanelMaterial").empty().append(option);
@@ -413,13 +430,18 @@ function llenarInsideAndOutsideEspecificos(pInside, pOutside) {
     var outside = $("#cbOutsideEdgeProfile").val();
     var option = '';
     for (var i = 0; i < AllInsideEdgeProfile.length; i++) {
-        if (AllInsideEdgeProfile[i].Status.Id == 1 && AllInsideEdgeProfile[i].Id == pInside) {
+        if (AllInsideEdgeProfile[i].Status.Id == 1 && (AllInsideEdgeProfile[i].Id == pInside || pInside == 0)) {
             option += '<option value="' + AllInsideEdgeProfile[i].Id + '">' + AllInsideEdgeProfile[i].Description + '</option>';
-            break;
+          
         }
     }
     $("#cbInsideEdgeProfile").empty().append(option);
+    if (pInside == 0) {
+        $("#cbInsideEdgeProfile").val(4);
+    } else {
         $("#cbInsideEdgeProfile").val(pInside);
+    }
+       
     option = '';
     for (var i = 0; i < AllOutsideEdgeProfile.length; i++) {
         if (AllOutsideEdgeProfile[i].Status.Id == 1 && AllOutsideEdgeProfile[i].Id == pOutside) {
@@ -459,6 +481,59 @@ function llenarComboInsideAndOutside() {
         $("#cbOutsideEdgeProfile").val(outside);
     }
   
+}
+
+function GetInsideAndOutside(pDoorStyle) {
+
+    var datos =
+    {
+        pDoorStyle: pDoorStyle
+    };
+
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(datos),
+        url: urlGetInsideAndOutside,
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+
+            //Validar data para ver si mostrar error al guardar o exito al guardar
+            if (result.Success) {
+
+                var inside = $("#cbInsideEdgeProfile").val();
+                var outside = $("#cbOutsideEdgeProfile").val();
+                var option = '<option value="0">Select</option>';
+                for (var i = 0; i < result.listInside.length; i++) {
+                    option += '<option value="' + result.listInside[i].Id + '">' + result.listInside[i].Description + '</option>';
+                 
+                }
+                $("#cbInsideEdgeProfile").empty().append(option);
+
+
+                if (inside != 1) {
+                    $("#cbInsideEdgeProfile").val(inside);
+                }
+                option = '<option value="0">Select</option>';
+                for (var i = 0; i < result.listOutside.length; i++) {
+                    option += '<option value="' + result.listOutside[i].Id + '">' + result.listOutside[i].Description + '</option>';
+               
+                }
+                $("#cbOutsideEdgeProfile").empty().append(option);
+                if (outside != 1) {
+
+                    $("#cbOutsideEdgeProfile").val(outside);
+                }
+            } else {
+                LlammarModal("Danger", "Error", result.Mensaje);
+            }
+        },
+        error: function (err) {
+            LlammarModal("Danger", "Error.", "while deleting");
+        },
+
+    });
+
 }
 
 function HingeCalculate() {
@@ -644,7 +719,6 @@ function GetAllInsideEdgeProfile() {
                     if (data[i].Status.Id == 1) {
                         option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
                     }
-
                 }
                 $("#cbInsideEdgeProfile").empty().append(option);
 
@@ -1069,17 +1143,7 @@ function InsertDoorsxUser() {
     var Taxes = (parseFloat(OrdSubTotal) * Tx).toFixed(2);
     var OrdTotal = (parseFloat(OrdSubTotal) + parseFloat(Taxes)).toFixed(2);
     var DoorOp = $('input[name=radioOption]:checked').attr("data-id");
-    var isOver = ($('input[name=radioOver]:checked').attr("data-id") == 1) ? false : true;
-    var drillingV = ($("#cbisDrill").val()==1)? false: true;
-    var HingeDirection = $("#cbHingeDirection").val();
-    var HingePositions;
-    if(drillingV == true){
-        HingeDirection = $("#cbHingeDirection").val();
-        HingePositions = 0;
-    } else  {
-        HingeDirection = 3;
-        HingePositions = 2;
-    }
+    var isOver = ($('input[name=radioOver]:checked').attr("data-id") == 1) ? false : true;    
     var datos =
          {
              Ord:{
@@ -1107,10 +1171,7 @@ function InsertDoorsxUser() {
                  ItemCost: itemCost,
                  SubTotal: DoorSubTotal,
                      Picture: '',
-                     ProfilePicture: '',
-                 isDrill: drillingV,
-                 HingeDirection: { Id: HingeDirection },
-                 HingePositions: { Id: HingePositions },
+                     ProfilePicture: '',                 
                  DoorType: { Id: $("#cbDoorType").val() },
                      DoorOption: { Id: 0 },
                  isOverlay: isOver,
@@ -1162,17 +1223,7 @@ function UpdateDoorsxUser() {
     var Taxes = (parseFloat(OrdSubTotal) * Tx).toFixed(2);
     var OrdTotal = (parseFloat(OrdSubTotal) + parseFloat(Taxes)).toFixed(2);
     var DoorOp = $('input[name=radioOption]:checked').attr("data-id");
-    var isOver = ($('input[name=radioOver]:checked').attr("data-id") == 1) ? false : true;
-    var drillingV = ($("#cbisDrill").val() == 1) ? false : true;
-    var HingeDirection = $("#cbHingeDirection").val();
-    var HingePositions;
-    if (drillingV == true) {
-        HingeDirection = $("#cbHingeDirection").val();
-        HingePositions = 0;
-    } else {
-        HingeDirection = 3;
-        HingePositions = 2;
-    }
+    var isOver = ($('input[name=radioOver]:checked').attr("data-id") == 1) ? false : true;   
     var datos =
          {
              Ord: {
@@ -1201,10 +1252,7 @@ function UpdateDoorsxUser() {
                      ItemCost: itemCost,
                      SubTotal: DoorSubTotal,
                      Picture: '',
-                     ProfilePicture: '',
-                     isDrill: drillingV,
-                     HingeDirection: { Id: HingeDirection },
-                     HingePositions: { Id: HingePositions },
+                     ProfilePicture: '',                   
                      DoorType: { Id: $("#cbDoorType").val() },
                      DoorOption: { Id: 0 },
                      isOverlay: isOver,
@@ -1248,6 +1296,16 @@ function InsertDoorsxOrder() {
     var itemCost = parseFloat($("#iptCost").val());
     var DoorQuantity = $("#CantidadFila").val();
     var DoorOp = $("#cbDoorOpt").val();
+    var drillingV = ($("#cbisDrill").val() == 1) ? false : true;
+    var HingeDirection = $("#cbHingeDirection").val();
+    var HingePositions;
+    if (drillingV == true) {
+        HingeDirection = $("#cbHingeDirection").val();
+        HingePositions = 0;
+    } else {
+        HingeDirection = 3;
+        HingePositions = 2;
+    }
 
     var datos =
          {
@@ -1262,12 +1320,14 @@ function InsertDoorsxOrder() {
                  ItemCost: 0,
                  SubTotal: 0,
                  Picture: '',
-                 ProfilePicture: '',
-                 Panel: { Id: $("#cbPanel").val() },
+                 ProfilePicture: '',                
                  DoorType: { Id: $("#cbDoorType").val() },
                  DoorOption: { Id: DoorOp },
                  User: { Id: 0 },
-                 Status : {Id: 1}
+                 Status: { Id: 1 },
+                 isDrill: drillingV,
+                 HingeDirection: { Id: HingeDirection },
+                 HingePositions: { Id: HingePositions },
              }
          };
     $.ajax({
@@ -1802,12 +1862,18 @@ function llenarTablaOrderSumary() {
                     if (HDecimal == "0" || HDecimal == 0) {
                         HDecimal = "";
                     }
+                    var drill = "";
+                    if (DxO[i].isDrill == 0) {
+                        drill = "No";
+                    } else {
+                        drill = "Yes(" + DxO[i].HingeDirection.Description + ")";
+                    } 
                     t.row.add([
                         Imagen,
                         DxO[i].Quantity,
                         DxO[i].Width + ' ' + WDecimal,
                         DxO[i].Height + ' ' + HDecimal,
-                        DxO[i].Panel.Description,
+                        drill,
                         DxO[i].DoorType.Description,
                         DxO[i].DoorOption.Description,
                         "<span>$</span>"+ DxO[i].ItemCost,
@@ -1869,8 +1935,9 @@ function llenarheaderOrder() {
                 headerConfig += '<div class="col-xs-4 col-md-3"><label for="OutsideProfile" style="margin-top: 25px;">Outside Edge Profile: <span>'+ data.LastDoor.OutsideEdgeProfile.Description +'</span></label></div>';
                 headerConfig += '<div class="col-xs-4 col-md-3"><label for="StileWidth" style="margin-top: 25px;">Stile Width: <span>'+ data.LastDoor.BottomRail.Description +'</span></label></div>';
                 headerConfig += '<div class="col-xs-4 col-md-3"><label for="RailWidth" style="margin-top: 25px;">Rail Width: <span>'+ data.LastDoor.TopRail.Description +'</span></label></div>';
-                headerConfig += '<div class="col-xs-4 col-md-3"><label for="DoorAssembly" style="margin-top: 25px;">Door Assembly: <span>'+ data.LastDoor.Join.Description +'</span></label></div>';
-                headerConfig += '<div class="col-xs-4 col-md-3"><label for="PanelMaterial" style="margin-top: 25px;">Panel Material: <span>'+ data.LastDoor.PanelMaterial.Description +'</span></label></div>';
+                headerConfig += '<div class="col-xs-4 col-md-3"><label for="DoorAssembly" style="margin-top: 25px;">Door Assembly: <span>' + data.LastDoor.Join.Description + '</span></label></div>';
+                headerConfig += '<div class="col-xs-4 col-md-3"><label for="PanelStyle" style="margin-top: 25px;">Panel Style: <span>' + data.LastDoor.Panel.Description + '</span></label></div>';
+                headerConfig += '<div class="col-xs-4 col-md-3"><label for="PanelMaterial" style="margin-top: 25px;">Panel Material: <span>' + data.LastDoor.PanelMaterial.Description + '</span></label></div>';                
                 headerConfig += '<div class="col-xs-4 col-md-3">';
                 if (data.LastDoor.IsOpeningMeasurement == false)
                 {
@@ -1882,21 +1949,7 @@ function llenarheaderOrder() {
                 }
                 headerConfig += '</div>';
                 headerConfig += '<div class="col-xs-4 col-md-3"><label for="VerticalD" style="margin-top: 25px;">Vertical Divisions: <span>'+ data.LastDoor.VerticalDivisions.Quantity +'</span></label></div>';
-                headerConfig += '<div class="col-xs-4 col-md-3"><label for="HorizontalD" style="margin-top: 25px;">Horizontal Divisions: <span>'+ data.LastDoor.HorizontalDivisions.Quantity +'</span></label></div>';
-                headerConfig += '<div class="col-xs-4 col-md-3">';
-                if (data.LastDoor.isDrill == false)
-                {
-                    headerConfig += '<label for="Drill" style="margin-top: 25px;">Hinge Drilling: <span>No</span></label>';
-                }
-                else
-                {
-                    headerConfig += '<label for="Drill" style="margin-top: 25px;">Hinge Drilling: <span>Yes</span></label>';
-                }
-                headerConfig += '</div>';
-                if (data.LastDoor.isDrill == true)
-                {
-                    headerConfig += '<div class="col-xs-4 col-md-3"><label for="HingeDirection" style="margin-top: 25px;">Hinge Direction: <span>'+ data.LastDoor.HingeDirection.Direction +'</span></label></div>';
-                }
+                headerConfig += '<div class="col-xs-4 col-md-3"><label for="HorizontalD" style="margin-top: 25px;">Horizontal Divisions: <span>'+ data.LastDoor.HorizontalDivisions.Quantity +'</span></label></div>';                               
                 headerConfig += '<div class="col-xs-4 col-md-3">';
                 if (data.LastDoor.isFingerPull == false)
                 {

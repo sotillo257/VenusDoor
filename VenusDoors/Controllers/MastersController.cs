@@ -815,7 +815,7 @@ namespace VenusDoors.Controllers
         }
 
         [Authorize(Roles = "1")] [HttpPost]
-        public ActionResult GetAllDoorStyle(DoorStyle gDoorStyle)
+        public ActionResult GetAllDoorStyle()
         {
             if (Session["UserID"] == null)
             {
@@ -1460,7 +1460,7 @@ namespace VenusDoors.Controllers
         }
 
         [Authorize(Roles = "1")] [HttpPost]
-        public ActionResult GetAllInsideEdgeProfile(InsideEdgeProfile gHorizontalDivisions)
+        public ActionResult GetAllInsideEdgeProfile()
         {
             if (Session["UserID"] == null)
             {
@@ -1516,6 +1516,126 @@ namespace VenusDoors.Controllers
             }
         }
         #endregion
+
+        #region DoorStylexInsideProfile
+        [Authorize(Roles = "1")]
+        public ActionResult DoorStylexInsideEdgeProfile()
+        {
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.BottomRail = "active";
+                BusinessLogic.lnDoorStylexInsideEdgeProfile _LN = new BusinessLogic.lnDoorStylexInsideEdgeProfile();
+
+
+
+                var DoorStylexInsideEdgeProfile = _LN.GetAllDoorStylexInsideEdgeProfile();
+                ViewBag.DoorStylexInsideEdgeProfile = DoorStylexInsideEdgeProfile;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListDoorStylexInsideEdgeProfile = serializar.Serialize(DoorStylexInsideEdgeProfile);
+                return View();
+            }
+            else
+            {
+
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        [Authorize(Roles = "1")]
+        [HttpPost]
+        public ActionResult InsertDoorStylexInsideEdgeProfile(DoorStyle pDoorStyle)
+        {
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                int userID = (int)Session["UserID"];
+                try
+                {
+                    BusinessLogic.lnDoorStylexInsideEdgeProfile _LN = new BusinessLogic.lnDoorStylexInsideEdgeProfile();
+                    var inBR = _LN.InsertDoorStylexInsideEdgeProfile(pDoorStyle);
+
+                    if (inBR > 0)
+                    {
+                        return Json(new {  Success = true, Mensaje = "" }, JsonRequestBehavior.AllowGet);
+                    }
+                    else
+                    {
+                        return Json(new { Success = false, Mensaje = "Error Inserting Door Inside Profile" }, JsonRequestBehavior.AllowGet);
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    return Json(new { Success = false, Mensaje = ex.Message }, JsonRequestBehavior.AllowGet);
+                }
+            }
+        }       
+
+        [Authorize(Roles = "1")]
+        [HttpPost]
+        public ActionResult GetAllDoorStylexInsideEdgeProfile()
+        {
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+
+                try
+                {
+
+                    BusinessLogic.lnDoorStylexInsideEdgeProfile _LN = new BusinessLogic.lnDoorStylexInsideEdgeProfile();
+                    List<DoorStylexInsideEdgeProfile> list = _LN.GetAllDoorStylexInsideEdgeProfile();
+                    if (list.Count > 0)
+                    {
+                        return Json(new { listDoorInside = list, Success = true, Mensaje = "" }, JsonRequestBehavior.AllowGet);
+                    }
+                    else
+                    {
+                        return Json(new { Success = false, Mensaje = "Error getting all the door style + Inside profile" }, JsonRequestBehavior.AllowGet);
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    return Json(new { Success = false, Mensaje = ex.Message }, JsonRequestBehavior.AllowGet);
+                }
+            }
+        }
+        [Authorize(Roles = "1")]
+        [HttpPost]
+        public ActionResult DeleteDoorStylexInsideEdgeProfile(int pId)
+        {
+
+            try
+            {
+                BusinessLogic.lnDoorStylexInsideEdgeProfile _LN = new BusinessLogic.lnDoorStylexInsideEdgeProfile();
+                var delBR = _LN.DeleteDoorStylexInsideEdgeProfile(pId);
+                if (delBR)
+                {
+                    return Json(new { Success = true, Mensaje = "" }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(new { Success = false, Mensaje = "Error Deleting" }, JsonRequestBehavior.AllowGet);
+                }
+                
+
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Success = false, Mensaje = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        #endregion
+
+
 
         #region Join
         [Authorize(Roles = "1")]
@@ -2066,6 +2186,124 @@ namespace VenusDoors.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
+        #endregion        
+
+        #region DoorStylexOutsideProfile
+        [Authorize(Roles = "1")]
+        public ActionResult DoorStylexOutsideEdgeProfile()
+        {
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.BottomRail = "active";
+                BusinessLogic.lnDoorStylexOutsideEdgeProfile _LN = new BusinessLogic.lnDoorStylexOutsideEdgeProfile();
+
+
+
+                var DoorStylexOutsideEdgeProfile = _LN.GetAllDoorStylexOutsideEdgeProfile();
+                ViewBag.DoorStylexOutsideEdgeProfile = DoorStylexOutsideEdgeProfile;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListDoorStylexOutsideEdgeProfile = serializar.Serialize(DoorStylexOutsideEdgeProfile);
+                return View();
+            }
+            else
+            {
+
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        [Authorize(Roles = "1")]
+        [HttpPost]
+        public ActionResult InsertDoorStylexOutsideEdgeProfile(DoorStyle pDoorStyle)
+        {
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                int userID = (int)Session["UserID"];
+                try
+                {
+                    BusinessLogic.lnDoorStylexOutsideEdgeProfile _LN = new BusinessLogic.lnDoorStylexOutsideEdgeProfile();
+                    var inBR = _LN.InsertDoorStylexOutsideEdgeProfile(pDoorStyle);
+
+                    if (inBR > 0)
+                    {
+                        return Json(new { Success = true, Mensaje = "" }, JsonRequestBehavior.AllowGet);
+                    }
+                    else
+                    {
+                        return Json(new { Success = false, Mensaje = "Error Inserting Door Outside Profile" }, JsonRequestBehavior.AllowGet);
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    return Json(new { Success = false, Mensaje = ex.Message }, JsonRequestBehavior.AllowGet);
+                }
+            }
+        }
+
+        [Authorize(Roles = "1")]
+        [HttpPost]
+        public ActionResult GetAllDoorStylexOutsideEdgeProfile()
+        {
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+
+                try
+                {
+
+                    BusinessLogic.lnDoorStylexOutsideEdgeProfile _LN = new BusinessLogic.lnDoorStylexOutsideEdgeProfile();
+                    List<DoorStylexOutsideEdgeProfile> list = _LN.GetAllDoorStylexOutsideEdgeProfile();
+                    if (list.Count > 0)
+                    {
+                        return Json(new { listDoorOutside = list, Success = true, Mensaje = "" }, JsonRequestBehavior.AllowGet);
+                    }
+                    else
+                    {
+                        return Json(new { Success = false, Mensaje = "Error getting all the door style + Outside profile" }, JsonRequestBehavior.AllowGet);
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    return Json(new { Success = false, Mensaje = ex.Message }, JsonRequestBehavior.AllowGet);
+                }
+            }
+        }
+        [Authorize(Roles = "1")]
+        [HttpPost]
+        public ActionResult DeleteDoorStylexOutsideEdgeProfile(int pId)
+        {
+
+            try
+            {
+                BusinessLogic.lnDoorStylexOutsideEdgeProfile _LN = new BusinessLogic.lnDoorStylexOutsideEdgeProfile();
+                var delBR = _LN.DeleteDoorStylexOutsideEdgeProfile(pId);
+                if (delBR)
+                {
+                    return Json(new { Success = true, Mensaje = "" }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(new { Success = false, Mensaje = "Error Deleting" }, JsonRequestBehavior.AllowGet);
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Success = false, Mensaje = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
         #endregion
 
         #region Panel
