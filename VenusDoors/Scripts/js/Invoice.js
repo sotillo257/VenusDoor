@@ -69,8 +69,10 @@
 
     $(document).on('click', '#btModi', function (event) {
         $("#lblTituloModal").text("Modify Invoice");
-        $("#btnCON").show();
+        $("#btnCON").hide();
         $("#NEWINVOICE").show();
+        $("#btnConMod").show();
+        $("#btBackMod").hide();
         $("#detailBACK").hide();
         $("#btnAtras").hide();
         $("#btSaveChan").hide();
@@ -84,6 +86,31 @@
         $("#btGuardar").hide();
         $("#MODIFYOR").hide();
         $("#btCancel").hide();
+    });
+
+    $("#btnConMod").on('click', function () {
+        $('#DETAILORDER').show();
+        $("#btnClose").show();
+        $('#createBACK').show();
+        $("#btnBack").show();
+        $("#btBackMod").show();
+        $("#btnBack").hide();
+        $("#detailBACK").hide();
+        $("#NEWINVOICE").hide();
+        $("#btnConMod").hide();
+        $("#btSavDrs").hide();
+        $("#btnAtras").hide();
+    });
+
+    $("#btBackMod").on('click', function () {
+        $("#lblTituloModal").text("Modify Invoice");
+        $("#NEWINVOICE").show();
+        $("#btnConMod").show();
+        $('#DETAILORDER').hide();
+        $('#btBackMod').hide();
+        $("#btCancel").hide();
+        $('#createBACK').hide();
+        $("#btnClose").hide();
     });
 
     $("#btnBack").on('click', function () {
@@ -105,6 +132,8 @@
     $("#btNew").on('click', function () {
         $("#lblTituloModal").text("New Invoice"); 
         $("#btnCON").show();
+        $("#btnConMod").hide();
+        $("#btBackMod").hide();
         $("#NEWINVOICE").show();
         $("#detailBACK").hide();
         $("#btnAtras").hide();
@@ -125,6 +154,8 @@
         $("#lblTituloModal").text("New Invoice");
         $("#NEWINVOICE").show();
         $("#btnCON").show();
+        $("#btnConMod").hide();
+        $("#btBackMod").hide();
         $("#detailBACK").hide();
         $("#btnAtras").hide();
         $("#btSaveChan").hide();
@@ -134,6 +165,7 @@
         $("#btnClose").hide();
         $('#NEWORDER').hide();
         $("#MODIFYOR").hide();
+        $("#DETAILORDER").hide();
         $("#btGuardar").hide();
         $("#btSavDrs").hide();
         $('#btnAtras').removeClass("active");
@@ -151,7 +183,9 @@
         $("#btnSAVE").show();
         $("#btnBack").show();
         $("#btnClose").show();
+        $("#btnConMod").hide();
         $("#detailBACK").hide();
+        $("#btBackMod").hide();
         $("#createBACK").show();
         $("#btnAtras").hide();
         $("#btSaveChan").hide();
@@ -172,6 +206,8 @@
         $("#NEWORDER").show();
         $("#detailBACK").hide();
         $("#btnClose").show();
+        $("#btBackMod").hide();
+        $("#btnConMod").hide();
         $("#btnAtras").hide();
         $("#btSaveChan").hide();
         $("#btnCON").hide();
@@ -196,7 +232,9 @@
         $('#DETAILORDER').show();
         $("#btSavDrs").show();
         $("#btGuardar").show();
+        $("#btBackMod").hide();
         $("#createBACK").hide();
+        $("#btnConMod").hide();
         $("#btnBack").hide();
         $("#btSaveChan").hide();
         $("#btnSAVE").hide();
@@ -223,6 +261,8 @@
         $("#btnAtras").hide();
         $("#btnBack").hide();
         $("#btnClose").hide();
+        $("#btnConMod").hide();
+        $("#btBackMod").hide();
         $("#NEWINVOICE").hide();
         $("#NEWORDER").hide();
         $("#DETAILORDER").hide();

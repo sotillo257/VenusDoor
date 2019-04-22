@@ -224,16 +224,6 @@
                                         </tbody>
                                     </table>*@
                             </div>
-                            <div style="padding: 20px 0 10px;border-top: 1px solid #eee;">
-                                <div>
-                                    Display attachment(s) in client portal and emails
-                                    <label class="switch">
-                                        <input type="checkbox" checked>
-                                        <span class="slider round"></span>
-                                    </label>
-                                </div>
-                            </div>
-
                         </div><!-- dropdown-menu -->
                     </div>
 
@@ -271,83 +261,19 @@
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
 
                         <li class="nav-item">
-                            <a class="nav-link bd-0 pd-y-8 active " id="ocultarCampo" data-toggle="tab" href="#infoPanel" role="tab"><strong>Refund History</strong></a>
+                            <a class="nav-link bd-0 pd-y-8 active " id="ocultarCampo" data-toggle="tab" href="#infoPanel" role="tab"><strong>Comments & History</strong></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link bd-0 tx-gray-light" data-toggle="tab" href="#ads" role="tab"><strong>Payments</strong></a>
+                            <a class="nav-link bd-0 tx-gray-light" data-toggle="tab" href="#refund" role="tab"><strong>Refund History</strong></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link bd-0 tx-gray-light" data-toggle="tab" href="#credit" role="tab"><strong>Invoices Credited</strong></a>
                         </li>
 
                     </ul>
 
                     <div style="background-color: #e9ecef;padding-left: 15px;padding-top: 20px;padding-right: 20px;padding-bottom: 20px;">
                         <div class="tab-content">
-                            <div class="tab-pane fade" id="ads" role="tabpanel">
-                                @if (true)
-                                {
-                                    <button type="button" id="btNewPay" class="Cursor btn btn-outline-primary">+ New payment</button>
-                                }
-                                else {
-                                    <table style="width:100%;margin-top: 0px;table-layout:fixed;" class="pcs-itemtable" border="0" cellspacing="0" cellpadding="0">
-                                        <thead>
-                                            <tr style="height:32px;">
-                                                <td style="padding: 5px 0px 5px 5px;text-align: left;font-size: 9pt;" id="" class="pcs-itemtable-breakword">
-                                                    <strong>Date</strong>
-                                                </td>
-                                                <td style="padding: 5px 10px 5px 20px;text-align: left;font-size: 9pt;" id="" class="pcs-itemtable-breakword">
-                                                    <strong>Payment #</strong>
-                                                </td>
-                                                <td style="padding: 5px 10px 5px 5px;text-align: left;font-size: 9pt;" id="" class="pcs-itemtable-breakword">
-                                                    <strong>Reference #</strong>
-                                                </td>
-                                                <td style="padding: 5px 10px 5px 5px;text-align: left;font-size: 9pt;" id="" class="pcs-itemtable-breakword">
-                                                    <strong>Payment Mode</strong>
-                                                </td>
-                                                <td style="padding: 5px 10px 5px 5px;text-align: left;font-size: 9pt;" id="" class="pcs-itemtable-breakword hidden">
-                                                    <strong>Amount</strong>
-                                                </td>
-                                                <td style="padding: 5px 10px 5px 5px;text-align: center;font-size: 9pt;" id="" class="pcs-itemtable-breakword">
-                                                    <i class="fa fa-flash"></i>
-                                                </td>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="itemBody">
-                                            <tr>
-                                                <td rowspan="1" valign="top" style="background-color: #e9ecef;padding: 10px 0 10px 5px;text-align: left;word-wrap: break-word;" class="pcs-item-row">
-                                                    08 Apr 2019
-                                                </td>
-                                                <td rowspan="1" valign="top" style="background-color: #e9ecef;padding: 10px 0px 10px 20px;" class="pcs-item-row text-align-left">
-                                                    <div>
-                                                        <div>
-                                                            <span style="word-wrap: break-word;" id="tmp_item_name">300</span><br>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td rowspan="1" style="background-color: #e9ecef;" class="pcs-item-row lineitem-column text-align-left">
-                                                    <span id="tmp_item_qty"></span>
-                                                </td>
-                                                <td rowspan="1" style="background-color: #e9ecef;" class="pcs-item-row lineitem-column text-align-left">
-                                                    <span id="tmp_item_rate">Credit Card</span>
-                                                </td>
-                                                <td rowspan="1" style="background-color: #e9ecef;" class="pcs-item-row lineitem-column lineitem-content-right text-align-left">
-                                                    <span id="tmp_item_amount">$199.06</span>
-                                                </td>
-                                                <td rowspan="1" style="background-color: #e9ecef;" class="pcs-item-row lineitem-column lineitem-content-right text-align-center">
-                                                    <center>
-                                                        <button style="width: 25px;height: 25px; margin-left: 10px;" class="Modificar Cursor btn btn-outline-primary btn-icon">
-                                                            <i class="fa fa-edit"></i>
-                                                        </button>
-                                                        <button href="#" title="Remove" class="Remove Cursor btn btn-outline-danger btn-icon" style="width: 25px;height: 25px; margin-left: 10px;">
-                                                            <i class="fa fa-trash"></i>
-                                                        </button>
-                                                    </center>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-
-                                }
-
-                            </div>
                             <div class="tab-pane fade show active" id="infoPanel" role="tabpanel">
                                 <div class="comments-history">
                                     <p class="font-small">
@@ -657,6 +583,100 @@
                                     <textarea style="width:100%" class="hidden showInput form-control" id="txtComment"></textarea>
                                     <button type="button" style="padding-left: 9px;padding-right: 9px;height: 30px;padding-top: 2px;padding-bottom: 2px;margin-top: 10px;" class="Cursor btn btn-primary AddComment">Add Comment</button>
                                 </div>
+                            </div>
+                            <div class="tab-pane fade" id="refund" role="tabpanel">
+                                <table style="width:100%;margin-top: 0px;table-layout:fixed;" class="pcs-itemtable" border="0" cellspacing="0" cellpadding="0">
+                                    <thead>
+                                        <tr style="height:32px;">
+                                            <td style="padding: 5px 0px 5px 5px;text-align: left;font-size: 9pt;" id="" class="pcs-itemtable-breakword">
+                                                <strong>Date</strong>
+                                            </td>
+                                            <td style="padding: 5px 10px 5px 20px;text-align: left;font-size: 9pt;" id="" class="pcs-itemtable-breakword">
+                                                <strong>Payment Mode</strong>
+                                            </td>
+                                            <td style="padding: 5px 10px 5px 5px;text-align: left;font-size: 9pt;" id="" class="pcs-itemtable-breakword">
+                                                <strong>Amount Refunded</strong>
+                                            </td>
+                                            <td style="padding: 5px 10px 5px 5px;text-align: center;font-size: 9pt;" id="" class="pcs-itemtable-breakword">
+                                                <i class="fa fa-flash"></i>
+                                            </td>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="itemBody">
+                                        <tr>
+                                            <td rowspan="1" valign="top" style="background-color: #e9ecef;padding: 10px 0 10px 5px;text-align: left;word-wrap: break-word;" class="pcs-item-row">
+                                                08 Apr 2019
+                                            </td>
+                                            <td rowspan="1" valign="top" style="background-color: #e9ecef;padding: 10px 0px 10px 20px;" class="pcs-item-row text-align-left">
+                                                <div>
+                                                    <div>
+                                                        <span style="word-wrap: break-word;" id="tmp_item_name">300</span><br>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td rowspan="1" style="background-color: #e9ecef;" class="pcs-item-row lineitem-column text-align-left">
+                                                <span id="tmp_item_qty"></span>
+                                            </td>
+                                            <td rowspan="1" style="background-color: #e9ecef;" class="pcs-item-row lineitem-column lineitem-content-right text-align-center">
+                                                <center>
+                                                    <button style="width: 25px;height: 25px; margin-left: 10px;" class="Modificar Cursor btn btn-outline-primary btn-icon">
+                                                        <i class="fa fa-edit"></i>
+                                                    </button>
+                                                    <button href="#" title="Remove" class="Remove Cursor btn btn-outline-danger btn-icon" style="width: 25px;height: 25px; margin-left: 10px;">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
+                                                </center>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="tab-pane fade" id="credit" role="tabpanel">
+                                <table style="width:100%;margin-top: 0px;table-layout:fixed;" class="pcs-itemtable" border="0" cellspacing="0" cellpadding="0">
+                                    <thead>
+                                        <tr style="height:32px;">
+                                            <td style="padding: 5px 0px 5px 5px;text-align: left;font-size: 9pt;" id="" class="pcs-itemtable-breakword">
+                                                <strong>Date</strong>
+                                            </td>
+                                            <td style="padding: 5px 10px 5px 20px;text-align: left;font-size: 9pt;" id="" class="pcs-itemtable-breakword">
+                                                <strong>Invoice Number</strong>
+                                            </td>
+                                            <td style="padding: 5px 10px 5px 5px;text-align: left;font-size: 9pt;" id="" class="pcs-itemtable-breakword">
+                                                <strong>Amount Credited</strong>
+                                            </td>
+                                            <td style="padding: 5px 10px 5px 5px;text-align: center;font-size: 9pt;" id="" class="pcs-itemtable-breakword">
+                                                <i class="fa fa-flash"></i>
+                                            </td>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="itemBody">
+                                        <tr>
+                                            <td rowspan="1" valign="top" style="background-color: #e9ecef;padding: 10px 0 10px 5px;text-align: left;word-wrap: break-word;" class="pcs-item-row">
+                                                08 Apr 2019
+                                            </td>
+                                            <td rowspan="1" valign="top" style="background-color: #e9ecef;padding: 10px 0px 10px 20px;" class="pcs-item-row text-align-left">
+                                                <div>
+                                                    <div>
+                                                        <span style="word-wrap: break-word;" id="tmp_item_name">300</span><br>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td rowspan="1" style="background-color: #e9ecef;" class="pcs-item-row lineitem-column text-align-left">
+                                                <span id="tmp_item_qty"></span>
+                                            </td>
+                                            <td rowspan="1" style="background-color: #e9ecef;" class="pcs-item-row lineitem-column lineitem-content-right text-align-center">
+                                                <center>
+                                                    <button style="width: 25px;height: 25px; margin-left: 10px;" class="Modificar Cursor btn btn-outline-primary btn-icon">
+                                                        <i class="fa fa-edit"></i>
+                                                    </button>
+                                                    <button href="#" title="Remove" class="Remove Cursor btn btn-outline-danger btn-icon" style="width: 25px;height: 25px; margin-left: 10px;">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
+                                                </center>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>

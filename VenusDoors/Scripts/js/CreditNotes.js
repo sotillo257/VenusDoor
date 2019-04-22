@@ -1,4 +1,6 @@
 ﻿$(document).ready(function () {
+    $(".AddComment").hide();
+    $(".showInput").hide();
     $(document).on('click', '#btnSAVE', function (event) {
         var idGETOr = $(this).attr('data-id');
         _IdOrderModificar = idGETOr;
