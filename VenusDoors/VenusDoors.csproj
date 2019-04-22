@@ -1108,6 +1108,7 @@
     <Content Include="Scripts\js\ControlOfOrderd.ConfiDoor.js" />
     <Content Include="Scripts\js\ControlOfOrders.js" />
     <Content Include="Scripts\js\ConverExcel.js" />
+    <Content Include="Scripts\js\CreditNotes.js" />
     <Content Include="Scripts\js\dashboard.js" />
     <Content Include="Scripts\js\Estimate.js" />
     <Content Include="Scripts\js\Invoice.js" />
@@ -1233,11 +1234,11 @@
     <Content Include="Views\Estimate\Index.cshtml" />
     <Content Include="Views\Masters\DoorStylexInsideEdgeProfile.cshtml" />
     <Content Include="Views\Masters\DoorStylexOutsideEdgeProfile.cshtml" />
+    <Content Include="Views\CreditNotes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\PDF\" />
-    <Folder Include="Views\CreditNotes\" />
     <Folder Include="Views\PaymentsReceived\" />
   </ItemGroup>
   <ItemGroup>

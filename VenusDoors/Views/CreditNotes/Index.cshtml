@@ -1,0 +1,1401 @@
+﻿
+@{
+    ViewBag.Title = "Credit Notes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    *::before,
+    *::after {
+        box-sizing: content-box !important;
+    }
+
+    .details-container {
+        position: relative;
+        margin-bottom: 35px;
+        box-shadow: 0 0 6px #ccc;
+    }
+
+    .user-file-nav {
+        margin-top: 25px;
+        font-size: 13px;
+    }
+
+        .user-file-nav a {
+            top: 10px;
+            padding: 10px 10px;
+            border-radius: 2px;
+            transition: all 0.2s ease-in-out;
+        }
+
+            .user-file-nav a:hover, .user-file-nav a:focus {
+                background-color: #dee2e6;
+                height: 34px;
+            }
+
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+
+    .datagrid table {
+        border-collapse: collapse;
+        text-align: left;
+        width: 100%;
+    }
+
+    .datagrid {
+        font: normal 12px/150% Verdana, Arial, Helvetica, sans-serif;
+        background: #fff;
+        overflow: hidden;
+        border: 1px solid #D2D2D2;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+    }
+
+        .datagrid table td, .datagrid table th {
+            padding: 3px 10px;
+        }
+
+        .datagrid table thead th {
+            background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #8397C6), color-stop(1, #B8B4B4) );
+            background: -moz-linear-gradient( center top, #8397C6 5%, #B8B4B4 100% );
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#8397C6', endColorstr='#B8B4B4');
+            background-color: #8397C6;
+            color: #FFFFFF;
+            font-size: 12px;
+            font-weight: normal;
+            border-left: 1px solid #B0B0B0;
+        }
+
+            .datagrid table thead th:first-child {
+                border: none;
+            }
+
+        .datagrid table tbody td {
+            color: #5C5C5C;
+            border-left: 1px solid #ADADAD;
+            font-size: 12px;
+            border-bottom: 1px solid #E6F0F2;
+            font-weight: normal;
+        }
+
+            .datagrid table tbody td:first-child {
+                border-left: none;
+            }
+
+        .datagrid table tbody tr:last-child td {
+            border-bottom: none;
+        }
+</style>
+
+<div class="br-mailbox-list ps ps--theme_default ps--active-y" data-ps-id="7a4680f7-5fbe-1b05-8ec8-b8dbe07f7215">
+    <div class="br-mailbox-list-header" style="width: 319px;position: fixed;z-index: 999;
+    background-color: #e9ecef;">
+        <a href="" id="showMailBoxLeft" class="show-mailbox-left hidden-sm-up">
+            <i class="fa fa-arrow-right"></i>
+        </a>
+        <h6 class="tx-inverse mg-b-0 tx-13 tx-uppercase"></h6>
+        <div class="dropdown">
+            <a class="Cursor nav-link nav-link-profile d-flex" style="margin-right: 110px;"
+               data-toggle="dropdown">All Credit Notes<i class="icon ion-arrow-down-b"> </i></a>
+
+            <div class="dropdown-menu wd-230" style="width: 172px; padding-left: 10px; padding-right: 10px;">
+                <ul class="list-unstyled user-file-nav">
+                    <li style="height: 34px;"><a href=""> All</a></li>
+                    <li style="height: 34px;"><a href=""> Draft</a></li>
+                    <li style="height: 34px;"><a href=""> Pending Approval</a></li>
+                    <li style="height: 34px;"><a href=""> Approved</a></li>
+                    <li style="height: 34px;"><a href=""> Client Viewed</a></li>
+                    <li style="height: 34px;"><a href=""> Partially Paid</a></li>
+                    <li style="height: 34px;"><a href=""> Unpaid</a></li>
+                    <li style="height: 34px;"><a href=""> Overdue</a></li>
+                    <li style="height: 34px;"><a href=""> Payment Initiated</a></li>
+                    <li style="height: 34px;"><a href=""> Paid</a></li>
+                    <li style="height: 34px;"><a href=""> Void</a></li>
+                </ul>
+            </div><!-- dropdown-menu -->
+        </div>
+
+
+        @*<button type="button" class="Cursor btn btn-primary" style="margin-left: 70px;height: 30px;padding-bottom: 2px;padding-top: 2px;padding-left: 9px;padding-right: 9px;" data-toggle="modal" data-target="#modalNewIn"><i class="icon ion-plus"></i> New</button>*@
+        <div class="btn-group" id="Demo" role="group" aria-label="Basic example">
+
+        </div>
+    </div><!-- br-mailbox-list-header -->
+    <div class="br-mailbox-list-body" style="margin-top: 95px;">
+        <div class="" id="listaInvoices">
+
+        </div>
+        @*<div class="br-mailbox-list-item active">
+                <div class="d-flex justify-content-between mg-b-5">
+                    <div>
+                        <i class="icon ion-ios-star tx-warning"></i>
+                        <i class="icon ion-android-attach"></i>
+                    </div>
+                    <span class="tx-12">10 hours ago</span>
+                </div><!-- d-flex -->
+                <h6 class="tx-14 mg-b-10 tx-gray-800">Socrates Itumay, me (4)</h6>
+                <p class="tx-12 tx-gray-600 mg-b-5">I should be incapable of drawing a single stroke at the present moment; and yet I feel that I never...</p>
+            </div><!-- br-mailbox-list-item -->*@
+    </div><!-- br-mailbox-list-body -->
+
+
+
+</div>
+
+<div id="Invoice" class="br-mailbox-body" style="margin-left: 315px;">
+    <div class="in-headr">
+        <div class="br-msg-header d-flex justify-content-between">
+            <div class="media align-items-center">
+                <div class="media-body mg-l-10">
+                    <p class="tx-inverse tx-medium mg-b-0" id="lblFolio">CN-0001</p>
+                    <p class="tx-12 mg-b-0" id="lblFechaTitulo">
+                        <span>Sep 20, 2017 8:45am</span>
+                    </p>
+                </div><!-- media-body -->
+            </div><!-- media -->
+            <nav class="media in-headr-right nav nav-inline tx-size-24 mg-b-0 lh-0">
+
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" id="btNew" data-toggle="modal" data-target="#modalNewIn" class="Cursor btn btn-page"><i class="fa fa-plus"></i></button>
+                    <button type="button" id="btModi" data-toggle="modal" data-target="#modalNewIn" class="Cursor btn btn-page"><i class="fa fa-edit"></i></button>
+                    <button type="button" class="Cursor btn btn-page"><i class="fa fa-file-pdf-o"></i></button>
+                    <button type="button" class="Cursor btn btn-page"><i class="fa fa-print"></i></button>
+                    <button type="button" class="Cursor btn btn-page"><i class="fa fa-send"></i></button>
+                </div>
+
+                @if (true)
+                {
+                    <div class="dropdown">
+                        <button id="btFile" class="Cursor btn btn-page dropdown-toggle" data-toggle="dropdown" style="margin-left: 10px;margin-right: 10px;"><i class="fa fa-paperclip"></i> 1</button>
+
+                        <div class="dropdown-menu" id="dropFile" style="width: 400px;position: absolute;transform: translate3d(-101px, 39px, 0px);top: 0px;left: -210px;right: auto;bottom: auto;will-change: transform;max-height: 450px;padding: 9px 14px;overflow-wrap: break-word;">
+                            <div style="margin-bottom: 20px;margin-top: 20px;">
+                                <table class="table table-hover">
+                                    <tbody>
+                                        <tr>
+                                            <td style="border-top: 0;"><img style="width: 70px;" src="~/Content/img/vectorPDF.png" /></td>
+                                            <td style="border-top: 0;padding-left: 25px;">
+                                                <p>Archivo PDF</p>
+                                                <span style="font-size: 12px;">File Size: 1.6 MB</span><br />
+                                                <div class="line-seperator font-xs hide" style="margin-top: 45px;">
+                                                    <a class="col" href="#">Download</a>
+                                                    <a class="col" href="#">Remove</a>
+                                                    <a class="col" href="#">Delete</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border-top: 0;"><img style="width: 70px;" src="~/Content/img/vectorPDF.png" /></td>
+                                            <td style="border-top: 0;padding-left: 25px;">
+                                                <p>Archivo PDF</p>
+                                                <span style="font-size: 12px;">File Size: 1.6 MB</span><br />
+                                                <div class="line-seperator font-xs hide" style="margin-top: 45px;">
+                                                    <a class="col" href="#">Download</a>
+                                                    <a class="col" href="#">Remove</a>
+                                                    <a class="col" href="#">Delete</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div style="padding: 20px 0 10px;border-top: 1px solid #eee;margin-bottom: 20px;margin-top: 20px;">
+
+                                <div class="col-xs-4 col-md-4">
+                                    <button type="button" id="btAdd" class="Cursor btn btn-page" style="margin-right: 15px;"><i class="fa fa-paperclip"></i> Upload file</button>
+                                    <input id="addFile" name="file" type="file" style="display:none;" />
+                                </div><!-- col -->
+                                @*<table>
+                                        <tbody>
+                                            <tr>
+                                                <td style="">
+                                                    <button type="button" id="btAdd" class="Cursor btn btn-page" style="border: 0px;margin-left: 5px;margin-right: 5px; width: 90px; height: 65px"><i class="fa fa-paperclip"></i></button>
+                                                    <input id="addFile" name="file" type="file" style="display:none;" />
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>*@
+                            </div>
+                            <div style="padding: 20px 0 10px;border-top: 1px solid #eee;">
+                                <div>
+                                    Display attachment(s) in client portal and emails
+                                    <label class="switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div><!-- dropdown-menu -->
+                    </div>
+
+                }
+                else {
+                    <button type="button" id="btAdd" class="Cursor btn btn-page" style="margin-left: 15px;margin-right: 15px;"><i class="fa fa-paperclip"></i></button>
+                            <input id="addFile" name="file" type="file" style="display:none;" />
+                }
+
+
+                <button type="button" id="RecordPaymend" class="Cursor btn btn-page">Apply to Invoice</button>
+
+                <div class="dropdown">
+                    <a class="Cursor nav-link nav-link-profile d-flex align-items-center"
+                       data-toggle="dropdown"><i class="icon ion-android-more-horizontal"></i></a>
+
+                    <div class="dropdown-menu wd-230" style="width: 172px; height: 100px; padding-left: 10px; padding-right: 10px;">
+                        <ul class="list-unstyled user-file-nav">
+                            <li style="height: 34px;"><a href=""> Clone</a></li>
+                            <li style="height: 34px;"><a href=""> View Journal</a></li>
+                        </ul>
+                    </div><!-- dropdown-menu -->
+                </div>
+
+                <a id="closeMail" class="nav-link pd-x-5 mg-l-15 hidden-xl-up">
+                    <i class="icon ion-close"></i>
+                </a>
+            </nav>
+        </div><!-- br-msg-header -->
+    </div>
+    <div class="br-msg-body" style="margin-left: 0px;margin-right: 0px;margin-top: 95px;">
+        <div class="modal-dialog modal-lg" style="margin-top: 0px; max-width: 100%; margin-bottom: 20px;">
+            <div class="modal-content" style="border: 0px;">
+                <div class="modal-body" style="padding: 0px;">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+
+                        <li class="nav-item">
+                            <a class="nav-link bd-0 pd-y-8 active " id="ocultarCampo" data-toggle="tab" href="#infoPanel" role="tab"><strong>Refund History</strong></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link bd-0 tx-gray-light" data-toggle="tab" href="#ads" role="tab"><strong>Payments</strong></a>
+                        </li>
+
+                    </ul>
+
+                    <div style="background-color: #e9ecef;padding-left: 15px;padding-top: 20px;padding-right: 20px;padding-bottom: 20px;">
+                        <div class="tab-content">
+                            <div class="tab-pane fade" id="ads" role="tabpanel">
+                                @if (true)
+                                {
+                                    <button type="button" id="btNewPay" class="Cursor btn btn-outline-primary">+ New payment</button>
+                                }
+                                else {
+                                    <table style="width:100%;margin-top: 0px;table-layout:fixed;" class="pcs-itemtable" border="0" cellspacing="0" cellpadding="0">
+                                        <thead>
+                                            <tr style="height:32px;">
+                                                <td style="padding: 5px 0px 5px 5px;text-align: left;font-size: 9pt;" id="" class="pcs-itemtable-breakword">
+                                                    <strong>Date</strong>
+                                                </td>
+                                                <td style="padding: 5px 10px 5px 20px;text-align: left;font-size: 9pt;" id="" class="pcs-itemtable-breakword">
+                                                    <strong>Payment #</strong>
+                                                </td>
+                                                <td style="padding: 5px 10px 5px 5px;text-align: left;font-size: 9pt;" id="" class="pcs-itemtable-breakword">
+                                                    <strong>Reference #</strong>
+                                                </td>
+                                                <td style="padding: 5px 10px 5px 5px;text-align: left;font-size: 9pt;" id="" class="pcs-itemtable-breakword">
+                                                    <strong>Payment Mode</strong>
+                                                </td>
+                                                <td style="padding: 5px 10px 5px 5px;text-align: left;font-size: 9pt;" id="" class="pcs-itemtable-breakword hidden">
+                                                    <strong>Amount</strong>
+                                                </td>
+                                                <td style="padding: 5px 10px 5px 5px;text-align: center;font-size: 9pt;" id="" class="pcs-itemtable-breakword">
+                                                    <i class="fa fa-flash"></i>
+                                                </td>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="itemBody">
+                                            <tr>
+                                                <td rowspan="1" valign="top" style="background-color: #e9ecef;padding: 10px 0 10px 5px;text-align: left;word-wrap: break-word;" class="pcs-item-row">
+                                                    08 Apr 2019
+                                                </td>
+                                                <td rowspan="1" valign="top" style="background-color: #e9ecef;padding: 10px 0px 10px 20px;" class="pcs-item-row text-align-left">
+                                                    <div>
+                                                        <div>
+                                                            <span style="word-wrap: break-word;" id="tmp_item_name">300</span><br>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td rowspan="1" style="background-color: #e9ecef;" class="pcs-item-row lineitem-column text-align-left">
+                                                    <span id="tmp_item_qty"></span>
+                                                </td>
+                                                <td rowspan="1" style="background-color: #e9ecef;" class="pcs-item-row lineitem-column text-align-left">
+                                                    <span id="tmp_item_rate">Credit Card</span>
+                                                </td>
+                                                <td rowspan="1" style="background-color: #e9ecef;" class="pcs-item-row lineitem-column lineitem-content-right text-align-left">
+                                                    <span id="tmp_item_amount">$199.06</span>
+                                                </td>
+                                                <td rowspan="1" style="background-color: #e9ecef;" class="pcs-item-row lineitem-column lineitem-content-right text-align-center">
+                                                    <center>
+                                                        <button style="width: 25px;height: 25px; margin-left: 10px;" class="Modificar Cursor btn btn-outline-primary btn-icon">
+                                                            <i class="fa fa-edit"></i>
+                                                        </button>
+                                                        <button href="#" title="Remove" class="Remove Cursor btn btn-outline-danger btn-icon" style="width: 25px;height: 25px; margin-left: 10px;">
+                                                            <i class="fa fa-trash"></i>
+                                                        </button>
+                                                    </center>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                }
+
+                            </div>
+                            <div class="tab-pane fade show active" id="infoPanel" role="tabpanel">
+                                <div class="comments-history">
+                                    <p class="font-small">
+                                        <a class="Cursor" id="read-more-state">+ View More</a>
+                                        <a class="Cursor" id="read-less-state">- View Less</a>
+                                    </p>
+                                    <ul class="read-more-wrap list-unstyled" data-test-title="comments-list" id="divHistoryComm">
+
+                                        <li id="ember1555" class="ember-view">
+                                            <div class="clearfix" data-test-title="comments-list-row">
+                                                <div class="date-section pull-left">
+                                                    <div class="font-xxs text-draft">
+                                                        08 Apr 2019 10:31 AM <br>
+                                                    </div>
+                                                </div>
+                                                <div class="comment-section pull-left">
+                                                    <div class="pull-left">
+                                                        <div class="txn-comment-icon circle-box"></div>
+                                                    </div>
+                                                    <div class="media-body" style="margin-left: 50px;">
+                                                        <div class="comment">
+                                                            <span class="IconStatus fa fa-comment-o" style="padding-right: 2px;padding-left: 6px;height: 24px;width: 26px;padding-bottom: 2px;padding-top: 3px;"></span>
+                                                            <span class="description">Coment </span>
+                                                            <label class="font-xs text-muted">by <strong>Katie Cai</strong></label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li id="ember1555" class="ember-view">
+                                            <div class="clearfix" data-test-title="comments-list-row">
+                                                <div class="date-section pull-left">
+                                                    <div class="font-xxs text-draft">
+                                                        08 Apr 2019 10:31 AM <br>
+                                                    </div>
+                                                </div>
+                                                <div class="comment-section pull-left">
+                                                    <div class="pull-left">
+                                                        <div class="txn-comment-icon circle-box"></div>
+                                                    </div>
+                                                    <div class="media-body" style="margin-left: 50px;">
+                                                        <div class="comment">
+                                                            <span class="IconStatus fa fa-usd" style="padding-right: 2px;padding-left: 8px;height: 24px;width: 26px;padding-bottom: 2px;padding-top: 3px;"></span>
+                                                            <span class="description">Payment of $199.06 received</span>
+                                                            <label class="font-xs text-muted">by <strong>Katie Cai</strong></label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li id="ember1555" class="ember-view">
+                                            <div class="clearfix" data-test-title="comments-list-row">
+                                                <div class="date-section pull-left">
+                                                    <div class="font-xxs text-draft">
+                                                        08 Apr 2019 10:31 AM <br>
+                                                    </div>
+                                                </div>
+                                                <div class="comment-section pull-left">
+                                                    <div class="pull-left">
+                                                        <div class="txn-comment-icon circle-box"></div>
+                                                    </div>
+                                                    <div class="media-body" style="margin-left: 50px;">
+                                                        <div class="comment">
+                                                            <span class="IconStatus fa fa-envelope-o" style="padding-right: 3px;padding-left: 5px;height: 24px;width: 26px;padding-bottom: 2px;padding-top: 3px;"></span>
+                                                            <span class="description">Emailed </span>
+                                                            <label class="font-xs text-muted">by <strong>Katie Cai</strong></label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                        <li id="ember1555" class="read-more-target ember-view">
+                                            <div class="clearfix" data-test-title="comments-list-row">
+                                                <div class="date-section pull-left">
+                                                    <div class="font-xxs text-draft">
+                                                        08 Apr 2019 10:31 AM <br>
+                                                    </div>
+                                                </div>
+                                                <div class="comment-section pull-left">
+                                                    <div class="pull-left">
+                                                        <div class="txn-comment-icon circle-box"></div>
+                                                    </div>
+                                                    <div class="media-body" style="margin-left: 50px;">
+                                                        <div class="comment">
+                                                            <span class="IconStatus fa fa-file-text-o" style="padding-right: 2px;padding-left: 6px;height: 24px;width: 26px;padding-bottom: 2px;padding-top: 3px;"></span>
+                                                            <span class="description">Converted to Invoice </span>
+                                                            <label class="font-xs text-muted">by <strong>Katie Cai</strong></label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li id="ember1555" class="read-more-target ember-view">
+                                            <div class="clearfix" data-test-title="comments-list-row">
+                                                <div class="date-section pull-left">
+                                                    <div class="font-xxs text-draft">
+                                                        08 Apr 2019 10:31 AM <br>
+                                                    </div>
+                                                </div>
+                                                <div class="comment-section pull-left">
+                                                    <div class="pull-left">
+                                                        <div class="txn-comment-icon circle-box"></div>
+                                                    </div>
+                                                    <div class="media-body" style="margin-left: 50px;">
+                                                        <div class="comment">
+                                                            <span class="IconStatus fa fa-paperclip" style="padding-right: 2px;padding-left: 6px;height: 24px;width: 26px;padding-bottom: 2px;padding-top: 3px;"></span>
+                                                            <span class="description">Attachment added </span>
+                                                            <label class="font-xs text-muted">by <strong>Katie Cai</strong></label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li id="ember1555" class="read-more-target ember-view">
+                                            <div class="clearfix" data-test-title="comments-list-row">
+                                                <div class="date-section pull-left">
+                                                    <div class="font-xxs text-draft">
+                                                        08 Apr 2019 10:31 AM <br>
+                                                    </div>
+                                                </div>
+                                                <div class="comment-section pull-left">
+                                                    <div class="pull-left">
+                                                        <div class="txn-comment-icon circle-box"></div>
+                                                    </div>
+                                                    <div class="media-body" style="margin-left: 50px;">
+                                                        <div class="comment">
+                                                            <span class="IconStatus fa fa-trash-o" style="padding-right: 2px;padding-left: 6px;height: 24px;width: 26px;padding-bottom: 2px;padding-top: 3px;"></span>
+                                                            <span class="description">Attachment deleted </span>
+                                                            <label class="font-xs text-muted">by <strong>Katie Cai</strong></label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li id="ember1555" class="read-more-target ember-view">
+                                            <div class="clearfix" data-test-title="comments-list-row">
+                                                <div class="date-section pull-left">
+                                                    <div class="font-xxs text-draft">
+                                                        08 Apr 2019 10:31 AM <br>
+                                                    </div>
+                                                </div>
+                                                <div class="comment-section pull-left">
+                                                    <div class="pull-left">
+                                                        <div class="txn-comment-icon circle-box"></div>
+                                                    </div>
+                                                    <div class="media-body" style="margin-left: 50px;">
+                                                        <div class="comment">
+                                                            <span class="IconStatus fa fa-check" style="padding-right: 2px;padding-left: 6px;height: 24px;width: 26px;padding-bottom: 2px;padding-top: 3px;"></span>
+                                                            <span class="description">Accepted </span>
+                                                            <label class="font-xs text-muted">by <strong>Katie Cai</strong></label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li id="ember1555" class="read-more-target ember-view">
+                                            <div class="clearfix" data-test-title="comments-list-row">
+                                                <div class="date-section pull-left">
+                                                    <div class="font-xxs text-draft">
+                                                        08 Apr 2019 10:31 AM <br>
+                                                    </div>
+                                                </div>
+                                                <div class="comment-section pull-left">
+                                                    <div class="pull-left">
+                                                        <div class="txn-comment-icon circle-box"></div>
+                                                    </div>
+                                                    <div class="media-body" style="margin-left: 50px;">
+                                                        <div class="comment">
+                                                            <span class="IconStatus fa fa-times" style="padding-right: 2px;padding-left: 6px;height: 24px;width: 26px;padding-bottom: 2px;padding-top: 3px;"></span>
+                                                            <span class="description">Declined </span>
+                                                            <label class="font-xs text-muted">by <strong>Katie Cai</strong></label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li id="ember1555" class="read-more-target ember-view">
+                                            <div class="clearfix" data-test-title="comments-list-row">
+                                                <div class="date-section pull-left">
+                                                    <div class="font-xxs text-draft">
+                                                        08 Apr 2019 10:31 AM <br>
+                                                    </div>
+                                                </div>
+                                                <div class="comment-section pull-left">
+                                                    <div class="pull-left">
+                                                        <div class="txn-comment-icon circle-box"></div>
+                                                    </div>
+                                                    <div class="media-body" style="margin-left: 50px;">
+                                                        <div class="comment">
+                                                            <span class="IconStatus fa fa-paper-plane-o" style="padding-right: 4px;padding-left: 5px;height: 24px;width: 26px;padding-bottom: 2px;padding-top: 3px;"></span>
+                                                            <span class="description">Sent </span>
+                                                            <label class="font-xs text-muted">by <strong>Katie Cai</strong></label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li id="ember1555" class="read-more-target ember-view">
+                                            <div class="clearfix" data-test-title="comments-list-row">
+                                                <div class="date-section pull-left">
+                                                    <div class="font-xxs text-draft">
+                                                        08 Apr 2019 10:31 AM <br>
+                                                    </div>
+                                                </div>
+                                                <div class="comment-section pull-left">
+                                                    <div class="pull-left">
+                                                        <div class="txn-comment-icon circle-box"></div>
+                                                    </div>
+                                                    <div class="media-body" style="margin-left: 50px;">
+                                                        <div class="comment">
+                                                            <span class="IconStatus fa fa-files-o" style="padding-right: 2px;padding-left: 6px;height: 24px;width: 26px;padding-bottom: 2px;padding-top: 3px;"></span>
+                                                            <span class="description">Refunded </span>
+                                                            <label class="font-xs text-muted">by <strong>Katie Cai</strong></label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li id="ember1555" class="read-more-target ember-view">
+                                            <div class="clearfix" data-test-title="comments-list-row">
+                                                <div class="date-section pull-left">
+                                                    <div class="font-xxs text-draft">
+                                                        08 Apr 2019 10:31 AM <br>
+                                                    </div>
+                                                </div>
+                                                <div class="comment-section pull-left">
+                                                    <div class="pull-left">
+                                                        <div class="txn-comment-icon circle-box"></div>
+                                                    </div>
+                                                    <div class="media-body" style="margin-left: 50px;">
+                                                        <div class="comment">
+                                                            <span class="IconStatus fa fa-sticky-note-o" style="padding-right: 2px;padding-left: 6px;height: 24px;width: 26px;padding-bottom: 2px;padding-top: 3px;"></span>
+                                                            <span class="description">Credit Notes </span>
+                                                            <label class="font-xs text-muted">by <strong>Katie Cai</strong></label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li id="ember1555" class="read-more-target ember-view">
+                                            <div class="clearfix" data-test-title="comments-list-row">
+                                                <div class="date-section pull-left">
+                                                    <div class="font-xxs text-draft">
+                                                        08 Apr 2019 10:31 AM <br>
+                                                    </div>
+                                                </div>
+                                                <div class="comment-section pull-left">
+                                                    <div class="pull-left">
+                                                        <div class="txn-comment-icon circle-box"></div>
+                                                    </div>
+                                                    <div class="media-body" style="margin-left: 50px;">
+                                                        <div class="comment">
+                                                            <span class="IconStatus fa fa-plus" style="padding-right: 2px;padding-left: 6px;height: 24px;width: 26px;padding-bottom: 2px;padding-top: 3px;"></span>
+                                                            <span class="description">Created </span>
+                                                            <label class="font-xs text-muted">by <strong>Katie Cai</strong></label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li id="ember1555" class="read-more-target ember-view">
+                                            <div class="clearfix" data-test-title="comments-list-row">
+                                                <div class="date-section pull-left">
+                                                    <div class="font-xxs text-draft">
+                                                        08 Apr 2019 10:31 AM <br>
+                                                    </div>
+                                                </div>
+                                                <div class="comment-section pull-left">
+                                                    <div class="pull-left">
+                                                        <div class="txn-comment-icon circle-box"></div>
+                                                    </div>
+                                                    <div class="media-body" style="margin-left: 50px;">
+                                                        <div class="comment">
+                                                            <span class="IconStatus fa fa-fax" style="padding-right: 2px;padding-left: 6px;height: 24px;width: 26px;padding-bottom: 2px;padding-top: 3px;"></span>
+                                                            <span class="description">Estimate </span>
+                                                            <label class="font-xs text-muted">by <strong>Katie Cai</strong></label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li id="ember1555" class="read-more-target ember-view">
+                                            <div class="clearfix" data-test-title="comments-list-row">
+                                                <div class="date-section pull-left">
+                                                    <div class="font-xxs text-draft">
+                                                        08 Apr 2019 10:31 AM <br>
+                                                    </div>
+                                                </div>
+                                                <div class="comment-section pull-left">
+                                                    <div class="pull-left">
+                                                        <div class="txn-comment-icon circle-box"></div>
+                                                    </div>
+                                                    <div class="media-body" style="margin-left: 50px;">
+                                                        <div class="comment">
+                                                            <span class="IconStatus fa fa-file-text-o" style="padding-right: 2px;padding-left: 6px;height: 24px;width: 26px;padding-bottom: 2px;padding-top: 3px;"></span>
+                                                            <span class="description">Invoice </span>
+                                                            <label class="font-xs text-muted">by <strong>Katie Cai</strong></label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                    </ul>
+                                    <bottom id="mostrarCampo" class="Cursor ocultarTitulo">+ Add Comment</bottom>
+                                    <textarea style="width:100%" class="hidden showInput form-control" id="txtComment"></textarea>
+                                    <button type="button" style="padding-left: 9px;padding-right: 9px;height: 30px;padding-top: 2px;padding-bottom: 2px;margin-top: 10px;" class="Cursor btn btn-primary AddComment">Add Comment</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div>
+            <div style="max-width: 8.27in;margin-left:auto;margin-right:auto; margin-top: 0;" class="details-container clearfix" id="divMarca">
+                <div class="pcs-template ">
+                    <div class="pcs-template-header pcs-header-content" id="header">
+                        <div class="pcs-template-fill-emptydiv"></div>
+                    </div>
+
+                    <div class="pcs-template-body">
+                        <table style="width:100%;table-layout: fixed;">
+                            <tbody>
+                                <tr>
+                                    <td style="width:50%;" class="text-align-lef v-top">
+
+                                        <div>
+                                            <img src="~/Content/img/Venus_Doors11.png" style="width: 200px;" />
+                                        </div>
+                                    </td>
+
+                                    <td class="text-align-right v-top" style="vertical-align: top; width:50%;">
+                                        <span class="pcs-orgname"><b>Venus Cabinet Doors</b></span><br>
+                                        <span id="tmp_entity_number" style="font-size: 10pt;" class="pcs-label"><b># CN-2105</b></span>
+                                        <span class="pcs-label">
+                                            <span style="white-space: pre-wrap;word-wrap: break-word;" id="tmp_org_address">
+                                                Texas
+                                                U.S.A
+                                            </span>
+                                        </span>
+                                        <div style="clear:both;margin-top:30px;">
+                                            <span style="font-size:8pt;"><b>Balance Due</b></span>
+                                            <br>
+                                            <span style="font-size:12pt;"><b id="tmp_balance_due"></b></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <table style="clear:both;width:100%;table-layout:fixed;">
+                            <tbody>
+                                <tr>
+                                    <td style="width:60%;vertical-align:bottom;word-wrap: break-word;">
+                                        <div>
+                                            <label style="font-size: 10pt;" class="pcs-label" id="tmp_billing_address_label">Bill To</label>
+                                            <br>
+                                            <span style="white-space: pre-wrap;" id="tmp_billing_address"><strong><span class="pcs-customer-name" id="zb-pdf-customer-detail"><a id="btNameBill" href="#"></a></span></strong></span>
+                                        </div>
+                                    </td>
+                                    <td align="right" style="vertical-align:bottom;width: 40%;">
+                                        <table style="float:right;width: 100%;table-layout: fixed;word-wrap: break-word;" border="0" cellspacing="0" cellpadding="0">
+                                            <tbody>
+                                                <tr>
+                                                    <td style="padding:5px 10px 5px 0px;font-size:10pt;" class="text-align-right">
+                                                        <span class="pcs-label">Invoice Date :</span>
+                                                    </td>
+                                                    <td class="text-align-right">
+                                                        <span id="tmp_entity_date">03 Apr 2019</span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="padding:5px 10px 5px 0px;font-size: 10pt;" class="text-align-right">
+                                                        <span class="pcs-label">Terms :</span>
+                                                    </td>
+                                                    <td class="text-align-right">
+                                                        <span id="tmp_payment_terms">Due on Receipt</span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="padding:5px 10px 5px 0px;font-size: 10pt;" class="text-align-right">
+                                                        <span class="pcs-label">Due Date :</span>
+                                                    </td>
+                                                    <td class="text-align-right">
+                                                        <span id="tmp_due_date">03 Apr 2019</span>
+                                                    </td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <table style="width:100%;margin-top:20px;table-layout:fixed;" border="0" cellspacing="0" cellpadding="0">
+                            <thead>
+                                <tr>
+                                    <td style="padding: 5px 0px 5px 5px;text-align: center;" class="pcs-itemtable-header pcs-itemtable-breakword">General Doors Specifications</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td rowspan="1" valign="top" style="padding: 10px 0px 10px 20px;" class="pcs-item-row">
+                                        <div>
+                                            <div>
+                                                <span style="word-wrap: break-word;font-size: 10pt;" id="tmp_item_name">Wood Species: Knotty Alder; Door Style: Eye Brow; Inside Profile: Shaker22; Outside Profile: Reba</span><br />
+                                                <span style="white-space: pre-wrap;word-wrap: break-word;font-size: 8pt;" class="pcs-item-desc" id="tmp_item_description">Door Place: Overlay Door Type; Stile Width: 2 1/2; Rail Width: 2 1/2; Door Assembly: Cope and Stick; Panel Material: Knotty Alder; Opening Measurement: No; Vertical Divisions: 0; Horizontal Divisions: 0; Drill: Yes (Left); Finger Pull: No</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                @*<tr>
+                                        <td rowspan="1" class="pcs-item-row lineitem-column text-align-left">
+                                            <span style="word-wrap: break-word;"></span><br />
+                                            <span style="white-space: pre-wrap;word-wrap: break-word;" class="pcs-item-desc">0</span>
+                                        </td>
+                                        <td rowspan="1" class="pcs-item-row lineitem-column text-align-left">
+                                            <span style="word-wrap: break-word;"></span><br />
+                                            <span style="white-space: pre-wrap;word-wrap: break-word;" class="pcs-item-desc">0</span>
+                                        </td>
+                                        <td rowspan="1" class="pcs-item-row lineitem-column text-align-left">
+                                            <span style="word-wrap: break-word;">: </span><br />
+                                            <span style="white-space: pre-wrap;word-wrap: break-word;" class="pcs-item-desc"></span>
+                                        </td>
+                                        <td rowspan="1" class="pcs-item-row lineitem-column text-align-left">
+                                            <span style="word-wrap: break-word;"> </span><br />
+                                            <span style="white-space: pre-wrap;word-wrap: break-word;" class="pcs-item-desc">No</span>
+                                        </td>
+                                    </tr>*@
+                            </tbody>
+                        </table>
+
+                        <table style="width:100%;margin-top:20px;table-layout:fixed;" class="pcs-itemtable" border="0" cellspacing="0" cellpadding="0" id="tbInvoice">
+                            <thead>
+
+                            </thead>
+                            <tbody class="tbInvoice"></tbody>
+                        </table>
+                        <div style="width: 100%;margin-top: 1px;">
+                            <div class="v-top total-number-section">
+                                <div style="white-space: pre-wrap;"></div>
+
+                            </div>
+                            <div class="v-top total-section">
+                                <table class="pcs-totals" cellspacing="0" border="0" width="100%">
+                                    <tbody>
+                                        <tr>
+                                            <td class="total-section-label text-align-right">Sub Total</td>
+                                            <td id="tmp_subtotal" class="total-section-value text-align-right">213.18</td>
+                                        </tr>
+
+                                        <tr style="height:10px;">
+                                            <td class="total-section-label text-align-right">Sales Tax (8.25%)  </td>
+                                            <td id="tmp_Tax" class="total-section-value text-align-right">17.59</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="total-section-label text-align-right"><b>Total</b></td>
+                                            <td id="tmp_total" class="total-section-value text-align-right"><b>$230.77</b></td>
+                                        </tr>
+
+                                        <tr style="height:40px;" class="pcs-balance">
+                                            <td class="total-section-label text-align-right"><b>Balance Due</b></td>
+                                            <td id="tmp_balance_due_bottom" class="total-section-value text-align-right"><b></b></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div style="clear: both;"></div>
+                        </div>
+
+                        <div style="clear:both;margin-top:50px;width:100%;">
+                            <label style="font-size: 10pt;" id="tmp_notes_label" class="pcs-label">Notes</label><br>
+                            <p id="tmp_Notes" style="margin-top:7px;white-space: pre-wrap;word-wrap: break-word;" class="pcs-notes"></p>
+                        </div>
+
+                        <div style="page-break-inside: avoid;">
+                        </div>
+
+                    </div>
+
+                    <div class="pcs-template-footer">
+                        <div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <a id="btLinkAdd" class="Cursor nav-link pd-x-5 mg-l-15">
+            <i class="fa fa-paperclip"></i>
+            2 Attachment(s) added
+        </a>
+        <div class="pmt-info" style="margin-top: 25px;margin-left: 15px;padding-left: 5px;">
+            <h5>More Information</h5>
+            <div class="row info-row">
+                <label class="text-muted col-md-3">Salesperson</label>
+                <div class="col-md-9">: Jesus Sotillo</div>
+            </div>
+        </div>
+        <a id="btDisplay" style="margin-top: 20px;" class="Cursor nav-link pd-x-5 mg-l-15">
+            Display Journal <i class="icon ion-arrow-right-b"> </i>
+        </a>
+        <a id="btOculDis" style="margin-top: 20px;" class="Cursor nav-link pd-x-5 mg-l-15">
+            Display Journal <i class="icon ion-arrow-down-b"> </i>
+        </a>
+        <table style="width:100%;margin-top:20px;table-layout:fixed;" id="infoMore" class="pcs-itemtable" border="0" cellspacing="0" cellpadding="0">
+            <thead>
+                <tr style="height:32px;">
+                    <td style="border-bottom: solid 1px; padding: 5px 10px 5px 20px;width: 70%;text-align: left;" id="" class="pcs-itemtable-breakword">
+                        ACCOUNT
+                    </td>
+                    <td style="border-bottom: solid 1px; padding: 5px 10px 5px 5px;width: 15%;text-align: left;" id="" class="pcs-itemtable-breakword">
+                        DEBIT
+                    </td>
+                    <td style="border-bottom: solid 1px; padding: 5px 10px 5px 5px;width: 15%;text-align: left;" id="" class="pcs-itemtable-breakword">
+                        CREDIT
+                    </td>
+                </tr>
+            </thead>
+            <tbody class="itemBody">
+                <tr>
+                    <td rowspan="1" valign="top" style="padding: 10px 0px 10px 20px;" class="pcs-item-row">
+                        <div>
+                            Sales
+                        </div>
+                    </td>
+                    <td rowspan="1" class="pcs-item-row lineitem-column text-align-left">
+                        <span id="tmp_item_qty">144.00</span>
+                    </td>
+                    <td rowspan="1" class="pcs-item-row lineitem-column text-align-left">
+                        <span id="tmp_item_rate">1.08</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td rowspan="1" valign="top" style="padding: 10px 0px 10px 20px;" class="pcs-item-row">
+                        <div>
+                            Accounts Receivable
+                        </div>
+                    </td>
+                    <td rowspan="1" class="pcs-item-row lineitem-column text-align-left">
+                        <span id="tmp_item_qty">144.00</span>
+                    </td>
+                    <td rowspan="1" class="pcs-item-row lineitem-column text-align-left">
+                        <span id="tmp_item_rate">1.08</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div><!-- br-msg-body -->
+</div>
+
+<div id="Record_Paymend" class="br-mailbox-body" style="margin-left: 315px;">
+    <div class="in-headr">
+        <div class="br-msg-header d-flex justify-content-between">
+            <div class="media align-items-center">
+                <div class="media-body mg-l-10">
+                    <h3 class="tx-inverse tx-medium mg-b-0">Payment for INV-000005 </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="br-msg-body" style="margin-left: 0px;margin-right: 0px;margin-top: 95px;height: 830px;">
+        <div class="col-md-12" style="padding-right:0;height: 700px;">
+            <div style="display:flex; width:100%">
+                <div class="row" style="width:100%; max-height: 380px;">
+                    <input id="idDoor" hidden />
+                    <div class="row" style="width: 100%;">
+
+                        <div class="col-xs-4 col-md-4">
+                            <label for="BottomRail" style="margin-top: 25px;">Customer Name: </label>
+                            <input style="width:100%" class="form-control" id="cbStileWidth" data-placeholder="">
+                        </div><!-- col -->
+
+                        <div class="col-xs-4 col-md-4">
+                            <label for="BottomRail" style="margin-top: 25px;">Payment #: </label>
+                            <input style="width:100%" class="form-control" id="cbStileWidth" data-placeholder="">
+                        </div><!-- col -->
+
+                        <div class="col-xs-4 col-md-12">
+                            <br />
+                        </div>
+
+                        <div class="col-xs-4 col-md-4">
+                            <label for="TopRail" style="margin-top: 25px;">Amount Received:</label>
+                            <input style="width:100%" class="form-control" id="cbStileWidth" data-placeholder="">
+                        </div><!-- col -->
+
+                        <div class="col-xs-4 col-md-4">
+                            <label for="TopRail" style="margin-top: 25px;">Bank Charges:</label>
+                            <input style="width:100%" class="form-control" id="cbStileWidth" data-placeholder="">
+                        </div><!-- col -->
+
+                        <div class="col-xs-4 col-md-12">
+                            <br />
+                        </div>
+
+                        <div class="col-md-9">
+                            <label class="ckbox">
+                                <input type="checkbox">
+                                <span>Tax deducted?</span>
+                            </label>
+                        </div><!-- col -->
+
+                        <div class="col-xs-4 col-md-4">
+                            <label for="TopRail" style="margin-top: 25px;">Amount Withheld:</label>
+                            <input style="width:100%" class="form-control" id="cbStileWidth" data-placeholder="">
+                        </div><!-- col -->
+
+                        <div class="col-xs-4 col-md-4">
+                            <label for="TopRail" style="margin-top: 25px;">Tax Account:</label>
+                            <select style="width:100%" class="form-control" id="cbStileWidth" data-placeholder=""></select>
+                        </div><!-- col -->
+
+                        <div class="col-xs-4 col-md-12">
+                            <br />
+                        </div>
+
+                        <div class="col-xs-4 col-md-4">
+                            <label for="TopRail" style="margin-top: 25px;">Payment Date:</label>
+                            <input style="width:100%" class="form-control" id="cbStileWidth" data-placeholder="">
+                        </div><!-- col -->
+
+                        <div class="col-xs-4 col-md-4">
+                            <label for="TopRail" style="margin-top: 25px;">Payment Mode:</label>
+                            <input style="width:100%" class="form-control" id="cbStileWidth" data-placeholder="">
+                        </div><!-- col -->
+
+                        <div class="col-xs-4 col-md-4">
+                            <label for="TopRail" style="margin-top: 25px;">Deposit To:</label>
+                            <input style="width:100%" class="form-control" id="cbStileWidth" data-placeholder="">
+                        </div><!-- col -->
+
+                        <div class="col-xs-4 col-md-12">
+                            <label for="TopRail" style="margin-top: 25px;">Reference#:</label>
+                            <input style="width:100%" class="form-control" id="cbStileWidth" data-placeholder="">
+                        </div><!-- col -->
+
+                        <div class="col-xs-4 col-md-12">
+                            <label for="OutsideEdgeProfile" style="margin-top: 25px;">Notes: </label>
+                            <textarea style="width:100%" class="form-control" id="cbOutsideEdgeProfile" data-placeholder=""></textarea>
+                        </div><!-- col -->
+
+                    </div>
+                </div>
+            </div>
+        </div><!-- pd-20 -->
+        <div style="text-align: right;">
+            <button id="btCancelar" type="button" class="btn btn-secondary Cursor">Cancel</button>
+            <button type="button" class="Cursor btn btn-primary Cursor" style="margin-right: 75px;margin-left: 10px;">Save change</button>
+        </div>
+    </div><!-- col-6 -->
+</div>
+
+<div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div>
+
+<div id="modalNewIn" class="ModalOrderInfo modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" id="mdialTamanio" style="width: 80%!important; max-width:100%;max-height: 100%;height: 90%;">
+        <div class="modal-content" style="height:100%">
+            <div class="modal-header">
+                <div style="display:flex" id="tituloConBTNEdit">
+                    <a id="createBACK" title="Click here to return to the previous window." class="btn btn-icon active" data-toggle="tab" href="#NEWINVOICE" role="tab">
+                        <div><i class="fa fa-arrow-left"></i></div>
+                    </a>
+                    <a id="detailBACK" title="Click here to return to the previous window." class="btn btn-icon active" data-toggle="tab" href="#NEWORDER" role="tab">
+                        <div><i class="fa fa-arrow-left"></i></div>
+                    </a>
+                    <h3 id="lblTituloModal" class="tx-inverse mg-b-5"></h3>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="tab-content">
+                    <div class="tab-pane show active" id="NEWINVOICE" role="tabpanel">
+                        <div class="row" style="margin-right: 0;">
+                            <div class="col-md-12" style="padding-right:0">
+                                <div style="display:flex; width:100%">
+                                    <div class="row" style="width:100%; max-height: 380px;">
+                                        <div class="row" style="width: 100%;">
+
+                                            <div class="col-xs-4 col-md-4">
+                                                <label style="margin-top: 25px;">Customer Name: </label>
+                                                <div class="input-group">
+                                                    <select style="width:100%" class="eventChange form-control select2-show-search" id="" data-placeholder="Search Customer"></select>
+                                                    <span class="input-group-btn">
+                                                        <button class="btn bd bg-white tx-gray-600" type="button"><i class="fa fa-search"></i></button>
+                                                    </span>
+                                                </div><!-- input-group -->
+                                            </div>
+
+                                            <div class="col-xs-4 col-md-4">
+                                                <label for="TopRail" style="margin-top: 25px;">Salesperson:</label>
+                                                <select style="width:100%" class="form-control select2-show-search" data-placeholder="Search Salesperson">
+                                                    <option label="Choose one"></option>
+                                                    <option value="Firefox">Firefox</option>
+                                                    <option value="Chrome">Chrome</option>
+                                                    <option value="Safari">Safari</option>
+                                                    <option value="Opera">Opera</option>
+                                                    <option value="Internet Explorer">Internet Explorer</option>
+                                                </select>
+
+                                            </div><!-- col -->
+
+                                            <div class="col-xs-4 col-md-12">
+                                                <br />
+                                            </div>
+
+                                            <div class="col-xs-4 col-md-4">
+                                                <label for="BottomRail" style="margin-top: 25px;">Invoice Date: </label>
+                                                <input style="width:100%" class="form-control" id="cbStileWidth" data-placeholder="">
+                                            </div><!-- col -->
+
+                                            <div class="col-xs-4 col-md-4">
+                                                <label for="TopRail" style="margin-top: 25px;">Possible dates:</label>
+                                                <select style="width:100%" class="eventChange selectModal form-control select2 Doors" id="" data-placeholder=""></select>
+                                            </div><!-- col -->
+
+                                            <div class="col-xs-4 col-md-3">
+                                                <label for="DoorStyle" style="margin-top: 25px;">Due Date: </label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="icon ion-calendar tx-16 lh-0 op-6"></i></span>
+                                                    <input id="fc-datepicker" type="text" class="form-control dateMask" placeholder="MM/DD/YYYY">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xs-4 col-md-12">
+                                                <hr />
+                                            </div>
+
+                                            <div class="col-xs-4 col-md-6">
+
+                                                <div class="form-group">
+                                                    <label for="OutsideEdgeProfile" style="margin-top: 25px;">Customer Notes: </label>
+                                                    <textarea style="width:100%" class="form-control" id="cbOutsideEdgeProfile" data-placeholder=""></textarea>
+                                                </div><!-- col -->
+
+                                            </div><!-- col -->
+
+                                            <div class="col-xs-4 col-md-6">
+
+                                                <div class="form-group">
+                                                    <label for="OutsideEdgeProfile" style="margin-top: 25px;">Terms & Conditions: </label>
+                                                    <textarea style="width:100%" class="form-control" id="cbOutsideEdgeProfile" data-placeholder=""></textarea>
+                                                </div><!-- col -->
+
+                                            </div><!-- col -->
+
+                                            <div class="col-xs-4 col-md-4">
+                                                <button type="button" id="btAdd" class="Cursor btn btn-page" style="margin-right: 15px;"><i class="fa fa-paperclip"></i> Upload file</button>
+                                                <input id="addFile" name="file" type="file" style="display:none;" />
+                                            </div><!-- col -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- pd-20 -->
+                        </div><!-- col-6 -->
+                    </div>
+                    <div class="tab-pane " id="NEWORDER" role="tabpanel">
+                        <div class="row" style="margin-right: 0;">
+                            <div class="col-md-12" style="padding-right:0">
+                                <div style="display:flex; width:100%">
+                                    <div class="row" style="width:100%; max-height: 380px;margin-right: 0;">
+                                        <div class="row" style="width: 100%;">
+                                            <div class="col-xs-4 col-md-3">
+                                                <label for="Material" style="margin-top: 25px;">Wood Species: </label>
+                                                <select style="width:100%" class="eventChange selectModal form-control select2" id="cbMaterial" data-placeholder=""></select>
+                                            </div><!-- col -->
+
+                                            <div class="col-xs-4 col-md-3">
+                                                <label for="DoorStyle" style="margin-top: 25px;">Door Style: </label>
+                                                <select style="width:100%" class="eventChange selectModal form-control select2 Doors" id="cbDoorStyle" data-placeholder=""></select>
+                                            </div><!-- col -->
+
+                                            <div class="col-xs-3 col-md-4">
+                                                <label for="inDescription" style="margin-top: 25px;">Door Place: </label>
+                                                <div class="radio" id="isOverlay" style="display:flex">
+
+                                                </div>
+                                            </div><!-- form-group -->
+
+                                            <div class="col-xs-3 col-md-2">
+                                                <label for="inDescription" style="margin-top: 25px;">Discount: </label>
+                                                <div class="input-group" style="width: 53%!important;">
+                                                    <input style="width:50%!important" name="SoloNumeros" required class="required RequiereLlenar eventChange iptHeight form-control" type="number" min="1" maxlength="2" max="99" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="descDXU">
+                                                    <span class="input-group-addon tx-size-sm lh-2">%</span>
+                                                </div>
+                                            </div><!-- form-group -->
+
+                                            <div class="col-xs-4 col-md-3">
+                                                <label for="InsideEdgeProfile" style="margin-top: 25px;">Inside Edge Profile: </label>
+                                                <select style="width:100%" class="form-control selectModal select2 Profile Doors" id="cbInsideEdgeProfile" data-placeholder=""></select>
+                                            </div><!-- col -->
+
+                                            <div class="col-xs-4 col-md-3">
+                                                <label for="OutsideEdgeProfile" style="margin-top: 25px;">Outside Edge Profile: </label>
+                                                <select style="width:100%" class="form-control selectModal select2 Profile Doors" id="cbOutsideEdgeProfile" data-placeholder=""></select>
+                                            </div><!-- col -->
+
+                                            <div class="col-xs-4 col-md-3">
+                                                <label for="BottomRail" style="margin-top: 25px;">Stile Width: </label>
+                                                <select style="width:100%" class="eventChange selectModal form-control select2 Doors" id="cbStileWidth" data-placeholder=""></select>
+                                            </div><!-- col -->
+
+                                            <div class="col-xs-4 col-md-3">
+                                                <label for="TopRail" style="margin-top: 25px;">Rail Width:</label>
+                                                <select style="width:100%" class="eventChange selectModal form-control select2 Doors" id="cbRailWidth" data-placeholder=""></select>
+                                            </div><!-- col -->
+
+                                            <div class="col-xs-4 col-md-3">
+                                                <label for="Join" style="margin-top: 25px;">Door Assembly: </label>
+                                                <select style="width:100%" class="form-control selectModal select2 Doors" id="cbDoorAssembly" data-placeholder=""></select>
+                                            </div><!-- col -->
+
+                                            <div class="col-xs-4 col-md-3">
+                                                <label for="PanelMaterial" style="margin-top: 25px;">Panel Material: </label>
+                                                <select style="width:100%" class="form-control selectModal select2" id="cbPanelMaterial" data-placeholder=""></select>
+                                            </div><!-- col -->
+
+                                            <div class="col-xs-4 col-md-3">
+                                                <label for="IsOpeningMeasurement" style="margin-top: 25px;">Opening for Glass: </label>
+                                                <select style="width:100%" class="form-control selectModal select2" id="cbIsOpeningMeasurement" data-placeholder="">
+                                                    <option value="1">No Opening </option>
+                                                    <option value="2">Opening</option>
+                                                </select>
+                                            </div><!-- col -->
+
+                                            <div class="col-xs-4 col-md-3">
+                                                <label for="VerticalDivisions" style="margin-top: 25px;">Vertical Divisions: </label>
+                                                <select style="width:100%" class="form-control selectModal select2" id="cbVerticalDivisions" data-placeholder=""></select>
+                                            </div><!-- col -->
+
+                                            <div class="col-xs-4 col-md-3">
+                                                <label for="HorizontalDivisions" style="margin-top: 25px;">Horizontal Divisions: </label>
+                                                <select style="width:100%" class="form-control selectModal select2" id="cbHorizontalDivisions" data-placeholder=""></select>
+                                            </div><!-- col -->
+
+                                            <div class="col-xs-4 col-md-3">
+                                                <label for="isDrill" style="margin-top: 25px;">Hinge Drilling: </label>
+                                                <select style="width:100%" class="form-control selectModal select2" id="cbisDrill" data-placeholder="">
+                                                    <option value="1">No</option>
+                                                    <option value="2">Yes</option>
+                                                </select>
+                                            </div><!-- col -->
+
+                                            <div id="HingeDirectionDiv" style="display:none" class="target col-xs-4 col-md-3">
+                                                <label for="HingeDirection" style="margin-top: 25px;">Hinge Direction: </label>
+                                                <select style="width:100%" value="true" class="select2 selectModal form-control" id="cbHingeDirection" data-placeholder=""></select>
+                                            </div><!-- col -->
+
+                                            <div class="col-xs-3 col-md-3">
+                                                <label for="FingerPull" style="margin-top: 25px;">Finger Pull: </label>
+                                                <select style="width:100%" class="form-control selectModal select2" id="cbFingerPull">
+                                                    <option value="1">No</option>
+                                                    <option value="2">Yes</option>
+                                                </select>
+                                            </div><!-- form-group -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- pd-20 -->
+                        </div><!-- col-6 -->
+                    </div>
+                    <div class="tab-pane" id="DETAILORDER" role="tabpanel">
+                        <div class="row" style="margin-right: 0;">
+                            <div class="datagrid" style="width: 100%;">
+                                <table id="UserOrderInfo">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Phone</th>
+                                            <th>Address</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                        <div style="color:#000;margin-right: 0; padding:10px" class="row">
+                            <div class="datagrid" style="width: 100%;">
+                                <table id="HeaderOptions">
+                                    <tbody>
+                                        <tr>
+                                            <td>Wood Species: <span style="color: #868ba1"></span></td>
+                                            <td>Door Style: <span style="color: #868ba1"></span></td>
+                                            <td>Door Place: <span style="color: #868ba1">Inset Door Type</span></td>
+                                            <td>Stile Width: <span style="color: #868ba1"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Rail Width: <span style="color: #868ba1"></span></td>
+                                            <td>Inside Edge Profile: <span style="color: #868ba1"></span></td>
+                                            <td>Outside Edge Profile: <span style="color: #868ba1"></span></td>
+                                            <td>Door Assembly: <span style="color: #868ba1"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Panel Material: <span style="color: #868ba1"></span></td>
+                                            <td>Opening Measurement: <span style="color: #868ba1"></span></td>
+                                            <td>Vertical Divisions: <span style="color: #868ba1"></span></td>
+                                            <td>Horizontal Divisions: <span style="color: #868ba1"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Hinge Drilling: <span style="color: #868ba1"></span></td>
+                                            <td style="border-right: 1px solid #ADADAD;">Finger Pull: <span style="color: #868ba1"></span></td>
+                                            <td colspan="2"><textarea disabled rows="1" style="background: #fff!important" class="form-control">Observations:</textarea></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div style="overflow-y:auto; margin-top: 20px; margin-left: 10px; height: 225px;" id="divTable">
+                            <table id="ordertable" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>PREVIEW</th>
+                                        <th>QUANTITY</th>
+                                        <th>WIDHT</th>
+                                        <th>HEIGHT</th>
+                                        <th>PANEL STYLE</th>
+                                        <th>DOOR TYPE</th>
+                                        <th>DOOR OPTION</th>
+                                        <th>U. PRICE</th>
+                                        <th>TOTAL</th>
+                                        <th><i class="fa fa-flash"></i></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="10" style="text-align: center; padding-top: 15px;">To create a new door, <a class="editDoor Cursor" data-toggle="tab" href="#MODIFYOR" role="tab">click here.</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div id="MODIFYOR" class="tab-pane fade" role="tabpanel">
+                        <div style="display:flex; margin-top:45px">
+                            <div id="DivImagenes" style="width:33%">
+                                <div class="row" style="margin-right: 0px; display:flex; justify-content:center">
+                                    <center id="PictureProfile">
+                                        <img style="height: 100px;width: 235px;margin-top: 20px;" id="ProfilePicture" src="~/Content/img/Profile/img11.png" />
+                                    </center>
+                                </div>
+                                <div class="row" style="margin-right: 0px;display:flex; justify-content:center">
+                                    <center id="PicturePanel">
+                                        <img style="width: 230px;height: 230px;" id="DoorPicture" src="~/Content/img/Doors/img11.png">
+                                    </center>
+                                </div>
+                            </div>
+                            <div id="DivCombos" style="width:67%;">
+                                <div class="row" style="margin-right: 0;">
+                                    <input id="idDoorxO" hidden />
+                                    <input id="idDxuXO" hidden />
+                                    <div class="col-xs-3 col-md-4">
+                                        <label for="Panel" style="margin-top: 25px;">Panel Style: </label>
+                                        <select style="width:100%;" class="form-control select2 Profile Doors" id="cbPanel"></select>
+                                    </div><!-- col -->
+                                    <div class="col-xs-3 col-md-4">
+                                        <label for="DoorType" style="margin-top: 25px;">Door Type: </label>
+                                        <select style="width:100%" class="form-control select2" id="cbDoorType"></select>
+                                    </div>
+                                    <div class="col-xs-3 col-md-4">
+                                        <label for="DoorType" style="margin-top: 25px;">Door Option</label>
+                                        <select style="width:100%" class="form-control select2" id="cbDoorOpt"></select>
+                                    </div>
+
+                                    <div class="col-xs-2 col-md-3">
+                                        <label for="width" style="margin-top: 25px;">Width: </label>
+                                        <div>
+                                            <div style="display:flex">
+                                                <input style="width:50%!important" name="SoloNumeros" required class="required RequiereLlenar eventChange iptWidth form-control" type="number" min="1" maxlength="2" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="iptWidth">
+                                                <select style="width:50%!important" class="form-control select2" id="cbDecimalsW"></select>
+                                            </div>
+                                            <label id="alertWidth" style="Color:red; font-size:10px; display:none;margin:0"></label>
+                                        </div>
+                                    </div><!-- form-group -->
+                                    <div class="col-xs-2 col-md-3">
+                                        <label for="inDescription" style="margin-top: 25px;">Height: </label>
+                                        <div>
+                                            <div style="display:flex">
+                                                <input style="width:50%!important" name="SoloNumeros" required class="required RequiereLlenar eventChange iptHeight form-control" type="number" min="1" maxlength="3" max="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="iptHeight">
+                                                <select style="width:50%!important" class="form-control select2" id="cbDecimalsH"></select>
+                                            </div>
+                                            <label id="alertHeight" style="Color:red; font-size:10px; margin:0"></label>
+                                        </div>
+                                    </div><!-- form-group -->
+
+                                    <div class="col-xs-1 col-md-2">
+                                        <label for="Material" style="margin-top: 25px;">Quantity: </label>
+                                        <input style="width:100%!important" name="SoloNumeros" required class="required RequiereLlenar eventChange iptHeight form-control" type="number" min="1" maxlength="2" max="99" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="CantidadFila">
+                                    </div><!-- col -->
+                                </div>
+                                <div class="row" style="margin-right: 0;">
+                                    <p style="margin-bottom: 0;">You can add a different discount to this door or leave the discount of the order in general.</p>
+                                </div>
+                                <div class="row" style="margin-right: 0;">
+                                    <div class="col-xs-3 col-md-3">
+
+                                        <div class="input-group" style="width: 53%!important;">
+                                            <input style="width:50%!important" name="SoloNumeros" required class="required RequiereLlenar eventChange iptHeight form-control" type="number" min="1" maxlength="2" max="99" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="descDXO">
+                                            <span class="input-group-addon tx-size-sm lh-2">%</span>
+                                        </div>
+                                    </div><!-- form-group -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btnClose" type="button" class="btn btn-secondary Cursor" data-dismiss="modal">Close</button>
+                <button id="btCancel" type="button" class="btn btn-secondary Cursor">Cancel</button>
+                <button id="btnBack" type="button" class="btn btn-secondary Cursor">Back</button>
+                <button id="btnAtras" data-toggle="tab" href="#NEWORDER" type="button" class="btn btn-secondary Cursor">Back</button>
+                <button id="btnCON" data-toggle="tab" href="#NEWORDER" role="tab" type="button" class="Cursor btn btn-primary Cursor">Continue</button>
+                <button id="btnSAVE" data-toggle="tab" href="#DETAILORDER" role="tab" type="button" class="Cursor Detalle btn btn-primary Cursor">Save and continue</button>
+                <button id="btGuardar" type="button" class="Cursor btn btn-primary Cursor">Save</button>
+                <button id="btSaveChan" type="button" class="Cursor btn btn-primary Cursor">Save change</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/Scripts/js/CreditNotes.js")
+    @Scripts.Render("~/Scripts/Pagination.js")
+    <script>
+                    try {
+                        var listInvoice = JSON.parse('@Html.Raw(ViewBag.Invoice)');
+                    } catch (e) {
+                        var listInvoice = null;
+                    }
+    </script>
+    <script src="~/Content/lib/select2/js/select2.min.js"></script>
+    <script src="~/Content/lib/select2/js/select2.full.min.js"></script>
+}
+

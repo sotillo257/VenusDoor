@@ -19,10 +19,14 @@
     $("#read-less-state").hide(); 
     $("#Record_Paymend").hide();
     $("#infoMore").hide();
-    $("#btOculDis").hide();
+    $("#btOculDis").hide(); 
 
     $(document).on('click', "#btAdd", function () {
         $("#addFile").trigger('click');
+    });
+
+    $(document).on('click', "#btNewPay", function () {
+        $("#RecordPaymend").trigger("click");
     });
 
     $("#RecordPaymend").on("click", function () {
@@ -76,6 +80,7 @@
         $("#btnClose").hide();
         $("#NEWORDER").hide();
         $("#DETAILORDER").hide();
+        $("#btSavDrs").hide();
         $("#btGuardar").hide();
         $("#MODIFYOR").hide();
         $("#btCancel").hide();
@@ -110,6 +115,7 @@
         $("#btnClose").hide();
         $("#NEWORDER").hide();
         $("#DETAILORDER").hide();
+        $("#btSavDrs").hide();
         $("#btGuardar").hide();
         $("#MODIFYOR").hide();
         $("#btCancel").hide();
@@ -129,6 +135,7 @@
         $('#NEWORDER').hide();
         $("#MODIFYOR").hide();
         $("#btGuardar").hide();
+        $("#btSavDrs").hide();
         $('#btnAtras').removeClass("active");
         $("#btCancel").hide();
     });
@@ -151,6 +158,7 @@
         $("#btnCON").hide();
         $("#DETAILORDER").hide();
         $("#MODIFYOR").hide();
+        $("#btSavDrs").hide();
         $("#btGuardar").hide();
         $('#createBACK').removeClass("active");
         $("#btCancel").hide();
@@ -170,6 +178,7 @@
         $("#NEWINVOICE").hide();
         $("#DETAILORDER").hide();
         $("#MODIFYOR").hide();
+        $("#btSavDrs").hide();
         $("#btGuardar").hide();
         $('#createBACK').removeClass("active");
         $("#btCancel").hide();
@@ -185,6 +194,7 @@
         $("#btnAtras").show();
         $("#detailBACK").show();
         $('#DETAILORDER').show();
+        $("#btSavDrs").show();
         $("#btGuardar").show();
         $("#createBACK").hide();
         $("#btnBack").hide();
@@ -197,9 +207,14 @@
         $("#btCancel").hide();
     });
 
+    $("#createDoor").on('click', function () {
+        $(".editDoor").trigger("click");
+    });
+
     $(document).on('click', '.editDoor', function (event) {
         var id = $(this).attr('data-id'); 
         $("#btGuardar").hide();
+        $("#btSavDrs").hide();
         $("#detailBACK").hide(); 
         $("#MODIFYOR").show();
         $("#btCancel").show();
@@ -652,8 +667,7 @@ function GetDoorsByOrder(idOrden) {
                 if (Result.DoorsxOrder[i].DecimalsHeight.Value != 0) {
                     deci += ' <span>' + Result.DoorsxOrder[i].DecimalsHeight.Description + '</span>';
                 }
-                table += '<span style="word-wrap: break-word;" id="tmp_item_name">Width: ' + Math.trunc(Result.DoorsxOrder[i].Width) + ' ' + dec + ', Height: ' + Math.trunc(Result.DoorsxOrder[i].Height) + ' ' + dec + '</span><br>';
-                table += '<span style="white-space: pre-wrap;word-wrap: break-word;" class="pcs-item-desc" id="tmp_item_description">Panel: ' + Result.DoorsxOrder[i].Panel.Description + ', Door Type:' + Result.DoorsxOrder[i].DoorType.Description + '</span>';
+                table += '<span style="word-wrap: break-word;" id="tmp_item_name">Width: ' + Math.trunc(Result.DoorsxOrder[i].Width) + ' ' + dec + ', Height: ' + Math.trunc(Result.DoorsxOrder[i].Height) + ' ' + dec + '</span><br>';               
                 table += '</div></div></td>';
                 table += '<td rowspan="1" class="pcs-item-row lineitem-column text-align-right">';
                 table += '<span id="tmp_item_qty">' + Result.DoorsxOrder[i].Quantity.toString().replace(',', '.') + '</span>';
