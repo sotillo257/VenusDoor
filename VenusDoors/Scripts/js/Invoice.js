@@ -70,6 +70,7 @@
     $(document).on('click', '#btModi', function (event) {
         $("#lblTituloModal").text("Modify Invoice");
         $("#btnCON").hide();
+        $("#editDXU").hide();
         $("#NEWINVOICE").show();
         $("#btnConMod").show();
         $("#btBackMod").hide();
@@ -94,11 +95,13 @@
         $('#createBACK').show();
         $("#btnBack").show();
         $("#btBackMod").show();
+        $("#editDXU").show();
         $("#btnBack").hide();
         $("#detailBACK").hide();
         $("#NEWINVOICE").hide();
         $("#btnConMod").hide();
-        $("#btSavDrs").hide();
+        $("#btSavDrs").show();
+        $("#btGuardar").show();
         $("#btnAtras").hide();
     });
 
@@ -106,11 +109,23 @@
         $("#lblTituloModal").text("Modify Invoice");
         $("#NEWINVOICE").show();
         $("#btnConMod").show();
+        $("#editDXU").hide();
         $('#DETAILORDER').hide();
         $('#btBackMod').hide();
         $("#btCancel").hide();
         $('#createBACK').hide();
         $("#btnClose").hide();
+    });
+
+    $("#editDXU").on('click', function () {
+        $("#lblTituloModal").text("Modify Order");
+        $("#NEWORDER").show();
+        $("#btCancel").show();
+        $("#editDXU").hide();
+        $("#DETAILORDER").hide();
+        $("#btBackMod").hide();
+        $("#btSavDrs").hide();
+        $("#btGuardar").hide();
     });
 
     $("#btnBack").on('click', function () {
@@ -132,6 +147,7 @@
     $("#btNew").on('click', function () {
         $("#lblTituloModal").text("New Invoice"); 
         $("#btnCON").show();
+        $("#editDXU").hide();
         $("#btnConMod").hide();
         $("#btBackMod").hide();
         $("#NEWINVOICE").show();
@@ -163,6 +179,7 @@
         $("#btnSAVE").hide();
         $("#btnBack").hide();
         $("#btnClose").hide();
+        $("#editDXU").hide();
         $('#NEWORDER').hide();
         $("#MODIFYOR").hide();
         $("#DETAILORDER").hide();
@@ -184,6 +201,7 @@
         $("#btnBack").show();
         $("#btnClose").show();
         $("#btnConMod").hide();
+        $("#editDXU").hide();
         $("#detailBACK").hide();
         $("#btBackMod").hide();
         $("#createBACK").show();
@@ -207,6 +225,7 @@
         $("#detailBACK").hide();
         $("#btnClose").show();
         $("#btBackMod").hide();
+        $("#editDXU").hide();
         $("#btnConMod").hide();
         $("#btnAtras").hide();
         $("#btSaveChan").hide();
@@ -233,6 +252,7 @@
         $("#btSavDrs").show();
         $("#btGuardar").show();
         $("#btBackMod").hide();
+        $("#editDXU").hide();
         $("#createBACK").hide();
         $("#btnConMod").hide();
         $("#btnBack").hide();
@@ -262,6 +282,7 @@
         $("#btnBack").hide();
         $("#btnClose").hide();
         $("#btnConMod").hide();
+        $("#editDXU").hide();
         $("#btBackMod").hide();
         $("#NEWINVOICE").hide();
         $("#NEWORDER").hide();
