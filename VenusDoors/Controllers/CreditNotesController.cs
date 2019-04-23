@@ -9,9 +9,19 @@ namespace VenusDoors.Controllers
     public class CreditNotesController : Controller
     {
         // GET: CreditNotes
+        [Authorize(Roles = "1")]
         public ActionResult Index()
         {
-            return View();
+            try
+            {
+                ViewBag.Sales = "active show-sub";
+                ViewBag.CreditNotes = "active";
+                return View();
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
         }
     }
 }

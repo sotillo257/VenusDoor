@@ -19,15 +19,24 @@
     $("#read-less-state").hide(); 
     $("#Record_Paymend").hide();
     $("#infoMore").hide();
-    $("#btOculDis").hide();
+    $("#btOculDis").hide(); 
 
     $(document).on('click', "#btAdd", function () {
         $("#addFile").trigger('click');
     });
 
+    $(document).on('click', "#btNewPay", function () {
+        $("#RecordPaymend").trigger("click");
+    });
+
     $("#RecordPaymend").on("click", function () {
         $("#Invoice").hide();
         $("#Record_Paymend").show();
+    });
+
+    $("#btCancelar").on("click", function () {
+        $("#Invoice").show();
+        $("#Record_Paymend").hide();
     });
 
     $("#read-more-state").on("click", function () {
@@ -60,8 +69,11 @@
 
     $(document).on('click', '#btModi', function (event) {
         $("#lblTituloModal").text("Modify Invoice");
-        $("#btnCON").show();
+        $("#btnCON").hide();
+        $("#editDXU").hide();
         $("#NEWINVOICE").show();
+        $("#btnConMod").show();
+        $("#btBackMod").hide();
         $("#detailBACK").hide();
         $("#btnAtras").hide();
         $("#btSaveChan").hide();
@@ -71,9 +83,49 @@
         $("#btnClose").hide();
         $("#NEWORDER").hide();
         $("#DETAILORDER").hide();
+        $("#btSavDrs").hide();
         $("#btGuardar").hide();
         $("#MODIFYOR").hide();
         $("#btCancel").hide();
+    });
+
+    $("#btnConMod").on('click', function () {
+        $('#DETAILORDER').show();
+        $("#btnClose").show();
+        $('#createBACK').show();
+        $("#btnBack").show();
+        $("#btBackMod").show();
+        $("#editDXU").show();
+        $("#btnBack").hide();
+        $("#detailBACK").hide();
+        $("#NEWINVOICE").hide();
+        $("#btnConMod").hide();
+        $("#btSavDrs").show();
+        $("#btGuardar").show();
+        $("#btnAtras").hide();
+    });
+
+    $("#btBackMod").on('click', function () {
+        $("#lblTituloModal").text("Modify Invoice");
+        $("#NEWINVOICE").show();
+        $("#btnConMod").show();
+        $("#editDXU").hide();
+        $('#DETAILORDER').hide();
+        $('#btBackMod').hide();
+        $("#btCancel").hide();
+        $('#createBACK').hide();
+        $("#btnClose").hide();
+    });
+
+    $("#editDXU").on('click', function () {
+        $("#lblTituloModal").text("Modify Order");
+        $("#NEWORDER").show();
+        $("#btCancel").show();
+        $("#editDXU").hide();
+        $("#DETAILORDER").hide();
+        $("#btBackMod").hide();
+        $("#btSavDrs").hide();
+        $("#btGuardar").hide();
     });
 
     $("#btnBack").on('click', function () {
@@ -95,6 +147,9 @@
     $("#btNew").on('click', function () {
         $("#lblTituloModal").text("New Invoice"); 
         $("#btnCON").show();
+        $("#editDXU").hide();
+        $("#btnConMod").hide();
+        $("#btBackMod").hide();
         $("#NEWINVOICE").show();
         $("#detailBACK").hide();
         $("#btnAtras").hide();
@@ -105,6 +160,7 @@
         $("#btnClose").hide();
         $("#NEWORDER").hide();
         $("#DETAILORDER").hide();
+        $("#btSavDrs").hide();
         $("#btGuardar").hide();
         $("#MODIFYOR").hide();
         $("#btCancel").hide();
@@ -114,6 +170,8 @@
         $("#lblTituloModal").text("New Invoice");
         $("#NEWINVOICE").show();
         $("#btnCON").show();
+        $("#btnConMod").hide();
+        $("#btBackMod").hide();
         $("#detailBACK").hide();
         $("#btnAtras").hide();
         $("#btSaveChan").hide();
@@ -121,9 +179,12 @@
         $("#btnSAVE").hide();
         $("#btnBack").hide();
         $("#btnClose").hide();
+        $("#editDXU").hide();
         $('#NEWORDER').hide();
         $("#MODIFYOR").hide();
+        $("#DETAILORDER").hide();
         $("#btGuardar").hide();
+        $("#btSavDrs").hide();
         $('#btnAtras').removeClass("active");
         $("#btCancel").hide();
     });
@@ -139,13 +200,17 @@
         $("#btnSAVE").show();
         $("#btnBack").show();
         $("#btnClose").show();
+        $("#btnConMod").hide();
+        $("#editDXU").hide();
         $("#detailBACK").hide();
+        $("#btBackMod").hide();
         $("#createBACK").show();
         $("#btnAtras").hide();
         $("#btSaveChan").hide();
         $("#btnCON").hide();
         $("#DETAILORDER").hide();
         $("#MODIFYOR").hide();
+        $("#btSavDrs").hide();
         $("#btGuardar").hide();
         $('#createBACK').removeClass("active");
         $("#btCancel").hide();
@@ -159,12 +224,16 @@
         $("#NEWORDER").show();
         $("#detailBACK").hide();
         $("#btnClose").show();
+        $("#btBackMod").hide();
+        $("#editDXU").hide();
+        $("#btnConMod").hide();
         $("#btnAtras").hide();
         $("#btSaveChan").hide();
         $("#btnCON").hide();
         $("#NEWINVOICE").hide();
         $("#DETAILORDER").hide();
         $("#MODIFYOR").hide();
+        $("#btSavDrs").hide();
         $("#btGuardar").hide();
         $('#createBACK').removeClass("active");
         $("#btCancel").hide();
@@ -180,8 +249,12 @@
         $("#btnAtras").show();
         $("#detailBACK").show();
         $('#DETAILORDER').show();
+        $("#btSavDrs").show();
         $("#btGuardar").show();
+        $("#btBackMod").hide();
+        $("#editDXU").hide();
         $("#createBACK").hide();
+        $("#btnConMod").hide();
         $("#btnBack").hide();
         $("#btSaveChan").hide();
         $("#btnSAVE").hide();
@@ -192,9 +265,14 @@
         $("#btCancel").hide();
     });
 
+    $("#createDoor").on('click', function () {
+        $(".editDoor").trigger("click");
+    });
+
     $(document).on('click', '.editDoor', function (event) {
         var id = $(this).attr('data-id'); 
         $("#btGuardar").hide();
+        $("#btSavDrs").hide();
         $("#detailBACK").hide(); 
         $("#MODIFYOR").show();
         $("#btCancel").show();
@@ -203,6 +281,9 @@
         $("#btnAtras").hide();
         $("#btnBack").hide();
         $("#btnClose").hide();
+        $("#btnConMod").hide();
+        $("#editDXU").hide();
+        $("#btBackMod").hide();
         $("#NEWINVOICE").hide();
         $("#NEWORDER").hide();
         $("#DETAILORDER").hide();
@@ -647,8 +728,7 @@ function GetDoorsByOrder(idOrden) {
                 if (Result.DoorsxOrder[i].DecimalsHeight.Value != 0) {
                     deci += ' <span>' + Result.DoorsxOrder[i].DecimalsHeight.Description + '</span>';
                 }
-                table += '<span style="word-wrap: break-word;" id="tmp_item_name">Width: ' + Math.trunc(Result.DoorsxOrder[i].Width) + ' ' + dec + ', Height: ' + Math.trunc(Result.DoorsxOrder[i].Height) + ' ' + dec + '</span><br>';
-                table += '<span style="white-space: pre-wrap;word-wrap: break-word;" class="pcs-item-desc" id="tmp_item_description">Panel: ' + Result.DoorsxOrder[i].Panel.Description + ', Door Type:' + Result.DoorsxOrder[i].DoorType.Description + '</span>';
+                table += '<span style="word-wrap: break-word;" id="tmp_item_name">Width: ' + Math.trunc(Result.DoorsxOrder[i].Width) + ' ' + dec + ', Height: ' + Math.trunc(Result.DoorsxOrder[i].Height) + ' ' + dec + '</span><br>';               
                 table += '</div></div></td>';
                 table += '<td rowspan="1" class="pcs-item-row lineitem-column text-align-right">';
                 table += '<span id="tmp_item_qty">' + Result.DoorsxOrder[i].Quantity.toString().replace(',', '.') + '</span>';

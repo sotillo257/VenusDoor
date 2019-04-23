@@ -138,7 +138,7 @@ function GetDoorsByOrder(idOrden) {
             llenarComboPanelMaterial(Result.Material.Id);
             llenarComboVerticalDivisions(Result.VerticalDivisions.Id);
             llenarComboHorizontalDivisions(Result.HorizontalDivisions.Id);
-            llenarComboHingeDirection(Result.HingeDirection.Id);
+            //llenarComboHingeDirection(Result.HingeDirection.Id);
             ChangeDoorStylePanel(Result.DoorStyle.Id);
 
             var info = "";
@@ -231,7 +231,7 @@ function GetDoorsByOrder(idOrden) {
                     option += ' <span>' + Result.DoorsxOrder[i].DecimalsHeight.Description + '</span>';
                 }
                 option += '</td>';
-                option += '<td>' + Result.DoorsxOrder[i].Panel.Description + '</td>';
+                //option += '<td>' + Result.DoorsxOrder[i].Panel.Description + '</td>';
                 option += '<td>' + Result.DoorsxOrder[i].DoorType.Description + '</td>';
                 option += '<td>' + Result.DoorsxOrder[i].DoorOption.Description + '</td>';
                 option += '<td><span>$</span>' + Result.DoorsxOrder[i].ItemCost.toString().replace(',', '.') + '</td>';

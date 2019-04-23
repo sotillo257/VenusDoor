@@ -14069,6 +14069,97 @@ input:checked + .slider:before {
  * Licensed under ThemeFores License
  */
 
+.on-headr {
+  height: 95px;
+  margin-top: 60px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+  background-color: #e9ecef;
+  box-shadow: 0 1px 4px 0px rgba(0, 0, 0, 0.16);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.2s ease-in-out;
+}
+@media (min-width: 992px) {
+  .on-headr {
+    left: 550px;
+  }
+}
+
+@media (min-width: 992px) {
+  .on-headr-right {
+    margin-left: 245px;
+    transition: all 0.2s ease-in-out;
+  }
+}
+
+.on-headr-left {
+  display: flex;
+}
+.on-headr-left .form-control, .on-headr-left .dataTables_filter input, .dataTables_filter .on-headr-left input {
+  border: 0;
+  border-radius: 0;
+  padding: 0 20px;
+}
+.on-headr-left .input-group-btn {
+  border-right: 1px solid rgba(0, 0, 0, 0.15);
+}
+.on-headr-left .input-group-btn .btn, .on-headr-left .input-group-btn .sp-container button, .sp-container .on-headr-left .input-group-btn button {
+  background-color: #fff;
+  border-radius: 0;
+  border: 0;
+  color: #868e96;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.on-headr-left .input-group-btn .btn:focus, .on-headr-left .input-group-btn .sp-container button:focus, .sp-container .on-headr-left .input-group-btn button:focus, .on-headr-left .input-group-btn .btn:active, .on-headr-left .input-group-btn .sp-container button:active, .sp-container .on-headr-left .input-group-btn button:active {
+  color: #343a40;
+  box-shadow: none;
+}
+
+.on-headr-right {
+  display: flex;
+  align-items: center;
+}
+.on-headr-right a {
+  color: #656464;
+}
+.on-headr-right a:hover, .on-headr-right a:focus {
+  color: #ccc;
+}
+.on-headr-right .dropdown:last-child .dropdown-menu {
+  padding: 0 10px 10px;
+}
+.on-headr-right .dropdown:last-child .dropdownTAB-menu {
+  padding: 0 10px 10px;
+}
+@media (max-width: 479px) {
+  .on-headr-right .dropdown:first-child .dropdownTAB-menu {
+    transform: translateX(145px) !important;
+  }
+  .on-headr-right .dropdown:nth-child(2) .dropdownTAB-menu {
+    transform: translateX(113px) !important;
+  }
+  .on-headr-right .dropdown:last-child .dropdownTAB-menu {
+    transform: translateX(49px) !important;
+  }
+}
+@media (max-width: 479px) {
+  .on-headr-right .dropdown:first-child .dropdown-menu {
+    transform: translateX(145px) !important;
+  }
+  .on-headr-right .dropdown:nth-child(2) .dropdown-menu {
+    transform: translateX(113px) !important;
+  }
+  .on-headr-right .dropdown:last-child .dropdown-menu {
+    transform: translateX(49px) !important;
+  }
+}
+
 .in-headr {
   height: 95px;
   margin-top: 60px;
@@ -14607,6 +14698,15 @@ input:checked + .slider:before {
   .collapsed-menu .br-header {
     left: 0;
   }
+  .collapsed-menu .on-headr {
+    left: 380px;
+  }
+
+  .collapsed-menu .on-headr-right {
+    margin-left: 415px;
+    transition: all 0.2s ease-in-out;
+  }
+
   .collapsed-menu .in-headr {
     left: 380px;
   }
