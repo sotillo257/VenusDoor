@@ -14,7 +14,7 @@
         $("#iptHeight").prop('disabled', false);
         $("input[name=radioOption]").attr("disabled", false);
         $("input[name=radioOver]").attr("disabled", false);
-        $(".select2-selection").css('background-color', '#fff!important');
+        $(".select2-selection").css('background-color', '#fff!important');       
             
         //LimpiarCombos();
     });
@@ -27,8 +27,8 @@
         $("#btXclose").hide();
         $("#btConfAdd").hide();
         $("#btModify").hide();
-  
 
+              
               
         $("input[name=radioOver]").attr("disabled", false);
         $(".selectModal").prop('disabled', false);
@@ -140,7 +140,7 @@ function SearchDoor(data) {
             isDrill = 2;
         }
         llenarComboIsDrill(isDrill);
-        HingeCalculate();       
+        HingeCalculate();
 
         var isOpen = data.IsOpeningMeasurement;
         if (isOpen == false) {
@@ -156,7 +156,7 @@ function SearchDoor(data) {
         } else {
             isOver = 2;
         }
-        checkIsOverlay(isOver);       
+        checkIsOverlay(isOver);
         llenarComboMaterial(data.Material.Id);
        
         llenarComboIEP(data.InsideEdgeProfile.Id);
@@ -166,7 +166,7 @@ function SearchDoor(data) {
         llenarComboDoorAssembly(data.Join.Id);
         llenarComboPanelMaterial(data.Material.Id, data.DoorStyle.Id);
         llenarComboVerticalDivisions(data.VerticalDivisions.Id);
-        llenarComboHorizontalDivisions(data.HorizontalDivisions.Id);        
+        llenarComboHorizontalDivisions(data.HorizontalDivisions.Id);
         if (data.DoorStyle.Id == 1010) {
             llenarComboDoorStyle(data.DoorStyle.Id);
             var option = '<option value="3">Slab</option>';
@@ -559,7 +559,7 @@ function LimpiarCombos() {
     llenarComboIsOpen(0);
     llenarComboVerticalDivisions(0);
     llenarComboHorizontalDivisions(0);
-    llenarComboIsDrill(0);   
+    llenarComboIsDrill(0);
     llenarComboDoorType(0);    
     llenarComboFinger(0);
     llenarComboDecimalW(0);
@@ -888,7 +888,7 @@ function GetDoorxUser() {
                 }
                 llenarComboFinger(fingerPull);
                
-                HingeCalculate();           
+                HingeCalculate();
 
                 var isOpen = data.LastDoor.IsOpeningMeasurement;
                 if (isOpen == false) {

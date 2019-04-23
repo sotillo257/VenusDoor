@@ -103,7 +103,7 @@ namespace VenusDoors.Controllers
                 BusinessLogic.lnInsideEdgeProfile _LN = new BusinessLogic.lnInsideEdgeProfile();
                List<InsideEdgeProfile> listIn = _LN.GetOutsideProfilexDoorStyle(pDoorStyle);
                 BusinessLogic.lnOutsideEdgeProfile _LNO = new BusinessLogic.lnOutsideEdgeProfile();
-                List<OutsideEdgeProfile> listOut = _LNO.GetAllOutsideEdgeProfile();
+                List<OutsideEdgeProfile> listOut = _LNO.GetOutsideProfilexDoorStyle(pDoorStyle);
                 if (listIn.Count > 0 && listOut.Count > 0)
                 {
                     return Json(new { listOutside = listOut, listInside = listIn, Success = true, Mensaje = "" }, JsonRequestBehavior.AllowGet);
