@@ -1110,6 +1110,7 @@
     <Content Include="Scripts\js\ConverExcel.js" />
     <Content Include="Scripts\js\dashboard.js" />
     <Content Include="Scripts\js\Estimate.js" />
+    <Content Include="Scripts\js\GetAllMaster.js" />
     <Content Include="Scripts\js\Invoice.js" />
     <Content Include="Scripts\js\LoginSiginUp.js" />
     <Content Include="Scripts\js\Master.DoorStylexOutsideEdgeProfile.js" />
@@ -1148,6 +1149,7 @@
     <Content Include="Scripts\js\OrderStatus.Index.js" />
     <Content Include="Scripts\js\OrderSumm.js" />
     <Content Include="Scripts\js\OrderSummary.ConfigDoor.js" />
+    <Content Include="Scripts\js\OrderSummary.js" />
     <Content Include="Scripts\js\PasswordRecovery.Logins.js" />
     <Content Include="Scripts\js\PriceCalc.js" />
     <Content Include="Scripts\js\UserManagement.Index.js" />

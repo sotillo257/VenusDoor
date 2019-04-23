@@ -160,12 +160,7 @@ $(function () {
         }
     });
 
-    $('#datatable2').DataTable({
-        bLengthChange: false,
-        searching: false,
-        responsive: true
-    });
-
+   
     // Select2
     $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
 

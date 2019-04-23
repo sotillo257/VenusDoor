@@ -915,7 +915,7 @@ function GetDoorxUser() {
                 llenarComboPanelMaterial(data.LastDoor.Material.Id, data.LastDoor.DoorStyle.Id);
                 llenarComboVerticalDivisions(data.LastDoor.VerticalDivisions.Id);
                 llenarComboHorizontalDivisions(data.LastDoor.HorizontalDivisions.Id);
-                llenarComboHingeDirection(data.LastDoor.HingeDirection.Id);
+                //llenarComboHingeDirection(data.LastDoor.HingeDirection.Id);
                 if (data.LastDoor.DoorStyle.Id == 1010) {
                     var option = '<option value="3">Slab</option>';
                     $("#cbPanel").empty().append(option);
