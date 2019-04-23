@@ -161,26 +161,7 @@
                                                 <button type="button" id="btAdd" class="Cursor btn btn-page" style="margin-right: 15px;"><i class="fa fa-paperclip"></i> Upload file</button>
                                                 <input id="addFile" name="file" type="file" style="display:none;" />
                                             </div><!-- col -->
-                                            @*<table>
-                                                <tbody>
-                                                    <tr>
-                                                        <td style="">
-                                                            <button type="button" id="btAdd" class="Cursor btn btn-page" style="border: 0px;margin-left: 5px;margin-right: 5px; width: 90px; height: 65px"><i class="fa fa-paperclip"></i></button>
-                                                            <input id="addFile" name="file" type="file" style="display:none;" />
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>*@
                                     </div>
-                                <div style="padding: 20px 0 10px;border-top: 1px solid #eee;">
-                                    <div>Display attachment(s) in client portal and emails
-                                        <label class="switch">
-                                            <input type="checkbox" checked>
-                                            <span class="slider round"></span>
-                                        </label>
-                                    </div>
-                                </div>
-
                                 </div><!-- dropdown-menu -->
                             </div>
 
@@ -1087,6 +1068,9 @@
                     <a id="detailBACK" title="Click here to return to the previous window." class="btn btn-icon active" data-toggle="tab" href="#NEWORDER" role="tab">
                         <div><i class="fa fa-arrow-left"></i></div>
                     </a>
+                    <a id="modInBack" title="Click here to return to the previous window." class="btn btn-icon active" data-toggle="tab" href="#NEWORDER" role="tab">
+                        <div><i class="fa fa-arrow-left"></i></div>
+                    </a>
                     <h3 id="lblTituloModal" class="tx-inverse mg-b-5"></h3>
                     <a id="editDXU" style="margin-left: 20px;" title="Click here to modify the general configuration of the order and add a general discount." data-toggle="tab" href="#NEWORDER" role="tab" class="btn btn-primary btn-icon">
                         <div><i class="fa fa-edit"></i></div>
@@ -1360,7 +1344,7 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td colspan="10" style="text-align: center; padding-top: 15px;">To create a new door, <a class="editDoor Cursor" data-toggle="tab" href="#MODIFYOR" role="tab">click here.</a></td>
+                                        <td colspan="10" style="text-align: center; padding-top: 15px;">To create a new door, <a class="Cursor" id="editDoor" data-toggle="tab" href="#MODIFYOR" role="tab">click here.</a><a class="Cursor" id="modDoor" data-toggle="tab" href="#MODIFYOR" role="tab">click here.</a></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -1442,6 +1426,7 @@
             </div>
             <div class="modal-footer">
                 <button id="btnClose" type="button" class="btn btn-secondary Cursor" data-dismiss="modal">Close</button>
+                <button id="btnCancelar" type="button" class="btn btn-secondary Cursor">Cancel</button>
                 <button id="btCancel" type="button" class="btn btn-secondary Cursor">Cancel</button>
                 <button id="btnBack" type="button" class="btn btn-secondary Cursor">Back</button>
                 <button id="btnAtras" data-toggle="tab" href="#NEWORDER" type="button" class="btn btn-secondary Cursor">Back</button>

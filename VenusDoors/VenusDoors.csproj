@@ -1235,11 +1235,11 @@
     <Content Include="Views\Masters\DoorStylexInsideEdgeProfile.cshtml" />
     <Content Include="Views\Masters\DoorStylexOutsideEdgeProfile.cshtml" />
     <Content Include="Views\CreditNotes\Index.cshtml" />
+    <Content Include="Views\PaymentsReceived\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\PDF\" />
-    <Folder Include="Views\PaymentsReceived\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

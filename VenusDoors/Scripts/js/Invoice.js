@@ -67,71 +67,6 @@
         $("#btFile").trigger("click");
     });
 
-    $(document).on('click', '#btModi', function (event) {
-        $("#lblTituloModal").text("Modify Invoice");
-        $("#btnCON").hide();
-        $("#editDXU").hide();
-        $("#NEWINVOICE").show();
-        $("#btnConMod").show();
-        $("#btBackMod").hide();
-        $("#detailBACK").hide();
-        $("#btnAtras").hide();
-        $("#btSaveChan").hide();
-        $('#createBACK').hide();
-        $("#btnSAVE").hide();
-        $("#btnBack").hide();
-        $("#btnClose").hide();
-        $("#NEWORDER").hide();
-        $("#DETAILORDER").hide();
-        $("#btSavDrs").hide();
-        $("#btGuardar").hide();
-        $("#MODIFYOR").hide();
-        $("#btCancel").hide();
-    });
-
-    $("#btnConMod").on('click', function () {
-        $('#DETAILORDER').show();
-        $("#btnClose").show();
-        $('#createBACK').show();
-        $("#btnBack").show();
-        $("#btBackMod").show();
-        $("#editDXU").show();
-        $("#btnBack").hide();
-        $("#detailBACK").hide();
-        $("#NEWINVOICE").hide();
-        $("#btnConMod").hide();
-        $("#btSavDrs").show();
-        $("#btGuardar").show();
-        $("#btnAtras").hide();
-    });
-
-    $("#btBackMod").on('click', function () {
-        $("#lblTituloModal").text("Modify Invoice");
-        $("#NEWINVOICE").show();
-        $("#btnConMod").show();
-        $("#editDXU").hide();
-        $('#DETAILORDER').hide();
-        $('#btBackMod').hide();
-        $("#btCancel").hide();
-        $('#createBACK').hide();
-        $("#btnClose").hide();
-    });
-
-    $("#editDXU").on('click', function () {
-        $("#lblTituloModal").text("Modify Order");
-        $("#NEWORDER").show();
-        $("#btCancel").show();
-        $("#editDXU").hide();
-        $("#DETAILORDER").hide();
-        $("#btBackMod").hide();
-        $("#btSavDrs").hide();
-        $("#btGuardar").hide();
-    });
-
-    $("#btnBack").on('click', function () {
-        $("#createBACK").trigger("click");
-    });
-
     $("#btDisplay").on('click', function () {
         $("#infoMore").show();
         $("#btOculDis").show();
@@ -144,6 +79,136 @@
         $("#btDisplay").show();
     });
 
+    $(document).on('click', '#btModi', function (event) {
+        $("#lblTituloModal").text("Modify Invoice");
+        $("#btnCON").hide();
+        $("#editDXU").hide();
+        $("#NEWINVOICE").show();
+        $("#btnConMod").show();
+        $("#btBackMod").hide();
+        $("#detailBACK").hide();
+        $("#btnAtras").hide();
+        $("#btSaveChan").hide(); 
+        $('#createBACK').hide();
+        $('#modInBack').hide();
+        $("#btnSAVE").hide();
+        $("#btnBack").hide();
+        $("#btnClose").hide();
+        $("#NEWORDER").hide();
+        $("#DETAILORDER").hide();
+        $("#btSavDrs").hide();
+        $("#btGuardar").hide();
+        $("#MODIFYOR").hide();
+        $("#btCancel").hide();
+        $("#btnCancelar").hide();
+    });
+
+    $("#btnConMod").on('click', function () {
+        $('#DETAILORDER').show();
+        $("#btnClose").show();
+        $('#createBACK').hide();
+        $("#btnBack").show();
+        $('#modInBack').show();
+        $("#btBackMod").show();
+        $("#editDXU").show();
+        $("#btnBack").hide();
+        $("#detailBACK").hide();
+        $("#NEWINVOICE").hide();
+        $("#btnConMod").hide();
+        $("#btSavDrs").show();
+        $("#btGuardar").show();
+        $("#btnAtras").hide();
+        $("#btnCancelar").hide(); modDoor
+        $("#modDoor").show();
+        $("#editDoor").hide();
+    });
+
+    $(document).on('click', '#modDoor', function (event) {
+        var id = $(this).attr('data-id');
+        $("#btGuardar").hide();
+        $("#btSavDrs").hide();
+        $("#detailBACK").hide();
+        $("#MODIFYOR").show();
+        $("#btCancel").hide();
+        $("#btnSAVE").hide();
+        $("#btnCON").hide();
+        $("#btnAtras").hide();
+        $("#btnBack").hide();
+        $("#btnClose").hide();
+        $("#btnConMod").hide();
+        $("#editDXU").hide();
+        $("#btBackMod").hide();
+        $("#NEWINVOICE").hide();
+        $('#modInBack').hide();
+        $("#NEWORDER").hide();
+        $("#DETAILORDER").hide();
+        $('#createBACK').removeClass("active");
+        $('#btnAtras').removeClass("active");
+        $("#btSaveChan").show();
+        $("#btnCancelar").show();
+        QuitarClaseErrorACombos();
+    });
+
+    $("#btBackMod").on('click', function () {
+        $("#lblTituloModal").text("Modify Invoice");
+        $("#NEWINVOICE").show();
+        $("#btnConMod").show();
+        $("#editDXU").hide();
+        $('#DETAILORDER').hide();
+        $('#btBackMod').hide();
+        $("#btnCancelar").hide();
+        $("#btCancel").hide();
+        $('#createBACK').hide();
+        $('#modInBack').hide();
+        $("#btnClose").hide();
+        $("#btSavDrs").hide();
+        $("#btGuardar").hide();
+    });
+
+    $("#modInBack").on('click', function () {
+        $("#btBackMod").trigger("click");
+    });
+
+    $("#editDXU").on('click', function () {
+        $("#lblTituloModal").text("Modify Order");
+        $("#NEWORDER").show();
+        $("#btnCancelar").show();
+        $("#btCancel").hide();
+        $("#editDXU").hide();
+        $("#DETAILORDER").hide();
+        $('#modInBack').hide();
+        $("#btBackMod").hide();
+        $("#btSavDrs").hide();
+        $("#btGuardar").hide();
+    });
+
+    $("#btnCancelar").on('click', function () {
+        $('#DETAILORDER').show();
+        $("#btnClose").show();
+        $('#modInBack').show();
+        $('#createBACK').hide();
+        $("#btnBack").show();
+        $("#btBackMod").show();
+        $("#editDXU").show();
+        $("#NEWORDER").hide();
+        $("#btnBack").hide();
+        $("#detailBACK").hide();
+        $("#NEWINVOICE").hide();
+        $("#MODIFYOR").hide();
+        $("#btnConMod").hide();
+        $("#btSavDrs").show();
+        $("#btGuardar").show();
+        $("#btnAtras").hide();
+        $("#btnCancelar").hide();
+        $("#btSaveChan").hide();
+        $("#modDoor").show();
+        $("#editDoor").hide();
+    });
+
+    $("#btnBack").on('click', function () {
+        $("#createBACK").trigger("click");
+    });
+
     $("#btNew").on('click', function () {
         $("#lblTituloModal").text("New Invoice"); 
         $("#btnCON").show();
@@ -154,6 +219,7 @@
         $("#detailBACK").hide();
         $("#btnAtras").hide();
         $("#btSaveChan").hide();
+        $('#modInBack').hide();
         $('#createBACK').hide();
         $("#btnSAVE").hide();
         $("#btnBack").hide();
@@ -164,6 +230,7 @@
         $("#btGuardar").hide();
         $("#MODIFYOR").hide();
         $("#btCancel").hide();
+        $("#btnCancelar").hide();
     });
 
     $("#createBACK").on('click', function () {
@@ -176,6 +243,7 @@
         $("#btnAtras").hide();
         $("#btSaveChan").hide();
         $('#createBACK').hide();
+        $('#modInBack').hide();
         $("#btnSAVE").hide();
         $("#btnBack").hide();
         $("#btnClose").hide();
@@ -187,6 +255,7 @@
         $("#btSavDrs").hide();
         $('#btnAtras').removeClass("active");
         $("#btCancel").hide();
+        $("#btnCancelar").hide();
     });
 
     $("#detailBACK").on('click', function () {
@@ -204,6 +273,7 @@
         $("#editDXU").hide();
         $("#detailBACK").hide();
         $("#btBackMod").hide();
+        $('#modInBack').hide();
         $("#createBACK").show();
         $("#btnAtras").hide();
         $("#btSaveChan").hide();
@@ -214,6 +284,7 @@
         $("#btGuardar").hide();
         $('#createBACK').removeClass("active");
         $("#btCancel").hide();
+        $("#btnCancelar").hide();
     });
 
     $("#btnCON").on('click', function () {
@@ -229,6 +300,7 @@
         $("#btnConMod").hide();
         $("#btnAtras").hide();
         $("#btSaveChan").hide();
+        $('#modInBack').hide();
         $("#btnCON").hide();
         $("#NEWINVOICE").hide();
         $("#DETAILORDER").hide();
@@ -237,6 +309,7 @@
         $("#btGuardar").hide();
         $('#createBACK').removeClass("active");
         $("#btCancel").hide();
+        $("#btnCancelar").hide();
     });
 
     $("#btCancel").on('click', function () {
@@ -254,6 +327,7 @@
         $("#btBackMod").hide();
         $("#editDXU").hide();
         $("#createBACK").hide();
+        $('#modInBack').hide();
         $("#btnConMod").hide();
         $("#btnBack").hide();
         $("#btSaveChan").hide();
@@ -263,13 +337,16 @@
         $("#NEWINVOICE").hide();
         $("#MODIFYOR").hide();
         $("#btCancel").hide();
+        $("#btnCancelar").hide();
+        $("#modDoor").hide();
+        $("#editDoor").show();
     });
 
     $("#createDoor").on('click', function () {
-        $(".editDoor").trigger("click");
+        $("#editDoor").trigger("click");
     });
 
-    $(document).on('click', '.editDoor', function (event) {
+    $(document).on('click', '#editDoor', function (event) {
         var id = $(this).attr('data-id'); 
         $("#btGuardar").hide();
         $("#btSavDrs").hide();
@@ -285,11 +362,13 @@
         $("#editDXU").hide();
         $("#btBackMod").hide();
         $("#NEWINVOICE").hide();
+        $('#modInBack').hide();
         $("#NEWORDER").hide();
         $("#DETAILORDER").hide();
         $('#createBACK').removeClass("active");
         $('#btnAtras').removeClass("active");
         $("#btSaveChan").show();
+        $("#btnCancelar").hide();
         QuitarClaseErrorACombos();
 
 
@@ -910,9 +989,9 @@ function GetDoorsByOrderInvo(idInvoice) {
                         }
                         option += '<td><span>$</span>' + Result.DoorsxOrder[i].SubTotal.toString().replace(',', '.') + '</td>';
                         if (Result.Order.Status.Id == 5) {
-                            option += '<td><button title="Edit Door" data-id="' + Result.DoorsxOrder[i].Id + '"data-toggle="tab" href="#MODIFYOR" role="tab"  class="editDoor Cursor btn btn-primary btn-icon"  style="width: 25px;height: 25px; margin-left: 10px;"> <i class="fa fa-edit"></i></button></td>';
+                            option += '<td><button title="Edit Door" data-id="' + Result.DoorsxOrder[i].Id + '"data-toggle="tab" href="#MODIFYOR" role="tab" id="editDoor" class="Cursor btn btn-primary btn-icon"  style="width: 25px;height: 25px; margin-left: 10px;"> <i class="fa fa-edit"></i></button></td>';
                         } else {
-                            option += '<td><button title="Not available" disabled data-id="" data-toggle="tab" href="#MODIFYOR" role="tab"  class="editDoor btn btn-primary btn-icon"  style="width: 25px;height: 25px; margin-left: 10px;"> <i class="fa fa-edit"></i></button></td>';
+                            option += '<td><button title="Not available" disabled data-id="" data-toggle="tab" href="#MODIFYOR" role="tab" id="editDoor" class="btn btn-primary btn-icon"  style="width: 25px;height: 25px; margin-left: 10px;"> <i class="fa fa-edit"></i></button></td>';
                         }
                         option += '</tr>';
                     }
