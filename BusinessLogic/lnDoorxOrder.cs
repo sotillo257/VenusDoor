@@ -148,33 +148,33 @@ namespace BusinessLogic
                     {
                         Rail = 2;
                     }
-                    //int panel = 5;
-                    //if (Order.DoorxUser.DoorStyle.Id == 1002)
-                    //{
-                    //    item.Panel.Id = 5;
-                    //}
-                    //else if (Order.DoorxUser.DoorStyle.Id == 1003)
-                    //{
-                    //    item.Panel.Id = 2;
-                    //}
-                    //if (item.Panel.Id == 2)
-                    //{
-                    //    panel = item.Panel.Id;
-                    //}
-                    //if (Order.DoorxUser.DoorStyle.Id == 1010)
-                    //{
-                    //    panel = 2;
-                    //    item.Panel.Id = 3;
-                    //}
-                    //else
-                    //{
-                    //    if (item.Panel.Id == 3)
-                    //    {
-                    //        item.Panel.Id = 5;
-                    //    }
-                    //}
+                    int panel = 5;
+                    if (Order.DoorxUser.DoorStyle.Id == 1002)
+                    {
+                        Order.DoorxUser.Panel.Id = 5;
+                    }
+                    else if (Order.DoorxUser.DoorStyle.Id == 1003)
+                    {
+                        Order.DoorxUser.Panel.Id = 2;
+                    }
+                    if (Order.DoorxUser.Panel.Id == 2)
+                    {
+                        panel = Order.DoorxUser.Panel.Id;
+                    }
+                    if (Order.DoorxUser.DoorStyle.Id == 1010)
+                    {
+                        panel = 2;
+                        Order.DoorxUser.Panel.Id = 3;
+                    }
+                    else
+                    {
+                        if (Order.DoorxUser.Panel.Id == 3)
+                        {
+                            Order.DoorxUser.Panel.Id = 5;
+                        }
+                    }
                     item.User = u;
-                    DoorsPrices DoorPrice = dp.GetDoorsPricesById(0, Order.DoorxUser.Panel.Id, Order.DoorxUser.Material.Id, Rail);
+                    DoorsPrices DoorPrice = dp.GetDoorsPricesById(0, panel, Order.DoorxUser.Material.Id, Rail);
                     decimal deciW = listDeci.Where(x => x.Id == item.DecimalsWidth.Id).FirstOrDefault().Value;
                     decimal deciH = listDeci.Where(x => x.Id == item.DecimalsHeight.Id).FirstOrDefault().Value;
                     decimal Width = item.Width + deciW;

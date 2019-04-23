@@ -1161,8 +1161,8 @@ function InsertDoorsxUser() {
                  Quantity: DoorQuantity,
                  ItemCost: itemCost,
                  SubTotal: DoorSubTotal,
-                 Picture: $("#DoorPicture").val(),
-                 ProfilePicture: $("#ProfilePicture").val(),
+                 Picture: $('#DoorPicture').attr('src'),
+                 ProfilePicture: $('#ProfilePicture').attr('src'),
                  DoorType: { Id: $("#cbDoorType").val() },                   
                  isOverlay: isOver,
                  isFingerPull: ($("#cbFingerPull").val() == 1) ? false : true,
@@ -1245,9 +1245,9 @@ function UpdateDoorsxUser() {
                      Quantity: DoorQuantity,
                      ItemCost: itemCost,
                      SubTotal: DoorSubTotal,
-                     Picture: $("#DoorPicture").val(),
-                     ProfilePicture: $("#ProfilePicture").val(),
-                     DoorType: { Id: $("#cbDoorType").val() },                    
+                     Picture: $('#DoorPicture').attr('src'),
+                     ProfilePicture: $('#ProfilePicture').attr('src'),
+                     DoorType: { Id: $("#cbDoorType").val() },
                      isOverlay: isOver,
                      isFingerPull: ($("#cbFingerPull").val() == 1) ? false : true,
                  },
@@ -1846,7 +1846,8 @@ function llenarTablaOrderSumary() {
                 t.rows().remove().draw(false);
                 for (var i = 0; i < DxO.length; i++) {
                     var Imagen = '<img style="width: 80px;" src="' + DxO[i].Picture + '">';
-                    var Botones = '<button class="Cursor btn btn-danger btn-icon btnn-dele" data-id="' + DxO[i].Id + '" style="width: 25px;height: 25px; margin-left: 10px;" type="submit"><i class="fa fa-trash"></i></button>';
+                    var Botones = '<center><button class="Cursor btn btn-primary btn-icon btnn-edit" data-id="' + DxO[i].Id + '" style="width: 25px;height: 25px;" type="submit"><i class="fa fa-edit"></i></button>';
+                    Botones += '<button class="Cursor btn btn-danger btn-icon btnn-dele" data-id="' + DxO[i].Id + '" style="width: 25px;height: 25px; margin-left: 10px;" type="submit"><i class="fa fa-trash"></i></button></center>';
                     var WDecimal = DxO[i].DecimalsWidth.Description;
                     var HDecimal = DxO[i].DecimalsHeight.Description;
                     if (WDecimal == "0" || WDecimal == 0) {
