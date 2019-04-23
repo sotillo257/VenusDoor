@@ -9,7 +9,24 @@
 
     $(document).on("click", "#btnDelete", function () {
         DltItem();
-    });        
+    });
+
+    //$(document).on('click', '.btnn-edit', function (event) {
+    //    for (var i = 0; i < listDOOR.length; i++) {
+    //        if (listDOOR[i].Id == $(this).attr('data-id')) {
+
+    //            $("#CantidadFila").val(listDOOR[i].Quantity);
+    //            $("#iptWidth").val(listDOOR[i].Width);
+    //            $("#iptHeight").val(listDOOR[i].Height);
+    //            llenarComboHingeDirection(listDOOR[i].HingeDirection.Id);
+    //            llenarComboDecimalW(listDOOR[i].DecimalsHeight.Id);
+    //            llenarComboDecimalH(listDOOR[i].DecimalH.Id);
+    //            llenarComboDoorOption(listDOOR[i].DoorOption.Id);
+    //            llenarComboDoorType(listDOOR[i].DoorType.Id);
+    //            break;
+    //        }
+    //    }
+    //});
    
     $(document).on("click", "#button-cnt", function () {
         window.location.href = '/OrderStatus/Index';
@@ -165,3 +182,6 @@ $(function () {
     $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
 
 });
+
+
+

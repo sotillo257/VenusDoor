@@ -280,7 +280,11 @@
                                     {
                                         if (LastDoor.isDrill == true)
                                         {
-                                            <th>Hinge Dir.</th>
+                                            <th >Hinge Dir.</th>
+                                        }
+                                        else
+                                        {
+                                            <th class="hdHidden" hidden>Hinge Dir.</th>
                                         }
                                     }                                    
                                     <th>Door Type</th>
@@ -325,6 +329,9 @@
                                                 @if (LastDoor.isDrill == true)
                                                 {
                                                     <td>@i.HingeDirection.Direction</td>
+                                                }
+                                                else {
+                                                    <td class="hdHidden" hidden>@i.HingeDirection.Direction</td>
                                                 }
 
                                                 <td>@i.DoorType.Description</td>

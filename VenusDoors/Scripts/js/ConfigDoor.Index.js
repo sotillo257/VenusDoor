@@ -1263,11 +1263,11 @@ function UpdateDoorsxUser() {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result != null) {
+                llenarheaderOrder();
                 CodigoDoorxUser = result.DoorxUser.Id;
                 $('#modalInsert').modal('hide');
                 $('#modalConfirmOrderSummary').modal('hide');
-                LlammarModal("ConfigM", "General configuration of doors successfully saved!", "");
-                llenarheaderOrder();
+                LlammarModal("ConfigM", "General configuration of doors successfully saved!", "");                
                 $("#btnConfigDoor").removeClass("btBuild").addClass("ModDoorxUser");
                 var boton = '<button class="btn btn-success btn-icon AddDoor" style="width: 37px;height: 37px; margin-top: 55px;" type="button"><i class="fa fa-plus"></i></button>';
                 $("#btInsertDoorTable").empty().append(boton);
@@ -1858,42 +1858,12 @@ function llenarTablaOrderSumary() {
                     }
                     var drillingV = ($("#idDrill").val() == 1) ? false : true;
                     if (drillingV == false) {
-                        var trhead = '<th>Preview</th>';
-                        trhead += '<th>Quantity</th>';
-                        trhead += '<th>Widht</th>';
-                        trhead += '<th>Height</th>';                       
-                        trhead += '<th>Door Type</th>';
-                        trhead += '<th>Door Option</th>';
-                        trhead += '<th>U. Price</th>';
-                        trhead += '<th>Total</th>';
-                        trhead += '<th style="text-align:center"><i class="fa fa-flash"></i></th>';
-                        $("#theadtr").html(trhead);
+                        $(".hdHidden").attr('hidden', true);
 
-                        t.row.add([
-                         Imagen,
-                         DxO[i].Quantity,
-                         DxO[i].Width + ' ' + WDecimal,
-                         DxO[i].Height + ' ' + HDecimal,
-                         DxO[i].DoorType.Description,
-                         DxO[i].DoorOption.Description,
-                         "<span>$</span>" + DxO[i].ItemCost,
-                         "<span>$</span>" + DxO[i].SubTotal,
-                         Botones,
-                        ]).draw(false);
-                    } else {
-                        var trhead = '<th>Preview</th>';
-                        trhead += '<th>Quantity</th>';
-                        trhead += '<th>Widht</th>';
-                        trhead += '<th>Height</th>';
-                        trhead += '<th>Hinge Dir.</th>'
-                        trhead += '<th>Door Type</th>';
-                        trhead += '<th>Door Option</th>';
-                        trhead += '<th>U. Price</th>';
-                        trhead += '<th>Total</th>';
-                        trhead += '<th style="text-align:center"><i class="fa fa-flash"></i></th>';
-                        $("#theadtr").html(trhead);
-
-                        t.row.add([
+                    } else {                       
+                        $(".hdHidden").removeAttr("hidden");
+                    }
+                    t.row.add([
                         Imagen,
                         DxO[i].Quantity,
                         DxO[i].Width + ' ' + WDecimal,
@@ -1904,8 +1874,7 @@ function llenarTablaOrderSumary() {
                         "<span>$</span>" + DxO[i].ItemCost,
                         "<span>$</span>" + DxO[i].SubTotal,
                         Botones,
-                        ]).draw(false);             
-                    }                   
+                    ]).draw(false);
                 }
                
             } else {
