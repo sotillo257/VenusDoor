@@ -9,9 +9,19 @@ namespace VenusDoors.Controllers
     public class PaymentsReceivedController : Controller
     {
         // GET: PaymentsReceived
+        [Authorize(Roles = "1")]
         public ActionResult Index()
         {
-            return View();
+            try
+            {
+                ViewBag.Sales = "active show-sub";
+                ViewBag.PaymentsReceived = "active";
+                return View();
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
         }
     }
 }
