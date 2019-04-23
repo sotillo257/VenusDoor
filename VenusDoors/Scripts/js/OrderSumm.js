@@ -9,8 +9,8 @@
 
     $(document).on("click", "#btnDelete", function () {
         DltItem();
-    });
-
+    });        
+   
     $(document).on("click", "#button-cnt", function () {
         window.location.href = '/OrderStatus/Index';
     });
