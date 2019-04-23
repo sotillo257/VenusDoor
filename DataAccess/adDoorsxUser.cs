@@ -57,10 +57,10 @@ namespace DataAccess
                             ProfilePicture = item["ProfilePicture"].ToString(),
                             Panel = new Panel() { Id = int.Parse(item["IdPanel"].ToString()), Description = item["DescripPanel"].ToString() },
                             PanelMaterial = new PanelMaterial() { Id = int.Parse(item["IdPanelMaterial"].ToString()), Description = item["DescripPanelMaterial"].ToString() },
-                            DoorType = new DoorType() { Id = int.Parse(item["IdDoorType"].ToString()), Description = item["DescripDoorType"].ToString() },
-                            DoorOption = new DoorOption() { Id = int.Parse(item["IdDoorOption"].ToString()), Description = item["DescripDoorOption"].ToString() },
+                            DoorType = new DoorType() { Id = int.Parse(item["IdDoorType"].ToString()), Description = item["DescripDoorType"].ToString() },                            
                             isOverlay = bool.Parse(item["isOverlay"].ToString()),
                             isFingerPull = bool.Parse(item["isFingerPull"].ToString()),
+                            isDrill = bool.Parse(item["isDrill"].ToString()),
                         };
                     }
                 }
@@ -118,11 +118,11 @@ namespace DataAccess
                             ProfilePicture = item["ProfilePicture"].ToString(),
                             Panel = new Panel() { Id = int.Parse(item["IdPanel"].ToString()), Description = item["DescripPanel"].ToString() },
                             PanelMaterial = new PanelMaterial() { Id = int.Parse(item["IdPanelMaterial"].ToString()), Description = item["DescripPanelMaterial"].ToString() },
-                            DoorType = new DoorType() { Id = int.Parse(item["IdDoorType"].ToString()), Description = item["DescripDoorType"].ToString() },
-                            DoorOption = new DoorOption() { Id = int.Parse(item["IdDoorOption"].ToString()) },
+                            DoorType = new DoorType() { Id = int.Parse(item["IdDoorType"].ToString()), Description = item["DescripDoorType"].ToString() },                           
                             isOverlay = bool.Parse(item["isOverlay"].ToString()),
                             isFingerPull = bool.Parse(item["isFingerPull"].ToString()),
-                        });
+                            isDrill = bool.Parse(item["isDrill"].ToString()),
+                            });
                     }
                 }
                 return doorxu;
@@ -139,38 +139,38 @@ namespace DataAccess
             decimal total = Convert.ToDecimal(pDoorsxUser.ItemCost);
             decimal subto = Convert.ToDecimal(pDoorsxUser.SubTotal);
             string sql = @"[spInsertDoorsxUser] '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}', '{20}', '{21}', '{22}', '{23}', '{24}', '{25}', '{26}', '{27}', '{28}', '{29}', '{30}'";
-            sql = string.Format(sql, 
-                pDoorsxUser.Order.Id, 
-                pDoorsxUser.DoorStyle.Id, 
-                pDoorsxUser.Material.Id, 
-                pDoorsxUser.TopRail.Id, 
-                pDoorsxUser.BottomRail.Id, 
+            sql = string.Format(sql,
+                pDoorsxUser.Order.Id,
+                pDoorsxUser.DoorStyle.Id,
+                pDoorsxUser.Material.Id,
+                pDoorsxUser.TopRail.Id,
+                pDoorsxUser.BottomRail.Id,
                 pDoorsxUser.Preparation.Id,
-                pDoorsxUser.Join.Id, 
-                pDoorsxUser.OutsideEdgeProfile.Id, 
-                pDoorsxUser.InsideEdgeProfile.Id, 
-                pDoorsxUser.VerticalDivisions.Id, 
-                pDoorsxUser.HorizontalDivisions.Id, 
-                pDoorsxUser.Width.ToString().Replace(',', '.'), 
-                pDoorsxUser.DecimalsWidth.Id, 
-                pDoorsxUser.Height.ToString().Replace(',', '.'), 
-                pDoorsxUser.DecimalsHeight.Id, 
-                (pDoorsxUser.IsOpeningMeasurement == true) ? 1 : 0, 
-                pDoorsxUser.Quantity, 
-                total.ToString().Replace(',', '.'), 
-                subto.ToString().Replace(',', '.'), 
-                pDoorsxUser.User.Id, 
-                pDoorsxUser.Status.Id, 
+                pDoorsxUser.Join.Id,
+                pDoorsxUser.OutsideEdgeProfile.Id,
+                pDoorsxUser.InsideEdgeProfile.Id,
+                pDoorsxUser.VerticalDivisions.Id,
+                pDoorsxUser.HorizontalDivisions.Id,
+                pDoorsxUser.Width.ToString().Replace(',', '.'),
+                pDoorsxUser.DecimalsWidth.Id,
+                pDoorsxUser.Height.ToString().Replace(',', '.'),
+                pDoorsxUser.DecimalsHeight.Id,
+                (pDoorsxUser.IsOpeningMeasurement == true) ? 1 : 0,
+                pDoorsxUser.Quantity,
+                total.ToString().Replace(',', '.'),
+                subto.ToString().Replace(',', '.'),
+                pDoorsxUser.User.Id,
+                pDoorsxUser.Status.Id,
                 pDoorsxUser.CreatorUser,
-                pDoorsxUser.ModificationUser, 
-                pDoorsxUser.Picture, 
-                pDoorsxUser.ProfilePicture, 
-                pDoorsxUser.Panel.Id, 
-                pDoorsxUser.PanelMaterial.Id, 
-                pDoorsxUser.DoorType.Id, 
-                pDoorsxUser.DoorOption.Id, 
-                (pDoorsxUser.isOverlay == true) ? 1 : 0, 
-                (pDoorsxUser.isFingerPull == true) ? 1 : 0);
+                pDoorsxUser.ModificationUser,
+                pDoorsxUser.Picture,
+                pDoorsxUser.ProfilePicture,
+                pDoorsxUser.Panel.Id,
+                pDoorsxUser.PanelMaterial.Id,
+                pDoorsxUser.DoorType.Id,
+                (pDoorsxUser.isOverlay == true) ? 1 : 0,
+                (pDoorsxUser.isDrill == true) ? 1 : 0,
+            (pDoorsxUser.isFingerPull == true) ? 1 : 0);                
             try
             {
                 return _MB.EjecutarSQL(_CN, sql);
@@ -214,9 +214,9 @@ namespace DataAccess
                 pDoorsxUser.ProfilePicture, 
                 pDoorsxUser.Panel.Id, 
                 pDoorsxUser.PanelMaterial.Id, 
-                pDoorsxUser.DoorType.Id, 
-                pDoorsxUser.DoorOption.Id, 
-                (pDoorsxUser.isOverlay == true) ? 1 : 0, 
+                pDoorsxUser.DoorType.Id,
+                (pDoorsxUser.isOverlay == true) ? 1 : 0,
+                (pDoorsxUser.isDrill == true) ? 1 : 0,
                 (pDoorsxUser.isFingerPull == true) ? 1 : 0);
             try
             {
