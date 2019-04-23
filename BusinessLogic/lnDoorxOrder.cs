@@ -139,6 +139,8 @@ namespace BusinessLogic
                 lnUser _LNUser = new lnUser();
                 User u = new User();
                 u = _LNUser.GetUserById(Order.User.Id);
+                DoorsxUser Dxu = DU.GetDoorsxUserById(Order.DoorxUser.Id);
+
                 foreach (DoorxOrder item in listDoorOrders)
                 {
                     int Rail = 1;
@@ -146,33 +148,33 @@ namespace BusinessLogic
                     {
                         Rail = 2;
                     }
-                    int panel = 5;
-                    if (Order.DoorxUser.DoorStyle.Id == 1002)
-                    {
-                        item.Panel.Id = 5;
-                    }
-                    else if (Order.DoorxUser.DoorStyle.Id == 1003)
-                    {
-                        item.Panel.Id = 2;
-                    }
-                    if (item.Panel.Id == 2)
-                    {
-                        panel = item.Panel.Id;
-                    }
-                    if (Order.DoorxUser.DoorStyle.Id == 1010)
-                    {
-                        panel = 2;
-                        item.Panel.Id = 3;
-                    }
-                    else
-                    {
-                        if (item.Panel.Id == 3)
-                        {
-                            item.Panel.Id = 5;
-                        }
-                    }
+                    //int panel = 5;
+                    //if (Order.DoorxUser.DoorStyle.Id == 1002)
+                    //{
+                    //    item.Panel.Id = 5;
+                    //}
+                    //else if (Order.DoorxUser.DoorStyle.Id == 1003)
+                    //{
+                    //    item.Panel.Id = 2;
+                    //}
+                    //if (item.Panel.Id == 2)
+                    //{
+                    //    panel = item.Panel.Id;
+                    //}
+                    //if (Order.DoorxUser.DoorStyle.Id == 1010)
+                    //{
+                    //    panel = 2;
+                    //    item.Panel.Id = 3;
+                    //}
+                    //else
+                    //{
+                    //    if (item.Panel.Id == 3)
+                    //    {
+                    //        item.Panel.Id = 5;
+                    //    }
+                    //}
                     item.User = u;
-                    DoorsPrices DoorPrice = dp.GetDoorsPricesById(0, panel, Order.DoorxUser.Material.Id, Rail);
+                    DoorsPrices DoorPrice = dp.GetDoorsPricesById(0, Order.DoorxUser.Panel.Id, Order.DoorxUser.Material.Id, Rail);
                     decimal deciW = listDeci.Where(x => x.Id == item.DecimalsWidth.Id).FirstOrDefault().Value;
                     decimal deciH = listDeci.Where(x => x.Id == item.DecimalsHeight.Id).FirstOrDefault().Value;
                     decimal Width = item.Width + deciW;
@@ -240,10 +242,21 @@ namespace BusinessLogic
                         item.SubTotal = result * item.Quantity;
                     }
                     
+                    if (Dxu.isDrill == true)
+                    {
+                        if(Order.DoorxUser.isDrill == false)
+                        {
+                            item.HingeDirection.Id = 1;
+                        }
+                    }
+                    else
+                    {
+                        item.HingeDirection.Id = 3;
+                    }
                     item.DoorxUser = Order.DoorxUser;
                     item.ModificationDate = DateTime.Now;
                     item.ModificationUser = item.User.Id;
-                    item.ProfilePicture = DU.BuscarProfilePicture(Order.DoorxUser.OutsideEdgeProfile.Id, Order.DoorxUser.InsideEdgeProfile.Id, item.Panel.Id);
+                    item.ProfilePicture = DU.BuscarProfilePicture(Order.DoorxUser.OutsideEdgeProfile.Id, Order.DoorxUser.InsideEdgeProfile.Id, Order.DoorxUser.Panel.Id);
                     item.Picture = DU.BuscarDoorPicture(item);
                     int retorno = _AD.UpdateDoorsxOrder(item);                   
                     Order.SubTotal = Order.SubTotal + item.SubTotal;

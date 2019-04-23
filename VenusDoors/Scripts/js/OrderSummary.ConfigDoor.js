@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    $(".btBuild").on('click', function () {
+    $(document).on('click', '.btBuild', function (event) {      
         $("#lblTitulo").text("Config Door");
         $("#lblSubTitulo").text("Choose the best door option that fit your needs.");
         $("#btConfSave").hide();
@@ -14,12 +14,12 @@
         $("#iptHeight").prop('disabled', false);
         $("input[name=radioOption]").attr("disabled", false);
         $("input[name=radioOver]").attr("disabled", false);
-        $(".select2-selection").css('background-color', '#fff!important');       
-        HingeShow();
+        $(".select2-selection").css('background-color', '#fff!important');
+            
         //LimpiarCombos();
     });
 
-    $("#btModify").on('click', function () {
+    $(document).on('click', '#btModify', function (event) {  
         $("#lblTitulo").text("Modifying the door options");
         $("#lblSubTitulo").text("After you make your changes remember to click \"Save\" to confirm your changes");
         $("#btConfSave").show();
@@ -27,7 +27,7 @@
         $("#btXclose").hide();
         $("#btConfAdd").hide();
         $("#btModify").hide();
-        HingeShow();
+  
 
               
         $("input[name=radioOver]").attr("disabled", false);
@@ -35,7 +35,7 @@
         $(".selectModal > .select2-selection").css('background-color', '#fff!important');
     });
 
-    $("#btnSaveShip").on('click', function () {       
+    $(document).on('click', '#btnSaveShip', function (event) {        
         if (ValidarCamposModalShipping()) {           
             AddNewShippingAddress();       
         } else {
@@ -62,13 +62,13 @@
               
     });
 
-    $("#btConfAdd").on("click", function () {
+    $(document).on('click', '#btConfAdd', function (event) {  
         LlammarModal("ConfirmOrdenSummary", "Confirm", "Do you want to save this configuration?",
         '<button onclick="AgregarD();" class="Cursor btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Save</button>' +
         '<button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>');
     });
 
-    $("#btConfSave").on("click", function () {
+    $(document).on('click', '#btConfSave', function (event) {   
         LlammarModal("ConfirmOrdenSummary", "Do you want to save your new changes?", "The doors added to your order will suffer some changes. Do you want to proceed with this operation?.<br>(This could take a little time).",
         '<button onclick="NuevosCambiosDXU();" id="btnSaveChanges" class="Cursor btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Confirm</button>' +
         '<button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>');
@@ -108,8 +108,7 @@
         }
     });
     GetAllShippingAddress();
-
-    $(".btnModalSA").on('click', function () {
+    $(document).on('click', '.btnModalSA', function (event) {     
         limpiarInputsShipping();
     });
 });
@@ -141,8 +140,7 @@ function SearchDoor(data) {
             isDrill = 2;
         }
         llenarComboIsDrill(isDrill);
-        HingeCalculate();
-        HingeShow();
+        HingeCalculate();       
 
         var isOpen = data.IsOpeningMeasurement;
         if (isOpen == false) {
@@ -158,8 +156,7 @@ function SearchDoor(data) {
         } else {
             isOver = 2;
         }
-        checkIsOverlay(isOver);
-       // checkDoorOption(data.DoorOption.Id);
+        checkIsOverlay(isOver);       
         llenarComboMaterial(data.Material.Id);
        
         llenarComboIEP(data.InsideEdgeProfile.Id);
@@ -169,8 +166,7 @@ function SearchDoor(data) {
         llenarComboDoorAssembly(data.Join.Id);
         llenarComboPanelMaterial(data.Material.Id, data.DoorStyle.Id);
         llenarComboVerticalDivisions(data.VerticalDivisions.Id);
-        llenarComboHorizontalDivisions(data.HorizontalDivisions.Id);
-        llenarComboHingeDirection(data.HingeDirection.Id);
+        llenarComboHorizontalDivisions(data.HorizontalDivisions.Id);        
         if (data.DoorStyle.Id == 1010) {
             llenarComboDoorStyle(data.DoorStyle.Id);
             var option = '<option value="3">Slab</option>';
@@ -563,8 +559,7 @@ function LimpiarCombos() {
     llenarComboIsOpen(0);
     llenarComboVerticalDivisions(0);
     llenarComboHorizontalDivisions(0);
-    llenarComboIsDrill(0);
-    llenarComboHingeDirection(0);
+    llenarComboIsDrill(0);   
     llenarComboDoorType(0);    
     llenarComboFinger(0);
     llenarComboDecimalW(0);
@@ -667,6 +662,13 @@ function ValidarCamposVacios() {
         aux = false;
     } else {
         $('#select2-cbHorizontalDivisions-container').removeClass("cbError");
+    }
+
+    if ($('#cbisDrill').val() == 0 || $('#cbisDrill').val() == null) {
+        $('#select2-cbisDrill-container').addClass("cbError");
+        aux = false;
+    } else {
+        $('#select2-cbisDrill-container').removeClass("cbError");
     }
 
     if ($('#cbPanel').val() == 0 || $('#cbPanel').val() == null) {
@@ -886,8 +888,7 @@ function GetDoorxUser() {
                 }
                 llenarComboFinger(fingerPull);
                
-                HingeCalculate();
-                HingeShow();
+                HingeCalculate();           
 
                 var isOpen = data.LastDoor.IsOpeningMeasurement;
                 if (isOpen == false) {
@@ -903,10 +904,17 @@ function GetDoorxUser() {
                 } else {
                     isOver = 2;
                 }
+                var isDrill = data.LastDoor.isDrill;
+                if (isDrill == false) {
+                    isDrill = 1;
+                } else {
+                    isDrill = 2;
+                }
+                llenarComboIsDrill(isDrill);
                 checkIsOverlay(isOver);                
                 llenarComboMaterial(data.LastDoor.Material.Id);
                
-                
+                llenarComboPanelStyle(data.LastDoor.Panel.Id);
                 llenarComboIEP(data.LastDoor.InsideEdgeProfile.Id);
                 llenarComboOEP(data.LastDoor.OutsideEdgeProfile.Id);
                 llenarComboStileWidth(data.LastDoor.BottomRail.Id);
@@ -915,7 +923,6 @@ function GetDoorxUser() {
                 llenarComboPanelMaterial(data.LastDoor.Material.Id, data.LastDoor.DoorStyle.Id);
                 llenarComboVerticalDivisions(data.LastDoor.VerticalDivisions.Id);
                 llenarComboHorizontalDivisions(data.LastDoor.HorizontalDivisions.Id);
-                llenarComboHingeDirection(data.LastDoor.HingeDirection.Id);
                 if (data.LastDoor.DoorStyle.Id == 1010) {
                     var option = '<option value="3">Slab</option>';
                     $("#cbPanel").empty().append(option);

@@ -42,7 +42,6 @@ namespace Model
         public string Picture { get; set; }
         public string ProfilePicture { get; set; }
         public DoorType DoorType { get; set; }
-        public DoorOption DoorOption { get; set; }
         public bool isOverlay { get; set; }
         public bool isFingerPull { get; set; }
         public List<DoorxOrder> DoorsxOrder { get; set; }
