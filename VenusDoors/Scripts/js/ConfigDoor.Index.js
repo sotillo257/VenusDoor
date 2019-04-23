@@ -1858,10 +1858,9 @@ function llenarTablaOrderSumary() {
                     }
                     var drillingV = ($("#idDrill").val() == 1) ? false : true;
                     if (drillingV == false) {
-                        $(".hdHidden").attr('hidden', true);
-
+                        $(".hdHidden").css('display', 'none!important');
                     } else {                       
-                        $(".hdHidden").removeAttr("hidden");
+                        $(".hdHidden").css('display', 'block!important');
                     }
                     t.row.add([
                         Imagen,
