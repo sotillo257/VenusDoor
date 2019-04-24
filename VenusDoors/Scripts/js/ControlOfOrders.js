@@ -190,7 +190,7 @@ function GetDoorsByOrder(idOrden) {
                 dxu += '<td>Hinge Drilling: <span style="color: #868ba1">No</span></td>';
             }
             else {
-                dxu += '<td>Hinge Drilling: <span style="color: #868ba1">Yes (' + Result.HingeDirection.Direction + ')</span></td>';
+                dxu += '<td>Hinge Drilling: <span style="color: #868ba1">Yes</span></td>';
             }
             if (Result.isFingerPull == false) {
                 dxu += '<td style="border-right: 1px solid #ADADAD;">Finger Pull: <span style="color: #868ba1">No</span></td>';
@@ -231,7 +231,9 @@ function GetDoorsByOrder(idOrden) {
                     option += ' <span>' + Result.DoorsxOrder[i].DecimalsHeight.Description + '</span>';
                 }
                 option += '</td>';
-                //option += '<td>' + Result.DoorsxOrder[i].Panel.Description + '</td>';
+                if (Result.isDrill == true) {
+                    option += '<td>' + Result.DoorsxOrder[i].HingeDirection.Direction + '</td>';
+                }                
                 option += '<td>' + Result.DoorsxOrder[i].DoorType.Description + '</td>';
                 option += '<td>' + Result.DoorsxOrder[i].DoorOption.Description + '</td>';
                 option += '<td><span>$</span>' + Result.DoorsxOrder[i].ItemCost.toString().replace(',', '.') + '</td>';

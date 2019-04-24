@@ -102,7 +102,18 @@ namespace BusinessLogic
                     }
                     pDoorsxOrder.ItemCost = result ;
                     pDoorsxOrder.SubTotal = result * pDoorsxOrder.Quantity;
-                }               
+                }
+
+                if (DoorUser.isDrill == false)
+                {
+                    pDoorsxOrder.HingeDirection.Id = 3;
+                    pDoorsxOrder.HingePositions.Id = 2;
+                }
+                else
+                {
+                    pDoorsxOrder.HingeDirection.Id = pDoorsxOrder.HingeDirection.Id;
+                    pDoorsxOrder.HingePositions.Id = 2;
+                }            
                 pDoorsxOrder.CreationDate = DateTime.Now;
                 pDoorsxOrder.ModificationDate = DateTime.Now;
                 pDoorsxOrder.CreatorUser = pDoorsxOrder.User.Id;
