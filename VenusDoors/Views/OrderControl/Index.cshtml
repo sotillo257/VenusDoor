@@ -110,263 +110,248 @@
 </div>
 <div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div>
 
-<div id="ModalOrderInfo" class="ModalOrderInfo modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" id="mdialTamanio" style="width: 80%!important; max-width:100%;max-height: 100%;height: 90%;">
-        <div class="modal-content" style="height:100%">
-            <div class="modal-header">
-                <div style="display:flex" id="tituloConBTNEdit"> 
-                    <a id="editBCK" title="Click here to return to the previous window." class="btn btn-icon active" data-toggle="tab" href="#infoPanel" role="tab">
-                        <div><i class="fa fa-arrow-left"></i></div>
-                    </a>                 
-                    <h3 id="lblTitulo" class="tx-inverse mg-b-5">Details of the order #<span id="orreff" style="color:#014d41"></span></h3>                   
-                    <a id="editDXU" style="margin-left: 20px;" title="Click here to modify the general configuration of the order and add a general discount." data-toggle="tab" href="#ads" role="tab" class="btn btn-primary btn-icon">
-                        <div><i class="fa fa-edit"></i></div>
-                    </a>                    
-                </div>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">               
-                <div class="tab-content">
-                    <div class="tab-pane fade show active" id="infoPanel" role="tabpanel">                     
-                        <div class="row" style="margin-right: 0;">
-                            <div class="datagrid" style="width: 100%;">
-                                <table id="UserOrderInfo">                                    
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Phone</th>
-                                            <th>Address</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        
-                                    </tbody>
-                                </table>
+<div id="ModalOrderInfo" class="ModalOrderInfo modal fade effect-scale" aria-hidden="true" style="display: none;" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" style="width: 74%!important;max-width: 100%" role="document">
+        <div class="modal-content bd-0 rounded-0">
+            <div class="modal-body pd-0">
+                <div class="row flex-row-reverse no-gutters">
+                    <div class="col-lg-12">
+                        <div class="pd-20">
+                            <div class="modal-header">
+                                <div style="display:flex" id="tituloConBTNEdit">
+                                    <a id="editBCK" title="Click here to return to the previous window." class="btn btn-icon active" data-toggle="tab" href="#infoPanel" role="tab">
+                                        <div><i class="fa fa-arrow-left" style="margin-bottom: 6px;"></i></div>
+                                    </a>
+                                    <h3 id="lblTitulo" class="tx-inverse mg-b-5">Details of the order #<span id="orreff" style="color:#014d41"></span></h3>
+                                    <a id="editDXU" style="margin-left: 20px;" title="Click here to modify the general configuration of the order and add a general discount." data-toggle="tab" href="#ads" role="tab" class="btn btn-primary btn-icon">
+                                        <div><i class="fa fa-edit"></i></div>
+                                    </a>
+                                </div>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
-                           
-                        </div>
-                        <div style="color:#000;margin-right: 0; padding:10px" class="row">
-                            <div class="datagrid" style="width: 100%;">
-                                <table id="HeaderOptions">
-                                    <tbody>
-                                        
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <div style="overflow-y:auto; height: 235px;" id="divTable">
-                            @*<table id="ordertable" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th>PREVIEW</th>
-                                        <th>QUANTITY</th>
-                                        <th>WIDHT</th>
-                                        <th>HEIGHT</th>
-                                        <th>PANEL STYLE</th>
-                                        <th>DOOR TYPE</th>
-                                        <th>DOOR OPTION</th>
-                                        <th>U. PRICE</th>
-                                        <th>TOTAL</th>
-                                        <th><i class="fa fa-flash"></i></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
 
-                                </tbody>
-                            </table>*@                            
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="ads" role="tabpanel">
-                        <div class="row" style="margin-right: 0;">
-                            <div class="col-md-12" style="padding-right:0">
-                                <div style="display:flex; width:100%">
-                                    <div class="row" style="width:100%; max-height: 380px;margin-right: 0;">
-                                        <input id="idDxUorder" hidden />
-                                        <div class="row" style="width: 100%;">
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="Material" style="margin-top: 25px;">Wood Species: </label>
-                                                <select style="width:100%" class="eventChange selectModal form-control select2" id="cbMaterial" data-placeholder=""></select>
-                                            </div><!-- col -->
+                            <div class="tab-content">
+                                <div class="tab-pane fade show active" id="infoPanel" role="tabpanel">
+                                    <div class="row" style="margin-right: 0;padding: 0px 10px;">
+                                        <div class="datagrid" style="width: 100%;">
+                                            <table id="UserOrderInfo">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Name</th>
+                                                        <th>Email</th>
+                                                        <th>Phone</th>
+                                                        <th>Address</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody></tbody>
+                                            </table>
+                                        </div>
 
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="DoorStyle" style="margin-top: 25px;">Door Style: </label>
-                                                <select style="width:100%" class="eventChange selectModal form-control select2 Doors" id="cbDoorStyle" data-placeholder=""></select>
-                                            </div><!-- col -->
+                                    </div>
+                                    <div style="color:#000;margin-right: 0; padding:10px" class="row">
+                                        <div class="datagrid" style="width: 100%;">
+                                            <table id="HeaderOptions">
+                                                <tbody></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div style="overflow-y:auto; height: 235px; padding: 0px 10px;" id="divTable">
+                                       
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="ads" role="tabpanel">
+                                    <div class="row" style="margin-right: 0;">
+                                        <div class="col-md-12" style="padding-right:0">
+                                            <div style="display:flex; width:100%">
+                                                <div class="row" style="width:80%; max-height: 390px">
+                                                    <input id="idDoor" hidden />
+                                                    <div class="row" style="display:flex; width:100%">
+                                                        <div class="col-xs-4 col-md-3">
+                                                            <label for="Material" style="margin-top: 25px;">Wood Species: </label>
+                                                            <select style="width:100%" class="eventChange selectModal form-control select2" id="cbMaterial" data-placeholder=""></select>
+                                                        </div><!-- col -->
 
-                                            <div class="col-xs-3 col-md-4">
-                                                <label for="inDescription" style="margin-top: 25px;">Door Place: </label>
-                                                <div class="radio" id="isOverlay" style="display:flex">
+                                                        <div class="col-xs-4 col-md-3">
+                                                            <label for="DoorStyle" style="margin-top: 25px;">Door Style: </label>
+                                                            <select style="width:100%" class="eventChange selectModal form-control select2 Doors" id="cbDoorStyle" data-placeholder=""></select>
+                                                        </div><!-- col -->
 
+
+                                                        <div class="col-xs-3 col-md-5">
+                                                            <label for="inDescription" style="margin-top: 25px;">Door Place: </label>
+                                                            <div class="radio" id="isOverlay" style="display:flex">
+
+                                                            </div>
+                                                        </div><!-- form-group -->
+                                                    </div>
+
+                                                    <div class="row" style="width: 100%;">
+                                                        <div class="col-xs-4 col-md-3">
+                                                            <label for="InsideEdgeProfile" style="margin-top: 25px;">Inside Edge Profile: </label>
+                                                            <select style="width:100%" class="form-control selectModal select2 Profile Doors" id="cbInsideEdgeProfile" data-placeholder=""></select>
+                                                        </div><!-- col -->
+
+                                                        <div class="col-xs-4 col-md-3">
+                                                            <label for="OutsideEdgeProfile" style="margin-top: 25px;">Outside Edge Profile: </label>
+                                                            <select style="width:100%" class="form-control selectModal select2 Profile Doors" id="cbOutsideEdgeProfile" data-placeholder=""></select>
+                                                        </div><!-- col -->
+
+                                                        <div class="col-xs-4 col-md-3">
+                                                            <label for="BottomRail" style="margin-top: 25px;">Stile Width: </label>
+                                                            <select style="width:100%" class="eventChange selectModal form-control select2 Doors" id="cbStileWidth" data-placeholder=""></select>
+                                                        </div><!-- col -->
+
+                                                        <div class="col-xs-4 col-md-3">
+                                                            <label for="TopRail" style="margin-top: 25px;">Rail Width:</label>
+                                                            <select style="width:100%" class="eventChange selectModal form-control select2 Doors" id="cbRailWidth" data-placeholder=""></select>
+                                                        </div><!-- col -->
+
+                                                        <div class="col-xs-4 col-md-3">
+                                                            <label for="Join" style="margin-top: 25px;">Door Assembly: </label>
+                                                            <select style="width:100%" class="form-control selectModal select2 Doors" id="cbDoorAssembly" data-placeholder=""></select>
+                                                        </div><!-- col -->
+
+                                                        <div class="col-xs-2 col-md-3">
+                                                            <label for="Panel" style="margin-top: 25px;">Panel Style: </label>
+                                                            <select style="width:100%;" class="form-control selectModal select2 Profile Doors" id="cbPanel"></select>
+                                                        </div><!-- col -->
+
+                                                        <div class="col-xs-4 col-md-3">
+                                                            <label for="PanelMaterial" style="margin-top: 25px;">Panel Material: </label>
+                                                            <select style="width:100%" class="form-control selectModal select2" id="cbPanelMaterial" data-placeholder=""></select>
+                                                        </div><!-- col -->
+
+                                                        <div class="col-xs-4 col-md-3">
+                                                            <label for="IsOpeningMeasurement" style="margin-top: 25px;">Opening for Glass: </label>
+                                                            <select style="width:100%" class="form-control selectModal select2" id="cbIsOpeningMeasurement" data-placeholder="">
+                                                                <option value="1">No Opening </option>
+                                                                <option value="2">Opening</option>
+                                                            </select>
+                                                        </div><!-- col -->
+
+                                                        <div class="col-xs-4 col-md-3">
+                                                            <label for="VerticalDivisions" style="margin-top: 25px;">Vertical Divisions: </label>
+                                                            <select style="width:100%" class="form-control selectModal select2" id="cbVerticalDivisions" data-placeholder=""></select>
+                                                        </div><!-- col -->
+
+                                                        <div class="col-xs-4 col-md-3">
+                                                            <label for="HorizontalDivisions" style="margin-top: 25px;">Horizontal Divisions: </label>
+                                                            <select style="width:100%" class="form-control selectModal select2" id="cbHorizontalDivisions" data-placeholder=""></select>
+                                                        </div><!-- col -->
+
+                                                        <div class="col-xs-4 col-md-3">
+                                                            <label for="isDrill" style="margin-top: 25px;">Hinge Drilling: </label>
+                                                            <select style="width:100%" class="form-control selectModal select2" id="cbisDrill" data-placeholder="">
+                                                                <option value="1">No</option>
+                                                                <option value="2">Yes</option>
+                                                            </select>
+                                                        </div><!-- col -->
+                                                        <div class="col-xs-3 col-md-3">
+                                                            <label for="FingerPull" style="margin-top: 25px;">Finger Pull: </label>
+                                                            <select style="width:100%" class="form-control selectModal select2" id="cbFingerPull">
+                                                                <option value="1">No</option>
+                                                                <option value="2">Yes</option>
+                                                            </select>
+                                                        </div><!-- form-group -->
+                                                    </div>
                                                 </div>
-                                            </div><!-- form-group -->
 
-                                            <div class="col-xs-3 col-md-2">
-                                                <label for="inDescription" style="margin-top: 25px;">Discount: </label>
-                                                <div class="input-group" style="width: 53%!important;">         
-                                                    <input style="width:50%!important" name="SoloNumeros" required class="required RequiereLlenar eventChange iptHeight form-control" type="number" min="1" maxlength="2" max="99" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="descDXU">                                                                                                                                                  
-                                                    <span class="input-group-addon tx-size-sm lh-2">%</span>
-                                                </div>                                                                                                                                             
-                                            </div><!-- form-group -->
+                                                <div class="row" style="width:20%" id="ModalIMG">
 
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="InsideEdgeProfile" style="margin-top: 25px;">Inside Edge Profile: </label>
-                                                <select style="width:100%" class="form-control selectModal select2 Profile Doors" id="cbInsideEdgeProfile" data-placeholder=""></select>
-                                            </div><!-- col -->
+                                                    <div id="Picture" class="row" style="margin-right: 0px;">
+                                                        <center>
+                                                            <img style="height: 100px;width: 235px;margin-top: 20px;" id="ProfilePicture" src="~/Content/img/Profile/img11.png" />
+                                                            <img style="width: 230px;height: 230px;" id="DoorPicture" src="~/Content/img/Doors/img11.png">
+                                                        </center>
+                                                    </div>
+                                                </div>
 
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="OutsideEdgeProfile" style="margin-top: 25px;">Outside Edge Profile: </label>
-                                                <select style="width:100%" class="form-control selectModal select2 Profile Doors" id="cbOutsideEdgeProfile" data-placeholder=""></select>
-                                            </div><!-- col -->
+                                            </div>
+                                        </div><!-- pd-20 -->
+                                    </div><!-- col-6 -->
+                                </div>
+                                <div id="dxoPanel" class="tab-pane fade" role="tabpanel">
+                                    <div style="display:flex; margin-top:45px">
+                                        <div id="DivImagenes" style="width:33%">
+                                            <div class="row" style="margin-right: 0px;display:flex; justify-content:center">
+                                                <center id="PicturePanel">
+                                                    <img style="width: 230px;height: 230px;" id="DoorPicture" src="~/Content/img/Doors/img11.png">
+                                                </center>
+                                            </div>
+                                        </div>
+                                        <div id="DivCombos" style="width:67%;">
+                                            <div class="row" style="margin-right: 0;">
+                                                <input id="idDoorxO" hidden />
+                                                <input id="idDxuXO" hidden />
+                                                <div id="HingeDirectionDiv" style="display:none" class="target col-xs-4 col-md-3">
+                                                    <label for="HingeDirection" style="margin-top: 25px;">Hinge Direction: </label>
+                                                    <select style="width:100%" value="true" class="select2 selectModal form-control" id="cbHingeDirection" data-placeholder=""></select>
+                                                </div><!-- col -->
+                                                <div class="col-xs-3 col-md-4">
+                                                    <label for="DoorType" style="margin-top: 25px;">Door Type: </label>
+                                                    <select style="width:100%" class="form-control select2" id="cbDoorType"></select>
+                                                </div>
+                                                <div class="col-xs-3 col-md-4">
+                                                    <label for="DoorType" style="margin-top: 25px;">Door Option</label>
+                                                    <select style="width:100%" class="form-control select2" id="cbDoorOpt"></select>
+                                                </div>
 
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="BottomRail" style="margin-top: 25px;">Stile Width: </label>
-                                                <select style="width:100%" class="eventChange selectModal form-control select2 Doors" id="cbStileWidth" data-placeholder=""></select>
-                                            </div><!-- col -->
+                                                <div class="col-xs-2 col-md-3">
+                                                    <label for="width" style="margin-top: 25px;">Width: </label>
+                                                    <div>
+                                                        <div style="display:flex">
+                                                            <input style="width:50%!important" name="SoloNumeros" required class="required RequiereLlenar eventChange iptWidth form-control" type="number" min="1" maxlength="2" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="iptWidth">
+                                                            <select style="width:50%!important" class="form-control select2" id="cbDecimalsW"></select>
+                                                        </div>
+                                                        <label id="alertWidth" style="Color:red; font-size:10px; display:none;margin:0"></label>
+                                                    </div>
+                                                </div><!-- form-group -->
+                                                <div class="col-xs-2 col-md-3">
+                                                    <label for="inDescription" style="margin-top: 25px;">Height: </label>
+                                                    <div>
+                                                        <div style="display:flex">
+                                                            <input style="width:50%!important" name="SoloNumeros" required class="required RequiereLlenar eventChange iptHeight form-control" type="number" min="1" maxlength="3" max="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="iptHeight">
+                                                            <select style="width:50%!important" class="form-control select2" id="cbDecimalsH"></select>
+                                                        </div>
+                                                        <label id="alertHeight" style="Color:red; font-size:10px; margin:0"></label>
+                                                    </div>
+                                                </div><!-- form-group -->
 
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="TopRail" style="margin-top: 25px;">Rail Width:</label>
-                                                <select style="width:100%" class="eventChange selectModal form-control select2 Doors" id="cbRailWidth" data-placeholder=""></select>
-                                            </div><!-- col -->
+                                                <div class="col-xs-1 col-md-2">
+                                                    <label for="Material" style="margin-top: 25px;">Quantity: </label>
+                                                    <input style="width:100%!important" name="SoloNumeros" required class="required RequiereLlenar eventChange iptHeight form-control" type="number" min="1" maxlength="2" max="99" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="CantidadFila">
+                                                </div><!-- col -->
+                                            </div>
+                                            <div class="row" style="margin-right: 0;">
+                                                <p style="margin-bottom: 0;">You can add a different discount to this door or leave the discount of the order in general.</p>
+                                            </div>
+                                            <div class="row" style="margin-right: 0;">
+                                                <div class="col-xs-3 col-md-3">
 
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="Join" style="margin-top: 25px;">Door Assembly: </label>
-                                                <select style="width:100%" class="form-control selectModal select2 Doors" id="cbDoorAssembly" data-placeholder=""></select>
-                                            </div><!-- col -->
-
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="PanelMaterial" style="margin-top: 25px;">Panel Material: </label>
-                                                <select style="width:100%" class="form-control selectModal select2" id="cbPanelMaterial" data-placeholder=""></select>
-                                            </div><!-- col -->
-
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="IsOpeningMeasurement" style="margin-top: 25px;">Opening for Glass: </label>
-                                                <select style="width:100%" class="form-control selectModal select2" id="cbIsOpeningMeasurement" data-placeholder="">
-                                                    <option value="1">No Opening </option>
-                                                    <option value="2">Opening</option>
-                                                </select>
-                                            </div><!-- col -->
-
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="VerticalDivisions" style="margin-top: 25px;">Vertical Divisions: </label>
-                                                <select style="width:100%" class="form-control selectModal select2" id="cbVerticalDivisions" data-placeholder=""></select>
-                                            </div><!-- col -->
-
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="HorizontalDivisions" style="margin-top: 25px;">Horizontal Divisions: </label>
-                                                <select style="width:100%" class="form-control selectModal select2" id="cbHorizontalDivisions" data-placeholder=""></select>
-                                            </div><!-- col -->
-
-                                            <div class="col-xs-4 col-md-3">
-                                                <label for="isDrill" style="margin-top: 25px;">Hinge Drilling: </label>
-                                                <select style="width:100%" class="form-control selectModal select2" id="cbisDrill" data-placeholder="">
-                                                    <option value="1">No</option>
-                                                    <option value="2">Yes</option>
-                                                </select>
-                                            </div><!-- col -->
-
-                                            <div id="HingeDirectionDiv" style="display:none" class="target col-xs-4 col-md-3">
-                                                <label for="HingeDirection" style="margin-top: 25px;">Hinge Direction: </label>
-                                                <select style="width:100%" value="true" class="select2 selectModal form-control" id="cbHingeDirection" data-placeholder=""></select>
-                                            </div><!-- col -->                                           
-
-                                            <div class="col-xs-3 col-md-3">
-                                                <label for="FingerPull" style="margin-top: 25px;">Finger Pull: </label>
-                                                <select style="width:100%" class="form-control selectModal select2" id="cbFingerPull">
-                                                    <option value="1">No</option>
-                                                    <option value="2">Yes</option>
-                                                </select>
-                                            </div><!-- form-group -->
+                                                    <div class="input-group" style="width: 53%!important;">
+                                                        <input style="width:50%!important" name="SoloNumeros" required class="required RequiereLlenar eventChange iptHeight form-control" type="number" min="1" maxlength="2" max="99" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="descDXO">
+                                                        <span class="input-group-addon tx-size-sm lh-2">%</span>
+                                                    </div>
+                                                </div><!-- form-group -->
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div><!-- pd-20 -->
-                        </div><!-- col-6 -->
-                    </div>
-                    <div id="dxoPanel" class="tab-pane fade" role="tabpanel">
-                        <div style="display:flex; margin-top:45px">
-                            <div id="DivImagenes" style="width:33%">
-                                <div class="row" style="margin-right: 0px; display:flex; justify-content:center">
-                                    <center id="PictureProfile">
-                                        <img style="height: 100px;width: 235px;margin-top: 20px;" id="ProfilePicture" src="~/Content/img/Profile/img11.png" />
-                                    </center>
-                                </div>
-                                <div class="row" style="margin-right: 0px;display:flex; justify-content:center">
-                                    <center id="PicturePanel">
-                                        <img style="width: 230px;height: 230px;" id="DoorPicture" src="~/Content/img/Doors/img11.png">
-                                    </center>
-                                </div>
                             </div>
-                            <div id="DivCombos" style="width:67%;">
-                                <div class="row" style="margin-right: 0;">
-                                    <input id="idDoorxO" hidden/>
-                                    <input id="idDxuXO" hidden />
-                                    <div class="col-xs-3 col-md-4">
-                                        <label for="Panel" style="margin-top: 25px;">Panel Style: </label>
-                                        <select style="width:100%;" class="form-control select2 Profile Doors" id="cbPanel"></select>
-                                    </div><!-- col -->
-                                    <div class="col-xs-3 col-md-4">
-                                        <label for="DoorType" style="margin-top: 25px;">Door Type: </label>
-                                        <select style="width:100%" class="form-control select2" id="cbDoorType"></select>
-                </div>                
-                                    <div class="col-xs-3 col-md-4">
-                                        <label for="DoorType" style="margin-top: 25px;">Door Option</label>
-                                        <select style="width:100%" class="form-control select2" id="cbDoorOpt"></select>
+                            <div class="modal-footer">
+                                <button id="btnClose" type="button" class="btn btn-secondary Cursor" data-dismiss="modal">Close</button>
+                                <button id="btnBack" type="button" class="btn btn-secondary Cursor">Back</button>
+                                <button id="btnsave" type="button" class="Cursor btn btn-primary Cursor">Save changes</button>
+                                <button id="btnsaveDxO" type="button" class="Cursor btn btn-primary Cursor">Save changes</button>
+                            </div>
+                        </div><!-- modal-body -->
+                    </div><!-- modal-content -->
+                </div><!-- modal-dialog -->
             </div>
-                                    
-                                    <div class="col-xs-2 col-md-3">
-                                        <label for="width" style="margin-top: 25px;">Width: </label>
-                                        <div>
-                                            <div style="display:flex">
-                                                <input style="width:50%!important" name="SoloNumeros" required class="required RequiereLlenar eventChange iptWidth form-control" type="number" min="1" maxlength="2" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="iptWidth">
-                                                <select style="width:50%!important" class="form-control select2" id="cbDecimalsW"></select>
-                                            </div>
-                                            <label id="alertWidth" style="Color:red; font-size:10px; display:none;margin:0"></label>
-                                        </div>
-                                    </div><!-- form-group -->
-                                    <div class="col-xs-2 col-md-3">
-                                        <label for="inDescription" style="margin-top: 25px;">Height: </label>
-                                        <div>
-                                            <div style="display:flex">
-                                                <input style="width:50%!important" name="SoloNumeros" required class="required RequiereLlenar eventChange iptHeight form-control" type="number" min="1" maxlength="3" max="100" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="iptHeight">
-                                                <select style="width:50%!important" class="form-control select2" id="cbDecimalsH"></select>
-                                            </div>
-                                            <label id="alertHeight" style="Color:red; font-size:10px; margin:0"></label>
-                                        </div>
-                                    </div><!-- form-group -->
-
-                                    <div class="col-xs-1 col-md-2">
-                                        <label for="Material" style="margin-top: 25px;">Quantity: </label>
-                                        <input style="width:100%!important" name="SoloNumeros" required class="required RequiereLlenar eventChange iptHeight form-control" type="number" min="1" maxlength="2" max="99" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="CantidadFila">                                        
-                                    </div><!-- col -->                                   
-                                </div>
-                                <div class="row" style="margin-right: 0;">
-                                    <p style="margin-bottom: 0;">You can add a different discount to this door or leave the discount of the order in general.</p>
-                                </div>
-                                <div class="row" style="margin-right: 0;">                                   
-                                    <div class="col-xs-3 col-md-3">
-                                        
-                                        <div class="input-group" style="width: 53%!important;">
-                                            <input style="width:50%!important" name="SoloNumeros" required class="required RequiereLlenar eventChange iptHeight form-control" type="number" min="1" maxlength="2" max="99" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="descDXO">
-                                            <span class="input-group-addon tx-size-sm lh-2">%</span>
-                                        </div>
-                                    </div><!-- form-group -->
-                                </div>
-                            </div> 
-                        </div>                                             
-                    </div> 
-                </div>                
-            </div>
-            <div class="modal-footer">
-                <button id="btnClose" type="button" class="btn btn-secondary Cursor" data-dismiss="modal">Close</button>
-                <button id="btnBack" type="button" class="btn btn-secondary Cursor">Back</button>
-                <button id="btnsave" type="button" class="Cursor btn btn-primary Cursor">Save changes</button>
-                <button id="btnsaveDxO" type="button" class="Cursor btn btn-primary Cursor">Save changes</button>
-            </div>
-        </div>
-    </div>
+        </div><!-- modal-content -->
+    </div><!-- modal-dialog -->
 </div>
 
 
@@ -401,6 +386,7 @@
         var urlInsertDoorsxUser = '@Url.Action("UpdateDoorxUser", "OrderControl")';
         var urlUpdateDoorxOrder = '@Url.Action("UpdateDoorxOrder", "OrderControl")';
         var urlDescargarOderPDF = '@Url.Action("DescargarOrderPDF", "OrderStatus")';
+        var urlGetInsideAndOutside = '@Url.Action("GetInsideAndOutside", "ConfiDoor")';
         try {
             var listDOOR = JSON.parse('@Html.Raw(ViewBag.ListDoorsxUser)');
         } catch (e) {
