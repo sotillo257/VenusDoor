@@ -102,7 +102,18 @@ namespace BusinessLogic
                     }
                     pDoorsxOrder.ItemCost = result ;
                     pDoorsxOrder.SubTotal = result * pDoorsxOrder.Quantity;
-                }               
+                }
+
+                if (DoorUser.isDrill == false)
+                {
+                    pDoorsxOrder.HingeDirection.Id = 3;
+                    pDoorsxOrder.HingePositions.Id = 2;
+                }
+                else
+                {
+                    pDoorsxOrder.HingeDirection.Id = pDoorsxOrder.HingeDirection.Id;
+                    pDoorsxOrder.HingePositions.Id = 2;
+                }            
                 pDoorsxOrder.CreationDate = DateTime.Now;
                 pDoorsxOrder.ModificationDate = DateTime.Now;
                 pDoorsxOrder.CreatorUser = pDoorsxOrder.User.Id;
@@ -356,15 +367,15 @@ namespace BusinessLogic
                     int panel = 5;
                     if (Order.DoorxUser.DoorStyle.Id == 1002)
                     {
-                        pDoorsOrder.Panel.Id = 5;
+                        Order.DoorxUser.Panel.Id = 5;
                     }
                     else if (Order.DoorxUser.DoorStyle.Id == 1003)
                     {
-                    pDoorsOrder.Panel.Id = 2;
+                        Order.DoorxUser.Panel.Id = 2;
                     }
-                    if (pDoorsOrder.Panel.Id == 2)
+                    if (Order.DoorxUser.Panel.Id == 2)
                     {
-                        panel = pDoorsOrder.Panel.Id;
+                        panel = Order.DoorxUser.Panel.Id;
                     }
                     if (Order.DoorxUser.DoorStyle.Id == 1010)
                     {
@@ -372,9 +383,9 @@ namespace BusinessLogic
                     }
                     else
                     {
-                        if (pDoorsOrder.Panel.Id == 3)
+                        if (Order.DoorxUser.Panel.Id == 3)
                         {
-                         pDoorsOrder.Panel.Id = 5;
+                        Order.DoorxUser.Panel.Id = 5;
                         }
                     }
                 DoorsPrices DoorPrice = dp.GetDoorsPricesById(0, panel, Order.DoorxUser.Material.Id, Rail);
@@ -448,7 +459,7 @@ namespace BusinessLogic
                 pDoorsOrder.DoorxUser = Order.DoorxUser;
                 pDoorsOrder.ModificationDate = DateTime.Now;
                 pDoorsOrder.ModificationUser = pIdUser;
-                pDoorsOrder.ProfilePicture = DU.BuscarProfilePicture(Order.DoorxUser.OutsideEdgeProfile.Id, Order.DoorxUser.InsideEdgeProfile.Id, pDoorsOrder.Panel.Id);
+                pDoorsOrder.ProfilePicture = DU.BuscarProfilePicture(Order.DoorxUser.OutsideEdgeProfile.Id, Order.DoorxUser.InsideEdgeProfile.Id, Order.DoorxUser.Panel.Id);
                 pDoorsOrder.Picture = DU.BuscarDoorPicture(pDoorsOrder);
                 int retorno = _AD.UpdateDoorsxOrder(pDoorsOrder);
 

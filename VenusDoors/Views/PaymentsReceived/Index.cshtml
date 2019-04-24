@@ -1,0 +1,478 @@
+﻿
+@{
+    ViewBag.Title = "Payments Received";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    *::before,
+    *::after {
+        box-sizing: content-box !important;
+    }
+
+    .details-container {
+        position: relative;
+        margin-bottom: 35px;
+        box-shadow: 0 0 6px #ccc;
+    }
+
+    .user-file-nav {
+        margin-top: 25px;
+        font-size: 13px;
+    }
+
+        .user-file-nav a {
+            top: 10px;
+            padding: 10px 10px;
+            border-radius: 2px;
+            transition: all 0.2s ease-in-out;
+        }
+
+            .user-file-nav a:hover, .user-file-nav a:focus {
+                background-color: #dee2e6;
+                height: 34px;
+            }
+
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+
+    .datagrid table {
+        border-collapse: collapse;
+        text-align: left;
+        width: 100%;
+    }
+
+    .datagrid {
+        font: normal 12px/150% Verdana, Arial, Helvetica, sans-serif;
+        background: #fff;
+        overflow: hidden;
+        border: 1px solid #D2D2D2;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+    }
+
+        .datagrid table td, .datagrid table th {
+            padding: 3px 10px;
+        }
+
+        .datagrid table thead th {
+            background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #8397C6), color-stop(1, #B8B4B4) );
+            background: -moz-linear-gradient( center top, #8397C6 5%, #B8B4B4 100% );
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#8397C6', endColorstr='#B8B4B4');
+            background-color: #8397C6;
+            color: #FFFFFF;
+            font-size: 12px;
+            font-weight: normal;
+            border-left: 1px solid #B0B0B0;
+        }
+
+            .datagrid table thead th:first-child {
+                border: none;
+            }
+
+        .datagrid table tbody td {
+            color: #5C5C5C;
+            border-left: 1px solid #ADADAD;
+            font-size: 12px;
+            border-bottom: 1px solid #E6F0F2;
+            font-weight: normal;
+        }
+
+            .datagrid table tbody td:first-child {
+                border-left: none;
+            }
+
+        .datagrid table tbody tr:last-child td {
+            border-bottom: none;
+        }
+</style>
+
+<div class="br-mailbox-list ps ps--theme_default ps--active-y" data-ps-id="7a4680f7-5fbe-1b05-8ec8-b8dbe07f7215">
+    <div class="br-mailbox-list-header" style="width: 319px;position: fixed;z-index: 999;background-color: #e9ecef;">
+        <a href="" id="showMailBoxLeft" class="show-mailbox-left hidden-sm-up">
+            <i class="fa fa-arrow-right"></i>
+        </a>
+        <h6 class="tx-inverse mg-b-0 tx-13 tx-uppercase"></h6>
+        <div class="dropdown">
+            <a class="Cursor nav-link nav-link-profile d-flex" style="margin-right: 90px;"
+               data-toggle="dropdown">All Payments Received<i class="icon ion-arrow-down-b"> </i></a>
+
+            <div class="dropdown-menu wd-230" style="width: 172px; padding-left: 10px; padding-right: 10px;">
+                <ul class="list-unstyled user-file-nav">
+                    <li style="height: 34px;"><a href=""> All Payments</a></li>
+                    <li style="height: 34px;"><a href=""> Retainer Payments</a></li>
+                    <li style="height: 34px;"><a href=""> Inovoice Payments</a></li>
+                </ul>
+            </div><!-- dropdown-menu -->
+        </div>
+
+
+        @*<button type="button" class="Cursor btn btn-primary" style="margin-left: 70px;height: 30px;padding-bottom: 2px;padding-top: 2px;padding-left: 9px;padding-right: 9px;" data-toggle="modal" data-target="#modalNewIn"><i class="icon ion-plus"></i> New</button>*@
+        <div class="btn-group" id="Demo" role="group" aria-label="Basic example">
+
+        </div>
+    </div><!-- br-mailbox-list-header -->
+    <div class="br-mailbox-list-body" style="margin-top: 95px;">
+        <div class="" id="listaInvoices">
+
+        </div>
+        @*<div class="br-mailbox-list-item active">
+                <div class="d-flex justify-content-between mg-b-5">
+                    <div>
+                        <i class="icon ion-ios-star tx-warning"></i>
+                        <i class="icon ion-android-attach"></i>
+                    </div>
+                    <span class="tx-12">10 hours ago</span>
+                </div><!-- d-flex -->
+                <h6 class="tx-14 mg-b-10 tx-gray-800">Socrates Itumay, me (4)</h6>
+                <p class="tx-12 tx-gray-600 mg-b-5">I should be incapable of drawing a single stroke at the present moment; and yet I feel that I never...</p>
+            </div><!-- br-mailbox-list-item -->*@
+    </div><!-- br-mailbox-list-body -->
+
+
+
+</div>
+
+<div id="Payments" class="br-mailbox-body" style="margin-left: 315px;">
+    <div class="in-headr">
+        <div class="br-msg-header d-flex justify-content-between">
+            <nav class="media nav nav-inline tx-size-24 mg-b-0 lh-0">
+
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" id="btNew" data-toggle="modal" data-target="#modalNewIn" class="Cursor btn btn-page"><i class="fa fa-plus"></i></button>
+                    <button type="button" id="btModi" data-toggle="modal" data-target="#modalNewIn" class="Cursor btn btn-page"><i class="fa fa-edit"></i></button>
+                    <button type="button" class="Cursor btn btn-page"><i class="fa fa-file-pdf-o"></i></button>
+                    <button type="button" class="Cursor btn btn-page"><i class="fa fa-print"></i></button>
+                    <button type="button" class="Cursor btn btn-page"><i class="fa fa-send"></i></button>
+                </div>
+
+                @if (true)
+                {
+                    <div class="dropdown">
+                        <button id="btFile" class="Cursor btn btn-page dropdown-toggle" data-toggle="dropdown" style="margin-left: 10px;margin-right: 10px;"><i class="fa fa-paperclip"></i> 1</button>
+
+                        <div class="dropdown-menu" id="dropFile" style="width: 400px;position: absolute;transform: translate3d(-101px, 39px, 0px);top: 0px;left: -210px;right: auto;bottom: auto;will-change: transform;max-height: 450px;padding: 9px 14px;overflow-wrap: break-word;">
+                            <div style="margin-bottom: 20px;margin-top: 20px;">
+                                <table class="table table-hover">
+                                    <tbody>
+                                        <tr>
+                                            <td style="border-top: 0;"><img style="width: 70px;" src="~/Content/img/vectorPDF.png" /></td>
+                                            <td style="border-top: 0;padding-left: 25px;">
+                                                <p>Archivo PDF</p>
+                                                <span style="font-size: 12px;">File Size: 1.6 MB</span><br />
+                                                <div class="line-seperator font-xs hide" style="margin-top: 45px;">
+                                                    <a class="col" href="#">Download</a>
+                                                    <a class="col" href="#">Remove</a>
+                                                    <a class="col" href="#">Delete</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border-top: 0;"><img style="width: 70px;" src="~/Content/img/vectorPDF.png" /></td>
+                                            <td style="border-top: 0;padding-left: 25px;">
+                                                <p>Archivo PDF</p>
+                                                <span style="font-size: 12px;">File Size: 1.6 MB</span><br />
+                                                <div class="line-seperator font-xs hide" style="margin-top: 45px;">
+                                                    <a class="col" href="#">Download</a>
+                                                    <a class="col" href="#">Remove</a>
+                                                    <a class="col" href="#">Delete</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div style="padding: 20px 0 10px;border-top: 1px solid #eee;margin-bottom: 20px;margin-top: 20px;">
+
+                                <div class="col-xs-4 col-md-4">
+                                    <button type="button" id="btAdd" class="Cursor btn btn-page" style="margin-right: 15px;"><i class="fa fa-paperclip"></i> Upload file</button>
+                                    <input id="addFile" name="file" type="file" style="display:none;" />
+                                </div><!-- col -->
+                            </div>
+                        </div><!-- dropdown-menu -->
+                    </div>
+
+                }
+                else {
+                    <button type="button" id="btAdd" class="Cursor btn btn-page" style="margin-left: 15px;margin-right: 15px;"><i class="fa fa-paperclip"></i></button>
+                            <input id="addFile" name="file" type="file" style="display:none;" />
+                }
+
+
+                <button type="button" id="RecordPaymend" class="Cursor btn btn-page">Delete</button>
+
+                <a id="closeMail" class="nav-link pd-x-5 mg-l-15 hidden-xl-up">
+                    <i class="icon ion-close"></i>
+                </a>
+            </nav>
+        </div><!-- br-msg-header -->
+    </div>
+    <div class="br-msg-body" style="margin-left: 0px;margin-right: 0px;margin-top: 95px;">
+        <div>
+            <div style="max-width: 8.27in;margin-left:auto;margin-right:auto; margin-top: 0;" class="details-container clearfix" id="divMarca">
+                <div class="pcs-template ">
+                    <div class="pcs-template-header pcs-header-content" id="header">
+                        <div class="pcs-template-fill-emptydiv"></div>
+                    </div>
+
+                    <div class="pcs-template-body">
+                        <table style="width:100%;table-layout: fixed;">
+                            <tbody>
+                                <tr>
+                                    <td style="width:50%;" class="text-align-lef v-top">
+
+                                        <div>
+                                            <img src="~/Content/img/Venus_Doors11.png" style="width: 200px;" />
+                                        </div>
+                                    </td>
+
+                                    <td class="text-align-right v-top" style="vertical-align: top; width:50%;">
+                                        <span class="pcs-orgname"><b>Venus Cabinet Doors</b></span><br>
+                                        <span id="tmp_entity_number" style="font-size: 10pt;" class="pcs-label"><b># INV-2105</b></span>
+                                        <span class="pcs-label">
+                                            <span style="white-space: pre-wrap;word-wrap: break-word;" id="tmp_org_address">
+                                                Texas
+                                                U.S.A
+                                            </span>
+                                        </span>
+                                        <div style="clear:both;margin-top:30px;">
+                                            <span style="font-size:8pt;"><b>Balance Due</b></span>
+                                            <br>
+                                            <span style="font-size:12pt;"><b id="tmp_balance_due"></b></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <table style="clear:both;width:100%;table-layout:fixed;">
+                            <tbody>
+                                <tr>
+                                    <td style="width:60%;vertical-align:bottom;word-wrap: break-word;">
+                                        <div>
+                                            <label style="font-size: 10pt;" class="pcs-label" id="tmp_billing_address_label">Bill To</label>
+                                            <br>
+                                            <span style="white-space: pre-wrap;" id="tmp_billing_address"><strong><span class="pcs-customer-name" id="zb-pdf-customer-detail"><a id="btNameBill" href="#"></a></span></strong></span>
+                                        </div>
+                                    </td>
+                                    <td align="right" style="vertical-align:bottom;width: 40%;">
+                                        <table style="float:right;width: 100%;table-layout: fixed;word-wrap: break-word;" border="0" cellspacing="0" cellpadding="0">
+                                            <tbody>
+                                                <tr>
+                                                    <td style="padding:5px 10px 5px 0px;font-size:10pt;" class="text-align-right">
+                                                        <span class="pcs-label">Invoice Date :</span>
+                                                    </td>
+                                                    <td class="text-align-right">
+                                                        <span id="tmp_entity_date">03 Apr 2019</span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="padding:5px 10px 5px 0px;font-size: 10pt;" class="text-align-right">
+                                                        <span class="pcs-label">Terms :</span>
+                                                    </td>
+                                                    <td class="text-align-right">
+                                                        <span id="tmp_payment_terms">Due on Receipt</span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="padding:5px 10px 5px 0px;font-size: 10pt;" class="text-align-right">
+                                                        <span class="pcs-label">Due Date :</span>
+                                                    </td>
+                                                    <td class="text-align-right">
+                                                        <span id="tmp_due_date">03 Apr 2019</span>
+                                                    </td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <table style="width:100%;margin-top:20px;table-layout:fixed;" border="0" cellspacing="0" cellpadding="0">
+                            <thead>
+                                <tr>
+                                    <td style="padding: 5px 0px 5px 5px;text-align: center;" colspan="3" class="pcs-itemtable-header pcs-itemtable-breakword">Payment Receipt</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th valign="top" style="padding: 10px 0px 10px 20px;" class="pcs-item-row">
+                                        Payment Date
+                                    </th>
+                                    <td valign="top" style="padding: 10px 0px 10px 20px;" class="pcs-item-row">
+                                        22 Apr 2019
+                                    </td>
+                                    <td rowspan="3" style="padding: 10px 0px 10px 20px;" class="pcs-item-row">
+                                        <center>
+                                            <h6>Amount Received</h6>
+                                            <h5>VEF240.00</h5>
+                                        </center>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th valign="top" style="padding: 10px 0px 10px 20px;" class="pcs-item-row">
+                                        Reference Number
+                                    </th>
+                                    <td valign="top" style="padding: 10px 0px 10px 20px;" class="pcs-item-row">
+                                        655
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th valign="top" style="padding: 10px 0px 10px 20px;" class="pcs-item-row">
+                                        Payment Mode
+                                    </th>
+                                    <td valign="top" style="padding: 10px 0px 10px 20px;" class="pcs-item-row">
+                                        Cash
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div style="width: 100%;margin-top: 1px;">
+                            <div class="v-top total-number-section">
+                                <div style="white-space: pre-wrap;"></div>
+
+                            </div>
+                            <div class="v-top total-section">
+                                <table class="pcs-totals" cellspacing="0" border="0" width="100%">
+                                    <tbody>
+                                        <tr>
+                                            <td class="total-section-label text-align-right">Sub Total</td>
+                                            <td id="tmp_subtotal" class="total-section-value text-align-right">213.18</td>
+                                        </tr>
+
+                                        <tr style="height:10px;">
+                                            <td class="total-section-label text-align-right">Sales Tax (8.25%)  </td>
+                                            <td id="tmp_Tax" class="total-section-value text-align-right">17.59</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="total-section-label text-align-right"><b>Total</b></td>
+                                            <td id="tmp_total" class="total-section-value text-align-right"><b>$230.77</b></td>
+                                        </tr>
+
+                                        <tr style="height:40px;" class="pcs-balance">
+                                            <td class="total-section-label text-align-right"><b>Balance Due</b></td>
+                                            <td id="tmp_balance_due_bottom" class="total-section-value text-align-right"><b></b></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div style="clear: both;"></div>
+                        </div>
+
+                        <div style="clear:both;margin-top:50px;width:100%;">
+                            <label style="font-size: 10pt;" id="tmp_notes_label" class="pcs-label">Notes</label><br>
+                            <p id="tmp_Notes" style="margin-top:7px;white-space: pre-wrap;word-wrap: break-word;" class="pcs-notes"></p>
+                        </div>
+
+                        <div style="page-break-inside: avoid;">
+                        </div>
+
+                    </div>
+
+                    <div class="pcs-template-footer">
+                        <div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <a id="btLinkAdd" class="Cursor nav-link pd-x-5 mg-l-15">
+            <i class="fa fa-paperclip"></i>
+            2 Attachment(s) added
+        </a>
+        <div class="pmt-info" style="margin-top: 25px;margin-left: 15px;padding-left: 5px;">
+            <h5>More Information</h5>
+            <div class="row info-row">
+                <label class="text-muted col-md-3">Salesperson</label>
+                <div class="col-md-9">: Jesus Sotillo</div>
+            </div>
+        </div>
+        <a id="btDisplay" style="margin-top: 20px;" class="Cursor nav-link pd-x-5 mg-l-15">
+            Display Journal <i class="icon ion-arrow-right-b"> </i>
+        </a>
+        <a id="btOculDis" style="margin-top: 20px;" class="Cursor nav-link pd-x-5 mg-l-15">
+            Display Journal <i class="icon ion-arrow-down-b"> </i>
+        </a>
+        <table style="width:100%;margin-top:20px;table-layout:fixed;" id="infoMore" class="pcs-itemtable" border="0" cellspacing="0" cellpadding="0">
+            <thead>
+                <tr style="height:32px;">
+                    <td style="border-bottom: solid 1px; padding: 5px 10px 5px 20px;width: 70%;text-align: left;" id="" class="pcs-itemtable-breakword">
+                        ACCOUNT
+                    </td>
+                    <td style="border-bottom: solid 1px; padding: 5px 10px 5px 5px;width: 15%;text-align: left;" id="" class="pcs-itemtable-breakword">
+                        DEBIT
+                    </td>
+                    <td style="border-bottom: solid 1px; padding: 5px 10px 5px 5px;width: 15%;text-align: left;" id="" class="pcs-itemtable-breakword">
+                        CREDIT
+                    </td>
+                </tr>
+            </thead>
+            <tbody class="itemBody">
+                <tr>
+                    <td rowspan="1" valign="top" style="padding: 10px 0px 10px 20px;" class="pcs-item-row">
+                        <div>
+                            Sales
+                        </div>
+                    </td>
+                    <td rowspan="1" class="pcs-item-row lineitem-column text-align-left">
+                        <span id="tmp_item_qty">144.00</span>
+                    </td>
+                    <td rowspan="1" class="pcs-item-row lineitem-column text-align-left">
+                        <span id="tmp_item_rate">1.08</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td rowspan="1" valign="top" style="padding: 10px 0px 10px 20px;" class="pcs-item-row">
+                        <div>
+                            Accounts Receivable
+                        </div>
+                    </td>
+                    <td rowspan="1" class="pcs-item-row lineitem-column text-align-left">
+                        <span id="tmp_item_qty">144.00</span>
+                    </td>
+                    <td rowspan="1" class="pcs-item-row lineitem-column text-align-left">
+                        <span id="tmp_item_rate">1.08</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div><!-- br-msg-body -->
+</div>
+
+<div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div>
+
+
+@section scripts{
+    @Scripts.Render("~/Scripts/js/Invoice.js")
+    @Scripts.Render("~/Scripts/Pagination.js")
+    <script>
+    var urlGetHistoryInvoice = '@Url.Action("GetHistoryInvoice", "Invoice")';
+    var urlInsertComment = '@Url.Action("InsertComment", "Invoice")';
+    var urlGetDoorsByOrderInvo = '@Url.Action("GetDoorsByOrderInvo", "Invoice")';
+    var urlGetDoorsByOrder = '@Url.Action("GetDoorsByOrder", "OrderControl")';
+    var urlGetDocAdjuntosInvoice = '@Url.Action("GetDocAdjuntosInvoice", "Invoice")';
+                    try {
+                        var listInvoice = JSON.parse('@Html.Raw(ViewBag.Invoice)');
+                    } catch (e) {
+                        var listInvoice = null;
+                    }
+    </script>
+    <script src="~/Content/lib/select2/js/select2.min.js"></script>
+    <script src="~/Content/lib/select2/js/select2.full.min.js"></script>
+}
+

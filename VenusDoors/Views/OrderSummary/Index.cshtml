@@ -203,6 +203,7 @@
             </div>
         }
                 <div class="row" style="display:flex; width:100%;border-bottom: #dee2e6 solid 1px; padding-bottom:8px;border-top: #dee2e6 solid 1px;">
+                    <input id="idDoorxOrder" value="" hidden/>
                     <div class="col-xs-1 col-md-1">
                         <label for="Material" style="margin-top: 25px;">Quantity: </label>
                         <input style="width:100%!important" name="SoloNumeros" required class="required RequiereLlenar form-control" type="number" maxlength="2" min="1" id="CantidadFila">
@@ -256,7 +257,8 @@
                     <div class="col-xs-1 col-md-1" id="btInsertDoorTable">
                         @if (ord != null)
                         {
-                            <button class="Cursor btn btn-success btn-icon AddDoor" title=""  type="button" style="margin-top: 55px;"><div><i class="fa fa-plus"></i></div></button>
+                            <button id="dxoAdd" class="Cursor btn btn-success btn-icon AddDoor" title=""  type="button" style="margin-top: 55px;"><div><i class="fa fa-plus"></i></div></button>
+                            <button id="dxoSave" class="Cursor btn btn-success btn-icon SaveDoor" title="" type="button" style="margin-top: 55px; display:none"><div><i class="fa fa-check"></i></div></button>
                         }
                         else
                         {
@@ -280,7 +282,11 @@
                                     {
                                         if (LastDoor.isDrill == true)
                                         {
-                                            <th>Hinge Dir.</th>
+                                            <th >Hinge Dir.</th>
+                                        }
+                                        else
+                                        {
+                                            <th class="hdHidden" hidden>Hinge Dir.</th>
                                         }
                                     }                                    
                                     <th>Door Type</th>
@@ -326,6 +332,9 @@
                                                 {
                                                     <td>@i.HingeDirection.Direction</td>
                                                 }
+                                                else {
+                                                    <td class="hdHidden" hidden>@i.HingeDirection.Direction</td>
+                                                }
 
                                                 <td>@i.DoorType.Description</td>
                                                 <td>@i.DoorOption.Description</td>
@@ -335,7 +344,7 @@
 
                                                 <td id="tddelete" style="display: flex;">
                                                     <center>
-                                                        <button class="Cursor btn btn-primary btn-icon btnn-edit" data-id="@i.Id'" style="width: 25px;height: 25px;" type="submit"><i class="fa fa-edit"></i></button>
+                                                        <button class="Cursor btn btn-primary btn-icon btnn-edit" data-id="@i.Id" style="width: 25px;height: 25px;" type="submit"><i class="fa fa-edit"></i></button>
                                                         <button class="Cursor btn btn-danger btn-icon btnn-dele" data-id="@i.Id" style="width: 25px;height: 25px; margin-left: 10px;" type="submit"><i class="fa fa-trash"></i></button>
                                                     </center>
                                                     
@@ -752,7 +761,7 @@
                 var urlGetAllDoorOption = '@Url.Action("GetAllDoorOption", "ConfiDoor")';
                 var urlGetAllDecimals = '@Url.Action("GetAllDecimals", "ConfiDoor")';
                 var urlInsertDoorsxUser = '@Url.Action("InsertDoorsxUser", "ConfiDoor")';
-                var urlGetPrices = '@Url.Action("GetPrices", "ConfiDoor")';
+                var urlGetPrices = '@Url.Action("GetPrices", "ConfiDoor")'; 
                 var urlUploadExcel = '@Url.Action("UploadExcel", "ConfiDoor")';
                 var urlDeleteItem = '@Url.Action("DeleteItem", "OrderSummary")';
                 var urlConfirmOrder = '@Url.Action("ConfirmOrder", "OrderSummary")';
@@ -764,7 +773,8 @@
                 var urlInsertShipping = '@Url.Action("InsertShippingAddress", "OrderSummary")';
                 var urlUpdateDoorsxUser = '@Url.Action("UpdateDoorsxUser", "ConfiDoor")';
                 var urlGetInsideAndOutside = '@Url.Action("GetInsideAndOutside", "ConfiDoor")';
-                
+                var urlUpdateDoorsxOrder = '@Url.Action("UpdateDoorxOrder", "ConfiDoor")';
+
 
                 try {
                     var listDOOR = JSON.parse('@Html.Raw(ViewBag.JsDoor)');

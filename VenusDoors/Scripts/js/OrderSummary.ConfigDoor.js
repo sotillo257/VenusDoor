@@ -140,7 +140,7 @@ function SearchDoor(data) {
             fingerPull = 2;
         }
         llenarComboFinger(fingerPull);
-               
+
         HingeCalculate();
 
         var isOpen = data.IsOpeningMeasurement;
@@ -164,8 +164,8 @@ function SearchDoor(data) {
             isDrill = 2;
         }
         llenarComboIsDrill(isDrill);
-        checkIsOverlay(isOver);                
-        llenarComboMaterial(data.Material.Id);               
+        checkIsOverlay(isOver);
+        llenarComboMaterial(data.Material.Id);
         llenarComboPanelStyle(data.Panel.Id);
         llenarComboIEP(data.InsideEdgeProfile.Id);
         llenarComboOEP(data.OutsideEdgeProfile.Id);
@@ -197,7 +197,7 @@ function SearchDoor(data) {
         window.history.replaceState({}, document.title, "/" + "../OrderSummary");
         }
      
-    
+
 
 }
 
