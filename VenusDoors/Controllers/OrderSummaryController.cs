@@ -42,6 +42,8 @@ namespace VenusDoors.Controllers
                     if (item != null)
                     {
                         item.DoorxUser = DU.GetAllDoorsxUser().Where(x => x.Order.Id == item.Id).FirstOrDefault();
+                     
+                        ViewBag.JsDoor = serializar1.Serialize(item.DoorxUser);
                         if (item.DoorxUser != null)
                         {
                             item.DoorxUser.DoorsxOrder = _LnDoorOrder.GetAllDoorxOrderByDoorxUser(item.DoorxUser.Id).OrderByDescending(x => x.Id).ToList();
@@ -107,8 +109,7 @@ namespace VenusDoors.Controllers
                 {
                     var xDoorsU = _LNDOR.GetAllDoorsxUser();
                     DoorsxUser LastDoorr = xDoorsU.Where(x => x.Order.Id == orderList.Id).OrderByDescending(x => x.ModificationDate).FirstOrDefault();
-                    var serializar1 = new System.Web.Script.Serialization.JavaScriptSerializer();
-                    ViewBag.JsDoor = serializar1.Serialize(LastDoorr);
+                   
                     return Json(new { LastDoor = LastDoorr }, JsonRequestBehavior.AllowGet);
                 }
                 else
@@ -383,7 +384,7 @@ namespace VenusDoors.Controllers
                     }
                     BusinessLogic.lnDoorsxUser DU = new BusinessLogic.lnDoorsxUser();
                     CompleteOrder.DoorxUser = DU.GetAllDoorsxUser().Where(x => x.Order.Id == CompleteOrder.Id).FirstOrDefault();
-                    SentOrderSummaryEstimate(CompleteOrder);
+                 //   SentOrderSummaryEstimate(CompleteOrder);
                     CloseOrder(CompleteOrder);
                     return Json(true, JsonRequestBehavior.AllowGet);                    
                 }
