@@ -257,7 +257,7 @@ namespace VenusDoors.Controllers
                "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Tax: $" + CompleteOrder.Tax + "</td>" +
                "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Total: $" + CompleteOrder.Total + "</td>" +
            "</tr></tbody></table></div>" +
-           "<h4 style = 'margin:0; text-align:center' >General Configuration</h4>" +
+           "<h4 style = 'margin:0; text-align:center' >General Door Configuration</h4>" +
            "<div class='datagrid' style='font: normal 12px/150% Arial, Helvetica, sans-serif; background: #fff; overflow: hidden; border: 1px solid #014D41; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; width:100%'>" +
            "<table style='border-collapse: collapse; text-align: left; width: 100%;'><tbody>" +
            "<tr>" +
@@ -280,6 +280,7 @@ namespace VenusDoors.Controllers
                 "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Door Assembly: <span style = 'color: #868ba1'> " + getDoorxu.Join.Description + "</span></td>" +
             "</tr>" +
             "<tr>" +
+            "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Panel Style: <span style = 'color: #868ba1'>" + getDoorxu.Panel.Description + "</span></td>" +
             "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Panel Material: <span style = 'color: #868ba1'>" + getDoorxu.PanelMaterial.Description + "</span></td>";
             if (getDoorxu.IsOpeningMeasurement == false)
             {
@@ -290,16 +291,16 @@ namespace VenusDoors.Controllers
                 message += "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Opening Measurement: <span style = 'color: #868ba1'>Yes</span></td>";
             }
             message += "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Vertical Divisions: <span style = 'color: #868ba1'> " + getDoorxu.VerticalDivisions.Quantity + "</span></td>" +
-            "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Horizontal Divisions: <span style = 'color: #868ba1'> " + getDoorxu.HorizontalDivisions.Quantity + "</span></td>" +
             "</tr>" +
-            "<tr>";
-            if(getDoorxu.isDrill == false)
+            "<tr>" +
+            "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Horizontal Divisions: <span style = 'color: #868ba1'> " + getDoorxu.HorizontalDivisions.Quantity + "</span></td>";
+            if (getDoorxu.isDrill == false)
             {
                 message += "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Hinge Drilling: <span style = 'color: #868ba1'>No</span></td>";
             }
             else
             {
-                message += "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Hinge Drilling: <span style = 'color: #868ba1'>Yes (" + getDoorxu.HingeDirection.Direction +")</span></td>";
+                message += "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>Hinge Drilling: <span style = 'color: #868ba1'>Yes</span></td>";
             }
             if (getDoorxu.isFingerPull == false)
             {
@@ -315,8 +316,7 @@ namespace VenusDoors.Controllers
             "<div class='datagrid' style='font: normal 12px/150% Arial, Helvetica, sans-serif; background: #fff; overflow: hidden; border: 1px solid #014D41; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;width:100%'><table style='border-collapse: collapse; text-align: left; width: 100%;'><thead>" +
             "<tr>" +
                 "<th style='padding: 3px 10px; background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #014D41), color-stop(1, #027D69) );background:-moz-linear-gradient( center top, #014D41 5%, #027D69 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#014D41', endColorstr='#027D69');background-color:#014D41; color:#FFFFFF; font-size: 11px; font-weight: bold; border-left: 1px solid #0070A8;'>Width</th>" +
-                "<th style='padding: 3px 10px; background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #014D41), color-stop(1, #027D69) );background:-moz-linear-gradient( center top, #014D41 5%, #027D69 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#014D41', endColorstr='#027D69');background-color:#014D41; color:#FFFFFF; font-size: 11px; font-weight: bold; border-left: 1px solid #0070A8;'>Height</th>" +
-                "<th style='padding: 3px 10px; background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #014D41), color-stop(1, #027D69) );background:-moz-linear-gradient( center top, #014D41 5%, #027D69 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#014D41', endColorstr='#027D69');background-color:#014D41; color:#FFFFFF; font-size: 11px; font-weight: bold; border-left: 1px solid #0070A8;'>Panel Style</th>" +
+                "<th style='padding: 3px 10px; background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #014D41), color-stop(1, #027D69) );background:-moz-linear-gradient( center top, #014D41 5%, #027D69 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#014D41', endColorstr='#027D69');background-color:#014D41; color:#FFFFFF; font-size: 11px; font-weight: bold; border-left: 1px solid #0070A8;'>Height</th>" +                
                 "<th style='padding: 3px 10px; background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #014D41), color-stop(1, #027D69) );background:-moz-linear-gradient( center top, #014D41 5%, #027D69 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#014D41', endColorstr='#027D69');background-color:#014D41; color:#FFFFFF; font-size: 11px; font-weight: bold; border-left: 1px solid #0070A8;'>Door Type</th>" +
                 "<th style='padding: 3px 10px; background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #014D41), color-stop(1, #027D69) );background:-moz-linear-gradient( center top, #014D41 5%, #027D69 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#014D41', endColorstr='#027D69');background-color:#014D41; color:#FFFFFF; font-size: 11px; font-weight: bold; border-left: 1px solid #0070A8;'>Door Option</th>" +
                 "<th style='padding: 3px 10px; background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #014D41), color-stop(1, #027D69) );background:-moz-linear-gradient( center top, #014D41 5%, #027D69 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#014D41', endColorstr='#027D69');background-color:#014D41; color:#FFFFFF; font-size: 11px; font-weight: bold; border-left: 1px solid #0070A8;'>U.Price</th>" +
@@ -346,10 +346,13 @@ namespace VenusDoors.Controllers
                     decimalW = item.DecimalsWidth.Description;
                 }
                 message += "<tr>" +
-                    "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>" + item.Width.ToString("N0") + " "+ decimalW + "</td>" +
-                    "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>" + item.Height.ToString("N0") + " " + decimalH + "</td>" +
-                    "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>" + item.Panel.Description + "</td>" +                    
-                    "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>" + item.DoorType.Description + "</td>" +
+                    "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>" + item.Width.ToString("N0") + " " + decimalW + "</td>" +
+                    "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>" + item.Height.ToString("N0") + " " + decimalH + "</td>";
+                    if (getDoorxu.isDrill == true)
+                    {
+                    message += "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>" + item.HingeDirection.Direction + "</td>";
+                    }
+                    message += "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>" + item.DoorType.Description + "</td>" +
                     "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>" + item.DoorOption.Description + "</td>" +
                     "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>" + item.ItemCost + "</td>" +
                     "<td style='padding: 3px 10px; color: #014D41; border-left: 1px solid #E1EEF4;font-size: 11px;border-bottom: 1px solid #DDEAF0;font-weight: normal;'>" + item.Quantity + "</td>" +

@@ -115,7 +115,7 @@
 
 function SearchDoor(data) {
 
-    if (DoorDashboard != '' && listDOOR == '') {
+    if (DoorDashboard != '') {
         $('#modalInsert').modal('show');
         $("#btModify").hide();
         $("#btConfAdd").show();

@@ -120,7 +120,7 @@ namespace BusinessLogic
                     {
                         door.Add(new DoorxOrder()
                         {
-                            Panel = new Panel() { Id = 0, Description = reader[0].ToString() },
+                            HingeDirection = new HingeDirection() { Id = 0, Direction = reader[0].ToString() },
                             DoorOption = new DoorOption() { Id = 0, Description = reader[1].ToString() },
                             DoorType = new DoorType() { Id = 0, Description = reader[2].ToString(), },
                             Width = decimal.Parse(reader[3].ToString()),
@@ -128,6 +128,7 @@ namespace BusinessLogic
                             Height = decimal.Parse(reader[5].ToString()),
                             DecimalsHeight = new Decimals() { Id = 0, Description = reader[6].ToString().Replace(".", "") },                           
                             Quantity = int.Parse(reader[7].ToString()),
+                            HingePositions = new HingePositions() { Id = 2 },
                             Status = new Status() { Id = 1 },
                             CreationDate = DateTime.Now,
                             ModificationDate = DateTime.Now,
@@ -150,11 +151,11 @@ namespace BusinessLogic
                     {
                         item.DoorOption.Id = _listDoorOption.Id;
                     }
-                    BusinessLogic.lnPanel _LNPanel = new BusinessLogic.lnPanel();
-                    var _listPanel = _LNPanel.GetAllPanel().Where(x => x.Description.Trim() == item.Panel.Description.Trim()).FirstOrDefault();
-                    if (_listPanel != null)
+                    BusinessLogic.lnHingeDirection _LNHingeD = new BusinessLogic.lnHingeDirection();
+                    var _listHD = _LNHingeD.GetAllHingeDirection().Where(x => x.Direction.Trim() == item.HingeDirection.Direction.Trim()).FirstOrDefault();
+                    if (_listHD != null)
                     {
-                        item.Panel.Id = _listPanel.Id;
+                        item.HingeDirection.Id = _listHD.Id;
                     }    
                     BusinessLogic.lnDoorType _LNDoorType = new BusinessLogic.lnDoorType();
                     var _listDoorType = _LNDoorType.GetAllDoorType().Where(x => x.Description.Trim() == item.DoorType.Description.Trim()).FirstOrDefault();
@@ -176,7 +177,7 @@ namespace BusinessLogic
 
                     }
 
-                    //  item.HingePositions = CalcularPosicionHing(item);
+                    //item.HingePositions = CalcularPosicionHing(item);
                     //item.ProfilePicture = BuscarProfilePicture(item.OutsideEdgeProfile.Id, item.InsideEdgeProfile.Id, item.Panel.Id);
                     //  item.ItemCost = GetPricesDoor(item.Material, item.Panel, item.Height, item.Width, item.TopRail, item.BottomRail);
                     // item.Picture = BuscarDoorPicture(item);
