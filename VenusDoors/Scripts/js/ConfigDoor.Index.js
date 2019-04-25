@@ -1290,11 +1290,11 @@ function llenarTablaOrderSumary() {
                     if (HDecimal == "0" || HDecimal == 0) {
                         HDecimal = "";
                     }
-                    var drillingV = ($("#idDrill").val() == 1) ? false : true;
+                    var drillingV = data.Order.DoorxUser.isDrill;
                     if (drillingV == false) {
-                        $(".hdHidden").css('display', 'none!important');
+                        $(".hdHidden").css('display', 'none');
                     } else {                       
-                        $(".hdHidden").css('display', 'block!important');
+                        $(".hdHidden").css('display', 'block');
                     }
                     t.row.add([
                         Imagen,

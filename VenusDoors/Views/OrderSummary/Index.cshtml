@@ -271,7 +271,6 @@
                 <div class="table-wrapper">
                     <div id="datatable1_wrapper" class="dataTables_wrapper no-footer">
                         <table id="idOrderSummary" style="width: 100%;" class="table display responsive nowrap dataTable no-footer dtr-inline" role="grid" aria-describedby="datatable1_info">
-
                             <thead>
                                 <tr class="tx-10" id="theadtr">
                                     <th>Preview</th>
@@ -286,7 +285,7 @@
                                         }
                                         else
                                         {
-                                            <th class="hdHidden" hidden>Hinge Dir.</th>
+                                            <th class="hdHidden" >Hinge Dir.</th>
                                         }
                                     }                                    
                                     <th>Door Type</th>
@@ -333,7 +332,7 @@
                                                     <td>@i.HingeDirection.Direction</td>
                                                 }
                                                 else {
-                                                    <td class="hdHidden" hidden>@i.HingeDirection.Direction</td>
+                                                    <td class="hdHidden" >@i.HingeDirection.Direction</td>
                                                 }
 
                                                 <td>@i.DoorType.Description</td>
@@ -355,35 +354,7 @@
 
                                     }
 
-                                }
-                                @*<tr>
-                                        <td>Imagen</td>
-                                        <td>
-                                            <input style="width:50%!important" name="SoloNumeros" required class="required RequiereLlenar form-control" type="number" maxlength="2" id="CantidadFila">
-
-                                        </td>
-                                        <td>
-                                            <input style="width:50%" name="SoloNumeros" required class="required RequiereLlenar eventChange iptWidth form-control" type="number" maxlength="2" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="iptWidthFila">
-                                            <select style="width:100%"  class="form-control select2" id="cbDecimalsWFila"></select>
-
-                                        </td>
-                                        <td>
-                                            <input style="width:50%!important" name="SoloNumeros" required class="required RequiereLlenar eventChange iptHeight form-control" type="number" maxlength="2" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="iptHeightFila">
-                                            <select style="width:100%" class="form-control select2" id="cbDecimalsHFila"></select>
-
-                                        </td>
-                                        <td class="col-md-2"> <select style="width:100%" class="form-control select2" id="cbPanelTypeFila"></select></td>
-                                        <td class="col-md-2"><select style="width:100%" class="form-control select2" id="cbTypeFila"></select></td>
-                                        <td class="col-md-2"><select style="width:100%" class="form-control select2" id="cbDoorTypeFila"></select></td>
-                                        <td><span>$</span>Total Unit.</td>
-                                        <td><span>$</span>Total</td>
-
-
-                                        <td id="tddelete" style="display: flex; padding-top: 35px;">
-
-                                            <button class="Cursor btn btn-danger btn-icon btnn-dele" style="width: 25px;height: 25px; margin-left: 10px;" type="submit"><i class="fa fa-trash"></i></button>
-                                        </td>
-                                    </tr>*@
+                                }                              
                             </tbody>
                         </table>
                     </div>
