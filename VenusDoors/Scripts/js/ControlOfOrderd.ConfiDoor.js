@@ -23,7 +23,50 @@
         $("#btnBack").hide();
         $("#btnClose").show();
         $('#editDXU').removeClass("active");
-        $('#dxoPanel').removeClass("active");  
+        $('#dxoPanel').removeClass("active");
+
+        if (_fingerPull == 1) {
+            _fingerPull = 1;
+        } else {
+            _fingerPull = 2;
+        }
+        llenarComboFinger(_fingerPull);
+
+        if (_isDrill == 1) {
+            _isDrill = 1;
+        } else {
+            _isDrill = 2;
+        }
+        llenarComboIsDrill(_isDrill);
+        HingeCalculate();
+        HingeShow();
+
+        if (_isOpen == 1) {
+            _isOpen = 1;
+        } else {
+            _isOpen = 2;
+        }
+        llenarComboIsOpen(_isOpen);
+
+        if (_isOver == 1) {
+            _isOver = 1;
+        } else {
+            _isOver = 2;
+        }
+        checkIsOverlay(_isOver);
+        llenarComboMaterial(_Material);
+        llenarComboDoorStyle(_DoorStyle);
+        llenarComboIEP(_IEP);
+        llenarComboOEP(_OEP);
+        llenarComboStileWidth(_StileW);
+        llenarComboRailWidth(_RailW);
+        llenarComboDoorAssembly(_DoorAsm);
+        llenarComboPanelStyle(_PanelStyle);
+        llenarComboPanelMaterial(_PanelMaterial);
+        llenarComboVerticalDivisions(_Vertical);
+        llenarComboHorizontalDivisions(_Horizontal);
+
+        ChangeDoorStylePanel(_DoorStyle);
     });
 
     $(document).on('click', '.editDoor', function (event) {
@@ -810,8 +853,7 @@ function llenarComboDecimalH(pDecimalH) {
     }
 }
 
-function InsertDoorsxUser() {
-    var idDxUorder = $('#idDxUorder').val();
+function InsertDoorsxUser() {   
     var itemCost = parseFloat($("#iptCost").val());
     var DoorQuantity = $("#iptQuantity").val();
     var DoorSubTotal = itemCost * DoorQuantity;
@@ -828,7 +870,7 @@ function InsertDoorsxUser() {
                  Id: _IdOrderModificar,
                  Descuento: $("#descDXU").val(),
                  DoorxUser: {
-                     Id: idDxUorder,
+                     Id: $("#idDoor").val(),
                      User: { Id: 0 },
                      Order: { Id: _IdOrderModificar},
                      Status: { Id: 1 },
@@ -907,7 +949,7 @@ function UpdateDoorxOrder() {
              idOrder: _IdOrderModificar,
              pDoorsxOrder: {
                  Id: $("#idDoorxO").val(),
-                 DoorxUser: $("#idDxuXO").val(),
+                 DoorxUser: { Id: $("#idDoor").val(), },
                  Width: parseFloat($("#iptWidth").val()),
                  DecimalsWidth: { Id: $("#cbDecimalsW").val() },
                  Height: parseFloat($("#iptHeight").val()),

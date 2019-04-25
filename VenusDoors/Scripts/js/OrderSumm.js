@@ -13,15 +13,29 @@
 
     $(document).on('click', '.btnn-edit', function (event) {
         var id = $(this).parentsUntil('#id-table').find('.btnn-edit').attr('data-id');
-        listadePuertas(id);
+        listadePuertas(id);        
         $("#dxoAdd").hide();
         $("#dxoSave").show();
-    });
-
-    $(document).on('click', '.btnn-edit', function (event) {
-        event.preventDefault();
-        $(this).closest('tr').remove();
-    });
+        $('body,html').animate({ scrollTop: 0 }, 500);
+        $('#CantidadFila').addClass("clickedEdit");
+        $('#iptWidth').addClass("clickedEdit");
+        $('#select2-cbDecimalsW-container').addClass("clickedEdit");
+        $('#iptHeight').addClass("clickedEdit");
+        $('#select2-cbDecimalsH-container').addClass("clickedEdit");
+        $('#select2-cbHingeDirection-container').addClass("clickedEdit");
+        $('#select2-cbDoorType-container').addClass("clickedEdit");
+        $('#select2-cbDoorOpt-container').addClass("clickedEdit");
+        setTimeout(function () {
+            $('#CantidadFila').removeClass("clickedEdit");
+            $('#iptWidth').removeClass("clickedEdit");
+            $('#select2-cbDecimalsW-container').removeClass("clickedEdit");
+            $('#iptHeight').removeClass("clickedEdit");
+            $('#select2-cbDecimalsH-container').removeClass("clickedEdit");
+            $('#select2-cbHingeDirection-container').removeClass("clickedEdit");
+            $('#select2-cbDoorType-container').removeClass("clickedEdit");
+            $('#select2-cbDoorOpt-container').removeClass("clickedEdit");
+        }, 1600);
+    });   
 
     $(document).on('click', '.SaveDoor', function (event) {
         UpdateDoorsxOrder();

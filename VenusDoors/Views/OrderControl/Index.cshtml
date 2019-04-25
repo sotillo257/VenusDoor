@@ -179,10 +179,18 @@
                                                         </div><!-- col -->
 
 
-                                                        <div class="col-xs-3 col-md-5">
+                                                        <div class="col-xs-3 col-md-4">
                                                             <label for="inDescription" style="margin-top: 25px;">Door Place: </label>
                                                             <div class="radio" id="isOverlay" style="display:flex">
 
+                                                            </div>
+                                                        </div><!-- form-group -->
+
+                                                        <div class="col-xs-3 col-md-2">
+                                                            <label for="inDescription" style="margin-top: 25px;">Discount: </label>
+                                                            <div class="input-group" style="width: 100%!important;">
+                                                                <input style="width:50%!important" name="SoloNumeros" required class="required RequiereLlenar eventChange iptHeight form-control" type="number" min="1" maxlength="2" max="99" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="descDXU">
+                                                                <span class="input-group-addon tx-size-sm lh-2">%</span>
                                                             </div>
                                                         </div><!-- form-group -->
                                                     </div>
@@ -359,6 +367,23 @@
     <script type="text/javascript">
         var _IdOrderModificar = 0;
         var _IdDoorxUser = 0;
+
+        var _fingerPull = 0;
+        var _isDrill = 0;
+        var _isOpen = 0;
+        var _isOver = 0;
+        var _Material = 0;
+        var _DoorStyle = 0;
+        var _IEP = 0;
+        var _OEP = 0;
+        var _StileW = 0;
+        var _RailW = 0;
+        var _DoorAsm = 0;
+        var _PanelStyle = 0;
+        var _PanelMaterial = 0;
+        var _Vertical = 0;
+        var _Horizontal = 0;
+
         var urlGetOrderxStatus = '@Url.Action("GetOrderxStatus", "OrderControl")';
         var urlGetAllStatus = '@Url.Action("GetAllStatus", "ConfiDoor")';
         var DxOl = 0;
