@@ -270,94 +270,323 @@
                 </div>
                 <div class="table-wrapper">
                     <div id="datatable1_wrapper" class="dataTables_wrapper no-footer">
-                        <table id="idOrderSummary" style="width: 100%;" class="table display responsive nowrap dataTable no-footer dtr-inline" role="grid" aria-describedby="datatable1_info">
-                            <thead>
-                                <tr class="tx-10" id="theadtr">
-                                    <th>Preview</th>
-                                    <th>Quantity</th>
-                                    <th>Widht</th>
-                                    <th>Height</th> 
-                                    @if (ord != null)
-                                    {
-                                        if (LastDoor.isDrill == true)
-                                        {
-                                            <th >Hinge Dir.</th>
-                                        }
-                                        else
-                                        {
-                                            <th class="hdHidden" >Hinge Dir.</th>
-                                        }
-                                    }                                    
-                                    <th>Door Type</th>
-                                    <th>Door Option</th>
-                                    <th>U. Price</th>
-                                    <th>Total</th>
-                                    <th style="text-align:center"><i class="fa fa-flash"></i></th>
-                                </tr>
-                            </thead>
-                            <tbody class="odd" id="id-table">
-                                @if (Session["UserID"] == null)
-                                {
+                     
 
-                                }
-                                else
+                                @if (LastDoor.isDrill == true)
                                 {
-                                    if (ViewBag.Order == null || LastDoor.DoorsxOrder.Count == 0)
-                                    {
+                                    <div id="datatab1"  style="display:none" >
+                                        <table id="tbOrderSummary" style="width: 100%;" class="table display responsive nowrap dataTable no-footer dtr-inline" role="grid" aria-describedby="datatable1_info">
+                                            <thead>
+                                                <tr class="tx-10" id="theadtr">
+                                                    <th>Preview</th>
+                                                    <th>Quantity</th>
+                                                    <th>Widht</th>
+                                                    <th>Height</th>
+                                                    <th>Door Type</th>
+                                                    <th>Door Option</th>
+                                                    <th>U. Price</th>
+                                                    <th>Total</th>
+                                                    <th style="text-align:center"><i class="fa fa-flash"></i></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="odd" id="id-table">
+                                                @if (Session["UserID"] == null)
+                                            {
 
-                                    }
-                                    else
-                                    {
-                                        foreach (Model.DoorxOrder i in LastDoor.DoorsxOrder)
-                                        {
-                                            <tr>
-                                                <td><img style="width: 80px;" src="@i.Picture"></td>
-                                                <td>@i.Quantity.ToString().Replace(',', '.')</td>
-                                                <td>
-                                                    @i.Width.ToString("N0")
-                                                    @if (i.DecimalsWidth.Value != 0)
-                                                    {
-                                                        <span>@i.DecimalsWidth.Description</span>
-                                                    }
-                                                </td>
-                                                <td>
-                                                    @i.Height.ToString("N0")
-                                                    @if (i.DecimalsHeight.Value != 0)
-                                                    {
-                                                        <span>@i.DecimalsHeight.Description</span>
-                                                    }
-                                                </td>
-                                                @if (LastDoor.isDrill == true)
+                                            }
+                                            else
+                                            {
+                                                if (ViewBag.Order == null || LastDoor.DoorsxOrder.Count == 0)
                                                 {
+
+                                                }
+                                                else
+                                                {
+                                                    foreach (Model.DoorxOrder i in LastDoor.DoorsxOrder)
+                                                    {
+                                                <tr>
+                                                    <td><img style="width: 80px;" src="@i.Picture"></td>
+                                                    <td>@i.Quantity.ToString().Replace(',', '.')</td>
+                                                    <td>
+                                                        @i.Width.ToString("N0")
+                                                        @if (i.DecimalsWidth.Value != 0)
+                                                                {
+                                                    <span>@i.DecimalsWidth.Description</span>
+                                                                }
+                                                    </td>
+                                                    <td>
+                                                        @i.Height.ToString("N0")
+                                                        @if (i.DecimalsHeight.Value != 0)
+                                                                {
+                                                    <span>@i.DecimalsHeight.Description</span>
+                                                                }
+                                                    </td>
+
+                                                    <td>@i.DoorType.Description</td>
+                                                    <td>@i.DoorOption.Description</td>
+                                                    <td><span>$</span>@i.ItemCost.ToString().Replace(',', '.')</td>
+                                                    <td><span>$</span>@i.SubTotal.ToString().Replace(',', '.')</td>
+
+
+                                                    <td id="tddelete" style="display: flex;">
+                                                        <center>
+                                                            <button class="Cursor btn btn-primary btn-icon btnn-edit" data-id="@i.Id" style="width: 25px;height: 25px;" type="submit"><i class="fa fa-edit"></i></button>
+                                                            <button class="Cursor btn btn-danger btn-icon btnn-dele" data-id="@i.Id" style="width: 25px;height: 25px; margin-left: 10px;" type="submit"><i class="fa fa-trash"></i></button>
+                                                        </center>
+
+                                                    </td>
+                                                </tr>
+
+                                                    }
+
+                                                }
+
+                                            }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="datatab2"  >
+                                        <table id="idOrderSummary" style="width: 100%;" class="table display responsive nowrap dataTable no-footer dtr-inline" role="grid" aria-describedby="datatable1_info">
+                                            <thead>
+                                                <tr class="tx-10" id="theadtr">
+                                                    <th>Preview</th>
+                                                    <th>Quantity</th>
+                                                    <th>Widht</th>
+                                                    <th>Height</th>
+
+                                                    <th>Hinge Dir.</th>
+
+
+                                                    <th>Door Type</th>
+                                                    <th>Door Option</th>
+                                                    <th>U. Price</th>
+                                                    <th>Total</th>
+                                                    <th style="text-align:center"><i class="fa fa-flash"></i></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="odd" id="id-table">
+                                                @if (Session["UserID"] == null)
+                                            {
+
+                                            }
+                                            else
+                                            {
+                                                if (ViewBag.Order == null || LastDoor.DoorsxOrder.Count == 0)
+                                                {
+
+                                                }
+                                                else
+                                                {
+                                                    foreach (Model.DoorxOrder i in LastDoor.DoorsxOrder)
+                                                    {
+                                                <tr>
+                                                    <td><img style="width: 80px;" src="@i.Picture"></td>
+                                                    <td>@i.Quantity.ToString().Replace(',', '.')</td>
+                                                    <td>
+                                                        @i.Width.ToString("N0")
+                                                        @if (i.DecimalsWidth.Value != 0)
+                                                                {
+                                                        <span>@i.DecimalsWidth.Description</span>
+                                                                }
+                                                    </td>
+                                                    <td>
+                                                        @i.Height.ToString("N0")
+                                                        @if (i.DecimalsHeight.Value != 0)
+                                                                {
+                                                        <span>@i.DecimalsHeight.Description</span>
+                                                                }
+                                                    </td>
                                                     <td>@i.HingeDirection.Direction</td>
+
+
+                                                    <td>@i.DoorType.Description</td>
+                                                    <td>@i.DoorOption.Description</td>
+                                                    <td><span>$</span>@i.ItemCost.ToString().Replace(',', '.')</td>
+                                                    <td><span>$</span>@i.SubTotal.ToString().Replace(',', '.')</td>
+
+
+                                                    <td id="tddelete" style="display: flex;">
+                                                        <center>
+                                                            <button class="Cursor btn btn-primary btn-icon btnn-edit" data-id="@i.Id" style="width: 25px;height: 25px;" type="submit"><i class="fa fa-edit"></i></button>
+                                                            <button class="Cursor btn btn-danger btn-icon btnn-dele" data-id="@i.Id" style="width: 25px;height: 25px; margin-left: 10px;" type="submit"><i class="fa fa-trash"></i></button>
+                                                        </center>
+
+                                                    </td>
+                                                </tr>
+
+                                                    }
+
                                                 }
-                                                else {
-                                                    <td class="hdHidden" >@i.HingeDirection.Direction</td>
+
+                                            }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                }
+                                else {
+                                        <div id="datatab1" >
+                                            <table id="tbOrderSummary" style="width: 100%;" class="table display responsive nowrap dataTable no-footer dtr-inline" role="grid" aria-describedby="datatable1_info">
+                                                <thead>
+                                                    <tr class="tx-10" id="theadtr">
+                                                        <th>Preview</th>
+                                                        <th>Quantity</th>
+                                                        <th>Widht</th>
+                                                        <th>Height</th>
+                                                        <th>Door Type</th>
+                                                        <th>Door Option</th>
+                                                        <th>U. Price</th>
+                                                        <th>Total</th>
+                                                        <th style="text-align:center"><i class="fa fa-flash"></i></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="odd" id="id-table">
+                                                    @if (Session["UserID"] == null)
+                                                    {
+
+                                                    }
+                                                    else
+                                                    {
+                                                        if (ViewBag.Order == null || LastDoor.DoorsxOrder.Count == 0)
+                                                        {
+
+                                                        }
+                                                        else
+                                                        {
+                                                            foreach (Model.DoorxOrder i in LastDoor.DoorsxOrder)
+                                                            {
+                                                                <tr>
+                                                                    <td><img style="width: 80px;" src="@i.Picture"></td>
+                                                                    <td>@i.Quantity.ToString().Replace(',', '.')</td>
+                                                                    <td>
+                                                                        @i.Width.ToString("N0")
+                                                                        @if (i.DecimalsWidth.Value != 0)
+                                                                        {
+                                                                            <span>@i.DecimalsWidth.Description</span>
+                                                                        }
+                                                                    </td>
+                                                                    <td>
+                                                                        @i.Height.ToString("N0")
+                                                                        @if (i.DecimalsHeight.Value != 0)
+                                                                        {
+                                                                            <span>@i.DecimalsHeight.Description</span>
+                                                                        }
+                                                                    </td>
+
+                                                                    <td>@i.DoorType.Description</td>
+                                                                    <td>@i.DoorOption.Description</td>
+                                                                    <td><span>$</span>@i.ItemCost.ToString().Replace(',', '.')</td>
+                                                                    <td><span>$</span>@i.SubTotal.ToString().Replace(',', '.')</td>
+
+
+                                                                    <td id="tddelete" style="display: flex;">
+                                                                        <center>
+                                                                            <button class="Cursor btn btn-primary btn-icon btnn-edit" data-id="@i.Id" style="width: 25px;height: 25px;" type="submit"><i class="fa fa-edit"></i></button>
+                                                                            <button class="Cursor btn btn-danger btn-icon btnn-dele" data-id="@i.Id" style="width: 25px;height: 25px; margin-left: 10px;" type="submit"><i class="fa fa-trash"></i></button>
+                                                                        </center>
+
+                                                                    </td>
+                                                                </tr>
+
+                                                            }
+
+                                                        }
+
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                            <div id="datatab2"  style="display:none" >
+                                                <table id="idOrderSummary" style="width: 100%;" class="table display responsive nowrap dataTable no-footer dtr-inline" role="grid" aria-describedby="datatable1_info">
+                                                    <thead>
+                                                        <tr class="tx-10" id="theadtr">
+                                                            <th>Preview</th>
+                                                            <th>Quantity</th>
+                                                            <th>Widht</th>
+                                                            <th>Height</th>
+                                                            @if (ord != null)
+                                                            {
+                                                                if (LastDoor.isDrill == true)
+                                                                {
+                                                                    <th>Hinge Dir.</th>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <th class="hdHidden">Hinge Dir.</th>
+                                                                }
+                                                            }
+                                                            <th>Door Type</th>
+                                                            <th>Door Option</th>
+                                                            <th>U. Price</th>
+                                                            <th>Total</th>
+                                                            <th style="text-align:center"><i class="fa fa-flash"></i></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="odd" id="id-table">
+                                                        @if (Session["UserID"] == null)
+                                                        {
+
+                                                        }
+                                                        else
+                                                        {
+                                                            if (ViewBag.Order == null || LastDoor.DoorsxOrder.Count == 0)
+                                                            {
+
+                                                            }
+                                                            else
+                                                            {
+                                                                foreach (Model.DoorxOrder i in LastDoor.DoorsxOrder)
+                                                                {
+                                                                    <tr>
+                                                                        <td><img style="width: 80px;" src="@i.Picture"></td>
+                                                                        <td>@i.Quantity.ToString().Replace(',', '.')</td>
+                                                                        <td>
+                                                                            @i.Width.ToString("N0")
+                                                                            @if (i.DecimalsWidth.Value != 0)
+                                                                            {
+                                                                                <span>@i.DecimalsWidth.Description</span>
+                                                                            }
+                                                                        </td>
+                                                                        <td>
+                                                                            @i.Height.ToString("N0")
+                                                                            @if (i.DecimalsHeight.Value != 0)
+                                                                            {
+                                                                                <span>@i.DecimalsHeight.Description</span>
+                                                                            }
+                                                                        </td>
+                                                                        @if (LastDoor.isDrill == true)
+                                                                        {
+                                                                            <td>@i.HingeDirection.Direction</td>
+                                                                        }
+                                                                        else {
+                                                                            <td class="hdHidden">@i.HingeDirection.Direction</td>
+                                                                        }
+
+                                                                        <td>@i.DoorType.Description</td>
+                                                                        <td>@i.DoorOption.Description</td>
+                                                                        <td><span>$</span>@i.ItemCost.ToString().Replace(',', '.')</td>
+                                                                        <td><span>$</span>@i.SubTotal.ToString().Replace(',', '.')</td>
+
+
+                                                                        <td id="tddelete" style="display: flex;">
+                                                                            <center>
+                                                                                <button class="Cursor btn btn-primary btn-icon btnn-edit" data-id="@i.Id" style="width: 25px;height: 25px;" type="submit"><i class="fa fa-edit"></i></button>
+                                                                                <button class="Cursor btn btn-danger btn-icon btnn-dele" data-id="@i.Id" style="width: 25px;height: 25px; margin-left: 10px;" type="submit"><i class="fa fa-trash"></i></button>
+                                                                            </center>
+
+                                                                        </td>
+                                                                    </tr>
+
+                                                                }
+
+                                                            }
+
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                                 }
 
-                                                <td>@i.DoorType.Description</td>
-                                                <td>@i.DoorOption.Description</td>
-                                                <td><span>$</span>@i.ItemCost.ToString().Replace(',', '.')</td>
-                                                <td><span>$</span>@i.SubTotal.ToString().Replace(',', '.')</td>
-
-
-                                                <td id="tddelete" style="display: flex;">
-                                                    <center>
-                                                        <button class="Cursor btn btn-primary btn-icon btnn-edit" data-id="@i.Id" style="width: 25px;height: 25px;" type="submit"><i class="fa fa-edit"></i></button>
-                                                        <button class="Cursor btn btn-danger btn-icon btnn-dele" data-id="@i.Id" style="width: 25px;height: 25px; margin-left: 10px;" type="submit"><i class="fa fa-trash"></i></button>
-                                                    </center>
-                                                    
-                                                </td>
-                                            </tr>
-
-                                        }
-
-                                    }
-
-                                }                              
-                            </tbody>
-                        </table>
-                    </div>
+                                            </div>
                 </div><!-- table-wrapper -->
 
                 <div class="row" style="margin-top: 10px;margin-right: 0px;">
