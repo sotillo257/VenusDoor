@@ -70,6 +70,16 @@ $(function () {
         }
     });
 
+    $('#tbOrderSummary').DataTable({
+        ordering: false,
+        responsive: true,
+        language: {
+            searchPlaceholder: 'Search...',
+            sSearch: '',
+            lengthMenu: '_MENU_ items/page',
+        }
+    });
+
     $('#datatable2').DataTable({
         bLengthChange: false,
         searching: false,

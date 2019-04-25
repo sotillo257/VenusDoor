@@ -613,7 +613,6 @@ function InsertDoorsxUser() {
 
                         //Validar data para ver si mostrar error al guardar o exito al guardar
                         if (result != null) {
-                            llenarheaderOrder();
                             llenarTablaOrderSumary();
                             $('#modalInsert').modal('hide');
                             $('#modalConfirmOrderSummary').modal('hide');
@@ -638,86 +637,6 @@ function InsertDoorsxUser() {
                     },
               
                 });
-}
-
-function UpdateDoorsxUser() {
-    var itemCost = parseFloat($("#iptCost").val());
-    var DoorQuantity = $("#iptQuantity").val();
-    var DoorSubTotal = itemCost * DoorQuantity;
-    var OrdSubTotal = DoorSubTotal;
-    var Tx = parseFloat(0.0825);
-    var Taxes = (parseFloat(OrdSubTotal) * Tx).toFixed(2);
-    var OrdTotal = (parseFloat(OrdSubTotal) + parseFloat(Taxes)).toFixed(2);
-    var DoorOp = $('input[name=radioOption]:checked').attr("data-id");
-    var isOver = ($('input[name=radioOver]:checked').attr("data-id") == 1) ? false : true;
-    var drillingV = ($("#cbisDrill").val() == 1) ? false : true;
-    var datos =
-         {
-             Ord: {
-                 DoorxUser: {
-                     Id: $('#idDoor').val(),
-                     User: { Id: 0 },
-                     Status: { Id: 1 },
-                     Material: { Id: $("#cbMaterial").val() },
-                     DoorStyle: { Id: $("#cbDoorStyle").val() },
-                     TopRail: { Id: $("#cbRailWidth").val() },
-                     BottomRail: { Id: $("#cbStileWidth").val() },
-                     Preparation: { Id: 1 },
-                     Panel: { Id: $("#cbPanel").val() },
-                     PanelMaterial: { Id: $("#cbPanelMaterial").val() },
-                     IsOpeningMeasurement: ($("#cbIsOpeningMeasurement").val() == 1) ? false : true,
-                     Join: { Id: $("#cbDoorAssembly").val() },
-                     OutsideEdgeProfile: { Id: $("#cbOutsideEdgeProfile").val() },
-                     InsideEdgeProfile: { Id: $("#cbInsideEdgeProfile").val() },
-                     VerticalDivisions: { Id: $("#cbVerticalDivisions").val() },
-                     HorizontalDivisions: { Id: $("#cbHorizontalDivisions").val() },
-                     Width: parseFloat($("#iptWidth").val()),
-                     DecimalsWidth: { Id: $("#cbDecimalsW").val() },
-                     Height: parseFloat($("#iptHeight").val()),
-                     DecimalsHeight: { Id: $("#cbDecimalsH").val() },
-                     isDrill: drillingV,
-                     Quantity: DoorQuantity,
-                     ItemCost: itemCost,
-                     SubTotal: DoorSubTotal,
-                     Picture: $('#DoorPicture').attr('src'),
-                     ProfilePicture: $('#ProfilePicture').attr('src'),
-                     DoorType: { Id: $("#cbDoorType").val() },
-                     isOverlay: isOver,
-                     isFingerPull: ($("#cbFingerPull").val() == 1) ? false : true,
-                 },
-             }
-         };
-    $.ajax({
-        type: 'POST',
-        data: JSON.stringify(datos),
-        url: urlUpdateDoorsxUser,
-        dataType: "json",
-        contentType: 'application/json; charset=utf-8',
-        success: function (result) {
-
-            //Validar data para ver si mostrar error al guardar o exito al guardar
-            if (result != null) {
-                llenarheaderOrder();
-                CodigoDoorxUser = result.DoorxUser.Id;
-                $('#modalInsert').modal('hide');
-                $('#modalConfirmOrderSummary').modal('hide');
-                LlammarModal("ConfigM", "General configuration of doors successfully saved!", "");                
-                $("#btnConfigDoor").removeClass("btBuild").addClass("ModDoorxUser");
-                var boton = '<button class="btn btn-success btn-icon AddDoor" style="width: 37px;height: 37px; margin-top: 55px;" type="button"><i class="fa fa-plus"></i></button>';
-                $("#btInsertDoorTable").empty().append(boton);
-                changeDoorStyle();
-                HingeShow(drillingV);
-            } else {
-                $('#modalInsert').modal('hide');
-                LlammarModal("Danger", "Error in the process.", "An error occurred when modifying the general settings.");
-            }
-        },
-        error: function (err) {
-            $('#modalConfirmOrderSummary').modal('hide');
-            LlammarModal("Danger", "An error occurred during the process.", "Check your internet connection I tried again");
-        },
-
-    });
 }
 
 function InsertDoorsxOrder() {
@@ -768,7 +687,7 @@ function InsertDoorsxOrder() {
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
                 LlammarModal("ConfigM", "The door has been created successfully!", "");
-                llenarheaderOrder();
+                
                 llenarTablaOrderSumary();
                 LimpiarCamposRapidos();                
             } else {
@@ -1274,8 +1193,11 @@ function llenarTablaOrderSumary() {
             if (data != null) {
                 $(".btn-continue").prop('disabled', false);
                 id = data;
+                llenarheaderOrder(data.Order.DoorxUser);
+                listDOOR = data.Order.DoorxUser;
                 DxO = data.Order.DoorxUser.DoorsxOrder;
-                
+                var tb = $('#tbOrderSummary').DataTable();
+                tb.rows().remove().draw(false);
                 var t = $('#idOrderSummary').DataTable();
                 t.rows().remove().draw(false);
                 for (var i = 0; i < DxO.length; i++) {
@@ -1290,18 +1212,34 @@ function llenarTablaOrderSumary() {
                     if (HDecimal == "0" || HDecimal == 0) {
                         HDecimal = "";
                     }
-                    var drillingV = ($("#idDrill").val() == 1) ? false : true;
+                    var drillingV = data.Order.DoorxUser.isDrill;
                     if (drillingV == false) {
-                        $(".hdHidden").css('display', 'none!important');
-                    } else {                       
-                        $(".hdHidden").css('display', 'block!important');
+                        $("#datatab2").css('display', 'none');
+                        $("#datatab1").css('display', 'block');
+                    } else {
+                        $("#datatab1").css('display', 'none');
+                        $("#datatab2").css('display', 'block');
                     }
+                   
                     t.row.add([
                         Imagen,
                         DxO[i].Quantity,
                         DxO[i].Width + ' ' + WDecimal,
                         DxO[i].Height + ' ' + HDecimal,
                         DxO[i].HingeDirection.Direction,
+                        DxO[i].DoorType.Description,
+                        DxO[i].DoorOption.Description,
+                        "<span>$</span>" + DxO[i].ItemCost,
+                        "<span>$</span>" + DxO[i].SubTotal,
+                        Botones,
+                    ]).draw(false);
+
+                  
+                    tb.row.add([
+                        Imagen,
+                        DxO[i].Quantity,
+                        DxO[i].Width + ' ' + WDecimal,
+                        DxO[i].Height + ' ' + HDecimal,
                         DxO[i].DoorType.Description,
                         DxO[i].DoorOption.Description,
                         "<span>$</span>" + DxO[i].ItemCost,
@@ -1336,21 +1274,15 @@ function llenarTablaOrderSumary() {
 
 }
 
-function llenarheaderOrder() {
-    $.ajax({
-        url: urlGetLastDoor,
-        cache: false,
-        type: 'POST',
-        async: false,
-        contentType: "application/json; charset=utf-8",
-        success: function (data) {
+function llenarheaderOrder(data) {
+   
             var headerConfig = '';
-            if (data.LastDoor != null) {                
+            if (data != null) {                
                 
-                headerConfig += '<div class="col-xs-4 col-md-3"><label id="Material" style="margin-top: 25px;">Wood Species: <span>'+ data.LastDoor.Material.Description +'</span></label></div>';
-                headerConfig += '<div class="col-xs-4 col-md-3"><label id="DoorStyle" style="margin-top: 25px;">Door Style: <span>'+ data.LastDoor.DoorStyle.Description +'</span></label></div>';
+                headerConfig += '<div class="col-xs-4 col-md-3"><label id="Material" style="margin-top: 25px;">Wood Species: <span>'+ data.Material.Description +'</span></label></div>';
+                headerConfig += '<div class="col-xs-4 col-md-3"><label id="DoorStyle" style="margin-top: 25px;">Door Style: <span>'+ data.DoorStyle.Description +'</span></label></div>';
                 headerConfig += '<div class="col-xs-4 col-md-3">';
-                if (data.LastDoor.isOverlay == false)
+                if (data.isOverlay == false)
                 {
                     headerConfig += '<label for="Overlay" style="margin-top: 25px;">Door Place: <span>Inset Door Type</span></label>';
                 }
@@ -1359,15 +1291,15 @@ function llenarheaderOrder() {
                     headerConfig += '<label for="Overlay" style="margin-top: 25px;">Door Place: <span>Overlay Door Type</span></label>';
                 }
                 headerConfig += '</div>';
-                headerConfig += '<div class="col-xs-4 col-md-3"><label for="InsideProfile" style="margin-top: 25px;">Inside Edge Profile: <span>'+ data.LastDoor.InsideEdgeProfile.Description +'</span></label></div>';
-                headerConfig += '<div class="col-xs-4 col-md-3"><label for="OutsideProfile" style="margin-top: 25px;">Outside Edge Profile: <span>'+ data.LastDoor.OutsideEdgeProfile.Description +'</span></label></div>';
-                headerConfig += '<div class="col-xs-4 col-md-3"><label for="StileWidth" style="margin-top: 25px;">Stile Width: <span>'+ data.LastDoor.BottomRail.Description +'</span></label></div>';
-                headerConfig += '<div class="col-xs-4 col-md-3"><label for="RailWidth" style="margin-top: 25px;">Rail Width: <span>'+ data.LastDoor.TopRail.Description +'</span></label></div>';
-                headerConfig += '<div class="col-xs-4 col-md-3"><label for="DoorAssembly" style="margin-top: 25px;">Door Assembly: <span>' + data.LastDoor.Join.Description + '</span></label></div>';
-                headerConfig += '<div class="col-xs-4 col-md-3"><label for="PanelStyle" style="margin-top: 25px;">Panel Style: <span>' + data.LastDoor.Panel.Description + '</span></label></div>';
-                headerConfig += '<div class="col-xs-4 col-md-3"><label for="PanelMaterial" style="margin-top: 25px;">Panel Material: <span>' + data.LastDoor.PanelMaterial.Description + '</span></label></div>';                
+                headerConfig += '<div class="col-xs-4 col-md-3"><label for="InsideProfile" style="margin-top: 25px;">Inside Edge Profile: <span>'+ data.InsideEdgeProfile.Description +'</span></label></div>';
+                headerConfig += '<div class="col-xs-4 col-md-3"><label for="OutsideProfile" style="margin-top: 25px;">Outside Edge Profile: <span>'+ data.OutsideEdgeProfile.Description +'</span></label></div>';
+                headerConfig += '<div class="col-xs-4 col-md-3"><label for="StileWidth" style="margin-top: 25px;">Stile Width: <span>'+ data.BottomRail.Description +'</span></label></div>';
+                headerConfig += '<div class="col-xs-4 col-md-3"><label for="RailWidth" style="margin-top: 25px;">Rail Width: <span>'+ data.TopRail.Description +'</span></label></div>';
+                headerConfig += '<div class="col-xs-4 col-md-3"><label for="DoorAssembly" style="margin-top: 25px;">Door Assembly: <span>' + data.Join.Description + '</span></label></div>';
+                headerConfig += '<div class="col-xs-4 col-md-3"><label for="PanelStyle" style="margin-top: 25px;">Panel Style: <span>' + data.Panel.Description + '</span></label></div>';
+                headerConfig += '<div class="col-xs-4 col-md-3"><label for="PanelMaterial" style="margin-top: 25px;">Panel Material: <span>' + data.PanelMaterial.Description + '</span></label></div>';                
                 headerConfig += '<div class="col-xs-4 col-md-3">';
-                if (data.LastDoor.IsOpeningMeasurement == false)
+                if (data.IsOpeningMeasurement == false)
                 {
                     headerConfig += '<label for="Openeing" style="margin-top: 25px;">Opening Measurement: <span>No</span></label>';
                 }
@@ -1376,10 +1308,10 @@ function llenarheaderOrder() {
                     headerConfig += '<label for="Openeing" style="margin-top: 25px;">Opening Measurement: <span>Yes</span></label>';
                 }
                 headerConfig += '</div>';
-                headerConfig += '<div class="col-xs-4 col-md-3"><label for="VerticalD" style="margin-top: 25px;">Vertical Divisions: <span>'+ data.LastDoor.VerticalDivisions.Quantity +'</span></label></div>';
-                headerConfig += '<div class="col-xs-4 col-md-3"><label for="HorizontalD" style="margin-top: 25px;">Horizontal Divisions: <span>'+ data.LastDoor.HorizontalDivisions.Quantity +'</span></label></div>';                               
+                headerConfig += '<div class="col-xs-4 col-md-3"><label for="VerticalD" style="margin-top: 25px;">Vertical Divisions: <span>'+ data.VerticalDivisions.Quantity +'</span></label></div>';
+                headerConfig += '<div class="col-xs-4 col-md-3"><label for="HorizontalD" style="margin-top: 25px;">Horizontal Divisions: <span>'+ data.HorizontalDivisions.Quantity +'</span></label></div>';                               
                 headerConfig += '<div class="col-xs-4 col-md-3">';
-                if (data.LastDoor.isDrill == false) {
+                if (data.isDrill == false) {
                     headerConfig += '<label for="Drill" style="margin-top: 25px;">Hinge Drilling: <span>No</span></label>';
                     headerConfig += '<input id="idDrill" hidden value="1" />';
                 }
@@ -1389,7 +1321,7 @@ function llenarheaderOrder() {
                 }
                 headerConfig += '</div>';
                 headerConfig += '<div class="col-xs-4 col-md-3">';
-                if (data.LastDoor.isFingerPull == false)
+                if (data.isFingerPull == false)
                 {
                     headerConfig += '<label for="Finger" style="margin-top: 25px;">Finger Pull: <span>No</span></label>';                    
                 }
@@ -1404,10 +1336,5 @@ function llenarheaderOrder() {
             }
             
             $("#HeaderOptions").html(headerConfig);
-
-        },
-        error: function (err) {
-            LlammarModal("Danger", "Error.", "llenarheaderOrder");
-        }
-    });
+        
 }
