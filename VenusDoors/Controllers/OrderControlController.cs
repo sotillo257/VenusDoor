@@ -304,14 +304,18 @@ namespace VenusDoors.Controllers
                     BusinessLogic.lnDoorxOrder _LN = new BusinessLogic.lnDoorxOrder();
                     BusinessLogic.lnUser _LNU = new BusinessLogic.lnUser();
                     BusinessLogic.lnPerson _LNP = new BusinessLogic.lnPerson();
+                    DoorsxUser DxuOr = ln.GetDoorsxUserById(Orden.DoorxUser.Id);
 
                     Order ord = ln.CrearOrder(Orden, (int)Session["UserID"]);
+
+                    ord.DoorxUser.isDrill = DxuOr.isDrill;
+
                     _LN.UpdateDoorsxOrder(ord);
 
+                    DoorsxUser dxu = ln.GetDoorsxUserById(Orden.DoorxUser.Id);
                     User pUser = _LNU.GetUserById(ord.User.Id);
                     int idPerson = pUser.Person.Id;
-                    pUser.Person = _LNP.GetPersonById(idPerson);
-                    DoorsxUser dxu = ln.GetDoorsxUserById(Orden.DoorxUser.Id);
+                    pUser.Person = _LNP.GetPersonById(idPerson);                    
                     string message = "<p>Hi "+ pUser.Person.Name +", we have made some modifications to the configuration of your order.<br>The following shows how the general configuration was after being modified:</p><br>" +
                     "<div style='width:100%'>"+
                     "<h4 style = 'margin:0; text-align:center' >General Configuration</h4>" +
