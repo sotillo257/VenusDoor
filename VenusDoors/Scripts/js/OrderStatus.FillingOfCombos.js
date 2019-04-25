@@ -38,15 +38,17 @@
         changeDoorPicture();
     });
 
+
 	$(document).on('change', '#cbDoorStyle', function () {
-     
-	 ChangeDoorStylePanel($("#cbDoorStyle").val())
-       
-    });
+	    ChangeDoorStylePanel($("#cbDoorStyle").val());
+	    GetInsideAndOutside($("#cbDoorStyle").val());
+	});
 });
 
 function ChangeDoorStylePanel(pIdDoorStyle) {
     var bandera = true;
+    var pMaterial = $("#cbMaterial").val();
+    llenarComboPanelMaterial(pMaterial, pIdDoorStyle);
     llenarComboDoorAssembly($("#cbDoorAssembly").val());
     if (pIdDoorStyle == 1002) {
         var panelType = $("#cbPanel").val();
@@ -82,7 +84,7 @@ function ChangeDoorStylePanel(pIdDoorStyle) {
         var outside = $("#cbOutsideEdgeProfile").val();
         var option = '<option value="0">Select</option>';
         for (var i = 0; i < AllInsideEdgeProfile.length; i++) {
-            if (AllInsideEdgeProfile[i].Status.Id == 1 && (AllInsideEdgeProfile[i].Id == 3 || AllInsideEdgeProfile[i].Id == 7)) {
+            if (AllInsideEdgeProfile[i].Status.Id == 1 && (AllInsideEdgeProfile[i].Id == 3 || AllInsideEdgeProfile[i].Id == 7 || AllInsideEdgeProfile[i].Id == 11)) {
                 option += '<option value="' + AllInsideEdgeProfile[i].Id + '">' + AllInsideEdgeProfile[i].Description + '</option>';
             }
         }
@@ -110,7 +112,7 @@ function ChangeDoorStylePanel(pIdDoorStyle) {
         llenarInsideAndOutsideEspecificos(5, 5);
         llenarComboPanel();
     } else if (pIdDoorStyle == 1007) {
-        llenarInsideAndOutsideEspecificos(4, 11);
+        llenarInsideAndOutsideEspecificos(0, 11);
         llenarComboPanel();
     } else if (pIdDoorStyle == 1008) {
         llenarComboInsideAndOutside();
@@ -125,7 +127,7 @@ function ChangeDoorStylePanel(pIdDoorStyle) {
         }
         $("#cbPanel").empty().append(option);
         $("#cbPanel").val(5);
-    } else if ($("#cbDoorStyle").val() == 1010) {
+    } else if (pIdDoorStyle == 1010) {
         llenarComboInsideAndOutside();
         var option = '<option value="3">Slab</option>';
         $("#cbPanel").empty().append(option);
@@ -163,165 +165,269 @@ function llenarComboPanel() {
 	$("#cbPanel").val(panelType);
 }
 
-function changeDoorStyle() {
-	var bandera = true;
-	if ($("#cbDoorStyle").val() == 1002) {
-		var panelType = $("#cbPanel").val();
-		option = '<option value="0">Select</option>';
-		for (var i = 0; i < AllPanelType.length; i++) {
-			if (AllPanelType[i].Status.Id == 1 && AllPanelType[i].Id != 2) {
-				option += '<option value="' + AllPanelType[i].Id + '">' + AllPanelType[i].Description + '</option>';
-			}
-		}
-		$("#cbPanel").empty().append(option);
+function ChangeDoorStylePanel(pIdDoorStyle) {
+    var bandera = true;
+    var pMaterial = $("#cbMaterial").val();
+    llenarComboPanelMaterial(pMaterial, pIdDoorStyle);
+    llenarComboDoorAssembly($("#cbDoorAssembly").val());
+    if (pIdDoorStyle == 1002) {
+        var panelType = $("#cbPanel").val();
+        option = '<option value="0">Select</option>';
+        for (var i = 0; i < AllPanelType.length; i++) {
+            if (AllPanelType[i].Status.Id == 1 && AllPanelType[i].Id != 2) {
+                option += '<option value="' + AllPanelType[i].Id + '">' + AllPanelType[i].Description + '</option>';
+            }
+        }
+        $("#cbPanel").empty().append(option);
 
-		if (panelType != 2) {
-			$("#cbPanel").val(panelType);
-		} else {
-			$("#cbPanel").val(0);
-		}
+        if (panelType != 2) {
+            $("#cbPanel").val(panelType);
+        } else {
+            $("#cbPanel").val(0);
+        }
 
-		llenarComboInsideAndOutside();
-	} else if ($("#cbDoorStyle").val() == 1003) {
+        llenarComboInsideAndOutside();
+    } else if (pIdDoorStyle == 1003) {
 
-		var panelType = $("#cbPanel").val();
-		var option = '<option value="0">Select</option>';
-		for (var i = 0; i < AllPanelType.length; i++) {
-			if (AllPanelType[i].Status.Id == 1 && AllPanelType[i].Id == 2) {
-				option += '<option value="' + AllPanelType[i].Id + '">' + AllPanelType[i].Description + '</option>';
-			}
-		}
-		$("#cbPanel").empty().append(option);
-		$("#cbPanel").val(2);
-	} else if ($("#cbDoorStyle").val() == 1004) {
-
-		llenarComboPanel();
-	} else if ($("#cbDoorStyle").val() == 1005) {
-		llenarComboPanel();
-	}
-	else if ($("#cbDoorStyle").val() == 1006) {
-		llenarComboPanel();
-	} else if ($("#cbDoorStyle").val() == 1007) {
-		llenarComboPanel();
-	} else if ($("#cbDoorStyle").val() == 1008) {
-		llenarComboPanel();
-	} else if ($("#cbDoorStyle").val() == 1009) {
-		llenarComboInsideAndOutside();
-		var option = '<option value="0">Select</option>';
-		for (var i = 0; i < AllPanelType.length; i++) {
-			if (AllPanelType[i].Status.Id == 1 && AllPanelType[i].Id == 5) {
-				option += '<option value="' + AllPanelType[i].Id + '">' + AllPanelType[i].Description + '</option>';
-			}
-		}
-		$("#cbPanel").empty().append(option);
-		$("#cbPanel").val(5);
-	} else if ($("#cbDoorStyle").val() == 1010) {
-		//llenarComboInsideAndOutside();
-		//var option = '<option value="slab">Slab</option>';
-		//$("#cbPanel").empty().append(option);
-		//$("#cbInsideEdgeProfile").empty().append(option);
-		//$("#cbOutsideEdgeProfile").empty().append(option);
-		//$("#cbDoorAssembly").empty().append(option);
-		//$('#DoorPicture').attr('src', "/Content/img/Doors/slab.png");
-		//$('#ProfilePicture').attr('src', "/Content/img/Profile/slab.png");
-		//bandera = false;
-	}
-	if (bandera) {
-		//changeDoorPicture();
-		//ChangeProfile();
-	}
+        var panelType = $("#cbPanel").val();
+        var option = '<option value="0">Select</option>';
+        for (var i = 0; i < AllPanelType.length; i++) {
+            if (AllPanelType[i].Status.Id == 1 && AllPanelType[i].Id == 2) {
+                option += '<option value="' + AllPanelType[i].Id + '">' + AllPanelType[i].Description + '</option>';
+            }
+        }
+        $("#cbPanel").empty().append(option);
+        $("#cbPanel").val(2);
+        llenarComboInsideAndOutside();
+    } else if (pIdDoorStyle == 1004) {
+        var inside = $("#cbInsideEdgeProfile").val();
+        var outside = $("#cbOutsideEdgeProfile").val();
+        var option = '<option value="0">Select</option>';
+        for (var i = 0; i < AllInsideEdgeProfile.length; i++) {
+            if (AllInsideEdgeProfile[i].Status.Id == 1 && (AllInsideEdgeProfile[i].Id == 3 || AllInsideEdgeProfile[i].Id == 7 || AllInsideEdgeProfile[i].Id == 11)) {
+                option += '<option value="' + AllInsideEdgeProfile[i].Id + '">' + AllInsideEdgeProfile[i].Description + '</option>';
+            }
+        }
+        $("#cbInsideEdgeProfile").empty().append(option);
+        if (inside == 3 || inside == 7) {
+            $("#cbInsideEdgeProfile").val(inside);
+        } else {
+            $("#cbInsideEdgeProfile").val(0);
+        }
+        option = '<option value="0">Select</option>';
+        for (var i = 0; i < AllOutsideEdgeProfile.length; i++) {
+            if (AllOutsideEdgeProfile[i].Status.Id == 1 && AllOutsideEdgeProfile[i].Id == 6) {
+                option += '<option value="' + AllOutsideEdgeProfile[i].Id + '">' + AllOutsideEdgeProfile[i].Description + '</option>';
+                break;
+            }
+        }
+        $("#cbOutsideEdgeProfile").empty().append(option);
+        $("#cbOutsideEdgeProfile").val(6);
+        llenarComboPanel();
+    } else if (pIdDoorStyle == 1005) {
+        llenarInsideAndOutsideEspecificos(3, 6);
+        llenarComboPanel();
+    }
+    else if (pIdDoorStyle == 1006) {
+        llenarInsideAndOutsideEspecificos(5, 5);
+        llenarComboPanel();
+    } else if (pIdDoorStyle == 1007) {
+        llenarInsideAndOutsideEspecificos(0, 11);
+        llenarComboPanel();
+    } else if (pIdDoorStyle == 1008) {
+        llenarComboInsideAndOutside();
+        llenarComboPanel();
+    } else if (pIdDoorStyle == 1009) {
+        llenarComboInsideAndOutside();
+        var option = '<option value="0">Select</option>';
+        for (var i = 0; i < AllPanelType.length; i++) {
+            if (AllPanelType[i].Status.Id == 1 && AllPanelType[i].Id == 5) {
+                option += '<option value="' + AllPanelType[i].Id + '">' + AllPanelType[i].Description + '</option>';
+            }
+        }
+        $("#cbPanel").empty().append(option);
+        $("#cbPanel").val(5);
+    } else if (pIdDoorStyle == 1010) {
+        llenarComboInsideAndOutside();
+        var option = '<option value="3">Slab</option>';
+        $("#cbPanel").empty().append(option);
+        $("#cbPanel").hide();
+        option = '<option value="1">Slab</option>';
+        $("#cbInsideEdgeProfile").empty().append(option);
+        $("#cbInsideEdgeProfile").hide();
+        $("#cbOutsideEdgeProfile").empty().append(option);
+        $("#cbOutsideEdgeProfile").hide();
+        option = '<option value="7">Slab</option>';
+        $("#cbDoorAssembly").empty().append(option);
+        $("#cbDoorAssembly").hide();
+        $('#DoorPicture').attr('src', "/Content/img/Doors/slab.png");
+        $('#ProfilePicture').attr('src', "/Content/img/Profile/slab.png");
+        bandera = false;
+    }
+    if (bandera) {
+        changeDoorPicture();
+        ChangeProfile();
+    }
 
 }
 
-function llenarComboPanelMaterial(pMaterial) {
-	var pPanelMaterial = 0;
-	if (pMaterial == 1) {
-		//knotty Alder
-		pPanelMaterial = 6;
+var AllPanelMaterial = '';
+function llenarComboPanelMaterial(pMaterial, pDoorStyle) {
+    var pPanelMaterial = 0;
+    if (pMaterial == 1) {
+        //knotty Alder
+        pPanelMaterial = 6;
 
-	} else if (pMaterial == 4) {
-		//Maple
-		pPanelMaterial = 7;
-	}
-	else if (pMaterial == 6) {
-		//Poplar
-		pPanelMaterial = 9;
-	}
-	else if (pMaterial == 7) {
-		//Red oak
-		pPanelMaterial = 11;
-	}
-	else if (pMaterial == 13) {
-		//Beech
-		pPanelMaterial = 3;
-	}
-	var option = '';
-	for (var i = 0; i < AllPanelMaterial.length; i++) {
-		if (AllPanelMaterial[i].Status.Id == 1 && AllPanelMaterial[i].Id == pPanelMaterial) {
-			option += '<option value="' + AllPanelMaterial[i].Id + '">' + AllPanelMaterial[i].Description + '</option>';
+    } else if (pMaterial == 4) {
+        //Maple
+        pPanelMaterial = 7;
+    }
+    else if (pMaterial == 6) {
+        //Poplar
+        pPanelMaterial = 9;
+    }
+    else if (pMaterial == 7) {
+        //Red oak
+        pPanelMaterial = 11;
+    }
+    else if (pMaterial == 13) {
+        //Beech
+        pPanelMaterial = 3;
+    }
+    var option = '';
+    for (var i = 0; i < AllPanelMaterial.length; i++) {
+        if (AllPanelMaterial[i].Status.Id == 1 && AllPanelMaterial[i].Id == pPanelMaterial) {
+            option += '<option value="' + AllPanelMaterial[i].Id + '">' + AllPanelMaterial[i].Description + '</option>';
 
-		}
-		if (pMaterial == 6) {
-			if (AllPanelMaterial[i].Status.Id == 1 && AllPanelMaterial[i].Id == 1) {
-				option += '<option value="' + AllPanelMaterial[i].Id + '">' + AllPanelMaterial[i].Description + '</option>';
+        }
+        if (pMaterial == 6) {
+            if (pDoorStyle == 1003) {
+                if (AllPanelMaterial[i].Status.Id == 1 && AllPanelMaterial[i].Id == 1) {
+                    option += '<option value="' + AllPanelMaterial[i].Id + '">' + AllPanelMaterial[i].Description + '</option>';
 
-			}
-		}
-	}
-	$("#cbPanelMaterial").empty().append(option);
-	$("#cbPanelMaterial").val(pPanelMaterial);
+                }
+            } else if (pDoorStyle == 1002) {
+                if (AllPanelMaterial[i].Status.Id == 1 && AllPanelMaterial[i].Id == 5) {
+                    option += '<option value="' + AllPanelMaterial[i].Id + '">' + AllPanelMaterial[i].Description + '</option>';
+
+                }
+            }
+
+        }
+    }
+    $("#cbPanelMaterial").empty().append(option);
+    $("#cbPanelMaterial").val(pPanelMaterial);
 }
 
 function llenarInsideAndOutsideEspecificos(pInside, pOutside) {
-	var inside = $("#cbInsideEdgeProfile").val();
-	var outside = $("#cbOutsideEdgeProfile").val();
-	var option = '';
-	for (var i = 0; i < AllInsideEdgeProfile.length; i++) {
-		if (AllInsideEdgeProfile[i].Status.Id == 1 && AllInsideEdgeProfile[i].Id == pInside) {
-			option += '<option value="' + AllInsideEdgeProfile[i].Id + '">' + AllInsideEdgeProfile[i].Description + '</option>';
-			break;
-		}
-	}
-	$("#cbInsideEdgeProfile").empty().append(option);
-	$("#cbInsideEdgeProfile").val(pInside);
-	option = '';
-	for (var i = 0; i < AllOutsideEdgeProfile.length; i++) {
-		if (AllOutsideEdgeProfile[i].Status.Id == 1 && AllOutsideEdgeProfile[i].Id == pOutside) {
-			option += '<option value="' + AllOutsideEdgeProfile[i].Id + '">' + AllOutsideEdgeProfile[i].Description + '</option>';
-			break;
-		}
-	}
-	$("#cbOutsideEdgeProfile").empty().append(option);
-	$("#cbOutsideEdgeProfile").val(pOutside);
+    var inside = $("#cbInsideEdgeProfile").val();
+    var outside = $("#cbOutsideEdgeProfile").val();
+    var option = '';
+    for (var i = 0; i < AllInsideEdgeProfile.length; i++) {
+        if (AllInsideEdgeProfile[i].Status.Id == 1 && (AllInsideEdgeProfile[i].Id == pInside || pInside == 0)) {
+            option += '<option value="' + AllInsideEdgeProfile[i].Id + '">' + AllInsideEdgeProfile[i].Description + '</option>';
+
+        }
+    }
+    $("#cbInsideEdgeProfile").empty().append(option);
+    if (pInside == 0) {
+        $("#cbInsideEdgeProfile").val(4);
+    } else {
+        $("#cbInsideEdgeProfile").val(pInside);
+    }
+
+    option = '';
+    for (var i = 0; i < AllOutsideEdgeProfile.length; i++) {
+        if (AllOutsideEdgeProfile[i].Status.Id == 1 && AllOutsideEdgeProfile[i].Id == pOutside) {
+            option += '<option value="' + AllOutsideEdgeProfile[i].Id + '">' + AllOutsideEdgeProfile[i].Description + '</option>';
+            break;
+        }
+    }
+    $("#cbOutsideEdgeProfile").empty().append(option);
+    $("#cbOutsideEdgeProfile").val(pOutside);
 }
 
 function llenarComboInsideAndOutside() {
 
-	var inside = $("#cbInsideEdgeProfile").val();
-	var outside = $("#cbOutsideEdgeProfile").val();
-	var option = '<option value="0">Select</option>';
-	for (var i = 0; i < AllInsideEdgeProfile.length; i++) {
-		if (AllInsideEdgeProfile[i].Status.Id == 1) {
-			option += '<option value="' + AllInsideEdgeProfile[i].Id + '">' + AllInsideEdgeProfile[i].Description + '</option>';
-		}
-	}
-	$("#cbInsideEdgeProfile").empty().append(option);
+    var inside = $("#cbInsideEdgeProfile").val();
+    var outside = $("#cbOutsideEdgeProfile").val();
+    var option = '<option value="0">Select</option>';
+    for (var i = 0; i < AllInsideEdgeProfile.length; i++) {
+        if (AllInsideEdgeProfile[i].Status.Id == 1) {
+            option += '<option value="' + AllInsideEdgeProfile[i].Id + '">' + AllInsideEdgeProfile[i].Description + '</option>';
+        }
+    }
+    $("#cbInsideEdgeProfile").empty().append(option);
 
-	if (inside != 1) {
-	    $("#cbInsideEdgeProfile").val(inside);
-	}
 
-	option = '<option value="0">Select</option>';
-	for (var i = 0; i < AllOutsideEdgeProfile.length; i++) {
-		if (AllOutsideEdgeProfile[i].Status.Id == 1) {
-			option += '<option value="' + AllOutsideEdgeProfile[i].Id + '">' + AllOutsideEdgeProfile[i].Description + '</option>';
-		}
-	}
-	$("#cbOutsideEdgeProfile").empty().append(option);
-	 if (outside != 1) {
-       
+    if (inside != 1) {
+        $("#cbInsideEdgeProfile").val(inside);
+    }
+    option = '<option value="0">Select</option>';
+    for (var i = 0; i < AllOutsideEdgeProfile.length; i++) {
+        if (AllOutsideEdgeProfile[i].Status.Id == 1) {
+            option += '<option value="' + AllOutsideEdgeProfile[i].Id + '">' + AllOutsideEdgeProfile[i].Description + '</option>';
+        }
+    }
+    $("#cbOutsideEdgeProfile").empty().append(option);
+    if (outside != 1) {
+
         $("#cbOutsideEdgeProfile").val(outside);
     }
+
+}
+
+function GetInsideAndOutside(pDoorStyle) {
+
+    var datos =
+    {
+        pDoorStyle: pDoorStyle
+    };
+
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(datos),
+        url: urlGetInsideAndOutside,
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+
+            //Validar data para ver si mostrar error al guardar o exito al guardar
+            if (result.Success) {
+
+                var inside = $("#cbInsideEdgeProfile").val();
+                var outside = $("#cbOutsideEdgeProfile").val();
+                var option = '<option value="0">Select</option>';
+                for (var i = 0; i < result.listInside.length; i++) {
+                    option += '<option value="' + result.listInside[i].Id + '">' + result.listInside[i].Description + '</option>';
+
+                }
+                $("#cbInsideEdgeProfile").empty().append(option);
+
+
+                if (inside != 1) {
+                    $("#cbInsideEdgeProfile").val(inside);
+                }
+                option = '<option value="0">Select</option>';
+                for (var i = 0; i < result.listOutside.length; i++) {
+                    option += '<option value="' + result.listOutside[i].Id + '">' + result.listOutside[i].Description + '</option>';
+
+                }
+                $("#cbOutsideEdgeProfile").empty().append(option);
+                if (outside != 1) {
+
+                    $("#cbOutsideEdgeProfile").val(outside);
+                }
+            } else {
+                LlammarModal("Danger", "Error", result.Mensaje);
+            }
+        },
+        error: function (err) {
+            LlammarModal("Danger", "Error.", "GetInsideAndOutside");
+        },
+
+    });
+
 }
 
 function HingeCalculate() {

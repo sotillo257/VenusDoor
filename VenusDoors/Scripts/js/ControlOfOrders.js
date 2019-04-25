@@ -135,10 +135,10 @@ function GetDoorsByOrder(idOrden) {
             llenarComboStileWidth(Result.BottomRail.Id);
             llenarComboRailWidth(Result.TopRail.Id);
             llenarComboDoorAssembly(Result.Join.Id);
+            llenarComboPanelStyle(Result.Panel.Id);
             llenarComboPanelMaterial(Result.Material.Id);
             llenarComboVerticalDivisions(Result.VerticalDivisions.Id);
-            llenarComboHorizontalDivisions(Result.HorizontalDivisions.Id);
-            //llenarComboHingeDirection(Result.HingeDirection.Id);
+            llenarComboHorizontalDivisions(Result.HorizontalDivisions.Id);           
             ChangeDoorStylePanel(Result.DoorStyle.Id);
 
             var info = "";
@@ -207,7 +207,9 @@ function GetDoorsByOrder(idOrden) {
             option += '<th>QUANTITY</th>';
             option += '<th>WIDHT</th>';
             option += '<th>HEIGHT</th>';
-            option += '<th>PANEL STYLE</th>';
+            if (Result.isDrill == true) {
+                option += '<th>HINGE DIRECTION</th>';
+            }            
             option += '<th>DOOR TYPE</th>';
             option += '<th>DOOR OPTION</th>';
             option += '<th>U. PRICE</th>';
@@ -215,7 +217,10 @@ function GetDoorsByOrder(idOrden) {
                 option += '<th>DISCOUNT</th>';
             }
             option += '<th>TOTAL</th>';
-            option += '<th><i class="fa fa-flash"></i></th></tr></thead><tbody>';   
+            if (Result.Order.Status.Id == 5) {
+                option += '<th style="text-align:center"><i class="fa fa-flash"></i></th>';
+            }
+            option += '</tr></thead><tbody>';   
             DxOl = Result.DoorsxOrder;
             for (var i = 0; i < Result.DoorsxOrder.length; i++) {
                 option += '<tr><td><img width="65px" src="' + Result.DoorsxOrder[i].Picture + '"/></td>';
@@ -242,10 +247,8 @@ function GetDoorsByOrder(idOrden) {
                 }
                 option += '<td><span>$</span>' + Result.DoorsxOrder[i].SubTotal.toString().replace(',', '.') + '</td>';
                 if (Result.Order.Status.Id == 5) {
-                option += '<td><button title="Edit Door" data-id="' + Result.DoorsxOrder[i].Id + '"data-toggle="tab" href="#dxoPanel" role="tab"  class="editDoor Cursor btn btn-primary btn-icon"  style="width: 25px;height: 25px; margin-left: 10px;"> <i class="fa fa-edit"></i></button></td>';
-                } else {
-                    option += '<td><button title="Not available" disabled data-id="" data-toggle="tab" href="#dxoPanel" role="tab"  class="editDoor btn btn-primary btn-icon"  style="width: 25px;height: 25px; margin-left: 10px;"> <i class="fa fa-edit"></i></button></td>';
-                }               
+                    option += '<td><center><button title="Edit Door" data-id="' + Result.DoorsxOrder[i].Id + '"data-toggle="tab" href="#dxoPanel" role="tab"  class="editDoor Cursor btn btn-primary btn-icon"  style="width: 25px;height: 25px; margin-left: 10px;"> <i class="fa fa-edit"></i></button></center></td>';
+                }              
                 option += '</tr>';
             }
             option += '</tbody></table>';

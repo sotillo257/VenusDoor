@@ -42,9 +42,7 @@
             if (DxOl[i].Id == $(this).attr('data-id')) {
                                
 
-                var PictureProfile = '<img style="height: 100px;width: 235px;margin-top: 20px;" id="ProfilePicture" src="' + DxOl[i].ProfilePicture + '">';
-                var PicturePanel = '<img style="width: 230px;height: 230px;" id="DoorPicture" src="' + DxOl[i].Picture + '">';
-                $('#PictureProfile').html(PictureProfile);
+                var PicturePanel = '<img style="width: 230px;height: 230px;" id="DoorPicture" src="' + DxOl[i].Picture + '">';                
                 $('#PicturePanel').html(PicturePanel);
                 $('#idDoorxO').val(DxOl[i].Id);
                 $('#idDxuXO').val(DxOl[i].DoorxUser.Id);
@@ -52,15 +50,18 @@
                 $('#iptWidth').val(DxOl[i].Width);
                 $('#iptHeight').val(DxOl[i].Height);
                 $('#CantidadFila').val(DxOl[i].Quantity);
-                //$('#descDXO').val(DxOl[i].Descuento);
-                if ($('#cbDoorStyle').val()!=1010) {
-                    llenarComboPanelStyle(DxOl[i].Panel.Id);
-                }
+                //$('#descDXO').val(DxOl[i].Descuento);                
                
+                llenarComboHingeDirection(DxOl[i].HingeDirection.Id);
                 llenarComboDoorType(DxOl[i].DoorType.Id);
                 selectDoorOption(DxOl[i].DoorOption.Id);
                 llenarComboDecimalW(DxOl[i].DecimalsWidth.Id);
                 llenarComboDecimalH(DxOl[i].DecimalsHeight.Id);
+                if ($("#cbisDrill").val() == 1) {
+                    $("#HingeDirectionDiv").hide();
+                } else {
+                    $("#HingeDirectionDiv").show();
+                }
                 break;
             }
         }
@@ -118,6 +119,112 @@
         '<button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>');
     });
 });
+
+function ChangeDoorStylePanel(pIdDoorStyle) {
+    var bandera = true;
+    var pMaterial = $("#cbMaterial").val();
+    llenarComboPanelMaterial(pMaterial, pIdDoorStyle);
+    llenarComboDoorAssembly($("#cbDoorAssembly").val());
+    if (pIdDoorStyle == 1002) {
+        var panelType = $("#cbPanel").val();
+        option = '<option value="0">Select</option>';
+        for (var i = 0; i < AllPanelType.length; i++) {
+            if (AllPanelType[i].Status.Id == 1 && AllPanelType[i].Id != 2) {
+                option += '<option value="' + AllPanelType[i].Id + '">' + AllPanelType[i].Description + '</option>';
+            }
+        }
+        $("#cbPanel").empty().append(option);
+
+        if (panelType != 2) {
+            $("#cbPanel").val(panelType);
+        } else {
+            $("#cbPanel").val(0);
+        }
+
+        llenarComboInsideAndOutside();
+    } else if (pIdDoorStyle == 1003) {
+
+        var panelType = $("#cbPanel").val();
+        var option = '<option value="0">Select</option>';
+        for (var i = 0; i < AllPanelType.length; i++) {
+            if (AllPanelType[i].Status.Id == 1 && AllPanelType[i].Id == 2) {
+                option += '<option value="' + AllPanelType[i].Id + '">' + AllPanelType[i].Description + '</option>';
+            }
+        }
+        $("#cbPanel").empty().append(option);
+        $("#cbPanel").val(2);
+        llenarComboInsideAndOutside();
+    } else if (pIdDoorStyle == 1004) {
+        var inside = $("#cbInsideEdgeProfile").val();
+        var outside = $("#cbOutsideEdgeProfile").val();
+        var option = '<option value="0">Select</option>';
+        for (var i = 0; i < AllInsideEdgeProfile.length; i++) {
+            if (AllInsideEdgeProfile[i].Status.Id == 1 && (AllInsideEdgeProfile[i].Id == 3 || AllInsideEdgeProfile[i].Id == 7 || AllInsideEdgeProfile[i].Id == 11)) {
+                option += '<option value="' + AllInsideEdgeProfile[i].Id + '">' + AllInsideEdgeProfile[i].Description + '</option>';
+            }
+        }
+        $("#cbInsideEdgeProfile").empty().append(option);
+        if (inside == 3 || inside == 7) {
+            $("#cbInsideEdgeProfile").val(inside);
+        } else {
+            $("#cbInsideEdgeProfile").val(0);
+        }
+        option = '<option value="0">Select</option>';
+        for (var i = 0; i < AllOutsideEdgeProfile.length; i++) {
+            if (AllOutsideEdgeProfile[i].Status.Id == 1 && AllOutsideEdgeProfile[i].Id == 6) {
+                option += '<option value="' + AllOutsideEdgeProfile[i].Id + '">' + AllOutsideEdgeProfile[i].Description + '</option>';
+                break;
+            }
+        }
+        $("#cbOutsideEdgeProfile").empty().append(option);
+        $("#cbOutsideEdgeProfile").val(6);
+        llenarComboPanel();
+    } else if (pIdDoorStyle == 1005) {
+        llenarInsideAndOutsideEspecificos(3, 6);
+        llenarComboPanel();
+    }
+    else if (pIdDoorStyle == 1006) {
+        llenarInsideAndOutsideEspecificos(5, 5);
+        llenarComboPanel();
+    } else if (pIdDoorStyle == 1007) {
+        llenarInsideAndOutsideEspecificos(0, 11);
+        llenarComboPanel();
+    } else if (pIdDoorStyle == 1008) {
+        llenarComboInsideAndOutside();
+        llenarComboPanel();
+    } else if (pIdDoorStyle == 1009) {
+        llenarComboInsideAndOutside();
+        var option = '<option value="0">Select</option>';
+        for (var i = 0; i < AllPanelType.length; i++) {
+            if (AllPanelType[i].Status.Id == 1 && AllPanelType[i].Id == 5) {
+                option += '<option value="' + AllPanelType[i].Id + '">' + AllPanelType[i].Description + '</option>';
+            }
+        }
+        $("#cbPanel").empty().append(option);
+        $("#cbPanel").val(5);
+    } else if (pIdDoorStyle == 1010) {
+        llenarComboInsideAndOutside();
+        var option = '<option value="3">Slab</option>';
+        $("#cbPanel").empty().append(option);
+        $("#cbPanel").hide();
+        option = '<option value="1">Slab</option>';
+        $("#cbInsideEdgeProfile").empty().append(option);
+        $("#cbInsideEdgeProfile").hide();
+        $("#cbOutsideEdgeProfile").empty().append(option);
+        $("#cbOutsideEdgeProfile").hide();
+        option = '<option value="7">Slab</option>';
+        $("#cbDoorAssembly").empty().append(option);
+        $("#cbDoorAssembly").hide();
+        $('#DoorPicture').attr('src', "/Content/img/Doors/slab.png");
+        $('#ProfilePicture').attr('src', "/Content/img/Profile/slab.png");
+        bandera = false;
+    }
+    if (bandera) {
+        changeDoorPicture();
+        ChangeProfile();
+    }
+
+}
 
 function NuevosCambiosDXU() {
     if (ValidarCamposVacios()) {
@@ -271,9 +378,184 @@ function llenarComboPanelStyle(pPanelStyle) {
     }
 }
 
-var AllPanelMaterial = '';
-function llenarComboPanelMaterial(pMaterial) {
+function changeDoorStyle() {
+    var bandera = true;
 
+    if ($("#cbDoorStyle").val() == 1002) {
+        var panelType = $("#cbPanel").val();
+        option = '<option value="0">Select</option>';
+        for (var i = 0; i < AllPanelType.length; i++) {
+            if (AllPanelType[i].Status.Id == 1 && AllPanelType[i].Id != 2) {
+                option += '<option value="' + AllPanelType[i].Id + '">' + AllPanelType[i].Description + '</option>';
+            }
+        }
+        $("#cbPanel").empty().append(option);
+
+        if (panelType != 2) {
+            $("#cbPanel").val(panelType);
+        } else {
+            $("#cbPanel").val(0);
+        }
+
+        llenarComboInsideAndOutside();
+    } else if ($("#cbDoorStyle").val() == 1003) {
+
+        var panelType = $("#cbPanel").val();
+        var option = '<option value="0">Select</option>';
+        for (var i = 0; i < AllPanelType.length; i++) {
+            if (AllPanelType[i].Status.Id == 1 && AllPanelType[i].Id == 2) {
+                option += '<option value="' + AllPanelType[i].Id + '">' + AllPanelType[i].Description + '</option>';
+            }
+        }
+        $("#cbPanel").empty().append(option);
+        $("#cbPanel").val(2);
+    } else if ($("#cbDoorStyle").val() == 1004) {
+
+        llenarComboPanel();
+    } else if ($("#cbDoorStyle").val() == 1005) {
+        llenarComboPanel();
+    }
+    else if ($("#cbDoorStyle").val() == 1006) {
+        llenarComboPanel();
+    } else if ($("#cbDoorStyle").val() == 1007) {
+        llenarComboPanel();
+    } else if ($("#cbDoorStyle").val() == 1008) {
+        llenarComboPanel();
+    } else if ($("#cbDoorStyle").val() == 1009) {
+        llenarComboInsideAndOutside();
+        var option = '<option value="0">Select</option>';
+        for (var i = 0; i < AllPanelType.length; i++) {
+            if (AllPanelType[i].Status.Id == 1 && AllPanelType[i].Id == 5) {
+                option += '<option value="' + AllPanelType[i].Id + '">' + AllPanelType[i].Description + '</option>';
+            }
+        }
+        $("#cbPanel").empty().append(option);
+        $("#cbPanel").val(5);
+    } else if ($("#cbDoorStyle").val() == 1010) {
+        //llenarComboInsideAndOutside();
+        //var option = '<option value="slab">Slab</option>';
+        //$("#cbPanel").empty().append(option);
+        //$("#cbInsideEdgeProfile").empty().append(option);
+        //$("#cbOutsideEdgeProfile").empty().append(option);
+        //$("#cbDoorAssembly").empty().append(option);
+        //$('#DoorPicture').attr('src', "/Content/img/Doors/slab.png");
+        //$('#ProfilePicture').attr('src', "/Content/img/Profile/slab.png");
+        //bandera = false;
+    }
+    if (bandera) {
+        //changeDoorPicture();
+        //ChangeProfile();
+    }
+
+}
+
+function ChangeDoorStylePanel(pIdDoorStyle) {
+    var bandera = true;
+    var pMaterial = $("#cbMaterial").val();
+    llenarComboPanelMaterial(pMaterial, pIdDoorStyle);
+    llenarComboDoorAssembly($("#cbDoorAssembly").val());
+    if (pIdDoorStyle == 1002) {
+        var panelType = $("#cbPanel").val();
+        option = '<option value="0">Select</option>';
+        for (var i = 0; i < AllPanelType.length; i++) {
+            if (AllPanelType[i].Status.Id == 1 && AllPanelType[i].Id != 2) {
+                option += '<option value="' + AllPanelType[i].Id + '">' + AllPanelType[i].Description + '</option>';
+            }
+        }
+        $("#cbPanel").empty().append(option);
+
+        if (panelType != 2) {
+            $("#cbPanel").val(panelType);
+        } else {
+            $("#cbPanel").val(0);
+        }
+
+        llenarComboInsideAndOutside();
+    } else if (pIdDoorStyle == 1003) {
+
+        var panelType = $("#cbPanel").val();
+        var option = '<option value="0">Select</option>';
+        for (var i = 0; i < AllPanelType.length; i++) {
+            if (AllPanelType[i].Status.Id == 1 && AllPanelType[i].Id == 2) {
+                option += '<option value="' + AllPanelType[i].Id + '">' + AllPanelType[i].Description + '</option>';
+            }
+        }
+        $("#cbPanel").empty().append(option);
+        $("#cbPanel").val(2);
+        llenarComboInsideAndOutside();
+    } else if (pIdDoorStyle == 1004) {
+        var inside = $("#cbInsideEdgeProfile").val();
+        var outside = $("#cbOutsideEdgeProfile").val();
+        var option = '<option value="0">Select</option>';
+        for (var i = 0; i < AllInsideEdgeProfile.length; i++) {
+            if (AllInsideEdgeProfile[i].Status.Id == 1 && (AllInsideEdgeProfile[i].Id == 3 || AllInsideEdgeProfile[i].Id == 7 || AllInsideEdgeProfile[i].Id == 11)) {
+                option += '<option value="' + AllInsideEdgeProfile[i].Id + '">' + AllInsideEdgeProfile[i].Description + '</option>';
+            }
+        }
+        $("#cbInsideEdgeProfile").empty().append(option);
+        if (inside == 3 || inside == 7) {
+            $("#cbInsideEdgeProfile").val(inside);
+        } else {
+            $("#cbInsideEdgeProfile").val(0);
+        }
+        option = '<option value="0">Select</option>';
+        for (var i = 0; i < AllOutsideEdgeProfile.length; i++) {
+            if (AllOutsideEdgeProfile[i].Status.Id == 1 && AllOutsideEdgeProfile[i].Id == 6) {
+                option += '<option value="' + AllOutsideEdgeProfile[i].Id + '">' + AllOutsideEdgeProfile[i].Description + '</option>';
+                break;
+            }
+        }
+        $("#cbOutsideEdgeProfile").empty().append(option);
+        $("#cbOutsideEdgeProfile").val(6);
+        llenarComboPanel();
+    } else if (pIdDoorStyle == 1005) {
+        llenarInsideAndOutsideEspecificos(3, 6);
+        llenarComboPanel();
+    }
+    else if (pIdDoorStyle == 1006) {
+        llenarInsideAndOutsideEspecificos(5, 5);
+        llenarComboPanel();
+    } else if (pIdDoorStyle == 1007) {
+        llenarInsideAndOutsideEspecificos(0, 11);
+        llenarComboPanel();
+    } else if (pIdDoorStyle == 1008) {
+        llenarComboInsideAndOutside();
+        llenarComboPanel();
+    } else if (pIdDoorStyle == 1009) {
+        llenarComboInsideAndOutside();
+        var option = '<option value="0">Select</option>';
+        for (var i = 0; i < AllPanelType.length; i++) {
+            if (AllPanelType[i].Status.Id == 1 && AllPanelType[i].Id == 5) {
+                option += '<option value="' + AllPanelType[i].Id + '">' + AllPanelType[i].Description + '</option>';
+            }
+        }
+        $("#cbPanel").empty().append(option);
+        $("#cbPanel").val(5);
+    } else if (pIdDoorStyle == 1010) {
+        llenarComboInsideAndOutside();
+        var option = '<option value="3">Slab</option>';
+        $("#cbPanel").empty().append(option);
+        $("#cbPanel").hide();
+        option = '<option value="1">Slab</option>';
+        $("#cbInsideEdgeProfile").empty().append(option);
+        $("#cbInsideEdgeProfile").hide();
+        $("#cbOutsideEdgeProfile").empty().append(option);
+        $("#cbOutsideEdgeProfile").hide();
+        option = '<option value="7">Slab</option>';
+        $("#cbDoorAssembly").empty().append(option);
+        $("#cbDoorAssembly").hide();
+        $('#DoorPicture').attr('src', "/Content/img/Doors/slab.png");
+        $('#ProfilePicture').attr('src', "/Content/img/Profile/slab.png");
+        bandera = false;
+    }
+    if (bandera) {
+        changeDoorPicture();
+        ChangeProfile();
+    }
+
+}
+
+function llenarComboPanelMaterial(pMaterial, pDoorStyle) {
     var pPanelMaterial = 0;
     if (pMaterial == 1) {
         //knotty Alder
@@ -295,20 +577,87 @@ function llenarComboPanelMaterial(pMaterial) {
         //Beech
         pPanelMaterial = 3;
     }
-    var option = '<option value="0">Select</option>';
+    var option = '';
     for (var i = 0; i < AllPanelMaterial.length; i++) {
         if (AllPanelMaterial[i].Status.Id == 1 && AllPanelMaterial[i].Id == pPanelMaterial) {
             option += '<option value="' + AllPanelMaterial[i].Id + '">' + AllPanelMaterial[i].Description + '</option>';
 
         }
         if (pMaterial == 6) {
-            if (AllPanelMaterial[i].Status.Id == 1 && AllPanelMaterial[i].Id == 1) {
-                option += '<option value="' + AllPanelMaterial[i].Id + '">' + AllPanelMaterial[i].Description + '</option>';
+            if (pDoorStyle == 1003) {
+                if (AllPanelMaterial[i].Status.Id == 1 && AllPanelMaterial[i].Id == 1) {
+                    option += '<option value="' + AllPanelMaterial[i].Id + '">' + AllPanelMaterial[i].Description + '</option>';
+
+                }
+            } else if (pDoorStyle == 1002) {
+                if (AllPanelMaterial[i].Status.Id == 1 && AllPanelMaterial[i].Id == 5) {
+                    option += '<option value="' + AllPanelMaterial[i].Id + '">' + AllPanelMaterial[i].Description + '</option>';
+
+                }
             }
+
         }
     }
     $("#cbPanelMaterial").empty().append(option);
     $("#cbPanelMaterial").val(pPanelMaterial);
+}
+
+function llenarInsideAndOutsideEspecificos(pInside, pOutside) {
+    var inside = $("#cbInsideEdgeProfile").val();
+    var outside = $("#cbOutsideEdgeProfile").val();
+    var option = '';
+    for (var i = 0; i < AllInsideEdgeProfile.length; i++) {
+        if (AllInsideEdgeProfile[i].Status.Id == 1 && (AllInsideEdgeProfile[i].Id == pInside || pInside == 0)) {
+            option += '<option value="' + AllInsideEdgeProfile[i].Id + '">' + AllInsideEdgeProfile[i].Description + '</option>';
+
+        }
+    }
+    $("#cbInsideEdgeProfile").empty().append(option);
+    if (pInside == 0) {
+        $("#cbInsideEdgeProfile").val(4);
+    } else {
+        $("#cbInsideEdgeProfile").val(pInside);
+    }
+
+    option = '';
+    for (var i = 0; i < AllOutsideEdgeProfile.length; i++) {
+        if (AllOutsideEdgeProfile[i].Status.Id == 1 && AllOutsideEdgeProfile[i].Id == pOutside) {
+            option += '<option value="' + AllOutsideEdgeProfile[i].Id + '">' + AllOutsideEdgeProfile[i].Description + '</option>';
+            break;
+        }
+    }
+    $("#cbOutsideEdgeProfile").empty().append(option);
+    $("#cbOutsideEdgeProfile").val(pOutside);
+}
+
+function llenarComboInsideAndOutside() {
+
+    var inside = $("#cbInsideEdgeProfile").val();
+    var outside = $("#cbOutsideEdgeProfile").val();
+    var option = '<option value="0">Select</option>';
+    for (var i = 0; i < AllInsideEdgeProfile.length; i++) {
+        if (AllInsideEdgeProfile[i].Status.Id == 1) {
+            option += '<option value="' + AllInsideEdgeProfile[i].Id + '">' + AllInsideEdgeProfile[i].Description + '</option>';
+        }
+    }
+    $("#cbInsideEdgeProfile").empty().append(option);
+
+
+    if (inside != 1) {
+        $("#cbInsideEdgeProfile").val(inside);
+    }
+    option = '<option value="0">Select</option>';
+    for (var i = 0; i < AllOutsideEdgeProfile.length; i++) {
+        if (AllOutsideEdgeProfile[i].Status.Id == 1) {
+            option += '<option value="' + AllOutsideEdgeProfile[i].Id + '">' + AllOutsideEdgeProfile[i].Description + '</option>';
+        }
+    }
+    $("#cbOutsideEdgeProfile").empty().append(option);
+    if (outside != 1) {
+
+        $("#cbOutsideEdgeProfile").val(outside);
+    }
+
 }
 
 var AllVerticalDivisions = '';
@@ -472,16 +821,7 @@ function InsertDoorsxUser() {
     var OrdTotal = (parseFloat(OrdSubTotal) + parseFloat(Taxes)).toFixed(2);
     var DoorOp = $('input[name=radioOption]:checked').attr("data-id");
     var isOver = ($('input[name=radioOver]:checked').attr("data-id") == 1) ? false : true;
-    var drillingV = ($("#cbisDrill").val() == 1) ? false : true;
-    var HingeDirection = $("#cbHingeDirection").val();
-    var HingePositions;
-    if (drillingV == true) {
-        HingeDirection = $("#cbHingeDirection").val();
-        HingePositions = 0;
-    } else {
-        HingeDirection = 3;
-        HingePositions = 2;
-    }
+    var drillingV = ($("#cbisDrill").val() == 1) ? false : true;   
     var datos =
          {
              Orden: {
@@ -497,7 +837,7 @@ function InsertDoorsxUser() {
                      TopRail: { Id: $("#cbRailWidth").val() },
                      BottomRail: { Id: $("#cbStileWidth").val() },
                      Preparation: { Id: 1 },
-                     Panel: { Id: 1 },
+                     Panel: { Id: $("#cbPanel").val() },
                      PanelMaterial: { Id: $("#cbPanelMaterial").val() },
                      IsOpeningMeasurement: ($("#cbIsOpeningMeasurement").val() == 1) ? false : true,
                      Join: { Id: $("#cbDoorAssembly").val() },
@@ -512,8 +852,8 @@ function InsertDoorsxUser() {
                      Quantity: DoorQuantity,
                      ItemCost: itemCost,
                      SubTotal: DoorSubTotal,
-                     Picture: '',
-                     ProfilePicture: '',
+                     Picture: $('#DoorPicture').attr('src'),
+                     ProfilePicture: $('#ProfilePicture').attr('src'),
                      isDrill: drillingV,
                      DoorType: { Id: 1 },
                      isOverlay: isOver,
@@ -555,7 +895,13 @@ function UpdateDoorxOrder() {
     var itemCost = parseFloat($("#iptCost").val());
     var DoorQuantity = $("#CantidadFila").val();
     var DoorOp = $("#cbDoorOpt").val();
-
+    if ($('#cbisDrill').val() == 2) {
+        HingeDirection = $("#cbHingeDirection").val();
+        HingePositions = 2;
+    } else {
+        HingeDirection = 3;
+        HingePositions = 2;
+    }
     var datos =
          {
              idOrder: _IdOrderModificar,
@@ -571,7 +917,8 @@ function UpdateDoorxOrder() {
                  SubTotal: 0,
                  Picture: '',
                  ProfilePicture: '',
-                 Panel: { Id: $("#cbPanel").val() },
+                 HingeDirection: { Id: HingeDirection },
+                 HingePositions: { Id: HingePositions },
                  DoorType: { Id: $("#cbDoorType").val() },
                  DoorOption: { Id: DoorOp },
                  User: { Id: 0 },
@@ -935,6 +1282,13 @@ function ValidarCamposVacios() {
         $('#select2-cbPanelMaterial-container').removeClass("cbError");
     }
 
+    if ($('#cbPanel').val() == 0 || $('#cbPanel').val() == null) {
+        $('#select2-cbPanel-container').addClass("cbError");
+        aux = false;
+    } else {
+        $('#select2-cbPanel-container').removeClass("cbError");
+    }
+
     if ($('#cbIsOpeningMeasurement').val() == 0 || $('#cbIsOpeningMeasurement').val() == null) {
         $('#select2-cbIsOpeningMeasurement-container').addClass("cbError");
         aux = false;
@@ -982,14 +1336,6 @@ function ValidarCamposVacios() {
         $('#select2-cbisDrill-container').addClass("cbError");
         aux = false;
     } else {
-        if ($('#cbisDrill').val() == 2) {
-            if ($('#cbHingeDirection').val() == 0 || $('#cbHingeDirection').val() == null) {
-                $('#select2-cbHingeDirection-container').addClass("cbError");
-                aux = false;
-            } else {
-                $('#select2-cbHingeDirection-container').removeClass("cbError");
-            }
-        }
         $('#select2-cbisDrill-container').removeClass("cbError");
     }
 
@@ -1016,11 +1362,13 @@ function ValidarCamposVacios() {
 function ValidarCamposVaciosDXO() {
     var aux = true;
 
-    if ($('#cbPanel').val() == 0) {
-        $('#select2-cbPanel-container').addClass("cbError");
-        aux = false;
-    } else {
-        $('#select2-cbPanel-container').removeClass("cbError");
+    if ($('#cbisDrill').val() == 2) {
+        if ($('#cbHingeDirection').val() == 0 || $('#cbHingeDirection').val() == null) {
+            $('#select2-cbHingeDirection-container').addClass("cbError");
+            aux = false;
+        } else {
+            $('#select2-cbHingeDirection-container').removeClass("cbError");
+        }
     }
 
     if ($('#cbDoorType').val() == 0) {

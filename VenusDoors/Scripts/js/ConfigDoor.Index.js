@@ -280,16 +280,16 @@ function ValidarCamposFront() {
         $('#CantidadFila').removeClass("is-invalid");
     }
 
-    if ($('#cbisDrill').val() == 2) {
+    var drillingV = ($("#idDrill").val() == 1) ? false : true;
+    if (drillingV == true) {
         if ($('#cbHingeDirection').val() == 0 || $('#cbHingeDirection').val() == null) {
             $('#select2-cbHingeDirection-container').addClass("cbError");
             aux = false;
         } else {
             $('#select2-cbHingeDirection-container').removeClass("cbError");
         }
-    }
+    }    
       
-
     if ($('#cbDoorType').val() == 0 || $('#cbDoorType').val() == null) {
         $('#select2-cbDoorType-container').addClass("cbError");
         aux = false;
@@ -723,10 +723,10 @@ function UpdateDoorsxUser() {
 function InsertDoorsxOrder() {
     var itemCost = parseFloat($("#iptCost").val());
     var DoorQuantity = $("#CantidadFila").val();
-    var DoorOp = $("#cbDoorOpt").val();
-    var drillingV = ($("#idDrill").val() == 1) ? false : true;
+    var DoorOp = $("#cbDoorOpt").val();   
     var HingeDirection = $("#cbHingeDirection").val();
-    var HingePositions ="";
+    var HingePositions = "";
+    var drillingV = ($("#idDrill").val() == 1) ? false : true;
     if (drillingV == true) {
         HingeDirection = $("#cbHingeDirection").val();
         HingePositions = 2;
