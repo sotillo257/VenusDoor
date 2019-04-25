@@ -59935,5 +59935,8 @@ a.hover-white-8:hover, a.hover-white-8:focus {
     border-radius: 3px!important;
     border-style: solid;
     border-width: 1px!important;
+}
 
+.trEdit{
+    background-color: rgba(1, 77, 65, 0.25)!important;
 }
