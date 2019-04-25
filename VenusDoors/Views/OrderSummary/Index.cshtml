@@ -271,8 +271,9 @@
                 <div class="table-wrapper">
                     <div id="datatable1_wrapper" class="dataTables_wrapper no-footer">
                      
-
-                                @if (LastDoor.isDrill == true)
+                            @if (LastDoor != null)
+                            {
+                                if (LastDoor.isDrill == true)
                                 {
                                     <div id="datatab1"  style="display:none" >
                                         <table id="tbOrderSummary" style="width: 100%;" class="table display responsive nowrap dataTable no-footer dtr-inline" role="grid" aria-describedby="datatable1_info">
@@ -291,35 +292,35 @@
                                             </thead>
                                             <tbody class="odd" id="id-table">
                                                 @if (Session["UserID"] == null)
-                                            {
-
-                                            }
-                                            else
-                                            {
-                                                if (ViewBag.Order == null || LastDoor.DoorsxOrder.Count == 0)
                                                 {
 
                                                 }
                                                 else
                                                 {
-                                                    foreach (Model.DoorxOrder i in LastDoor.DoorsxOrder)
+                                                    if (ViewBag.Order == null || LastDoor.DoorsxOrder.Count == 0)
                                                     {
+
+                                                    }
+                                                    else
+                                                    {
+                                                        foreach (Model.DoorxOrder i in LastDoor.DoorsxOrder)
+                                                        {
                                                 <tr>
                                                     <td><img style="width: 80px;" src="@i.Picture"></td>
                                                     <td>@i.Quantity.ToString().Replace(',', '.')</td>
                                                     <td>
                                                         @i.Width.ToString("N0")
                                                         @if (i.DecimalsWidth.Value != 0)
-                                                                {
+                                                        {
                                                     <span>@i.DecimalsWidth.Description</span>
-                                                                }
+                                                        }
                                                     </td>
                                                     <td>
                                                         @i.Height.ToString("N0")
                                                         @if (i.DecimalsHeight.Value != 0)
-                                                                {
+                                                        {
                                                     <span>@i.DecimalsHeight.Description</span>
-                                                                }
+                                                        }
                                                     </td>
 
                                                     <td>@i.DoorType.Description</td>
@@ -337,11 +338,11 @@
                                                     </td>
                                                 </tr>
 
+                                                        }
+
                                                     }
 
                                                 }
-
-                                            }
                                             </tbody>
                                         </table>
                                     </div>
@@ -366,35 +367,35 @@
                                             </thead>
                                             <tbody class="odd" id="id-table">
                                                 @if (Session["UserID"] == null)
-                                            {
-
-                                            }
-                                            else
-                                            {
-                                                if (ViewBag.Order == null || LastDoor.DoorsxOrder.Count == 0)
                                                 {
 
                                                 }
                                                 else
                                                 {
-                                                    foreach (Model.DoorxOrder i in LastDoor.DoorsxOrder)
+                                                    if (ViewBag.Order == null || LastDoor.DoorsxOrder.Count == 0)
                                                     {
+
+                                                    }
+                                                    else
+                                                    {
+                                                        foreach (Model.DoorxOrder i in LastDoor.DoorsxOrder)
+                                                        {
                                                 <tr>
                                                     <td><img style="width: 80px;" src="@i.Picture"></td>
                                                     <td>@i.Quantity.ToString().Replace(',', '.')</td>
                                                     <td>
                                                         @i.Width.ToString("N0")
                                                         @if (i.DecimalsWidth.Value != 0)
-                                                                {
+                                                        {
                                                         <span>@i.DecimalsWidth.Description</span>
-                                                                }
+                                                        }
                                                     </td>
                                                     <td>
                                                         @i.Height.ToString("N0")
                                                         @if (i.DecimalsHeight.Value != 0)
-                                                                {
+                                                        {
                                                         <span>@i.DecimalsHeight.Description</span>
-                                                                }
+                                                        }
                                                     </td>
                                                     <td>@i.HingeDirection.Direction</td>
 
@@ -414,11 +415,11 @@
                                                     </td>
                                                 </tr>
 
+                                                        }
+
                                                     }
 
                                                 }
-
-                                            }
                                             </tbody>
                                         </table>
                                     </div>
@@ -584,9 +585,59 @@
                                                     </tbody>
                                                 </table>
                                             </div>
-                                                }
+                                }
+                            }
+                            else {
+                                <div id="datatab1">
+                                    <table id="tbOrderSummary" style="width: 100%;" class="table display responsive nowrap dataTable no-footer dtr-inline" role="grid" aria-describedby="datatable1_info">
+                                        <thead>
+                                            <tr class="tx-10" id="theadtr">
+                                                <th>Preview</th>
+                                                <th>Quantity</th>
+                                                <th>Widht</th>
+                                                <th>Height</th>
+                                                <th>Door Type</th>
+                                                <th>Door Option</th>
+                                                <th>U. Price</th>
+                                                <th>Total</th>
+                                                <th style="text-align:center"><i class="fa fa-flash"></i></th>
+                                            </tr>
+                                        </thead>
+                                       
+                                    </table>
+                                </div>
+                                        <div id="datatab2" style="display:none">
+                                            <table id="idOrderSummary" style="width: 100%;" class="table display responsive nowrap dataTable no-footer dtr-inline" role="grid" aria-describedby="datatable1_info">
+                                                <thead>
+                                                    <tr class="tx-10" id="theadtr">
+                                                        <th>Preview</th>
+                                                        <th>Quantity</th>
+                                                        <th>Widht</th>
+                                                        <th>Height</th>
+                                                        @if (ord != null)
+                                                        {
+                                                            if (LastDoor.isDrill == true)
+                                                            {
+                                                                <th>Hinge Dir.</th>
+                                                            }
+                                                            else
+                                                            {
+                                                                <th class="hdHidden">Hinge Dir.</th>
+                                                            }
+                                                        }
+                                                        <th>Door Type</th>
+                                                        <th>Door Option</th>
+                                                        <th>U. Price</th>
+                                                        <th>Total</th>
+                                                        <th style="text-align:center"><i class="fa fa-flash"></i></th>
+                                                    </tr>
+                                                </thead>
+                                              
+                                            </table>
+                                        </div>
+                            }
 
-                                            </div>
+</div>
                 </div><!-- table-wrapper -->
 
                 <div class="row" style="margin-top: 10px;margin-right: 0px;">

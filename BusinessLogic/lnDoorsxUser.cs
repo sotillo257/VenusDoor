@@ -1129,7 +1129,7 @@ namespace BusinessLogic
         public string FlatPanel(DoorxOrder pDoorxOrder) {
             int stile = pDoorxOrder.DoorxUser.TopRail.Id;
             int rail = pDoorxOrder.DoorxUser.BottomRail.Id;
-            string DoorUrl = "img11.png";
+            string DoorUrl = "Cabinet Vector-01.png";
             string urlFolder = "/Content/img/Doors/";
 
             switch (pDoorxOrder.DoorxUser.DoorStyle.Id)
