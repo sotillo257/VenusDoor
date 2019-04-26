@@ -1113,6 +1113,7 @@
     <Content Include="Scripts\js\Estimate.js" />
     <Content Include="Scripts\js\GetAllMaster.js" />
     <Content Include="Scripts\js\Invoice.js" />
+    <Content Include="Scripts\js\PaymentsReceived.js" />
     <Content Include="Scripts\js\LoginSiginUp.js" />
     <Content Include="Scripts\js\Master.DoorStylexOutsideEdgeProfile.js" />
     <Content Include="Scripts\js\Master.DoorStylexInsideEdgeProfile.js" />

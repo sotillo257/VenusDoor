@@ -18,6 +18,7 @@
     $(".read-more-target").hide();
     $("#read-less-state").hide(); 
     $("#Record_Paymend").hide();
+    $("#SendMs").hide();
     $("#infoMore").hide();
     $("#btOculDis").hide(); 
 
@@ -29,13 +30,29 @@
         $("#RecordPaymend").trigger("click");
     });
 
-    $("#RecordPaymend").on("click", function () {
+    $("#Send").on('click', function () {
+        $("#SendMs").show();
         $("#Invoice").hide();
+        $("#Record_Paymend").hide();
+    });
+
+    $("#RecordPaymend").on("click", function () {
+        $("#SendMs").hide();
+        $("#Invoice").hide();
+        $("#RecordPaymend").hide();
         $("#Record_Paymend").show();
     });
 
-    $("#btCancelar").on("click", function () {
+    $("#btVolver").on("click", function () {
+        $("#SendMs").hide();
         $("#Invoice").show();
+        $("#Record_Paymend").hide();
+    });
+
+    $("#btCancelar").on("click", function () {
+        $("#SendMs").hide();
+        $("#Invoice").show();
+        $("#RecordPaymend").show();
         $("#Record_Paymend").hide();
     });
 
@@ -65,7 +82,7 @@
 
     $(document).on('click', "#btLinkAdd", function () {
         $("#btFile").trigger("click");
-    });
+    }); 
 
     $("#btDisplay").on('click', function () {
         $("#infoMore").show();
@@ -455,6 +472,14 @@
             conta.html(option);
         }
     });
+});
+$(function () {
+    'use strict';
+
+    $('#summernote').summernote({
+        height: 150,
+        tooltip: false
+    })
 });
 
 $(function () {

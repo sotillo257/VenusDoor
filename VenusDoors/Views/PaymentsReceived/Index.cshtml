@@ -141,7 +141,7 @@
 
 </div>
 
-<div id="Payments" class="br-mailbox-body" style="margin-left: 315px;">
+<div class="br-mailbox-body" style="margin-left: 315px;">
     <div class="in-headr">
         <div class="br-msg-header d-flex justify-content-between">
             <nav class="media nav nav-inline tx-size-24 mg-b-0 lh-0">
@@ -149,9 +149,9 @@
                 <div class="btn-group" role="group" aria-label="Basic example">
                     <button type="button" id="btNew" data-toggle="modal" data-target="#modalNewIn" class="Cursor btn btn-page"><i class="fa fa-plus"></i></button>
                     <button type="button" id="btModi" data-toggle="modal" data-target="#modalNewIn" class="Cursor btn btn-page"><i class="fa fa-edit"></i></button>
-                    <button type="button" class="Cursor btn btn-page"><i class="fa fa-file-pdf-o"></i></button>
-                    <button type="button" class="Cursor btn btn-page"><i class="fa fa-print"></i></button>
-                    <button type="button" class="Cursor btn btn-page"><i class="fa fa-send"></i></button>
+                    <button type="button" data-toggle="modal" data-target="#modalPDF" class="Cursor btn btn-page"><i class="fa fa-file-pdf-o"></i></button>
+                    <button type="button" value="Print" onclick="window.print();" class="Cursor btn btn-page"><i class="fa fa-print"></i></button>
+                    <button type="button" id="Send" class="Cursor btn btn-page"><i class="fa fa-send"></i></button>
                 </div>
 
                 @if (true)
@@ -215,7 +215,7 @@
             </nav>
         </div><!-- br-msg-header -->
     </div>
-    <div class="br-msg-body" style="margin-left: 0px;margin-right: 0px;margin-top: 95px;">
+    <div id="Payments" class="br-msg-body" style="margin-left: 0px;margin-right: 0px;margin-top: 95px;">
         <div>
             <div style="max-width: 8.27in;margin-left:auto;margin-right:auto; margin-top: 0;" class="details-container clearfix" id="divMarca">
                 <div class="pcs-template ">
@@ -454,25 +454,162 @@
     </div><!-- br-msg-body -->
 </div>
 
+<div class="br-mailbox-body" style="margin-left: 315px;">
+    <div id="SendMs" class="br-msg-body" style="margin-left: 0px;margin-right: 0px;margin-top: 95px;height: 900px;">
+        <h4 class="tx-inverse tx-medium mg-b-0">Email To Sotillo inc </h4>
+        <div class="col-md-12" style="padding-right:0;height: 775px;">
+            <div style="display:flex; width:100%">
+                <div class="row" style="width:100%; max-height: 380px;">
+                    <input id="idDoor" hidden />
+                    <div class="row" style="width: 100%;">
+
+                        <div class="row" style="width: 744px;margin-right: 0px;">
+                            <label class="col-sm-3 form-control-label" style="margin-top: 25px;">From:</label>
+                            <div class="col-md-9" style="margin-top: 13px;padding-right: 0px;">
+                                <select class="form-control select2-show-search" data-placeholder="Choose one (with searchbox)">
+                                    <option label="Choose one"></option>
+                                    <option value="Firefox">Firefox</option>
+                                    <option value="Chrome">Chrome</option>
+                                    <option value="Safari">Safari</option>
+                                    <option value="Opera">Opera</option>
+                                    <option value="Internet Explorer">Internet Explorer</option>
+                                </select>
+
+                            </div><!-- col -->
+                        </div>
+                        <div class="row" style="width: 744px;margin-right: 0px;">
+                            <label class="col-sm-3 form-control-label" style="margin-top: 25px;">Send To:</label>
+                            <div class="col-md-9" style="margin-top: 13px;padding-right: 0px;">
+                                <input style="width:100%;" type="text" class="form-control" id="cbStileWidth" value="javier.sotillo13@gmail.com" data-role="tagsinput">
+                            </div><!-- col -->
+                        </div>
+                        <div class="row" style="width: 744px;margin-right: 0px;">
+                            <label class="col-sm-3 form-control-label" style="margin-top: 25px;">Cc:</label>
+                            <div class="col-md-9" style="margin-top: 13px;padding-right: 0px;">
+                                <input style="width:100%;" type="text" class="form-control" id="cbStileWidth" value="javier.sotillo13@gmail.com" data-role="tagsinput">
+                            </div><!-- col -->
+                        </div>
+                        <div class="row" style="width: 744px;margin-right: 0px;">
+                            <label class="col-sm-3 form-control-label" style="margin-top: 25px;">From:</label>
+                            <div class="col-md-9" style="margin-top: 13px;margin-bottom: 30px;padding-right: 0px;">
+                                <input style="width:100%;" class="form-control" id="cbStileWidth" data-placeholder="">
+                            </div><!-- col -->
+                        </div>
+
+                        <div id="summernote">
+                            <div style="background: #e9ecef;">
+                                <div>
+                                    <div style="padding: 2% 3%;max-width: 150px;max-height:50px;"></div>
+                                </div>
+                                <div style="padding:3%;text-align:center;background: #15806f;">
+                                    <div style="color:#fff;font-size:20px;font-weight:500;">Invoice #INV-000002</div>
+                                </div>
+                                <div style="max-width:560px;margin:auto;padding: 0 3%;">
+                                    <div style="padding: 30px 0; color: #555;line-height: 1.7;">Dear Sotillo inc, <br><br>Thank you for your business. Your invoice can be viewed, printed and downloaded as PDF from the link below. You can also choose to pay it online. <br></div>
+                                    <div style="box-shadow: 0 0 6px #ccc;padding: 3%; background: #fefff1; border: 1px solid #e8deb5; color: #333;">
+                                        <div style="padding: 0 3% 3%; border-bottom: 1px solid #e8deb5; text-align: center;">
+                                            <h4 style="margin-bottom: 0;">INVOICE AMOUNT</h4>
+                                            <h2 style="color: #014d41; margin-top: 10px;">VEF1,550.00</h2>
+                                        </div>
+                                        <div style="margin:auto; max-width:350px; padding: 3%;">
+                                            <p>
+                                                <span style="width: 40%; padding-left: 10%; float:left; ">Invoice No</span>
+                                                <span style="width: 40%; padding-left: 10%; display: inline-block;"><b>INV-000002</b></span>
+                                            </p>
+                                            <p>
+                                                <span style="width: 40%; padding-left: 10%; float:left; ">Invoice Date</span>
+                                                <span style="width: 40%; padding-left: 10%;"><b>24 Apr 2019</b></span>
+                                            </p>
+                                            <p>
+                                                <span style="width: 40%; padding-left: 10%; float:left; ">Due Date</span>
+                                                <span style="width: 40%; padding-left: 10%;"><b>24 Apr 2019</b></span>
+                                            </p>
+                                        </div>
+                                        <div style="text-align: center;margin: 25px 0;">
+                                            <a href="" style="text-decoration: none;">
+                                                <span style="background-color:#228777; border-radius: 5px; cursor: pointer; text-align: center; min-width: 140px; color: #fff; display: inline-block; text-decoration: none; padding: 10px 20px">VIEW INVOICE</span>
+                                            </a>
+                                        </div>
+                                    </div><br><div style="padding: 3% 0;line-height: 1.6;"> Regards, <div style="color: #8c8c8c; font-weight: 400">javier.sotillo13</div><div style="color: #b1b1b1">sotillo inc</div></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 20px;width: 800px;">
+                            <div class="col-md-9">
+                                <label class="ckbox">
+                                    <input type="checkbox">
+                                    <span>Attach Customer Statement.</span>
+                                </label>
+                            </div><!-- col -->
+                            <div class="col-md-9">
+                                <label class="ckbox">
+                                    <input type="checkbox">
+                                    <span>Attach Invoice PDF</span>
+                                </label>
+                            </div><!-- col -->
+                        </div>
+                        <div class="col-md-12">
+                            <hr />
+                        </div>
+                        <div class="col-xs-4 col-md-4">
+                            <button type="button" id="btAdd" class="Cursor btn btn-page" style="margin-right: 15px;"><i class="fa fa-paperclip"></i> Upload file</button>
+                            <input id="addFile" name="file" type="file" style="display:none;" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- pd-20 -->
+        <div style="text-align: right;">
+            <button id="btVolver" type="button" class="btn btn-secondary Cursor">Cancel</button>
+            <button type="button" class="Cursor btn btn-primary Cursor" style="margin-left: 10px;">Send</button>
+        </div>
+    </div><!-- col-6 -->
+</div>
+
 <div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div>
 
+<div id="modalPDF" class="ModalOrderInfo modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" id="mdialTamanio" style="width: 80%!important; max-width:100%;max-height: 100%;height: 90%;">
+        <div class="modal-content" style="height:100%">
+            <div class="modal-header">
+                <div style="display:flex" id="tituloConBTNEdit">
+                    <h3 class="tx-inverse mg-b-5">Preview</h3>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="padding: 0;">
+                <center>
+                    <iframe src="https://docs.google.com/viewer?url=http://help.arcgis.com/es/arcgisdesktop/10.0/pdf/tutorial_arcscan.pdf&embedded=true" width="1090" height="450" style="border: none;"></iframe>
+                </center>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="Cursor btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" value="Print" onclick="window.print();" class="Cursor btn btn-primary">Print</button>
+                <button type="button" class="Cursor btn btn-success">Download</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 @section scripts{
-    @Scripts.Render("~/Scripts/js/Invoice.js")
+    @Scripts.Render("~/Scripts/js/PaymentsReceived.js")
     @Scripts.Render("~/Scripts/Pagination.js")
     <script>
-    var urlGetHistoryInvoice = '@Url.Action("GetHistoryInvoice", "Invoice")';
-    var urlInsertComment = '@Url.Action("InsertComment", "Invoice")';
-    var urlGetDoorsByOrderInvo = '@Url.Action("GetDoorsByOrderInvo", "Invoice")';
-    var urlGetDoorsByOrder = '@Url.Action("GetDoorsByOrder", "OrderControl")';
-    var urlGetDocAdjuntosInvoice = '@Url.Action("GetDocAdjuntosInvoice", "Invoice")';
-                    try {
-                        var listInvoice = JSON.parse('@Html.Raw(ViewBag.Invoice)');
-                    } catch (e) {
-                        var listInvoice = null;
-                    }
+        $(function () {
+            'use strict';
+
+            $('#summernote').summernote({
+                height: 150,
+                tooltip: false
+            })
+        });
     </script>
-    <script src="~/Content/lib/select2/js/select2.min.js"></script>
-    <script src="~/Content/lib/select2/js/select2.full.min.js"></script>
-}
+    <script src="~/Content/lib/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
+<script src="~/Content/lib/select2/js/select2.min.js"></script>
+<script src="~/Content/lib/select2/js/select2.full.min.js"></script>
+<script src="~/Content/lib/summernote/summernote-bs4.min.js"></script>
+    }
 
