@@ -1127,6 +1127,14 @@ function llenarTablaOrderSumary() {
                 tb.rows().remove().draw(false);
                 var t = $('#idOrderSummary').DataTable();
                 t.rows().remove().draw(false);
+                var drillingV = data.Order.DoorxUser.isDrill;
+                if (drillingV == false) {
+                    $("#datatab2").css('display', 'none');
+                    $("#datatab1").css('display', 'block');
+                } else {
+                    $("#datatab1").css('display', 'none');
+                    $("#datatab2").css('display', 'block');
+                }
                 for (var i = 0; i < listDXO.length; i++) {
                     var Imagen = '<img style="width: 80px;" src="' + listDXO[i].Picture + '">';
                     var Botones = '<center><button class="Cursor btn btn-primary btn-icon btnn-edit" data-id="' + listDXO[i].Id + '" style="width: 25px;height: 25px;" type="submit"><i class="fa fa-edit"></i></button>';
@@ -1139,14 +1147,7 @@ function llenarTablaOrderSumary() {
                     if (HDecimal == "0" || HDecimal == 0) {
                         HDecimal = "";
                     }
-                    var drillingV = data.Order.DoorxUser.isDrill;
-                    if (drillingV == false) {
-                        $("#datatab2").css('display', 'none');
-                        $("#datatab1").css('display', 'block');
-                    } else {
-                        $("#datatab1").css('display', 'none');
-                        $("#datatab2").css('display', 'block');
-                    }
+                  
                    
                     t.row.add([
                         Imagen,
