@@ -11,11 +11,35 @@
         DltItem();
     });
 
+    $(document).on("click", "#dxoCancel", function () {
+        LimpiarCamposRapidos();
+        $('.trEdit').removeClass("trEdit");
+        $("#dxoAdd").show();
+        $("#dxoSave").hide();
+        $("#dxoCancel").hide();
+    });
+
     $(document).on('click', '.btnn-edit', function (event) {
+        $('.trEdit').removeClass("trEdit");
         var id = $(this).parentsUntil('#id-table').find('.btnn-edit').attr('data-id');
-        listadePuertas(id);        
+        $(this).closest('tr').addClass("trEdit");
+        for (var i = 0; i < listDXO.length; i++) {
+            if (listDXO[i].Id == id) {
+                $("#idDoorxOrder").val(listDXO[i].Id)
+                $("#CantidadFila").val(listDXO[i].Quantity);
+                $("#iptWidth").val(listDXO[i].Width);
+                $("#iptHeight").val(listDXO[i].Height);
+                llenarComboHingeDirection(listDXO[i].HingeDirection.Id);
+                llenarComboDecimalW(listDXO[i].DecimalsWidth.Id);
+                llenarComboDecimalH(listDXO[i].DecimalsHeight.Id);
+                llenarComboDoorOption(listDXO[i].DoorOption.Id);
+                llenarComboDoorType(listDXO[i].DoorType.Id);
+                break;
+            }
+        }
         $("#dxoAdd").hide();
         $("#dxoSave").show();
+        $("#dxoCancel").show();
         $('body,html').animate({ scrollTop: 0 }, 500);
         $('#CantidadFila').addClass("clickedEdit");
         $('#iptWidth').addClass("clickedEdit");
@@ -206,42 +230,6 @@ $(function () {
 
 });
 
-function listadePuertas(id) {
-    $.ajax({
-        url: urlGetOrderSumary,
-        cache: false,
-        type: 'POST',
-        async: false,
-        contentType: "application/json; charset=utf-8",
-        success: function (data) {
-            if (data != null) {                               
-                DxO = data.Order.DoorxUser.DoorsxOrder;                                
-                for (var i = 0; i < DxO.length; i++) {
-                    if (DxO[i].Id == id) {
-                        $("#idDoorxOrder").val(DxO[i].Id)
-                        $("#CantidadFila").val(DxO[i].Quantity);
-                        $("#iptWidth").val(DxO[i].Width);
-                        $("#iptHeight").val(DxO[i].Height);
-                        llenarComboHingeDirection(DxO[i].HingeDirection.Id);
-                        llenarComboDecimalW(DxO[i].DecimalsWidth.Id);
-                        llenarComboDecimalH(DxO[i].DecimalsHeight.Id);
-                        llenarComboDoorOption(DxO[i].DoorOption.Id);
-                        llenarComboDoorType(DxO[i].DoorType.Id);
-                        break;
-                    }                    
-                }
-
-            } else {               
-            }
-           
-        },
-        error: function (err) {
-            LlammarModal("Danger", "Error.", "listadePuertas");
-        }
-    });
-
-}
-
 function UpdateDoorsxOrder() {
     var itemCost = parseFloat($("#iptCost").val());
     var DoorQuantity = $("#CantidadFila").val();
@@ -295,6 +283,8 @@ function UpdateDoorsxOrder() {
                 LimpiarCamposRapidos();
                 $("#dxoAdd").show();
                 $("#dxoSave").hide();
+                $("#dxoCancel").hide();
+                $('.trEdit').removeClass("trEdit");
             } else {                               
                 LlammarModal("Danger", "Error in the process.", "An error occurred when modified the door.");
             }

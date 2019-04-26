@@ -553,7 +553,9 @@ function InsertDoorsxUser() {
                             $('#modalConfirmOrderSummary').modal('hide');
                             LlammarModal("ConfigM", "General configuration of doors successfully saved!", "");                            
                             $("#btnConfigDoor").removeClass("btBuild").addClass("ModDoorxUser");
-                            var boton = '<button class="btn btn-success btn-icon AddDoor" style="width: 37px;height: 37px; margin-top: 55px;" type="button"><i class="fa fa-plus"></i></button>';
+                            var boton = '<button id="dxoAdd" class="btn btn-success btn-icon AddDoor" style="width: 37px;height: 37px; margin-top: 55px;" type="button"><i class="fa fa-plus"></i></button>';
+                            boton += '<button id="dxoSave" class="Cursor btn btn-success btn-icon SaveDoor" title="" type="button" style="margin-top: 55px; display:none"><div><i class="fa fa-check"></i></div></button>';
+                            boton += '<button id="dxoCancel" class="Cursor btn btn-danger btn-icon" title="" type="button" style="margin-top: 55px;margin-left: 3px; display:none"><div><i class="fa fa-window-close"></i></div></button>';
                             $("#btInsertDoorTable").empty().append(boton);
                             changeDoorStyle();                            
                             HingeShow(drillingV);
@@ -649,6 +651,7 @@ function LimpiarCamposRapidos() {
     $("#iptWidth").val("");
     $("#iptHeight").val("");
     $("#CantidadFila").val("");
+    $("#idDoorxOrder").val("");
     
 }
 
@@ -1118,17 +1121,17 @@ function llenarTablaOrderSumary() {
                 $(".btn-continue").prop('disabled', false);
                 llenarheaderOrder(data.Order.DoorxUser);
                 listDOOR = data.Order.DoorxUser;
-                DxO = data.Order.DoorxUser.DoorsxOrder;
+                listDXO = data.Order.DoorxUser.DoorsxOrder;
                 var tb = $('#tbOrderSummary').DataTable();
                 tb.rows().remove().draw(false);
                 var t = $('#idOrderSummary').DataTable();
                 t.rows().remove().draw(false);
-                for (var i = 0; i < DxO.length; i++) {
-                    var Imagen = '<img style="width: 80px;" src="' + DxO[i].Picture + '">';
-                    var Botones = '<center><button class="Cursor btn btn-primary btn-icon btnn-edit" data-id="' + DxO[i].Id + '" style="width: 25px;height: 25px;" type="submit"><i class="fa fa-edit"></i></button>';
-                    Botones += '<button class="Cursor btn btn-danger btn-icon btnn-dele" data-id="' + DxO[i].Id + '" style="width: 25px;height: 25px; margin-left: 10px;" type="submit"><i class="fa fa-trash"></i></button></center>';
-                    var WDecimal = DxO[i].DecimalsWidth.Description;
-                    var HDecimal = DxO[i].DecimalsHeight.Description;
+                for (var i = 0; i < listDXO.length; i++) {
+                    var Imagen = '<img style="width: 80px;" src="' + listDXO[i].Picture + '">';
+                    var Botones = '<center><button class="Cursor btn btn-primary btn-icon btnn-edit" data-id="' + listDXO[i].Id + '" style="width: 25px;height: 25px;" type="submit"><i class="fa fa-edit"></i></button>';
+                    Botones += '<button class="Cursor btn btn-danger btn-icon btnn-dele" data-id="' + listDXO[i].Id + '" style="width: 25px;height: 25px; margin-left: 10px;" type="submit"><i class="fa fa-trash"></i></button></center>';
+                    var WDecimal = listDXO[i].DecimalsWidth.Description;
+                    var HDecimal = listDXO[i].DecimalsHeight.Description;
                     if (WDecimal == "0" || WDecimal == 0) {
                         WDecimal = "";
                     }
@@ -1146,27 +1149,27 @@ function llenarTablaOrderSumary() {
                    
                     t.row.add([
                         Imagen,
-                        DxO[i].Quantity,
-                        DxO[i].Width + ' ' + WDecimal,
-                        DxO[i].Height + ' ' + HDecimal,
-                        DxO[i].HingeDirection.Direction,
-                        DxO[i].DoorType.Description,
-                        DxO[i].DoorOption.Description,
-                        "<span>$</span>" + DxO[i].ItemCost,
-                        "<span>$</span>" + DxO[i].SubTotal,
+                        listDXO[i].Quantity,
+                        listDXO[i].Width + ' ' + WDecimal,
+                        listDXO[i].Height + ' ' + HDecimal,
+                        listDXO[i].HingeDirection.Direction,
+                        listDXO[i].DoorType.Description,
+                        listDXO[i].DoorOption.Description,
+                        "<span>$</span>" + listDXO[i].ItemCost,
+                        "<span>$</span>" + listDXO[i].SubTotal,
                         Botones,
                     ]).draw(false);
 
                   
                     tb.row.add([
                         Imagen,
-                        DxO[i].Quantity,
-                        DxO[i].Width + ' ' + WDecimal,
-                        DxO[i].Height + ' ' + HDecimal,
-                        DxO[i].DoorType.Description,
-                        DxO[i].DoorOption.Description,
-                        "<span>$</span>" + DxO[i].ItemCost,
-                        "<span>$</span>" + DxO[i].SubTotal,
+                        listDXO[i].Quantity,
+                        listDXO[i].Width + ' ' + WDecimal,
+                        listDXO[i].Height + ' ' + HDecimal,
+                        listDXO[i].DoorType.Description,
+                        listDXO[i].DoorOption.Description,
+                        "<span>$</span>" + listDXO[i].ItemCost,
+                        "<span>$</span>" + listDXO[i].SubTotal,
                         Botones,
                     ]).draw(false);
                 }

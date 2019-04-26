@@ -244,8 +244,15 @@
                             <select style="width:100%" value="true" class="select2 form-control" id="cbHingeDirection" data-placeholder=""></select>
                         </div><!-- col -->
                       }
-                  }                    
-                    
+                  }
+                  else
+                  {
+                    <div id="HingeDirectionDiv" style="display:none" class="target col-xs-4 col-md-2">
+                        <label for="HingeDirection" style="margin-top: 25px;">Hinge Direction: </label>
+                        <select style="width:100%" value="true" class="select2 form-control" id="cbHingeDirection" data-placeholder=""></select>
+                    </div><!-- col -->
+                  }
+
                     <div class="col-xs-2 col-md-2">
                         <label for="DoorType" style="margin-top: 25px;">Door Type: </label>
                         <select style="width:100%" class="form-control select2" id="cbDoorType"></select>
@@ -254,15 +261,18 @@
                         <label for="DoorType" style="margin-top: 25px;">Door Option</label>
                         <select style="width:100%" class="form-control select2" id="cbDoorOpt"></select>
                     </div>
-                    <div class="col-xs-1 col-md-1" id="btInsertDoorTable">
+                    <div id="btInsertDoorTable">
                         @if (ord != null)
                         {
                             <button id="dxoAdd" class="Cursor btn btn-success btn-icon AddDoor" title=""  type="button" style="margin-top: 55px;"><div><i class="fa fa-plus"></i></div></button>
                             <button id="dxoSave" class="Cursor btn btn-success btn-icon SaveDoor" title="" type="button" style="margin-top: 55px; display:none"><div><i class="fa fa-check"></i></div></button>
+                            <button id="dxoCancel" class="Cursor btn btn-danger btn-icon" title="" type="button" style="margin-top: 55px; display:none"><div><i class="fa fa-window-close"></i></div></button>
                         }
                         else
                         {
-                            <button class="Cursor btn btn-success btn-icon btBuild" data-toggle="modal" data-target="#modalInsert" style="margin-top: 55px;" type="button"><div><i class="fa fa-plus"></i></div></button>
+                            <button id="dxoAdd" class="Cursor btn btn-success btn-icon btBuild" data-toggle="modal" data-target="#modalInsert" style="margin-top: 55px;" type="button"><div><i class="fa fa-plus"></i></div></button>
+                            <button id="dxoSave" class="Cursor btn btn-success btn-icon SaveDoor" title="" type="button" style="margin-top: 55px; display:none"><div><i class="fa fa-check"></i></div></button>
+                            <button id="dxoCancel" class="Cursor btn btn-danger btn-icon" title="" type="button" style="margin-top: 55px; display:none"><div><i class="fa fa-window-close"></i></div></button>
                         }
 
                     </div>   <!-- form-group -->
@@ -1037,14 +1047,16 @@
                 } catch (e) {
                     var DoorDashboard = '';
                 }
-
-                    try {
-                        var _DoorSt = '@ViewBag.IDDoorStyle';
-
-
-                    } catch (e) {
-                        var _DoorSt = 0;
-                    }
+                try {
+                    var _DoorSt = '@ViewBag.IDDoorStyle';
+                } catch (e) {
+                    var _DoorSt = 0;
+                }
+                try {
+                    var listDXO = JSON.parse('@Html.Raw(ViewBag.listaDePuertas)');
+                } catch (e) {
+                    var listDXO = '';
+                }
 
 
                 $(function () {

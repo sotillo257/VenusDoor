@@ -109,14 +109,15 @@ namespace BusinessLogic
 
         }
 
-        public bool UploadExcel(IExcelDataReader reader, int CodUsuario) { 
+        public bool UploadExcel(IExcelDataReader reader, int CodUsuario)
+        {
             try
             {
                 List<DoorxOrder> door = new List<DoorxOrder>();
                 reader.Read();
                 while (reader.Read())
                 {
-                    if (reader[7].ToString() != "0" )
+                    if (reader[7].ToString() != "0")
                     {
                         door.Add(new DoorxOrder()
                         {
@@ -126,14 +127,14 @@ namespace BusinessLogic
                             Width = decimal.Parse(reader[3].ToString()),
                             DecimalsWidth = new Decimals() { Id = 0, Description = reader[4].ToString().Replace(".", "") },
                             Height = decimal.Parse(reader[5].ToString()),
-                            DecimalsHeight = new Decimals() { Id = 0, Description = reader[6].ToString().Replace(".", "") },                           
+                            DecimalsHeight = new Decimals() { Id = 0, Description = reader[6].ToString().Replace(".", "") },
                             Quantity = int.Parse(reader[7].ToString()),
                             HingePositions = new HingePositions() { Id = 2 },
                             Status = new Status() { Id = 1 },
                             CreationDate = DateTime.Now,
                             ModificationDate = DateTime.Now,
                             CreatorUser = CodUsuario,
-                            ModificationUser = CodUsuario,                           
+                            ModificationUser = CodUsuario,
                             User = new User() { Id = CodUsuario }
                         });
                     }
@@ -144,7 +145,7 @@ namespace BusinessLogic
                 }
 
                 foreach (var item in door)
-                {                 
+                {
                     BusinessLogic.lnDoorOption _LNDoorOption = new BusinessLogic.lnDoorOption();
                     var _listDoorOption = _LNDoorOption.GetAllDoorOption().Where(x => x.Description.Trim() == item.DoorOption.Description.Trim()).FirstOrDefault();
                     if (_listDoorOption != null)
@@ -156,7 +157,7 @@ namespace BusinessLogic
                     if (_listHD != null)
                     {
                         item.HingeDirection.Id = _listHD.Id;
-                    }    
+                    }
                     BusinessLogic.lnDoorType _LNDoorType = new BusinessLogic.lnDoorType();
                     var _listDoorType = _LNDoorType.GetAllDoorType().Where(x => x.Description.Trim() == item.DoorType.Description.Trim()).FirstOrDefault();
                     if (_listDoorType != null)
@@ -168,8 +169,8 @@ namespace BusinessLogic
                     if (_listDecimals1 != null)
                     {
                         item.DecimalsHeight.Id = _listDecimals1.Id;
-                        
-                    }                
+
+                    }
                     var _listDecimals2 = _LNDecimals.GetAllDecimals().Where(x => x.Description.Trim() == item.DecimalsWidth.Description.Trim()).FirstOrDefault();
                     if (_listDecimals2 != null)
                     {
@@ -187,10 +188,10 @@ namespace BusinessLogic
 
                 }
 
-            
+
                 //CrearOrder(newOrder, CodUsuario); 
-               // InsertarDoors(door.FirstOrDefault(), door.FirstOrDefault().HingePositions, newOrder, CodUsuario);              
-               
+                // InsertarDoors(door.FirstOrDefault(), door.FirstOrDefault().HingePositions, newOrder, CodUsuario);              
+
                 reader.Close();
                 return true;
             }
@@ -198,8 +199,8 @@ namespace BusinessLogic
             {
                 return false;
             }
-            
-                }
+
+        }
 
 
         public decimal GetPricesDoor(Material pMaterial, Panel pPanel, decimal Height, decimal width, TopRail pTopRail, BottomRail pBottomRail)
