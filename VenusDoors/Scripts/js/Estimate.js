@@ -7,6 +7,16 @@
         $("#addFile").trigger('click');
     });
 
+    $("#Send").on('click', function () {
+        $("#SendMs").show();
+        $("#Estimate").hide();
+    });
+
+    $("#btnVolver").on("click", function () {
+        $("#SendMs").hide();
+        $("#Estimate").show();
+    });
+
     $(document).on('click', "#btAddComment", function () {
         if ($("#txtComment").val() != "" && $("#txtComment").val() != null) {
             InsertComment($("#txtComment").val());
@@ -332,6 +342,14 @@
         QuitarClaseErrorACombos();
 
     });
+});
+$(function () {
+    'use strict';
+
+    $('#summernote').summernote({
+        height: 150,
+        tooltip: false
+    })
 });
 
 $(function () {
@@ -765,7 +783,7 @@ function GetDoorsByOrder(idOrden) {
                     deci += ' <span>' + Result.DoorsxOrder[i].DecimalsHeight.Description + '</span>';
                 }
                 table += '<span style="word-wrap: break-word;" id="tmp_item_name">Width: ' + Math.trunc(Result.DoorsxOrder[i].Width) + ' '+ dec +', Height: '+ Math.trunc(Result.DoorsxOrder[i].Height)+' '+ dec +'</span><br>';
-                table += '<span style="white-space: pre-wrap;word-wrap: break-word;" class="pcs-item-desc" id="tmp_item_description">Panel: ' + Result.DoorsxOrder[i].Panel.Description + ', Door Type:' + Result.DoorsxOrder[i].DoorType.Description + '</span>';
+                table += '<span style="white-space: pre-wrap;word-wrap: break-word;" class="pcs-item-desc" id="tmp_item_description"> Door Type:' + Result.DoorsxOrder[i].DoorType.Description + '</span>';
                 table += '</div></div></td>';
                 table += '<td rowspan="1" class="pcs-item-row lineitem-column text-align-right">';
                 table += '<span id="tmp_item_qty">'+ Result.DoorsxOrder[i].Quantity.toString().replace(',', '.') +'</span>';               
@@ -813,7 +831,7 @@ function GetDoorsByOrder(idOrden) {
                 $("#lblDrill").text('No');
             }
             else {
-                $("#lblDrill").text("yes (" + Result.HingeDirection.Direction+")");
+                $("#lblDrill").text("yes");
             }
 
             if (Result.isFingerPull == false) {

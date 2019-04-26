@@ -1,44 +1,14 @@
 ﻿$(document).ready(function () {
     $(".AddComment").hide();
     $(".showInput").hide();
-    $(document).on('click', '#btnSAVE', function (event) {
-        var idGETOr = $(this).attr('data-id');
-        _IdOrderModificar = idGETOr;
-        $("#editBCK").hide();
-        $("#btnsave").hide();
-        $('#editDXU').removeClass("active");
-        $("#editBCK").trigger("click");
-        $('#dxoPanel').removeClass("active");
-        GetDoorsByOrderInvo(idGETOr);
-    });
-
-    $('#fc-datepicker').datepicker({
-        showOtherMonths: true,
-        selectOtherMonths: true
-    });
-
     $(".read-more-target").hide();
-    $("#read-less-state").hide(); 
-    $("#Record_Paymend").hide();
+    $("#read-less-state").hide();
+    $("#SendMs").hide();
     $("#infoMore").hide();
-    $("#btOculDis").hide(); 
+    $("#btOculDis").hide();
 
     $(document).on('click', "#btAdd", function () {
         $("#addFile").trigger('click');
-    });
-
-    $(document).on('click', "#btNewPay", function () {
-        $("#RecordPaymend").trigger("click");
-    });
-
-    $("#RecordPaymend").on("click", function () {
-        $("#Invoice").hide();
-        $("#Record_Paymend").show();
-    });
-
-    $("#btCancelar").on("click", function () {
-        $("#Invoice").show();
-        $("#Record_Paymend").hide();
     });
 
     $("#read-more-state").on("click", function () {
@@ -65,30 +35,36 @@
         $(".ocultarTitulo").hide();
     });
 
+    $("#cSend").on('click', function () {
+        $("#SendMs").show();
+        $("#Credit").hide();
+    });
+
+    $("#ApplyInv").on('click', function () {
+        $("#tittleModal").text("Apply credits from CN-00002");
+        $("#previewPDF").hide();
+        $("#btPrint").hide();
+        $("#btDownload").hide();
+        $("#apply").show();
+        $("#crSave").show();
+    });
+
+    $("#btPDF").on('click', function () {
+        $("#tittleModal").text("Preview");
+        $("#previewPDF").show();
+        $("#btPrint").show();
+        $("#btDownload").show();
+        $("#apply").hide();
+        $("#crSave").hide();
+    });
+
+    $("#btVolver").on("click", function () {
+        $("#SendMs").hide();
+        $("#Credit").show();
+    });
+
     $(document).on('click', "#btLinkAdd", function () {
         $("#btFile").trigger("click");
-    });
-
-    $(document).on('click', '#btModi', function (event) {
-        $("#lblTituloModal").text("Modify Invoice");
-        $("#btnCON").show();
-        $("#NEWINVOICE").show();
-        $("#detailBACK").hide();
-        $("#btnAtras").hide();
-        $("#btSaveChan").hide();
-        $('#createBACK').hide();
-        $("#btnSAVE").hide();
-        $("#btnBack").hide();
-        $("#btnClose").hide();
-        $("#NEWORDER").hide();
-        $("#DETAILORDER").hide();
-        $("#btGuardar").hide();
-        $("#MODIFYOR").hide();
-        $("#btCancel").hide();
-    });
-
-    $("#btnBack").on('click', function () {
-        $("#createBACK").trigger("click");
     });
 
     $("#btDisplay").on('click', function () {
@@ -103,213 +79,14 @@
         $("#btDisplay").show();
     });
 
-    $("#btNew").on('click', function () {
-        $("#lblTituloModal").text("New Invoice"); 
-        $("#btnCON").show();
-        $("#NEWINVOICE").show();
-        $("#detailBACK").hide();
-        $("#btnAtras").hide();
-        $("#btSaveChan").hide();
-        $('#createBACK').hide();
-        $("#btnSAVE").hide();
-        $("#btnBack").hide();
-        $("#btnClose").hide();
-        $("#NEWORDER").hide();
-        $("#DETAILORDER").hide();
-        $("#btGuardar").hide();
-        $("#MODIFYOR").hide();
-        $("#btCancel").hide();
-    });
+});
+$(function () {
+    'use strict';
 
-    $("#createBACK").on('click', function () {
-        $("#lblTituloModal").text("New Invoice");
-        $("#NEWINVOICE").show();
-        $("#btnCON").show();
-        $("#detailBACK").hide();
-        $("#btnAtras").hide();
-        $("#btSaveChan").hide();
-        $('#createBACK').hide();
-        $("#btnSAVE").hide();
-        $("#btnBack").hide();
-        $("#btnClose").hide();
-        $('#NEWORDER').hide();
-        $("#MODIFYOR").hide();
-        $("#btGuardar").hide();
-        $('#btnAtras').removeClass("active");
-        $("#btCancel").hide();
-    });
-
-    $("#detailBACK").on('click', function () {
-        $("#btnAtras").trigger("click");
-    });
-
-    $("#btnAtras").on('click', function () {
-        $("#lblTituloModal").text("Create order");
-        $("#NEWORDER").show();
-        $("#createBACK").show();
-        $("#btnSAVE").show();
-        $("#btnBack").show();
-        $("#btnClose").show();
-        $("#detailBACK").hide();
-        $("#createBACK").show();
-        $("#btnAtras").hide();
-        $("#btSaveChan").hide();
-        $("#btnCON").hide();
-        $("#DETAILORDER").hide();
-        $("#MODIFYOR").hide();
-        $("#btGuardar").hide();
-        $('#createBACK').removeClass("active");
-        $("#btCancel").hide();
-    });
-
-    $("#btnCON").on('click', function () {
-        $("#lblTituloModal").text("Create order");
-        $("#createBACK").show();
-        $("#btnSAVE").show();
-        $("#btnBack").show();
-        $("#NEWORDER").show();
-        $("#detailBACK").hide();
-        $("#btnClose").show();
-        $("#btnAtras").hide();
-        $("#btSaveChan").hide();
-        $("#btnCON").hide();
-        $("#NEWINVOICE").hide();
-        $("#DETAILORDER").hide();
-        $("#MODIFYOR").hide();
-        $("#btGuardar").hide();
-        $('#createBACK').removeClass("active");
-        $("#btCancel").hide();
-    });
-
-    $("#btCancel").on('click', function () {
-        $("#btnSAVE").trigger("click");
-    });
-
-    $("#btnSAVE").on('click', function () {
-        $("#lblTituloModal").text("Details of the order #");
-        $("#btnClose").show();
-        $("#btnAtras").show();
-        $("#detailBACK").show();
-        $('#DETAILORDER').show();
-        $("#btGuardar").show();
-        $("#createBACK").hide();
-        $("#btnBack").hide();
-        $("#btSaveChan").hide();
-        $("#btnSAVE").hide();
-        $("#btnCON").hide();
-        $("#NEWORDER").hide();
-        $("#NEWINVOICE").hide();
-        $("#MODIFYOR").hide();
-        $("#btCancel").hide();
-    });
-
-    $("#createDoor").on('click', function () {
-        $(".editDoor").trigger("click");
-    });
-
-    $(document).on('click', '.editDoor', function (event) {
-        var id = $(this).attr('data-id'); 
-        $("#btGuardar").hide();
-        $("#detailBACK").hide(); 
-        $("#MODIFYOR").show();
-        $("#btCancel").show();
-        $("#btnSAVE").hide();
-        $("#btnCON").hide();
-        $("#btnAtras").hide();
-        $("#btnBack").hide();
-        $("#btnClose").hide();
-        $("#NEWINVOICE").hide();
-        $("#NEWORDER").hide();
-        $("#DETAILORDER").hide();
-        $('#createBACK').removeClass("active");
-        $('#btnAtras').removeClass("active");
-        $("#btSaveChan").show();
-        QuitarClaseErrorACombos();
-
-
-        for (var i = 0; i < DxOl.length; i++) {
-            if (DxOl[i].Id == $(this).attr('data-id')) {
-
-
-                var PictureProfile = '<img style="height: 100px;width: 235px;margin-top: 20px;" id="ProfilePicture" src="' + DxOl[i].ProfilePicture + '">';
-                var PicturePanel = '<img style="width: 230px;height: 230px;" id="DoorPicture" src="' + DxOl[i].Picture + '">';
-                $('#PictureProfile').html(PictureProfile);
-                $('#PicturePanel').html(PicturePanel);
-                $('#idDoorxO').val(DxOl[i].Id);
-                $('#idDxuXO').val(DxOl[i].DoorxUser.Id);
-                $('#descDXO').val(DxOl[i].Descuento);
-                $('#iptWidth').val(DxOl[i].Width);
-                $('#iptHeight').val(DxOl[i].Height);
-                $('#CantidadFila').val(DxOl[i].Quantity);
-                //$('#descDXO').val(DxOl[i].Descuento);
-                if ($('#cbDoorStyle').val() != 1010) {
-                    llenarComboPanelStyle(DxOl[i].Panel.Id);
-                }
-
-                llenarComboDoorType(DxOl[i].DoorType.Id);
-                selectDoorOption(DxOl[i].DoorOption.Id);
-                llenarComboDecimalW(DxOl[i].DecimalsWidth.Id);
-                llenarComboDecimalH(DxOl[i].DecimalsHeight.Id);
-                break;
-            }
-        }
-    });
-
-    var container = $('#Demo');
-    var conta = $('#listaInvoices');
-
-    container.pagination({
-        className: 'paginationjs-theme-blue paginationjs-small',
-        dataSource: listInvoice,
-        callback: function (data, pagination) {
-            var option = '';
-            for (var i = 0; i < data.length; i++) {
-                if (i == 0) {
-                    if (inicio) {
-                        inicio = false;
-                        LlenarVistaPrincipal(data[i]);
-                    option += '<div data-id="' + data[i].Id + '" class="br-mailbox-list-item Invoice active">';
-                } else {
-                        if (_IdInvoice == data[i].Id) {
-                            option += '<div data-id="' + data[i].Id + '" class="br-mailbox-list-item Invoice active">';
-                        } else {
-                            option += '<div data-id="' + data[i].Id + '" class="br-mailbox-list-item Invoice">';
-                }
-
-                    }
-
-                } else {
-                    if (_IdInvoice == data[i].Id) {
-                        option += '<div data-id="' + data[i].Id + '" class="br-mailbox-list-item Invoice active">';
-                    } else {
-                        option += '<div data-id="' + data[i].Id + '" class="br-mailbox-list-item Invoice">';
-                    }
-                }
-               
-                                 
-                option += '  <div class="d-flex justify-content-between mg-b-5">';
-                option += ' <div>';
-                option += '   <h6 class="tx-14 mg-b-10 tx-gray-800">' + data[i].UserCliente.Person.Name + '</h6>';
-                option += '</div>';
-                var attach =' ';
-                if (data[i].Document > 0) {
-                    attach += '<i class="icon ion-android-attach"></i>';
-                }
-                option += '  <h6 class="tx-14 mg-b-10 tx-gray-800">'+attach+' $' + Moneda(data[i].TotalDue) + '</h6>';
-                option +='  </div>'
-                option +='  <div class="d-flex justify-content-between mg-b-5">'
-                option += '       <div>';
-
-                var Fecha1 = new Date(parseInt(re.exec(data[i].CreationDate)[0]));
-                option += '         <h6 class="tx-14 mg-b-10 tx-gray-800">' + data[i].IdFolio + ' | ' + Fecha1.ddmmyyyy() + '</h6>'
-                option +='      </div>'
-                option += '   <h6 class="tx-14 mg-b-10 tx-gray-800" style="color: ' + Colores(data[i].Status.Id) + ';">' + data[i].Status.Description + '</h6>'
-                option += '  </div>'
-                option += ' </div><!-- br-mailbox-list-item -->';
-            }
-            conta.html(option);
-        }
-    });
+    $('#summernote').summernote({
+        height: 150,
+        tooltip: false
+    })
 });
 
 $(function () {
