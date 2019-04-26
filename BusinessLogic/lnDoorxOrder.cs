@@ -261,7 +261,7 @@ namespace BusinessLogic
                     }
                     else
                     {
-                        item.HingeDirection.Id = 3;
+                        item.HingeDirection.Id = 1;
                     }
                     item.DoorxUser = Order.DoorxUser;
                     item.ModificationDate = DateTime.Now;
@@ -363,30 +363,30 @@ namespace BusinessLogic
                     {
                         Rail = 2;
                     }
-                    int panel = 5;
+                    int panel = Order.DoorxUser.Panel.Id;
                     if (Order.DoorxUser.DoorStyle.Id == 1002)
                     {
                         Order.DoorxUser.Panel.Id = 5;
                     }
-                    else if (Order.DoorxUser.DoorStyle.Id == 1003)
-                    {
-                        Order.DoorxUser.Panel.Id = 2;
-                    }
-                    if (Order.DoorxUser.Panel.Id == 2)
-                    {
-                        panel = Order.DoorxUser.Panel.Id;
-                    }
+                    //else if (Order.DoorxUser.DoorStyle.Id == 1003)
+                    //{
+                    //    Order.DoorxUser.Panel.Id = 2;
+                    //}
+                    //if (Order.DoorxUser.Panel.Id == 2)
+                    //{
+                    //    panel = Order.DoorxUser.Panel.Id;
+                    //}
                     if (Order.DoorxUser.DoorStyle.Id == 1010)
                     {
                         panel = 2;
                     }
-                    else
-                    {
-                        if (Order.DoorxUser.Panel.Id == 3)
-                        {
-                        Order.DoorxUser.Panel.Id = 5;
-                        }
-                    }
+                    //else
+                    //{
+                    //    if (Order.DoorxUser.Panel.Id == 3)
+                    //    {
+                    //    Order.DoorxUser.Panel.Id = 5;
+                    //    }
+                    //}
                 DoorsPrices DoorPrice = dp.GetDoorsPricesById(0, panel, Order.DoorxUser.Material.Id, Rail);
                     decimal deciW = listDeci.Where(x => x.Id == pDoorsOrder.DecimalsWidth.Id).FirstOrDefault().Value;
                     decimal deciH = listDeci.Where(x => x.Id == pDoorsOrder.DecimalsHeight.Id).FirstOrDefault().Value;
