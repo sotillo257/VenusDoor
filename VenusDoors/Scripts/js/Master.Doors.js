@@ -55,7 +55,7 @@
                 if (ListDoors[i].Id == $(this).attr('value')) {
 
                     var HTMLImage =
-                    ' <center>' +
+                    ' <center><img style="height: 100px;width: 235px;margin-top: 20px;" id="ProfilePicture" src="' + ListDoors[i].ProfilePicture + '">' +
                                '<img style="width: 230px;height: 230px;" id="DoorPicture" src="' + ListDoors[i].Picture + '">' +
                                '</center>';
                     $('#Picture').html(HTMLImage);
@@ -119,6 +119,7 @@
 
     $(document).on('change', '#cbDoorStyle', function () {
         ChangeDoorStylePanel($("#cbDoorStyle").val());
+        GetInsideAndOutside($("#cbDoorStyle").val());
     });
 
     $(document).on('change', '#cbMaterial', function () {
@@ -129,6 +130,7 @@
 
 function ChangeDoorStylePanel(pIdDoorStyle) {
     var bandera = true;
+
     llenarComboDoorAssembly($("#cbDoorAssembly").val());
     if (pIdDoorStyle == 1002) {
         var panelType = $("#cbPanel").val();
@@ -146,7 +148,7 @@ function ChangeDoorStylePanel(pIdDoorStyle) {
             $("#cbPanel").val(0);
         }
 
-        llenarComboInsideAndOutside();
+
     } else if (pIdDoorStyle == 1003) {
 
         var panelType = $("#cbPanel").val();
@@ -158,13 +160,13 @@ function ChangeDoorStylePanel(pIdDoorStyle) {
         }
         $("#cbPanel").empty().append(option);
         $("#cbPanel").val(2);
-        llenarComboInsideAndOutside();
+
     } else if (pIdDoorStyle == 1004) {
         var inside = $("#cbInsideEdgeProfile").val();
         var outside = $("#cbOutsideEdgeProfile").val();
         var option = '<option value="0">Select</option>';
         for (var i = 0; i < AllInsideEdgeProfile.length; i++) {
-            if (AllInsideEdgeProfile[i].Status.Id == 1 && (AllInsideEdgeProfile[i].Id == 3 || AllInsideEdgeProfile[i].Id == 7)) {
+            if (AllInsideEdgeProfile[i].Status.Id == 1 && (AllInsideEdgeProfile[i].Id == 3 || AllInsideEdgeProfile[i].Id == 7 || AllInsideEdgeProfile[i].Id == 11)) {
                 option += '<option value="' + AllInsideEdgeProfile[i].Id + '">' + AllInsideEdgeProfile[i].Description + '</option>';
             }
         }
@@ -185,20 +187,17 @@ function ChangeDoorStylePanel(pIdDoorStyle) {
         $("#cbOutsideEdgeProfile").val(6);
         llenarComboPanel();
     } else if (pIdDoorStyle == 1005) {
-        llenarInsideAndOutsideEspecificos(3, 6);
         llenarComboPanel();
     }
     else if (pIdDoorStyle == 1006) {
-        llenarInsideAndOutsideEspecificos(5, 5);
         llenarComboPanel();
     } else if (pIdDoorStyle == 1007) {
-        llenarInsideAndOutsideEspecificos(4, 11);
         llenarComboPanel();
     } else if (pIdDoorStyle == 1008) {
-        llenarComboInsideAndOutside();
+
         llenarComboPanel();
     } else if (pIdDoorStyle == 1009) {
-        llenarComboInsideAndOutside();
+
         var option = '<option value="0">Select</option>';
         for (var i = 0; i < AllPanelType.length; i++) {
             if (AllPanelType[i].Status.Id == 1 && AllPanelType[i].Id == 5) {
@@ -207,8 +206,8 @@ function ChangeDoorStylePanel(pIdDoorStyle) {
         }
         $("#cbPanel").empty().append(option);
         $("#cbPanel").val(5);
-    } else if ($("#cbDoorStyle").val() == 1010) {
-        llenarComboInsideAndOutside();
+    } else if (pIdDoorStyle == 1010) {
+
         var option = '<option value="3">Slab</option>';
         $("#cbPanel").empty().append(option);
         $("#cbPanel").hide();
@@ -228,7 +227,9 @@ function ChangeDoorStylePanel(pIdDoorStyle) {
         changeDoorPicture();
         ChangeProfile();
     }
-
+    var pMaterial = $("#cbMaterial").val();
+    var pPanelStyle = $("#cbPanel").val();
+    llenarComboPanelMaterial(pMaterial, pPanelStyle);
 }
 
 function llenarInsideAndOutsideEspecificos(pInside, pOutside) {
@@ -616,7 +617,7 @@ function UpdateDoors() {
             Height: 0,
             DecimalsHeight: { Id: 2 },
             Picture: $("#DoorPicture").attr('src'),
-            ProfilePicture: "Profile",
+            ProfilePicture: $("#ProfilePicture").attr('src'),
             Status: { Id: $("#cbStatus").val() },
             isOverlay: isOver ,
             DoorOption: { Id: 1 },
@@ -1650,6 +1651,290 @@ function RaisedPanelDoor(Style) {
 }
 
 function FlatPanel(Outside, Inside) {
+    var ProfileUrl = "img11.png";
+    var urlFolder = "/Content/img/Profile/";
+    if (Outside == 13) {
+        if (Inside == 4) {
+             ProfileUrl = "-Double_Roman_Ogee_ogee_flat_panel.png";
+        } else if (Inside == 5) {
+             ProfileUrl = "-Double_Roman_Ogee_Reba_flat_panel.png";
+        } else if (Inside == 3) {
+             ProfileUrl = "-Double_Roman_Ogee_Shaker_22_flat_panel.png";
+        }else if (Inside == 7) {
+             ProfileUrl = "-Double_Roman_Ogee_shaker_goove_flatpanel.png";
+        }
+    }
+    if (Outside == 2) {
+        if (Inside == 4) {
+            ProfileUrl = "-Fingerpull_ogee_flat_panel.png";
+        } else if (Inside == 5) {
+            ProfileUrl = "-Fingerpull_Reba_flat_panel.png";
+        } else if (Inside == 3) {
+            ProfileUrl = "-Fingerpull_Shaker22_flat_panel.png";
+        } else if (Inside == 7) {
+            ProfileUrl = "-Finger_pull_shaker_goove_flat_panel.png";
+        }
+    }
+    if (Outside == 17) {
+        if (Inside == 4) {
+            ProfileUrl = "-Half_Reba_ogee_flat_panel.png";
+        } else if (Inside == 5) {
+            ProfileUrl = "-Half_Reba_Reba_flat_panel.png";
+        } else if (Inside == 3) {
+            ProfileUrl = "-Half_Reba_Shaker_22_flat_panel.png";
+        } else if (Inside == 7) {
+            ProfileUrl = "-Half_Reba_shaker_goove_flat_panel.png";
+        }
+    }
+    if (Outside == 11) {
+
+        if (Inside == 4) {
+            ProfileUrl = "-Little_bone_ogee_flat_panel.png";
+        } else if (Inside == 5) {
+            ProfileUrl = "-Little_bone_Reba_flat_panel.png";
+        } else if (Inside == 3) {
+            ProfileUrl = "-Little_bone_Shaker_22_flat_panel.png";
+        } else if (Inside == 7) {
+            ProfileUrl = "-Little_bone_shaker_goove_flat_panel.png";
+        }
+    }
+    if (Outside == 5) {
+        if (Inside == 4) {
+            ProfileUrl = "-Reba_ogee_flat_panel.png";
+        } else if (Inside == 5) {
+            ProfileUrl = "-Reba_Reba_flat_panel.png";
+        } else if (Inside == 3) {
+          //  ProfileUrl = "-Reba_Shaker_22_flat_panel.png";
+        } else if (Inside == 7) {
+            ProfileUrl = "-Reba_shaker_goove_flat_panel.png";
+        }
+    }
+    if (Outside == 6) {
+        if (Inside == 4) {
+            ProfileUrl = "-Shaker_ogee_flat_panel.png";
+        } else if (Inside == 5) {
+            ProfileUrl = "-Shaker_Reba_flat_panel.png";
+        } else if (Inside == 3) {
+            ProfileUrl = "-Shaker_Shaker_22_flat_panel.png";
+        } else if (Inside == 7) {
+            ProfileUrl = "-Shaker_shaker_goove_flat_panel.png";
+        }
+    }
+    $('#ProfilePicture').attr('src', urlFolder + ProfileUrl);
+}function FlatPanel(Outside, Inside) {
+    var ProfileUrl = "img11.png";
+    var urlFolder = "/Content/img/Profile/";
+    if (Outside == 13) {
+        if (Inside == 4) {
+             ProfileUrl = "-Double_Roman_Ogee_ogee_flat_panel.png";
+        } else if (Inside == 5) {
+             ProfileUrl = "-Double_Roman_Ogee_Reba_flat_panel.png";
+        } else if (Inside == 3) {
+             ProfileUrl = "-Double_Roman_Ogee_Shaker_22_flat_panel.png";
+        }else if (Inside == 7) {
+             ProfileUrl = "-Double_Roman_Ogee_shaker_goove_flatpanel.png";
+        }
+    }
+    if (Outside == 2) {
+        if (Inside == 4) {
+            ProfileUrl = "-Fingerpull_ogee_flat_panel.png";
+        } else if (Inside == 5) {
+            ProfileUrl = "-Fingerpull_Reba_flat_panel.png";
+        } else if (Inside == 3) {
+            ProfileUrl = "-Fingerpull_Shaker22_flat_panel.png";
+        } else if (Inside == 7) {
+            ProfileUrl = "-Finger_pull_shaker_goove_flat_panel.png";
+        }
+    }
+    if (Outside == 17) {
+        if (Inside == 4) {
+            ProfileUrl = "-Half_Reba_ogee_flat_panel.png";
+        } else if (Inside == 5) {
+            ProfileUrl = "-Half_Reba_Reba_flat_panel.png";
+        } else if (Inside == 3) {
+            ProfileUrl = "-Half_Reba_Shaker_22_flat_panel.png";
+        } else if (Inside == 7) {
+            ProfileUrl = "-Half_Reba_shaker_goove_flat_panel.png";
+        }
+    }
+    if (Outside == 11) {
+
+        if (Inside == 4) {
+            ProfileUrl = "-Little_bone_ogee_flat_panel.png";
+        } else if (Inside == 5) {
+            ProfileUrl = "-Little_bone_Reba_flat_panel.png";
+        } else if (Inside == 3) {
+            ProfileUrl = "-Little_bone_Shaker_22_flat_panel.png";
+        } else if (Inside == 7) {
+            ProfileUrl = "-Little_bone_shaker_goove_flat_panel.png";
+        }
+    }
+    if (Outside == 5) {
+        if (Inside == 4) {
+            ProfileUrl = "-Reba_ogee_flat_panel.png";
+        } else if (Inside == 5) {
+            ProfileUrl = "-Reba_Reba_flat_panel.png";
+        } else if (Inside == 3) {
+          //  ProfileUrl = "-Reba_Shaker_22_flat_panel.png";
+        } else if (Inside == 7) {
+            ProfileUrl = "-Reba_shaker_goove_flat_panel.png";
+        }
+    }
+    if (Outside == 6) {
+        if (Inside == 4) {
+            ProfileUrl = "-Shaker_ogee_flat_panel.png";
+        } else if (Inside == 5) {
+            ProfileUrl = "-Shaker_Reba_flat_panel.png";
+        } else if (Inside == 3) {
+            ProfileUrl = "-Shaker_Shaker_22_flat_panel.png";
+        } else if (Inside == 7) {
+            ProfileUrl = "-Shaker_shaker_goove_flat_panel.png";
+        }
+    }
+    $('#ProfilePicture').attr('src', urlFolder + ProfileUrl);
+} function FlatPanel(Outside, Inside) {
+    var ProfileUrl = "img11.png";
+    var urlFolder = "/Content/img/Profile/";
+    if (Outside == 13) {
+        if (Inside == 4) {
+            ProfileUrl = "-Double_Roman_Ogee_ogee_flat_panel.png";
+        } else if (Inside == 5) {
+            ProfileUrl = "-Double_Roman_Ogee_Reba_flat_panel.png";
+        } else if (Inside == 3) {
+            ProfileUrl = "-Double_Roman_Ogee_Shaker_22_flat_panel.png";
+        } else if (Inside == 7) {
+            ProfileUrl = "-Double_Roman_Ogee_shaker_goove_flatpanel.png";
+        }
+    }
+    if (Outside == 2) {
+        if (Inside == 4) {
+            ProfileUrl = "-Fingerpull_ogee_flat_panel.png";
+        } else if (Inside == 5) {
+            ProfileUrl = "-Fingerpull_Reba_flat_panel.png";
+        } else if (Inside == 3) {
+            ProfileUrl = "-Fingerpull_Shaker22_flat_panel.png";
+        } else if (Inside == 7) {
+            ProfileUrl = "-Finger_pull_shaker_goove_flat_panel.png";
+        }
+    }
+    if (Outside == 17) {
+        if (Inside == 4) {
+            ProfileUrl = "-Half_Reba_ogee_flat_panel.png";
+        } else if (Inside == 5) {
+            ProfileUrl = "-Half_Reba_Reba_flat_panel.png";
+        } else if (Inside == 3) {
+            ProfileUrl = "-Half_Reba_Shaker_22_flat_panel.png";
+        } else if (Inside == 7) {
+            ProfileUrl = "-Half_Reba_shaker_goove_flat_panel.png";
+        }
+    }
+    if (Outside == 11) {
+
+        if (Inside == 4) {
+            ProfileUrl = "-Little_bone_ogee_flat_panel.png";
+        } else if (Inside == 5) {
+            ProfileUrl = "-Little_bone_Reba_flat_panel.png";
+        } else if (Inside == 3) {
+            ProfileUrl = "-Little_bone_Shaker_22_flat_panel.png";
+        } else if (Inside == 7) {
+            ProfileUrl = "-Little_bone_shaker_goove_flat_panel.png";
+        }
+    }
+    if (Outside == 5) {
+        if (Inside == 4) {
+            ProfileUrl = "-Reba_ogee_flat_panel.png";
+        } else if (Inside == 5) {
+            ProfileUrl = "-Reba_Reba_flat_panel.png";
+        } else if (Inside == 3) {
+            //  ProfileUrl = "-Reba_Shaker_22_flat_panel.png";
+        } else if (Inside == 7) {
+            ProfileUrl = "-Reba_shaker_goove_flat_panel.png";
+        }
+    }
+    if (Outside == 6) {
+        if (Inside == 4) {
+            ProfileUrl = "-Shaker_ogee_flat_panel.png";
+        } else if (Inside == 5) {
+            ProfileUrl = "-Shaker_Reba_flat_panel.png";
+        } else if (Inside == 3) {
+            ProfileUrl = "-Shaker_Shaker_22_flat_panel.png";
+        } else if (Inside == 7) {
+            ProfileUrl = "-Shaker_shaker_goove_flat_panel.png";
+        }
+    }
+    $('#ProfilePicture').attr('src', urlFolder + ProfileUrl);
+} function FlatPanel(Outside, Inside) {
+    var ProfileUrl = "img11.png";
+    var urlFolder = "/Content/img/Profile/";
+    if (Outside == 13) {
+        if (Inside == 4) {
+            ProfileUrl = "-Double_Roman_Ogee_ogee_flat_panel.png";
+        } else if (Inside == 5) {
+            ProfileUrl = "-Double_Roman_Ogee_Reba_flat_panel.png";
+        } else if (Inside == 3) {
+            ProfileUrl = "-Double_Roman_Ogee_Shaker_22_flat_panel.png";
+        } else if (Inside == 7) {
+            ProfileUrl = "-Double_Roman_Ogee_shaker_goove_flatpanel.png";
+        }
+    }
+    if (Outside == 2) {
+        if (Inside == 4) {
+            ProfileUrl = "-Fingerpull_ogee_flat_panel.png";
+        } else if (Inside == 5) {
+            ProfileUrl = "-Fingerpull_Reba_flat_panel.png";
+        } else if (Inside == 3) {
+            ProfileUrl = "-Fingerpull_Shaker22_flat_panel.png";
+        } else if (Inside == 7) {
+            ProfileUrl = "-Finger_pull_shaker_goove_flat_panel.png";
+        }
+    }
+    if (Outside == 17) {
+        if (Inside == 4) {
+            ProfileUrl = "-Half_Reba_ogee_flat_panel.png";
+        } else if (Inside == 5) {
+            ProfileUrl = "-Half_Reba_Reba_flat_panel.png";
+        } else if (Inside == 3) {
+            ProfileUrl = "-Half_Reba_Shaker_22_flat_panel.png";
+        } else if (Inside == 7) {
+            ProfileUrl = "-Half_Reba_shaker_goove_flat_panel.png";
+        }
+    }
+    if (Outside == 11) {
+
+        if (Inside == 4) {
+            ProfileUrl = "-Little_bone_ogee_flat_panel.png";
+        } else if (Inside == 5) {
+            ProfileUrl = "-Little_bone_Reba_flat_panel.png";
+        } else if (Inside == 3) {
+            ProfileUrl = "-Little_bone_Shaker_22_flat_panel.png";
+        } else if (Inside == 7) {
+            ProfileUrl = "-Little_bone_shaker_goove_flat_panel.png";
+        }
+    }
+    if (Outside == 5) {
+        if (Inside == 4) {
+            ProfileUrl = "-Reba_ogee_flat_panel.png";
+        } else if (Inside == 5) {
+            ProfileUrl = "-Reba_Reba_flat_panel.png";
+        } else if (Inside == 3) {
+            //  ProfileUrl = "-Reba_Shaker_22_flat_panel.png";
+        } else if (Inside == 7) {
+            ProfileUrl = "-Reba_shaker_goove_flat_panel.png";
+        }
+    }
+    if (Outside == 6) {
+        if (Inside == 4) {
+            ProfileUrl = "-Shaker_ogee_flat_panel.png";
+        } else if (Inside == 5) {
+            ProfileUrl = "-Shaker_Reba_flat_panel.png";
+        } else if (Inside == 3) {
+            ProfileUrl = "-Shaker_Shaker_22_flat_panel.png";
+        } else if (Inside == 7) {
+            ProfileUrl = "-Shaker_shaker_goove_flat_panel.png";
+        }
+    }
+    $('#ProfilePicture').attr('src', urlFolder + ProfileUrl);
+} function FlatPanel(Outside, Inside) {
     var ProfileUrl = "img11.png";
     var urlFolder = "/Content/img/Profile/";
     if (Outside == 13) {

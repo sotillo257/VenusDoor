@@ -96,6 +96,9 @@ function GetDoorsByOrder(idOrden) {
             $('#idDoor').val(Result.Id);
             $('#descDXU').val(Result.Order.Descuento);
 
+
+            _DoorIMG = Result.ProfilePicture;
+            _DoorProfile = Result.Picture;
             _fingerPull = Result.isFingerPull;
             _isDrill = Result.isDrill;
             _isOpen = Result.IsOpeningMeasurement;
@@ -111,6 +114,12 @@ function GetDoorsByOrder(idOrden) {
             _PanelMaterial = Result.Material.Id;
             _Vertical = Result.VerticalDivisions.Id;
             _Horizontal = Result.HorizontalDivisions.Id;
+
+            var HTMLImage =
+           ' <center> <img style="height: 100px;width: 235px;margin-top: 20px;" id="ProfilePicture" src="' + _DoorProfile + '">' +
+                      '<img style="width: 230px;height: 230px;" id="DoorPicture" src="' + _DoorIMG + '">' +
+                      '</center>';
+            $('#Picture').html(HTMLImage);
 
             if (_fingerPull == false) {
                 _fingerPull = 1;
