@@ -277,7 +277,7 @@ namespace VenusDoors.Controllers
                     string subject = "One of your doors was modified (Order #"+ ordr.Id + ")";
                     string FromTittle = "Venus Cabinet Doors";
                     string typeMessage = "OrderControl";                  
-                    //_SEND.SendMail(pUser, subject, FromTittle, message, typeMessage);
+                    _SEND.SendMail(pUser, subject, FromTittle, message, typeMessage);
                     return Json(true, JsonRequestBehavior.AllowGet);
                 }
 
@@ -375,7 +375,7 @@ namespace VenusDoors.Controllers
                     string subject = "Your order #" + Orden.Id + " has been modified";
                     string FromTittle = "Venus Cabinet Doors";
                     string typeMessage = "OrderControl";
-                    //_SEND.SendMail(pUser, subject, FromTittle, message, typeMessage);
+                    _SEND.SendMail(pUser, subject, FromTittle, message, typeMessage);
                     return Json(true, JsonRequestBehavior.AllowGet);
                 }
 
