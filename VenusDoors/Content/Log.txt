@@ -5896,12 +5896,12 @@ Metodo: AbrirConexion
 Controller: MetodosDB.MetodosDB
 UserName: 
 UserID: 
-Date: 2019-04-26 14:37
+Date: 2019-04-26 14:58
 Origen :   en MetodosDB.MetodosDB.AbrirConexion(String cn) en c:\Desarrollo\BioKontrol\_Dev\BioKontrol\MetodosDB\MetodosDB.cs:línea 33
    en MetodosDB.MetodosDB.CreaDS(DataSet ds, String TableName, String Sql, String cn) en c:\Desarrollo\BioKontrol\_Dev\BioKontrol\MetodosDB\MetodosDB.cs:línea 76
-   en DataAccess.adUser.GetAllUser() en C:\Users\Javier Sotillo\Source\Repos\VenusDoor\DataAccess\adUser.cs:línea 100
-   en BusinessLogic.lnUser.GetAllUser() en C:\Users\Javier Sotillo\Source\Repos\VenusDoor\BusinessLogic\lnUser.cs:línea 29
-   en VenusDoors.Controllers.LoginsController.Autherize(User userData) en C:\Users\Javier Sotillo\Source\Repos\VenusDoor\VenusDoors\Controllers\LoginsController.cs:línea 256
+   en DataAccess.adUser.GetAllUser() en C:\Users\Lenovo\Source\Repos\VenusDoor\DataAccess\adUser.cs:línea 100
+   en BusinessLogic.lnUser.GetAllUser() en C:\Users\Lenovo\Source\Repos\VenusDoor\BusinessLogic\lnUser.cs:línea 29
+   en VenusDoors.Controllers.LoginsController.Autherize(User userData) en C:\Users\Lenovo\Source\Repos\VenusDoor\VenusDoors\Controllers\LoginsController.cs:línea 256
    en lambda_method(Closure , ControllerBase , Object[] )
    en System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
    en System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
@@ -5936,6 +5936,7 @@ Origen :   en MetodosDB.MetodosDB.AbrirConexion(String cn) en c:\Desarrollo\BioK
    en System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
    en System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)
    en System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   en System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
    en System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
 ---------------------------------------------------------------------------------------------------
 Error: Error conectando a la base de datos
@@ -5943,12 +5944,12 @@ Metodo: AbrirConexion
 Controller: MetodosDB.MetodosDB
 UserName: 
 UserID: 
-Date: 2019-04-26 14:46
+Date: 2019-04-26 14:06
 Origen :   en MetodosDB.MetodosDB.AbrirConexion(String cn) en c:\Desarrollo\BioKontrol\_Dev\BioKontrol\MetodosDB\MetodosDB.cs:línea 33
    en MetodosDB.MetodosDB.CreaDS(DataSet ds, String TableName, String Sql, String cn) en c:\Desarrollo\BioKontrol\_Dev\BioKontrol\MetodosDB\MetodosDB.cs:línea 76
-   en DataAccess.adUser.GetAllUser() en C:\Users\Javier Sotillo\Source\Repos\VenusDoor\DataAccess\adUser.cs:línea 100
-   en BusinessLogic.lnUser.GetAllUser() en C:\Users\Javier Sotillo\Source\Repos\VenusDoor\BusinessLogic\lnUser.cs:línea 29
-   en VenusDoors.Controllers.LoginsController.Autherize(User userData) en C:\Users\Javier Sotillo\Source\Repos\VenusDoor\VenusDoors\Controllers\LoginsController.cs:línea 256
+   en DataAccess.adUser.GetAllUser() en C:\Users\Lenovo\Source\Repos\VenusDoor\DataAccess\adUser.cs:línea 100
+   en BusinessLogic.lnUser.GetAllUser() en C:\Users\Lenovo\Source\Repos\VenusDoor\BusinessLogic\lnUser.cs:línea 29
+   en VenusDoors.Controllers.LoginsController.Autherize(User userData) en C:\Users\Lenovo\Source\Repos\VenusDoor\VenusDoors\Controllers\LoginsController.cs:línea 256
    en lambda_method(Closure , ControllerBase , Object[] )
    en System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
    en System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
@@ -5983,6 +5984,7 @@ Origen :   en MetodosDB.MetodosDB.AbrirConexion(String cn) en c:\Desarrollo\BioK
    en System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
    en System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)
    en System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   en System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
    en System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
 ---------------------------------------------------------------------------------------------------
 Error: Error conectando a la base de datos
@@ -5990,12 +5992,12 @@ Metodo: AbrirConexion
 Controller: MetodosDB.MetodosDB
 UserName: 
 UserID: 
-Date: 2019-04-26 14:42
+Date: 2019-04-26 14:31
 Origen :   en MetodosDB.MetodosDB.AbrirConexion(String cn) en c:\Desarrollo\BioKontrol\_Dev\BioKontrol\MetodosDB\MetodosDB.cs:línea 33
    en MetodosDB.MetodosDB.CreaDS(DataSet ds, String TableName, String Sql, String cn) en c:\Desarrollo\BioKontrol\_Dev\BioKontrol\MetodosDB\MetodosDB.cs:línea 76
-   en DataAccess.adUser.GetAllUser() en C:\Users\Javier Sotillo\Source\Repos\VenusDoor\DataAccess\adUser.cs:línea 100
-   en BusinessLogic.lnUser.GetAllUser() en C:\Users\Javier Sotillo\Source\Repos\VenusDoor\BusinessLogic\lnUser.cs:línea 29
-   en VenusDoors.Controllers.LoginsController.Autherize(User userData) en C:\Users\Javier Sotillo\Source\Repos\VenusDoor\VenusDoors\Controllers\LoginsController.cs:línea 256
+   en DataAccess.adUser.GetAllUser() en C:\Users\Lenovo\Source\Repos\VenusDoor\DataAccess\adUser.cs:línea 100
+   en BusinessLogic.lnUser.GetAllUser() en C:\Users\Lenovo\Source\Repos\VenusDoor\BusinessLogic\lnUser.cs:línea 29
+   en VenusDoors.Controllers.LoginsController.Autherize(User userData) en C:\Users\Lenovo\Source\Repos\VenusDoor\VenusDoors\Controllers\LoginsController.cs:línea 256
    en lambda_method(Closure , ControllerBase , Object[] )
    en System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
    en System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
@@ -6030,6 +6032,7 @@ Origen :   en MetodosDB.MetodosDB.AbrirConexion(String cn) en c:\Desarrollo\BioK
    en System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
    en System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)
    en System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   en System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
    en System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
 ---------------------------------------------------------------------------------------------------
 Error: Error conectando a la base de datos
@@ -6037,12 +6040,12 @@ Metodo: AbrirConexion
 Controller: MetodosDB.MetodosDB
 UserName: 
 UserID: 
-Date: 2019-04-26 14:04
+Date: 2019-04-26 14:02
 Origen :   en MetodosDB.MetodosDB.AbrirConexion(String cn) en c:\Desarrollo\BioKontrol\_Dev\BioKontrol\MetodosDB\MetodosDB.cs:línea 33
    en MetodosDB.MetodosDB.CreaDS(DataSet ds, String TableName, String Sql, String cn) en c:\Desarrollo\BioKontrol\_Dev\BioKontrol\MetodosDB\MetodosDB.cs:línea 76
-   en DataAccess.adUser.GetAllUser() en C:\Users\Javier Sotillo\Source\Repos\VenusDoor\DataAccess\adUser.cs:línea 100
-   en BusinessLogic.lnUser.GetAllUser() en C:\Users\Javier Sotillo\Source\Repos\VenusDoor\BusinessLogic\lnUser.cs:línea 29
-   en VenusDoors.Controllers.LoginsController.Autherize(User userData) en C:\Users\Javier Sotillo\Source\Repos\VenusDoor\VenusDoors\Controllers\LoginsController.cs:línea 256
+   en DataAccess.adUser.GetAllUser() en C:\Users\Lenovo\Source\Repos\VenusDoor\DataAccess\adUser.cs:línea 100
+   en BusinessLogic.lnUser.GetAllUser() en C:\Users\Lenovo\Source\Repos\VenusDoor\BusinessLogic\lnUser.cs:línea 29
+   en VenusDoors.Controllers.LoginsController.Autherize(User userData) en C:\Users\Lenovo\Source\Repos\VenusDoor\VenusDoors\Controllers\LoginsController.cs:línea 256
    en lambda_method(Closure , ControllerBase , Object[] )
    en System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
    en System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
@@ -6077,6 +6080,7 @@ Origen :   en MetodosDB.MetodosDB.AbrirConexion(String cn) en c:\Desarrollo\BioK
    en System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
    en System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)
    en System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   en System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
    en System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
 ---------------------------------------------------------------------------------------------------
 Error: Error conectando a la base de datos
@@ -6084,12 +6088,12 @@ Metodo: AbrirConexion
 Controller: MetodosDB.MetodosDB
 UserName: 
 UserID: 
-Date: 2019-04-26 14:48
+Date: 2019-04-26 14:43
 Origen :   en MetodosDB.MetodosDB.AbrirConexion(String cn) en c:\Desarrollo\BioKontrol\_Dev\BioKontrol\MetodosDB\MetodosDB.cs:línea 33
    en MetodosDB.MetodosDB.CreaDS(DataSet ds, String TableName, String Sql, String cn) en c:\Desarrollo\BioKontrol\_Dev\BioKontrol\MetodosDB\MetodosDB.cs:línea 76
-   en DataAccess.adUser.GetAllUser() en C:\Users\Javier Sotillo\Source\Repos\VenusDoor\DataAccess\adUser.cs:línea 100
-   en BusinessLogic.lnUser.GetAllUser() en C:\Users\Javier Sotillo\Source\Repos\VenusDoor\BusinessLogic\lnUser.cs:línea 29
-   en VenusDoors.Controllers.LoginsController.Autherize(User userData) en C:\Users\Javier Sotillo\Source\Repos\VenusDoor\VenusDoors\Controllers\LoginsController.cs:línea 256
+   en DataAccess.adUser.GetAllUser() en C:\Users\Lenovo\Source\Repos\VenusDoor\DataAccess\adUser.cs:línea 100
+   en BusinessLogic.lnUser.GetAllUser() en C:\Users\Lenovo\Source\Repos\VenusDoor\BusinessLogic\lnUser.cs:línea 29
+   en VenusDoors.Controllers.LoginsController.Autherize(User userData) en C:\Users\Lenovo\Source\Repos\VenusDoor\VenusDoors\Controllers\LoginsController.cs:línea 256
    en lambda_method(Closure , ControllerBase , Object[] )
    en System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
    en System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
@@ -6124,4 +6128,48 @@ Origen :   en MetodosDB.MetodosDB.AbrirConexion(String cn) en c:\Desarrollo\BioK
    en System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
    en System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)
    en System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   en System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   en System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+---------------------------------------------------------------------------------------------------
+Error: No se encuentra la vista 'GetAllShippingAddressByUser' ni su vista maestra o no hay un motor de búsqueda que admita las ubicaciones de búsqueda. Se buscó en las siguientes ubicaciones: 
+~/Views/OrderSummary/GetAllShippingAddressByUser.aspx
+~/Views/OrderSummary/GetAllShippingAddressByUser.ascx
+~/Views/Shared/GetAllShippingAddressByUser.aspx
+~/Views/Shared/GetAllShippingAddressByUser.ascx
+~/Views/OrderSummary/GetAllShippingAddressByUser.cshtml
+~/Views/OrderSummary/GetAllShippingAddressByUser.vbhtml
+~/Views/Shared/GetAllShippingAddressByUser.cshtml
+~/Views/Shared/GetAllShippingAddressByUser.vbhtml
+Metodo: FindView
+Controller: System.Web.Mvc.ViewResult
+UserName: 
+UserID: 
+Date: 2019-04-26 15:46
+Origen :   en System.Web.Mvc.ViewResult.FindView(ControllerContext context)
+   en System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   en System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   en System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   en System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   en System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   en System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   en System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   en System.Web.Mvc.Controller.<BeginExecute>b__15(IAsyncResult asyncResult, Controller controller)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   en System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   en System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.EndExecute(IAsyncResult asyncResult)
+   en System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   en System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   en System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)
+   en System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   en System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
    en System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)

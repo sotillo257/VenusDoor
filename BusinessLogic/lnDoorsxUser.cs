@@ -716,7 +716,7 @@ namespace BusinessLogic
         #region Pictures
         public string BuscarProfilePicture(int pOutsideEdgeProfile, int pInsideEdgeProfile, int pPanel)
         {
-            string respuesta = "/Content/img/Profile/img11.png";
+            string respuesta = "/Content/img/Profile/-Double_Roman_Ogee_ogee_flat_panel.png";
             if (pPanel == 5)
             {
                 respuesta = FlatPanel(pOutsideEdgeProfile, pInsideEdgeProfile);
@@ -737,7 +737,7 @@ namespace BusinessLogic
         }
         public string FlatPanel(int Outside, int Inside)
         {
-            string ProfileUrl = "img11.png";
+            string ProfileUrl = "-Double_Roman_Ogee_ogee_flat_panel.png";
             string urlFolder = "/Content/img/Profile/";
             if (Outside == 13)
             {
@@ -749,7 +749,7 @@ namespace BusinessLogic
                 {
                     ProfileUrl = "-Double_Roman_Ogee_Reba_flat_panel.png";
                 }
-                else if (Inside == 3)
+                else if (Inside == 3 || Inside == 13)
                 {
                     ProfileUrl = "-Double_Roman_Ogee_Shaker_22_flat_panel.png";
                 }
@@ -768,7 +768,7 @@ namespace BusinessLogic
                 {
                     ProfileUrl = "-Fingerpull_Reba_flat_panel.png";
                 }
-                else if (Inside == 3)
+                else if (Inside == 3 || Inside == 13)
                 {
                     ProfileUrl = "-Fingerpull_Shaker22_flat_panel.png";
                 }
@@ -787,7 +787,7 @@ namespace BusinessLogic
                 {
                     ProfileUrl = "-Half_Reba_Reba_flat_panel.png";
                 }
-                else if (Inside == 3)
+                else if (Inside == 3 || Inside == 13)
                 {
                     ProfileUrl = "-Half_Reba_Shaker_22_flat_panel.png";
                 }
@@ -807,7 +807,7 @@ namespace BusinessLogic
                 {
                     ProfileUrl = "-Little_bone_Reba_flat_panel.png";
                 }
-                else if (Inside == 3)
+                else if (Inside == 3 || Inside == 13)
                 {
                     ProfileUrl = "-Little_bone_Shaker_22_flat_panel.png";
                 }
@@ -826,7 +826,7 @@ namespace BusinessLogic
                 {
                     ProfileUrl = "-Reba_Reba_flat_panel.png";
                 }
-                else if (Inside == 3)
+                else if (Inside == 3 || Inside == 13)
                 {
                     //  ProfileUrl = "-Reba_Shaker_22_flat_panel.png";
                 }
@@ -845,7 +845,7 @@ namespace BusinessLogic
                 {
                     ProfileUrl = "-Shaker_Reba_flat_panel.png";
                 }
-                else if (Inside == 3)
+                else if (Inside == 3 || Inside == 13)
                 {
                     ProfileUrl = "-Shaker_Shaker_22_flat_panel.png";
                 }
@@ -858,7 +858,7 @@ namespace BusinessLogic
         }
         public string FlatPanelBeaded(int Outside, int Inside)
         {
-            string ProfileUrl = "img11.png";
+            string ProfileUrl = "-Double_Roman_Ogee_ogee_flat_panel.png";
             string urlFolder = "/Content/img/Profile/";
             if (Outside == 13)
             {
@@ -870,7 +870,7 @@ namespace BusinessLogic
                 {
                     ProfileUrl = "-Double_Roman_Ogee_Reba_flat_panel_beaded.png";
                 }
-                else if (Inside == 3)
+                else if (Inside == 3 || Inside == 13)
                 {
                     ProfileUrl = "-Double_Roman_Ogee_Shaker_22_flat_panel_beaded.png";
                 }
@@ -889,7 +889,7 @@ namespace BusinessLogic
                 {
                     ProfileUrl = "-Fingerpull_Reba_flat_panel_beaded.png";
                 }
-                else if (Inside == 3)
+                else if (Inside == 3 || Inside == 13)
                 {
                     ProfileUrl = "-Fingerpull_Shaker22_flat_panel_beaded.png";
                 }
@@ -908,7 +908,7 @@ namespace BusinessLogic
                 {
                     ProfileUrl = "-Half_Reba_Reba_flat_panel_beaded.png";
                 }
-                else if (Inside == 3)
+                else if (Inside == 3 || Inside == 13)
                 {
                     ProfileUrl = "-Half_Reba_Shaker_22_flat_panel_beaded.png";
                 }
@@ -928,7 +928,7 @@ namespace BusinessLogic
                 {
                     ProfileUrl = "-Little_bone_Reba_flat_panel_beaded.png";
                 }
-                else if (Inside == 3)
+                else if (Inside == 3 || Inside == 13)
                 {
                     ProfileUrl = "-Little_bone_Shaker_22_flat_panel_beaded.png";
                 }
@@ -947,7 +947,7 @@ namespace BusinessLogic
                 {
                     ProfileUrl = "-Reba_Reba_flat_panel_beaded.png";
                 }
-                else if (Inside == 3)
+                else if (Inside == 3 || Inside == 13)
                 {
                     ProfileUrl = "-Reba_Shaker_22_flat_panel_beaded.png";
                 }
@@ -966,7 +966,7 @@ namespace BusinessLogic
                 {
                     ProfileUrl = "-Shaker_Reba_flat_panel_beaded.png";
                 }
-                else if (Inside == 3)
+                else if (Inside == 3 || Inside == 13)
                 {
                     ProfileUrl = "-Shaker_Shaker_22_flat_panel_beaded.png";
                 }
@@ -991,7 +991,7 @@ namespace BusinessLogic
                 {
                     ProfileUrl = "-Double_Roman_Ogee_Reba_raised_panel.png";
                 }
-                else if (Inside == 3)
+                else if (Inside == 3 || Inside == 13)
                 {
                     ProfileUrl = "-Double_Roman_Ogee_Shaker_22_raised_panel.png";
                 }
@@ -1010,7 +1010,7 @@ namespace BusinessLogic
                 {
                     ProfileUrl = "-Fingerpull_Reba_raised_panel.png";
                 }
-                else if (Inside == 3)
+                else if (Inside == 3 || Inside == 13)
                 {
                     ProfileUrl = "-FingerPull-Shaker22-RaisedPanel.png";
                 }
@@ -1029,7 +1029,7 @@ namespace BusinessLogic
                 {
                     ProfileUrl = "-Half_Reba_Reba_raised_panel.png";
                 }
-                else if (Inside == 3)
+                else if (Inside == 3 || Inside == 13)
                 {
                     ProfileUrl = "-Half_Reba_Shaker_22_raised_panel.png";
                 }
@@ -1049,7 +1049,7 @@ namespace BusinessLogic
                 {
                     ProfileUrl = "-Little_bone_Reba_raised_panel.png";
                 }
-                else if (Inside == 3)
+                else if (Inside == 3 || Inside == 13)
                 {
                     ProfileUrl = "-Little_bone_Shaker_22_raised_panel.png";
                 }
@@ -1068,7 +1068,7 @@ namespace BusinessLogic
                 {
                     ProfileUrl = "-Reba_Reba_raised_panel.png";
                 }
-                else if (Inside == 3)
+                else if (Inside == 3 || Inside == 13)
                 {
                     ProfileUrl = "-Reba_Shaker_22_raised_panel.png";
                 }
@@ -1087,7 +1087,7 @@ namespace BusinessLogic
                 {
                     ProfileUrl = "-Shaker_Reba_raised_panel.png";
                 }
-                else if (Inside == 3)
+                else if (Inside == 3 || Inside == 13)
                 {
                     ProfileUrl = "-Shaker_Shaker_22_raised_panel.png";
                 }
