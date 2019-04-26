@@ -559,7 +559,8 @@ function InsertDoorsxUser() {
                             $("#btInsertDoorTable").empty().append(boton);
                             changeDoorStyle();                            
                             HingeShow(drillingV);
-                            
+                            $("#massiveNULL").hide();
+                            $("#massiveTRUE").show();
                         
                         } else {
                             $('#modalInsert').modal('hide');
