@@ -1,6 +1,7 @@
 ﻿$(document).ready(function () {
     $(".AddComment").hide();
     $(".showInput").hide();
+    $("#SendMs").hide();
     $(".read-more-target").hide();
     $("#read-less-state").hide();
     $(document).on('click', "#btAdd", function () {
@@ -12,7 +13,7 @@
         $("#Estimate").hide();
     });
 
-    $("#btnVolver").on("click", function () {
+    $("#btRetorn").on("click", function () {
         $("#SendMs").hide();
         $("#Estimate").show();
     });
