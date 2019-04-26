@@ -502,13 +502,13 @@
                                     <div style="padding: 2% 3%;max-width: 150px;max-height:50px;"></div>
                                 </div>
                                 <div style="padding:3%;text-align:center;background: #15806f;">
-                                    <div style="color:#fff;font-size:20px;font-weight:500;">Invoice #INV-000002</div>
+                                    <div style="color:#fff;font-size:20px;font-weight:500;">Payment Received</div>
                                 </div>
                                 <div style="max-width:560px;margin:auto;padding: 0 3%;">
-                                    <div style="padding: 30px 0; color: #555;line-height: 1.7;">Dear Sotillo inc, <br><br>Thank you for your business. Your invoice can be viewed, printed and downloaded as PDF from the link below. You can also choose to pay it online. <br></div>
+                                    <div style="padding: 30px 0; color: #555;line-height: 1.7;">Dear Sotillo inc, <br><br>Thank you for your payment. It was a pleasure doing business with you. We look forward to work together again!<br></div>
                                     <div style="box-shadow: 0 0 6px #ccc;padding: 3%; background: #fefff1; border: 1px solid #e8deb5; color: #333;">
                                         <div style="padding: 0 3% 3%; border-bottom: 1px solid #e8deb5; text-align: center;">
-                                            <h4 style="margin-bottom: 0;">INVOICE AMOUNT</h4>
+                                            <h4 style="margin-bottom: 0;">Payment Received</h4>
                                             <h2 style="color: #014d41; margin-top: 10px;">VEF1,550.00</h2>
                                         </div>
                                         <div style="margin:auto; max-width:350px; padding: 3%;">
@@ -539,13 +539,7 @@
                             <div class="col-md-9">
                                 <label class="ckbox">
                                     <input type="checkbox">
-                                    <span>Attach Customer Statement.</span>
-                                </label>
-                            </div><!-- col -->
-                            <div class="col-md-9">
-                                <label class="ckbox">
-                                    <input type="checkbox">
-                                    <span>Attach Invoice PDF</span>
+                                    <span>Attach Payment Receipt PDF</span>
                                 </label>
                             </div><!-- col -->
                         </div>
@@ -597,19 +591,10 @@
 @section scripts{
     @Scripts.Render("~/Scripts/js/PaymentsReceived.js")
     @Scripts.Render("~/Scripts/Pagination.js")
-    <script>
-        $(function () {
-            'use strict';
-
-            $('#summernote').summernote({
-                height: 150,
-                tooltip: false
-            })
-        });
-    </script>
+    
     <script src="~/Content/lib/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
-<script src="~/Content/lib/select2/js/select2.min.js"></script>
-<script src="~/Content/lib/select2/js/select2.full.min.js"></script>
-<script src="~/Content/lib/summernote/summernote-bs4.min.js"></script>
+    <script src="~/Content/lib/select2/js/select2.min.js"></script>
+    <script src="~/Content/lib/select2/js/select2.full.min.js"></script>
+    <script src="~/Content/lib/summernote/summernote-bs4.min.js"></script>
     }
 
