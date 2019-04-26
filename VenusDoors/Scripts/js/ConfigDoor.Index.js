@@ -57,10 +57,6 @@
 	    $("#File1").trigger('click');
 	});
 
-    $(document).on('change', '.form-control', function () {
-        GetPrices();
-    });    
-
     $(document).on('change', '#cbMaterial', function () {
         var pMaterial = $("#cbMaterial").val();
         var pDoorStyle = $("#cbPanel").val();
@@ -131,6 +127,7 @@
         ChangeDoorStylePanel($("#cbDoorStyle").val());
         GetInsideAndOutside($("#cbDoorStyle").val());
     });
+
 });
 
 
@@ -390,66 +387,6 @@ function changeDoorStyle() {
 
 }
 
-//function llenarInsideAndOutsideEspecificos(pInside, pOutside) {
-//    var inside = $("#cbInsideEdgeProfile").val();
-//    var outside = $("#cbOutsideEdgeProfile").val();
-//    var option = '';
-//    for (var i = 0; i < AllInsideEdgeProfile.length; i++) {
-//        if (AllInsideEdgeProfile[i].Status.Id == 1 && (AllInsideEdgeProfile[i].Id == pInside || pInside == 0)) {
-//            option += '<option value="' + AllInsideEdgeProfile[i].Id + '">' + AllInsideEdgeProfile[i].Description + '</option>';
-          
-//        }
-//    }
-//    $("#cbInsideEdgeProfile").empty().append(option);
-//    if (pInside == 0) {
-//        $("#cbInsideEdgeProfile").val(4);
-//    } else {
-//        $("#cbInsideEdgeProfile").val(pInside);
-//    }
-       
-//    option = '';
-//    for (var i = 0; i < AllOutsideEdgeProfile.length; i++) {
-//        if (AllOutsideEdgeProfile[i].Status.Id == 1 && AllOutsideEdgeProfile[i].Id == pOutside) {
-//            option += '<option value="' + AllOutsideEdgeProfile[i].Id + '">' + AllOutsideEdgeProfile[i].Description + '</option>';
-//            break;
-//        }
-//    }
-//    $("#cbOutsideEdgeProfile").empty().append(option);
-//    $("#cbOutsideEdgeProfile").val(pOutside);
-//}
-
-//function llenarComboInsideAndOutside() {
-
-//    var inside = $("#cbInsideEdgeProfile").val();
-//    var outside = $("#cbOutsideEdgeProfile").val();
-//    var option = '<option value="0">Select</option>';
-//    for (var i = 0; i < AllInsideEdgeProfile.length; i++) {
-//        if (AllInsideEdgeProfile[i].Status.Id == 1) {
-//            option += '<option value="' + AllInsideEdgeProfile[i].Id + '">' + AllInsideEdgeProfile[i].Description + '</option>';
-//        }
-//    }
-//    $("#cbInsideEdgeProfile").empty().append(option);
- 
-       
-//    if (inside != 1) {
-//            $("#cbInsideEdgeProfile").val(inside);
-//        }
-//    option = '<option value="0">Select</option>';
-//    for (var i = 0; i < AllOutsideEdgeProfile.length; i++) {
-//        if (AllOutsideEdgeProfile[i].Status.Id == 1) {
-//            option += '<option value="' + AllOutsideEdgeProfile[i].Id + '">' + AllOutsideEdgeProfile[i].Description + '</option>';
-//        }
-//    }
-//    $("#cbOutsideEdgeProfile").empty().append(option);
-//    if (outside != 1) {
-       
-//        $("#cbOutsideEdgeProfile").val(outside);
-//    }
-  
-//}
-
-
-
 function HingeCalculate() {
         var Height = parseFloat($(".iptHeight").val())
         if (Height >= 5 && Height < 37) {
@@ -552,8 +489,6 @@ function HingeShow(Drills) {
         $("#HingeDirectionDiv").css('display', 'none');     
     }
 }
-
-
 var CodigoDoorxUser = 0;
 
 function InsertDoorsxUser() {
@@ -718,21 +653,6 @@ function LimpiarCamposRapidos() {
     $("#CantidadFila").val("");
     $("#idDoorxOrder").val("");
     
-}
-
-$(document).on('change', '.eventChange', function () {
-    //alert('This action is working');
-    GetPrices();
-});
-
-function GetPrices() {
-
-    var TR = $("#cbTopRail").val();
-    var BR = $("#cbBottomRail").val();
-    var RT;
-    var H = parseFloat($("#iptHeight").val()) + parseFloat($("#cbDecimalsH").val());
-    var W = parseFloat($("#iptWidth").val()) + parseFloat($("#cbDecimalsW").val());
-    $("#iptCost").val(!isNaN(getPriceDoor($("#cbMaterial").val(), $("#cbPanel").val(), H, W, TR, BR))?getPriceDoor($("#cbMaterial").val(), $("#cbPanel").val(), H, W, TR, BR) : '0.00' );
 }
 
 function ValidateSession() {
@@ -991,68 +911,124 @@ function RaisedPanel(Outside, Inside) {
 function changeDoorPicture() {
     var Style = $('#cbDoorStyle').val();
     var Panel = $('#cbPanel').val();
-
+    var respuesta = "/Content/img/Doors/Cabinet Vector-01.png";
     if (Panel == 5) {
-        FlatPanelDoor(Style);
-    }else if (Panel == 6) {
-        $('#DoorPicture').attr('src', "/Content/img/Doors/Cabinet Vector-17.png");
-    }else
-    if (Panel == 2) {
-       RaisedPanelDoor(Style);
-    } else {
-        $('#DoorPicture').attr('src', "/Content/img/Doors/img11.png");
+        respuesta = FlatPanelDoor(Style);
     }
+    if (Panel == 6) {
+        if (Style == 1010) {
+            respuesta = "/Content/img/Doors/slab.png";
+        }
+        else {
+            respuesta = "/Content/img/Doors/Cabinet Vector-17.png";
+        }
+
+    }
+    if (Panel == 2) {
+        respuesta = RaisedPanelDoor(Style);
+    }
+    if (Panel == 3) {
+        respuesta = "/Content/img/Doors/slab.png";
+    }
+
+    $('#DoorPicture').attr('src', respuesta);
 }
 
 function FlatPanelDoor(Style) {
     var stile = $('#cbTopRail').val();
     var rail = $('#cbBottomRail').val();
-    var DoorUrl = "Cabinet Vector-02.png";
+    var DoorUrl = "Cabinet Vector-01.png";
     var urlFolder = "/Content/img/Doors/";
-   
-       
 
-
-        if ($('#cbJoin').val() == 2){
-            if (Style == 1009) {
-
-                DoorUrl = "Cabinet Vector-13.png";
-
-            } else if (Style == 1008) {
-
-
-            } else {
+    switch (Style)
+    {
+        case 1002:
+            if (pDoorxOrder.DoorxUser.Join.Id != 2)
+            {
+                if (stile == 3 && rail == 3)
+                {
+                    DoorUrl = "Cabinet Vector-02.png";
+                }
+                else if (stile == 1 && rail == 1)
+                {
+                    DoorUrl = "Cabinet Vector-14.png";
+                }
+            }
+            else
+            {
                 DoorUrl = "Cabinet Vector-08.png";
             }
-        }else if (Style == 1008) {
-
-            DoorUrl = "Cabinet Vector-01.png";
-
-
-        } else if (Style == 1002) {
-            if (stile == 3 && rail == 3) {
-                DoorUrl = "Cabinet Vector-02.png";
-            } else if (stile == 1 && rail == 1) {
-                DoorUrl = "Cabinet Vector-14.png";
+            break;
+        case 1004:
+            if (pDoorxOrder.DoorxUser.Join.Id != 2)
+            {
+                if (stile == 3 || rail == 3)
+                {
+                    DoorUrl = "Cabinet Vector-05.png";
+                }
+                else if (stile == 1 && rail == 1)
+                {
+                    DoorUrl = "Cabinet Vector-06.png";
+                }
             }
-        }else if (Style == 1004) {
-            if (stile == 3 && rail == 3) {
-                DoorUrl = "Cabinet Vector-05.png";
-            } else if (stile == 1 && rail == 1) {
-                DoorUrl = "Cabinet Vector-06.png";
+            else
+            {
+                DoorUrl = "Cabinet Vector-08.png";
             }
-        }else if (Style == 1009) {
-           
-                DoorUrl = "Cabinet Vector-13.png";
-           
-        } else if (Style == 1010) {
-
+            break;
+        case 1005:
+            if (pDoorxOrder.DoorxUser.Join.Id == 1)
+            {
+                DoorUrl = "Cabinet Vector-03.png";
+            }
+            else
+            {
+                DoorUrl = "Cabinet Vector-08.png";
+            }
+            break;
+        case 1006:
+            if (pDoorxOrder.DoorxUser.Join.Id == 1)
+            {
+                DoorUrl = "Cabinet Vector-03.png";
+            }
+            else
+            {
+                DoorUrl = "Cabinet Vector-08.png";
+            }
+            break;
+        case 1007:
+            if (pDoorxOrder.DoorxUser.Join.Id == 1)
+            {
+                DoorUrl = "Cabinet Vector-03.png";
+            }
+            else
+            {
+                DoorUrl = "Cabinet Vector-08.png";
+            }
+            break;
+        case 1008:
+            if (pDoorxOrder.DoorxUser.Join.Id == 1)
+            {
+                DoorUrl = "Cabinet Vector-01.png";
+            }
+            else
+            {
+                DoorUrl = "Cabinet Vector-08.png";
+            }
+            break;
+        case 1009:
             DoorUrl = "Cabinet Vector-13.png";
+            break;
+        case 1010:                    
+            DoorUrl = "slab.png";
+                   
+            break;
+        default:
+            DoorUrl = "Cabinet Vector-03.png";
+            break;
+    }
 
-        } else {
-            DoorUrl = "Cabinet Vector-02.png";
-        }
-        $('#DoorPicture').attr('src', urlFolder + DoorUrl);
+    return urlFolder + DoorUrl;      
    
 }
 
@@ -1062,127 +1038,75 @@ function RaisedPanelDoor(Style) {
     var DoorUrl = "Cabinet Vector-07.png";
     var urlFolder = "/Content/img/Doors/";
     
-        if (stile == 3 && rail == 3) {
-        if (Style == 1008) {
-           
-                var inside = $("#cbInsideEdgeProfile").val();
-                var outside = $("#cbOutsideEdgeProfile").val();
-                if (outside != 6 && inside != 3 && inside != 7) {
-                    DoorUrl = "Cabinet Vector-09.png";
-                } else if (outside == 6 && ( inside == 3 || inside == 7)) {
-                    DoorUrl = "Cabinet Vector-10.png";
+    switch (Style) {
+        case 1003:
+            if (pDoorxOrder.DoorxUser.Join.Id != 2) {
+                if (stile == 3 && rail == 3) {
+                    DoorUrl = "Cabinet Vector-11.png";
                 }
-           
-        } else if (Style == 1009) {
-            DoorUrl = "Cabinet Vector-13.png";
-        } else {
-            DoorUrl = "Cabinet Vector-16.png";
-        }
-            
-        } else if (stile == 1 && rail == 1) {
-            if (Style == 1009) {
-
-            } else if (Style == 1008) {
-
-                var inside = $("#cbInsideEdgeProfile").val();
-                var outside = $("#cbOutsideEdgeProfile").val();
-                if (outside != 6 && inside != 3 && inside != 7) {
-                    DoorUrl = "Cabinet Vector-09.png";
-                } else if (outside == 6 && (inside == 3 || inside == 7)) {
-                    DoorUrl = "Cabinet Vector-10.png";
+                else if (stile == 1 && rail == 1) {
+                    DoorUrl = "Cabinet Vector-16.png";
                 }
-
-            } else {
-                DoorUrl = "Cabinet Vector-10.png";
             }
-        } 
-       
-
-        if ($('#cbJoin').val() == 2) {
-            if (Style == 1009) {
-
-            } else if (Style == 1008) {
-
-            } else {
+            else {
                 DoorUrl = "Cabinet Vector-07.png";
             }
-        
-    }
-    $('#DoorPicture').attr('src', urlFolder + DoorUrl);
+            break;
+        case 1004:
+            if (pDoorxOrder.DoorxUser.Join.Id != 2) {
+                DoorUrl = "Cabinet Vector-11.png";
 
-}
- 
-function getPriceDoor(pMaterial, pPanel, Height, width, pTopRail, pBottomRail) {
-    var precio = 0;
-    if (pPanel == 2)
-    {
-        if (pMaterial == 1)
-        {
-            precio = 11.83;
-        }
-        else if (pMaterial == 7)
-        {
-            precio = 10.04;
-        }
-        else if (pMaterial == 6)
-        {
-            precio = 9.51;
-        }
-        else if (pMaterial == 4 || pMaterial == 13)
-        {
-            precio = 10.49;
-        }
-    }
-    else if (pPanel == 5 || pPanel == 6)
-    {
-        if (pMaterial == 1)
-        {
-            precio = 10.89;
-        }
-        else if (pMaterial == 7)
-        {
-            precio = 9.31;
-        }
-        else if (pMaterial == 6)
-        {
-            precio = 8.93;
-        }
-        else if (pMaterial == 4 || pMaterial == 13)
-        {
-            precio = 9.66;
-        }
-    }
-
-    for (var i = 0; i < allMaterial.length; i++) {
-        if (allMaterial[i].Id == pMaterial) {
-            if (pPanel == 5 || pPanel == 6) {
-                precio = allMaterial[i].PriceFlatPanel;
-
-            } else {
-                precio = allMaterial[i].PriceRaisedPanel;
             }
+            else {
+                DoorUrl = "Cabinet Vector-07.png";
+            }
+            break;
+        case 1005:
+            if (pDoorxOrder.DoorxUser.Join.Id == 1) {
+                DoorUrl = "Cabinet Vector-16.png";
+            }
+            else {
+                DoorUrl = "Cabinet Vector-07.png";
+            }
+            break;
+        case 1006:
+            if (pDoorxOrder.DoorxUser.Join.Id == 1) {
+                DoorUrl = "Cabinet Vector-16.png";
+            }
+            else {
+                DoorUrl = "Cabinet Vector-07.png";
+            }
+            break;
+        case 1007:
+            if (pDoorxOrder.DoorxUser.Join.Id == 1) {
+                DoorUrl = "Cabinet Vector-16.png";
+            }
+            else {
+                DoorUrl = "Cabinet Vector-07.png";
+            }
+            break;
+        case 1008:
+            if (pDoorxOrder.DoorxUser.Join.Id == 1) {
+                DoorUrl = "Cabinet Vector-09.png";
+            }
+            else {
+                DoorUrl = "Cabinet Vector-07.png";
+            }
+            break;
+        case 1009:
+            DoorUrl = "Cabinet Vector-13.png";
+            break;
+        case 1010:
+            DoorUrl = "slab.png";
 
-        }
-       
+            break;
+        default:
+            DoorUrl = "Cabinet Vector-11.png";
+            break;
     }
 
-    if (pTopRail == 3 || pBottomRail == 3)
-    {
-        precio = precio / 0.95;
-    }
+    return urlFolder + DoorUrl;
 
-    var CostoPuerta = (((Height * width) / 12) / 12) * (precio * 2);
-    var CostoPuertaBase = precio * 2;
-    var Resultado = 0;
-    if (CostoPuerta < CostoPuertaBase)
-    {
-        Resultado = CostoPuertaBase;
-    }
-    else
-    {
-        Resultado = CostoPuerta;
-    }
-    return Resultado.toFixed(2);
 }
 
 function llenarTablaOrderSumary() {
@@ -1195,7 +1119,6 @@ function llenarTablaOrderSumary() {
         success: function (data) {
             if (data != null) {
                 $(".btn-continue").prop('disabled', false);
-                id = data;
                 llenarheaderOrder(data.Order.DoorxUser);
                 listDOOR = data.Order.DoorxUser;
                 listDXO = data.Order.DoorxUser.DoorsxOrder;
