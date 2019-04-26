@@ -269,7 +269,7 @@ namespace VenusDoors.Controllers
                 cell.PaddingBottom = 5f;
                 table.AddCell(cell);
 
-                string Drill = (doorsxUser.isDrill == true) ? "Yes (" + doorsxUser.HingeDirection.Direction + ")" : "No";
+                string Drill = (doorsxUser.isDrill == true) ? "Yes": "No";
                 cell = new PdfPCell(new Phrase("Drill: " + Drill, FontFactory.GetFont("Arial", 9)));
                 cell.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
                 cell.Border = 0;
@@ -299,12 +299,17 @@ namespace VenusDoors.Controllers
                 image.ScaleAbsoluteHeight(68);
 
                 Paragraph p = new Paragraph();
-                int descu = 9;
+                int descu = 8;
                 if (DO.Sum(x => x.Descuento) > 0)
                 {
                     doorsxUser.DescuentoActivos = true;
-                    descu = 10;
+                    descu = descu + 1;
                 }
+                if (doorsxUser.isDrill)
+                {
+                    descu = descu + 1;
+                }
+
                 PdfPTable TableDoor = new PdfPTable(descu);
                 TableDoor.TotalWidth = 526f;
                 TableDoor.LockedWidth = true;
@@ -325,8 +330,12 @@ namespace VenusDoors.Controllers
                 TableDoor.AddCell(cell);
                 cell = new PdfPCell(new Phrase("Height", FontFactory.GetFont("Arial", 10)));
                 TableDoor.AddCell(cell);
-                cell = new PdfPCell(new Phrase("Panel", FontFactory.GetFont("Arial", 10)));
-                TableDoor.AddCell(cell);
+                if (doorsxUser.isDrill)
+                {
+                    cell = new PdfPCell(new Phrase("Hinge Dir.", FontFactory.GetFont("Arial", 10)));
+                    TableDoor.AddCell(cell);
+                }
+              
                 cell = new PdfPCell(new Phrase("Door Type", FontFactory.GetFont("Arial", 10)));
                 TableDoor.AddCell(cell);
                 cell = new PdfPCell(new Phrase("Door Option", FontFactory.GetFont("Arial", 10)));
@@ -357,8 +366,13 @@ namespace VenusDoors.Controllers
                     string hei = item.Height.ToString().Split(',')[0] + " " + dh;
                     cell = new PdfPCell(new Phrase(hei, FontFactory.GetFont("Arial", 10)));
                     TableDoor.AddCell(cell);
-                    cell = new PdfPCell(new Phrase(item.Panel.Description, FontFactory.GetFont("Arial", 10)));
-                    TableDoor.AddCell(cell);
+                    if (doorsxUser.isDrill)
+                    {
+                        cell = new PdfPCell(new Phrase(item.HingeDirection.Direction, FontFactory.GetFont("Arial", 10)));
+                        TableDoor.AddCell(cell);
+                    }
+                   
+
                     cell = new PdfPCell(new Phrase(item.DoorType.Description, FontFactory.GetFont("Arial", 10)));
                     TableDoor.AddCell(cell);
                     cell = new PdfPCell(new Phrase(item.DoorOption.Description, FontFactory.GetFont("Arial", 10)));

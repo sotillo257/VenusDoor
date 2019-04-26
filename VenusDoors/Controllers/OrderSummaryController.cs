@@ -384,7 +384,7 @@ namespace VenusDoors.Controllers
                     }
                     BusinessLogic.lnDoorsxUser DU = new BusinessLogic.lnDoorsxUser();
                     CompleteOrder.DoorxUser = DU.GetAllDoorsxUser().Where(x => x.Order.Id == CompleteOrder.Id).FirstOrDefault();
-                 //   SentOrderSummaryEstimate(CompleteOrder);
+                    SentOrderSummaryEstimate(CompleteOrder);
                     CloseOrder(CompleteOrder);
                     return Json(true, JsonRequestBehavior.AllowGet);                    
                 }

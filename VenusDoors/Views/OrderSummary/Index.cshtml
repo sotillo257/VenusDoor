@@ -84,7 +84,10 @@
                 {
                     <div style="display: flex;justify-content: flex-end;width: 60%;">
                         <button style="margin-right: 20px;" type="button" data-toggle="modal" id="btnConfigDoor" data-target="#modalInsert" class="Cursor btBuild btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Config door</button>
-                        <div class="col-xs-4 col-md-4" style="">
+                        <div id=massiveNULL class="col-xs-4 col-md-4" style="">
+                            <button data-toggle="modal" data-target="#modalInsert" class="Cursor btn btn-outline-success btn-block"><i class="fa fa-upload mg-r-10"></i> Massive Order</button>
+                        </div>
+                        <div id="massiveTRUE" class="col-xs-4 col-md-4" style="display:none">
                             <button data-toggle="modal" data-target="#ModalUpload" class="Cursor btn btn-outline-success btn-block"><i class="fa fa-upload mg-r-10"></i> Massive Order</button>
                         </div>
                     </div>
@@ -513,18 +516,8 @@
                                                             <th>Preview</th>
                                                             <th>Quantity</th>
                                                             <th>Widht</th>
-                                                            <th>Height</th>
-                                                            @if (ord != null)
-                                                            {
-                                                                if (LastDoor.isDrill == true)
-                                                                {
-                                                                    <th>Hinge Dir.</th>
-                                                                }
-                                                                else
-                                                                {
-                                                                    <th class="hdHidden">Hinge Dir.</th>
-                                                                }
-                                                            }
+                                                            <th>Height</th> 
+                                                             <th>Hinge Dir.</th>
                                                             <th>Door Type</th>
                                                             <th>Door Option</th>
                                                             <th>U. Price</th>
@@ -624,17 +617,7 @@
                                                         <th>Quantity</th>
                                                         <th>Widht</th>
                                                         <th>Height</th>
-                                                        @if (ord != null)
-                                                        {
-                                                            if (LastDoor.isDrill == true)
-                                                            {
-                                                                <th>Hinge Dir.</th>
-                                                            }
-                                                            else
-                                                            {
-                                                                <th class="hdHidden">Hinge Dir.</th>
-                                                            }
-                                                        }
+                                                       <th>Hinge Dir.</th>
                                                         <th>Door Type</th>
                                                         <th>Door Option</th>
                                                         <th>U. Price</th>
