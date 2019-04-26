@@ -555,7 +555,7 @@ function InsertDoorsxUser() {
                             $("#btnConfigDoor").removeClass("btBuild").addClass("ModDoorxUser");
                             var boton = '<button id="dxoAdd" class="btn btn-success btn-icon AddDoor" style="width: 37px;height: 37px; margin-top: 55px;" type="button"><i class="fa fa-plus"></i></button>';
                             boton += '<button id="dxoSave" class="Cursor btn btn-success btn-icon SaveDoor" title="" type="button" style="margin-top: 55px; display:none"><div><i class="fa fa-check"></i></div></button>';
-                            boton += '<button id="dxoCancel" class="Cursor btn btn-danger btn-icon" title="" type="button" style="margin-top: 55px; display:none"><div><i class="fa fa-window-close"></i></div></button>';
+                            boton += '<button id="dxoCancel" class="Cursor btn btn-danger btn-icon" title="" type="button" style="margin-top: 55px;margin-left: 3px; display:none"><div><i class="fa fa-window-close"></i></div></button>';
                             $("#btInsertDoorTable").empty().append(boton);
                             changeDoorStyle();                            
                             HingeShow(drillingV);
