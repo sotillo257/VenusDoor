@@ -179,13 +179,13 @@ namespace BusinessLogic
 
                     //item.HingePositions = CalcularPosicionHing(item);
                     //item.ProfilePicture = BuscarProfilePicture(item.OutsideEdgeProfile.Id, item.InsideEdgeProfile.Id, item.Panel.Id);
-                    //  item.ItemCost = GetPricesDoor(item.Material, item.Panel, item.Height, item.Width, item.TopRail, item.BottomRail);
+                    //  item.ItemCost = GetPricesDoor(item.Material, item.Panel, item.Height, item.Wid
+                }th, item.TopRail, item.BottomRail);
                     // item.Picture = BuscarDoorPicture(item);
 
                     lnDoorxOrder DO = new lnDoorxOrder();
                     DO.InsertDoorsxOrder(item);
 
-                }
 
             
                 //CrearOrder(newOrder, CodUsuario); 
@@ -1129,7 +1129,7 @@ namespace BusinessLogic
         public string FlatPanel(DoorxOrder pDoorxOrder) {
             int stile = pDoorxOrder.DoorxUser.TopRail.Id;
             int rail = pDoorxOrder.DoorxUser.BottomRail.Id;
-            string DoorUrl = "img11.png";
+            string DoorUrl = "Cabinet Vector-01.png";
             string urlFolder = "/Content/img/Doors/";
 
             switch (pDoorxOrder.DoorxUser.DoorStyle.Id)

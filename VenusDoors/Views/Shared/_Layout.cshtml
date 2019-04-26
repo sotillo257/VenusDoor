@@ -122,7 +122,7 @@
                     </div><!-- menu-item -->
                 </a><!-- br-menu-link -->
 
-                <a href="#" class="br-menu-link  @ViewBag.Sales" >
+                @*<a href="#" class="br-menu-link  @ViewBag.Sales" >
                     <div class="br-menu-item">
                         <i class="menu-item-icon icon ion-ios-cart-outline tx-24"></i>
                         <span class="menu-item-label">Sales</span>
@@ -134,7 +134,7 @@
                     <li class="nav-item">@Html.ActionLink("Invoice", "Index", "Invoice", new { area = "" }, new { @class = "nav-link " + ViewBag.Invo })</li>
                     <li class="nav-item">@Html.ActionLink("Payments Received", "Index", "PaymentsReceived", new { area = "" }, new { @class = "nav-link " + ViewBag.PaymentsReceived })</li>
                     <li class="nav-item">@Html.ActionLink("Credit Notes", "Index", "CreditNotes", new { area = "" }, new { @class = "nav-link " + ViewBag.CreditNotes })</li>
-                </ul>
+                </ul>*@
 
                 if ((int)Session["UserType"] == 1)
                 {

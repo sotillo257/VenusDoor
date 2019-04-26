@@ -93,52 +93,66 @@ function GetDoorsByOrder(idOrden) {
         contentType: 'application/json; charset=utf-8',
         success: function (Result) {
             _IdDoorxUser = Result.Order.Id;
-            $('#idDxUorder').val(Result.Id);
+            $('#idDoor').val(Result.Id);
             $('#descDXU').val(Result.Order.Descuento);
-            var fingerPull = Result.isFingerPull;
-            if (fingerPull == false) {
-                fingerPull = 1;
-            } else {
-                fingerPull = 2;
-            }
-            llenarComboFinger(fingerPull);
 
-            var isDrill = Result.isDrill;
-            if (isDrill == false) {
-                isDrill = 1;
+            _fingerPull = Result.isFingerPull;
+            _isDrill = Result.isDrill;
+            _isOpen = Result.IsOpeningMeasurement;
+            _isOver = Result.isOverlay;
+            _Material = Result.Material.Id;
+            _DoorStyle = Result.DoorStyle.Id;
+            _IEP = Result.InsideEdgeProfile.Id;
+            _OEP = Result.OutsideEdgeProfile.Id;
+            _StileW = Result.BottomRail.Id;
+            _RailW = Result.TopRail.Id;
+            _DoorAsm = Result.Join.Id;
+            _PanelStyle = Result.Panel.Id;
+            _PanelMaterial = Result.Material.Id;
+            _Vertical = Result.VerticalDivisions.Id;
+            _Horizontal = Result.HorizontalDivisions.Id;
+
+            if (_fingerPull == false) {
+                _fingerPull = 1;
             } else {
-                isDrill = 2;
+                _fingerPull = 2;
             }
-            llenarComboIsDrill(isDrill);
+            llenarComboFinger(_fingerPull);
+            
+            if (_isDrill == false) {
+                _isDrill = 1;
+            } else {
+                _isDrill = 2;
+            }
+            llenarComboIsDrill(_isDrill);
             HingeCalculate();
             HingeShow();
-
-            var isOpen = Result.IsOpeningMeasurement;
-            if (isOpen == false) {
-                isOpen = 1;
+            
+            if (_isOpen == false) {
+                _isOpen = 1;
             } else {
-                isOpen = 2;
+                _isOpen = 2;
             }
-            llenarComboIsOpen(isOpen);
-
-            var isOver = Result.isOverlay;
-            if (isOver == false) {
-                isOver = 1;
+            llenarComboIsOpen(_isOpen);
+            
+            if (_isOver == false) {
+                _isOver = 1;
             } else {
-                isOver = 2;
+                _isOver = 2;
             }
-            checkIsOverlay(isOver);
-            llenarComboMaterial(Result.Material.Id);
-            llenarComboDoorStyle(Result.DoorStyle.Id);
-            llenarComboIEP(Result.InsideEdgeProfile.Id);
-            llenarComboOEP(Result.OutsideEdgeProfile.Id);
-            llenarComboStileWidth(Result.BottomRail.Id);
-            llenarComboRailWidth(Result.TopRail.Id);
-            llenarComboDoorAssembly(Result.Join.Id);
-            llenarComboPanelMaterial(Result.Material.Id);
-            llenarComboVerticalDivisions(Result.VerticalDivisions.Id);
-            llenarComboHorizontalDivisions(Result.HorizontalDivisions.Id);
-            //llenarComboHingeDirection(Result.HingeDirection.Id);
+            checkIsOverlay(_isOver);            
+            llenarComboMaterial(_Material);
+            llenarComboDoorStyle(_DoorStyle);
+            llenarComboIEP(_IEP);
+            llenarComboOEP(_OEP);
+            llenarComboStileWidth(_StileW);
+            llenarComboRailWidth(_RailW);
+            llenarComboDoorAssembly(_DoorAsm);
+            llenarComboPanelStyle(_PanelStyle);
+            llenarComboPanelMaterial(_PanelMaterial);
+            llenarComboVerticalDivisions(_Vertical);
+            llenarComboHorizontalDivisions(_Horizontal);
+
             ChangeDoorStylePanel(Result.DoorStyle.Id);
 
             var info = "";
@@ -173,6 +187,7 @@ function GetDoorsByOrder(idOrden) {
 
             //tercera fila
             dxu += '<tr>';
+            dxu += '<td>Panel Style: <span style="color: #868ba1">' + Result.Panel.Description + '</span></td>';
             dxu += '<td>Panel Material: <span style="color: #868ba1">' + Result.PanelMaterial.Description + '</span></td>';
             if (Result.IsOpeningMeasurement == false) {
                 dxu += '<td>Opening Measurement: <span style="color: #868ba1">No</span></td>';
@@ -180,12 +195,12 @@ function GetDoorsByOrder(idOrden) {
             else {
                 dxu += '<td>Opening Measurement: <span style="color: #868ba1">Yes</span></td>';
             }
-            dxu += '<td>Vertical Divisions: <span style="color: #868ba1">' + Result.VerticalDivisions.Quantity + '</span></td>';
-            dxu += '<td>Horizontal Divisions: <span style="color: #868ba1">' + Result.HorizontalDivisions.Quantity + '</span></td>';
+            dxu += '<td>Vertical Divisions: <span style="color: #868ba1">' + Result.VerticalDivisions.Quantity + '</span></td>';            
             dxu += '</tr>';
 
             //Cuarta fila
             dxu += '<tr>';
+            dxu += '<td>Horizontal Divisions: <span style="color: #868ba1">' + Result.HorizontalDivisions.Quantity + '</span></td>';
             if (Result.isDrill == false) {
                 dxu += '<td>Hinge Drilling: <span style="color: #868ba1">No</span></td>';
             }
@@ -198,7 +213,7 @@ function GetDoorsByOrder(idOrden) {
             else {
                 dxu += '<td style="border-right: 1px solid #ADADAD;">Finger Pull: <span style="color: #868ba1">Yes</span></td>';
             }
-            dxu += '<td colspan="2"><textarea disabled rows="1" style="background: #fff!important" class="form-control">Observations: ' + Result.Order.Observations + '</textarea></td>';
+            dxu += '<td><textarea disabled rows="1" style="background: #fff!important" class="form-control">Observations: ' + Result.Order.Observations + '</textarea></td>';
             dxu += '</tr>';
 
             var option = '<table id="ordertable" style="width:100%">';
@@ -207,7 +222,9 @@ function GetDoorsByOrder(idOrden) {
             option += '<th>QUANTITY</th>';
             option += '<th>WIDHT</th>';
             option += '<th>HEIGHT</th>';
-            option += '<th>PANEL STYLE</th>';
+            if (Result.isDrill == true) {
+                option += '<th>HINGE DIRECTION</th>';
+            }            
             option += '<th>DOOR TYPE</th>';
             option += '<th>DOOR OPTION</th>';
             option += '<th>U. PRICE</th>';
@@ -215,7 +232,10 @@ function GetDoorsByOrder(idOrden) {
                 option += '<th>DISCOUNT</th>';
             }
             option += '<th>TOTAL</th>';
-            option += '<th><i class="fa fa-flash"></i></th></tr></thead><tbody>';   
+            if (Result.Order.Status.Id == 5) {
+                option += '<th style="text-align:center"><i class="fa fa-flash"></i></th>';
+            }
+            option += '</tr></thead><tbody>';   
             DxOl = Result.DoorsxOrder;
             for (var i = 0; i < Result.DoorsxOrder.length; i++) {
                 option += '<tr><td><img width="65px" src="' + Result.DoorsxOrder[i].Picture + '"/></td>';
@@ -242,10 +262,8 @@ function GetDoorsByOrder(idOrden) {
                 }
                 option += '<td><span>$</span>' + Result.DoorsxOrder[i].SubTotal.toString().replace(',', '.') + '</td>';
                 if (Result.Order.Status.Id == 5) {
-                option += '<td><button title="Edit Door" data-id="' + Result.DoorsxOrder[i].Id + '"data-toggle="tab" href="#dxoPanel" role="tab"  class="editDoor Cursor btn btn-primary btn-icon"  style="width: 25px;height: 25px; margin-left: 10px;"> <i class="fa fa-edit"></i></button></td>';
-                } else {
-                    option += '<td><button title="Not available" disabled data-id="" data-toggle="tab" href="#dxoPanel" role="tab"  class="editDoor btn btn-primary btn-icon"  style="width: 25px;height: 25px; margin-left: 10px;"> <i class="fa fa-edit"></i></button></td>';
-                }               
+                    option += '<td><center><button title="Edit Door" data-id="' + Result.DoorsxOrder[i].Id + '"data-toggle="tab" href="#dxoPanel" role="tab"  class="editDoor Cursor btn btn-primary btn-icon"  style="width: 25px;height: 25px; margin-left: 10px;"> <i class="fa fa-edit"></i></button></center></td>';
+                }              
                 option += '</tr>';
             }
             option += '</tbody></table>';

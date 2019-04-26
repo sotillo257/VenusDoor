@@ -1,4 +1,4 @@
-﻿var allMaterial = '';
+﻿var allMaterial = [];
 var AllInsideEdgeProfile = "";
 var AllOutsideEdgeProfile = "";
 var allDoorStyle = '';
@@ -15,15 +15,16 @@ var allDoorOption = '';
 var allDecimals = '';
 
 function GetAllMaterial() {
-    $.ajax({
+    var lisDate = [];
+   var lisDate = [];$.ajax({
         url: urlGetAllMaterial,
         cache: false,
         type: 'POST',
-        async: true,
+        async: false,
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
-                return data;
+                lisDate =  data;
                 
             }
             else {
@@ -34,9 +35,10 @@ function GetAllMaterial() {
             LlammarModal("Danger", "Error.", " ");
         }
     });
+    return lisDate;
 }
 function llenarComboMaterial(pMaterial) {
-    if (allMaterial == '') {
+    if (allMaterial.length == 0) {
         allMaterial = GetAllMaterial();
     }
 
@@ -53,15 +55,15 @@ function llenarComboMaterial(pMaterial) {
 }
 
 function GetAllInsideEdgeProfile() {
-    $.ajax({
+   var lisDate = [];$.ajax({
         url: urlGetAllInsideEdgeProfile,
         cache: false,
         type: 'POST',
-        async: true,
+        async: false,
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
-                return data;
+                 lisDate =  data;
             }
             else {
                 LlammarModal("Danger", "Error obtaining Inside Edge Profile", " ");
@@ -70,7 +72,8 @@ function GetAllInsideEdgeProfile() {
         error: function (err) {
             LlammarModal("Danger", "Error.", " ");
         }
-    });
+   });
+   return lisDate;
 }
 function llenarComboIEP(pIEP) {
     if (AllInsideEdgeProfile == '') {
@@ -90,15 +93,15 @@ function llenarComboIEP(pIEP) {
 }
 
 function GetAllOutsideEdgeProfile() {
-    $.ajax({
+   var lisDate = [];$.ajax({
         url: urlGetAllOutsideEdgeProfile,
         cache: false,
         type: 'POST',
-        async: true,
+        async: false,
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
-                return data;
+                 lisDate =  data;
             }
             else {
                 LlammarModal("Danger", "Error obtaining Outside Edge Profile", " ");
@@ -107,7 +110,8 @@ function GetAllOutsideEdgeProfile() {
         error: function (err) {
             LlammarModal("Danger", "Error.", " ");
         }
-    });
+   });
+   return lisDate;
 }
 function llenarComboOEP(pOEP) {
     if (AllOutsideEdgeProfile == '') {
@@ -127,15 +131,15 @@ function llenarComboOEP(pOEP) {
 }
 
 function GetAllDoorStyle() {
-    $.ajax({
+   var lisDate = [];$.ajax({
         url: urlGetAllDoorStyle,
         cache: false,
         type: 'POST',
-        async: true,
+        async: false,
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
-                return data;
+                 lisDate =  data;
             }
             else {
                 LlammarModal("Danger", "Error obtaining Door Style", " ");
@@ -144,7 +148,8 @@ function GetAllDoorStyle() {
         error: function (err) {
             LlammarModal("Danger", "Error.", " ");
         }
-    });
+   });
+return lisDate;
 }
 function llenarComboDoorStyle(pDoorStyle) {
     if (allDoorStyle == '') {
@@ -163,15 +168,15 @@ function llenarComboDoorStyle(pDoorStyle) {
 }
 
 function GetAllBottomRail() {
-    $.ajax({
+   var lisDate = [];$.ajax({
         url: urlGetAllBottomRail,
         cache: false,
         type: 'POST',
-        async: true,
+        async: false,
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
-                return data;
+                 lisDate =  data;
             }
             else {
                 LlammarModal("Danger", "Error obtaining Bottom Rail", " ");
@@ -180,7 +185,8 @@ function GetAllBottomRail() {
         error: function (err) {
             LlammarModal("Danger", "Error.", " ");
         }
-    });
+   });
+return lisDate;
 }
 function llenarComboRailWidth(pRailWidth) {
     if (AllRailWidth == '') {
@@ -199,15 +205,15 @@ function llenarComboRailWidth(pRailWidth) {
 }
 
 function GetAllTopRail() {
-    $.ajax({
+   var lisDate = [];$.ajax({
         url: urlGetAllTopRail,
         cache: false,
         type: 'POST',
-        async: true,
+        async: false,
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
-                return data;
+                 lisDate =  data;
 
             }
             else {
@@ -217,11 +223,12 @@ function GetAllTopRail() {
         error: function (err) {
             LlammarModal("Danger", "Error.", " ");
         }
-    });
+   });
+   return lisDate;
 }
 function llenarComboStileWidth(pStileWidth) {
     if (AllStileWidth == '') {
-        AllStileWidth = GetAllBottomRail();
+        AllStileWidth = GetAllTopRail();
     }
     var option = '';
     for (var i = 0; i < AllStileWidth.length; i++) {
@@ -236,23 +243,24 @@ function llenarComboStileWidth(pStileWidth) {
 }
 
 function GetAllJoin() {
-    $.ajax({
+   var lisDate = [];$.ajax({
         url: urlGetAllJoin,
         cache: false,
         type: 'POST',
-        async: true,
+        async: false,
         contentType: "application/json; charset=utf-8",
         success: function (data) {
-            return data;
+             lisDate =  data;
         },
         error: function (err) {
             LlammarModal("Danger", "Error.", " ");
         }
-    });
+   });
+   return lisDate;
 }
 function llenarComboDoorAssembly(pDoorAssembly) {
     if (AllDoorAssembly == '') {
-        AllDoorAssembly = GetAllBottomRail();
+        AllDoorAssembly = GetAllJoin();
     }
     var option = '';
     for (var i = 0; i < AllDoorAssembly.length; i++) {
@@ -267,15 +275,15 @@ function llenarComboDoorAssembly(pDoorAssembly) {
 }
 
 function GetAllPanel() {
-    $.ajax({
+   var lisDate = [];$.ajax({
         url: urlGetAllPanel,
         cache: false,
         type: 'POST',
-        async: true,
+        async: false,
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
-                return data;
+                 lisDate =  data;
 
             }
             else {
@@ -285,34 +293,35 @@ function GetAllPanel() {
         error: function (err) {
             LlammarModal("Danger", "Error.", " ");
         }
-    });
+   });
+     return lisDate;
 }
 function llenarComboPanelStyle(pPanelStyle) {
     if (AllPanelType == '') {
-        AllPanelType = GetAllBottomRail();
+        AllPanelType = GetAllPanel();
     }
-    var option = '<option value="0">Select</option>';
+    var option = '';
     for (var i = 0; i < AllPanelType.length; i++) {
         if (AllPanelType[i].Status.Id == 1) {
             option += '<option value="' + AllPanelType[i].Id + '">' + AllPanelType[i].Description + '</option>';
         }
     }
     $("#cbPanel").empty().append(option);
-    if (pPanelStyle != 0) {
+    if (pPanelStyle != 0 && pPanelStyle != 3) {
         $("#cbPanel").val(pPanelStyle);
     }
 }
 
 function GetAllPanelMaterial() {
-    $.ajax({
+   var lisDate = [];$.ajax({
         url: urlGetAllPanelMaterial,
         cache: false,
         type: 'POST',
-        async: true,
+        async: false,
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
-                return data;
+                 lisDate =  data;
             }
             else {
                 LlammarModal("Danger", "Error obtaining Panel Material", " ");
@@ -321,11 +330,12 @@ function GetAllPanelMaterial() {
         error: function (err) {
             LlammarModal("Danger", "Error.", " ");
         }
-    });
+   });
+   return lisDate;
 }
-function llenarComboPanelMaterial(pMaterial, pDoorStyle) {
+function llenarComboPanelMaterial(pMaterial, pPanelStyle) {
     if (AllPanelMaterial == '') {
-        AllPanelMaterial = GetAllBottomRail();
+        AllPanelMaterial = GetAllPanelMaterial();
     }
     var pPanelMaterial = 0;
     if (pMaterial == 1) {
@@ -348,19 +358,19 @@ function llenarComboPanelMaterial(pMaterial, pDoorStyle) {
         //Beech
         pPanelMaterial = 3;
     }
-    var option = '<option value="0">Select</option>';
+    var option = '';
     for (var i = 0; i < AllPanelMaterial.length; i++) {
         if (AllPanelMaterial[i].Status.Id == 1 && AllPanelMaterial[i].Id == pPanelMaterial) {
             option += '<option value="' + AllPanelMaterial[i].Id + '">' + AllPanelMaterial[i].Description + '</option>';
 
         }
         if (pMaterial == 6) {
-            if (pDoorStyle == 1003) {
+            if (pPanelStyle == 2) {
                 if (AllPanelMaterial[i].Status.Id == 1 && AllPanelMaterial[i].Id == 1) {
                     option += '<option value="' + AllPanelMaterial[i].Id + '">' + AllPanelMaterial[i].Description + '</option>';
 
                 }
-            } else if (pDoorStyle == 1002) {
+            } else if (pPanelStyle == 5 || pPanelStyle == 6){
                 if (AllPanelMaterial[i].Status.Id == 1 && AllPanelMaterial[i].Id == 5) {
                     option += '<option value="' + AllPanelMaterial[i].Id + '">' + AllPanelMaterial[i].Description + '</option>';
 
@@ -368,21 +378,22 @@ function llenarComboPanelMaterial(pMaterial, pDoorStyle) {
             }
 
         }
-    }
+    
     $("#cbPanelMaterial").empty().append(option);
     $("#cbPanelMaterial").val(pPanelMaterial);
+    }
 }
 
 function GetAllVerticalDivisions() {
-    $.ajax({
+   var lisDate = [];$.ajax({
         url: urlGetAllVerticalDivisions,
         cache: false,
         type: 'POST',
-        async: true,
+        async: false,
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
-                return data;
+                 lisDate =  data;
             }
             else {
                 LlammarModal("Danger", "Error obtaining Vertical Divisions", " ");
@@ -391,11 +402,12 @@ function GetAllVerticalDivisions() {
         error: function (err) {
             LlammarModal("Danger", "Error.", " ");
         }
-    });
+   });
+   return lisDate;
 }
 function llenarComboVerticalDivisions(pVerticalD) {
     if (AllVerticalDivisions == '') {
-        AllVerticalDivisions = GetAllBottomRail();
+        AllVerticalDivisions = GetAllVerticalDivisions();
     }
     var option = '';
     for (var i = 0; i < AllVerticalDivisions.length; i++) {
@@ -410,15 +422,15 @@ function llenarComboVerticalDivisions(pVerticalD) {
 }
 
 function GetAllHorizontalDivisions() {
-    $.ajax({
+   var lisDate = [];$.ajax({
         url: urlGetAllHorizontalDivisions,
         cache: false,
         type: 'POST',
-        async: true,
+        async: false,
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
-                return data;
+                 lisDate =  data;
             }
             else {
                 LlammarModal("Danger", "Error obtaining Horizontal Divisions", " ");
@@ -427,11 +439,12 @@ function GetAllHorizontalDivisions() {
         error: function (err) {
             LlammarModal("Danger", "Error.", " ");
         }
-    });
+   });
+     return lisDate;
 }
 function llenarComboHorizontalDivisions(pHorizontal) {
     if (AllHorizontalDivisions == '') {
-        AllHorizontalDivisions = GetAllBottomRail();
+        AllHorizontalDivisions = GetAllHorizontalDivisions();
     }
     var option = '';
     for (var i = 0; i < AllHorizontalDivisions.length; i++) {
@@ -446,16 +459,16 @@ function llenarComboHorizontalDivisions(pHorizontal) {
 }
 
 function GetAllHingeDirection() {
-    $.ajax({
+   var lisDate = [];$.ajax({
         url: urlGetAllHingeDirection,
         cache: false,
         type: 'POST',
-        async: true,
+        async: false,
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             AllHingeDirection = data;
             if (data != null) {
-                return data;
+                 lisDate =  data;
             }
             else {
                 MensajeModal("Error al obtener Hinge Direction", 5);
@@ -464,13 +477,14 @@ function GetAllHingeDirection() {
         error: function (err) {
             LlammarModal("Danger", "Error.", " ");
         }
-    });
+   });
+   return lisDate;
 }
 function llenarComboHingeDirection(pDirection) {
     if (AllHingeDirection == '') {
-        AllHingeDirection = GetAllBottomRail();
+        AllHingeDirection = GetAllHingeDirection();
     }
-    var option = '<option value="0">Select</option>';
+    var option = '';
     for (var i = 0; i < AllHingeDirection.length; i++) {
         if (AllHingeDirection[i].Id != 3) {
             option += '<option value="' + AllHingeDirection[i].Id + '">' + AllHingeDirection[i].Direction + '</option>';
@@ -487,15 +501,15 @@ function llenarComboHingeDirection(pDirection) {
 }
 
 function GetAllDoorType() {
-    $.ajax({
+   var lisDate = [];$.ajax({
         url: urlGetAllDoorType,
         cache: false,
         type: 'POST',
-        async: true,
+        async: false,
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
-                return data;
+                 lisDate =  data;
             }
             else {
                 LlammarModal("Danger", "Error obtaining DoorType", " ");
@@ -504,13 +518,14 @@ function GetAllDoorType() {
         error: function (err) {
             LlammarModal("Danger", "Error.", " ");
         }
-    });
+   });
+   return lisDate;
 }
 function llenarComboDoorType(pdType) {
     if (allDoorType == '') {
-        allDoorType = GetAllBottomRail();
+        allDoorType = GetAllDoorType();
     }
-    var option = '<option value="0">Select</option>';
+    var option = '';
     for (var i = 0; i < allDoorType.length; i++) {
         if (allDoorType[i].Status.Id == 1) {
             option += '<option value="' + allDoorType[i].Id + '">' + allDoorType[i].Description + '</option>';
@@ -519,19 +534,21 @@ function llenarComboDoorType(pdType) {
     $("#cbDoorType").empty().append(option);
     if (pdType != 0) {
         $("#cbDoorType").val(pdType);
+    } else {
+        $("#cbDoorType").val(2);
     }
 }
 
 function GetAllDoorOption() {
-    $.ajax({
+   var lisDate = [];$.ajax({
         url: urlGetAllDoorOption,
         cache: false,
         type: 'POST',
-        async: true,
+        async: false,
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
-                return data;
+                 lisDate =  data;
             }
             else {
                 LlammarModal("Danger", "Error obtaining DoorOption", " ");
@@ -540,13 +557,14 @@ function GetAllDoorOption() {
         error: function (err) {
             LlammarModal("Danger", "Error.", " ");
         }
-    });
+   });
+return lisDate;
 }
 function llenarComboDoorOption(pDoorOp) {
     if (allDoorOption == '') {
-        allDoorOption = GetAllBottomRail();
+        allDoorOption = GetAllDoorOption();
     }
-    var option = '<option value="0">Select</option>';
+    var option = '';
     for (var i = 0; i < allDoorOption.length; i++) {
         if (allDoorOption[i].Status.Id == 1) {
             option += '<option value="' + allDoorOption[i].Id + '">' + allDoorOption[i].Description + '</option>';
@@ -555,19 +573,21 @@ function llenarComboDoorOption(pDoorOp) {
     $("#cbDoorOpt").empty().append(option);
     if (pDoorOp != 0) {
         $("#cbDoorOpt").val(pDoorOp);
+    } else {
+        $("#cbDoorOpt").val(1);
     }
 }
 
 function GetAllDecimals() {
-    $.ajax({
+   var lisDate = [];$.ajax({
         url: urlGetAllDecimals,
         cache: false,
         type: 'POST',
-        async: true,
+        async: false,
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
-                return data;
+                 lisDate =  data;
             }
             else {
                 LlammarModal("Danger", "Error obtaining Decimals");
@@ -576,11 +596,12 @@ function GetAllDecimals() {
         error: function (err) {
             LlammarModal("Danger", "Error.", " ");
         }
-    });
+   });
+   return lisDate;
 }
 function llenarComboDecimalW(pDecimalW) {
     if (allDecimals == '') {
-        allDecimals = GetAllBottomRail();
+        allDecimals = GetAllDecimals();
     }
     var option = '';
     for (var i = 0; i < allDecimals.length; i++) {
@@ -596,7 +617,7 @@ function llenarComboDecimalW(pDecimalW) {
 
 function llenarComboDecimalH(pDecimalH) {
     if (allDecimals == '') {
-        allDecimals = GetAllBottomRail();
+        allDecimals = GetAllDecimals();
     }
     var option = '';
     for (var i = 0; i < allDecimals.length; i++) {
@@ -614,4 +635,114 @@ function PrintDoorOverlay(pOverlay) {
     var lbl = '<label><input style="margin-right: 8px;" type="radio" name="radioOver" data-id="1">Inset Door Type</label>';
     lbl += '<label style="margin-left: 10px;"><input style="margin-right: 8px;" type="radio" name="radioOver" data-id="2">Overlay Door Type</label>';
     $("#isOverlay").html(lbl);
+}
+
+function llenarComboFinger(pFinger) {
+
+    var option = '';
+    option += '<option value="1">No</option>';
+    option += '<option value="2">Yes</option>';
+    $("#cbFingerPull").empty().append(option);
+    if (pFinger != 0) {
+        $("#cbFingerPull").val(pFinger);
+    }
+}
+
+function llenarComboIsDrill(pDrill) {
+
+    var option = '';
+    option += '<option value="1">No</option>';
+    option += '<option value="2">Yes</option>';
+    $("#cbisDrill").empty().append(option);
+    if (pDrill != 0) {
+        $("#cbisDrill").val(pDrill);
+    }
+}
+
+function llenarComboIsOpen(pOpen) {
+
+    var option = '';
+    option += '<option value="1">No opening</option>';
+    option += '<option value="2">Opening</option>';
+    $("#cbIsOpeningMeasurement").empty().append(option);
+    if (pOpen != 0) {
+        $("#cbIsOpeningMeasurement").val(pOpen);
+    }
+}
+
+function GetInsideAndOutside(pDoorStyle) {
+
+    var datos =
+    {
+        pDoorStyle: pDoorStyle
+    };
+
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(datos),
+        url: urlGetInsideAndOutside,
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+
+            //Validar data para ver si mostrar error al guardar o exito al guardar
+            if (result.Success) {
+
+                var inside = $("#cbInsideEdgeProfile").val();
+                var outside = $("#cbOutsideEdgeProfile").val();
+                var option = '';
+                for (var i = 0; i < result.listInside.length; i++) {
+                    option += '<option value="' + result.listInside[i].Id + '">' + result.listInside[i].Description + '</option>';
+
+                }
+                $("#cbInsideEdgeProfile").empty().append(option);
+                option = '';
+                for (var i = 0; i < result.listOutside.length; i++) {
+                    option += '<option value="' + result.listOutside[i].Id + '">' + result.listOutside[i].Description + '</option>';
+
+                }
+                $("#cbOutsideEdgeProfile").empty().append(option);
+            } else {
+                LlammarModal("Danger", "Error", result.Mensaje);
+            }
+        },
+        error: function (err) {
+            LlammarModal("Danger", "Error.", "while deleting");
+        },
+
+    });
+
+}
+
+function checkIsOverlay(pOverlay) {
+    var lbl = '<label><input disabled style="margin-right: 8px;" type="radio" name="radioOver" data-id="1">Inset Door Type</label>';
+    lbl += '<label style="margin-left: 10px;"><input disabled style="margin-right: 8px;" type="radio" name="radioOver" data-id="2">Overlay Door Type</label>';
+    $("#isOverlay").html(lbl);
+    if (pOverlay != 0) {
+        $("input[name=radioOver][data-id='" + pOverlay + "']").prop("checked", true);
+    }
+}
+
+function LimpiarCombos() {
+    $('input').val("");
+    $('#iptCost').val("0.00");
+    llenarComboDoorOption(0);
+    $("input[name=radioOver]").prop("checked", false);
+    llenarComboMaterial(0);
+    llenarComboDoorStyle(0);
+    llenarComboIEP(0);
+    llenarComboOEP(0);
+    llenarComboStileWidth(0);
+    llenarComboRailWidth(0);
+    llenarComboDoorAssembly(0);
+    llenarComboPanelStyle(0);
+    llenarComboPanelMaterial(0);
+    llenarComboIsOpen(0);
+    llenarComboVerticalDivisions(0);
+    llenarComboHorizontalDivisions(0);
+    llenarComboIsDrill(0);
+    llenarComboDoorType(0);
+    llenarComboFinger(0);
+    llenarComboDecimalW(0);
+    llenarComboDecimalH(0);
 }

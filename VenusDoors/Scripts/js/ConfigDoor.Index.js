@@ -1,21 +1,38 @@
 ﻿$(document).ready(function () {
-    GetAllMaterial();
-    GetAllInsideEdgeProfile();
-    GetAllOutsideEdgeProfile();
-	GetAllDoorStyle();
-	GetAllBottomRail();
-	GetAllTopRail();
-	GetAllJoin();
-	GetAllPreparation();
-	GetAllPanel();
-	GetAllPanelMaterial();
-	GetAllVerticalDivisions();
-	GetAllHorizontalDivisions();
-	GetAllHingeDirection();
-	GetAllDoorType();
-	GetAllDoorOption();
-	GetAllDecimals();
-	PrintDoorOverlay();
+    //GetAllMaterial();
+    //GetAllInsideEdgeProfile();
+    //GetAllOutsideEdgeProfile();
+	//GetAllDoorStyle();
+	//GetAllBottomRail();
+	//GetAllTopRail();
+	//GetAllJoin();
+	//GetAllPreparation();
+	//GetAllPanel();
+	//GetAllPanelMaterial();
+	//GetAllVerticalDivisions();
+	//GetAllHorizontalDivisions();
+	//GetAllHingeDirection();
+	//GetAllDoorType();
+	//GetAllDoorOption();
+	//GetAllDecimals();
+    //PrintDoorOverlay();
+    llenarComboMaterial(0);
+    llenarComboIEP(0);
+    llenarComboOEP(0);
+    llenarComboDoorStyle(0);
+    llenarComboRailWidth(0);
+    llenarComboStileWidth(0);
+    llenarComboDoorAssembly(0);
+    llenarComboPanelStyle(0);
+    llenarComboPanelMaterial(0, $("#cbPanel").val());
+    llenarComboVerticalDivisions(0);
+    llenarComboHorizontalDivisions(0);
+    llenarComboHingeDirection(0);
+    llenarComboDoorType(0);
+    llenarComboDoorOption(0);
+    llenarComboDecimalW(0);
+    llenarComboDecimalH(0);
+    PrintDoorOverlay(_DoorSt);
 	ValidateSession();
 	ChangeDoorStylePanel(_DoorSt);
 	$(document).on('click', "#bt-conf-log", function () {
@@ -40,13 +57,15 @@
 	    $("#File1").trigger('click');
 	});
 
-    $(document).on('change', '.form-control', function () {
-        GetPrices();
-    });    
-
     $(document).on('change', '#cbMaterial', function () {
         var pMaterial = $("#cbMaterial").val();
-        var pDoorStyle = $("#cbDoorStyle").val();
+        var pDoorStyle = $("#cbPanel").val();
+        llenarComboPanelMaterial(pMaterial, pDoorStyle);
+    });
+
+    $(document).on('change', '#cbPanel', function () {
+        var pMaterial = $("#cbMaterial").val();
+        var pDoorStyle = $("#cbPanel").val();
         llenarComboPanelMaterial(pMaterial, pDoorStyle);
     });
 
@@ -108,13 +127,13 @@
         ChangeDoorStylePanel($("#cbDoorStyle").val());
         GetInsideAndOutside($("#cbDoorStyle").val());
     });
+
 });
 
 
 function ChangeDoorStylePanel(pIdDoorStyle) {
     var bandera = true;
-    var pMaterial = $("#cbMaterial").val();
-    llenarComboPanelMaterial(pMaterial, pIdDoorStyle);
+   
     llenarComboDoorAssembly($("#cbDoorAssembly").val());
     if (pIdDoorStyle == 1002) {
         var panelType = $("#cbPanel").val();
@@ -132,7 +151,7 @@ function ChangeDoorStylePanel(pIdDoorStyle) {
             $("#cbPanel").val(0);
         }
 
-        llenarComboInsideAndOutside();
+       
     } else if (pIdDoorStyle == 1003) {
 
         var panelType = $("#cbPanel").val();
@@ -144,7 +163,7 @@ function ChangeDoorStylePanel(pIdDoorStyle) {
         }
         $("#cbPanel").empty().append(option);
         $("#cbPanel").val(2);
-        llenarComboInsideAndOutside();
+         
     } else if (pIdDoorStyle == 1004) {
         var inside = $("#cbInsideEdgeProfile").val();
         var outside = $("#cbOutsideEdgeProfile").val();
@@ -171,20 +190,17 @@ function ChangeDoorStylePanel(pIdDoorStyle) {
         $("#cbOutsideEdgeProfile").val(6);
         llenarComboPanel();
     } else if (pIdDoorStyle == 1005) {
-        llenarInsideAndOutsideEspecificos(3, 6);
         llenarComboPanel();
     }
     else if (pIdDoorStyle == 1006) {
-        llenarInsideAndOutsideEspecificos(5, 5);
         llenarComboPanel();
     } else if (pIdDoorStyle == 1007) {
-        llenarInsideAndOutsideEspecificos(0, 11);
         llenarComboPanel();
     } else if (pIdDoorStyle == 1008) {
-        llenarComboInsideAndOutside();
+         
         llenarComboPanel();
     } else if (pIdDoorStyle == 1009) {
-        llenarComboInsideAndOutside();
+         
         var option = '<option value="0">Select</option>';
         for (var i = 0; i < AllPanelType.length; i++) {
             if (AllPanelType[i].Status.Id == 1 && AllPanelType[i].Id == 5) {
@@ -194,7 +210,7 @@ function ChangeDoorStylePanel(pIdDoorStyle) {
         $("#cbPanel").empty().append(option);
         $("#cbPanel").val(5);
     } else if (pIdDoorStyle == 1010) {
-        llenarComboInsideAndOutside();
+         
         var option = '<option value="3">Slab</option>';
         $("#cbPanel").empty().append(option);
         $("#cbPanel").hide();
@@ -214,7 +230,9 @@ function ChangeDoorStylePanel(pIdDoorStyle) {
         changeDoorPicture();
         ChangeProfile();
     }
-
+    var pMaterial = $("#cbMaterial").val();
+    var pPanelStyle = $("#cbPanel").val();
+    llenarComboPanelMaterial(pMaterial, pPanelStyle);
 }
 
 $(window).on('load', function () {
@@ -259,16 +277,16 @@ function ValidarCamposFront() {
         $('#CantidadFila').removeClass("is-invalid");
     }
 
-    if ($('#cbisDrill').val() == 2) {
+    var drillingV = ($("#idDrill").val() == 1) ? false : true;
+    if (drillingV == true) {
         if ($('#cbHingeDirection').val() == 0 || $('#cbHingeDirection').val() == null) {
             $('#select2-cbHingeDirection-container').addClass("cbError");
             aux = false;
         } else {
             $('#select2-cbHingeDirection-container').removeClass("cbError");
         }
-    }
+    }    
       
-
     if ($('#cbDoorType').val() == 0 || $('#cbDoorType').val() == null) {
         $('#select2-cbDoorType-container').addClass("cbError");
         aux = false;
@@ -317,7 +335,7 @@ function changeDoorStyle() {
             $("#cbPanel").val(0);
         }
 
-        llenarComboInsideAndOutside();
+         
     } else if ($("#cbDoorStyle").val() == 1003) {
 
         var panelType = $("#cbPanel").val();
@@ -342,7 +360,7 @@ function changeDoorStyle() {
     } else if ($("#cbDoorStyle").val() == 1008) {
         llenarComboPanel();
     } else if ($("#cbDoorStyle").val() == 1009) {
-        llenarComboInsideAndOutside();
+         
         var option = '<option value="0">Select</option>';
         for (var i = 0; i < AllPanelType.length; i++) {
             if (AllPanelType[i].Status.Id == 1 && AllPanelType[i].Id == 5) {
@@ -352,7 +370,7 @@ function changeDoorStyle() {
         $("#cbPanel").empty().append(option);
         $("#cbPanel").val(5);
     } else if ($("#cbDoorStyle").val() == 1010) {
-        //llenarComboInsideAndOutside();
+        // 
         //var option = '<option value="slab">Slab</option>';
         //$("#cbPanel").empty().append(option);
         //$("#cbInsideEdgeProfile").empty().append(option);
@@ -366,164 +384,6 @@ function changeDoorStyle() {
         //changeDoorPicture();
         //ChangeProfile();
     }
-
-}
-
-function llenarComboPanelMaterial(pMaterial, pDoorStyle) {
-    var pPanelMaterial = 0;
-    if (pMaterial == 1) {
-        //knotty Alder
-        pPanelMaterial = 6;
-
-    } else if (pMaterial == 4) {
-        //Maple
-        pPanelMaterial = 7;
-    }
-    else if (pMaterial == 6) {
-        //Poplar
-        pPanelMaterial = 9;
-    }
-    else if (pMaterial == 7) {
-        //Red oak
-        pPanelMaterial = 11;
-    }
-    else if (pMaterial == 13) {
-        //Beech
-        pPanelMaterial = 3;
-    }
-    var option = '';
-    for (var i = 0; i < AllPanelMaterial.length; i++) {
-        if (AllPanelMaterial[i].Status.Id == 1 && AllPanelMaterial[i].Id == pPanelMaterial) {
-            option += '<option value="' + AllPanelMaterial[i].Id + '">' + AllPanelMaterial[i].Description + '</option>';
-            
-        }       
-        if (pMaterial == 6) {
-            if (pDoorStyle == 1003) {
-                if (AllPanelMaterial[i].Status.Id == 1 && AllPanelMaterial[i].Id == 1) {
-                    option += '<option value="' + AllPanelMaterial[i].Id + '">' + AllPanelMaterial[i].Description + '</option>';
-
-                }
-            } else if (pDoorStyle == 1002) {
-                if (AllPanelMaterial[i].Status.Id == 1 && AllPanelMaterial[i].Id == 5) {
-                    option += '<option value="' + AllPanelMaterial[i].Id + '">' + AllPanelMaterial[i].Description + '</option>';
-
-                }
-            }
-           
-        }
-    }
-    $("#cbPanelMaterial").empty().append(option);
-    $("#cbPanelMaterial").val(pPanelMaterial);
-}
-
-function llenarInsideAndOutsideEspecificos(pInside, pOutside) {
-    var inside = $("#cbInsideEdgeProfile").val();
-    var outside = $("#cbOutsideEdgeProfile").val();
-    var option = '';
-    for (var i = 0; i < AllInsideEdgeProfile.length; i++) {
-        if (AllInsideEdgeProfile[i].Status.Id == 1 && (AllInsideEdgeProfile[i].Id == pInside || pInside == 0)) {
-            option += '<option value="' + AllInsideEdgeProfile[i].Id + '">' + AllInsideEdgeProfile[i].Description + '</option>';
-          
-        }
-    }
-    $("#cbInsideEdgeProfile").empty().append(option);
-    if (pInside == 0) {
-        $("#cbInsideEdgeProfile").val(4);
-    } else {
-        $("#cbInsideEdgeProfile").val(pInside);
-    }
-       
-    option = '';
-    for (var i = 0; i < AllOutsideEdgeProfile.length; i++) {
-        if (AllOutsideEdgeProfile[i].Status.Id == 1 && AllOutsideEdgeProfile[i].Id == pOutside) {
-            option += '<option value="' + AllOutsideEdgeProfile[i].Id + '">' + AllOutsideEdgeProfile[i].Description + '</option>';
-            break;
-        }
-    }
-    $("#cbOutsideEdgeProfile").empty().append(option);
-    $("#cbOutsideEdgeProfile").val(pOutside);
-}
-
-function llenarComboInsideAndOutside() {
-
-    var inside = $("#cbInsideEdgeProfile").val();
-    var outside = $("#cbOutsideEdgeProfile").val();
-    var option = '<option value="0">Select</option>';
-    for (var i = 0; i < AllInsideEdgeProfile.length; i++) {
-        if (AllInsideEdgeProfile[i].Status.Id == 1) {
-            option += '<option value="' + AllInsideEdgeProfile[i].Id + '">' + AllInsideEdgeProfile[i].Description + '</option>';
-        }
-    }
-    $("#cbInsideEdgeProfile").empty().append(option);
- 
-       
-    if (inside != 1) {
-            $("#cbInsideEdgeProfile").val(inside);
-        }
-    option = '<option value="0">Select</option>';
-    for (var i = 0; i < AllOutsideEdgeProfile.length; i++) {
-        if (AllOutsideEdgeProfile[i].Status.Id == 1) {
-            option += '<option value="' + AllOutsideEdgeProfile[i].Id + '">' + AllOutsideEdgeProfile[i].Description + '</option>';
-        }
-    }
-    $("#cbOutsideEdgeProfile").empty().append(option);
-    if (outside != 1) {
-       
-        $("#cbOutsideEdgeProfile").val(outside);
-    }
-  
-}
-
-function GetInsideAndOutside(pDoorStyle) {
-
-    var datos =
-    {
-        pDoorStyle: pDoorStyle
-    };
-
-    $.ajax({
-        type: 'POST',
-        data: JSON.stringify(datos),
-        url: urlGetInsideAndOutside,
-        dataType: "json",
-        contentType: 'application/json; charset=utf-8',
-        success: function (result) {
-
-            //Validar data para ver si mostrar error al guardar o exito al guardar
-            if (result.Success) {
-
-                var inside = $("#cbInsideEdgeProfile").val();
-                var outside = $("#cbOutsideEdgeProfile").val();
-                var option = '<option value="0">Select</option>';
-                for (var i = 0; i < result.listInside.length; i++) {
-                    option += '<option value="' + result.listInside[i].Id + '">' + result.listInside[i].Description + '</option>';
-                 
-                }
-                $("#cbInsideEdgeProfile").empty().append(option);
-
-
-                if (inside != 1) {
-                    $("#cbInsideEdgeProfile").val(inside);
-                }
-                option = '<option value="0">Select</option>';
-                for (var i = 0; i < result.listOutside.length; i++) {
-                    option += '<option value="' + result.listOutside[i].Id + '">' + result.listOutside[i].Description + '</option>';
-               
-                }
-                $("#cbOutsideEdgeProfile").empty().append(option);
-                if (outside != 1) {
-
-                    $("#cbOutsideEdgeProfile").val(outside);
-                }
-            } else {
-                LlammarModal("Danger", "Error", result.Mensaje);
-            }
-        },
-        error: function (err) {
-            LlammarModal("Danger", "Error.", "while deleting");
-        },
-
-    });
 
 }
 
@@ -629,497 +489,6 @@ function HingeShow(Drills) {
         $("#HingeDirectionDiv").css('display', 'none');     
     }
 }
-
-function GetAllMaterial() {
-    $.ajax({
-        url: urlGetAllMaterial,
-        cache: false,
-        type: 'POST',
-        async: false,
-        contentType: "application/json; charset=utf-8",
-        success: function (data) {
-            if (data != null) {
-                allMaterial = data;
-                var option = '';
-                for (var i = 0; i < data.length; i++) {
-                    if (data[i].Status.Id == 1) {
-                        option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
-                    }
-
-                }
-                $("#cbMaterial").empty().append(option);
-
-            }
-            else {
-                LlammarModal("Danger", "Error obtaining Material", "");
-            }
-        },
-        error: function (err) {
-            LlammarModal("Danger", "Error.", "GetAllMaterial");
-        }
-    });
-}
-
-function GetAllDoorStyle() {
-	$.ajax({
-		url: urlGetAllDoorStyle,
-		cache: false,
-		type: 'POST',
-		async: false,
-		contentType: "application/json; charset=utf-8",
-		success: function (data) {
-		    if (data != null) {
-		        allDoorStyle = data;
-				var option = '';
-				for (var i = 0; i < data.length; i++) {
-				    if (data[i].Status.Id == 1) {
-				        option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
-				    }
-
-				}
-				$("#cbDoorStyle").empty().append(option);
-
-			}
-			else {
-			    LlammarModal("Danger", "Error obtaining Door Style", " ");
-			}
-		},
-		error: function (err) {
-		    LlammarModal("Danger", "Error.", "GetAllDoorStyle");
-		}
-	});
-}
-
-var AllInsideEdgeProfile = "";
-
-function GetAllInsideEdgeProfile() {
-    $.ajax({
-        url: urlGetAllInsideEdgeProfile,
-        cache: false,
-        type: 'POST',
-        async: false,
-        contentType: "application/json; charset=utf-8",
-        success: function (data) {
-            if (data != null) {                
-                AllInsideEdgeProfile = data;
-                var option = '';
-                for (var i = 0; i < data.length; i++) {
-                    if (data[i].Status.Id == 1) {
-                        option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
-                    }
-                }
-                $("#cbInsideEdgeProfile").empty().append(option);
-
-            }
-            else {
-                LlammarModal("Danger", "Error obtaining Inside Edge Profile", " ");
-            }
-        },
-        error: function (err) {
-            LlammarModal("Danger", "Error.", "GetAllInsideEdgeProfile");
-        }
-    });
-}
-
-var AllOutsideEdgeProfile = "";
-
-function GetAllOutsideEdgeProfile() {
-    $.ajax({
-        url: urlGetAllOutsideEdgeProfile,
-        cache: false,
-        type: 'POST',
-        async: false,
-        contentType: "application/json; charset=utf-8",
-        success: function (data) {
-            if (data != null) {
-                AllOutsideEdgeProfile = data;
-                var option = '';
-                for (var i = 0; i < data.length; i++) {
-                    if (data[i].Status.Id == 1) {
-                        option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
-                    }
-
-                }
-                $("#cbOutsideEdgeProfile").empty().append(option);
-
-            }
-            else {
-                LlammarModal("Danger", "Error obtaining Outside Edge Profile", " ");
-            }
-        },
-        error: function (err) {
-            LlammarModal("Danger", "Error.", "GetAllOutsideEdgeProfile");
-        }
-    });
-}
-
-function GetAllBottomRail() {
-    $.ajax({
-        url: urlGetAllBottomRail,
-        cache: false,
-        type: 'POST',
-        async: false,
-        contentType: "application/json; charset=utf-8",
-        success: function (data) {
-            if (data != null) {
-                AllStileWidth = data;
-                var option = '';
-                for (var i = 0; i < data.length; i++) {
-                    if (data[i].Status.Id == 1) {
-                        option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
-                    }
-
-                }
-                $("#cbStileWidth").empty().append(option);
-
-            }
-            else {
-                LlammarModal("Danger", "Error obtaining Bottom Rail", " ");
-            }
-        },
-        error: function (err) {
-            LlammarModal("Danger", "Error.", "GetAllBottomRail");
-        }
-    });
-}
-
-function GetAllTopRail() {
-    $.ajax({
-        url: urlGetAllTopRail,
-        cache: false,
-        type: 'POST',
-        async: false,
-        contentType: "application/json; charset=utf-8",
-        success: function (data) {
-            if (data != null) {
-                AllRailWidth = data;
-                var option = '';
-                for (var i = 0; i < data.length; i++) {
-                    if (data[i].Status.Id == 1) {
-                        option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
-                    }
-
-                }
-                $("#cbRailWidth").empty().append(option);
-
-            }
-            else {
-                LlammarModal("Danger", "Error obtaining Top Rail", " ");
-            }
-        },
-        error: function (err) {
-            LlammarModal("Danger", "Error.", "GetAllTopRail");
-        }
-    });
-}
-
-function GetAllJoin() {
-    $.ajax({
-        url: urlGetAllJoin,
-        cache: false,
-        type: 'POST',
-        async: false,
-        contentType: "application/json; charset=utf-8",
-        success: function (data) {
-            if (data != null) {
-                AllDoorAssembly = data;
-                var option = '';
-                for (var i = 0; i < data.length; i++) {
-                    if (data[i].Status.Id == 1) {
-                        option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
-                    }
-                }
-                $("#cbDoorAssembly").empty().append(option);
-
-            }
-            else {
-                LlammarModal("Danger", "Error obtaining Join", " ");
-            }
-        },
-        error: function (err) {
-            LlammarModal("Danger", "Error.", "GetAllJoin");
-        }
-    });
-}
-
-function GetAllPreparation() {
-    $.ajax({
-        url: urlGetAllPreparation,
-        cache: false,
-        type: 'POST',
-        async: false,
-        contentType: "application/json; charset=utf-8",
-        success: function (data) {
-            if (data != null) {
-                AllPanelStyle = data;
-                var option = '';
-                for (var i = 0; i < data.length; i++) {
-                    if (data[i].Status.Id == 1) {
-                        option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
-                    }
-
-                }
-                $("#cbPreparation").empty().append(option);
-
-            }
-            else {
-                LlammarModal("Danger", "Error obtaining Preparation", " ");
-            }
-        },
-        error: function (err) {
-            LlammarModal("Danger", "Error.", "GetAllPreparation");
-        }
-    });
-}
-
-var AllPanelType = "";
-
-function GetAllPanel() {
-    $.ajax({
-        url: urlGetAllPanel,
-        cache: false,
-        type: 'POST',
-        async: false,
-        contentType: "application/json; charset=utf-8",
-        success: function (data) {
-            if (data != null) {
-                AllPanelType = data;
-                var option = '<option value="0">Select</option>';
-                for (var i = 0; i < data.length; i++) {
-                    if (data[i].Status.Id == 1) {
-                        option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
-                    }
-
-                }
-                $("#cbPanel").empty().append(option);
-
-            }
-            else {
-                LlammarModal("Danger", "Error obtaining Panel", " ");
-            }
-        },
-        error: function (err) {
-            LlammarModal("Danger", "Error.", "GetAllPanel");
-        }
-    });
-}
-
-var AllPanelMaterial = '';
-
-function GetAllPanelMaterial() {
-    $.ajax({
-        url: urlGetAllPanelMaterial,
-        cache: false,
-        type: 'POST',
-        async: false,
-        contentType: "application/json; charset=utf-8",
-        success: function (data) {
-            if (data != null) {
-                AllPanelMaterial = data;
-                var option = '';
-                for (var i = 0; i < data.length; i++) {
-                    if (data[i].Status.Id == 1) {
-                        option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
-                    }
-
-                }
-                $("#cbPanelMaterial").empty().append(option);
-
-            }
-            else {
-                LlammarModal("Danger", "Error obtaining Panel Material", " ");
-            }
-        },
-        error: function (err) {
-            LlammarModal("Danger", "Error.", "GetAllPanelMaterial");
-        }
-    });
-}
-
-function GetAllVerticalDivisions() {
-    $.ajax({
-        url: urlGetAllVerticalDivisions,
-        cache: false,
-        type: 'POST',
-        async: false,
-        contentType: "application/json; charset=utf-8",
-        success: function (data) {
-            if (data != null) {
-                AllVerticalDivisions = data;
-                var option = '';
-                for (var i = 0; i < data.length; i++) {
-                    if (data[i].Status.Id == 1) {
-                        option += '<option value="' + data[i].Id + '">' + data[i].Quantity + '</option>';
-                    }
-                }
-                $("#cbVerticalDivisions").empty().append(option);
-
-            }
-            else {
-                LlammarModal("Danger", "Error obtaining Vertical Divisions", " ");
-            }
-        },
-        error: function (err) {
-            LlammarModal("Danger", "Error.", "GetAllVerticalDivisions");
-        }
-    });
-}
-
-function GetAllHorizontalDivisions() {
-    $.ajax({
-        url: urlGetAllHorizontalDivisions,
-        cache: false,
-        type: 'POST',
-        async: false,
-        contentType: "application/json; charset=utf-8",
-        success: function (data) {
-            if (data != null) {
-                AllHorizontalDivisions = data;
-                var option = '';
-                for (var i = 0; i < data.length; i++) {
-                    if (data[i].Status.Id == 1) {
-                        option += '<option value="' + data[i].Id + '">' + data[i].Quantity + '</option>';
-                    }
-
-                }
-                $("#cbHorizontalDivisions").empty().append(option);
-
-            }
-            else {
-                LlammarModal("Danger", "Error obtaining Horizontal Divisions", " ");
-            }
-        },
-        error: function (err) {
-            LlammarModal("Danger", "Error.", "GetAllHorizontalDivisions");
-        }
-    });
-}
-
-function GetAllHingeDirection() {
-    $.ajax({
-        url: urlGetAllHingeDirection,
-        cache: false,
-        type: 'POST',
-        async: false,
-        contentType: "application/json; charset=utf-8",
-        success: function (data) {
-            AllHingeDirection = data;
-            if (data != null) {
-                var option = '<option value="0">Select</option>';
-                for (var i = 0; i < data.length; i++) {
-                    if (AllHingeDirection[i].Id != 3) {
-                        option += '<option value="' + AllHingeDirection[i].Id + '">' + AllHingeDirection[i].Direction + '</option>';
-                    }
-                }
-                $("#cbHingeDirection").empty().append(option);
-
-            }
-            else {
-                MensajeModal("Error al obtener Hinge Direction", 5);
-            }
-        },
-        error: function (err) {
-            LlammarModal("Danger", "Error.", "GetAllHingeDirection");
-        }
-    });
-}
-
-function GetAllDoorType() {
-    $.ajax({
-        url: urlGetAllDoorType,
-        cache: false,
-        type: 'POST',
-        async: false,
-        contentType: "application/json; charset=utf-8",
-        success: function (data) {
-            if (data != null) {
-                allDoorType = data;
-                var option = '<option value="0">Select</option>';
-                for (var i = 0; i < data.length; i++) {
-                    if (data[i].Status.Id == 1) {
-                        option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
-                    }
-
-                }
-                $("#cbDoorType").empty().append(option);
-                $("#cbDoorType").val(2);
-            }
-            else {
-                LlammarModal("Danger", "Error obtaining DoorType", " ");
-            }
-        },
-        error: function (err) {
-            LlammarModal("Danger", "Error.", "GetAllDoorType");
-        }
-    });
-}
-
-function GetAllDoorOption() {
-    $.ajax({
-        url: urlGetAllDoorOption,
-        cache: false,
-        type: 'POST',
-        async: false,
-        contentType: "application/json; charset=utf-8",
-        success: function (data) {
-            if (data != null) {
-                allDoorOption = data;
-                var option = '<option value="0">Select</option>';
-                for (var i = 0; i < data.length; i++) {
-                    if (data[i].Status.Id == 1) {
-                        option += '<option value="' + allDoorOption[i].Id + '">' + allDoorOption[i].Description + '</option>';
-                    }
-                }                
-                $("#cbDoorOpt").empty().append(option);
-                $("#cbDoorOpt").val(1);
-            }
-            else {
-                LlammarModal("Danger", "Error obtaining DoorOption", " ");
-            }
-        },
-        error: function (err) {
-            LlammarModal("Danger", "Error.", "GetAllDoorOption");
-        }
-    });
-}
-
-function GetAllDecimals() {
-    $.ajax({
-        url: urlGetAllDecimals,
-        cache: false,
-        type: 'POST',
-        async: false,
-        contentType: "application/json; charset=utf-8",
-        success: function (data) {
-            if (data != null) {
-                allDecimals = data;
-                var option = '';
-                for (var i = 0; i < data.length; i++) {
-                    if (data[i].Status.Id == 1) {
-                        option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
-                    }
-
-                }
-                $("#cbDecimalsW").empty().append(option);
-                $("#cbDecimalsH").empty().append(option);
-
-            }
-            else {
-                LlammarModal("Danger", "Error obtaining Decimals");
-            }
-        },
-        error: function (err) {
-            LlammarModal("Danger", "Error.", "GetAllDecimals");
-        }
-    });
-}
-
-function PrintDoorOverlay(pOverlay) {
-    var lbl = '<label><input style="margin-right: 8px;" type="radio" name="radioOver" data-id="1">Inset Door Type</label>';
-    lbl += '<label style="margin-left: 10px;"><input style="margin-right: 8px;" type="radio" name="radioOver" data-id="2">Overlay Door Type</label>';
-    $("#isOverlay").html(lbl);    
-}
-
 var CodigoDoorxUser = 0;
 
 function InsertDoorsxUser() {
@@ -1179,13 +548,14 @@ function InsertDoorsxUser() {
 
                         //Validar data para ver si mostrar error al guardar o exito al guardar
                         if (result != null) {
-                            llenarheaderOrder();
                             llenarTablaOrderSumary();
                             $('#modalInsert').modal('hide');
                             $('#modalConfirmOrderSummary').modal('hide');
                             LlammarModal("ConfigM", "General configuration of doors successfully saved!", "");                            
                             $("#btnConfigDoor").removeClass("btBuild").addClass("ModDoorxUser");
-                            var boton = '<button class="btn btn-success btn-icon AddDoor" style="width: 37px;height: 37px; margin-top: 55px;" type="button"><i class="fa fa-plus"></i></button>';
+                            var boton = '<button id="dxoAdd" class="btn btn-success btn-icon AddDoor" style="width: 37px;height: 37px; margin-top: 55px;" type="button"><i class="fa fa-plus"></i></button>';
+                            boton += '<button id="dxoSave" class="Cursor btn btn-success btn-icon SaveDoor" title="" type="button" style="margin-top: 55px; display:none"><div><i class="fa fa-check"></i></div></button>';
+                            boton += '<button id="dxoCancel" class="Cursor btn btn-danger btn-icon" title="" type="button" style="margin-top: 55px; display:none"><div><i class="fa fa-window-close"></i></div></button>';
                             $("#btInsertDoorTable").empty().append(boton);
                             changeDoorStyle();                            
                             HingeShow(drillingV);
@@ -1206,93 +576,13 @@ function InsertDoorsxUser() {
                 });
 }
 
-function UpdateDoorsxUser() {
-    var itemCost = parseFloat($("#iptCost").val());
-    var DoorQuantity = $("#iptQuantity").val();
-    var DoorSubTotal = itemCost * DoorQuantity;
-    var OrdSubTotal = DoorSubTotal;
-    var Tx = parseFloat(0.0825);
-    var Taxes = (parseFloat(OrdSubTotal) * Tx).toFixed(2);
-    var OrdTotal = (parseFloat(OrdSubTotal) + parseFloat(Taxes)).toFixed(2);
-    var DoorOp = $('input[name=radioOption]:checked').attr("data-id");
-    var isOver = ($('input[name=radioOver]:checked').attr("data-id") == 1) ? false : true;
-    var drillingV = ($("#cbisDrill").val() == 1) ? false : true;
-    var datos =
-         {
-             Ord: {
-                 DoorxUser: {
-                     Id: $('#idDoor').val(),
-                     User: { Id: 0 },
-                     Status: { Id: 1 },
-                     Material: { Id: $("#cbMaterial").val() },
-                     DoorStyle: { Id: $("#cbDoorStyle").val() },
-                     TopRail: { Id: $("#cbRailWidth").val() },
-                     BottomRail: { Id: $("#cbStileWidth").val() },
-                     Preparation: { Id: 1 },
-                     Panel: { Id: $("#cbPanel").val() },
-                     PanelMaterial: { Id: $("#cbPanelMaterial").val() },
-                     IsOpeningMeasurement: ($("#cbIsOpeningMeasurement").val() == 1) ? false : true,
-                     Join: { Id: $("#cbDoorAssembly").val() },
-                     OutsideEdgeProfile: { Id: $("#cbOutsideEdgeProfile").val() },
-                     InsideEdgeProfile: { Id: $("#cbInsideEdgeProfile").val() },
-                     VerticalDivisions: { Id: $("#cbVerticalDivisions").val() },
-                     HorizontalDivisions: { Id: $("#cbHorizontalDivisions").val() },
-                     Width: parseFloat($("#iptWidth").val()),
-                     DecimalsWidth: { Id: $("#cbDecimalsW").val() },
-                     Height: parseFloat($("#iptHeight").val()),
-                     DecimalsHeight: { Id: $("#cbDecimalsH").val() },
-                     isDrill: drillingV,
-                     Quantity: DoorQuantity,
-                     ItemCost: itemCost,
-                     SubTotal: DoorSubTotal,
-                     Picture: $('#DoorPicture').attr('src'),
-                     ProfilePicture: $('#ProfilePicture').attr('src'),
-                     DoorType: { Id: $("#cbDoorType").val() },
-                     isOverlay: isOver,
-                     isFingerPull: ($("#cbFingerPull").val() == 1) ? false : true,
-                 },
-             }
-         };
-    $.ajax({
-        type: 'POST',
-        data: JSON.stringify(datos),
-        url: urlUpdateDoorsxUser,
-        dataType: "json",
-        contentType: 'application/json; charset=utf-8',
-        success: function (result) {
-
-            //Validar data para ver si mostrar error al guardar o exito al guardar
-            if (result != null) {
-                llenarheaderOrder();
-                CodigoDoorxUser = result.DoorxUser.Id;
-                $('#modalInsert').modal('hide');
-                $('#modalConfirmOrderSummary').modal('hide');
-                LlammarModal("ConfigM", "General configuration of doors successfully saved!", "");                
-                $("#btnConfigDoor").removeClass("btBuild").addClass("ModDoorxUser");
-                var boton = '<button class="btn btn-success btn-icon AddDoor" style="width: 37px;height: 37px; margin-top: 55px;" type="button"><i class="fa fa-plus"></i></button>';
-                $("#btInsertDoorTable").empty().append(boton);
-                changeDoorStyle();
-                HingeShow(drillingV);
-            } else {
-                $('#modalInsert').modal('hide');
-                LlammarModal("Danger", "Error in the process.", "An error occurred when modifying the general settings.");
-            }
-        },
-        error: function (err) {
-            $('#modalConfirmOrderSummary').modal('hide');
-            LlammarModal("Danger", "An error occurred during the process.", "Check your internet connection I tried again");
-        },
-
-    });
-}
-
 function InsertDoorsxOrder() {
     var itemCost = parseFloat($("#iptCost").val());
     var DoorQuantity = $("#CantidadFila").val();
-    var DoorOp = $("#cbDoorOpt").val();
-    var drillingV = ($("#idDrill").val() == 1) ? false : true;
+    var DoorOp = $("#cbDoorOpt").val();   
     var HingeDirection = $("#cbHingeDirection").val();
-    var HingePositions ="";
+    var HingePositions = "";
+    var drillingV = ($("#idDrill").val() == 1) ? false : true;
     if (drillingV == true) {
         HingeDirection = $("#cbHingeDirection").val();
         HingePositions = 2;
@@ -1334,7 +624,7 @@ function InsertDoorsxOrder() {
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
                 LlammarModal("ConfigM", "The door has been created successfully!", "");
-                llenarheaderOrder();
+                
                 llenarTablaOrderSumary();
                 LimpiarCamposRapidos();                
             } else {
@@ -1355,28 +645,14 @@ function InsertDoorsxOrder() {
 function LimpiarCamposRapidos() {
     changeDoorStyle();
     llenarComboDoorType(2)
-    selectDoorOption(1);
+    llenarComboDoorOption(1);
     llenarComboDecimalW(0);
     llenarComboDecimalH(0);
     $("#iptWidth").val("");
     $("#iptHeight").val("");
     $("#CantidadFila").val("");
+    $("#idDoorxOrder").val("");
     
-}
-
-$(document).on('change', '.eventChange', function () {
-    //alert('This action is working');
-    GetPrices();
-});
-
-function GetPrices() {
-
-    var TR = $("#cbTopRail").val();
-    var BR = $("#cbBottomRail").val();
-    var RT;
-    var H = parseFloat($("#iptHeight").val()) + parseFloat($("#cbDecimalsH").val());
-    var W = parseFloat($("#iptWidth").val()) + parseFloat($("#cbDecimalsW").val());
-    $("#iptCost").val(!isNaN(getPriceDoor($("#cbMaterial").val(), $("#cbPanel").val(), H, W, TR, BR))?getPriceDoor($("#cbMaterial").val(), $("#cbPanel").val(), H, W, TR, BR) : '0.00' );
 }
 
 function ValidateSession() {
@@ -1635,68 +911,124 @@ function RaisedPanel(Outside, Inside) {
 function changeDoorPicture() {
     var Style = $('#cbDoorStyle').val();
     var Panel = $('#cbPanel').val();
-
+    var respuesta = "/Content/img/Doors/Cabinet Vector-01.png";
     if (Panel == 5) {
-        FlatPanelDoor(Style);
-    }else if (Panel == 6) {
-        $('#DoorPicture').attr('src', "/Content/img/Doors/Cabinet Vector-17.png");
-    }else
-    if (Panel == 2) {
-       RaisedPanelDoor(Style);
-    } else {
-        $('#DoorPicture').attr('src', "/Content/img/Doors/img11.png");
+        respuesta = FlatPanelDoor(Style);
     }
+    if (Panel == 6) {
+        if (Style == 1010) {
+            respuesta = "/Content/img/Doors/slab.png";
+        }
+        else {
+            respuesta = "/Content/img/Doors/Cabinet Vector-17.png";
+        }
+
+    }
+    if (Panel == 2) {
+        respuesta = RaisedPanelDoor(Style);
+    }
+    if (Panel == 3) {
+        respuesta = "/Content/img/Doors/slab.png";
+    }
+
+    $('#DoorPicture').attr('src', respuesta);
 }
 
 function FlatPanelDoor(Style) {
     var stile = $('#cbTopRail').val();
     var rail = $('#cbBottomRail').val();
-    var DoorUrl = "Cabinet Vector-02.png";
+    var DoorUrl = "Cabinet Vector-01.png";
     var urlFolder = "/Content/img/Doors/";
-   
-       
 
-
-        if ($('#cbJoin').val() == 2){
-            if (Style == 1009) {
-
-                DoorUrl = "Cabinet Vector-13.png";
-
-            } else if (Style == 1008) {
-
-
-            } else {
+    switch (Style)
+    {
+        case 1002:
+            if (pDoorxOrder.DoorxUser.Join.Id != 2)
+            {
+                if (stile == 3 && rail == 3)
+                {
+                    DoorUrl = "Cabinet Vector-02.png";
+                }
+                else if (stile == 1 && rail == 1)
+                {
+                    DoorUrl = "Cabinet Vector-14.png";
+                }
+            }
+            else
+            {
                 DoorUrl = "Cabinet Vector-08.png";
             }
-        }else if (Style == 1008) {
-
-            DoorUrl = "Cabinet Vector-01.png";
-
-
-        } else if (Style == 1002) {
-            if (stile == 3 && rail == 3) {
-                DoorUrl = "Cabinet Vector-02.png";
-            } else if (stile == 1 && rail == 1) {
-                DoorUrl = "Cabinet Vector-14.png";
+            break;
+        case 1004:
+            if (pDoorxOrder.DoorxUser.Join.Id != 2)
+            {
+                if (stile == 3 || rail == 3)
+                {
+                    DoorUrl = "Cabinet Vector-05.png";
+                }
+                else if (stile == 1 && rail == 1)
+                {
+                    DoorUrl = "Cabinet Vector-06.png";
+                }
             }
-        }else if (Style == 1004) {
-            if (stile == 3 && rail == 3) {
-                DoorUrl = "Cabinet Vector-05.png";
-            } else if (stile == 1 && rail == 1) {
-                DoorUrl = "Cabinet Vector-06.png";
+            else
+            {
+                DoorUrl = "Cabinet Vector-08.png";
             }
-        }else if (Style == 1009) {
-           
-                DoorUrl = "Cabinet Vector-13.png";
-           
-        } else if (Style == 1010) {
-
+            break;
+        case 1005:
+            if (pDoorxOrder.DoorxUser.Join.Id == 1)
+            {
+                DoorUrl = "Cabinet Vector-03.png";
+            }
+            else
+            {
+                DoorUrl = "Cabinet Vector-08.png";
+            }
+            break;
+        case 1006:
+            if (pDoorxOrder.DoorxUser.Join.Id == 1)
+            {
+                DoorUrl = "Cabinet Vector-03.png";
+            }
+            else
+            {
+                DoorUrl = "Cabinet Vector-08.png";
+            }
+            break;
+        case 1007:
+            if (pDoorxOrder.DoorxUser.Join.Id == 1)
+            {
+                DoorUrl = "Cabinet Vector-03.png";
+            }
+            else
+            {
+                DoorUrl = "Cabinet Vector-08.png";
+            }
+            break;
+        case 1008:
+            if (pDoorxOrder.DoorxUser.Join.Id == 1)
+            {
+                DoorUrl = "Cabinet Vector-01.png";
+            }
+            else
+            {
+                DoorUrl = "Cabinet Vector-08.png";
+            }
+            break;
+        case 1009:
             DoorUrl = "Cabinet Vector-13.png";
+            break;
+        case 1010:                    
+            DoorUrl = "slab.png";
+                   
+            break;
+        default:
+            DoorUrl = "Cabinet Vector-03.png";
+            break;
+    }
 
-        } else {
-            DoorUrl = "Cabinet Vector-02.png";
-        }
-        $('#DoorPicture').attr('src', urlFolder + DoorUrl);
+    return urlFolder + DoorUrl;      
    
 }
 
@@ -1706,127 +1038,75 @@ function RaisedPanelDoor(Style) {
     var DoorUrl = "Cabinet Vector-07.png";
     var urlFolder = "/Content/img/Doors/";
     
-        if (stile == 3 && rail == 3) {
-        if (Style == 1008) {
-           
-                var inside = $("#cbInsideEdgeProfile").val();
-                var outside = $("#cbOutsideEdgeProfile").val();
-                if (outside != 6 && inside != 3 && inside != 7) {
-                    DoorUrl = "Cabinet Vector-09.png";
-                } else if (outside == 6 && ( inside == 3 || inside == 7)) {
-                    DoorUrl = "Cabinet Vector-10.png";
+    switch (Style) {
+        case 1003:
+            if (pDoorxOrder.DoorxUser.Join.Id != 2) {
+                if (stile == 3 && rail == 3) {
+                    DoorUrl = "Cabinet Vector-11.png";
                 }
-           
-        } else if (Style == 1009) {
-            DoorUrl = "Cabinet Vector-13.png";
-        } else {
-            DoorUrl = "Cabinet Vector-16.png";
-        }
-            
-        } else if (stile == 1 && rail == 1) {
-            if (Style == 1009) {
-
-            } else if (Style == 1008) {
-
-                var inside = $("#cbInsideEdgeProfile").val();
-                var outside = $("#cbOutsideEdgeProfile").val();
-                if (outside != 6 && inside != 3 && inside != 7) {
-                    DoorUrl = "Cabinet Vector-09.png";
-                } else if (outside == 6 && (inside == 3 || inside == 7)) {
-                    DoorUrl = "Cabinet Vector-10.png";
+                else if (stile == 1 && rail == 1) {
+                    DoorUrl = "Cabinet Vector-16.png";
                 }
-
-            } else {
-                DoorUrl = "Cabinet Vector-10.png";
             }
-        } 
-       
-
-        if ($('#cbJoin').val() == 2) {
-            if (Style == 1009) {
-
-            } else if (Style == 1008) {
-
-            } else {
+            else {
                 DoorUrl = "Cabinet Vector-07.png";
             }
-        
-    }
-    $('#DoorPicture').attr('src', urlFolder + DoorUrl);
+            break;
+        case 1004:
+            if (pDoorxOrder.DoorxUser.Join.Id != 2) {
+                DoorUrl = "Cabinet Vector-11.png";
 
-}
- 
-function getPriceDoor(pMaterial, pPanel, Height, width, pTopRail, pBottomRail) {
-    var precio = 0;
-    if (pPanel == 2)
-    {
-        if (pMaterial == 1)
-        {
-            precio = 11.83;
-        }
-        else if (pMaterial == 7)
-        {
-            precio = 10.04;
-        }
-        else if (pMaterial == 6)
-        {
-            precio = 9.51;
-        }
-        else if (pMaterial == 4 || pMaterial == 13)
-        {
-            precio = 10.49;
-        }
-    }
-    else if (pPanel == 5 || pPanel == 6)
-    {
-        if (pMaterial == 1)
-        {
-            precio = 10.89;
-        }
-        else if (pMaterial == 7)
-        {
-            precio = 9.31;
-        }
-        else if (pMaterial == 6)
-        {
-            precio = 8.93;
-        }
-        else if (pMaterial == 4 || pMaterial == 13)
-        {
-            precio = 9.66;
-        }
-    }
-
-    for (var i = 0; i < allMaterial.length; i++) {
-        if (allMaterial[i].Id == pMaterial) {
-            if (pPanel == 5 || pPanel == 6) {
-                precio = allMaterial[i].PriceFlatPanel;
-
-            } else {
-                precio = allMaterial[i].PriceRaisedPanel;
             }
+            else {
+                DoorUrl = "Cabinet Vector-07.png";
+            }
+            break;
+        case 1005:
+            if (pDoorxOrder.DoorxUser.Join.Id == 1) {
+                DoorUrl = "Cabinet Vector-16.png";
+            }
+            else {
+                DoorUrl = "Cabinet Vector-07.png";
+            }
+            break;
+        case 1006:
+            if (pDoorxOrder.DoorxUser.Join.Id == 1) {
+                DoorUrl = "Cabinet Vector-16.png";
+            }
+            else {
+                DoorUrl = "Cabinet Vector-07.png";
+            }
+            break;
+        case 1007:
+            if (pDoorxOrder.DoorxUser.Join.Id == 1) {
+                DoorUrl = "Cabinet Vector-16.png";
+            }
+            else {
+                DoorUrl = "Cabinet Vector-07.png";
+            }
+            break;
+        case 1008:
+            if (pDoorxOrder.DoorxUser.Join.Id == 1) {
+                DoorUrl = "Cabinet Vector-09.png";
+            }
+            else {
+                DoorUrl = "Cabinet Vector-07.png";
+            }
+            break;
+        case 1009:
+            DoorUrl = "Cabinet Vector-13.png";
+            break;
+        case 1010:
+            DoorUrl = "slab.png";
 
-        }
-       
+            break;
+        default:
+            DoorUrl = "Cabinet Vector-11.png";
+            break;
     }
 
-    if (pTopRail == 3 || pBottomRail == 3)
-    {
-        precio = precio / 0.95;
-    }
+    return urlFolder + DoorUrl;
 
-    var CostoPuerta = (((Height * width) / 12) / 12) * (precio * 2);
-    var CostoPuertaBase = precio * 2;
-    var Resultado = 0;
-    if (CostoPuerta < CostoPuertaBase)
-    {
-        Resultado = CostoPuertaBase;
-    }
-    else
-    {
-        Resultado = CostoPuerta;
-    }
-    return Resultado.toFixed(2);
 }
 
 function llenarTablaOrderSumary() {
@@ -1839,39 +1119,57 @@ function llenarTablaOrderSumary() {
         success: function (data) {
             if (data != null) {
                 $(".btn-continue").prop('disabled', false);
-                id = data;
-                DxO = data.Order.DoorxUser.DoorsxOrder;
-                
+                llenarheaderOrder(data.Order.DoorxUser);
+                listDOOR = data.Order.DoorxUser;
+                listDXO = data.Order.DoorxUser.DoorsxOrder;
+                var tb = $('#tbOrderSummary').DataTable();
+                tb.rows().remove().draw(false);
                 var t = $('#idOrderSummary').DataTable();
                 t.rows().remove().draw(false);
-                for (var i = 0; i < DxO.length; i++) {
-                    var Imagen = '<img style="width: 80px;" src="' + DxO[i].Picture + '">';
-                    var Botones = '<center><button class="Cursor btn btn-primary btn-icon btnn-edit" data-id="' + DxO[i].Id + '" style="width: 25px;height: 25px;" type="submit"><i class="fa fa-edit"></i></button>';
-                    Botones += '<button class="Cursor btn btn-danger btn-icon btnn-dele" data-id="' + DxO[i].Id + '" style="width: 25px;height: 25px; margin-left: 10px;" type="submit"><i class="fa fa-trash"></i></button></center>';
-                    var WDecimal = DxO[i].DecimalsWidth.Description;
-                    var HDecimal = DxO[i].DecimalsHeight.Description;
+                for (var i = 0; i < listDXO.length; i++) {
+                    var Imagen = '<img style="width: 80px;" src="' + listDXO[i].Picture + '">';
+                    var Botones = '<center><button class="Cursor btn btn-primary btn-icon btnn-edit" data-id="' + listDXO[i].Id + '" style="width: 25px;height: 25px;" type="submit"><i class="fa fa-edit"></i></button>';
+                    Botones += '<button class="Cursor btn btn-danger btn-icon btnn-dele" data-id="' + listDXO[i].Id + '" style="width: 25px;height: 25px; margin-left: 10px;" type="submit"><i class="fa fa-trash"></i></button></center>';
+                    var WDecimal = listDXO[i].DecimalsWidth.Description;
+                    var HDecimal = listDXO[i].DecimalsHeight.Description;
                     if (WDecimal == "0" || WDecimal == 0) {
                         WDecimal = "";
                     }
                     if (HDecimal == "0" || HDecimal == 0) {
                         HDecimal = "";
                     }
-                    var drillingV = ($("#idDrill").val() == 1) ? false : true;
+                    var drillingV = data.Order.DoorxUser.isDrill;
                     if (drillingV == false) {
-                        $(".hdHidden").css('display', 'none!important');
-                    } else {                       
-                        $(".hdHidden").css('display', 'block!important');
+                        $("#datatab2").css('display', 'none');
+                        $("#datatab1").css('display', 'block');
+                    } else {
+                        $("#datatab1").css('display', 'none');
+                        $("#datatab2").css('display', 'block');
                     }
+                   
                     t.row.add([
                         Imagen,
-                        DxO[i].Quantity,
-                        DxO[i].Width + ' ' + WDecimal,
-                        DxO[i].Height + ' ' + HDecimal,
-                        DxO[i].HingeDirection.Direction,
-                        DxO[i].DoorType.Description,
-                        DxO[i].DoorOption.Description,
-                        "<span>$</span>" + DxO[i].ItemCost,
-                        "<span>$</span>" + DxO[i].SubTotal,
+                        listDXO[i].Quantity,
+                        listDXO[i].Width + ' ' + WDecimal,
+                        listDXO[i].Height + ' ' + HDecimal,
+                        listDXO[i].HingeDirection.Direction,
+                        listDXO[i].DoorType.Description,
+                        listDXO[i].DoorOption.Description,
+                        "<span>$</span>" + listDXO[i].ItemCost,
+                        "<span>$</span>" + listDXO[i].SubTotal,
+                        Botones,
+                    ]).draw(false);
+
+                  
+                    tb.row.add([
+                        Imagen,
+                        listDXO[i].Quantity,
+                        listDXO[i].Width + ' ' + WDecimal,
+                        listDXO[i].Height + ' ' + HDecimal,
+                        listDXO[i].DoorType.Description,
+                        listDXO[i].DoorOption.Description,
+                        "<span>$</span>" + listDXO[i].ItemCost,
+                        "<span>$</span>" + listDXO[i].SubTotal,
                         Botones,
                     ]).draw(false);
                 }
@@ -1902,21 +1200,15 @@ function llenarTablaOrderSumary() {
 
 }
 
-function llenarheaderOrder() {
-    $.ajax({
-        url: urlGetLastDoor,
-        cache: false,
-        type: 'POST',
-        async: false,
-        contentType: "application/json; charset=utf-8",
-        success: function (data) {
+function llenarheaderOrder(data) {
+   
             var headerConfig = '';
-            if (data.LastDoor != null) {                
+            if (data != null) {                
                 
-                headerConfig += '<div class="col-xs-4 col-md-3"><label id="Material" style="margin-top: 25px;">Wood Species: <span>'+ data.LastDoor.Material.Description +'</span></label></div>';
-                headerConfig += '<div class="col-xs-4 col-md-3"><label id="DoorStyle" style="margin-top: 25px;">Door Style: <span>'+ data.LastDoor.DoorStyle.Description +'</span></label></div>';
+                headerConfig += '<div class="col-xs-4 col-md-3"><label id="Material" style="margin-top: 25px;">Wood Species: <span>'+ data.Material.Description +'</span></label></div>';
+                headerConfig += '<div class="col-xs-4 col-md-3"><label id="DoorStyle" style="margin-top: 25px;">Door Style: <span>'+ data.DoorStyle.Description +'</span></label></div>';
                 headerConfig += '<div class="col-xs-4 col-md-3">';
-                if (data.LastDoor.isOverlay == false)
+                if (data.isOverlay == false)
                 {
                     headerConfig += '<label for="Overlay" style="margin-top: 25px;">Door Place: <span>Inset Door Type</span></label>';
                 }
@@ -1925,15 +1217,15 @@ function llenarheaderOrder() {
                     headerConfig += '<label for="Overlay" style="margin-top: 25px;">Door Place: <span>Overlay Door Type</span></label>';
                 }
                 headerConfig += '</div>';
-                headerConfig += '<div class="col-xs-4 col-md-3"><label for="InsideProfile" style="margin-top: 25px;">Inside Edge Profile: <span>'+ data.LastDoor.InsideEdgeProfile.Description +'</span></label></div>';
-                headerConfig += '<div class="col-xs-4 col-md-3"><label for="OutsideProfile" style="margin-top: 25px;">Outside Edge Profile: <span>'+ data.LastDoor.OutsideEdgeProfile.Description +'</span></label></div>';
-                headerConfig += '<div class="col-xs-4 col-md-3"><label for="StileWidth" style="margin-top: 25px;">Stile Width: <span>'+ data.LastDoor.BottomRail.Description +'</span></label></div>';
-                headerConfig += '<div class="col-xs-4 col-md-3"><label for="RailWidth" style="margin-top: 25px;">Rail Width: <span>'+ data.LastDoor.TopRail.Description +'</span></label></div>';
-                headerConfig += '<div class="col-xs-4 col-md-3"><label for="DoorAssembly" style="margin-top: 25px;">Door Assembly: <span>' + data.LastDoor.Join.Description + '</span></label></div>';
-                headerConfig += '<div class="col-xs-4 col-md-3"><label for="PanelStyle" style="margin-top: 25px;">Panel Style: <span>' + data.LastDoor.Panel.Description + '</span></label></div>';
-                headerConfig += '<div class="col-xs-4 col-md-3"><label for="PanelMaterial" style="margin-top: 25px;">Panel Material: <span>' + data.LastDoor.PanelMaterial.Description + '</span></label></div>';                
+                headerConfig += '<div class="col-xs-4 col-md-3"><label for="InsideProfile" style="margin-top: 25px;">Inside Edge Profile: <span>'+ data.InsideEdgeProfile.Description +'</span></label></div>';
+                headerConfig += '<div class="col-xs-4 col-md-3"><label for="OutsideProfile" style="margin-top: 25px;">Outside Edge Profile: <span>'+ data.OutsideEdgeProfile.Description +'</span></label></div>';
+                headerConfig += '<div class="col-xs-4 col-md-3"><label for="StileWidth" style="margin-top: 25px;">Stile Width: <span>'+ data.BottomRail.Description +'</span></label></div>';
+                headerConfig += '<div class="col-xs-4 col-md-3"><label for="RailWidth" style="margin-top: 25px;">Rail Width: <span>'+ data.TopRail.Description +'</span></label></div>';
+                headerConfig += '<div class="col-xs-4 col-md-3"><label for="DoorAssembly" style="margin-top: 25px;">Door Assembly: <span>' + data.Join.Description + '</span></label></div>';
+                headerConfig += '<div class="col-xs-4 col-md-3"><label for="PanelStyle" style="margin-top: 25px;">Panel Style: <span>' + data.Panel.Description + '</span></label></div>';
+                headerConfig += '<div class="col-xs-4 col-md-3"><label for="PanelMaterial" style="margin-top: 25px;">Panel Material: <span>' + data.PanelMaterial.Description + '</span></label></div>';                
                 headerConfig += '<div class="col-xs-4 col-md-3">';
-                if (data.LastDoor.IsOpeningMeasurement == false)
+                if (data.IsOpeningMeasurement == false)
                 {
                     headerConfig += '<label for="Openeing" style="margin-top: 25px;">Opening Measurement: <span>No</span></label>';
                 }
@@ -1942,10 +1234,10 @@ function llenarheaderOrder() {
                     headerConfig += '<label for="Openeing" style="margin-top: 25px;">Opening Measurement: <span>Yes</span></label>';
                 }
                 headerConfig += '</div>';
-                headerConfig += '<div class="col-xs-4 col-md-3"><label for="VerticalD" style="margin-top: 25px;">Vertical Divisions: <span>'+ data.LastDoor.VerticalDivisions.Quantity +'</span></label></div>';
-                headerConfig += '<div class="col-xs-4 col-md-3"><label for="HorizontalD" style="margin-top: 25px;">Horizontal Divisions: <span>'+ data.LastDoor.HorizontalDivisions.Quantity +'</span></label></div>';                               
+                headerConfig += '<div class="col-xs-4 col-md-3"><label for="VerticalD" style="margin-top: 25px;">Vertical Divisions: <span>'+ data.VerticalDivisions.Quantity +'</span></label></div>';
+                headerConfig += '<div class="col-xs-4 col-md-3"><label for="HorizontalD" style="margin-top: 25px;">Horizontal Divisions: <span>'+ data.HorizontalDivisions.Quantity +'</span></label></div>';                               
                 headerConfig += '<div class="col-xs-4 col-md-3">';
-                if (data.LastDoor.isDrill == false) {
+                if (data.isDrill == false) {
                     headerConfig += '<label for="Drill" style="margin-top: 25px;">Hinge Drilling: <span>No</span></label>';
                     headerConfig += '<input id="idDrill" hidden value="1" />';
                 }
@@ -1955,7 +1247,7 @@ function llenarheaderOrder() {
                 }
                 headerConfig += '</div>';
                 headerConfig += '<div class="col-xs-4 col-md-3">';
-                if (data.LastDoor.isFingerPull == false)
+                if (data.isFingerPull == false)
                 {
                     headerConfig += '<label for="Finger" style="margin-top: 25px;">Finger Pull: <span>No</span></label>';                    
                 }
@@ -1970,10 +1262,5 @@ function llenarheaderOrder() {
             }
             
             $("#HeaderOptions").html(headerConfig);
-
-        },
-        error: function (err) {
-            LlammarModal("Danger", "Error.", "llenarheaderOrder");
-        }
-    });
+        
 }
