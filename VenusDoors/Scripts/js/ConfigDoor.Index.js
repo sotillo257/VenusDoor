@@ -650,14 +650,14 @@ function ChangeProfile() {
 }
 
 function FlatPanel(Outside, Inside) {
-    var ProfileUrl = "img11.png";
+    var ProfileUrl = "-Double_Roman_Ogee_ogee_flat_panel.png";
     var urlFolder = "/Content/img/Profile/";
     if (Outside == 13) {
         if (Inside == 4) {
              ProfileUrl = "-Double_Roman_Ogee_ogee_flat_panel.png";
         } else if (Inside == 5) {
              ProfileUrl = "-Double_Roman_Ogee_Reba_flat_panel.png";
-        } else if (Inside == 3) {
+        } else if (Inside == 3 || Inside == 13) {
              ProfileUrl = "-Double_Roman_Ogee_Shaker_22_flat_panel.png";
         }else if (Inside == 7) {
              ProfileUrl = "-Double_Roman_Ogee_shaker_goove_flatpanel.png";
@@ -668,7 +668,7 @@ function FlatPanel(Outside, Inside) {
             ProfileUrl = "-Fingerpull_ogee_flat_panel.png";
         } else if (Inside == 5) {
             ProfileUrl = "-Fingerpull_Reba_flat_panel.png";
-        } else if (Inside == 3) {
+        } else if (Inside == 3 || Inside == 13) {
             ProfileUrl = "-Fingerpull_Shaker22_flat_panel.png";
         } else if (Inside == 7) {
             ProfileUrl = "-Finger_pull_shaker_goove_flat_panel.png";
@@ -679,7 +679,7 @@ function FlatPanel(Outside, Inside) {
             ProfileUrl = "-Half_Reba_ogee_flat_panel.png";
         } else if (Inside == 5) {
             ProfileUrl = "-Half_Reba_Reba_flat_panel.png";
-        } else if (Inside == 3) {
+        } else if (Inside == 3 || Inside == 13) {
             ProfileUrl = "-Half_Reba_Shaker_22_flat_panel.png";
         } else if (Inside == 7) {
             ProfileUrl = "-Half_Reba_shaker_goove_flat_panel.png";
@@ -691,7 +691,7 @@ function FlatPanel(Outside, Inside) {
             ProfileUrl = "-Little_bone_ogee_flat_panel.png";
         } else if (Inside == 5) {
             ProfileUrl = "-Little_bone_Reba_flat_panel.png";
-        } else if (Inside == 3) {
+        } else if (Inside == 3 || Inside == 13) {
             ProfileUrl = "-Little_bone_Shaker_22_flat_panel.png";
         } else if (Inside == 7) {
             ProfileUrl = "-Little_bone_shaker_goove_flat_panel.png";
@@ -702,7 +702,7 @@ function FlatPanel(Outside, Inside) {
             ProfileUrl = "-Reba_ogee_flat_panel.png";
         } else if (Inside == 5) {
             ProfileUrl = "-Reba_Reba_flat_panel.png";
-        } else if (Inside == 3) {
+        } else if (Inside == 3 || Inside == 13) {
           //  ProfileUrl = "-Reba_Shaker_22_flat_panel.png";
         } else if (Inside == 7) {
             ProfileUrl = "-Reba_shaker_goove_flat_panel.png";
@@ -713,7 +713,7 @@ function FlatPanel(Outside, Inside) {
             ProfileUrl = "-Shaker_ogee_flat_panel.png";
         } else if (Inside == 5) {
             ProfileUrl = "-Shaker_Reba_flat_panel.png";
-        } else if (Inside == 3) {
+        } else if (Inside == 3 || Inside == 13) {
             ProfileUrl = "-Shaker_Shaker_22_flat_panel.png";
         } else if (Inside == 7) {
             ProfileUrl = "-Shaker_shaker_goove_flat_panel.png";
@@ -723,14 +723,14 @@ function FlatPanel(Outside, Inside) {
 }
 
 function FlatPanelBeaded(Outside, Inside) {
-    var ProfileUrl = "img11.png";
+    var ProfileUrl = "-Double_Roman_Ogee_ogee_flat_panel.png";
     var urlFolder = "/Content/img/Profile/";
     if (Outside == 13) {
         if (Inside == 4) {
             ProfileUrl = "-Double_Roman_Ogee_ogee_flat_panel_beaded.png";
         } else if (Inside == 5) {
             ProfileUrl = "-Double_Roman_Ogee_Reba_flat_panel_beaded.png";
-        } else if (Inside == 3) {
+        } else if (Inside == 3 || Inside == 13) {
             ProfileUrl = "-Double_Roman_Ogee_Shaker_22_flat_panel_beaded.png";
         } else if (Inside == 7) {
             ProfileUrl = "-Double_Roman_Ogee_shaker_goove_flat_panel_beaded.png";
@@ -741,7 +741,7 @@ function FlatPanelBeaded(Outside, Inside) {
             ProfileUrl = "-Fingerpull_ogee_flat_panel_beaded.png";
         } else if (Inside == 5) {
             ProfileUrl = "-Fingerpull_Reba_flat_panel_beaded.png";
-        } else if (Inside == 3) {
+        } else if (Inside == 3 || Inside == 13) {
             ProfileUrl = "-Fingerpull_Shaker22_flat_panel_beaded.png";
         } else if (Inside == 7) {
             ProfileUrl = "-Finger_pull_shaker_goove_flat_panel_beaded.png";
@@ -752,7 +752,7 @@ function FlatPanelBeaded(Outside, Inside) {
             ProfileUrl = "-Half_Reba_ogee_flat_panel_beaded.png";
         } else if (Inside == 5) {
             ProfileUrl = "-Half_Reba_Reba_flat_panel_beaded.png";
-        } else if (Inside == 3) {
+        } else if (Inside == 3 || Inside == 13) {
             ProfileUrl = "-Half_Reba_Shaker_22_flat_panel_beaded.png";
         } else if (Inside == 7) {
             ProfileUrl = "-Half_Reba_shaker_goove_flat_panel_beaded.png";
@@ -764,7 +764,7 @@ function FlatPanelBeaded(Outside, Inside) {
             ProfileUrl = "-Little_bone_ogee_flat_panel_beaded.png";
         } else if (Inside == 5) {
             ProfileUrl = "-Little_bone_Reba_flat_panel_beaded.png";
-        } else if (Inside == 3) {
+        } else if (Inside == 3 || Inside == 13) {
             ProfileUrl = "-Little_bone_Shaker_22_flat_panel_beaded.png";
         } else if (Inside == 7) {
             ProfileUrl = "-Little_bone_shaker_goove_flat_panel_beaded.png";
@@ -775,7 +775,7 @@ function FlatPanelBeaded(Outside, Inside) {
             ProfileUrl = "-Reba_ogee_flat_panel_beaded.png";
         } else if (Inside == 5) {
             ProfileUrl = "-Reba_Reba_flat_panel_beaded.png";
-        } else if (Inside == 3) {
+        } else if (Inside == 3 || Inside == 13) {
             ProfileUrl = "-Reba_Shaker_22_flat_panel_beaded.png";
         } else if (Inside == 7) {
             ProfileUrl = "-Reba_shaker_goove_flat_panel_beaded.png";
@@ -786,7 +786,7 @@ function FlatPanelBeaded(Outside, Inside) {
             ProfileUrl = "-Shaker_ogee_flat_panel_beaded.png";
         } else if (Inside == 5) {
             ProfileUrl = "-Shaker_Reba_flat_panel_beaded.png";
-        } else if (Inside == 3) {
+        } else if (Inside == 3 || Inside == 13) {
             ProfileUrl = "-Shaker_Shaker_22_flat_panel_beaded.png";
         } else if (Inside == 7) {
             ProfileUrl = "-Shaker_shaker_goove_flat_panel_beaded.png";
@@ -796,14 +796,14 @@ function FlatPanelBeaded(Outside, Inside) {
 }
 
 function RaisedPanel(Outside, Inside) {
-    var ProfileUrl = "img11.png";
+    var ProfileUrl = "-Double_Roman_Ogee_ogee_flat_panel.png";
     var urlFolder = "/Content/img/Profile/";
     if (Outside == 13) {
         if (Inside == 4) {
             ProfileUrl = "-Double_Roman_Ogee_ogee_raised_panel.png";
         } else if (Inside == 5) {
             ProfileUrl = "-Double_Roman_Ogee_Reba_raised_panel.png";
-        } else if (Inside == 3) {
+        } else if (Inside == 3 || Inside == 13) {
             ProfileUrl = "-Double_Roman_Ogee_Shaker_22_raised_panel.png";
         } else if (Inside == 7) {
             ProfileUrl = "-Double_Roman_Ogee_shaker_goove_raised_panel.png";
@@ -814,7 +814,7 @@ function RaisedPanel(Outside, Inside) {
             ProfileUrl = "-Fingerpull_ogee_raised_panel.png";
         } else if (Inside == 5) {
             ProfileUrl = "-Fingerpull_Reba_raised_panel.png";
-        } else if (Inside == 3) {
+        } else if (Inside == 3 || Inside == 13) {
             ProfileUrl = "-FingerPull-Shaker22-RaisedPanel.png";
         } else if (Inside == 7) {
             ProfileUrl = "-Finger-pull-shaker-goove-raised-panel.png";
@@ -825,7 +825,7 @@ function RaisedPanel(Outside, Inside) {
             ProfileUrl = "-Half_Reba_ogee_raised_panel.png";
         } else if (Inside == 5) {
             ProfileUrl = "-Half_Reba_Reba_raised_panel.png";
-        } else if (Inside == 3) {
+        } else if (Inside == 3 || Inside == 13) {
             ProfileUrl = "-Half_Reba_Shaker_22_raised_panel.png";
         } else if (Inside == 7) {
             ProfileUrl = "-Half_Reba_shaker_goove_raised_panel.png";
@@ -837,7 +837,7 @@ function RaisedPanel(Outside, Inside) {
             ProfileUrl = "-Little_bone_ogee_raised_panel.png";
         } else if (Inside == 5) {
             ProfileUrl = "-Little_bone_Reba_raised_panel.png";
-        } else if (Inside == 3) {
+        } else if (Inside == 3 || Inside == 13) {
             ProfileUrl = "-Little_bone_Shaker_22_raised_panel.png";
         } else if (Inside == 7) {
             ProfileUrl = "-Little_bone_shaker_goove_raised_panel.png";
@@ -848,7 +848,7 @@ function RaisedPanel(Outside, Inside) {
             ProfileUrl = "-Reba_ogee_raised_panel.png";
         } else if (Inside == 5) {
             ProfileUrl = "-Reba_Reba_raised_panel.png";
-        } else if (Inside == 3) {
+        } else if (Inside == 3 || Inside == 13) {
             ProfileUrl = "-Reba_Shaker_22_raised_panel.png";
         } else if (Inside == 7) {
             ProfileUrl = "-Reba_shaker_goove_raised_panel.png";
@@ -859,7 +859,7 @@ function RaisedPanel(Outside, Inside) {
             ProfileUrl = "-Shaker_ogee_raised_panel.png";
         } else if (Inside == 5) {
             ProfileUrl = "-Shaker_Reba_raised_panel.png";
-        } else if (Inside == 3) {
+        } else if (Inside == 3 || Inside == 13) {
             ProfileUrl = "-Shaker_Shaker_22_raised_panel.png";
         } else if (Inside == 7) {
             ProfileUrl = "-Shaker_shaker_goove_raised_panel.png";
