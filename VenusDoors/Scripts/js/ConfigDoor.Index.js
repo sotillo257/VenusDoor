@@ -57,6 +57,10 @@
 	    $("#File1").trigger('click');
 	});
 
+	$(document).on('click', ".MassiveNLL", function () {
+	    $(".btBuild").trigger('click');
+	});
+
     $(document).on('change', '#cbMaterial', function () {
         var pMaterial = $("#cbMaterial").val();
         var pDoorStyle = $("#cbPanel").val();
@@ -580,7 +584,7 @@ function InsertDoorsxOrder() {
             //Validar data para ver si mostrar error al guardar o exito al guardar
             if (result == true) {
                 LlammarModal("ConfigM", "The door has been created successfully!", "");
-                
+                $(".btn-continue").prop('disabled', false);
                 llenarTablaOrderSumary();
                 LimpiarCamposRapidos();                
             } else {
@@ -1073,8 +1077,7 @@ function llenarTablaOrderSumary() {
         async: false,
         contentType: "application/json; charset=utf-8",
         success: function (data) {
-            if (data != null) {
-                $(".btn-continue").prop('disabled', false);
+            if (data != null) {                
                 llenarheaderOrder(data.Order.DoorxUser);
                 listDOOR = data.Order.DoorxUser;
                 listDXO = data.Order.DoorxUser.DoorsxOrder;
