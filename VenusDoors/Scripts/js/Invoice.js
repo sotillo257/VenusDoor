@@ -22,16 +22,17 @@
     $("#infoMore").hide();
     $("#btOculDis").hide(); 
 
-    $(document).on('click', "#btAdd", function () {
+    $(document).on('click', "#btAdd", function (event) {
         $("#addFile").trigger('click');
     });
 
     $(document).on('click', "#btNewPay", function () {
-        $("#RecordPaymend").trigger("click");
+        $("#RecordPaymend").trigger("click")
     });
 
     $("#Send").on('click', function () {
         $("#SendMs").show();
+        $("#RecordPaymend").show();
         $("#Invoice").hide();
         $("#Record_Paymend").hide();
     });
@@ -46,6 +47,7 @@
     $("#btVolver").on("click", function () {
         $("#SendMs").hide();
         $("#Invoice").show();
+        $("#RecordPaymend").show();
         $("#Record_Paymend").hide();
     });
 
@@ -80,9 +82,9 @@
         $(".ocultarTitulo").hide();
     });
 
-    $(document).on('click', "#btLinkAdd", function () {
+    $("#btLinkAdd").click(function () {
         $("#btFile").trigger("click");
-    }); 
+    });
 
     $("#btDisplay").on('click', function () {
         $("#infoMore").show();
