@@ -32,7 +32,7 @@
     llenarComboDoorOption(0);
     llenarComboDecimalW(0);
     llenarComboDecimalH(0);
-    PrintDoorOverlay(_DoorSt);
+    PrintDoorOverlay($("#cbDoorStyle").val());
 	ValidateSession();
 	ChangeDoorStylePanel($("#cbDoorStyle").val());
 	$(document).on('click', "#bt-conf-log", function () {
