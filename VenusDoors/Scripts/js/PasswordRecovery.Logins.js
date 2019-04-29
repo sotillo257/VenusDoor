@@ -89,7 +89,9 @@ function EmailToRecuperation() {
                 LlammarModal("Danger", "Error! There is not a registered user with that email", "Check that it is well written and try again");
                 $("#btSend").prop('disabled', false);
             } else if (result == 2) {
-                LlammarModal("Congratuletions", "We have sent an email with a verification code so you can modify your password.");                
+                LlammarModal("Danger", "Error! Your account has not been activated.", "If it is an error or we have delayed the activation of your account, please contact us to solve the problem.");
+            } else if (result == 3) {
+                LlammarModal("Congratuletions", "We have sent an email with a verification code so you can modify your password.");
                 setTimeout(function () { window.location.href = '/Logins/New_Password'; }, 3000);
             } else {
                 LlammarModal("Danger", "An error occurred during the process.");
