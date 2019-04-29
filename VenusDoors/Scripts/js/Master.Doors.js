@@ -155,7 +155,7 @@ function ChangeDoorStylePanel(pIdDoorStyle) {
         panelType = 0;
     }
     llenarComboDoorAssembly($("#cbDoorAssembly").val());
-    llenarComboPanelStyle(panelType);
+    llenarComboPanel(panelType);
     if (pIdDoorStyle == 1002) {
 
         option = '<option value="0">Select</option>';

@@ -247,7 +247,7 @@ function GetCompanys() {
             }
         },
         error: function (err) {
-            LlammarModal("Danger", "Error.", " ");
+            LlammarModal("Danger", "An error occurred during the process.", "Check your internet connection I tried again");
         }
     });
 }
