@@ -79,6 +79,300 @@
         $("#btDisplay").show();
     });
 
+    $(document).on('click', '#btModi', function (event) {
+        $("#lblTituloModal").text("Modify Credit Notes");
+        $("#btnCON").hide();
+        $("#editDXU").hide();
+        $("#NEWINVOICE").show();
+        $("#btnConMod").show();
+        $("#btBackMod").hide();
+        $("#detailBACK").hide();
+        $("#btnAtras").hide();
+        $("#btSaveChan").hide();
+        $('#createBACK').hide();
+        $('#modInBack').hide();
+        $("#btnSAVE").hide();
+        $("#btnBack").hide();
+        $("#btnClose").hide();
+        $("#NEWORDER").hide();
+        $("#DETAILORDER").hide();
+        $("#btSavDrs").hide();
+        $("#btGuardar").hide();
+        $("#MODIFYOR").hide();
+        $("#btCancel").hide();
+        $("#btnCancelar").hide();
+    });
+
+    $("#btnConMod").on('click', function () {
+        $('#DETAILORDER').show();
+        $("#btnClose").show();
+        $('#createBACK').hide();
+        $("#btnBack").show();
+        $('#modInBack').show();
+        $("#btBackMod").show();
+        $("#editDXU").show();
+        $("#btnBack").hide();
+        $("#detailBACK").hide();
+        $("#NEWINVOICE").hide();
+        $("#btnConMod").hide();
+        $("#btSavDrs").show();
+        $("#btGuardar").show();
+        $("#btnAtras").hide();
+        $("#btnCancelar").hide(); modDoor
+        $("#modDoor").show();
+        $("#editDoor").hide();
+    });
+
+    $(document).on('click', '#modDoor', function (event) {
+        var id = $(this).attr('data-id');
+        $("#btGuardar").hide();
+        $("#btSavDrs").hide();
+        $("#detailBACK").hide();
+        $("#MODIFYOR").show();
+        $("#btCancel").hide();
+        $("#btnSAVE").hide();
+        $("#btnCON").hide();
+        $("#btnAtras").hide();
+        $("#btnBack").hide();
+        $("#btnClose").hide();
+        $("#btnConMod").hide();
+        $("#editDXU").hide();
+        $("#btBackMod").hide();
+        $("#NEWINVOICE").hide();
+        $('#modInBack').hide();
+        $("#NEWORDER").hide();
+        $("#DETAILORDER").hide();
+        $('#createBACK').removeClass("active");
+        $('#btnAtras').removeClass("active");
+        $("#btSaveChan").show();
+        $("#btnCancelar").show();
+        QuitarClaseErrorACombos();
+    });
+
+    $("#btBackMod").on('click', function () {
+        $("#lblTituloModal").text("Modify Credit Notes");
+        $("#NEWINVOICE").show();
+        $("#btnConMod").show();
+        $("#editDXU").hide();
+        $('#DETAILORDER').hide();
+        $('#btBackMod').hide();
+        $("#btnCancelar").hide();
+        $("#btCancel").hide();
+        $('#createBACK').hide();
+        $('#modInBack').hide();
+        $("#btnClose").hide();
+        $("#btSavDrs").hide();
+        $("#btGuardar").hide();
+    });
+
+    $("#modInBack").on('click', function () {
+        $("#btBackMod").trigger("click");
+    });
+
+    $("#editDXU").on('click', function () {
+        $("#lblTituloModal").text("Modify Order");
+        $("#NEWORDER").show();
+        $("#btnCancelar").show();
+        $("#btCancel").hide();
+        $("#editDXU").hide();
+        $("#DETAILORDER").hide();
+        $('#modInBack').hide();
+        $("#btBackMod").hide();
+        $("#btSavDrs").hide();
+        $("#btGuardar").hide();
+    });
+
+    $("#btnCancelar").on('click', function () {
+        $('#DETAILORDER').show();
+        $("#btnClose").show();
+        $('#modInBack').show();
+        $('#createBACK').hide();
+        $("#btnBack").show();
+        $("#btBackMod").show();
+        $("#editDXU").show();
+        $("#NEWORDER").hide();
+        $("#btnBack").hide();
+        $("#detailBACK").hide();
+        $("#NEWINVOICE").hide();
+        $("#MODIFYOR").hide();
+        $("#btnConMod").hide();
+        $("#btSavDrs").show();
+        $("#btGuardar").show();
+        $("#btnAtras").hide();
+        $("#btnCancelar").hide();
+        $("#btSaveChan").hide();
+        $("#modDoor").show();
+        $("#editDoor").hide();
+    });
+
+    $("#btnBack").on('click', function () {
+        $("#createBACK").trigger("click");
+    });
+
+    $("#btNew").on('click', function () {
+        $("#lblTituloModal").text("New Credit Notes");
+        $("#btnCON").show();
+        $("#editDXU").hide();
+        $("#btnConMod").hide();
+        $("#btBackMod").hide();
+        $("#NEWINVOICE").show();
+        $("#detailBACK").hide();
+        $("#btnAtras").hide();
+        $("#btSaveChan").hide();
+        $('#modInBack').hide();
+        $('#createBACK').hide();
+        $("#btnSAVE").hide();
+        $("#btnBack").hide();
+        $("#btnClose").hide();
+        $("#NEWORDER").hide();
+        $("#DETAILORDER").hide();
+        $("#btSavDrs").hide();
+        $("#btGuardar").hide();
+        $("#MODIFYOR").hide();
+        $("#btCancel").hide();
+        $("#btnCancelar").hide();
+    });
+
+    $("#createBACK").on('click', function () {
+        $("#lblTituloModal").text("New Credit Notes");
+        $("#NEWINVOICE").show();
+        $("#btnCON").show();
+        $("#btnConMod").hide();
+        $("#btBackMod").hide();
+        $("#detailBACK").hide();
+        $("#btnAtras").hide();
+        $("#btSaveChan").hide();
+        $('#createBACK').hide();
+        $('#modInBack').hide();
+        $("#btnSAVE").hide();
+        $("#btnBack").hide();
+        $("#btnClose").hide();
+        $("#editDXU").hide();
+        $('#NEWORDER').hide();
+        $("#MODIFYOR").hide();
+        $("#DETAILORDER").hide();
+        $("#btGuardar").hide();
+        $("#btSavDrs").hide();
+        $('#btnAtras').removeClass("active");
+        $("#btCancel").hide();
+        $("#btnCancelar").hide();
+    });
+
+    $("#detailBACK").on('click', function () {
+        $("#btnAtras").trigger("click");
+    });
+
+    $("#btnAtras").on('click', function () {
+        $("#lblTituloModal").text("Create order");
+        $("#NEWORDER").show();
+        $("#createBACK").show();
+        $("#btnSAVE").show();
+        $("#btnBack").show();
+        $("#btnClose").show();
+        $("#btnConMod").hide();
+        $("#editDXU").hide();
+        $("#detailBACK").hide();
+        $("#btBackMod").hide();
+        $('#modInBack').hide();
+        $("#createBACK").show();
+        $("#btnAtras").hide();
+        $("#btSaveChan").hide();
+        $("#btnCON").hide();
+        $("#DETAILORDER").hide();
+        $("#MODIFYOR").hide();
+        $("#btSavDrs").hide();
+        $("#btGuardar").hide();
+        $('#createBACK').removeClass("active");
+        $("#btCancel").hide();
+        $("#btnCancelar").hide();
+    });
+
+    $("#btnCON").on('click', function () {
+        $("#lblTituloModal").text("Create order");
+        $("#createBACK").show();
+        $("#btnSAVE").show();
+        $("#btnBack").show();
+        $("#NEWORDER").show();
+        $("#detailBACK").hide();
+        $("#btnClose").show();
+        $("#btBackMod").hide();
+        $("#editDXU").hide();
+        $("#btnConMod").hide();
+        $("#btnAtras").hide();
+        $("#btSaveChan").hide();
+        $('#modInBack').hide();
+        $("#btnCON").hide();
+        $("#NEWINVOICE").hide();
+        $("#DETAILORDER").hide();
+        $("#MODIFYOR").hide();
+        $("#btSavDrs").hide();
+        $("#btGuardar").hide();
+        $('#createBACK').removeClass("active");
+        $("#btCancel").hide();
+        $("#btnCancelar").hide();
+    });
+
+    $("#btCancel").on('click', function () {
+        $("#btnSAVE").trigger("click");
+    });
+
+    $("#btnSAVE").on('click', function () {
+        $("#lblTituloModal").text("Details of the order #");
+        $("#btnClose").show();
+        $("#btnAtras").show();
+        $("#detailBACK").show();
+        $('#DETAILORDER').show();
+        $("#btSavDrs").show();
+        $("#btGuardar").show();
+        $("#btBackMod").hide();
+        $("#editDXU").hide();
+        $("#createBACK").hide();
+        $('#modInBack').hide();
+        $("#btnConMod").hide();
+        $("#btnBack").hide();
+        $("#btSaveChan").hide();
+        $("#btnSAVE").hide();
+        $("#btnCON").hide();
+        $("#NEWORDER").hide();
+        $("#NEWINVOICE").hide();
+        $("#MODIFYOR").hide();
+        $("#btCancel").hide();
+        $("#btnCancelar").hide();
+        $("#modDoor").hide();
+        $("#editDoor").show();
+    });
+
+    $("#createDoor").on('click', function () {
+        $("#editDoor").trigger("click");
+    });
+
+    $(document).on('click', '#editDoor', function (event) {
+        var id = $(this).attr('data-id');
+        $("#btGuardar").hide();
+        $("#btSavDrs").hide();
+        $("#detailBACK").hide();
+        $("#MODIFYOR").show();
+        $("#btCancel").show();
+        $("#btnSAVE").hide();
+        $("#btnCON").hide();
+        $("#btnAtras").hide();
+        $("#btnBack").hide();
+        $("#btnClose").hide();
+        $("#btnConMod").hide();
+        $("#editDXU").hide();
+        $("#btBackMod").hide();
+        $("#NEWINVOICE").hide();
+        $('#modInBack').hide();
+        $("#NEWORDER").hide();
+        $("#DETAILORDER").hide();
+        $('#createBACK').removeClass("active");
+        $('#btnAtras').removeClass("active");
+        $("#btSaveChan").show();
+        $("#btnCancelar").hide();
+        QuitarClaseErrorACombos();
+
+    });
+
 });
 $(function () {
     'use strict';

@@ -83,36 +83,44 @@ namespace VenusDoors.Controllers
             {
                 try
                 {
-                    //Random code start
-                    Random obj = new Random();
-                    string sCadena = "ABCDEFGNOPQRSWXYZ1234567890";
-                    int longitud = sCadena.Length;
-                    char cletra;
-                    int nlongitud = 8;
-                    string sNuevacadena = string.Empty;
-                    for (int i = 0; i < nlongitud; i++)
+                    if (userDetails.Status.Id != 1)
                     {
-                        cletra = sCadena[obj.Next(nlongitud)];
-                        sNuevacadena += cletra.ToString();
+                        return Json(2, JsonRequestBehavior.AllowGet);
                     }
-                    string newVerificationCode = sNuevacadena;
-                    //Random code end
+                    else
+                    {
+                        //Random code start
+                        Random obj = new Random();
+                        string sCadena = "ABCDEFGNOPQRSWXYZ1234567890";
+                        int longitud = sCadena.Length;
+                        char cletra;
+                        int nlongitud = 8;
+                        string sNuevacadena = string.Empty;
+                        for (int i = 0; i < nlongitud; i++)
+                        {
+                            cletra = sCadena[obj.Next(nlongitud)];
+                            sNuevacadena += cletra.ToString();
+                        }
+                        string newVerificationCode = sNuevacadena;
+                        //Random code end
 
-                    //Obtaining the complete user info
-                    BusinessLogic.lnPerson _LNper = new BusinessLogic.lnPerson();
-                    var pPerson = _LNper.GetPersonById(userDetails.Person.Id);
+                        //Obtaining the complete user info
+                        BusinessLogic.lnPerson _LNper = new BusinessLogic.lnPerson();
+                        var pPerson = _LNper.GetPersonById(userDetails.Person.Id);
 
-                    //update the new verification code
-                    userDetails.VerificationCode = newVerificationCode;
-                    var reCode = _LNUSER.UpdateUser(userDetails);
+                        //update the new verification code
+                        userDetails.VerificationCode = newVerificationCode;
+                        var reCode = _LNUSER.UpdateUser(userDetails);
 
-                    SendEmailCodeRecuperation(semail, pPerson, newVerificationCode);
-                    System.Web.HttpContext.Current.Session["ActivePasswordRecovery"] = userDetails.Email;
-                    return Json(2, JsonRequestBehavior.AllowGet);
+                        SendEmailCodeRecuperation(semail, pPerson, newVerificationCode);
+                        System.Web.HttpContext.Current.Session["ActivePasswordRecovery"] = userDetails.Email;
+                        return Json(3, JsonRequestBehavior.AllowGet);
+                    }
+                    
                 }
                 catch
                 {
-                    return Json(3, JsonRequestBehavior.AllowGet);
+                    return Json(4, JsonRequestBehavior.AllowGet);
                 }
             }
         }
