@@ -633,7 +633,7 @@ function llenarComboDecimalH(pDecimalH) {
 
 function PrintDoorOverlay(pOverlay) {
     var lbl = '<label><input style="margin-right: 8px;" type="radio" name="radioOver" data-id="1">Inset Door Type</label>';
-    lbl += '<label style="margin-left: 10px;"><input style="margin-right: 8px;" type="radio" name="radioOver" data-id="2">Overlay Door Type</label>';
+    lbl += '<label style="margin-left: 10px;"><input style="margin-right: 8px;" checked type="radio" name="radioOver" data-id="2">Overlay Door Type</label>';
     $("#isOverlay").html(lbl);
 }
 
