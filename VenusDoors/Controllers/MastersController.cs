@@ -519,7 +519,6 @@ namespace VenusDoors.Controllers
             {
                 uDoors.ModificationDate = DateTime.Now;
                 uDoors.ModificationUser = userID;
-                uDoors.ProfilePicture = "empty";
                 BusinessLogic.lnDoors _LM = new BusinessLogic.lnDoors();
                 var modDoor = _LM.UpdateDoors(uDoors);
                 return Json(true, JsonRequestBehavior.AllowGet);
