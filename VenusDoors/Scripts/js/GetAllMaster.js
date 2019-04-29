@@ -379,8 +379,16 @@ function llenarComboPanelMaterial(pMaterial, pPanelStyle) {
 
         }
     
-    $("#cbPanelMaterial").empty().append(option);
-    $("#cbPanelMaterial").val(pPanelMaterial);
+        $("#cbPanelMaterial").empty().append(option);
+        if ( _PanelMAterial == 5) {
+            $("#cbPanelMaterial").val(5);
+        } else if (_PanelMAterial == 1) {
+            $("#cbPanelMaterial").val(1);
+        }else {
+            $("#cbPanelMaterial").val(pPanelMaterial);
+        }
+       
+
     }
 }
 
