@@ -147,8 +147,8 @@
             <nav class="media nav nav-inline tx-size-24 mg-b-0 lh-0">
 
                 <div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" id="btNew" data-toggle="modal" data-target="#modalNewIn" class="Cursor btn btn-page"><i class="fa fa-plus"></i></button>
-                    <button type="button" id="btModi" data-toggle="modal" data-target="#modalNewIn" class="Cursor btn btn-page"><i class="fa fa-edit"></i></button>
+                    <button type="button" id="btNewP" data-toggle="modal" data-target="#modalPay" class="Cursor btn btn-page"><i class="fa fa-plus"></i></button>
+                    <button type="button" id="btModi" data-toggle="modal" data-target="#modalPay" class="Cursor btn btn-page"><i class="fa fa-edit"></i></button>
                     <button type="button" data-toggle="modal" data-target="#modalPDF" class="Cursor btn btn-page"><i class="fa fa-file-pdf-o"></i></button>
                     <button type="button" value="Print" onclick="window.print();" class="Cursor btn btn-page"><i class="fa fa-print"></i></button>
                     <button type="button" id="Send" class="Cursor btn btn-page"><i class="fa fa-send"></i></button>
@@ -578,6 +578,137 @@
                 <button type="button" class="Cursor btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="button" value="Print" onclick="window.print();" class="Cursor btn btn-primary">Print</button>
                 <button type="button" class="Cursor btn btn-success">Download</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modalPay" class="ModalOrderInfo modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" id="mdialTamanio" style="width: 80%!important; max-width:100%;max-height: 100%;height: 90%;">
+        <div class="modal-content" style="height:100%">
+            <div class="modal-header">
+                <div style="display:flex" id="tituloConBTNEdit">
+                    <a id="createBACK" title="Click here to return to the previous window." class="btn btn-icon active" data-toggle="tab" href="#NEWINVOICE" role="tab">
+                        <div><i class="fa fa-arrow-left"></i></div>
+                    </a>
+                    <a id="modBACK" title="Click here to return to the previous window." class="btn btn-icon active" data-toggle="tab" href="#NEWINVOICE" role="tab">
+                        <div><i class="fa fa-arrow-left"></i></div>
+                    </a>
+                    <h3 id="lblTituloModal" class="tx-inverse mg-b-5"></h3>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="padding-left: 30px;">
+                <div class="tab-content">
+                    <div class="tab-pane show active" id="NEWINVOICE" role="tabpanel">
+                        <div class="row" style="margin-right: 0;">
+                            <div class="col-md-12" style="padding-right:0">
+                                <div style="display:flex; width:100%">
+                                    <div class="row" style="width:100%; max-height: 380px;">
+                                        <div class="row" style="width: 100%;">
+
+                                            <div class="col-xs-4 col-md-4">
+                                                <label for="BottomRail" style="margin-top: 25px;">Customer Name: </label>
+                                                <input style="width:100%" class="form-control" id="cbStileWidth" data-placeholder="">
+                                            </div><!-- col -->
+
+                                            <div class="col-xs-4 col-md-4">
+                                                <label for="BottomRail" style="margin-top: 25px;">Payment #: </label>
+                                                <input style="width:100%" class="form-control" id="cbStileWidth" data-placeholder="">
+                                            </div><!-- col -->
+
+                                            <div class="col-xs-4 col-md-4">
+                                                <label for="TopRail" style="margin-top: 25px;">Amount Received:</label>
+                                                <input style="width:100%" class="form-control" id="cbStileWidth" data-placeholder="">
+                                            </div><!-- col -->
+
+                                            <div class="col-xs-4 col-md-4">
+                                                <label for="TopRail" style="margin-top: 25px;">Bank Charges:</label>
+                                                <input style="width:100%" class="form-control" id="cbStileWidth" data-placeholder="">
+                                            </div><!-- col -->
+
+                                            <div class="col-xs-4 col-md-12">
+                                                <br />
+                                            </div>
+
+                                            <div class="col-md-9">
+                                                <label class="ckbox">
+                                                    <input type="checkbox">
+                                                    <span>Tax deducted?</span>
+                                                </label>
+                                            </div><!-- col -->
+
+                                            <div class="col-xs-4 col-md-4">
+                                                <label for="TopRail" style="margin-top: 25px;">Amount Withheld:</label>
+                                                <input style="width:100%" class="form-control" id="cbStileWidth" data-placeholder="">
+                                            </div><!-- col -->
+
+                                            <div class="col-xs-4 col-md-4">
+                                                <label for="TopRail" style="margin-top: 25px;">Tax Account:</label>
+                                                <select style="width:100%" class="form-control" id="cbStileWidth" data-placeholder=""></select>
+                                            </div><!-- Hasta aqui -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- pd-20 -->
+                        </div><!-- col-6 -->
+                    </div>
+                    <div class="tab-pane " id="NEWORDER" role="tabpanel">
+                        <div class="row" style="margin-right: 0;">
+                            <div class="col-md-12" style="padding-right:0">
+                                <div style="display:flex; width:100%">
+                                    <div class="row" style="width:100%; max-height: 380px;margin-right: 0;">
+                                        <div class="row" style="width: 100%;">
+                                            <div class="col-xs-4 col-md-4">
+                                                <label for="TopRail" style="margin-top: 25px;">Payment Date:</label>
+                                                <input style="width:100%" class="form-control" id="cbStileWidth" data-placeholder="">
+                                            </div><!-- col -->
+
+                                            <div class="col-xs-4 col-md-4">
+                                                <label for="TopRail" style="margin-top: 25px;">Payment Mode:</label>
+                                                <input style="width:100%" class="form-control" id="cbStileWidth" data-placeholder="">
+                                            </div><!-- col -->
+
+                                            <div class="col-xs-4 col-md-4">
+                                                <label for="TopRail" style="margin-top: 25px;">Deposit To:</label>
+                                                <input style="width:100%" class="form-control" id="cbStileWidth" data-placeholder="">
+                                            </div><!-- col -->
+
+                                            <div class="col-xs-4 col-md-8">
+                                                <label for="TopRail" style="margin-top: 25px;">Reference#:</label>
+                                                <input style="width:100%" class="form-control" id="cbStileWidth" data-placeholder="">
+                                            </div><!-- col -->
+
+                                            <div class="col-xs-4 col-md-12">
+                                                <label for="OutsideEdgeProfile" style="margin-top: 25px;">Notes: </label>
+                                                <textarea style="width:100%" class="form-control" id="cbOutsideEdgeProfile" data-placeholder=""></textarea>
+                                            </div><!-- col -->
+
+                                            <div class="col-md-12">
+                                                <hr />
+                                            </div>
+                                            <div class="col-xs-4 col-md-4">
+                                                <button type="button" id="btAdd" class="Cursor btn btn-page" style="margin-right: 15px;"><i class="fa fa-paperclip"></i> Upload file</button>
+                                                <input id="addFile" name="file" type="file" style="display:none;" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- pd-20 -->
+                        </div><!-- col-6 -->
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btnClose" type="button" class="btn btn-secondary Cursor" data-dismiss="modal">Close</button>
+                <button id="btBackMod" data-toggle="tab" href="#NEWINVOICE" type="button" class="btn btn-secondary Cursor">Back</button>
+                <button id="btBack" data-toggle="tab" href="#NEWINVOICE" type="button" class="btn btn-secondary Cursor">Back</button>
+                <button id="btnConMod" data-toggle="tab" href="#NEWORDER" role="tab" type="button" class="Cursor btn btn-primary Cursor">Continue</button>
+                <button id="btnCon" data-toggle="tab" href="#NEWORDER" role="tab" type="button" class="Cursor btn btn-primary Cursor">Continue</button>
+                <button id="btSavDrs" type="button" class="Cursor btn btn-primary Cursor">Save as draft</button>
+                <button id="btGuardar" type="button" class="Cursor btn btn-success Cursor">Save and send</button>
             </div>
         </div>
     </div>

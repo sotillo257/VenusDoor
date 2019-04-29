@@ -34,7 +34,7 @@
     llenarComboDecimalH(0);
     PrintDoorOverlay(_DoorSt);
 	ValidateSession();
-	ChangeDoorStylePanel(_DoorSt);
+	ChangeDoorStylePanel($("#cbDoorStyle").val());
 	$(document).on('click', "#bt-conf-log", function () {
 	    LlammarModal("MLogin", "Sign in to your account to process your order!", " ");
 	});
