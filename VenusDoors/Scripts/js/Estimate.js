@@ -181,6 +181,11 @@
     });
 
     $("#btNew").on('click', function () {
+        $("#btNewESTIMATE").trigger("click");
+        $("#lblTituloModal").text("New Invoice");
+    });
+
+    $("#btNewESTIMATE").on('click', function () {
         $("#lblTituloModal").text("New Estimate");
         $("#btnCON").show();
         $("#editDXU").hide();
