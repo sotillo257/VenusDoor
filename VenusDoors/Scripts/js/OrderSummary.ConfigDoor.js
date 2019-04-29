@@ -49,6 +49,7 @@
         // GetDoorxUser();
         SearchDoor(listDOOR);
         QuitarClaseErrorACombos();
+        
         $("#btModify").show();
         $("#btConfAdd").hide();
         $("#btConfSave").hide();
@@ -122,7 +123,7 @@
         $("#lblSubTitulo").text("Choose the the best door option that fit your needs.");
     }
 });
-
+var _PanelMAterial = 0;
 function SearchDoor(data) {
 
     if (data != '') {
@@ -166,7 +167,9 @@ function SearchDoor(data) {
         llenarComboIsDrill(isDrill);
         checkIsOverlay(isOver);
         llenarComboMaterial(data.Material.Id);
+        
         llenarComboPanelStyle(data.Panel.Id);
+        ChangeDoorStylePanel(data.DoorStyle.Id);
         llenarComboIEP(data.InsideEdgeProfile.Id);
         llenarComboOEP(data.OutsideEdgeProfile.Id);
         llenarComboStileWidth(data.BottomRail.Id);
@@ -191,6 +194,7 @@ function SearchDoor(data) {
         } else {
             llenarComboDoorStyle(data.DoorStyle.Id);
         }
+        _PanelMAterial = data.PanelMaterial.Id;
         llenarComboPanelMaterial(data.Material.Id, data.Panel.Id);
         //$("#iptCost").val(data.ItemCost);
         $("input[name=radioOver]").attr("disabled", false);

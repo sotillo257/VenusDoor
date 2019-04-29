@@ -70,7 +70,10 @@
     $(document).on('change', '#cbPanel', function () {
         var pMaterial = $("#cbMaterial").val();
         var pDoorStyle = $("#cbPanel").val();
+        changeDoorPicture();
+        ChangeProfile();
         llenarComboPanelMaterial(pMaterial, pDoorStyle);
+      
     });
 
     $(document).on('change', '.Profile', function () {
@@ -134,7 +137,7 @@
 
 });
 
-
+var _PanelType = 0;
 function ChangeDoorStylePanel(pIdDoorStyle) {
     var bandera = true;
     var panelType = $("#cbPanel").val();
@@ -145,7 +148,7 @@ function ChangeDoorStylePanel(pIdDoorStyle) {
     llenarComboPanelStyle(panelType);
     if (pIdDoorStyle == 1002) {
         
-        option = '<option value="0">Select</option>';
+        option = '';
         for (var i = 0; i < AllPanelType.length; i++) {
             if (AllPanelType[i].Status.Id == 1 && AllPanelType[i].Id != 2) {
                 option += '<option value="' + AllPanelType[i].Id + '">' + AllPanelType[i].Description + '</option>';
@@ -155,9 +158,7 @@ function ChangeDoorStylePanel(pIdDoorStyle) {
 
         if (panelType != 2) {
             $("#cbPanel").val(panelType);
-        } else {
-            $("#cbPanel").val(0);
-        }
+        } 
 
        
     } else if (pIdDoorStyle == 1003) {
@@ -895,8 +896,8 @@ function changeDoorPicture() {
 }
 
 function FlatPanelDoor(Style) {
-    var stile = $('#cbTopRail').val();
-    var rail = $('#cbBottomRail').val();
+    var stile = $('#cbRailWidth').val();
+    var rail = $('#cbStileWidth').val();
     var DoorUrl = "Cabinet Vector-01.png";
     var urlFolder = "/Content/img/Doors/";
 
@@ -993,8 +994,8 @@ function FlatPanelDoor(Style) {
 }
 
 function RaisedPanelDoor(Style) {
-    var stile = $('#cbTopRail').val();
-    var rail = $('#cbBottomRail').val();
+    var stile = $('#cbRailWidth').val();
+    var rail = $('#cbStileWidth').val();
     var DoorUrl = "Cabinet Vector-07.png";
     var urlFolder = "/Content/img/Doors/";
     
