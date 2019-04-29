@@ -900,10 +900,10 @@ function FlatPanelDoor(Style) {
     var DoorUrl = "Cabinet Vector-01.png";
     var urlFolder = "/Content/img/Doors/";
 
-    switch (Style)
+    switch (parseInt(Style))
     {
         case 1002:
-            if (pDoorxOrder.DoorxUser.Join.Id != 2)
+            if ($('#cbDoorAssembly').val() != 2)
             {
                 if (stile == 3 && rail == 3)
                 {
@@ -920,7 +920,7 @@ function FlatPanelDoor(Style) {
             }
             break;
         case 1004:
-            if (pDoorxOrder.DoorxUser.Join.Id != 2)
+            if ($('#cbDoorAssembly').val() != 2)
             {
                 if (stile == 3 || rail == 3)
                 {
@@ -937,7 +937,7 @@ function FlatPanelDoor(Style) {
             }
             break;
         case 1005:
-            if (pDoorxOrder.DoorxUser.Join.Id == 1)
+            if ($('#cbDoorAssembly').val() == 1)
             {
                 DoorUrl = "Cabinet Vector-03.png";
             }
@@ -947,7 +947,7 @@ function FlatPanelDoor(Style) {
             }
             break;
         case 1006:
-            if (pDoorxOrder.DoorxUser.Join.Id == 1)
+            if ($('#cbDoorAssembly').val() == 1)
             {
                 DoorUrl = "Cabinet Vector-03.png";
             }
@@ -957,7 +957,7 @@ function FlatPanelDoor(Style) {
             }
             break;
         case 1007:
-            if (pDoorxOrder.DoorxUser.Join.Id == 1)
+            if ($('#cbDoorAssembly').val() == 1)
             {
                 DoorUrl = "Cabinet Vector-03.png";
             }
@@ -967,7 +967,7 @@ function FlatPanelDoor(Style) {
             }
             break;
         case 1008:
-            if (pDoorxOrder.DoorxUser.Join.Id == 1)
+            if ($('#cbDoorAssembly').val() == 1)
             {
                 DoorUrl = "Cabinet Vector-01.png";
             }
@@ -998,9 +998,9 @@ function RaisedPanelDoor(Style) {
     var DoorUrl = "Cabinet Vector-07.png";
     var urlFolder = "/Content/img/Doors/";
     
-    switch (Style) {
+    switch (parseInt(Style)) {
         case 1003:
-            if (pDoorxOrder.DoorxUser.Join.Id != 2) {
+            if ($('#cbDoorAssembly').val() != 2) {
                 if (stile == 3 && rail == 3) {
                     DoorUrl = "Cabinet Vector-11.png";
                 }
@@ -1013,7 +1013,7 @@ function RaisedPanelDoor(Style) {
             }
             break;
         case 1004:
-            if (pDoorxOrder.DoorxUser.Join.Id != 2) {
+            if ($('#cbDoorAssembly').val() != 2) {
                 DoorUrl = "Cabinet Vector-11.png";
 
             }
@@ -1022,7 +1022,7 @@ function RaisedPanelDoor(Style) {
             }
             break;
         case 1005:
-            if (pDoorxOrder.DoorxUser.Join.Id == 1) {
+            if ($('#cbDoorAssembly').val() == 1) {
                 DoorUrl = "Cabinet Vector-16.png";
             }
             else {
@@ -1030,7 +1030,7 @@ function RaisedPanelDoor(Style) {
             }
             break;
         case 1006:
-            if (pDoorxOrder.DoorxUser.Join.Id == 1) {
+            if ($('#cbDoorAssembly').val() == 1) {
                 DoorUrl = "Cabinet Vector-16.png";
             }
             else {
@@ -1038,7 +1038,7 @@ function RaisedPanelDoor(Style) {
             }
             break;
         case 1007:
-            if (pDoorxOrder.DoorxUser.Join.Id == 1) {
+            if ($('#cbDoorAssembly').val() == 1) {
                 DoorUrl = "Cabinet Vector-16.png";
             }
             else {
@@ -1046,7 +1046,7 @@ function RaisedPanelDoor(Style) {
             }
             break;
         case 1008:
-            if (pDoorxOrder.DoorxUser.Join.Id == 1) {
+            if ($('#cbDoorAssembly').val() == 1) {
                 DoorUrl = "Cabinet Vector-09.png";
             }
             else {
