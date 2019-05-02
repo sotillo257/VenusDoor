@@ -871,6 +871,146 @@ namespace VenusDoors.Controllers
         }
         #endregion
 
+        #region DoorOption
+        [Authorize(Roles = "1")]
+        public ActionResult DoorOption()
+        {
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                ViewBag.Masters = "active show-sub";
+                ViewBag.DoorOption = "active";
+                BusinessLogic.lnDoorOption _LDrO = new BusinessLogic.lnDoorOption();
+
+                var mDoorOption = _LDrO.GetAllDoorOption();
+                ViewBag.mDoorOption = mDoorOption;
+                var serializar = new System.Web.Script.Serialization.JavaScriptSerializer();
+                ViewBag.ListDoorOption = serializar.Serialize(mDoorOption);
+
+                ViewBag.mStatus = _LNStatus.GetAllStatus();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        [Authorize(Roles = "1")]
+        [HttpPost]
+        public ActionResult InsertDoorOption(DoorOption pDoorOption)
+        {
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                int userID = (int)Session["UserID"];
+                try
+                {
+
+                    pDoorOption.CreationDate = DateTime.Now;
+                    pDoorOption.CreatorUser = userID;
+                    pDoorOption.ModificationDate = DateTime.Now;
+                    pDoorOption.ModificationUser = userID;
+                    BusinessLogic.lnDoorOption _LDrO = new BusinessLogic.lnDoorOption();
+                    var InserHoDi = _LDrO.InsertDoorOption(pDoorOption);
+                    return Json(true, JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
+        }
+        [Authorize(Roles = "1")]
+        [HttpPost]
+        public ActionResult UpdateDoorOption(DoorOption uDoorOption)
+        {
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                int userID = (int)Session["UserID"];
+                try
+                {
+
+                    uDoorOption.ModificationDate = DateTime.Now;
+                    uDoorOption.ModificationUser = userID;
+                    BusinessLogic.lnDoorOption _LDrO = new BusinessLogic.lnDoorOption();
+                    var modHoDi = _LDrO.UpdateDoorOption(uDoorOption);
+                    return Json(true, JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
+        }
+
+        [Authorize(Roles = "1")]
+        [HttpPost]
+        public ActionResult GetAllDoorOption(DoorOption gDoorOption)
+        {
+            if (Session["UserID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+
+                try
+                {
+
+                    BusinessLogic.lnDoorOption _LDrO = new BusinessLogic.lnDoorOption();
+
+                    return Json(_LDrO.GetAllDoorOption(), JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
+        }
+
+        [Authorize(Roles = "1")]
+        [HttpPost]
+        public ActionResult UpdateStatusDoorOption(DoorOption modHdi)
+        {
+            if (Session["UserID"] != null && (int)Session["UserType"] == 1)
+            {
+                int userID = (int)Session["UserID"];
+                try
+                {
+                    BusinessLogic.lnDoorOption _LNHDI = new BusinessLogic.lnDoorOption();
+
+                    modHdi.ModificationDate = DateTime.Now;
+                    modHdi.ModificationUser = userID;
+                    DoorOption Hdiv = _LNHDI.GetDoorOptionById(modHdi.Id);
+                    Hdiv.Status.Id = modHdi.Status.Id;
+                    var uphdi = _LNHDI.UpdateDoorOption(Hdiv);
+
+
+                    return Json(true, JsonRequestBehavior.AllowGet);
+
+                }
+                catch
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+        #endregion
+
         #region Group
         [Authorize(Roles = "1")]
         public ActionResult Group()
@@ -1633,8 +1773,6 @@ namespace VenusDoors.Controllers
         }
 
         #endregion
-
-
 
         #region Join
         [Authorize(Roles = "1")]

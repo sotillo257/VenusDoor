@@ -1113,6 +1113,7 @@
     <Content Include="Scripts\js\Estimate.js" />
     <Content Include="Scripts\js\GetAllMaster.js" />
     <Content Include="Scripts\js\Invoice.js" />
+    <Content Include="Scripts\js\Master.DoorOption.js" />
     <Content Include="Scripts\js\PaymentsReceived.js" />
     <Content Include="Scripts\js\LoginSiginUp.js" />
     <Content Include="Scripts\js\Master.DoorStylexOutsideEdgeProfile.js" />
@@ -1239,6 +1240,7 @@
     <Content Include="Views\Masters\DoorStylexOutsideEdgeProfile.cshtml" />
     <Content Include="Views\CreditNotes\Index.cshtml" />
     <Content Include="Views\PaymentsReceived\Index.cshtml" />
+    <Content Include="Views\Masters\DoorOption.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

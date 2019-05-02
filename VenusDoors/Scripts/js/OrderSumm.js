@@ -184,7 +184,12 @@ function ConfirmOrder() {
             if (data == true) {
                 $('#modalInsert').modal('hide');
                 $('#modalConfirmOrderSummary').modal('hide');
-                LlammarModal("Congratuletions", "Congratulations! Your order is being processed.", "At this time you will be redirected to the Order Status view. Check your email to see your order details.");
+                $("button").prop('disabled', true);                 
+                LlammarModal("OrderSummary", "Congratulations! Your order is being processed.", "At this time you will be redirected to the Order Status view. Check your email to see your order details.");
+                $(".react").prop('disabled', false);
+                setTimeout(function () {
+                    window.location.href = '/OrderStatus/Index';
+                }, 10000);
             } else {
                 LlammarModal("Danger", "An error occurred during the process.", " ");
                 $("#btn-continue").prop('disabled', false);

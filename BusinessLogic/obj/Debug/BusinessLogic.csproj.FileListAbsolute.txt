@@ -85,3 +85,18 @@ C:\Users\Lenovo\Source\Repos\VenusDoor\BusinessLogic\bin\Debug\MetodosDB.pdb
 C:\Users\Lenovo\Source\Repos\VenusDoor\BusinessLogic\obj\Debug\BusinessLogic.csprojResolveAssemblyReference.cache
 C:\Users\Lenovo\Source\Repos\VenusDoor\BusinessLogic\obj\Debug\BusinessLogic.dll
 C:\Users\Lenovo\Source\Repos\VenusDoor\BusinessLogic\obj\Debug\BusinessLogic.pdb
+C:\Users\jesus\Source\Repos\Solo local\BusinessLogic\bin\Debug\BusinessLogic.dll
+C:\Users\jesus\Source\Repos\Solo local\BusinessLogic\bin\Debug\BusinessLogic.pdb
+C:\Users\jesus\Source\Repos\Solo local\BusinessLogic\bin\Debug\DataAccess.dll
+C:\Users\jesus\Source\Repos\Solo local\BusinessLogic\bin\Debug\ExcelDataReader.dll
+C:\Users\jesus\Source\Repos\Solo local\BusinessLogic\bin\Debug\itextsharp.dll
+C:\Users\jesus\Source\Repos\Solo local\BusinessLogic\bin\Debug\Model.dll
+C:\Users\jesus\Source\Repos\Solo local\BusinessLogic\bin\Debug\MetodosDB.dll
+C:\Users\jesus\Source\Repos\Solo local\BusinessLogic\bin\Debug\DataAccess.pdb
+C:\Users\jesus\Source\Repos\Solo local\BusinessLogic\bin\Debug\Model.pdb
+C:\Users\jesus\Source\Repos\Solo local\BusinessLogic\bin\Debug\ExcelDataReader.xml
+C:\Users\jesus\Source\Repos\Solo local\BusinessLogic\bin\Debug\itextsharp.xml
+C:\Users\jesus\Source\Repos\Solo local\BusinessLogic\bin\Debug\MetodosDB.pdb
+C:\Users\jesus\Source\Repos\Solo local\BusinessLogic\obj\Debug\BusinessLogic.csprojResolveAssemblyReference.cache
+C:\Users\jesus\Source\Repos\Solo local\BusinessLogic\obj\Debug\BusinessLogic.dll
+C:\Users\jesus\Source\Repos\Solo local\BusinessLogic\obj\Debug\BusinessLogic.pdb

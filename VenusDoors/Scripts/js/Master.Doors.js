@@ -55,7 +55,8 @@
                 if (ListDoors[i].Id == $(this).attr('value')) {
 
                     var HTMLImage =
-                    ' <center><img style="height: 100px;width: 235px;margin-top: 20px;" id="ProfilePicture" src="' + ListDoors[i].ProfilePicture + '">' +
+                    '<center>'+
+                    '<img style="height: 100px;width: 235px;margin-top: 20px;" id="ProfilePicture" src="' + ListDoors[i].ProfilePicture + '">' +
                                '<img style="width: 230px;height: 230px;" id="DoorPicture" src="' + ListDoors[i].Picture + '">' +
                                '</center>';
                     $('#Picture').html(HTMLImage);
@@ -71,7 +72,7 @@
                     llenarComboInsideEdgeProfile(ListDoors[i].InsideEdgeProfile.Id);
                     llenarComboVerticalDivisions(ListDoors[i].VerticalDivisions.Id);
                     llenarComboHorizontalDivisions(ListDoors[i].HorizontalDivisions.Id);                   
-                    llenarComboPanel(ListDoors[i].Panel.Id);
+                    llenarComboPanelStyle(ListDoors[i].Panel.Id);
                     llenarComboPanelMaterial(ListDoors[i].Material.Id);
                     if (ListDoors[i].DoorStyle.Id == 1010) {
                         llenarComboDoorStyle(ListDoors[i].DoorStyle.Id);
@@ -155,10 +156,10 @@ function ChangeDoorStylePanel(pIdDoorStyle) {
         panelType = 0;
     }
     llenarComboDoorAssembly($("#cbDoorAssembly").val());
-    llenarComboPanel(panelType);
+    llenarComboPanelStyle(panelType);
     if (pIdDoorStyle == 1002) {
 
-        option = '<option value="0">Select</option>';
+        option = '';
         for (var i = 0; i < AllPanelType.length; i++) {
             if (AllPanelType[i].Status.Id == 1 && AllPanelType[i].Id != 2) {
                 option += '<option value="' + AllPanelType[i].Id + '">' + AllPanelType[i].Description + '</option>';
@@ -168,8 +169,6 @@ function ChangeDoorStylePanel(pIdDoorStyle) {
 
         if (panelType != 2) {
             $("#cbPanel").val(panelType);
-        } else {
-            $("#cbPanel").val(0);
         }
 
 
@@ -218,6 +217,77 @@ function ChangeDoorStylePanel(pIdDoorStyle) {
     var pMaterial = $("#cbMaterial").val();
     var pPanelStyle = $("#cbPanel").val();
     llenarComboPanelMaterial(pMaterial, pPanelStyle);
+}
+
+function changeDoorStyle() {
+    var bandera = true;
+
+    if ($("#cbDoorStyle").val() == 1002) {
+        var panelType = $("#cbPanel").val();
+        option = '<option value="0">Select</option>';
+        for (var i = 0; i < AllPanelType.length; i++) {
+            if (AllPanelType[i].Status.Id == 1 && AllPanelType[i].Id != 2) {
+                option += '<option value="' + AllPanelType[i].Id + '">' + AllPanelType[i].Description + '</option>';
+            }
+        }
+        $("#cbPanel").empty().append(option);
+
+        if (panelType != 2) {
+            $("#cbPanel").val(panelType);
+        } else {
+            $("#cbPanel").val(0);
+        }
+
+
+    } else if ($("#cbDoorStyle").val() == 1003) {
+
+        var panelType = $("#cbPanel").val();
+        var option = '<option value="0">Select</option>';
+        for (var i = 0; i < AllPanelType.length; i++) {
+            if (AllPanelType[i].Status.Id == 1 && AllPanelType[i].Id == 2) {
+                option += '<option value="' + AllPanelType[i].Id + '">' + AllPanelType[i].Description + '</option>';
+            }
+        }
+        $("#cbPanel").empty().append(option);
+        $("#cbPanel").val(2);
+    } else if ($("#cbDoorStyle").val() == 1004) {
+
+        llenarComboPanelStyle(0);
+    } else if ($("#cbDoorStyle").val() == 1005) {
+        llenarComboPanelStyle(0);
+    }
+    else if ($("#cbDoorStyle").val() == 1006) {
+        llenarComboPanelStyle(0);
+    } else if ($("#cbDoorStyle").val() == 1007) {
+        llenarComboPanelStyle(0);
+    } else if ($("#cbDoorStyle").val() == 1008) {
+        llenarComboPanelStyle(0);
+    } else if ($("#cbDoorStyle").val() == 1009) {
+
+        var option = '<option value="0">Select</option>';
+        for (var i = 0; i < AllPanelType.length; i++) {
+            if (AllPanelType[i].Status.Id == 1 && AllPanelType[i].Id == 5) {
+                option += '<option value="' + AllPanelType[i].Id + '">' + AllPanelType[i].Description + '</option>';
+            }
+        }
+        $("#cbPanel").empty().append(option);
+        $("#cbPanel").val(5);
+    } else if ($("#cbDoorStyle").val() == 1010) {
+        // 
+        //var option = '<option value="slab">Slab</option>';
+        //$("#cbPanel").empty().append(option);
+        //$("#cbInsideEdgeProfile").empty().append(option);
+        //$("#cbOutsideEdgeProfile").empty().append(option);
+        //$("#cbDoorAssembly").empty().append(option);
+        //$('#DoorPicture').attr('src', "/Content/img/Doors/slab.png");
+        //$('#ProfilePicture').attr('src', "/Content/img/Profile/slab.png");
+        //bandera = false;
+    }
+    if (bandera) {
+        //changeDoorPicture();
+        //ChangeProfile();
+    }
+
 }
 
 function GetInsideAndOutside(pDoorStyle) {
@@ -298,7 +368,7 @@ function GetInsideAndOutside(pDoorStyle) {
         llenarComboInsideEdgeProfile(0);
         llenarComboVerticalDivisions(0);
         llenarComboHorizontalDivisions(0);
-        llenarComboPanel(0);
+        llenarComboPanelStyle(0);
         llenarComboPanelMaterial(0);    
         llenarComboStatus(0);
         llenarComboTopRail(0);
@@ -339,9 +409,11 @@ function GetInsideAndOutside(pDoorStyle) {
         $('#select2-cbPanelMaterial-container').removeClass("cbError");
         $('#select2-cbStatus-container').removeClass("cbError");
         $('#select2-cbFingerPull-container').removeClass("cbError");
-        var HTMLImage = '<center>' +
-                               '<img style="width: 230px;height: 230px;" id="DoorPicture" src="/Content/img/Doors/img11.png">' +
-                               '</center>';
+        var HTMLImage =
+                     '<center>' +
+                     '<img style="height: 100px;width: 235px;margin-top: 20px;" id="ProfilePicture" src="/Content/img/Profile/img11.png">' +
+                                '<img style="width: 230px;height: 230px;" id="DoorPicture" src="/Content/img/Doors/img11.png">' +
+                                '</center>';
         $('#Picture').html(HTMLImage);
     }
 
@@ -467,7 +539,7 @@ function InsertDoors() {
               Height: 0,
               DecimalsHeight: { Id: 2},
               Picture: $("#DoorPicture").attr('src'),
-              ProfilePicture: "Profile",
+              ProfilePicture: $("#ProfilePicture").attr('src'),
               Status: { Id: $("#cbStatus").val() },
               OpeningMeasurement: false,
               isOverlay: { Id: isOver },
@@ -1010,8 +1082,11 @@ function llenarComboStatus(pStatus) {
 
 var allMaterial = '';
 function llenarComboMaterial(pMaterial) {
+    if (allMaterial.length == 0) {
+        allMaterial = GetAllMaterial();
+    }
 
-    var option = '<option value="0">Select</option>';
+    var option = '';
     for (var i = 0; i < allMaterial.length; i++) {
         if (allMaterial[i].Status.Id == 1) {
             option += '<option value="' + allMaterial[i].Id + '">' + allMaterial[i].Description + '</option>';
@@ -1114,16 +1189,18 @@ function llenarComboDoorAssembly(pDoorAssembly) {
 }
 
 var AllPanelType = '';
-function llenarComboPanel(pPanelStyle) {
-
-    var option = '<option value="0">Select</option>';
+function llenarComboPanelStyle(pPanelStyle) {
+    if (AllPanelType == '') {
+        AllPanelType = GetAllPanel();
+    }
+    var option = '';
     for (var i = 0; i < AllPanelType.length; i++) {
         if (AllPanelType[i].Status.Id == 1) {
             option += '<option value="' + AllPanelType[i].Id + '">' + AllPanelType[i].Description + '</option>';
         }
     }
     $("#cbPanel").empty().append(option);
-    if (pPanelStyle != 0) {
+    if (pPanelStyle != 0 && pPanelStyle != 3) {
         $("#cbPanel").val(pPanelStyle);
     }
 }
@@ -1548,14 +1625,14 @@ function changeDoorPicture() {
 }
 
 function FlatPanelDoor(Style) {
-    var stile = $('#cbTopRail').val();
-    var rail = $('#cbBottomRail').val();
+    var stile = $('#cbRailWidth').val();
+    var rail = $('#cbStileWidth').val();
     var DoorUrl = "Cabinet Vector-01.png";
     var urlFolder = "/Content/img/Doors/";
 
-    switch (Style) {
+    switch (parseInt(Style)) {
         case 1002:
-            if (pDoorxOrder.DoorxUser.Join.Id != 2) {
+            if ($('#cbDoorAssembly').val() != 2) {
                 if (stile == 3 && rail == 3) {
                     DoorUrl = "Cabinet Vector-02.png";
                 }
@@ -1568,7 +1645,7 @@ function FlatPanelDoor(Style) {
             }
             break;
         case 1004:
-            if (pDoorxOrder.DoorxUser.Join.Id != 2) {
+            if ($('#cbDoorAssembly').val() != 2) {
                 if (stile == 3 || rail == 3) {
                     DoorUrl = "Cabinet Vector-05.png";
                 }
@@ -1581,7 +1658,7 @@ function FlatPanelDoor(Style) {
             }
             break;
         case 1005:
-            if (pDoorxOrder.DoorxUser.Join.Id == 1) {
+            if ($('#cbDoorAssembly').val() == 1) {
                 DoorUrl = "Cabinet Vector-03.png";
             }
             else {
@@ -1589,7 +1666,7 @@ function FlatPanelDoor(Style) {
             }
             break;
         case 1006:
-            if (pDoorxOrder.DoorxUser.Join.Id == 1) {
+            if ($('#cbDoorAssembly').val() == 1) {
                 DoorUrl = "Cabinet Vector-03.png";
             }
             else {
@@ -1597,7 +1674,7 @@ function FlatPanelDoor(Style) {
             }
             break;
         case 1007:
-            if (pDoorxOrder.DoorxUser.Join.Id == 1) {
+            if ($('#cbDoorAssembly').val() == 1) {
                 DoorUrl = "Cabinet Vector-03.png";
             }
             else {
@@ -1605,7 +1682,7 @@ function FlatPanelDoor(Style) {
             }
             break;
         case 1008:
-            if (pDoorxOrder.DoorxUser.Join.Id == 1) {
+            if ($('#cbDoorAssembly').val() == 1) {
                 DoorUrl = "Cabinet Vector-01.png";
             }
             else {
@@ -1629,14 +1706,14 @@ function FlatPanelDoor(Style) {
 }
 
 function RaisedPanelDoor(Style) {
-    var stile = $('#cbTopRail').val();
-    var rail = $('#cbBottomRail').val();
+    var stile = $('#cbRailWidth').val();
+    var rail = $('#cbStileWidth').val();
     var DoorUrl = "Cabinet Vector-07.png";
     var urlFolder = "/Content/img/Doors/";
 
-    switch (Style) {
+    switch (parseInt(Style)) {
         case 1003:
-            if (pDoorxOrder.DoorxUser.Join.Id != 2) {
+            if ($('#cbDoorAssembly').val() != 2) {
                 if (stile == 3 && rail == 3) {
                     DoorUrl = "Cabinet Vector-11.png";
                 }
@@ -1649,7 +1726,7 @@ function RaisedPanelDoor(Style) {
             }
             break;
         case 1004:
-            if (pDoorxOrder.DoorxUser.Join.Id != 2) {
+            if ($('#cbDoorAssembly').val() != 2) {
                 DoorUrl = "Cabinet Vector-11.png";
 
             }
@@ -1658,7 +1735,7 @@ function RaisedPanelDoor(Style) {
             }
             break;
         case 1005:
-            if (pDoorxOrder.DoorxUser.Join.Id == 1) {
+            if ($('#cbDoorAssembly').val() == 1) {
                 DoorUrl = "Cabinet Vector-16.png";
             }
             else {
@@ -1666,7 +1743,7 @@ function RaisedPanelDoor(Style) {
             }
             break;
         case 1006:
-            if (pDoorxOrder.DoorxUser.Join.Id == 1) {
+            if ($('#cbDoorAssembly').val() == 1) {
                 DoorUrl = "Cabinet Vector-16.png";
             }
             else {
@@ -1674,7 +1751,7 @@ function RaisedPanelDoor(Style) {
             }
             break;
         case 1007:
-            if (pDoorxOrder.DoorxUser.Join.Id == 1) {
+            if ($('#cbDoorAssembly').val() == 1) {
                 DoorUrl = "Cabinet Vector-16.png";
             }
             else {
@@ -1682,7 +1759,7 @@ function RaisedPanelDoor(Style) {
             }
             break;
         case 1008:
-            if (pDoorxOrder.DoorxUser.Join.Id == 1) {
+            if ($('#cbDoorAssembly').val() == 1) {
                 DoorUrl = "Cabinet Vector-09.png";
             }
             else {

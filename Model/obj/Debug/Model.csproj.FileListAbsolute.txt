@@ -53,3 +53,11 @@ C:\Users\Lenovo\Source\Repos\VenusDoor\Model\bin\Debug\EntityFramework.xml
 C:\Users\Lenovo\Source\Repos\VenusDoor\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
 C:\Users\Lenovo\Source\Repos\VenusDoor\Model\obj\Debug\Model.dll
 C:\Users\Lenovo\Source\Repos\VenusDoor\Model\obj\Debug\Model.pdb
+C:\Users\jesus\Source\Repos\Solo local\Model\bin\Debug\Model.dll.config
+C:\Users\jesus\Source\Repos\Solo local\Model\bin\Debug\Model.dll
+C:\Users\jesus\Source\Repos\Solo local\Model\bin\Debug\Model.pdb
+C:\Users\jesus\Source\Repos\Solo local\Model\bin\Debug\EntityFramework.dll
+C:\Users\jesus\Source\Repos\Solo local\Model\bin\Debug\EntityFramework.xml
+C:\Users\jesus\Source\Repos\Solo local\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
+C:\Users\jesus\Source\Repos\Solo local\Model\obj\Debug\Model.dll
+C:\Users\jesus\Source\Repos\Solo local\Model\obj\Debug\Model.pdb

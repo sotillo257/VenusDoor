@@ -30,6 +30,12 @@
                 $("#modalCongra").modal("show");
             }
 
+            if (TipoModal == "OrderSummary") {
+                $("#TituloOS").html(Titulo);
+                $("#MensageOS").html(Mensaje);
+                $("#modalCompleteOrder").modal("show");
+            }
+
             if (TipoModal == "ConfirmOrdenSummary") {
                 $("#TituloeConfirmO").html(Titulo);
                 $("#MensageConfirmO").html(Mensaje);
