@@ -25,123 +25,104 @@ function GetDoorsByOrder(id) {
         contentType: 'application/json; charset=utf-8',
         success: function (Result) {            
             var head = id;
-            var dxu = '';           
-            dxu += '<div class="col-xs-4 col-md-3">';
-            dxu += '<label id="Material" style="margin-top: 10px;">Wood Species: <span style="color: #868ba1" style="color: #868ba1">' + Result.Material.Description + '</span></label>';
-            dxu += '</div><!-- col -->';
-            dxu += '<div class="col-xs-4 col-md-3">';
-            dxu += '<label id="DoorStyle" style="margin-top: 10px;">Door Style: <span style="color: #868ba1">' + Result.DoorStyle.Description + '</span></label>';
-            dxu += '</div><!-- col -->';
-            dxu += '<div class="col-xs-4 col-md-3">';
-            if (Result.isOverlay == false)
-            {
-                dxu += '<label for="Overlay" style="margin-top: 10px;">Door Place: <span style="color: #868ba1">Inset Door Type</span></label>';
+            var dxu = '';
+            //Primera fila
+            dxu += '<tr>';
+            dxu += '<td>Wood Species: <span style="color: #868ba1">' + Result.Material.Description + '</span></td>';
+            dxu += '<td>Door Style: <span style="color: #868ba1">' + Result.DoorStyle.Description + '</span></td>';
+            if (Result.isOverlay == false) {
+                dxu += '<td>Door Place: <span style="color: #868ba1">Inset Door Type</span></td>';
             }
-            else
-            {
-                dxu += '<label for="Overlay" style="margin-top: 10px;">Door Place: <span style="color: #868ba1">Overlay Door Type</span></label>';
+            else {
+                dxu += '<td>Door Place: <span style="color: #868ba1">Overlay Door Type</span></td>';
             }
-            dxu += '</div><!-- col -->';
-            dxu += '<div class="col-xs-4 col-md-3">';
-            dxu += '<label for="StileWidth" style="margin-top: 10px;">Stile Width: <span style="color: #868ba1">' + Result.BottomRail.Description + '</span></label>';
-            dxu += '</div><!-- col -->';
-            dxu += '<div class="col-xs-4 col-md-3">';
-            dxu += '<label for="RailWidth" style="margin-top: 10px;">Rail Width: <span style="color: #868ba1">' + Result.TopRail.Description + '</span></label>';
-            dxu += '</div><!-- col -->';
-            dxu += '<div class="col-xs-4 col-md-3">';
-            dxu += '<label for="InsideProfile" style="margin-top: 10px;">Inside Edge Profile: <span style="color: #868ba1">' + Result.InsideEdgeProfile.Description + '</span></label>';
-            dxu += '</div><!-- col -->';
-            dxu += '<div class="col-xs-4 col-md-3">';
-            dxu += '<label for="OutsideProfile" style="margin-top: 10px;">Outside Edge Profile: <span style="color: #868ba1">' + Result.OutsideEdgeProfile.Description + '</span></label>';
-            dxu += '</div><!-- col -->';           
-            dxu += '<div class="col-xs-4 col-md-3">';
-            dxu += '<label for="DoorAssembly" style="margin-top: 10px;">Door Assembly: <span style="color: #868ba1">' + Result.Join.Description + '</span></label>';
-            dxu += '</div><!-- col -->';
-            dxu += '<div class="col-xs-4 col-md-3">';
-            dxu += '<label for="PanelMaterial" style="margin-top: 10px;">Panel Material: <span style="color: #868ba1">' + Result.PanelMaterial.Description + '</span></label>';
-            dxu += '</div><!-- col -->';
-            dxu += '<div class="col-xs-4 col-md-3">';
-            if (Result.IsOpeningMeasurement == false)
-            {
-                dxu += '<label for="Openeing" style="margin-top: 10px;">Opening Measurement: <span style="color: #868ba1">No</span></label>';
-            }
-            else
-            {
-                dxu += '<label for="Openeing" style="margin-top: 10px;">Opening Measurement: <span style="color: #868ba1">Yes</span></label>';
-            }
-            dxu += '</div><!-- col -->';
-            dxu += '<div class="col-xs-4 col-md-3">';
-            dxu += '<label for="VerticalD" style="margin-top: 10px;">Vertical Divisions: <span style="color: #868ba1">' + Result.VerticalDivisions.Quantity + '</span></label>';
-            dxu += '</div><!-- col -->';
-            dxu += '<div class="col-xs-4 col-md-3">';
-            dxu += '<label for="HorizontalD" style="margin-top: 10px;">Horizontal Divisions: <span style="color: #868ba1">' + Result.HorizontalDivisions.Quantity + '</span></label>';
-            dxu += '</div><!-- col -->';
-            dxu += '<div class="col-xs-4 col-md-3">';
-            if (Result.isDrill == false)
-            {
-                dxu += '<label for="Drill" style="margin-top: 10px;">Hinge Drilling: <span style="color: #868ba1">No</span></label>';
-            }
-            else
-            {
-                dxu += '<label for="Drill" style="margin-top: 10px;">Hinge Drilling: <span style="color: #868ba1">Yes</span></label>';
-            }
-            dxu += '</div><!-- col -->';
-            if (Result.isDrill == true)
-            {
-                dxu += '<div class="col-xs-4 col-md-3">';
-                dxu += '<label for="HingeDirection" style="margin-top: 10px;">Hinge Direction: <span style="color: #868ba1">' + Result.HingeDirection.Direction + '</span></label>';
-                dxu += '</div><!-- col -->';
-            }
-            dxu += '<div class="col-xs-4 col-md-3">';
-            if (Result.isFingerPull == false)
-            {
-                dxu += '<label for="Finger" style="margin-top: 10px;">Finger Pull: <span style="color: #868ba1">No</span></label>';
-            }
-            else
-            {
-                dxu += '<label for="Finger" style="margin-top: 10px;">Finger Pull: <span style="color: #868ba1">Yes</span></label>';
-            }
-            dxu += '</div><!-- col -->';
+            dxu += '<td>Stile Width: <span style="color: #868ba1">' + Result.BottomRail.Description + '</span></td>';
+            dxu += '</tr>';
 
-            var option = '<table width="100%"><thead><tr>';
-            option += '<th>PREVIEW</th><th>QUANTITY</th>' +
-            '<th>WIDHT</th>' +
-            '<th>HEIGHT</th>' +
-            '<th>PANEL STYLE</th>' +
-            '<th>DOOR TYPE</th>' +
-            '<th>DOOR OPTION</th>' +
-            '<th>U. PRICE</th>';
+            //Segunda fila
+            dxu += '<tr>';
+            dxu += '<td>Rail Width: <span style="color: #868ba1">' + Result.TopRail.Description + '</span></td>';
+            dxu += '<td>Inside Edge Profile: <span style="color: #868ba1">' + Result.InsideEdgeProfile.Description + '</span></td>';
+            dxu += '<td>Outside Edge Profile: <span style="color: #868ba1">' + Result.OutsideEdgeProfile.Description + '</span></td>';
+            dxu += '<td>Door Assembly: <span style="color: #868ba1">' + Result.Join.Description + '</span></td>';
+            dxu += '</tr>';
+
+            //tercera fila
+            dxu += '<tr>';
+            dxu += '<td>Panel Style: <span style="color: #868ba1">' + Result.Panel.Description + '</span></td>';
+            dxu += '<td>Panel Material: <span style="color: #868ba1">' + Result.PanelMaterial.Description + '</span></td>';
+            if (Result.IsOpeningMeasurement == false) {
+                dxu += '<td>Opening Measurement: <span style="color: #868ba1">No</span></td>';
+            }
+            else {
+                dxu += '<td>Opening Measurement: <span style="color: #868ba1">Yes</span></td>';
+            }
+            dxu += '<td>Vertical Divisions: <span style="color: #868ba1">' + Result.VerticalDivisions.Quantity + '</span></td>';
+            dxu += '</tr>';
+
+            //Cuarta fila
+            dxu += '<tr>';
+            dxu += '<td>Horizontal Divisions: <span style="color: #868ba1">' + Result.HorizontalDivisions.Quantity + '</span></td>';
+            if (Result.isDrill == false) {
+                dxu += '<td>Hinge Drilling: <span style="color: #868ba1">No</span></td>';
+            }
+            else {
+                dxu += '<td>Hinge Drilling: <span style="color: #868ba1">Yes</span></td>';
+            }
+            if (Result.isFingerPull == false) {
+                dxu += '<td style="border-right: 1px solid #ADADAD;">Finger Pull: <span style="color: #868ba1">No</span></td>';
+            }
+            else {
+                dxu += '<td style="border-right: 1px solid #ADADAD;">Finger Pull: <span style="color: #868ba1">Yes</span></td>';
+            }            
+            dxu += '</tr>';
+
+            var option = '<table id="ordertable" style="width:100%">';
+            option += '<thead><tr>';
+            option += '<th>PREVIEW</th>';
+            option += '<th>QUANTITY</th>';
+            option += '<th>WIDHT</th>';
+            option += '<th>HEIGHT</th>';
+            if (Result.isDrill == true) {
+                option += '<th>HINGE DIRECTION</th>';
+            }
+            option += '<th>DOOR TYPE</th>';
+            option += '<th>DOOR OPTION</th>';
+            option += '<th>U. PRICE</th>';
             if (Result.DescuentoActivos) {
                 option += '<th>DISCOUNT</th>';
             }
-            option += '<th>TOTAL</th>';
-            option += '</tr></thead><tbody>';           
-            data = Result.DoorsxOrder;
-            for (var i = 0; i < data.length; i++) {
-                option += '<tr><td><img width="65px" src="' + data[i].Picture + '"/></td>';
+            option += '<th>TOTAL</th>';            
+            option += '</tr></thead><tbody>';
+            DxOl = Result.DoorsxOrder;
+            for (var i = 0; i < Result.DoorsxOrder.length; i++) {
+                option += '<tr><td><img width="65px" src="' + Result.DoorsxOrder[i].Picture + '"/></td>';
 
-                option += '<td>' + data[i].Quantity.toString().replace(',', '.') + '</td>';
-                option += '<td>' + Math.trunc(data[i].Width);
-                if (data[i].DecimalsWidth.Value != 0) {
-                    option += ' <span>' + data[i].DecimalsWidth.Description + '</span>';
+                option += '<td>' + Result.DoorsxOrder[i].Quantity.toString().replace(',', '.') + '</td>';
+                option += '<td>' + Math.trunc(Result.DoorsxOrder[i].Width);
+                if (Result.DoorsxOrder[i].DecimalsWidth.Value != 0) {
+                    option += ' <span>' + Result.DoorsxOrder[i].DecimalsWidth.Description + '</span>';
                 }
                 option += '</td>';
-                option += '<td>' + Math.trunc(data[i].Height);
-                if (data[i].DecimalsHeight.Value != 0) {
-                    option += ' <span>' + data[i].DecimalsHeight.Description + '</span>';
+                option += '<td>' + Math.trunc(Result.DoorsxOrder[i].Height);
+                if (Result.DoorsxOrder[i].DecimalsHeight.Value != 0) {
+                    option += ' <span>' + Result.DoorsxOrder[i].DecimalsHeight.Description + '</span>';
                 }
                 option += '</td>';
-                option += '<td>' + data[i].Panel.Description + '</td>';
-                option += '<td>' + data[i].DoorType.Description + '</td>';
-                option += '<td>' + data[i].DoorOption.Description + '</td>';
-                option += '<td><span>$</span>' + data[i].ItemCost.toString().replace(',', '.') + '</td>';
+                if (Result.isDrill == true) {
+                    option += '<td>' + Result.DoorsxOrder[i].HingeDirection.Direction + '</td>';
+                }
+                option += '<td>' + Result.DoorsxOrder[i].DoorType.Description + '</td>';
+                option += '<td>' + Result.DoorsxOrder[i].DoorOption.Description + '</td>';
+                option += '<td><span>$</span>' + Result.DoorsxOrder[i].ItemCost.toString().replace(',', '.') + '</td>';
                 if (Result.DescuentoActivos) {
-                    option += '<td>' + data[i].Descuento + '%</td>';
+                    option += '<td>' + Result.DoorsxOrder[i].Descuento + '%</td>';
                 }
-                option += '<td><span>$</span>' + data[i].SubTotal.toString().replace(',', '.') + '</td>';
+                option += '<td><span>$</span>' + Result.DoorsxOrder[i].SubTotal.toString().replace(',', '.') + '</td>';                
+                option += '</tr>';
             }
             option += '</tbody></table>';
-            $("#spanOrderReff").text(head);
+            $("#orreff").text(head);
             $("#ordertable").html(option);
             $("#HeaderOptions").html(dxu);
             $('#ModalOrderInfo').modal('toggle');

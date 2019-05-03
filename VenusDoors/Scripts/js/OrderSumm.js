@@ -157,18 +157,14 @@ function DltItem() {
     });
 }
 
-function ConfirmOrder() {
-    var observa = $("#inObservations").val();
-    if (observa != "") {
-        observa = observa + " \n Thanks for your business."
-    }
+function ConfirmOrder() {    
     var datos =
     {
         ord: {
             Id: $("#idorder").val(),
             Total: $("#idtotal").val(),
             Status: { Id: $("#idstatus").val() },
-            Observations: observa,
+            Observations: $("#inObservations").val(),
             ShippingAddress: { Id: $("#cbShippingAddress").val()}
         },
 

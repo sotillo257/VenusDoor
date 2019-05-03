@@ -6,6 +6,10 @@
     Model.Order ord = ViewBag.LastOrder;
 }
 
+<style>
+    .datagrid table { border-collapse: collapse; text-align: left; width: 100%; } .datagrid {font: normal 12px/150% Verdana, Arial, Helvetica, sans-serif; background: #fff; overflow: hidden; border: 1px solid #D2D2D2; -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px; }.datagrid table td, .datagrid table th { padding: 3px 10px; }.datagrid table thead th {background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #8397C6), color-stop(1, #B8B4B4) );background:-moz-linear-gradient( center top, #8397C6 5%, #B8B4B4 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#8397C6', endColorstr='#B8B4B4');background-color:#8397C6; color:#FFFFFF; font-size: 12px; font-weight: normal; border-left: 1px solid #B0B0B0; } .datagrid table thead th:first-child { border: none; }.datagrid table tbody td { color: #5C5C5C; border-left: 1px solid #ADADAD;font-size: 12px;border-bottom: 1px solid #E6F0F2;font-weight: normal; }.datagrid table tbody td:first-child { border-left: none; }.datagrid table tbody tr:last-child td { border-bottom: none; }
+</style>
+
 <div class="br-pageheader pd-y-15 pd-l-20">
     <nav class="breadcrumb pd-0 mg-0 tx-12">
         <a class="breadcrumb-item" href="/">Venus Doors</a>
@@ -96,7 +100,7 @@ else
                 <div class="card shadow-base card-body pd-35 bd-0">
                     <div class="row">
                         <div style="width:100%">
-                            <h6 class="card-title tx-uppercase tx-12">Progress</h6>
+                            <h6 class="card-title tx-uppercase tx-12">Progress of your last modified order (#<span>@ord.Id</span>)</h6>
                         @if (ord.Status.Id == 4)
                         {
                             <p class="display-4 tx-medium tx-inverse mg-b-5 tx-lato">15%</p>
@@ -243,7 +247,7 @@ else
         </div>
   }
 
-<div class="modal fade" id="ModalOrderInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">   
+@*<div class="modal fade" id="ModalOrderInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">   
     <div class="modal-dialog modal-lg" id="mdialTamanio" style="width: 80%!important; max-width:100%">
         <div class="modal-content">
             <div id="orderhead" style="border-bottom: 1px solid #e9ecef; padding: 15px">
@@ -266,6 +270,48 @@ else
             </div>
         </div>
     </div>
+</div>*@
+
+<div id="ModalOrderInfo" class="ModalOrderInfo modal fade effect-scale" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog" style="width: 74%!important;max-width: 100%" role="document">
+        <div class="modal-content bd-0 rounded-0">
+            <div class="modal-body pd-0">
+                <div class="row flex-row-reverse no-gutters">
+                    <div class="col-lg-12">
+                        <div class="pd-20">
+                            <div class="modal-header">
+                                <div>                                    
+                                    <h3 id="lblTitulo" class="tx-inverse mg-b-5">Details of the order #<span id="orreff" style="color:#014d41"></span></h3>      
+                                    <p id="lblSubTitulo" style="margin-bottom:0; font-size:17px">Here you can see your general settings and your list of doors added to your order.</p>                             
+                                </div>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
+                            <div class="tab-content">
+                                <div class="tab-pane fade show active" id="infoPanel" role="tabpanel">                                    
+                                    <div style="color:#000;margin-right: 0; padding:10px" class="row">
+                                        <div class="datagrid" style="width: 100%;">
+                                            <table id="HeaderOptions">
+                                                <tbody></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div style="overflow-y:auto; height: 235px; padding: 0px 10px;" id="ordertable">
+
+                                    </div>
+                                </div>                                
+                            </div>
+                            <div class="modal-footer">
+                                <button id="btnClose" type="button" class="btn btn-secondary Cursor" data-dismiss="modal">Close</button>                              
+                            </div>
+                        </div><!-- modal-body -->
+                    </div><!-- modal-content -->
+                </div><!-- modal-dialog -->
+            </div>
+        </div><!-- modal-content -->
+    </div><!-- modal-dialog -->
 </div>
 
 @section scripts{
