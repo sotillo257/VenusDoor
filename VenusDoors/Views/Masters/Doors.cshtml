@@ -208,8 +208,11 @@
         var urlGetAllVerticalDivisions = '@Url.Action("GetVerticalDivisions", "Masters")';
         var urlGetAllHorizontalDivisions = '@Url.Action("GetHorizontalDivisions", "Masters")';
         var urlGetAllHingeDirection = '@Url.Action("GetAllHingeDirection", "Masters")';
+        var urlGetAllDoorType = '@Url.Action("GetAllDoorType", "ConfiDoor")';
         var urlGetAllPanel = '@Url.Action("GetPanel", "Masters")';
         var urlGetAllPanelMaterial = '@Url.Action("GetPanelMaterial", "Masters")';
+        var urlGetAllDoorOption = '@Url.Action("GetAllDoorOption", "ConfiDoor")';
+        var urlGetAllDecimals = '@Url.Action("GetAllDecimals", "ConfiDoor")';
         var urlGetAllStatus = '@Url.Action("GetStatus", "Masters")';
         var urlInsertDoors = '@Url.Action("InsertDoors", "Masters")';
         var urlUpdateDoors = '@Url.Action("UpdateDoors", "Masters")';
@@ -224,5 +227,6 @@
     <script src="~/Content/lib/select2/js/select2.min.js"></script>
     <script src="~/Content/lib/select2/js/select2.full.min.js"></script>
     @Scripts.Render("~/Scripts/js/Master.Doors.js")
+    @Scripts.Render("~/Scripts/js/GetAllMaster.js")
     
 }
