@@ -564,9 +564,7 @@ function Iconos(IdType) {
             Icono = "fa fa-files-o";
             break;
         default:
-
     }
-
     return Icono;
 }
 
@@ -615,6 +613,7 @@ $(function () {
         }
     });
 });
+
 var meses = new Array("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dic");
 Date.prototype.ddmmyyyy = function () {
     var yyyy = this.getFullYear().toString();

@@ -24,8 +24,7 @@ function GetAllMaterial() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
-                lisDate =  data;
-                
+                lisDate =  data;                
             }
             else {
                 LlammarModal("Danger", "Error obtaining Material", " ");
@@ -37,6 +36,7 @@ function GetAllMaterial() {
     });
     return lisDate;
 }
+
 function llenarComboMaterial(pMaterial) {
     if (allMaterial.length == 0) {
         allMaterial = GetAllMaterial();
@@ -75,6 +75,7 @@ function GetAllInsideEdgeProfile() {
    });
    return lisDate;
 }
+
 function llenarComboIEP(pIEP) {
     if (AllInsideEdgeProfile == '') {
         AllInsideEdgeProfile = GetAllInsideEdgeProfile();
@@ -113,6 +114,7 @@ function GetAllOutsideEdgeProfile() {
    });
    return lisDate;
 }
+
 function llenarComboOEP(pOEP) {
     if (AllOutsideEdgeProfile == '') {
         AllOutsideEdgeProfile = GetAllOutsideEdgeProfile();
@@ -362,18 +364,15 @@ function llenarComboPanelMaterial(pMaterial, pPanelStyle) {
     for (var i = 0; i < AllPanelMaterial.length; i++) {
         if (AllPanelMaterial[i].Status.Id == 1 && AllPanelMaterial[i].Id == pPanelMaterial) {
             option += '<option value="' + AllPanelMaterial[i].Id + '">' + AllPanelMaterial[i].Description + '</option>';
-
         }
         if (pMaterial == 6) {
             if (pPanelStyle == 2) {
                 if (AllPanelMaterial[i].Status.Id == 1 && AllPanelMaterial[i].Id == 1) {
                     option += '<option value="' + AllPanelMaterial[i].Id + '">' + AllPanelMaterial[i].Description + '</option>';
-
                 }
             } else if (pPanelStyle == 5 || pPanelStyle == 6){
                 if (AllPanelMaterial[i].Status.Id == 1 && AllPanelMaterial[i].Id == 5) {
                     option += '<option value="' + AllPanelMaterial[i].Id + '">' + AllPanelMaterial[i].Description + '</option>';
-
                 }
             }
 
@@ -387,8 +386,6 @@ function llenarComboPanelMaterial(pMaterial, pPanelStyle) {
         }else {
             $("#cbPanelMaterial").val(pPanelMaterial);
         }
-       
-
     }
 }
 
