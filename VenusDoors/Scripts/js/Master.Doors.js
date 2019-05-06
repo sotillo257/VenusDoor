@@ -125,7 +125,7 @@
 
     $(document).on('change', '#cbMaterial', function () {
         var pMaterial = $("#cbMaterial").val();
-        var pDoorStyle = $("#cbPanel").val();
+        var pDoorStyle = $("#cbDoorStyle").val();
         llenarComboPanelMaterial(pMaterial, pDoorStyle);
     });
 
@@ -215,7 +215,7 @@ function ChangeDoorStylePanel(pIdDoorStyle) {
         ChangeProfile();
     }
     var pMaterial = $("#cbMaterial").val();
-    var pPanelStyle = $("#cbPanel").val();
+    var pPanelStyle = $("#cbDoorStyle").val();
     llenarComboPanelMaterial(pMaterial, pPanelStyle);
 }
 
@@ -1205,6 +1205,7 @@ function llenarComboPanelStyle(pPanelStyle) {
     }
 }
 
+var Inicio = 0;
 var AllPanelMaterial = '';
 function llenarComboPanelMaterial(pMaterial, pPanelStyle) {
     if (AllPanelMaterial == '') {
@@ -1232,28 +1233,42 @@ function llenarComboPanelMaterial(pMaterial, pPanelStyle) {
         pPanelMaterial = 3;
     }
     var option = '';
+    var bandera = true;
     for (var i = 0; i < AllPanelMaterial.length; i++) {
         if (AllPanelMaterial[i].Status.Id == 1 && AllPanelMaterial[i].Id == pPanelMaterial) {
             option += '<option value="' + AllPanelMaterial[i].Id + '">' + AllPanelMaterial[i].Description + '</option>';
 
         }
         if (pMaterial == 6) {
-            if (pPanelStyle == 2) {
+            if (pPanelStyle == 1003) {
                 if (AllPanelMaterial[i].Status.Id == 1 && AllPanelMaterial[i].Id == 1) {
                     option += '<option value="' + AllPanelMaterial[i].Id + '">' + AllPanelMaterial[i].Description + '</option>';
-
+                    bandera = false;
                 }
-            } else if (pPanelStyle == 5 || pPanelStyle == 6) {
+            } else if (pPanelStyle == 1002) {
                 if (AllPanelMaterial[i].Status.Id == 1 && AllPanelMaterial[i].Id == 5) {
                     option += '<option value="' + AllPanelMaterial[i].Id + '">' + AllPanelMaterial[i].Description + '</option>';
-
+                    bandera = false;
                 }
             }
 
         }
 
-        $("#cbPanelMaterial").empty().append(option);
+
+    }
+    $("#cbPanelMaterial").empty().append(option);
+    if (bandera) {
         $("#cbPanelMaterial").val(pPanelMaterial);
+    } else {
+        if (Inicio == 0) {
+            if (_PanelMAterial == 5) {
+                $("#cbPanelMaterial").val(5);
+            } else if (_PanelMAterial == 1) {
+                $("#cbPanelMaterial").val(1);
+            }
+            Inicio++;
+        }
+
     }
 }
 
