@@ -363,39 +363,41 @@ function llenarComboPanelMaterial(pMaterial, pPanelStyle) {
     }
     var option = '';
     var bandera = true;
+    var item1 = 0;
+    var item2 = 0;
     for (var i = 0; i < AllPanelMaterial.length; i++) {
         if (AllPanelMaterial[i].Status.Id == 1 && AllPanelMaterial[i].Id == pPanelMaterial) {
             option += '<option value="' + AllPanelMaterial[i].Id + '">' + AllPanelMaterial[i].Description + '</option>';
+            item1 = AllPanelMaterial[i].Id;
         }
         if (pMaterial == 6) {
             if (pPanelStyle == 1003) {
                 if (AllPanelMaterial[i].Status.Id == 1 && AllPanelMaterial[i].Id == 1) {
                     option += '<option value="' + AllPanelMaterial[i].Id + '">' + AllPanelMaterial[i].Description + '</option>';
                     bandera = false;
+                    item2 = AllPanelMaterial[i].Id;
                 }
             } else if (pPanelStyle == 1002 ){
                 if (AllPanelMaterial[i].Status.Id == 1 && AllPanelMaterial[i].Id == 5) {
                     option += '<option value="' + AllPanelMaterial[i].Id + '">' + AllPanelMaterial[i].Description + '</option>';
                     bandera = false;
+                    item2 = AllPanelMaterial[i].Id;
                 }
             }
-
-        }
-    
-             
+        }   
     }
         $("#cbPanelMaterial").empty().append(option);
     if (bandera) {
         $("#cbPanelMaterial").val(pPanelMaterial);
     } else {
-        if (Inicio == 0) {
-            if (_PanelMAterial == 5) {
-            $("#cbPanelMaterial").val(5);
-        } else if (_PanelMAterial == 1) {
-            $("#cbPanelMaterial").val(1);
-            }
-            Inicio++;
+       
+        if (item2 == _PanelMAterial || item1 == _PanelMAterial) {
+            $("#cbPanelMaterial").val(_PanelMAterial);
+        }  else {
+            
+            $("#cbPanelMaterial").val(pPanelMaterial);
         }
+      
        
     }
 }

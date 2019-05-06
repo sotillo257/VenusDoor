@@ -24,7 +24,7 @@
     llenarComboStileWidth(0);
     llenarComboDoorAssembly(0);
     llenarComboPanelStyle(0);
-    llenarComboPanelMaterial(0, $("#cbPanel").val());
+    llenarComboPanelMaterial(0, $("#cbDoorStyle").val());
     llenarComboVerticalDivisions(0);
     llenarComboHorizontalDivisions(0);
     llenarComboHingeDirection(0);
@@ -69,7 +69,7 @@
 
     $(document).on('change', '#cbPanel', function () {
         var pMaterial = $("#cbMaterial").val();
-        var pDoorStyle = $("#cbPanel").val();
+        var pDoorStyle = $("#cbDoorStyle").val();
         changeDoorPicture();
         ChangeProfile();
         llenarComboPanelMaterial(pMaterial, pDoorStyle);
