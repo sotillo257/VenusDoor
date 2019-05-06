@@ -579,7 +579,7 @@ function GetDoorxUser() {
                 llenarComboStileWidth(data.LastDoor.BottomRail.Id);
                 llenarComboRailWidth(data.LastDoor.TopRail.Id);
                 llenarComboDoorAssembly(data.LastDoor.Join.Id);
-                llenarComboPanelMaterial(data.LastDoor.Material.Id, data.LastDoor.Panel.Id);
+                llenarComboPanelMaterial(data.LastDoor.Material.Id, data.LastDoor.DoorStyle.Id);
                 llenarComboVerticalDivisions(data.LastDoor.VerticalDivisions.Id);
                 llenarComboHorizontalDivisions(data.LastDoor.HorizontalDivisions.Id);
                 if (data.LastDoor.DoorStyle.Id == 1010) {
