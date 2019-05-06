@@ -1112,6 +1112,7 @@
     <Content Include="Scripts\js\dashboard.js" />
     <Content Include="Scripts\js\Estimate.js" />
     <Content Include="Scripts\js\GetAllMaster.js" />
+    <Content Include="Scripts\js\Invoice.ConfigDoor.js" />
     <Content Include="Scripts\js\Invoice.js" />
     <Content Include="Scripts\js\Master.DoorOption.js" />
     <Content Include="Scripts\js\PaymentsReceived.js" />

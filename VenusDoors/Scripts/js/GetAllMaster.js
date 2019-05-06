@@ -26,7 +26,6 @@ function GetAllMaterial() {
         success: function (data) {
             if (data != null) {
                 lisDate =  data;
-                
             }
             else {
                 LlammarModal("Danger", "Error obtaining Material", " ");
@@ -38,6 +37,7 @@ function GetAllMaterial() {
     });
     return lisDate;
 }
+
 function llenarComboMaterial(pMaterial) {
     if (allMaterial.length == 0) {
         allMaterial = GetAllMaterial();
@@ -76,6 +76,7 @@ function GetAllInsideEdgeProfile() {
    });
    return lisDate;
 }
+
 function llenarComboIEP(pIEP) {
     if (AllInsideEdgeProfile == '') {
         AllInsideEdgeProfile = GetAllInsideEdgeProfile();
@@ -114,6 +115,7 @@ function GetAllOutsideEdgeProfile() {
    });
    return lisDate;
 }
+
 function llenarComboOEP(pOEP) {
     if (AllOutsideEdgeProfile == '') {
         AllOutsideEdgeProfile = GetAllOutsideEdgeProfile();
@@ -364,7 +366,6 @@ function llenarComboPanelMaterial(pMaterial, pPanelStyle) {
     for (var i = 0; i < AllPanelMaterial.length; i++) {
         if (AllPanelMaterial[i].Status.Id == 1 && AllPanelMaterial[i].Id == pPanelMaterial) {
             option += '<option value="' + AllPanelMaterial[i].Id + '">' + AllPanelMaterial[i].Description + '</option>';
-
         }
         if (pMaterial == 6) {
             if (pPanelStyle == 1003) {
@@ -379,19 +380,19 @@ function llenarComboPanelMaterial(pMaterial, pPanelStyle) {
                 }
             }
 
-        } 
+        }
     
              
     }
-    $("#cbPanelMaterial").empty().append(option);
+        $("#cbPanelMaterial").empty().append(option);
     if (bandera) {
         $("#cbPanelMaterial").val(pPanelMaterial);
     } else {
         if (Inicio == 0) {
             if (_PanelMAterial == 5) {
-                $("#cbPanelMaterial").val(5);
-            } else if (_PanelMAterial == 1) {
-                $("#cbPanelMaterial").val(1);
+            $("#cbPanelMaterial").val(5);
+        } else if (_PanelMAterial == 1) {
+            $("#cbPanelMaterial").val(1);
             }
             Inicio++;
         }
