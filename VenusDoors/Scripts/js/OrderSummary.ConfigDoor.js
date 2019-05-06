@@ -195,7 +195,7 @@ function SearchDoor(data) {
             llenarComboDoorStyle(data.DoorStyle.Id);
         }
         _PanelMAterial = data.PanelMaterial.Id;
-        llenarComboPanelMaterial(data.Material.Id, data.Panel.Id);
+        llenarComboPanelMaterial(data.Material.Id, data.DoorStyle.Id);
         //$("#iptCost").val(data.ItemCost);
         $("input[name=radioOver]").attr("disabled", false);
         window.history.replaceState({}, document.title, "/" + "../OrderSummary");

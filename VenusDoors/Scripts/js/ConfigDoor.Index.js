@@ -63,7 +63,7 @@
 
     $(document).on('change', '#cbMaterial', function () {
         var pMaterial = $("#cbMaterial").val();
-        var pDoorStyle = $("#cbPanel").val();
+        var pDoorStyle = $("#cbDoorStyle").val();
         llenarComboPanelMaterial(pMaterial, pDoorStyle);
     });
 
@@ -204,7 +204,7 @@ function ChangeDoorStylePanel(pIdDoorStyle) {
         ChangeProfile();
     }
     var pMaterial = $("#cbMaterial").val();
-    var pPanelStyle = $("#cbPanel").val();
+    var pPanelStyle = $("#cbDoorStyle").val();
     llenarComboPanelMaterial(pMaterial, pPanelStyle);
 }
 
