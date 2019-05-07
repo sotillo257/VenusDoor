@@ -214,7 +214,7 @@ return lisDate;
 }
 function llenarComboRailWidth(pRailWidth) {
     if (AllRailWidth == '') {
-        AllRailWidth = GetAllBottomRail();
+        AllRailWidth = GetAllTopRail();
     }
     var option = '';
     for (var i = 0; i < AllRailWidth.length; i++) {
@@ -252,7 +252,7 @@ function GetAllTopRail() {
 }
 function llenarComboStileWidth(pStileWidth) {
     if (AllStileWidth == '') {
-        AllStileWidth = GetAllTopRail();
+        AllStileWidth = GetAllBottomRail();
     }
     var option = '';
     for (var i = 0; i < AllStileWidth.length; i++) {

@@ -27,9 +27,7 @@
         $("#btXclose").hide();
         $("#btConfAdd").hide();
         $("#btModify").hide();
-
-              
-              
+ 
         $("input[name=radioOver]").attr("disabled", false);
         $(".selectModal").prop('disabled', false);
         $(".selectModal > .select2-selection").css('background-color', '#fff!important');
