@@ -14,9 +14,7 @@
         $("#iptHeight").prop('disabled', false);
         $("input[name=radioOption]").attr("disabled", false);
         $("input[name=radioOver]").attr("disabled", false);
-        $(".select2-selection").css('background-color', '#fff!important');       
-            
-        //LimpiarCombos();
+        $(".select2-selection").css('background-color', '#fff!important');               
     });
 
     $(document).on('click', '#btModify', function (event) {  

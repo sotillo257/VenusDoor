@@ -59,7 +59,7 @@ function GetAllCustomerNames() {
         success: function (data) {
             if (data != null) {
                 allCustomerName = data;
-                var option = '';
+                var option = '<option hidden value="0">Select customer</option>';
                 for (var i = 0; i < data.length; i++) {
                     if (data[i].Type.Id == 3) {
                         option += '<option value="' + data[i].Id + '">' + data[i].Person.Name + '</option>';
@@ -87,7 +87,7 @@ function GetAllSalesPerson() {
         success: function (data) {
             if (data != null) {
                 allSalesPerson = data;
-                var option = '';
+                var option = '<option hidden value="0">Select a salesperson</option>';
                 for (var i = 0; i < data.length; i++) {
                     if (data[i].Type.Id == 1 || data[i].Type.Id == 2) {
                         option += '<option value="' + data[i].Id + '">' + data[i].Person.Name + '</option>';
@@ -539,4 +539,103 @@ function RaisedPanel(Outside, Inside) {
         }
     }
     $('#ProfilePicture').attr('src', urlFolder + ProfileUrl);
+}
+
+function InsertInvoice() {  
+    var datos =
+      {
+          pInvoice: {
+            
+          },
+          pDoorxUser: {
+
+          }
+      };    
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(datos),
+        url: urlInsertDoors,
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+
+            //Validar data para ver si mostrar error al guardar o exito al guardar
+            if (result == true) {
+                LlammarModal("Congratuletions", "Congratulations! It has been inserted correctly.", " ");
+                llenarTablaDoors();
+            } else {
+                LlammarModal("Danger", "Error", "An internal error occurred when inserting the door.");
+            }
+        },
+        error: function (err) {
+            LlammarModal("Danger", "Error", "Check your internet connection and try again.");
+        },
+
+    });
+}
+
+function InsertDoorsxOrder() {
+    var itemCost = parseFloat($("#iptCost").val());
+    var DoorQuantity = $("#CantidadFila").val();
+    var DoorOp = $("#cbDoorOpt").val();
+    var HingeDirection = $("#cbHingeDirection").val();
+    var HingePositions = "";
+    var drillingV = ($("#idDrill").val() == 1) ? false : true;
+    if (drillingV == true) {
+        HingeDirection = $("#cbHingeDirection").val();
+        HingePositions = 2;
+    } else {
+        HingeDirection = 3;
+        HingePositions = 2;
+    }
+
+    var datos =
+         {
+
+             pDoorsxOrder: {
+                 DoorsxUser: CodigoDoorxUser,
+                 Width: parseFloat($("#iptWidth").val()),
+                 DecimalsWidth: { Id: $("#cbDecimalsW").val() },
+                 Height: parseFloat($("#iptHeight").val()),
+                 DecimalsHeight: { Id: $("#cbDecimalsH").val() },
+                 Quantity: DoorQuantity,
+                 ItemCost: 0,
+                 SubTotal: 0,
+                 Picture: '',
+                 ProfilePicture: '',
+                 DoorType: { Id: $("#cbDoorType").val() },
+                 DoorOption: { Id: DoorOp },
+                 User: { Id: 0 },
+                 Status: { Id: 1 },
+                 HingeDirection: { Id: HingeDirection },
+                 HingePositions: { Id: HingePositions },
+             }
+         };
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(datos),
+        url: urlInsertDoorsxOrder,
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+
+            //Validar data para ver si mostrar error al guardar o exito al guardar
+            if (result == true) {
+                LlammarModal("ConfigM", "The door has been created successfully!", "");
+                $(".btn-continue").prop('disabled', false);
+                llenarTablaOrderSumary();
+                LimpiarCamposRapidos();
+            } else {
+                $('#modalInsert').modal('hide');
+                $('#modalConfirmOrderSummary').modal('hide');
+                LlammarModal("Danger", "Error in the process.", "An error occurred when creating the door.");
+            }
+        },
+        error: function (err) {
+            $('#modalInsert').modal('hide');
+            $('#modalConfirmOrderSummary').modal('hide');
+            LlammarModal("Danger", "An error occurred during the process.", "Check your internet connection I tried again");
+        },
+
+    });
 }
