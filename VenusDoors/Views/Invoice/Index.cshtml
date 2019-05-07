@@ -1494,13 +1494,8 @@
                                                         <div class="col-xs-4 col-md-4">
                                                             <label style="margin-top: 25px;">Customer Name: </label>
                                                             <div class="input-group">
-                                                                <select style="width:100%" class="form-control select2-show-search" data-placeholder="Choose one (with searchbox)">
-                                                                    <option label="Choose one"></option>
-                                                                    <option value="Firefox">Firefox</option>
-                                                                    <option value="Chrome">Chrome</option>
-                                                                    <option value="Safari">Safari</option>
-                                                                    <option value="Opera">Opera</option>
-                                                                    <option value="Internet Explorer">Internet Explorer</option>
+                                                                <select style="width:100%" class="form-control select2-show-search" id="cbCustomerName" data-placeholder="Choose one (with searchbox)">                                                                    
+                                                                    
                                                                 </select>
                                                                 <span class="input-group-btn">
                                                                     <button class="btn bd bg-white tx-gray-600" type="button"><i class="fa fa-search"></i></button>
@@ -1509,26 +1504,20 @@
                                                         </div>
 
                                                         <div class="col-xs-4 col-md-4">
-                                                            <label for="TopRail" style="margin-top: 25px;">Salesperson:</label>
-                                                            <select style="width:100%" class="form-control select2-show-search" data-placeholder="Choose one (with searchbox)">
-                                                                <option label="Choose one"></option>
-                                                                <option value="Firefox">Firefox</option>
-                                                                <option value="Chrome">Chrome</option>
-                                                                <option value="Safari">Safari</option>
-                                                                <option value="Opera">Opera</option>
-                                                                <option value="Internet Explorer">Internet Explorer</option>
+                                                            <label for="sales" style="margin-top: 25px;">Salesperson:</label>
+                                                            <select style="width:100%" class="form-control select2-show-search" id="cbSalesPerson"  data-placeholder="Choose one (with searchbox)">                                                                                                                              
                                                             </select>
 
                                                         </div><!-- col -->
 
                                                         <div class="col-xs-4 col-md-4">
                                                             <label for="BottomRail" style="margin-top: 25px;">Invoice Date: </label>
-                                                            <input style="width:100%" class="form-control" id="cbStileWidth" data-placeholder="">
+                                                            <input style="width:100%" class="form-control" id="InvoiceDate" data-placeholder="">
                                                         </div><!-- col -->
 
                                                         <div class="col-xs-4 col-md-4">
                                                             <label for="TopRail" style="margin-top: 25px;">Possible dates:</label>
-                                                            <select style="width:100%" class="eventChange selectModal form-control select2 Doors" id="" data-placeholder=""></select>
+                                                            <select style="width:100%" class="eventChange selectModal form-control select2 Doors" id="possibles" data-placeholder=""></select>
                                                         </div><!-- col -->
 
                                                         <div class="col-xs-4 col-md-3">
@@ -1546,7 +1535,7 @@
 
                                                             <div class="form-group">
                                                                 <label for="OutsideEdgeProfile">Customer Notes: </label>
-                                                                <textarea style="width:100%" class="form-control" id="cbOutsideEdgeProfile" data-placeholder=""></textarea>
+                                                                <textarea style="width:100%" class="form-control" id="CustomerNotes" data-placeholder=""></textarea>
                                                             </div><!-- col -->
 
                                                         </div><!-- col -->
@@ -1554,8 +1543,8 @@
                                                         <div class="col-xs-4 col-md-6">
 
                                                             <div class="form-group">
-                                                                <label for="OutsideEdgeProfile">Terms & Conditions: </label>
-                                                                <textarea style="width:100%" class="form-control" id="cbOutsideEdgeProfile" data-placeholder=""></textarea>
+                                                                <label for="terms">Terms & Conditions: </label>
+                                                                <textarea style="width:100%" class="form-control" id="TermsAndCond" data-placeholder=""></textarea>
                                                             </div><!-- col -->
 
                                                         </div><!-- col -->
@@ -1870,6 +1859,8 @@
     var urlGetDoorsByOrder = '@Url.Action("GetDoorsByOrder", "OrderControl")';
     var urlGetDocAdjuntosInvoice = '@Url.Action("GetDocAdjuntosInvoice", "Invoice")';
 
+    var urlGetAllUser = '@Url.Action("GetAllUser", "Masters")';
+
     var urlGetAllMaterial = '@Url.Action("GetAllMaterial", "ConfiDoor")';
     var urlGetAllDoorStyle = '@Url.Action("GetAllDoorStyle", "ConfiDoor")';
     var urlGetAllInsideEdgeProfile = '@Url.Action("GetAllInsideEdgeProfile", "ConfiDoor")';
@@ -1888,6 +1879,7 @@
     var urlGetAllDoorOption = '@Url.Action("GetAllDoorOption", "ConfiDoor")';
     var urlGetAllDecimals = '@Url.Action("GetAllDecimals", "ConfiDoor")';
     var urlGetPrices = '@Url.Action("GetPrices", "ConfiDoor")';
+    var urlGetInsideAndOutside = '@Url.Action("GetInsideAndOutside", "ConfiDoor")';
                     try {
                         var listInvoice = JSON.parse('@Html.Raw(ViewBag.Invoice)');
                     } catch (e) {
