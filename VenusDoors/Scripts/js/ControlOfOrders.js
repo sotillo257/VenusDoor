@@ -78,7 +78,7 @@ $(function () {
     $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
 
 });
-
+var _PanelMAterial = 0;
 function GetDoorsByOrder(idOrden) {
     var datos =
                     {
@@ -111,7 +111,7 @@ function GetDoorsByOrder(idOrden) {
             _RailW = Result.TopRail.Id;
             _DoorAsm = Result.Join.Id;
             _PanelStyle = Result.Panel.Id;
-            _PanelMaterial = Result.Material.Id;
+            _PanelMAterial = Result.Material.Id;
             _Vertical = Result.VerticalDivisions.Id;
             _Horizontal = Result.HorizontalDivisions.Id;
 
@@ -158,11 +158,11 @@ function GetDoorsByOrder(idOrden) {
             llenarComboRailWidth(_RailW);
             llenarComboDoorAssembly(_DoorAsm);
             llenarComboPanelStyle(_PanelStyle);
-            llenarComboPanelMaterial(_PanelMaterial);
             llenarComboVerticalDivisions(_Vertical);
             llenarComboHorizontalDivisions(_Horizontal);
-
             ChangeDoorStylePanel(Result.DoorStyle.Id);
+            llenarComboPanelMaterial(_PanelMAterial, _DoorStyle);
+            
 
             var info = "";
             info += '<tr>';
@@ -494,7 +494,7 @@ function GetAllStatus() {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data != null) {
-                AllRailWidth = data;
+               // AllRailWidth = data;
                 var option = '<option value="0">All Order</option>';
                 for (var i = 0; i < data.length; i++) {
                         option += '<option value="' + data[i].Id + '">' + data[i].Description + '</option>';
@@ -578,6 +578,7 @@ function llenarTablaOrderControlxUser(pIdStatus) {
     });
 
 }
+
 function DescargarOderPDF(id) {
     var datos = { idOrder: id };
 
