@@ -169,8 +169,6 @@ function NuevosCambiosDXO() {
     }
 }
 
-
-
 function llenarComboFinger(pFinger) {
 
     var option = '<option value="0">Select</option>';

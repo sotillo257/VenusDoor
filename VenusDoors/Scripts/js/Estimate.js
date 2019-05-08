@@ -520,6 +520,7 @@ function LlenarVistaPrincipal(listEstimate) {
     'transform: rotate(-45deg);line-height:23px;} </style>').appendTo("head");
    
     $("#divMarca").removeClass(claseAnterior);
+    
     claseAnterior = 'paid-' + listEstimate.Status.Description;
     $("#divMarca").addClass('paid-' + listEstimate.Status.Description);
     
