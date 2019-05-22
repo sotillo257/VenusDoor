@@ -880,7 +880,7 @@ function InsertDoorsxOrder() {
          {
 
              pDoorsxOrder: {
-                 DoorsxUser: { Id: IdDxuTEMP},
+                 DoorxUser: { Id: IdDxuTEMP},
                  Width: parseFloat($("#iptWidth").val()),
                  DecimalsWidth: { Id: $("#cbDecimalsW").val() },
                  Height: parseFloat($("#iptHeight").val()),
