@@ -102,7 +102,7 @@ namespace VenusDoors.Controllers
                 BusinessLogic.lnDoorsxUser ln = new BusinessLogic.lnDoorsxUser();
                 BusinessLogic.lnDoorxOrder _LN = new BusinessLogic.lnDoorxOrder();
                 BusinessLogic.lnEstimate _LNEstimate = new BusinessLogic.lnEstimate();
-                Order ord = ln.CrearOrder(pEstimate.Order, (int)Session["UserID"]);
+                Order ord = ln.CrearOrder(pEstimate.Order, (int)Session["UserID"], (int)Session["UserID"]);
                 _LN.UpdateDoorsxOrder(ord);
                 pEstimate.Order.Id = ord.Id;
                 int i = _LNEstimate.InsertEstimate(pEstimate);
@@ -131,7 +131,7 @@ namespace VenusDoors.Controllers
                 BusinessLogic.lnDoorsxUser ln = new BusinessLogic.lnDoorsxUser();
                 BusinessLogic.lnDoorxOrder _LN = new BusinessLogic.lnDoorxOrder();
                 BusinessLogic.lnEstimate _LNEstimate = new BusinessLogic.lnEstimate();
-                Order ord = ln.CrearOrder(pEstimate.Order, (int)Session["UserID"]);
+                Order ord = ln.CrearOrder(pEstimate.Order, (int)Session["UserID"], (int)Session["UserID"]);
                 _LN.UpdateDoorsxOrder(ord);
                 pEstimate.Order.Id = ord.Id;
                 if (_LNEstimate.UpdateEstimate(pEstimate))

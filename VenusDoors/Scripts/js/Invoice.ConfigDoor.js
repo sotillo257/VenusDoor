@@ -20,6 +20,22 @@
     PrintDoorOverlay($("#cbDoorStyle").val()); 
     ChangeDoorStylePanel($("#cbDoorStyle").val());
 
+    $(document).on('click', '#btnSAVE', function (event) {
+        LlammarModal("ConfirmOrdenSummary", "Confirm", "Do you want to save this configuration?",
+        '<button onclick="AgregarD();" class="Cursor btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Save</button>' +
+        '<button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>');
+    });
+
+    $(document).on('click', '#btConfSave', function (event) {
+        LlammarModal("ConfirmOrdenSummary", "Do you want to save your new changes?", "The doors added to your order will suffer some changes. Do you want to proceed with this operation?.<br>(This could take a little time).",
+        '<button onclick="NuevosCambiosDXU();" id="btnSaveChanges" class="Cursor btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Confirm</button>' +
+        '<button type="button" class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium" data-dismiss="modal">Cancel</button>');
+    });
+
+    $(document).on('click', '#btSaveChan', function (event) {
+        AgregarDXO();
+    });
+
     $(document).on('change', '#cbMaterial', function () {
         var pMaterial = $("#cbMaterial").val();
         var pDoorStyle = $("#cbPanel").val();
@@ -49,6 +65,212 @@
     });
 });
 
+function AgregarD() {
+    if (ValidarCamposVacios()) {
+        InsertDoorsxUser();
+    } else {
+        $('#modalConfirmOrderSummary').modal('hide');
+        LlammarModal("Danger", "You must fill all the fields.", " ");
+    }
+}
+
+function NuevosCambiosDXU() {
+    if (ValidarCamposVacios()) {
+        InsertDoorsxUser();
+    } else {
+        $('#modalConfirmOrderSummary').modal('hide');
+        LlammarModal("Danger", "You must fill all the fields.", " ");
+    }
+}
+
+function AgregarDXO() {
+    if (ValidarCamposFront()) {
+        InsertDoorsxOrder();
+    } else {        
+        LlammarModal("Danger", "You must fill all the fields.", " ");
+    }
+}
+
+function ValidarCamposVacios() {
+    var aux = true;
+
+    if ($('#cbMaterial').val() == 0 || $('#cbMaterial').val() == null) {
+        $('#select2-cbMaterial-container').addClass("cbError");
+        aux = false;
+    } else {
+        $('#select2-cbMaterial-container').removeClass("cbError");
+    }
+
+    if ($('#cbDoorStyle').val() == 0 || $('#cbDoorStyle').val() == null) {
+        $('#select2-cbDoorStyle-container').addClass("cbError");
+        aux = false;
+    } else {
+        $('#select2-cbDoorStyle-container').removeClass("cbError");
+    }
+
+    if ($('#cbRailWidth').val() == 0 || $('#cbRailWidth').val() == null) {
+        $('#select2-cbRailWidth-container').addClass("cbError");
+        aux = false;
+    } else {
+        $('#select2-cbRailWidth-container').removeClass("cbError");
+    }
+
+    if ($('#cbStileWidth').val() == 0 || $('#cbStileWidth').val() == null) {
+        $('#select2-cbStileWidth-container').addClass("cbError");
+        aux = false;
+    } else {
+        $('#select2-cbStileWidth-container').removeClass("cbError");
+    }
+
+    if ($('#cbPanelMaterial').val() == 0 || $('#cbPanelMaterial').val() == null) {
+        $('#select2-cbPanelMaterial-container').addClass("cbError");
+        aux = false;
+    } else {
+        $('#select2-cbPanelMaterial-container').removeClass("cbError");
+    }
+
+    if ($('#cbIsOpeningMeasurement').val() == 0 || $('#cbIsOpeningMeasurement').val() == null) {
+        $('#select2-cbIsOpeningMeasurement-container').addClass("cbError");
+        aux = false;
+    } else {
+        $('#select2-cbIsOpeningMeasurement-container').removeClass("cbError");
+    }
+
+    if ($('#cbDoorAssembly').val() == 0 || $('#cbDoorAssembly').val() == null) {
+        $('#select2-cbDoorAssembly-container').addClass("cbError");
+        aux = false;
+    } else {
+        $('#select2-cbDoorAssembly-container').removeClass("cbError");
+    }
+    var xsx = $('#cbOutsideEdgeProfile').val();
+    if ($('#cbOutsideEdgeProfile').val() == 0 || $('#cbOutsideEdgeProfile').val() == null) {
+        $('#select2-cbOutsideEdgeProfile-container').addClass("cbError");
+        aux = false;
+    } else {
+        $('#select2-cbOutsideEdgeProfile-container').removeClass("cbError");
+    }
+
+    if ($('#cbInsideEdgeProfile').val() == 0 || $('#cbInsideEdgeProfile').val() == null) {
+        $('#select2-cbInsideEdgeProfile-container').addClass("cbError");
+        aux = false;
+    } else {
+        $('#select2-cbInsideEdgeProfile-container').removeClass("cbError");
+    }
+
+    if ($('#cbVerticalDivisions').val() == 0 || $('#cbVerticalDivisions').val() == null) {
+        $('#select2-cbVerticalDivisions-container').addClass("cbError");
+        aux = false;
+    } else {
+        $('#select2-cbVerticalDivisions-container').removeClass("cbError");
+    }
+
+    if ($('#cbHorizontalDivisions').val() == 0 || $('#cbHorizontalDivisions').val() == null) {
+        $('#select2-cbHorizontalDivisions-container').addClass("cbError");
+        aux = false;
+    } else {
+        $('#select2-cbHorizontalDivisions-container').removeClass("cbError");
+    }
+
+    if ($('#cbisDrill').val() == 0 || $('#cbisDrill').val() == null) {
+        $('#select2-cbisDrill-container').addClass("cbError");
+        aux = false;
+    } else {
+        $('#select2-cbisDrill-container').removeClass("cbError");
+    }
+
+    if ($('#cbPanel').val() == 0 || $('#cbPanel').val() == null) {
+        // $('#cbPanel').addClass("cbError");
+
+        $('#select2-cbPanel-container').addClass("cbError");
+        aux = false;
+    } else {
+        // $('#cbPanel').addClass("cbError");
+        $('#select2-cbPanel-container').removeClass("cbError");
+    }
+
+    if ($('#cbFingerPull').val() == 0 || $('#cbFingerPull').val() == null) {
+        $('#select2-cbFingerPull-container').addClass("cbError");
+        aux = false;
+    } else {
+        $('#select2-cbFingerPull-container').removeClass("cbError");
+    }
+
+
+
+    if ($("input[name=radioOver]").is(':checked')) {
+        $("input[name=radioOver]").removeClass("is-invalid");
+
+    } else {
+        $("input[name=radioOver]").addClass("is-invalid");
+        aux = false;
+    }
+
+    return aux;
+}
+
+function ValidarCamposFront() {
+    var aux = true;
+
+    if ($('#cbDecimalsW').val() == 0 || $('#cbDecimalsW').val() == null) {
+        $('#cbDecimalsW').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#cbDecimalsW').removeClass("is-invalid");
+    }
+    if ($('#cbDecimalsH').val() == 0 || $('#cbDecimalsH').val() == null) {
+        $('#cbDecimalsH').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#cbDecimalsH').removeClass("is-invalid");
+    }
+
+    if ($('#iptWidth').val() == "" || $('#iptWidth').val() == null) {
+        $('#iptWidth').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#iptWidth').removeClass("is-invalid");
+    }
+
+    if ($('#iptHeight').val() == "" || $('#iptHeight').val() == null) {
+        $('#iptHeight').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#iptHeight').removeClass("is-invalid");
+    }
+
+    if ($('#CantidadFila').val() == "" || $('#CantidadFila').val() == null) {
+        $('#CantidadFila').addClass("is-invalid");
+        aux = false;
+    } else {
+        $('#CantidadFila').removeClass("is-invalid");
+    }
+
+    var drillingV = ($("#idDrill").val() == 1) ? false : true;
+    if (drillingV == true) {
+        if ($('#cbHingeDirection').val() == 0 || $('#cbHingeDirection').val() == null) {
+            $('#select2-cbHingeDirection-container').addClass("cbError");
+            aux = false;
+        } else {
+            $('#select2-cbHingeDirection-container').removeClass("cbError");
+        }
+    }
+
+    if ($('#cbDoorType').val() == 0 || $('#cbDoorType').val() == null) {
+        $('#select2-cbDoorType-container').addClass("cbError");
+        aux = false;
+    } else {
+        $('#select2-cbDoorType-container').removeClass("cbError");
+    }
+    if ($('#cbDoorOpt').val() == 0 || $('#cbDoorOpt').val() == null) {
+        $('#select2-cbDoorOpt-container').addClass("cbError");
+        aux = false;
+    } else {
+        $('#select2-cbDoorOpt-container').removeClass("cbError");
+    }
+    return aux;
+}
+
+var _PanelMAterial = 0;
 function GetAllCustomerNames() {
     $.ajax({
         url: urlGetAllUser,
@@ -59,13 +281,7 @@ function GetAllCustomerNames() {
         success: function (data) {
             if (data != null) {
                 allCustomerName = data;
-                var option = '<option hidden value="0">Select customer</option>';
-                for (var i = 0; i < data.length; i++) {
-                    if (data[i].Type.Id == 3) {
-                        option += '<option value="' + data[i].Id + '">' + data[i].Person.Name + '</option>';
-                    }
-                }
-                $("#cbCustomerName").empty().append(option);
+                Costumer();
             }
             else {
                 LlammarModal("Danger", "Error obtaining customer", " ");
@@ -87,13 +303,7 @@ function GetAllSalesPerson() {
         success: function (data) {
             if (data != null) {
                 allSalesPerson = data;
-                var option = '<option hidden value="0">Select a salesperson</option>';
-                for (var i = 0; i < data.length; i++) {
-                    if (data[i].Type.Id == 1 || data[i].Type.Id == 2) {
-                        option += '<option value="' + data[i].Id + '">' + data[i].Person.Name + '</option>';
-                    }
-                }
-                $("#cbSalesPerson").empty().append(option);
+                Sales();
             }
             else {
                 LlammarModal("Danger", "Error obtaining sales person", " ");
@@ -105,6 +315,37 @@ function GetAllSalesPerson() {
     });
 }
 
+function Sales() {
+    var option = '<option value="0">Choose one (with searchbox)</option>';
+    for (var i = 0; i < allSalesPerson.length; i++) {
+        if (allSalesPerson[i].Type.Id == 1 || allSalesPerson[i].Type.Id == 2) {
+            option += '<option value="' + allSalesPerson[i].Id + '">' + allSalesPerson[i].Person.Name + ' ' + allSalesPerson[i].Person.Lastname + '</option>';
+        }
+    }
+    $("#cbSalesPerson").empty().append(option);
+}
+
+function Costumer() {
+    var option = '<option value="0">Choose one (with searchbox)</option>';
+    for (var i = 0; i < allCustomerName.length; i++) {
+        if (allCustomerName[i].Type.Id == 3) {
+            option += '<option value="' + allCustomerName[i].Id + '">' + allCustomerName[i].Person.Name + ' ' + allCustomerName[i].Person.Lastname + '</option>';
+        }
+    }
+    $("#cbCustomerName").empty().append(option);
+}
+
+function ResetInvoice() {
+    $("#idDoor").val("");
+    $("#idOrder").val("");
+    Sales();
+    Costumer();
+    $("#datepickerNoOfMonths").val("");
+    $("#Terms").val(0);
+    $("#duedate").val("");
+    $("#CustomerNotes").val("");
+    $("#TermsAndCond").val("");
+}
 
 var _PanelType = 0;
 function ChangeDoorStylePanel(pIdDoorStyle) {
@@ -541,41 +782,87 @@ function RaisedPanel(Outside, Inside) {
     $('#ProfilePicture').attr('src', urlFolder + ProfileUrl);
 }
 
-function InsertInvoice() {  
-    var datos =
-      {
-          pInvoice: {
-            
-          },
-          pDoorxUser: {
+function InsertDoorsxUser() {
+    var itemCost = parseFloat($("#iptCost").val());
+    var DoorQuantity = $("#iptQuantity").val();
+    var DoorSubTotal = itemCost * DoorQuantity;
+    var OrdSubTotal = DoorSubTotal;
+    var Tx = parseFloat(0.0825);
+    var Taxes = (parseFloat(OrdSubTotal) * Tx).toFixed(2);
+    var OrdTotal = (parseFloat(OrdSubTotal) + parseFloat(Taxes)).toFixed(2);
+    var DoorOp = $('input[name=radioOption]:checked').attr("data-id");
+    var isOver = ($('input[name=radioOver]:checked').attr("data-id") == 1) ? false : true;
+    var drillingV = ($("#cbisDrill").val() == 1) ? false : true;
 
+    var datos =
+      {          
+          Ord: {
+              Id: IdOrderTEMP,
+              Descuento: $("#descDXU").val(),
+              DoorxUser: {
+                  Id: IdDxuTEMP,
+                  User: { Id: $("#cbCustomerName").val() },
+                  Status: { Id: 1 },
+                  Material: { Id: $("#cbMaterial").val() },
+                  DoorStyle: { Id: $("#cbDoorStyle").val() },
+                  TopRail: { Id: $("#cbRailWidth").val() },
+                  BottomRail: { Id: $("#cbStileWidth").val() },
+                  Preparation: { Id: 1 },
+                  Panel: { Id: $("#cbPanel").val() },
+                  PanelMaterial: { Id: $("#cbPanelMaterial").val() },
+                  IsOpeningMeasurement: ($("#cbIsOpeningMeasurement").val() == 1) ? false : true,
+                  Join: { Id: $("#cbDoorAssembly").val() },
+                  OutsideEdgeProfile: { Id: $("#cbOutsideEdgeProfile").val() },
+                  InsideEdgeProfile: { Id: $("#cbInsideEdgeProfile").val() },
+                  VerticalDivisions: { Id: $("#cbVerticalDivisions").val() },
+                  HorizontalDivisions: { Id: $("#cbHorizontalDivisions").val() },
+                  Width: parseFloat($("#iptWidth").val()),
+                  DecimalsWidth: { Id: $("#cbDecimalsW").val() },
+                  Height: parseFloat($("#iptHeight").val()),
+                  DecimalsHeight: { Id: $("#cbDecimalsH").val() },
+                  isDrill: drillingV,
+                  Quantity: DoorQuantity,
+                  ItemCost: itemCost,
+                  SubTotal: DoorSubTotal,
+                  Picture: $('#DoorPicture').attr('src'),
+                  ProfilePicture: $('#ProfilePicture').attr('src'),
+                  DoorType: { Id: $("#cbDoorType").val() },
+                  isOverlay: isOver,
+                  isFingerPull: ($("#cbFingerPull").val() == 1) ? false : true,
+              }
           }
-      };    
+      };
+    _DxuConfiguration = datos;
     $.ajax({
-        type: 'POST',
         data: JSON.stringify(datos),
-        url: urlInsertDoors,
-        dataType: "json",
+        url: urlInsertDoorsxUser,
+        cache: false,
+        type: 'POST',
+        async: false,
         contentType: 'application/json; charset=utf-8',
         success: function (result) {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
-            if (result == true) {
-                LlammarModal("Congratuletions", "Congratulations! It has been inserted correctly.", " ");
-                llenarTablaDoors();
+            if (result.Sucess = true) {               
+                $('#modalConfirmOrderSummary').modal('hide');               
+                IdDxuTEMP = result.Dxu;
+                IdOrderTEMP = result.ordd;
+                GetInvoiceTemp(IdOrderTEMP);
+                DetailOrder();                
             } else {
+                $('#modalConfirmOrderSummary').modal('hide');
                 LlammarModal("Danger", "Error", "An internal error occurred when inserting the door.");
             }
         },
         error: function (err) {
+            $('#modalConfirmOrderSummary').modal('hide');
             LlammarModal("Danger", "Error", "Check your internet connection and try again.");
         },
 
     });
 }
 
-function InsertDoorsxOrder() {
-    var itemCost = parseFloat($("#iptCost").val());
+function InsertDoorsxOrder() {    
     var DoorQuantity = $("#CantidadFila").val();
     var DoorOp = $("#cbDoorOpt").val();
     var HingeDirection = $("#cbHingeDirection").val();
@@ -593,7 +880,7 @@ function InsertDoorsxOrder() {
          {
 
              pDoorsxOrder: {
-                 DoorsxUser: CodigoDoorxUser,
+                 DoorsxUser: { Id: IdDxuTEMP},
                  Width: parseFloat($("#iptWidth").val()),
                  DecimalsWidth: { Id: $("#cbDecimalsW").val() },
                  Height: parseFloat($("#iptHeight").val()),
@@ -605,7 +892,7 @@ function InsertDoorsxOrder() {
                  ProfilePicture: '',
                  DoorType: { Id: $("#cbDoorType").val() },
                  DoorOption: { Id: DoorOp },
-                 User: { Id: 0 },
+                 User: { Id: $("#cbCustomerName").val() },
                  Status: { Id: 1 },
                  HingeDirection: { Id: HingeDirection },
                  HingePositions: { Id: HingePositions },
@@ -620,22 +907,19 @@ function InsertDoorsxOrder() {
         success: function (result) {
 
             //Validar data para ver si mostrar error al guardar o exito al guardar
-            if (result == true) {
-                LlammarModal("ConfigM", "The door has been created successfully!", "");
-                $(".btn-continue").prop('disabled', false);
-                llenarTablaOrderSumary();
-                LimpiarCamposRapidos();
-            } else {
-                $('#modalInsert').modal('hide');
+            if (result == true) {                           
+                GetDXOTEMP(IdDxuTEMP);
+                $("#btnCancelar").trigger("click");
+            } else {              
                 $('#modalConfirmOrderSummary').modal('hide');
                 LlammarModal("Danger", "Error in the process.", "An error occurred when creating the door.");
             }
         },
-        error: function (err) {
-            $('#modalInsert').modal('hide');
+        error: function (err) {            
             $('#modalConfirmOrderSummary').modal('hide');
             LlammarModal("Danger", "An error occurred during the process.", "Check your internet connection I tried again");
         },
 
     });
 }
+

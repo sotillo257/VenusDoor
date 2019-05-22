@@ -25,5 +25,6 @@ namespace Model
         public DoorsxUser DoorxUser { get; set; }
         public int Descuento { get; set; }
         public decimal TotalDescuento { get; set; }
+        public bool TEMP { get; set; }
     }
 }

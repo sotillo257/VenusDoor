@@ -109,7 +109,46 @@ namespace BusinessLogic
             }
 
         }
-        
+
+        public List<Order> GetAllTEMPorder()
+        {
+            try
+            {
+                return _AD.GetAllTEMPorder();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+        }
+
+        public Order GetTEMPorderById(int pId)
+        {
+            try
+            {
+                return _AD.GetTEMPorderById(pId);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+        }
+
+        public List<Order> GetTEMPorderByUser(int pId)
+        {
+            try
+            {
+                return _AD.GetTEMPorderByUser(pId);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+        }
+
         public int InsertOrder(Order pOrder)
         {
             try

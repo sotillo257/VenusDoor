@@ -6,6 +6,7 @@ using System.IO;
 using ExcelDataReader;
 using System.Data;
 
+
 namespace BusinessLogic
 {
     public class lnDoorsxUser
@@ -34,6 +35,19 @@ namespace BusinessLogic
 
         }
 
+        public List<DoorsxUser> GetAllTEMPdxu()
+        {
+            try
+            {
+                return _AD.GetAllTEMPdxu();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+        }
+
         /// <summary>
         /// @Autor: Jesus Sotillo
         /// @Fecha Creacion: 29/12/2018
@@ -44,8 +58,21 @@ namespace BusinessLogic
         public DoorsxUser GetDoorsxUserById(int pId)
         {
             try
-            {
+            {                
                 return _AD.GetDoorsxUserById(pId);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+        }
+
+        public DoorsxUser GetTEMPdxuById(int pId)
+        {
+            try
+            {
+                return _AD.GetTEMPdxuById(pId);
             }
             catch (Exception ex)
             {
@@ -340,24 +367,39 @@ namespace BusinessLogic
             return pDoorsxUser.HingePositions;
         }
 
-        public Order CrearOrder(Order pOrder, int pCodUsuario) {
+        public Order CrearOrder(Order pOrder, int pCodUsuario, int pUser) {
             try
             {
                 Order item = null;
                 lnOrder _LNOrder = new lnOrder();
-                if (pOrder.Id > 0)
+                if (pOrder.TEMP == false)
                 {
-                     item = _LNOrder.GetOrderById(pOrder.Id);
+                    if (pOrder.Id > 0)
+                    {
+                        item = _LNOrder.GetOrderById(pOrder.Id);
+                    }
+                    else
+                    {
+                        item = _LNOrder.GetOrderByUser(pUser).Where(x => x.Status.Id == 4).FirstOrDefault();
+                    }
                 }
                 else
                 {
-                     item = _LNOrder.GetOrderByUser(pCodUsuario).Where(x => x.Status.Id == 4).FirstOrDefault();
+                    if (pOrder.Id > 0)
+                    {
+                        item = _LNOrder.GetTEMPorderById(pOrder.Id);                   
+                    }
+                    else
+                    {
+                        item = null;
+                    }
                 }
+                
                 
              
                 Order neworder = new Order()
                 {                    
-                    User = new Model.User() { Id = pCodUsuario },
+                    User = new Model.User() { Id = pUser },
                     ShippingAddress = new Model.ShippingAddress() { Id = 1 },
                     Status = new Model.Status() { Id = 4 },
                     Type = new Model.Type() { Id = 1 },
@@ -365,7 +407,8 @@ namespace BusinessLogic
                     CreatorUser = pCodUsuario,
                     ModificationDate = DateTime.Now,
                     ModificationUser = pCodUsuario,
-                    Descuento = pOrder.Descuento
+                    Descuento = pOrder.Descuento,
+                    TEMP = pOrder.TEMP                  
 
                 };
                 if (item != null )
@@ -373,6 +416,7 @@ namespace BusinessLogic
                     item.Descuento = pOrder.Descuento;
                     item.ModificationDate = neworder.ModificationDate;
                     item.ModificationUser = neworder.ModificationUser;
+                    item.TEMP = neworder.TEMP;
                     _LNOrder.UpdateOrder(item);
                     neworder = item;
                 }
@@ -382,8 +426,16 @@ namespace BusinessLogic
                     neworder.Id = IdOrder;
                 }
 
-                DoorsxUser DU = GetAllDoorsxUser().Where(x => x.Order.Id == neworder.Id).FirstOrDefault();
-
+                DoorsxUser DU = null;
+                if (neworder.TEMP == true)
+                {
+                    DU = GetAllTEMPdxu().Where(x => x.Order.Id == neworder.Id).FirstOrDefault();                    
+                }
+                else
+                {
+                    DU = GetAllDoorsxUser().Where(x => x.Order.Id == neworder.Id).FirstOrDefault();
+                }
+                
                 pOrder.DoorxUser.CreatorUser = pCodUsuario;
                 pOrder.DoorxUser.ModificationUser = pCodUsuario;
                 pOrder.DoorxUser.CreationDate = DateTime.Now;

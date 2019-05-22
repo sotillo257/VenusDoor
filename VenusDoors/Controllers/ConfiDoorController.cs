@@ -405,7 +405,7 @@ namespace VenusDoors.Controllers
 
                     DoorsxUser Dxu = ln.GetDoorsxUserById(Ord.DoorxUser.Id);                    
 
-                    Order ord = ln.CrearOrder(Ord, (int)Session["UserID"]);
+                    Order ord = ln.CrearOrder(Ord, (int)Session["UserID"], (int)Session["UserID"]);
 
                     ord.DoorxUser.isDrill = Dxu.isDrill;
                     _LN.UpdateDoorsxOrder(ord);
@@ -436,7 +436,7 @@ namespace VenusDoors.Controllers
                     DoorsxUser Dxu = ln.GetDoorsxUserById(Ord.DoorxUser.Id);
                     System.Web.HttpContext.Current.Session["DrillAnterior"] = Dxu.isDrill;
 
-                    Order ord = ln.CrearOrder(Ord, (int)Session["UserID"]);
+                    Order ord = ln.CrearOrder(Ord, (int)Session["UserID"], (int)Session["UserID"]);
                     _LN.UpdateDoorsxOrder(ord);
                     return Json(new { order = ord.Id, DoorxUser = ord.DoorxUser.Id }, JsonRequestBehavior.AllowGet);
                 }

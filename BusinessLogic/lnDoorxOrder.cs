@@ -19,8 +19,20 @@ namespace BusinessLogic
                 lnDoorsPrices dp = new lnDoorsPrices();
                 lnDoorsxUser DU = new lnDoorsxUser();
                 lnOrder _LNOrder = new lnOrder();
-                Order item = _LNOrder.GetOrderByUser(pDoorsxOrder.User.Id).Where(x => x.Status.Id == 4).FirstOrDefault();
-                DoorsxUser DoorUser = DU.GetAllDoorsxUser().Where(x => x.Order.Id == item.Id).FirstOrDefault();
+                Order item = null;
+                DoorsxUser DoorUser = null;
+                if(pDoorsxOrder.TEMP == true)
+                {
+                    DoorUser = DU.GetTEMPdxuById(pDoorsxOrder.DoorxUser.Id);
+                    DoorUser.TEMP = true;
+                    item = _LNOrder.GetTEMPorderById(DoorUser.Order.Id);
+                    item.TEMP = true;
+                }
+                else
+                {
+                    item = _LNOrder.GetOrderByUser(pDoorsxOrder.User.Id).Where(x => x.Status.Id == 4).FirstOrDefault();
+                    DoorUser = DU.GetAllDoorsxUser().Where(x => x.Order.Id == item.Id).FirstOrDefault();
+                }                
                 pDoorsxOrder.DoorxUser = DoorUser;
                 int Rail = 1;
                 if (DoorUser.TopRail.Id == 3 || DoorUser.BottomRail.Id == 3 || DoorUser.DoorStyle.Id == 1009 || DoorUser.DoorStyle.Id == 1008)
@@ -142,7 +154,14 @@ namespace BusinessLogic
                 lnDecimals deci = new lnDecimals();
                 List<Decimals> listDeci = deci.GetAllDecimals();
                 lnDoorsPrices dp = new lnDoorsPrices();
-                List<DoorxOrder> listDoorOrders = GetAllDoorxOrderByDoorxUser(Order.DoorxUser.Id);
+                List<DoorxOrder> listDoorOrders = null;
+                if (Order.TEMP == true) {
+                    listDoorOrders = GetAllTEMPdxoXdxu(Order.DoorxUser.Id);
+                }
+                else
+                {
+                    listDoorOrders = GetAllDoorxOrderByDoorxUser(Order.DoorxUser.Id);
+                }                
                 lnDoorsxUser DU = new lnDoorsxUser();
                 Order.SubTotal = 0;
                 Order.Quantity = 0;
@@ -150,7 +169,15 @@ namespace BusinessLogic
                 lnUser _LNUser = new lnUser();
                 User u = new User();
                 u = _LNUser.GetUserById(Order.User.Id);
-                DoorsxUser Dxu = DU.GetDoorsxUserById(Order.DoorxUser.Id);
+                DoorsxUser Dxu = null;
+                if (Order.TEMP == true)
+                {
+                    Dxu = DU.GetTEMPdxuById(Order.DoorxUser.Id);
+                }
+                else
+                {
+                    Dxu = DU.GetDoorsxUserById(Order.DoorxUser.Id);
+                }                
 
                 foreach (DoorxOrder item in listDoorOrders)
                 {
@@ -268,6 +295,10 @@ namespace BusinessLogic
                     item.ModificationUser = item.User.Id;
                     item.ProfilePicture = DU.BuscarProfilePicture(Order.DoorxUser.OutsideEdgeProfile.Id, Order.DoorxUser.InsideEdgeProfile.Id, Order.DoorxUser.Panel.Id);
                     item.Picture = DU.BuscarDoorPicture(item);
+                    if (Order.TEMP == true)
+                    {
+                        item.TEMP = true;
+                    }
                     int retorno = _AD.UpdateDoorsxOrder(item);                   
                     Order.SubTotal = Order.SubTotal + item.SubTotal;
                     Order.Tax = 0.0825m * Order.SubTotal;
@@ -303,6 +334,32 @@ namespace BusinessLogic
             try
             {
                 return _AD.GetDoorxOrderById(pId);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+        }
+
+        public List<DoorxOrder> GetAllTEMPdxoXdxu(int IdDoorUser)
+        {
+            try
+            {
+                return _AD.GetAllTEMPdxoXdxu(IdDoorUser);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+        }
+
+        public DoorxOrder GetTEMPdxoById(int pId)
+        {
+            try
+            {
+                return _AD.GetTEMPdxoById(pId);
             }
             catch (Exception ex)
             {

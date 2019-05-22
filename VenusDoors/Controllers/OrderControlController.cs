@@ -306,7 +306,7 @@ namespace VenusDoors.Controllers
                     BusinessLogic.lnPerson _LNP = new BusinessLogic.lnPerson();
                     DoorsxUser DxuOr = ln.GetDoorsxUserById(Orden.DoorxUser.Id);
 
-                    Order ord = ln.CrearOrder(Orden, (int)Session["UserID"]);
+                    Order ord = ln.CrearOrder(Orden, (int)Session["UserID"], (int)Session["UserID"]);
 
                     ord.DoorxUser.isDrill = DxuOr.isDrill;
 

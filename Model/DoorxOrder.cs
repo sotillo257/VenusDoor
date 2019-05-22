@@ -33,5 +33,6 @@ namespace Model
         public bool isDrill { get; set; }
         public HingeDirection HingeDirection { get; set; }
         public HingePositions HingePositions { get; set; }
+        public bool TEMP { get; set; }
     }
 }
