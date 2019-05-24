@@ -190,6 +190,32 @@ namespace VenusDoors.Controllers
             }
         }
 
+        [HttpPost]
+        public ActionResult UpdateDoorxOrder(DoorxOrder pDoorsxOrder, int idOrder)
+        {
+            try
+            {
+                if (Session["UserID"] == null)
+                {
+
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    BusinessLogic.lnDoorxOrder ln = new BusinessLogic.lnDoorxOrder();
+                    int uss = pDoorsxOrder.User.Id;
+                    pDoorsxOrder.TEMP = true;
+                    ln.UpdateDoorxOrder(idOrder, pDoorsxOrder, uss);
+                    return Json(true, JsonRequestBehavior.AllowGet);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Error = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
         [Authorize]
         [HttpPost]
         public ActionResult InsertInvoice(DoorsxUser pDoorxUser, Invoice pInvoice)

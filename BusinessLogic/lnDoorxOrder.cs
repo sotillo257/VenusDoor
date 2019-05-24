@@ -409,10 +409,26 @@ namespace BusinessLogic
                 lnDoorsPrices dp = new lnDoorsPrices();               
                 lnDoorsxUser DU = new lnDoorsxUser();
                 lnOrder _LNOrder = new lnOrder();
-                Order Order = _LNOrder.GetOrderById(pIdOrder);
+                Order Order = null;
+                if (pDoorsOrder.TEMP == true)
+                {
+                    Order = _LNOrder.GetTEMPorderById(pIdOrder);
+                }
+                else
+                {
+                    Order = _LNOrder.GetOrderById(pIdOrder);
+                }
+                
                 lnUser _LNUser = new lnUser();
                 Order.User = _LNUser.GetUserById(Order.User.Id);
-                Order.DoorxUser = DU.GetAllDoorsxUser().Where(x => x.Order.Id == Order.Id).FirstOrDefault();
+                if (pDoorsOrder.TEMP == true)
+                {
+                    Order.DoorxUser = DU.GetAllTEMPdxu().Where(x => x.Order.Id == Order.Id).FirstOrDefault();
+                }
+                else
+                {
+                    Order.DoorxUser = DU.GetAllDoorsxUser().Where(x => x.Order.Id == Order.Id).FirstOrDefault();
+                }                
                 Order.SubTotal = 0;
                 Order.Quantity = 0;
                 int Rail = 1;

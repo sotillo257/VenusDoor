@@ -132,35 +132,17 @@
         $("#btSavDrs").show();
         $("#btGuardar").show();
         $("#btnAtras").hide();
-        $("#btnCancelar").hide(); modDoor
-        $("#modDoor").show();
-        $("#editDoor").hide();
+        $("#btnCancelar").hide();
     });
 
     $(document).on('click', '#modDoor', function (event) {
-        var id = $(this).attr('data-id');
-        $("#btGuardar").hide();
-        $("#btSavDrs").hide();
-        $("#detailBACK").hide();
-        $("#MODIFYOR").show();
-        $("#btCancel").hide();
-        $("#btnSAVE").hide();
-        $("#btnCON").hide();
-        $("#btnAtras").hide();
-        $("#btnBack").hide();
-        $("#btnClose").hide();
-        $("#btnConMod").hide();
-        $("#editDXU").hide();
-        $("#btBackMod").hide();
-        $("#NEWINVOICE").hide();
-        $('#modInBack').hide();
-        $("#NEWORDER").hide();
-        $("#DETAILORDER").hide();
-        $('#createBACK').removeClass("active");
-        $('#btnAtras').removeClass("active");
-        $("#btSaveChan").show();
-        $("#btnCancelar").show();
-        //QuitarClaseErrorACombos();
+        if (_DxuConfiguration.isDrill == true) {
+            $('#HingeDirectionDiv').show();
+        }else{
+            $('#HingeDirectionDiv').hide();
+        }
+        LimpiarCamposRapidos();
+        DoorxO();
     });
 
     $(document).on('click', '#btBackMod', function (event) { 
@@ -215,8 +197,6 @@
         $("#btnAtras").hide();
         $("#btnCancelar").hide();
         $("#btSaveChan").hide();
-        $("#modDoor").show();
-        $("#editDoor").hide();
     });
 
     $(document).on('click', '#btnBack', function (event) {      
@@ -331,66 +311,8 @@
 
     $(document).on('click', '#btCancel', function (event) {
         DetailOrder();
-    });      
-
-    $(document).on('click', '#createDoor', function (event) { 
-        $("#editDoor").trigger("click");
-    });
-
-    $(document).on('click', '#editDoor', function (event) {
-        var id = $(this).attr('data-id'); 
-        $("#btGuardar").hide();
-        $("#btSavDrs").hide();
-        $("#detailBACK").hide(); 
-        $("#MODIFYOR").show();
-        $("#btCancel").show();
-        $("#btnSAVE").hide();
-        $("#btnCON").hide();
-        $("#btnAtras").hide();
-        $("#btnBack").hide();
-        $("#btnClose").hide();
-        $("#btnConMod").hide();
-        $("#editDXU").hide();
-        $("#btBackMod").hide();
-        $("#NEWINVOICE").hide();
-        $('#modInBack').hide();
-        $("#NEWORDER").hide();
-        $("#DETAILORDER").hide();
-        $('#createBACK').removeClass("active");
-        $('#btnAtras').removeClass("active");
-        $("#btSaveChan").show();
-        $("#btnCancelar").hide();
-        //QuitarClaseErrorACombos();
-
-
-        for (var i = 0; i < DxOl.length; i++) {
-            if (DxOl[i].Id == $(this).attr('data-id')) {
-
-
-                var PictureProfile = '<img style="height: 100px;width: 235px;margin-top: 20px;" id="ProfilePicture" src="' + DxOl[i].ProfilePicture + '">';
-                var PicturePanel = '<img style="width: 230px;height: 230px;" id="DoorPicture" src="' + DxOl[i].Picture + '">';
-                $('#PictureProfile').html(PictureProfile);
-                $('#PicturePanel').html(PicturePanel);
-                $('#idDoorxO').val(DxOl[i].Id);
-                $('#idDxuXO').val(DxOl[i].DoorxUser.Id);
-                $('#descDXO').val(DxOl[i].Descuento);
-                $('#iptWidth').val(DxOl[i].Width);
-                $('#iptHeight').val(DxOl[i].Height);
-                $('#CantidadFila').val(DxOl[i].Quantity);
-                //$('#descDXO').val(DxOl[i].Descuento);
-                if ($('#cbDoorStyle').val() != 1010) {
-                    llenarComboPanelStyle(DxOl[i].Panel.Id);
-                }
-
-                llenarComboDoorType(DxOl[i].DoorType.Id);
-                selectDoorOption(DxOl[i].DoorOption.Id);
-                llenarComboDecimalW(DxOl[i].DecimalsWidth.Id);
-                llenarComboDecimalH(DxOl[i].DecimalsHeight.Id);
-                break;
-            }
-        }
-    });
-
+    });          
+   
     var container = $('#Demo');
     var conta = $('#listaInvoices');
 
@@ -475,9 +397,31 @@ function DetailOrder() {
     $("#NEWINVOICE").hide();
     $("#MODIFYOR").hide();
     $("#btCancel").hide();
+    $("#btnCancelar").hide();   
+}
+
+function DoorxO() {
+    $("#btGuardar").hide();
+    $("#btSavDrs").hide();
+    $("#detailBACK").hide();
+    $("#MODIFYOR").show();
+    $("#btCancel").show();
+    $("#btnSAVE").hide();
+    $("#btnCON").hide();
+    $("#btnAtras").hide();
+    $("#btnBack").hide();
+    $("#btnClose").hide();
+    $("#btnConMod").hide();
+    $("#editDXU").hide();
+    $("#btBackMod").hide();
+    $("#NEWINVOICE").hide();
+    $('#modInBack').hide();
+    $("#NEWORDER").hide();
+    $("#DETAILORDER").hide();
+    $('#createBACK').removeClass("active");
+    $('#btnAtras').removeClass("active");
+    $("#btSaveChan").show();
     $("#btnCancelar").hide();
-    $("#modDoor").hide();
-    $("#editDoor").show();
 }
 
 $(function () {
@@ -1092,7 +1036,7 @@ function GetInvoiceTemp(id) {
                     option += '</tr>';
                 }
             } else {
-                option += '<tr><td colspan="10" style="text-align: center; padding-top: 15px;">To create a new door, <a class="Cursor" id="editDoor" data-toggle="tab" href="#MODIFYOR" role="tab">click here.</a><a class="Cursor" id="modDoor" data-toggle="tab" href="#MODIFYOR" role="tab">click here.</a></td>';
+                option += '<tr><td colspan="10" style="text-align: center; padding-top: 15px;">To create a new door, <a class="Cursor" id="modDoor" data-toggle="tab" href="#MODIFYOR" role="tab">click here.</a></td>';
                 option += '</tr>';
             }            
             option += '</tbody></table>';
@@ -1161,7 +1105,9 @@ function GetDXOTEMP(id) {
                 option += '<td><span>$</span>' + DxOl[i].SubTotal.toString().replace(',', '.') + '</td>';
                 option += '<td><center><button title="Edit Door" data-id="' + DxOl[i].Id + '"data-toggle="tab" href="#dxoPanel" role="tab"  class="editDoor Cursor btn btn-primary btn-icon"  style="width: 25px;height: 25px; margin-left: 10px;"> <i class="fa fa-edit"></i></button></center></td>';
                 option += '</tr>';
-            }           
+            }
+            option += '<tr><td colspan="10" style="text-align: center; padding-top: 15px;">To create a new door, <a class="Cursor" id="modDoor" data-toggle="tab" href="#MODIFYOR" role="tab">click here.</a></td>';
+            option += '</tr>';
             option += '</tbody></table>';
             $("#divTable").empty().append(option);
         }

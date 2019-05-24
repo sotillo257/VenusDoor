@@ -36,6 +36,37 @@
         AgregarDXO();
     });
 
+    $(document).on('click', '.editDoor', function (event) {
+        DoorxO();
+
+        var id = $(this).attr('data-id');       
+        for (var i = 0; i < DxOl.length; i++) {
+            if (DxOl[i].Id == $(this).attr('data-id')) {
+
+                var HTMLImage = ' <center> <img style="width: 230px;height: 230px;" id="DoorPicture2" src="' + DxOl[i].Picture + '">' +
+                '</center>';
+                $('#PicturePanel').html(HTMLImage);                
+                $('#idDoorxO').val(DxOl[i].Id);                
+                $('#descDXO').val(DxOl[i].Descuento);
+                $('#iptWidth').val(DxOl[i].Width);
+                $('#iptHeight').val(DxOl[i].Height);
+                $('#CantidadFila').val(DxOl[i].Quantity);                              
+
+                llenarComboHingeDirection(DxOl[i].HingeDirection.Id);
+                llenarComboDoorType(DxOl[i].DoorType.Id);
+                llenarComboDoorOption(DxOl[i].DoorOption.Id);
+                llenarComboDecimalW(DxOl[i].DecimalsWidth.Id);
+                llenarComboDecimalH(DxOl[i].DecimalsHeight.Id);
+                if ($("#cbisDrill").val() == 1) {
+                    $("#HingeDirectionDiv").hide();
+                } else {
+                    $("#HingeDirectionDiv").show();
+                }
+                break;
+            }
+        }
+    });
+
     $(document).on('change', '#cbMaterial', function () {
         var pMaterial = $("#cbMaterial").val();
         var pDoorStyle = $("#cbPanel").val();
@@ -855,7 +886,7 @@ function InsertDoorsxUser() {
             }
         },
         error: function (err) {
-            $('#modalConfirmOrderSummary').modal('hide');
+            $('#modalConfirmOrderSummary').modal('hide')
             LlammarModal("Danger", "Error", "Check your internet connection and try again.");
         },
 
@@ -910,6 +941,7 @@ function InsertDoorsxOrder() {
             if (result == true) {                           
                 GetDXOTEMP(IdDxuTEMP);
                 $("#btnCancelar").trigger("click");
+                LimpiarCamposRapidos();
             } else {              
                 $('#modalConfirmOrderSummary').modal('hide');
                 LlammarModal("Danger", "Error in the process.", "An error occurred when creating the door.");
@@ -923,3 +955,76 @@ function InsertDoorsxOrder() {
     });
 }
 
+function UpdateDoorsxOrder() {
+    var DoorQuantity = $("#CantidadFila").val();
+    var DoorOp = $("#cbDoorOpt").val();
+    var HingeDirection = $("#cbHingeDirection").val();
+    var HingePositions = "";
+    var drillingV = ($("#idDrill").val() == 1) ? false : true;
+    if (drillingV == true) {
+        HingeDirection = $("#cbHingeDirection").val();
+        HingePositions = 2;
+    } else {
+        HingeDirection = 3;
+        HingePositions = 2;
+    }
+
+    var datos =
+         {
+             idOrder: IdOrderTEMP,
+             pDoorsxOrder: {
+                 Id: $("#idDoorxO").val(),
+                 DoorxUser: { Id: IdDxuTEMP },
+                 Width: parseFloat($("#iptWidth").val()),
+                 DecimalsWidth: { Id: $("#cbDecimalsW").val() },
+                 Height: parseFloat($("#iptHeight").val()),
+                 DecimalsHeight: { Id: $("#cbDecimalsH").val() },
+                 Quantity: DoorQuantity,
+                 ItemCost: 0,
+                 SubTotal: 0,
+                 Picture: '',
+                 ProfilePicture: '',
+                 DoorType: { Id: $("#cbDoorType").val() },
+                 DoorOption: { Id: DoorOp },
+                 User: { Id: $("#cbCustomerName").val() },
+                 Status: { Id: 1 },
+                 HingeDirection: { Id: HingeDirection },
+                 HingePositions: { Id: HingePositions },
+             }
+         };
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(datos),
+        url: urlUpdateDoorsxOrder,
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+
+            //Validar data para ver si mostrar error al guardar o exito al guardar
+            if (result == true) {
+                GetDXOTEMP(IdDxuTEMP);
+                $("#btnCancelar").trigger("click");
+                LimpiarCamposRapidos();
+            } else {
+                $('#modalConfirmOrderSummary').modal('hide');
+                LlammarModal("Danger", "Error in the process.", "An error occurred when creating the door.");
+            }
+        },
+        error: function (err) {
+            $('#modalConfirmOrderSummary').modal('hide');
+            LlammarModal("Danger", "An error occurred during the process.", "Check your internet connection I tried again");
+        },
+
+    });
+}
+
+function LimpiarCamposRapidos() {    
+    llenarComboDoorType(2)
+    llenarComboDoorOption(1);
+    llenarComboDecimalW(0);
+    llenarComboDecimalH(0);
+    $("#iptWidth").val("");
+    $("#iptHeight").val("");
+    $("#CantidadFila").val("");
+    $("#idDoorxO").val("");
+}
